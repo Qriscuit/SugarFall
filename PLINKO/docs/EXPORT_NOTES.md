@@ -1,6 +1,10 @@
 # Export and rebuild notes
 
-## Current Android preview v0.7.6 (3 November 2026)
+## Current Android preview v0.7.7
+
+CHG-039 delivers v0.7.7-preview/code 33, including action sounds, the slower studio pulse/hum and the final area-picker cue correction. 823 payload checks and 16 Android metadata/signature/alignment checks pass. The APK is 93,047,202 bytes; SHA-256 `dd1eaa5982985a6e180a91ba214b1da0500f90f541d7b9104396faeb8c12adc9`. All 8 Drive readback checks pass; the existing private file ID, folder, owner permissions and URL are retained. No remote checksum comparison is claimed. Physical installation, retained saves, listening/feel, legal progression and real billing remain open. Public v0.8.0-rc1 artifacts are unchanged. [Manifest](ANDROID_SUGARFALL_v0.7.7.json). Earlier source-only notes below are milestone history.
+
+## Previous Android preview v0.7.6 (3 November 2026)
 
 This preview delivers CHG-036 area frames, signature abilities, explicit test early access, Flow-2 rules and ownership-aware checkpoint restoration. 629 payload checks and 16 Android metadata/signature/alignment checks pass. The APK is 92,630,017 bytes; SHA-256 `3512e4078db8cadabb134705794f9f7a1d9f7524670161b7f3467436eb6133fe`. All 8 Drive metadata checks pass after replacement in the same private file; file ID, folder, owner permissions and download URL are retained. No remote checksum comparison is claimed. [Build manifest](ANDROID_SUGARFALL_v0.7.6.json) records package parity with the frozen source. Its 214 behavior/save and 155 GPU assertions/30 captures remain source evidence; earlier component runs are separately scoped. Real payments, legal progression and phone acceptance are not complete. The preview keeps its package/certificate; public v0.8.0-rc1 artifacts and Windows v0.6.1 remain unchanged.
 
@@ -352,6 +356,6 @@ Full Godot MIT and bundled-component copyright notices are included in both `doc
 
 The source archive uses an explicit allowlist: project configuration, scenes, original scripts, data, notices, reproducible tests and user-facing documentation. It excludes `.godot`, QA saves/screenshots, generated test telemetry/logs, downloaded tools/templates, signing keys, report-render intermediates and binaries. The original game's source is not included, and no ownership/license claim is made over another game's work.
 
-## CHG-038 source after v0.7.6
+## CHG-038 source milestone after v0.7.6 — historical
 
 Action audio and slower studio startup are integrated and source-verified; no new APK/AAB or Drive replacement was requested. Reopened I09 tracks the next export/payload checks. Keep the existing v0.7.6 and v0.8.0-rc1 manifests historical. See [audio](AUDIO_FEEDBACK.md) and [Play readiness](GOOGLE_PLAY_READINESS.md).

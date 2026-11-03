@@ -2,7 +2,7 @@
 
 Official requirements checked 3 November 2026 · SF-032 · CHG-038.
 
-Sugarfall has three playable 12-tray areas and a delivered private Android preview, [v0.7.6](ANDROID_SUGARFALL_v0.7.6.json). It is not ready for public release. The signed public [v0.8.0-rc1](ANDROID_SUGARFALL_v0.8.0-rc1.md) is an earlier local candidate, not a Play upload. The new action-audio and slower-startup work is source-only after this preview; the current Drive APK stays unchanged.
+Sugarfall has three playable 12-tray areas and a delivered private Android preview, [v0.7.7](ANDROID_SUGARFALL_v0.7.7.json). It is not ready for public release. The signed public [v0.8.0-rc1](ANDROID_SUGARFALL_v0.8.0-rc1.md) is an earlier local candidate, not a Play upload. CHG-039 delivers the action-audio and slower-startup work in the current preview; phone acceptance remains open.
 
 The existing [launch tracker](../../outputs/launch-tracker-01a18eec/Sugarfall%20Launch%20Tracker.xlsx) already covers the required work. SF-032 records this dated requirements audit, not certification of the game or account. Recheck the linked rules and the app's actual Console tasks before submission.
 
@@ -10,7 +10,7 @@ The existing [launch tracker](../../outputs/launch-tracker-01a18eec/Sugarfall%20
 
 | Priority | Existing tasks | Concrete next result | What remains external |
 | --- | --- | --- | --- |
-| 1. Finish the player experience | SF-008–017, 025–030, 044–046, 050–054, 065 | Integrate action sounds and slower studio pulse; record fresh-wallet Flow-2 progression for all 36 trays; resolve final ending/replay and onboarding findings. | Phone feel, audio levels, interruption, sustained performance and uncoached playtests. Current fixed-build probes are not a full legal campaign. |
+| 1. Finish the player experience | SF-008–017, 025–030, 044–046, 050–054, 065 | Action sounds and the slower studio pulse are delivered; record fresh-wallet Flow-2 progression for all 36 trays; resolve final ending/replay and onboarding findings. | Phone feel, audio levels, interruption, sustained performance and uncoached playtests. Current fixed-build probes are not a full legal campaign. |
 | 2. Prepare the Play account and signing | SF-005, 033, 047, 059 | Use `com.qriscuit.sugarfall`; record account type/date, identity verification, app record, upload/signing certificates and an off-device key backup. | Owner identity/contact verification, account access, Play App Signing enrollment and any account-specific production-access requirements. |
 | 3. Connect the approved early unlocks | SF-006, 034, 039–041, 052 | Install a supported billing plugin, configure three non-consumable products, authenticated verification/acknowledgement and a restore/offline policy. Use the existing [purchase contract](AREA_ABILITY_PURCHASES.md). | Play products/payment setup, license testers, actual Android purchase/cancel/pending/restore/refund tests. Preview test receipts do not prove payment. |
 | 4. Decide the remaining commercial scope | SF-005, 006, 035–038 | Choose audience/countries and whether launch includes ads; then implement the selected consent, ad and Remove Ads behavior. | Owner scope choices and SDK/provider configuration. Ads are not a Google Play publication requirement; simulated ads are not production integration. |
@@ -35,4 +35,4 @@ The existing [launch tracker](../../outputs/launch-tracker-01a18eec/Sugarfall%20
 
 The next owner setup record needs account type/creation date, intended countries/audience, public support contact, and the remaining ads decision. Those choices do not block current audio work or preparing the release materials. Do not send private account documents or signing secrets into the tracker.
 
-The [phone protocol](AREA_PLAYTEST.md) retains D01–D17 as Pending until actual results arrive. Start with v0.7.6 install-over/save retention, area controls/signature effects, late Crystal pacing and background/resume. Test the new audio/pulse only after a later build containing it is delivered. Real billing, current legal progression and phone acceptance remain separate from source checks and package delivery.
+The [phone protocol](AREA_PLAYTEST.md) retains D01–D17 as Pending until actual results arrive. Start with v0.7.7 install-over/save retention, area controls/signature effects, late Crystal pacing and background/resume. Use v0.7.7 for new action-audio/pulse checks D09/D14. Real billing, current legal progression and phone acceptance remain separate from source checks and package delivery.

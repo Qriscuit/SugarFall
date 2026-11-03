@@ -1,31 +1,27 @@
 CURRENT PRIVATE PREVIEWS - SUGARFALL - 3 November 2026
 
-ANDROID v0.7.6 - UPDATED 3 NOVEMBER 2026
-APK (92,630,017 bytes):
+ANDROID v0.7.7 - UPDATED 3 NOVEMBER 2026
+APK (93,047,202 bytes):
 https://drive.google.com/file/d/1GF1zo3lt0VR5voajNPGjoP1FYuPe0FYz/view?usp=drivesdk
-Sugarfall 0.7.6-preview, version code 32. ARM64, Android 7 or newer.
-The preview package and certificate match v0.7.5; install over the existing
-preview to retain its data. Actual phone installation/retention is unverified.
+Sugarfall 0.7.7-preview, version code 33. ARM64, Android 7 or newer.
+Same preview package/certificate as v0.7.6; install over the existing preview
+to retain its data. Physical installation/save retention remains unverified.
 
-This build delivers CHG-036: three themed Settings/Pause/offer frames,
-Bakery Jam Burst, tray-8 earned signature abilities and explicit no-charge
-early-access test purchases. Real Play billing remains unfinished.
-Gelato keeps its Dual Shot Power reset. Crystal Second Prism now earns at
-tray 8; existing owners retain it. Flow 2 independently raises late HP/rewards
-while legacy active runs keep their pinned rules. Ownership-aware checkpoint
-restoration preserves historical Twin/reset data without poisoning base runs.
+This build delivers CHG-038: 33 original action sounds for 25 event types,
+area-specific material cues and a bounded cached mixer with mute/background
+handling. The studio pulse/hum slows to a 1.30-second cycle and 2.60-second
+minimum. The final area-picker cue correction is included.
 
-Warm studio/audio, pause fade/blur, Home morph, results and ordinary cream
-routes remain. Developer settings and Infinite money are available.
-All ten gameplay JSON files and the three fingerprints are unchanged.
+The three areas, themed menu frames, signature abilities, Flow-2 balance,
+preview test purchases and developer settings remain. Real Play billing is
+not connected. Gameplay data and progress compatibility are retained.
 
-629 payload checks and 16 Android metadata/signature/alignment checks pass. The APK is 92,630,017 bytes; SHA-256 3512e4078db8cadabb134705794f9f7a1d9f7524670161b7f3467436eb6133fe.
-All 8 Drive metadata checks pass after replacement in the same private file; file ID, folder, owner permissions and download URL are retained. No remote checksum comparison is claimed.
-Frozen source: 214 behavior/save checks plus 155 GPU assertions/30 captures.
-Earlier component scopes remain separate; no new phone/Play test is claimed.
-Manifest: docs/ANDROID_SUGARFALL_v0.7.6.json.
-Physical testing and normal-wallet Flow-2 pacing remain open.
-The separate public v0.8.0-rc1 artifacts were not rebuilt or uploaded here.
+823 payload checks and 16 Android metadata/signature/alignment checks pass. The APK is 93,047,202 bytes; SHA-256 dd1eaa5982985a6e180a91ba214b1da0500f90f541d7b9104396faeb8c12adc9.
+All 8 Drive readback checks pass; the existing private file ID, folder, owner permissions and URL are retained. No remote checksum comparison is claimed.
+Manifest: docs/ANDROID_SUGARFALL_v0.7.7.json.
+Audio/startup source, mixer, native and GPU scopes are recorded separately.
+Phone listening/feel, normal-wallet progression and real billing remain open.
+The separate public v0.8.0-rc1 APK/AAB were not rebuilt or uploaded here.
 
 WINDOWS v0.6.1 - PREVIOUS BUILD, 24 OCTOBER 2026
 ZIP (69,711,965 bytes):

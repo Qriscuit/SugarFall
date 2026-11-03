@@ -1,16 +1,16 @@
 # Sugarfall — current area status
 
-Updated 3 November 2026 · CHG-038 source after v0.7.6 · phone Pending
+Updated 3 November 2026 · v0.7.7-preview/code 33 delivered · CHG-039
 
-The current source adds action audio and a slower studio pulse/hum after the delivered v0.7.6 preview. The three I09 checks are reopened for the next export. Drive remains v0.7.6 for the user’s phone tests. Real public billing, current legal-campaign/human pacing and physical acceptance remain open; the local public v0.8.0-rc1 artifacts are unchanged.
+The current Drive APK is v0.7.7-preview, including the action sounds and slower studio pulse/hum. All three I09 export checks are verified again for that exact package. Phone listening/feel, real public billing and current legal-campaign progression remain open; the local public v0.8.0-rc1 artifacts are unchanged.
 
 Counts include test activities as well as production content. Verified means the recorded scope passed; it does not imply a phone playtest. Intentional omissions remain N/A.
 
 | Area | Built Yes | Integrated Yes | Verified Yes | N/A | Detailed record |
 |---|---:|---:|---:|---:|---|
-| Bakery | 80 | 80 | 75 | 2 | [Checklist](PLINKO/docs/areas/bakery_checklist.md) |
-| Gelato Garden | 80 | 80 | 72 | 2 | [Checklist](PLINKO/docs/areas/gelato_checklist.md) |
-| Crystal Candyworks | 80 | 80 | 72 | 2 | [Checklist](PLINKO/docs/areas/crystal_checklist.md) |
+| Bakery | 80 | 80 | 76 | 2 | [Checklist](PLINKO/docs/areas/bakery_checklist.md) |
+| Gelato Garden | 80 | 80 | 73 | 2 | [Checklist](PLINKO/docs/areas/gelato_checklist.md) |
+| Crystal Candyworks | 80 | 80 | 73 | 2 | [Checklist](PLINKO/docs/areas/crystal_checklist.md) |
 
 ## Menu polish — v0.7.2 milestone
 
@@ -92,11 +92,17 @@ CHG-037 records packaging and delivery of the previously source-only CHG-036 rev
 
 I09 is now verified in all three areas; 85 requirements per area/255 total remain. All SF/AF statuses and phone outcomes are unchanged. U08 stays unfinished for real billing, and B04/B06/Q04 remain unverified for current legal progression. CHG-036 and earlier evidence remain historical. See [the build record](PLINKO/docs/ANDROID_SUGARFALL_v0.7.6.json) and [download](PLINKO/BUILD_LINKS.txt).
 
-## Current action audio and Play audit
+## CHG-038 source milestone — action audio and Play audit
 
 CHG-038 is source-only after v0.7.6. 33 original WAVs cover 25 events across menus, purchases, gameplay, pickups, signature abilities and results, with area-specific launch/hit/break/catch textures. A six-voice cached mixer caps ordinary gameplay at three voices, bounds repeated cues, honors mute/background silence and never queues stale playback. No gameplay music or ambience is added. The warm bottom-center studio pulse/hum now uses a 1.30-second cycle and 2.60-second minimum, with a legible half-strength second beat and 0.26-second quiet tail; Reduced Motion bypasses the presentation minimum. Audio: 82 integration, 91 mixer, 11 Prism and 85 cache checks; separate regressions 125/364/98/284. All 33 WAVs regenerate byte-exact. Studio: 447 final-source checks (78 controller/7 mixer/362 GPU), 72 captures; 12 native-asset checks separate. Earlier 295 profile checks precede the final pulse-amplitude adjustment and are not combined. All accepted scopes pass. Separate v0.7.6 static ELF audit passes both libraries/all six load segments; no Android 16KB runtime claim. The Drive APK and earlier public v0.8.0-rc1 artifacts are unchanged. New audio/pulse needs a later requested export; phone listening, real billing and current legal progression remain open.
 
 SF-032 is Done for the dated official-requirements audit; the launch tracker now has 12 Done and 53 open tasks. No other SF or AF status is closed. F09 stays unverified for phone listening, I09 awaits the new export, and all 17 phone checks remain Pending. Template v7 keeps 85 requirements per area/255 total. See [audio coverage](PLINKO/docs/AUDIO_FEEDBACK.md), [studio startup](PLINKO/docs/STUDIO_STARTUP.md) and [the ordered Google Play queue](PLINKO/docs/GOOGLE_PLAY_READINESS.md).
+
+## Current v0.7.7 preview delivery
+
+CHG-039 delivers v0.7.7-preview/code 33, including action sounds, the slower studio pulse/hum and the final area-picker cue correction. 823 payload checks and 16 Android metadata/signature/alignment checks pass. The APK is 93,047,202 bytes; SHA-256 `dd1eaa5982985a6e180a91ba214b1da0500f90f541d7b9104396faeb8c12adc9`. All 8 Drive readback checks pass; the existing private file ID, folder, owner permissions and URL are retained. No remote checksum comparison is claimed. Physical installation, retained saves, listening/feel, legal progression and real billing remain open. Public v0.8.0-rc1 artifacts are unchanged.
+
+Only the three I09 verification flags close. F09 phone listening, all 17 device checks, current legal progression and real payments remain open. All 65 SF and 9 AF statuses are unchanged; 12 SF tasks are Done and 53 remain open. See [the exact build record](PLINKO/docs/ANDROID_SUGARFALL_v0.7.7.json) and [download](PLINKO/BUILD_LINKS.txt).
 
 ## Fix queue
 
@@ -110,7 +116,7 @@ SF-032 is Done for the dated official-requirements audit; the launch tracker now
 | AF-006 | Check crowded Bakery and Gelato physics | Done | 108 fixed-60Hz stress checks pass: 610 px/s contacts, cooldowns, population limits, expiry, clumped rendering schedules and an 83-ball final-split drain. No production physics defect found; no physics change needed. |
 | AF-007 | Finish current Gelato and Crystal visual coverage | Done | Completed 58 current GPU captures with 287 passing assertions at both sizes. Reviewed missing menus, live effects, Reduced Motion, result states and deep Crystal cards/edges. Added a cream backing so rebounding balls cannot obscure damage numbers. |
 | AF-008 | Measure legal progression through all three areas | Ready to test | Six linked campaigns across two legal shopping policies and three seeds passed 9,044 assertions and cleared all 18 sampled area campaigns. Wall builds, earnings, purchases, fees, Twin rebuild and Second Prism are measured. Five unique tray/seed pacing flags remain historical. CHG-036 Flow-2 rules and signature gates now require fresh legal-campaign/human revalidation; bounded probes do not replace it. |
-| AF-009 | Run the physical-phone acceptance pass | Ready to test | Verified v0.7.6 is delivered for the user's phone test. No phone installation, retained-save, touch, sound or performance result is claimed; all device checks remain Pending. |
+| AF-009 | Run the physical-phone acceptance pass | Ready to test | Verified v0.7.7 is delivered for the user's phone test, including new action sounds and slower startup. No physical installation, save retention, listening, input or performance result is claimed; D01–D17 stay Pending. |
 
 ## Continue one finding at a time
 
@@ -118,7 +124,7 @@ Use the workbook’s **Area checklist** and **Area fixes** tabs. Keep Built, Int
 
 - [Phone and human playtest protocol](PLINKO/docs/AREA_PLAYTEST.md)
 - [Measured legal progression and flagged trays](PLINKO/docs/AREA_PROGRESSION_BALANCE.md)
-- [Verified APK record](PLINKO/docs/ANDROID_SUGARFALL_v0.7.6.json)
+- [Verified APK record](PLINKO/docs/ANDROID_SUGARFALL_v0.7.7.json)
 - [Download details](PLINKO/BUILD_LINKS.txt)
 - [Editable launch workbook](outputs/launch-tracker-01a18eec/Sugarfall%20Launch%20Tracker.xlsx)
 

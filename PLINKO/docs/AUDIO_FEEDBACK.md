@@ -1,6 +1,6 @@
 # Action sounds
 
-3 November 2026 · source implementation; no new APK or phone-listening acceptance.
+3 November 2026 · delivered in v0.7.7-preview under CHG-039; phone-listening acceptance remains open.
 
 Sugarfall now has short feedback for navigation, purchases, gameplay, abilities and results. Bakery uses soft wooden taps and crumb pops, Gelato uses rounded ceramic plinks, and Crystal uses clear candy chimes. The pack contains **33 original WAVs for 25 event types**. Launch, peg hit, peg break and cup catch each have three area versions; the other 21 cues are shared. No continuous gameplay music or ambience is introduced. The studio heartbeat remains a separate startup sound.
 
@@ -40,4 +40,4 @@ Updated production-path fixtures passed **11 Prism checks** and **85 cache check
 
 The exact reports are `verification/game-audio-20261103/controller-02/mixer/audio-results.json`, `verification/game-audio-20261103/integration-01/audio-cache.json` and the sibling logs. The root integration/flow/regression evidence is recorded separately in `AUDIO_FEEDBACK_VALIDATION.json`; test scopes should not be added into one historical total.
 
-The six-second [audition](../../verification/game-audio-20261103/controller-02/mixer/feedback-demo.wav) is captured from the actual controller mixer: tap, back, upgrade; Bakery/Gelato/Crystal hits and breaks; time, jam, Prism, Twin; win and collect. A [complete cue reel](../../verification/game-audio-20261103/controller-02/mixer/feedback-mixer.wav) is also available. Neither file establishes physical listening acceptance. Phone loudness, masking during busy play, comfort, background behavior and the final exported package remain open checks.
+The six-second [audition](../../verification/game-audio-20261103/controller-02/mixer/feedback-demo.wav) is captured from the actual controller mixer: tap, back, upgrade; Bakery/Gelato/Crystal hits and breaks; time, jam, Prism, Twin; win and collect. A [complete cue reel](../../verification/game-audio-20261103/controller-02/mixer/feedback-mixer.wav) is also available. Neither file establishes physical listening acceptance. Phone loudness, masking during busy play, comfort and background behavior remain open checks. The [v0.7.7 package](ANDROID_SUGARFALL_v0.7.7.json) verifies the exported audio assets/scripts and is delivered through the existing private Drive file.
