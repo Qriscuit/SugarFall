@@ -1,5 +1,7 @@
 # Area menu artwork
 
+**v0.7.6 delivery:** The [verified APK](ANDROID_SUGARFALL_v0.7.6.json) includes the three native frames and jam sprite. Earlier art-composition verification below remains separately scoped; phone contrast, touch comfort and memory acceptance stay open.
+
 3 November 2026 · Native artwork and source integration; phone acceptance remains open.
 
 Settings and Pause use distinct menu boards while keeping their concise titles, existing button skins, spacing and touch targets. Scenery stays on the perimeter, away from live controls.

@@ -55,7 +55,7 @@ A fixed nozzle at `(360,267)` solves a downward gravity trajectory toward the fi
 
 Dual Shot is the optional map node below Feed 1. It costs **3,000 Gelato coins** and requires **tray 8 unlocked AND six active Power upgrades**. Buying it resets only Power and retains exact previously purchased Power nodes for rebuilding. Each launcher fires at 65% of the single-launcher rate. Rebuilt Power costs twice as much before rounding and gains 35% more per tier. Other upgrades, equipment, map discovery and remaining coins stay intact. The two winding main routes and six terminal branches use a fixed family shuffle; owning a node grants only that exact slot and the next aggregate tier of its family.
 
-The same Dual Shot ability also has a planned US$2.99 permanent early route from tray 1. The preview test flow is implemented; real public billing remains unfinished. See [signature access](AREA_SIGNATURE_ABILITIES.md). These CHG-036 changes and [Flow rules 2](AREA_FLOW_RULES.md) are current source, not the delivered v0.7.5 APK.
+The same Dual Shot ability also has a planned US$2.99 permanent early route from tray 1. The preview test flow is implemented; real public billing remains unfinished. See [signature access](AREA_SIGNATURE_ABILITIES.md). These CHG-036 changes and [Flow rules 2](AREA_FLOW_RULES.md) are delivered in the [v0.7.6 APK](ANDROID_SUGARFALL_v0.7.6.json).
 
 ## Twelve authored trays
 

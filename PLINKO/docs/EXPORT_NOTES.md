@@ -1,8 +1,12 @@
 # Export and rebuild notes
 
-**Source after v0.7.5 — CHG-036:** Area frames, Jam Burst, shared earned/early signature access and Flow-2 rules are not in the already-delivered preview or public v0.8.0-rc1 artifacts. No new APK/Drive delivery is claimed. The next requested build must verify the new scripts/assets and revised save/ownership behavior. Real Play billing is unfinished; current preview/provider-contract tests do not establish a paid transaction.
+## Current Android preview v0.7.6 (3 November 2026)
 
-## Current Android preview v0.7.5 (3 November 2026)
+This preview delivers CHG-036 area frames, signature abilities, explicit test early access, Flow-2 rules and ownership-aware checkpoint restoration. 629 payload checks and 16 Android metadata/signature/alignment checks pass. The APK is 92,630,017 bytes; SHA-256 `3512e4078db8cadabb134705794f9f7a1d9f7524670161b7f3467436eb6133fe`. All 8 Drive metadata checks pass after replacement in the same private file; file ID, folder, owner permissions and download URL are retained. No remote checksum comparison is claimed. [Build manifest](ANDROID_SUGARFALL_v0.7.6.json) records package parity with the frozen source. Its 214 behavior/save and 155 GPU assertions/30 captures remain source evidence; earlier component runs are separately scoped. Real payments, legal progression and phone acceptance are not complete. The preview keeps its package/certificate; public v0.8.0-rc1 artifacts and Windows v0.6.1 remain unchanged.
+
+**Historical source milestone after v0.7.5 — CHG-036:** Area frames, Jam Burst, shared earned/early signature access and Flow-2 rules are not in the already-delivered preview or public v0.8.0-rc1 artifacts. No new APK/Drive delivery is claimed. The next requested build must verify the new scripts/assets and revised save/ownership behavior. Real Play billing is unfinished; current preview/provider-contract tests do not establish a paid transaction.
+
+## Previous Android preview v0.7.5 (3 November 2026)
 
 The existing private Drive APK is now **v0.7.5-preview, code 31**, with the existing preview package and development certificate. Pause has one Paused title and a compact control panel. Settings has one title and a centered, capability-driven layout with no gaps from hidden options. Help uses How to play and Trials uses Trials. Decorative slogans, repeated headings, time-card flavor text and the redundant restored-run toast are removed; mechanics and consequential reset/end-shift instructions remain. It also packages the previously source-only [pause fade/blur](MENU_TRANSITIONS.md) and the [warm studio spotlight, heartbeat and hum](STUDIO_STARTUP.md). Home morph, results and cream routes retain their intended behavior. Balance data and save formats are unchanged.
 

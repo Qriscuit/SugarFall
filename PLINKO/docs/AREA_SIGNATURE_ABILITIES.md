@@ -1,6 +1,6 @@
 # Area signature abilities
 
-3 November 2026 · CHG-036 source revision after v0.7.5-preview. No new APK or Drive replacement is recorded here. Public payments remain unfinished.
+3 November 2026 · CHG-036 source work is delivered in v0.7.6-preview under CHG-037. Public payments remain unfinished.
 
 Each area has one permanent ability that changes its play pattern. The player can earn it through the tray-8 route or choose a permanent early unlock from tray 1. The planned US base price is $2.99 per area; a real store must supply its localized price. Both routes grant the same ability and tradeoffs. Existing owners retain their unlocks.
 
@@ -36,4 +36,4 @@ Campaign activation history is distinct from the physics of a newly started run.
 
 ## Acceptance scope
 
-Current source verification is recorded in [area status](../../AREA_STATUS.md). Real Play products, plugin installation, backend verification/acknowledgement, public purchase/restore testing, a new packaged build, phone feel and fresh legal progression remain separate requirements. The delivered v0.7.5 preview predates CHG-036.
+Current source verification is recorded in [area status](../../AREA_STATUS.md). Real Play products, plugin installation, backend verification/acknowledgement, public purchase/restore testing, phone feel and fresh legal progression remain separate requirements. [The verified v0.7.6 preview](ANDROID_SUGARFALL_v0.7.6.json) includes CHG-036; package/delivery checks do not establish phone or real billing acceptance.

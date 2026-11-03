@@ -44,7 +44,7 @@ HP and rewards are configured independently. Ordinary, clock and prism pegs each
 
 Crystal also keeps the separate break reward `2 + floor((tray − 1) × 0.2)` and tray-clear reward `45 + tray × 5`. Only productive candy earns cup income. These are separate reward components, so the damage budget alone is not a tray's total payout. Power and other upgrade price growth are configured in `data/crystal_economy.json`; Bakery and Gelato retain their existing board and economy files.
 
-From tray 8, current [Flow-2 rules](AREA_FLOW_RULES.md) scale ordinary/armored damage budgets to 10/15 coins and independently scale completed break/clear rewards by 1.25 with one whole-coin rounding. The formulas above are base values; legacy active runs and Trials retain their original values. Current source, not the delivered v0.7.5 APK, includes this revision.
+From tray 8, current [Flow-2 rules](AREA_FLOW_RULES.md) scale ordinary/armored damage budgets to 10/15 coins and independently scale completed break/clear rewards by 1.25 with one whole-coin rounding. The formulas above are base values; legacy active runs and Trials retain their original values. The [v0.7.6 APK](ANDROID_SUGARFALL_v0.7.6.json) now includes this revision.
 
 ## Prisms and the shop
 
