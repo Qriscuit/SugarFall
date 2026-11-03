@@ -6,6 +6,7 @@ const FOCUS_AREA = Rect2(24,145,672,770)
 const MENU_RECT = Rect2(36,22,96,96)
 const WALLET_RECT = Rect2(156,28,528,84)
 const TWIN_NODE = Vector2i(8,1)
+const MORE_JAM_NODE = Vector2i(8,2)
 const TWIN_PARENT = Vector2i(0,1)
 const TWIN_CARD_RECT = Rect2(36,838,648,240)
 const TWIN_BUY_RECT = Rect2(438,864,214,86)
@@ -105,7 +106,7 @@ func _build_positions():
 	for entry in layout.nodes:
 		var node = Vector2i(int(entry.id[0]),int(entry.id[1]))
 		_positions[node] = Vector2(float(entry.position[0]),float(entry.position[1]))
-	for entry in layout.edges:
+	for entry in layout.edges+layout.get("special_edges",[]):
 		var key = Vector4i(int(entry.from[0]),int(entry.from[1]),int(entry.to[0]),int(entry.to[1]))
 		var path = PackedVector2Array()
 		for p in entry.points: path.append(Vector2(float(p[0]),float(p[1])))
@@ -119,6 +120,10 @@ func _build_positions():
 				_positions[TWIN_NODE] = Vector2(float(entry.position[0]),float(entry.position[1]))
 		var twin_edge = Vector4i(TWIN_PARENT.x,TWIN_PARENT.y,TWIN_NODE.x,TWIN_NODE.y)
 		if not _paths.has(twin_edge): _paths[twin_edge] = PackedVector2Array([_positions[TWIN_PARENT],_positions[TWIN_NODE]])
+	if _layout_area=="bakery":
+		for entry in layout.get("special_nodes",[]):
+			if Vector2i(int(entry.id[0]),int(entry.id[1]))==MORE_JAM_NODE:
+				_positions[MORE_JAM_NODE]=Vector2(float(entry.position[0]),float(entry.position[1]))
 	# Use the whole authored map so future discoveries never resize old nodes.
 	# Chebyshev spacing measures the clearance between square tile faces.
 	for node in _positions:
@@ -193,7 +198,7 @@ func route_opacity(owned: bool, emphasized: bool = false) -> float:
 	return 1.0 if emphasized else (.9 if owned else .95)
 
 func route_points(parent: Vector2i, node: Vector2i) -> PackedVector2Array:
-	if g.area_id in ["gelato","crystal"]:
+	if g.area_id in ["gelato","crystal"] or node==MORE_JAM_NODE:
 		var key = Vector4i(parent.x,parent.y,node.x,node.y)
 		if _paths.has(key):
 			var points = PackedVector2Array()
@@ -203,7 +208,23 @@ func route_points(parent: Vector2i, node: Vector2i) -> PackedVector2Array:
 
 func node_visible(i: int, n: int) -> bool:
 	if Vector2i(i,n)==TWIN_NODE: return twin_control_visible()
+	if Vector2i(i,n)==MORE_JAM_NODE: return more_jam_visible()
 	return g.shop_node_visible(i,n)
+
+func more_jam_visible() -> bool:
+	if g.area_id!="bakery" or g.trial_active: return false
+	if g.highest_unlocked>=10 or g.bakery_ability.quick_owned(): return true
+	for route in Graph.routes():
+		var tip: Vector2i=route[-1]
+		if g.shop_node_owned(tip.x,tip.y): return true
+	return false
+
+func more_jam_gate_text() -> String:
+	if g.bakery_ability.quick_owned(): return "Owned"
+	if not g.bakery_ability.owned(): return "Requires Jam Burst"
+	if g.highest_unlocked<10: return "Reach tray 10"
+	if not g.bakery_ability.routes_complete(): return "Finish all 3 lanes"
+	return "All three lanes complete"
 
 func twin_control_visible() -> bool:
 	return g.area_id in ["bakery","gelato","crystal"] and not g.trial_active
@@ -222,9 +243,14 @@ func special_buy() -> bool:
 
 func node_prerequisites(node: Vector2i) -> Array[Vector2i]:
 	if node==TWIN_NODE: return [TWIN_PARENT]
+	if node==MORE_JAM_NODE:
+		var tips: Array[Vector2i]=[]
+		for route in Graph.routes(): tips.append(route[-1])
+		return tips
 	return g.upgrade_graph().prerequisites(node.x,node.y)
 
 func node_cost(node: Vector2i) -> int:
+	if node==MORE_JAM_NODE: return 0
 	return special_cost() if node==TWIN_NODE else g.upgrade_cost(node.x)
 
 func selected_node() -> Vector2i:
@@ -238,10 +264,14 @@ func visible_nodes() -> Array[Vector2i]:
 	for node in g.upgrade_graph().nodes():
 		if node_visible(node.x,node.y): nodes.append(node)
 	if twin_control_visible(): nodes.append(TWIN_NODE)
+	if more_jam_visible(): nodes.append(MORE_JAM_NODE)
 	return nodes
 
 func state_for(i: int, n: int) -> String:
 	if not node_visible(i,n): return "hidden"
+	if Vector2i(i,n)==MORE_JAM_NODE:
+		if g.bakery_ability.quick_owned(): return "owned"
+		return "affordable" if g.bakery_ability.quick_unlocked() else "locked"
 	if Vector2i(i,n)==TWIN_NODE:
 		if special_owned(): return "owned"
 		if not special_unlocked(): return "locked"
@@ -286,6 +316,12 @@ func reset_view_state():
 	twin_selected = false
 	tier = 1
 	_frame_entry()
+	# Returning players at the reported tray-10 wall can find the new reward
+	# immediately; its authored location remains at the far end of the tree.
+	if more_jam_visible() and g.bakery_ability.quick_unlocked():
+		selected=MORE_JAM_NODE.x; tier=MORE_JAM_NODE.y
+		_frame_nodes([MORE_JAM_NODE])
+		_finish_camera()
 	feedback.clear()
 	tap_feedback.clear()
 	_states.clear()
@@ -357,6 +393,7 @@ func _reveal_bounds(nodes: Array[Vector2i], at_zoom: float) -> Rect2:
 func _frame_new_upgrades(before: Array[Vector2i]):
 	var revealed: Array[Vector2i] = []
 	for node in visible_nodes():
+		if node==MORE_JAM_NODE and not g.bakery_ability.quick_unlocked(): continue
 		if node not in before: revealed.append(node)
 	if g.area_id in ["gelato","crystal"] and before==[Vector2i(0,1),TWIN_NODE] and revealed.size()==g.upgrade_graph().routes().size():
 		# The first fork retains the central start and the visible locked reward
@@ -665,6 +702,16 @@ func select_at(p):
 
 func press(p):
 	if not _input_allowed() or not touch_points.is_empty() or not overlay_touches.is_empty(): return
+	if selected_node()==MORE_JAM_NODE and more_jam_visible():
+		if not buy_rect().has_point(p) or g.bakery_ability.quick_owned(): return
+		if g.bakery_ability.quick_buy():
+			g.note=""; g.note_time=0
+			_card_bounce_age=-1.0 if g.reduced_motion else 0.0
+		else:
+			g.feedback("ui_error")
+		_sync_states()
+		_request_redraw()
+		return
 	if twin_selected and twin_control_visible():
 		if buy_rect().has_point(p) and not special_owned() and not special_unlocked():
 			g.ability_ui.open("shop")
@@ -697,8 +744,12 @@ func press(p):
 		g.note = ""
 		g.note_time = 0
 		_sync_states()
-		_select_next_upgrade(before,bought)
-		_frame_new_upgrades(before)
+		if more_jam_visible() and g.bakery_ability.quick_unlocked():
+			twin_selected=false; selected=MORE_JAM_NODE.x; tier=MORE_JAM_NODE.y
+			_frame_nodes([MORE_JAM_NODE])
+		else:
+			_select_next_upgrade(before,bought)
+			_frame_new_upgrades(before)
 	else:
 		g.feedback("ui_error")
 		_sync_states()
@@ -721,6 +772,7 @@ func _select_next_upgrade(before: Array[Vector2i], bought: Vector2i):
 	# across the garden just because another node has the next saved ordinal.
 	var next: Array[Vector2i] = []
 	for node in visible_nodes():
+		if node==MORE_JAM_NODE: continue
 		if node not in before and bought in node_prerequisites(node): next.append(node)
 	# A branch still needs the player's choice; never jump to another route or
 	# across an already-owned legacy segment to fill an unrelated missing tier.
@@ -745,6 +797,8 @@ func draw():
 		g.fitted_number(g.credits_text(g.bank),Rect2(238,43,420,52),32,g.GOLD)
 	if twin_selected and twin_control_visible():
 		_draw_twin_card()
+	elif selected_node()==MORE_JAM_NODE and more_jam_visible():
+		_draw_more_jam_card()
 	elif has_selection():
 		g.draw_set_transform(card_offset(),0,Vector2.ONE)
 		g.ui_panel(CARD_RECT)
@@ -768,6 +822,20 @@ func draw():
 		g.draw_set_transform(Vector2.ZERO,0,Vector2.ONE)
 	g.button(TREATS_RECT,"Treats")
 	g.button(PLAY_RECT,"Play",true)
+
+func _draw_more_jam_card():
+	g.draw_set_transform(card_offset(),0,Vector2.ONE)
+	g.ui_panel(CARD_RECT)
+	g.bakery_ability.draw_icon(g,Rect2(68,936,64,64))
+	_card_label("More Jam",CARD_TITLE_RECT,28,g.WHITE)
+	_card_label(more_jam_gate_text(),CARD_STATUS_RECT,21,g.MUTED)
+	_card_label("Jam every fourth doughnut.",CARD_EFFECT_RECT,21,g.MUTED)
+	if g.bakery_ability.quick_owned():
+		g.symbol("check",BUY_RECT.get_center(),38,g.TEAL)
+	else:
+		var available=g.bakery_ability.quick_unlocked()
+		_purchase_button(BUY_RECT,"Unlock · Free" if available else "Locked",available)
+	g.draw_set_transform(Vector2.ZERO,0,Vector2.ONE)
 
 func _twin_effect_lines() -> Array[String]:
 	if g.area_id=="bakery": return g.ability_ui.effects()
@@ -925,13 +993,14 @@ func draw_map(canvas: CanvasItem):
 		elif node in parents:
 			_box(canvas,rect.grow(2) if detailed else rect,Color.TRANSPARENT,Color("3d8673"),2 if detailed else ceili(TILE_SIZE.x/screen_rect.size.x),30)
 		var portrait = PORTRAIT_RECT if detailed else Rect2(-80,-84,160,160)
-		if node==TWIN_NODE: _draw_twin_icon(canvas,portrait,Color(1,1,1,alpha))
+		if node==MORE_JAM_NODE: g.bakery_ability.draw_icon(canvas,portrait,Color(1,1,1,alpha))
+		elif node==TWIN_NODE: _draw_twin_icon(canvas,portrait,Color(1,1,1,alpha))
 		else: g.food_art.draw(canvas,ART[node.x],portrait,Color(1,1,1,alpha))
 		# Gelato's shuffled slot ordinals are internal identities, not effect
 		# levels. Its card shows the current/next family level instead.
 		if detailed and node!=TWIN_NODE and g.area_id!="gelato":
 			canvas.draw_circle(Vector2(70,-70),18,Color(Color("fff1d8"),alpha))
-			_label(canvas,str(node.y),Rect2(52,-88,36,36),27,Color(Color("594132"),alpha))
+			_label(canvas,"4" if node==MORE_JAM_NODE else str(node.y),Rect2(52,-88,36,36),27,Color(Color("594132"),alpha))
 		if state == "owned":
 			_check(canvas,Vector2(0,74),Color(Color("507963"),alpha))
 		elif state == "locked":
@@ -945,6 +1014,9 @@ func draw_map(canvas: CanvasItem):
 			if state == "affordable": canvas.draw_line(marker+Vector2(0,-10),marker+Vector2(0,10),Color(Color("594132"),alpha),4,true)
 			if detailed:
 				_box(canvas,Rect2(-82,54,164,36),Color(Color("fff1d8"),alpha),Color(Color("c2996d"),alpha),1,14)
-				g.ui_art.draw(canvas,"coin",Rect2(-76,58,28,28),Color(1,1,1,alpha))
-				_label(canvas,g.credits_text(node_cost(node)),Rect2(-42,58,116,28),28,Color(Color("513c2c"),alpha))
+				if node==MORE_JAM_NODE:
+					_label(canvas,"Free",Rect2(-76,58,152,28),28,Color(Color("513c2c"),alpha))
+				else:
+					g.ui_art.draw(canvas,"coin",Rect2(-76,58,28,28),Color(1,1,1,alpha))
+					_label(canvas,g.credits_text(node_cost(node)),Rect2(-42,58,116,28),28,Color(Color("513c2c"),alpha))
 		canvas.draw_set_transform(Vector2.ZERO,0,Vector2.ONE)

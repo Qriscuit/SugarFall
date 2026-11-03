@@ -1,0 +1,5773 @@
+{
+  "date": "2026-11-03",
+  "engine": "Godot 4.6.3",
+  "scope": "Fixed maximum legal ordinary build and earned Jam; synthetic wallet, no early access. Identical initial seeds, not forced identical later random-drop streams.",
+  "runs": 78,
+  "deterministic_repeat_runs": 1,
+  "invalid_runs_or_invariant_failures": 0,
+  "checks": [
+    "62 legal ordinary node purchases and all caps",
+    "earned Jam gate and free milestone claim",
+    "exactly two equipped special slots",
+    "no early access",
+    "pinned run cadence 5 or 4",
+    "termination at result",
+    "no player profile reads",
+    "HP and applied-damage conservation",
+    "bounded two-target Jam damage",
+    "identical complete repeated baseline result"
+  ],
+  "aim": {
+    "instant": "Instant exact topmost targeting, optimistic reference only",
+    "sweep": {
+      "period_seconds": 2.8,
+      "x_range": [
+        80,
+        640
+      ]
+    },
+    "track": {
+      "maximum_x_speed": 600.0,
+      "retarget_seconds": 0.35,
+      "target": "topmost surviving peg",
+      "uniform_x_error": 14.0
+    }
+  },
+  "pickups": "Immediate automatic time-pickup collection; clock pegs retain normal mechanics and cap",
+  "initial_seed_rule": "1719 + tray * 104729 + seed_variant * 7919; seed variants 0,1,2",
+  "setup": {
+    "ordinary_nodes": 62,
+    "levels": [
+      10,
+      10,
+      6,
+      6,
+      6,
+      6,
+      8,
+      10
+    ],
+    "power": 4.55,
+    "base_duration_seconds": 15,
+    "bonus_time_cap_seconds": 3,
+    "rules_revision": 2,
+    "special_slots": 2,
+    "synthetic_initial_wallet": 1000000,
+    "jam_source": "earned"
+  },
+  "limitations": [
+    "Automated fixed maximum-build probe, not human phone verification.",
+    "Synthetic starting wallet: does not establish legal natural-wallet campaign attainability.",
+    "Immediate automatic time-pickup collection is optimistic.",
+    "Tracking uses topmost-peg knowledge, 0.35-second retargeting, 600 logical-pixel/second movement and uniform +/-14 logical-pixel error.",
+    "Same initial seeds do not force identical later random drops: altered damage, breaks, random effects and targeting diverge.",
+    "Three seeds per ordinary pairing/policy are bounded examples, not a statistically powered win-rate estimate.",
+    "Clear counts measure this policy and equipped pair, not all possible user strategies."
+  ],
+  "human_playtest": false,
+  "natural_wallet_progression": false,
+  "groups": [
+    {
+      "policy": "instant",
+      "tray": 10,
+      "cadence": 4,
+      "runs": 1,
+      "clears": 1,
+      "median_elapsed_all_seconds": 13.0166666666669,
+      "median_clear_seconds": 13.0166666666669,
+      "mean_remaining_hp": 0.0,
+      "mean_remaining_hp_percent": 0.0,
+      "max_remaining_hp": 0.0,
+      "max_remaining_hp_percent": 0.0,
+      "mean_jam_damage": 40.95,
+      "mean_jam_activations": 8,
+      "mean_jam_launches": 11,
+      "failure_remaining_peg_counts": []
+    },
+    {
+      "policy": "instant",
+      "tray": 10,
+      "cadence": 5,
+      "runs": 1,
+      "clears": 1,
+      "median_elapsed_all_seconds": 10.9000000000001,
+      "median_clear_seconds": 10.9000000000001,
+      "mean_remaining_hp": 0.0,
+      "mean_remaining_hp_percent": 0.0,
+      "max_remaining_hp": 0.0,
+      "max_remaining_hp_percent": 0.0,
+      "mean_jam_damage": 23.8875,
+      "mean_jam_activations": 4,
+      "mean_jam_launches": 6,
+      "failure_remaining_peg_counts": []
+    },
+    {
+      "policy": "instant",
+      "tray": 11,
+      "cadence": 4,
+      "runs": 1,
+      "clears": 1,
+      "median_elapsed_all_seconds": 12.4500000000002,
+      "median_clear_seconds": 12.4500000000002,
+      "mean_remaining_hp": 0.0,
+      "mean_remaining_hp_percent": 0.0,
+      "max_remaining_hp": 0.0,
+      "max_remaining_hp_percent": 0.0,
+      "mean_jam_damage": 20.775,
+      "mean_jam_activations": 5,
+      "mean_jam_launches": 9,
+      "failure_remaining_peg_counts": []
+    },
+    {
+      "policy": "instant",
+      "tray": 11,
+      "cadence": 5,
+      "runs": 1,
+      "clears": 1,
+      "median_elapsed_all_seconds": 16.7000000000003,
+      "median_clear_seconds": 16.7000000000003,
+      "mean_remaining_hp": 0.0,
+      "mean_remaining_hp_percent": 0.0,
+      "max_remaining_hp": 0.0,
+      "max_remaining_hp_percent": 0.0,
+      "mean_jam_damage": 13.95,
+      "mean_jam_activations": 6,
+      "mean_jam_launches": 11,
+      "failure_remaining_peg_counts": []
+    },
+    {
+      "policy": "instant",
+      "tray": 12,
+      "cadence": 4,
+      "runs": 1,
+      "clears": 1,
+      "median_elapsed_all_seconds": 13.9833333333336,
+      "median_clear_seconds": 13.9833333333336,
+      "mean_remaining_hp": 0.0,
+      "mean_remaining_hp_percent": 0.0,
+      "max_remaining_hp": 0.0,
+      "max_remaining_hp_percent": 0.0,
+      "mean_jam_damage": 23.8875,
+      "mean_jam_activations": 8,
+      "mean_jam_launches": 10,
+      "failure_remaining_peg_counts": []
+    },
+    {
+      "policy": "instant",
+      "tray": 12,
+      "cadence": 5,
+      "runs": 1,
+      "clears": 1,
+      "median_elapsed_all_seconds": 12.2000000000002,
+      "median_clear_seconds": 12.2000000000002,
+      "mean_remaining_hp": 0.0,
+      "mean_remaining_hp_percent": 0.0,
+      "max_remaining_hp": 0.0,
+      "max_remaining_hp_percent": 0.0,
+      "mean_jam_damage": 20.775,
+      "mean_jam_activations": 5,
+      "mean_jam_launches": 7,
+      "failure_remaining_peg_counts": []
+    },
+    {
+      "policy": "sweep",
+      "tray": 10,
+      "cadence": 4,
+      "runs": 9,
+      "clears": 0,
+      "median_elapsed_all_seconds": 17.4999999999999,
+      "median_clear_seconds": null,
+      "mean_remaining_hp": 20.330555555555556,
+      "mean_remaining_hp_percent": 2.3019197866344587,
+      "max_remaining_hp": 42.45,
+      "max_remaining_hp_percent": 4.80638586956521,
+      "mean_jam_damage": 33.979166666666664,
+      "mean_jam_activations": 6.777777777777778,
+      "mean_jam_launches": 12.555555555555555,
+      "failure_remaining_peg_counts": [
+        1,
+        3,
+        1,
+        1,
+        4,
+        2,
+        3,
+        1,
+        6
+      ]
+    },
+    {
+      "policy": "sweep",
+      "tray": 10,
+      "cadence": 5,
+      "runs": 9,
+      "clears": 0,
+      "median_elapsed_all_seconds": 17.4999999999999,
+      "median_clear_seconds": null,
+      "mean_remaining_hp": 26.6375,
+      "mean_remaining_hp_percent": 3.0160212862318785,
+      "max_remaining_hp": 63.225,
+      "max_remaining_hp_percent": 7.1586277173913,
+      "mean_jam_damage": 26.209722222222222,
+      "mean_jam_activations": 5.666666666666667,
+      "mean_jam_launches": 9.88888888888889,
+      "failure_remaining_peg_counts": [
+        4,
+        3,
+        2,
+        2,
+        5,
+        1,
+        4,
+        7,
+        2
+      ]
+    },
+    {
+      "policy": "track",
+      "tray": 10,
+      "cadence": 4,
+      "runs": 9,
+      "clears": 8,
+      "median_elapsed_all_seconds": 14.6000000000003,
+      "median_clear_seconds": 14.6000000000003,
+      "mean_remaining_hp": 0.1597222222222211,
+      "mean_remaining_hp_percent": 0.018084490740740665,
+      "max_remaining_hp": 1.43749999999999,
+      "max_remaining_hp_percent": 0.162760416666666,
+      "mean_jam_damage": 34.57083333333333,
+      "mean_jam_activations": 8.11111111111111,
+      "mean_jam_launches": 11.555555555555555,
+      "failure_remaining_peg_counts": [
+        1
+      ]
+    },
+    {
+      "policy": "track",
+      "tray": 10,
+      "cadence": 5,
+      "runs": 9,
+      "clears": 8,
+      "median_elapsed_all_seconds": 15.366666666667,
+      "median_clear_seconds": 15.35833333333365,
+      "mean_remaining_hp": 0.03333333333333267,
+      "mean_remaining_hp_percent": 0.0037741545893718994,
+      "max_remaining_hp": 0.299999999999994,
+      "max_remaining_hp_percent": 0.033967391304347096,
+      "mean_jam_damage": 24.77916666666667,
+      "mean_jam_activations": 6,
+      "mean_jam_launches": 8.777777777777779,
+      "failure_remaining_peg_counts": [
+        1
+      ]
+    },
+    {
+      "policy": "track",
+      "tray": 11,
+      "cadence": 4,
+      "runs": 9,
+      "clears": 9,
+      "median_elapsed_all_seconds": 13.7666666666669,
+      "median_clear_seconds": 13.7666666666669,
+      "mean_remaining_hp": 0.0,
+      "mean_remaining_hp_percent": 0.0,
+      "max_remaining_hp": 0.0,
+      "max_remaining_hp_percent": 0.0,
+      "mean_jam_damage": 26.868055555555557,
+      "mean_jam_activations": 6.555555555555555,
+      "mean_jam_launches": 9.666666666666666,
+      "failure_remaining_peg_counts": []
+    },
+    {
+      "policy": "track",
+      "tray": 11,
+      "cadence": 5,
+      "runs": 9,
+      "clears": 8,
+      "median_elapsed_all_seconds": 13.7666666666669,
+      "median_clear_seconds": 13.7166666666669,
+      "mean_remaining_hp": 0.5722222222222211,
+      "mean_remaining_hp_percent": 0.05923625488842868,
+      "max_remaining_hp": 5.14999999999999,
+      "max_remaining_hp_percent": 0.5331262939958581,
+      "mean_jam_damage": 23.768055555555556,
+      "mean_jam_activations": 5.666666666666667,
+      "mean_jam_launches": 8.11111111111111,
+      "failure_remaining_peg_counts": [
+        2
+      ]
+    },
+    {
+      "policy": "track",
+      "tray": 12,
+      "cadence": 4,
+      "runs": 9,
+      "clears": 6,
+      "median_elapsed_all_seconds": 17.216666666667,
+      "median_clear_seconds": 16.40000000000035,
+      "mean_remaining_hp": 1.6499999999999972,
+      "mean_remaining_hp_percent": 0.15732265446224217,
+      "max_remaining_hp": 9.4,
+      "max_remaining_hp_percent": 0.896262395118229,
+      "mean_jam_damage": 28.644444444444446,
+      "mean_jam_activations": 8.88888888888889,
+      "mean_jam_launches": 12.444444444444445,
+      "failure_remaining_peg_counts": [
+        2,
+        1,
+        1
+      ]
+    },
+    {
+      "policy": "track",
+      "tray": 12,
+      "cadence": 5,
+      "runs": 9,
+      "clears": 8,
+      "median_elapsed_all_seconds": 15.6333333333337,
+      "median_clear_seconds": 15.50000000000035,
+      "mean_remaining_hp": 0.1597222222222211,
+      "mean_remaining_hp_percent": 0.015229044834307889,
+      "max_remaining_hp": 1.43749999999999,
+      "max_remaining_hp_percent": 0.137061403508771,
+      "mean_jam_damage": 20.23611111111111,
+      "mean_jam_activations": 6.777777777777778,
+      "mean_jam_launches": 9.444444444444445,
+      "failure_remaining_peg_counts": [
+        1
+      ]
+    }
+  ],
+  "pair_groups": [
+    {
+      "policy": "track",
+      "pair": [
+        "splitter",
+        "impact"
+      ],
+      "cadence5": {
+        "runs": 9,
+        "clears": 7,
+        "median_elapsed_all_seconds": 15.6000000000004,
+        "median_clear_seconds": 14.916666666667,
+        "mean_remaining_hp": 0.6055555555555537,
+        "mean_remaining_hp_percent": 0.06301040947780058,
+        "max_remaining_hp": 5.14999999999999,
+        "max_remaining_hp_percent": 0.5331262939958581,
+        "mean_jam_damage": 23.834722222222222,
+        "mean_jam_activations": 6.444444444444445,
+        "mean_jam_launches": 9.222222222222221,
+        "failure_remaining_peg_counts": [
+          1,
+          2
+        ]
+      },
+      "cadence4": {
+        "runs": 9,
+        "clears": 8,
+        "median_elapsed_all_seconds": 15.366666666667,
+        "median_clear_seconds": 14.98333333333365,
+        "mean_remaining_hp": 0.57222222222222,
+        "mean_remaining_hp_percent": 0.054559708449868446,
+        "max_remaining_hp": 5.14999999999998,
+        "max_remaining_hp_percent": 0.49103737604881603,
+        "mean_jam_damage": 32.84166666666667,
+        "mean_jam_activations": 8.444444444444445,
+        "mean_jam_launches": 12.11111111111111,
+        "failure_remaining_peg_counts": [
+          2
+        ]
+      }
+    },
+    {
+      "policy": "track",
+      "pair": [
+        "ricochet",
+        "impact"
+      ],
+      "cadence5": {
+        "runs": 9,
+        "clears": 8,
+        "median_elapsed_all_seconds": 15.366666666667,
+        "median_clear_seconds": 15.366666666667,
+        "mean_remaining_hp": 0.1597222222222211,
+        "mean_remaining_hp_percent": 0.015229044834307889,
+        "max_remaining_hp": 1.43749999999999,
+        "max_remaining_hp_percent": 0.137061403508771,
+        "mean_jam_damage": 23.329166666666666,
+        "mean_jam_activations": 6.333333333333333,
+        "mean_jam_launches": 8.777777777777779,
+        "failure_remaining_peg_counts": [
+          1
+        ]
+      },
+      "cadence4": {
+        "runs": 9,
+        "clears": 7,
+        "median_elapsed_all_seconds": 15.6333333333337,
+        "median_clear_seconds": 15.1000000000003,
+        "mean_remaining_hp": 1.077777777777777,
+        "mean_remaining_hp_percent": 0.10276294601237371,
+        "max_remaining_hp": 9.4,
+        "max_remaining_hp_percent": 0.896262395118229,
+        "mean_jam_damage": 29.209722222222222,
+        "mean_jam_activations": 8.222222222222221,
+        "mean_jam_launches": 11.11111111111111,
+        "failure_remaining_peg_counts": [
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "policy": "track",
+      "pair": [
+        "ricochet",
+        "splitter"
+      ],
+      "cadence5": {
+        "runs": 9,
+        "clears": 9,
+        "median_elapsed_all_seconds": 14.9833333333337,
+        "median_clear_seconds": 14.9833333333337,
+        "mean_remaining_hp": 0.0,
+        "mean_remaining_hp_percent": 0.0,
+        "max_remaining_hp": 0.0,
+        "max_remaining_hp_percent": 0.0,
+        "mean_jam_damage": 21.619444444444444,
+        "mean_jam_activations": 5.666666666666667,
+        "mean_jam_launches": 8.333333333333334,
+        "failure_remaining_peg_counts": []
+      },
+      "cadence4": {
+        "runs": 9,
+        "clears": 8,
+        "median_elapsed_all_seconds": 12.9833333333336,
+        "median_clear_seconds": 12.97500000000025,
+        "mean_remaining_hp": 0.1597222222222211,
+        "mean_remaining_hp_percent": 0.018084490740740665,
+        "max_remaining_hp": 1.43749999999999,
+        "max_remaining_hp_percent": 0.162760416666666,
+        "mean_jam_damage": 28.031944444444445,
+        "mean_jam_activations": 6.888888888888889,
+        "mean_jam_launches": 10.444444444444445,
+        "failure_remaining_peg_counts": [
+          1
+        ]
+      }
+    },
+    {
+      "policy": "sweep",
+      "pair": [
+        "splitter",
+        "impact"
+      ],
+      "cadence5": {
+        "runs": 3,
+        "clears": 0,
+        "median_elapsed_all_seconds": 17.4999999999999,
+        "median_clear_seconds": null,
+        "mean_remaining_hp": 23.09166666666667,
+        "mean_remaining_hp_percent": 2.6145455917874334,
+        "max_remaining_hp": 37.6,
+        "max_remaining_hp_percent": 4.25724637681159,
+        "mean_jam_damage": 25.125,
+        "mean_jam_activations": 5.666666666666667,
+        "mean_jam_launches": 10,
+        "failure_remaining_peg_counts": [
+          4,
+          3,
+          2
+        ]
+      },
+      "cadence4": {
+        "runs": 3,
+        "clears": 0,
+        "median_elapsed_all_seconds": 17.9999999999998,
+        "median_clear_seconds": null,
+        "mean_remaining_hp": 18.041666666666664,
+        "mean_remaining_hp_percent": 2.0427611714975824,
+        "max_remaining_hp": 30.775,
+        "max_remaining_hp_percent": 3.4844882246376803,
+        "mean_jam_damage": 31.849999999999998,
+        "mean_jam_activations": 6.333333333333333,
+        "mean_jam_launches": 13,
+        "failure_remaining_peg_counts": [
+          1,
+          3,
+          1
+        ]
+      }
+    },
+    {
+      "policy": "sweep",
+      "pair": [
+        "ricochet",
+        "impact"
+      ],
+      "cadence5": {
+        "runs": 3,
+        "clears": 0,
+        "median_elapsed_all_seconds": 17.4999999999999,
+        "median_clear_seconds": null,
+        "mean_remaining_hp": 28.020833333333332,
+        "mean_remaining_hp_percent": 3.1726487016908185,
+        "max_remaining_hp": 63.225,
+        "max_remaining_hp_percent": 7.1586277173913,
+        "mean_jam_damage": 23.908333333333335,
+        "mean_jam_activations": 4.666666666666667,
+        "mean_jam_launches": 9.666666666666666,
+        "failure_remaining_peg_counts": [
+          2,
+          5,
+          1
+        ]
+      },
+      "cadence4": {
+        "runs": 3,
+        "clears": 0,
+        "median_elapsed_all_seconds": 16.9999999999999,
+        "median_clear_seconds": null,
+        "mean_remaining_hp": 20.516666666666666,
+        "mean_remaining_hp_percent": 2.3229921497584507,
+        "max_remaining_hp": 42.45,
+        "max_remaining_hp_percent": 4.80638586956521,
+        "mean_jam_damage": 33.00833333333333,
+        "mean_jam_activations": 6,
+        "mean_jam_launches": 11.666666666666666,
+        "failure_remaining_peg_counts": [
+          1,
+          4,
+          2
+        ]
+      }
+    },
+    {
+      "policy": "sweep",
+      "pair": [
+        "ricochet",
+        "splitter"
+      ],
+      "cadence5": {
+        "runs": 3,
+        "clears": 0,
+        "median_elapsed_all_seconds": 17.4999999999999,
+        "median_clear_seconds": null,
+        "mean_remaining_hp": 28.799999999999997,
+        "mean_remaining_hp_percent": 3.260869565217383,
+        "max_remaining_hp": 54.725,
+        "max_remaining_hp_percent": 6.1962182971014395,
+        "mean_jam_damage": 29.59583333333333,
+        "mean_jam_activations": 6.666666666666667,
+        "mean_jam_launches": 10,
+        "failure_remaining_peg_counts": [
+          4,
+          7,
+          2
+        ]
+      },
+      "cadence4": {
+        "runs": 3,
+        "clears": 0,
+        "median_elapsed_all_seconds": 16.9999999999999,
+        "median_clear_seconds": null,
+        "mean_remaining_hp": 22.433333333333334,
+        "mean_remaining_hp_percent": 2.5400060386473435,
+        "max_remaining_hp": 33.95,
+        "max_remaining_hp_percent": 3.8439764492753605,
+        "mean_jam_damage": 37.079166666666666,
+        "mean_jam_activations": 8,
+        "mean_jam_launches": 13,
+        "failure_remaining_peg_counts": [
+          3,
+          1,
+          6
+        ]
+      }
+    },
+    {
+      "policy": "instant",
+      "pair": [
+        "splitter",
+        "impact"
+      ],
+      "cadence5": {
+        "runs": 3,
+        "clears": 3,
+        "median_elapsed_all_seconds": 12.2000000000002,
+        "median_clear_seconds": 12.2000000000002,
+        "mean_remaining_hp": 0.0,
+        "mean_remaining_hp_percent": 0.0,
+        "max_remaining_hp": 0.0,
+        "max_remaining_hp_percent": 0.0,
+        "mean_jam_damage": 19.537499999999998,
+        "mean_jam_activations": 5,
+        "mean_jam_launches": 8,
+        "failure_remaining_peg_counts": []
+      },
+      "cadence4": {
+        "runs": 3,
+        "clears": 3,
+        "median_elapsed_all_seconds": 13.0166666666669,
+        "median_clear_seconds": 13.0166666666669,
+        "mean_remaining_hp": 0.0,
+        "mean_remaining_hp_percent": 0.0,
+        "max_remaining_hp": 0.0,
+        "max_remaining_hp_percent": 0.0,
+        "mean_jam_damage": 28.5375,
+        "mean_jam_activations": 7,
+        "mean_jam_launches": 10,
+        "failure_remaining_peg_counts": []
+      }
+    }
+  ],
+  "paired_outcomes": {
+    "both_clear": 23,
+    "upgrade_only_clear": 3,
+    "baseline_only_clear": 4,
+    "neither_clear": 9
+  },
+  "paired_comparisons": [
+    {
+      "policy": "track",
+      "tray": 10,
+      "pair": [
+        "splitter",
+        "impact"
+      ],
+      "seed_variant": 0,
+      "outcome": "both_clear",
+      "elapsed_change_seconds": 2.7000000000001005,
+      "remaining_hp_change": 0.0,
+      "jam_damage_change": 10.237499999999997
+    },
+    {
+      "policy": "track",
+      "tray": 10,
+      "pair": [
+        "splitter",
+        "impact"
+      ],
+      "seed_variant": 1,
+      "outcome": "both_clear",
+      "elapsed_change_seconds": 2.049999999999999,
+      "remaining_hp_change": 0.0,
+      "jam_damage_change": 16.4625
+    },
+    {
+      "policy": "track",
+      "tray": 10,
+      "pair": [
+        "splitter",
+        "impact"
+      ],
+      "seed_variant": 2,
+      "outcome": "upgrade_only_clear",
+      "elapsed_change_seconds": -2.133333333332901,
+      "remaining_hp_change": -0.299999999999994,
+      "jam_damage_change": 6.824999999999996
+    },
+    {
+      "policy": "track",
+      "tray": 10,
+      "pair": [
+        "ricochet",
+        "impact"
+      ],
+      "seed_variant": 0,
+      "outcome": "both_clear",
+      "elapsed_change_seconds": -1.283333333333399,
+      "remaining_hp_change": 0.0,
+      "jam_damage_change": 13.949999999999996
+    },
+    {
+      "policy": "track",
+      "tray": 10,
+      "pair": [
+        "ricochet",
+        "impact"
+      ],
+      "seed_variant": 1,
+      "outcome": "both_clear",
+      "elapsed_change_seconds": -2.7500000000000995,
+      "remaining_hp_change": 0.0,
+      "jam_damage_change": 13.350000000000001
+    },
+    {
+      "policy": "track",
+      "tray": 10,
+      "pair": [
+        "ricochet",
+        "impact"
+      ],
+      "seed_variant": 2,
+      "outcome": "both_clear",
+      "elapsed_change_seconds": -1.3500000000000014,
+      "remaining_hp_change": 0.0,
+      "jam_damage_change": 0.3000000000000007
+    },
+    {
+      "policy": "track",
+      "tray": 10,
+      "pair": [
+        "ricochet",
+        "splitter"
+      ],
+      "seed_variant": 0,
+      "outcome": "both_clear",
+      "elapsed_change_seconds": -0.75,
+      "remaining_hp_change": 0.0,
+      "jam_damage_change": 3.412499999999998
+    },
+    {
+      "policy": "track",
+      "tray": 10,
+      "pair": [
+        "ricochet",
+        "splitter"
+      ],
+      "seed_variant": 1,
+      "outcome": "both_clear",
+      "elapsed_change_seconds": -1.8166666666667002,
+      "remaining_hp_change": 0.0,
+      "jam_damage_change": 20.175000000000004
+    },
+    {
+      "policy": "track",
+      "tray": 10,
+      "pair": [
+        "ricochet",
+        "splitter"
+      ],
+      "seed_variant": 2,
+      "outcome": "baseline_only_clear",
+      "elapsed_change_seconds": 1.8499999999995005,
+      "remaining_hp_change": 1.43749999999999,
+      "jam_damage_change": 3.4125000000000014
+    },
+    {
+      "policy": "track",
+      "tray": 11,
+      "pair": [
+        "splitter",
+        "impact"
+      ],
+      "seed_variant": 0,
+      "outcome": "both_clear",
+      "elapsed_change_seconds": -1.8500000000000991,
+      "remaining_hp_change": 0.0,
+      "jam_damage_change": 3.4125000000000014
+    },
+    {
+      "policy": "track",
+      "tray": 11,
+      "pair": [
+        "splitter",
+        "impact"
+      ],
+      "seed_variant": 1,
+      "outcome": "upgrade_only_clear",
+      "elapsed_change_seconds": -3.7166666666662014,
+      "remaining_hp_change": -5.14999999999999,
+      "jam_damage_change": 8.2625
+    },
+    {
+      "policy": "track",
+      "tray": 11,
+      "pair": [
+        "splitter",
+        "impact"
+      ],
+      "seed_variant": 2,
+      "outcome": "both_clear",
+      "elapsed_change_seconds": 0.5166666666666995,
+      "remaining_hp_change": 0.0,
+      "jam_damage_change": 10.237499999999997
+    },
+    {
+      "policy": "track",
+      "tray": 11,
+      "pair": [
+        "ricochet",
+        "impact"
+      ],
+      "seed_variant": 0,
+      "outcome": "both_clear",
+      "elapsed_change_seconds": 0.6500000000000998,
+      "remaining_hp_change": 0.0,
+      "jam_damage_change": 1.4375
+    },
+    {
+      "policy": "track",
+      "tray": 11,
+      "pair": [
+        "ricochet",
+        "impact"
+      ],
+      "seed_variant": 1,
+      "outcome": "both_clear",
+      "elapsed_change_seconds": 0.8666666666667009,
+      "remaining_hp_change": 0.0,
+      "jam_damage_change": 3.7124999999999986
+    },
+    {
+      "policy": "track",
+      "tray": 11,
+      "pair": [
+        "ricochet",
+        "impact"
+      ],
+      "seed_variant": 2,
+      "outcome": "both_clear",
+      "elapsed_change_seconds": -0.26666666666669947,
+      "remaining_hp_change": 0.0,
+      "jam_damage_change": 0.0
+    },
+    {
+      "policy": "track",
+      "tray": 11,
+      "pair": [
+        "ricochet",
+        "splitter"
+      ],
+      "seed_variant": 0,
+      "outcome": "both_clear",
+      "elapsed_change_seconds": 0.5500000000001002,
+      "remaining_hp_change": 0.0,
+      "jam_damage_change": 3.4125000000000014
+    },
+    {
+      "policy": "track",
+      "tray": 11,
+      "pair": [
+        "ricochet",
+        "splitter"
+      ],
+      "seed_variant": 1,
+      "outcome": "both_clear",
+      "elapsed_change_seconds": -0.7833333333332995,
+      "remaining_hp_change": 0.0,
+      "jam_damage_change": 10.2375
+    },
+    {
+      "policy": "track",
+      "tray": 11,
+      "pair": [
+        "ricochet",
+        "splitter"
+      ],
+      "seed_variant": 2,
+      "outcome": "both_clear",
+      "elapsed_change_seconds": 0.7666666666667012,
+      "remaining_hp_change": 0.0,
+      "jam_damage_change": -12.8125
+    },
+    {
+      "policy": "track",
+      "tray": 12,
+      "pair": [
+        "splitter",
+        "impact"
+      ],
+      "seed_variant": 0,
+      "outcome": "both_clear",
+      "elapsed_change_seconds": 1.5833333333332984,
+      "remaining_hp_change": 0.0,
+      "jam_damage_change": 16.224999999999998
+    },
+    {
+      "policy": "track",
+      "tray": 12,
+      "pair": [
+        "splitter",
+        "impact"
+      ],
+      "seed_variant": 1,
+      "outcome": "both_clear",
+      "elapsed_change_seconds": 3.1666666666667,
+      "remaining_hp_change": 0.0,
+      "jam_damage_change": 13.350000000000001
+    },
+    {
+      "policy": "track",
+      "tray": 12,
+      "pair": [
+        "splitter",
+        "impact"
+      ],
+      "seed_variant": 2,
+      "outcome": "baseline_only_clear",
+      "elapsed_change_seconds": 1.0999999999995005,
+      "remaining_hp_change": 5.14999999999998,
+      "jam_damage_change": -3.950000000000003
+    },
+    {
+      "policy": "track",
+      "tray": 12,
+      "pair": [
+        "ricochet",
+        "impact"
+      ],
+      "seed_variant": 0,
+      "outcome": "baseline_only_clear",
+      "elapsed_change_seconds": 3.5166666666662003,
+      "remaining_hp_change": 0.299999999999994,
+      "jam_damage_change": 6.824999999999999
+    },
+    {
+      "policy": "track",
+      "tray": 12,
+      "pair": [
+        "ricochet",
+        "impact"
+      ],
+      "seed_variant": 1,
+      "outcome": "upgrade_only_clear",
+      "elapsed_change_seconds": -0.01666666666629979,
+      "remaining_hp_change": -1.43749999999999,
+      "jam_damage_change": 3.1125000000000007
+    },
+    {
+      "policy": "track",
+      "tray": 12,
+      "pair": [
+        "ricochet",
+        "impact"
+      ],
+      "seed_variant": 2,
+      "outcome": "baseline_only_clear",
+      "elapsed_change_seconds": 2.6333333333328017,
+      "remaining_hp_change": 9.4,
+      "jam_damage_change": 10.237499999999997
+    },
+    {
+      "policy": "track",
+      "tray": 12,
+      "pair": [
+        "ricochet",
+        "splitter"
+      ],
+      "seed_variant": 0,
+      "outcome": "both_clear",
+      "elapsed_change_seconds": -1.0999999999999996,
+      "remaining_hp_change": 0.0,
+      "jam_damage_change": 10.5375
+    },
+    {
+      "policy": "track",
+      "tray": 12,
+      "pair": [
+        "ricochet",
+        "splitter"
+      ],
+      "seed_variant": 1,
+      "outcome": "both_clear",
+      "elapsed_change_seconds": -3.1500000000001016,
+      "remaining_hp_change": 0.0,
+      "jam_damage_change": 16.225
+    },
+    {
+      "policy": "track",
+      "tray": 12,
+      "pair": [
+        "ricochet",
+        "splitter"
+      ],
+      "seed_variant": 2,
+      "outcome": "both_clear",
+      "elapsed_change_seconds": -2.0166666666668007,
+      "remaining_hp_change": 0.0,
+      "jam_damage_change": 3.1125000000000007
+    },
+    {
+      "policy": "sweep",
+      "tray": 10,
+      "pair": [
+        "splitter",
+        "impact"
+      ],
+      "seed_variant": 0,
+      "outcome": "neither_clear",
+      "elapsed_change_seconds": 0.5,
+      "remaining_hp_change": -14.55,
+      "jam_damage_change": 3.112499999999997
+    },
+    {
+      "policy": "sweep",
+      "tray": 10,
+      "pair": [
+        "splitter",
+        "impact"
+      ],
+      "seed_variant": 1,
+      "outcome": "neither_clear",
+      "elapsed_change_seconds": 0.4999999999999005,
+      "remaining_hp_change": 15.924999999999999,
+      "jam_damage_change": 13.649999999999999
+    },
+    {
+      "policy": "sweep",
+      "tray": 10,
+      "pair": [
+        "splitter",
+        "impact"
+      ],
+      "seed_variant": 2,
+      "outcome": "neither_clear",
+      "elapsed_change_seconds": 0.4999999999999005,
+      "remaining_hp_change": -16.525000000000006,
+      "jam_damage_change": 3.412499999999998
+    },
+    {
+      "policy": "sweep",
+      "tray": 10,
+      "pair": [
+        "ricochet",
+        "impact"
+      ],
+      "seed_variant": 0,
+      "outcome": "neither_clear",
+      "elapsed_change_seconds": 0.4999999999999005,
+      "remaining_hp_change": -15.38750000000001,
+      "jam_damage_change": 0.5374999999999979
+    },
+    {
+      "policy": "sweep",
+      "tray": 10,
+      "pair": [
+        "ricochet",
+        "impact"
+      ],
+      "seed_variant": 1,
+      "outcome": "neither_clear",
+      "elapsed_change_seconds": 0.0,
+      "remaining_hp_change": -20.775,
+      "jam_damage_change": 16.825000000000003
+    },
+    {
+      "policy": "sweep",
+      "tray": 10,
+      "pair": [
+        "ricochet",
+        "impact"
+      ],
+      "seed_variant": 2,
+      "outcome": "neither_clear",
+      "elapsed_change_seconds": -0.9999999999999005,
+      "remaining_hp_change": 13.650000000000002,
+      "jam_damage_change": 9.9375
+    },
+    {
+      "policy": "sweep",
+      "tray": 10,
+      "pair": [
+        "ricochet",
+        "splitter"
+      ],
+      "seed_variant": 0,
+      "outcome": "neither_clear",
+      "elapsed_change_seconds": -0.5,
+      "remaining_hp_change": -7.425000000000001,
+      "jam_damage_change": -3.7124999999999986
+    },
+    {
+      "policy": "sweep",
+      "tray": 10,
+      "pair": [
+        "ricochet",
+        "splitter"
+      ],
+      "seed_variant": 1,
+      "outcome": "neither_clear",
+      "elapsed_change_seconds": 0.9999999999999005,
+      "remaining_hp_change": -35.925,
+      "jam_damage_change": 18.800000000000004
+    },
+    {
+      "policy": "sweep",
+      "tray": 10,
+      "pair": [
+        "ricochet",
+        "splitter"
+      ],
+      "seed_variant": 2,
+      "outcome": "neither_clear",
+      "elapsed_change_seconds": -0.5,
+      "remaining_hp_change": 24.250000000000014,
+      "jam_damage_change": 7.362500000000001
+    },
+    {
+      "policy": "instant",
+      "tray": 10,
+      "pair": [
+        "splitter",
+        "impact"
+      ],
+      "seed_variant": 0,
+      "outcome": "both_clear",
+      "elapsed_change_seconds": 2.1166666666668004,
+      "remaining_hp_change": 0.0,
+      "jam_damage_change": 17.062500000000004
+    },
+    {
+      "policy": "instant",
+      "tray": 11,
+      "pair": [
+        "splitter",
+        "impact"
+      ],
+      "seed_variant": 0,
+      "outcome": "both_clear",
+      "elapsed_change_seconds": -4.250000000000101,
+      "remaining_hp_change": 0.0,
+      "jam_damage_change": 6.824999999999999
+    },
+    {
+      "policy": "instant",
+      "tray": 12,
+      "pair": [
+        "splitter",
+        "impact"
+      ],
+      "seed_variant": 0,
+      "outcome": "both_clear",
+      "elapsed_change_seconds": 1.7833333333334007,
+      "remaining_hp_change": 0.0,
+      "jam_damage_change": 3.1125000000000007
+    }
+  ],
+  "runs_detail": [
+    {
+      "base_duration": 15.0,
+      "bonus_seconds": 3.0,
+      "cadence": 5,
+      "clear": true,
+      "coins": 740.15,
+      "damage_events": 215,
+      "destroyed": 30,
+      "drops": {
+        "impact": 4,
+        "normal": 35,
+        "ricochet": 0,
+        "shard": 18,
+        "splitter": 6
+      },
+      "early_access": false,
+      "earned_jam": true,
+      "elapsed": 11.9000000000002,
+      "flow_rules": 2,
+      "hp_remaining": 0.0,
+      "hp_remaining_fraction": 0.0,
+      "initial_hp": 883.200000000001,
+      "jam_activations": 5,
+      "jam_damage": 20.475,
+      "jam_launched": 7,
+      "live_balls_at_end": 0,
+      "ordinary_nodes_bought": 62,
+      "pair": [
+        "splitter",
+        "impact"
+      ],
+      "peak_balls": 39,
+      "pegs": 30,
+      "physics_seed": 1049009,
+      "policy": "track",
+      "power": 4.55,
+      "profile_io": 0,
+      "quick": false,
+      "remaining_pegs": [],
+      "seed_variant": 0,
+      "terminated": true,
+      "time_pickups": 0,
+      "total_damage": 883.199999999997,
+      "tray": 10,
+      "valid": true
+    },
+    {
+      "base_duration": 15.0,
+      "bonus_seconds": 3.0,
+      "cadence": 4,
+      "clear": true,
+      "coins": 736.95,
+      "damage_events": 213,
+      "destroyed": 30,
+      "drops": {
+        "impact": 3,
+        "normal": 50,
+        "ricochet": 0,
+        "shard": 3,
+        "splitter": 2
+      },
+      "early_access": false,
+      "earned_jam": true,
+      "elapsed": 14.6000000000003,
+      "flow_rules": 2,
+      "hp_remaining": 0.0,
+      "hp_remaining_fraction": 0.0,
+      "initial_hp": 883.200000000001,
+      "jam_activations": 9,
+      "jam_damage": 30.7125,
+      "jam_launched": 12,
+      "live_balls_at_end": 0,
+      "ordinary_nodes_bought": 62,
+      "pair": [
+        "splitter",
+        "impact"
+      ],
+      "peak_balls": 25,
+      "pegs": 30,
+      "physics_seed": 1049009,
+      "policy": "track",
+      "power": 4.55,
+      "profile_io": 0,
+      "quick": true,
+      "remaining_pegs": [],
+      "seed_variant": 0,
+      "terminated": true,
+      "time_pickups": 0,
+      "total_damage": 883.199999999997,
+      "tray": 10,
+      "valid": true
+    },
+    {
+      "base_duration": 15.0,
+      "bonus_seconds": 3.0,
+      "cadence": 5,
+      "clear": true,
+      "coins": 733.6,
+      "damage_events": 221,
+      "destroyed": 30,
+      "drops": {
+        "impact": 3,
+        "normal": 48,
+        "ricochet": 0,
+        "shard": 15,
+        "splitter": 5
+      },
+      "early_access": false,
+      "earned_jam": true,
+      "elapsed": 14.916666666667,
+      "flow_rules": 2,
+      "hp_remaining": 0.0,
+      "hp_remaining_fraction": 0.0,
+      "initial_hp": 883.200000000001,
+      "jam_activations": 6,
+      "jam_damage": 17.6625,
+      "jam_launched": 9,
+      "live_balls_at_end": 0,
+      "ordinary_nodes_bought": 62,
+      "pair": [
+        "splitter",
+        "impact"
+      ],
+      "peak_balls": 32,
+      "pegs": 30,
+      "physics_seed": 1056928,
+      "policy": "track",
+      "power": 4.55,
+      "profile_io": 0,
+      "quick": false,
+      "remaining_pegs": [],
+      "seed_variant": 1,
+      "terminated": true,
+      "time_pickups": 0,
+      "total_damage": 883.199999999997,
+      "tray": 10,
+      "valid": true
+    },
+    {
+      "base_duration": 15.0,
+      "bonus_seconds": 3.0,
+      "cadence": 4,
+      "clear": true,
+      "coins": 769.1,
+      "damage_events": 221,
+      "destroyed": 30,
+      "drops": {
+        "impact": 5,
+        "normal": 56,
+        "ricochet": 0,
+        "shard": 6,
+        "splitter": 3
+      },
+      "early_access": false,
+      "earned_jam": true,
+      "elapsed": 16.966666666667,
+      "flow_rules": 2,
+      "hp_remaining": 0.0,
+      "hp_remaining_fraction": 0.0,
+      "initial_hp": 883.200000000001,
+      "jam_activations": 9,
+      "jam_damage": 34.125,
+      "jam_launched": 14,
+      "live_balls_at_end": 0,
+      "ordinary_nodes_bought": 62,
+      "pair": [
+        "splitter",
+        "impact"
+      ],
+      "peak_balls": 27,
+      "pegs": 30,
+      "physics_seed": 1056928,
+      "policy": "track",
+      "power": 4.55,
+      "profile_io": 0,
+      "quick": true,
+      "remaining_pegs": [],
+      "seed_variant": 1,
+      "terminated": true,
+      "time_pickups": 0,
+      "total_damage": 883.199999999997,
+      "tray": 10,
+      "valid": true
+    },
+    {
+      "base_duration": 15.0,
+      "bonus_seconds": 2.5,
+      "cadence": 5,
+      "clear": false,
+      "coins": 622.3,
+      "damage_events": 213,
+      "destroyed": 29,
+      "drops": {
+        "impact": 4,
+        "normal": 57,
+        "ricochet": 0,
+        "shard": 9,
+        "splitter": 5
+      },
+      "early_access": false,
+      "earned_jam": true,
+      "elapsed": 17.4999999999999,
+      "flow_rules": 2,
+      "hp_remaining": 0.299999999999994,
+      "hp_remaining_fraction": 0.000339673913043471,
+      "initial_hp": 883.200000000001,
+      "jam_activations": 8,
+      "jam_damage": 37.5375,
+      "jam_launched": 11,
+      "live_balls_at_end": 17,
+      "ordinary_nodes_bought": 62,
+      "pair": [
+        "splitter",
+        "impact"
+      ],
+      "peak_balls": 31,
+      "pegs": 30,
+      "physics_seed": 1064847,
+      "policy": "track",
+      "power": 4.55,
+      "profile_io": 0,
+      "quick": false,
+      "remaining_pegs": [
+        {
+          "hp": 0.299999999999994,
+          "kind": "clock",
+          "max_hp": 27.6,
+          "position": [
+            226.0,
+            805.0
+          ]
+        }
+      ],
+      "seed_variant": 2,
+      "terminated": true,
+      "time_pickups": 0,
+      "total_damage": 882.899999999998,
+      "tray": 10,
+      "valid": true
+    },
+    {
+      "base_duration": 15.0,
+      "bonus_seconds": 3.0,
+      "cadence": 4,
+      "clear": true,
+      "coins": 767.6,
+      "damage_events": 225,
+      "destroyed": 30,
+      "drops": {
+        "impact": 5,
+        "normal": 50,
+        "ricochet": 0,
+        "shard": 9,
+        "splitter": 3
+      },
+      "early_access": false,
+      "earned_jam": true,
+      "elapsed": 15.366666666667,
+      "flow_rules": 2,
+      "hp_remaining": 0.0,
+      "hp_remaining_fraction": 0.0,
+      "initial_hp": 883.200000000001,
+      "jam_activations": 8,
+      "jam_damage": 44.3625,
+      "jam_launched": 12,
+      "live_balls_at_end": 0,
+      "ordinary_nodes_bought": 62,
+      "pair": [
+        "splitter",
+        "impact"
+      ],
+      "peak_balls": 26,
+      "pegs": 30,
+      "physics_seed": 1064847,
+      "policy": "track",
+      "power": 4.55,
+      "profile_io": 0,
+      "quick": true,
+      "remaining_pegs": [],
+      "seed_variant": 2,
+      "terminated": true,
+      "time_pickups": 0,
+      "total_damage": 883.199999999997,
+      "tray": 10,
+      "valid": true
+    },
+    {
+      "base_duration": 15.0,
+      "bonus_seconds": 3.0,
+      "cadence": 5,
+      "clear": true,
+      "coins": 726.0,
+      "damage_events": 210,
+      "destroyed": 30,
+      "drops": {
+        "impact": 7,
+        "normal": 45,
+        "ricochet": 7,
+        "shard": 0,
+        "splitter": 0
+      },
+      "early_access": false,
+      "earned_jam": true,
+      "elapsed": 15.616666666667,
+      "flow_rules": 2,
+      "hp_remaining": 0.0,
+      "hp_remaining_fraction": 0.0,
+      "initial_hp": 883.200000000001,
+      "jam_activations": 6,
+      "jam_damage": 20.475,
+      "jam_launched": 9,
+      "live_balls_at_end": 0,
+      "ordinary_nodes_bought": 62,
+      "pair": [
+        "ricochet",
+        "impact"
+      ],
+      "peak_balls": 23,
+      "pegs": 30,
+      "physics_seed": 1049009,
+      "policy": "track",
+      "power": 4.55,
+      "profile_io": 0,
+      "quick": false,
+      "remaining_pegs": [],
+      "seed_variant": 0,
+      "terminated": true,
+      "time_pickups": 0,
+      "total_damage": 883.199999999997,
+      "tray": 10,
+      "valid": true
+    },
+    {
+      "base_duration": 15.0,
+      "bonus_seconds": 3.0,
+      "cadence": 4,
+      "clear": true,
+      "coins": 717.0,
+      "damage_events": 213,
+      "destroyed": 30,
+      "drops": {
+        "impact": 6,
+        "normal": 44,
+        "ricochet": 4,
+        "shard": 0,
+        "splitter": 0
+      },
+      "early_access": false,
+      "earned_jam": true,
+      "elapsed": 14.3333333333336,
+      "flow_rules": 2,
+      "hp_remaining": 0.0,
+      "hp_remaining_fraction": 0.0,
+      "initial_hp": 883.200000000001,
+      "jam_activations": 10,
+      "jam_damage": 34.425,
+      "jam_launched": 11,
+      "live_balls_at_end": 0,
+      "ordinary_nodes_bought": 62,
+      "pair": [
+        "ricochet",
+        "impact"
+      ],
+      "peak_balls": 25,
+      "pegs": 30,
+      "physics_seed": 1049009,
+      "policy": "track",
+      "power": 4.55,
+      "profile_io": 0,
+      "quick": true,
+      "remaining_pegs": [],
+      "seed_variant": 0,
+      "terminated": true,
+      "time_pickups": 0,
+      "total_damage": 883.199999999997,
+      "tray": 10,
+      "valid": true
+    },
+    {
+      "base_duration": 15.0,
+      "bonus_seconds": 3.0,
+      "cadence": 5,
+      "clear": true,
+      "coins": 779.2,
+      "damage_events": 214,
+      "destroyed": 30,
+      "drops": {
+        "impact": 3,
+        "normal": 46,
+        "ricochet": 9,
+        "shard": 0,
+        "splitter": 0
+      },
+      "early_access": false,
+      "earned_jam": true,
+      "elapsed": 15.366666666667,
+      "flow_rules": 2,
+      "hp_remaining": 0.0,
+      "hp_remaining_fraction": 0.0,
+      "initial_hp": 883.200000000001,
+      "jam_activations": 7,
+      "jam_damage": 24.1875,
+      "jam_launched": 9,
+      "live_balls_at_end": 0,
+      "ordinary_nodes_bought": 62,
+      "pair": [
+        "ricochet",
+        "impact"
+      ],
+      "peak_balls": 25,
+      "pegs": 30,
+      "physics_seed": 1056928,
+      "policy": "track",
+      "power": 4.55,
+      "profile_io": 0,
+      "quick": false,
+      "remaining_pegs": [],
+      "seed_variant": 1,
+      "terminated": true,
+      "time_pickups": 0,
+      "total_damage": 883.199999999997,
+      "tray": 10,
+      "valid": true
+    },
+    {
+      "base_duration": 15.0,
+      "bonus_seconds": 3.0,
+      "cadence": 4,
+      "clear": true,
+      "coins": 713.7,
+      "damage_events": 218,
+      "destroyed": 30,
+      "drops": {
+        "impact": 2,
+        "normal": 42,
+        "ricochet": 3,
+        "shard": 0,
+        "splitter": 0
+      },
+      "early_access": false,
+      "earned_jam": true,
+      "elapsed": 12.6166666666669,
+      "flow_rules": 2,
+      "hp_remaining": 0.0,
+      "hp_remaining_fraction": 0.0,
+      "initial_hp": 883.200000000001,
+      "jam_activations": 9,
+      "jam_damage": 37.5375,
+      "jam_launched": 10,
+      "live_balls_at_end": 0,
+      "ordinary_nodes_bought": 62,
+      "pair": [
+        "ricochet",
+        "impact"
+      ],
+      "peak_balls": 23,
+      "pegs": 30,
+      "physics_seed": 1056928,
+      "policy": "track",
+      "power": 4.55,
+      "profile_io": 0,
+      "quick": true,
+      "remaining_pegs": [],
+      "seed_variant": 1,
+      "terminated": true,
+      "time_pickups": 0,
+      "total_damage": 883.199999999997,
+      "tray": 10,
+      "valid": true
+    },
+    {
+      "base_duration": 15.0,
+      "bonus_seconds": 3.0,
+      "cadence": 5,
+      "clear": true,
+      "coins": 742.8,
+      "damage_events": 220,
+      "destroyed": 30,
+      "drops": {
+        "impact": 3,
+        "normal": 50,
+        "ricochet": 9,
+        "shard": 0,
+        "splitter": 0
+      },
+      "early_access": false,
+      "earned_jam": true,
+      "elapsed": 16.4500000000003,
+      "flow_rules": 2,
+      "hp_remaining": 0.0,
+      "hp_remaining_fraction": 0.0,
+      "initial_hp": 883.200000000001,
+      "jam_activations": 7,
+      "jam_damage": 30.7125,
+      "jam_launched": 10,
+      "live_balls_at_end": 0,
+      "ordinary_nodes_bought": 62,
+      "pair": [
+        "ricochet",
+        "impact"
+      ],
+      "peak_balls": 26,
+      "pegs": 30,
+      "physics_seed": 1064847,
+      "policy": "track",
+      "power": 4.55,
+      "profile_io": 0,
+      "quick": false,
+      "remaining_pegs": [],
+      "seed_variant": 2,
+      "terminated": true,
+      "time_pickups": 0,
+      "total_damage": 883.199999999997,
+      "tray": 10,
+      "valid": true
+    },
+    {
+      "base_duration": 15.0,
+      "bonus_seconds": 3.0,
+      "cadence": 4,
+      "clear": true,
+      "coins": 725.9,
+      "damage_events": 212,
+      "destroyed": 30,
+      "drops": {
+        "impact": 7,
+        "normal": 45,
+        "ricochet": 5,
+        "shard": 0,
+        "splitter": 0
+      },
+      "early_access": false,
+      "earned_jam": true,
+      "elapsed": 15.1000000000003,
+      "flow_rules": 2,
+      "hp_remaining": 0.0,
+      "hp_remaining_fraction": 0.0,
+      "initial_hp": 883.200000000001,
+      "jam_activations": 7,
+      "jam_damage": 31.0125,
+      "jam_launched": 11,
+      "live_balls_at_end": 0,
+      "ordinary_nodes_bought": 62,
+      "pair": [
+        "ricochet",
+        "impact"
+      ],
+      "peak_balls": 26,
+      "pegs": 30,
+      "physics_seed": 1064847,
+      "policy": "track",
+      "power": 4.55,
+      "profile_io": 0,
+      "quick": true,
+      "remaining_pegs": [],
+      "seed_variant": 2,
+      "terminated": true,
+      "time_pickups": 0,
+      "total_damage": 883.199999999997,
+      "tray": 10,
+      "valid": true
+    },
+    {
+      "base_duration": 15.0,
+      "bonus_seconds": 3.0,
+      "cadence": 5,
+      "clear": true,
+      "coins": 803.8,
+      "damage_events": 227,
+      "destroyed": 30,
+      "drops": {
+        "impact": 0,
+        "normal": 39,
+        "ricochet": 10,
+        "shard": 12,
+        "splitter": 9
+      },
+      "early_access": false,
+      "earned_jam": true,
+      "elapsed": 15.3500000000003,
+      "flow_rules": 2,
+      "hp_remaining": 0.0,
+      "hp_remaining_fraction": 0.0,
+      "initial_hp": 883.200000000001,
+      "jam_activations": 5,
+      "jam_damage": 20.475,
+      "jam_launched": 7,
+      "live_balls_at_end": 0,
+      "ordinary_nodes_bought": 62,
+      "pair": [
+        "ricochet",
+        "splitter"
+      ],
+      "peak_balls": 31,
+      "pegs": 30,
+      "physics_seed": 1049009,
+      "policy": "track",
+      "power": 4.55,
+      "profile_io": 0,
+      "quick": false,
+      "remaining_pegs": [],
+      "seed_variant": 0,
+      "terminated": true,
+      "time_pickups": 0,
+      "total_damage": 883.199999999997,
+      "tray": 10,
+      "valid": true
+    },
+    {
+      "base_duration": 15.0,
+      "bonus_seconds": 3.0,
+      "cadence": 4,
+      "clear": true,
+      "coins": 777.2,
+      "damage_events": 232,
+      "destroyed": 30,
+      "drops": {
+        "impact": 0,
+        "normal": 44,
+        "ricochet": 6,
+        "shard": 15,
+        "splitter": 5
+      },
+      "early_access": false,
+      "earned_jam": true,
+      "elapsed": 14.6000000000003,
+      "flow_rules": 2,
+      "hp_remaining": 0.0,
+      "hp_remaining_fraction": 0.0,
+      "initial_hp": 883.200000000001,
+      "jam_activations": 6,
+      "jam_damage": 23.8875,
+      "jam_launched": 11,
+      "live_balls_at_end": 0,
+      "ordinary_nodes_bought": 62,
+      "pair": [
+        "ricochet",
+        "splitter"
+      ],
+      "peak_balls": 28,
+      "pegs": 30,
+      "physics_seed": 1049009,
+      "policy": "track",
+      "power": 4.55,
+      "profile_io": 0,
+      "quick": true,
+      "remaining_pegs": [],
+      "seed_variant": 0,
+      "terminated": true,
+      "time_pickups": 0,
+      "total_damage": 883.199999999997,
+      "tray": 10,
+      "valid": true
+    },
+    {
+      "base_duration": 15.0,
+      "bonus_seconds": 3.0,
+      "cadence": 5,
+      "clear": true,
+      "coins": 746.3,
+      "damage_events": 244,
+      "destroyed": 30,
+      "drops": {
+        "impact": 0,
+        "normal": 38,
+        "ricochet": 6,
+        "shard": 18,
+        "splitter": 9
+      },
+      "early_access": false,
+      "earned_jam": true,
+      "elapsed": 14.0333333333336,
+      "flow_rules": 2,
+      "hp_remaining": 0.0,
+      "hp_remaining_fraction": 0.0,
+      "initial_hp": 883.200000000001,
+      "jam_activations": 4,
+      "jam_damage": 20.775,
+      "jam_launched": 7,
+      "live_balls_at_end": 0,
+      "ordinary_nodes_bought": 62,
+      "pair": [
+        "ricochet",
+        "splitter"
+      ],
+      "peak_balls": 37,
+      "pegs": 30,
+      "physics_seed": 1056928,
+      "policy": "track",
+      "power": 4.55,
+      "profile_io": 0,
+      "quick": false,
+      "remaining_pegs": [],
+      "seed_variant": 1,
+      "terminated": true,
+      "time_pickups": 0,
+      "total_damage": 883.199999999996,
+      "tray": 10,
+      "valid": true
+    },
+    {
+      "base_duration": 15.0,
+      "bonus_seconds": 3.0,
+      "cadence": 4,
+      "clear": true,
+      "coins": 677.35,
+      "damage_events": 224,
+      "destroyed": 30,
+      "drops": {
+        "impact": 0,
+        "normal": 41,
+        "ricochet": 1,
+        "shard": 6,
+        "splitter": 4
+      },
+      "early_access": false,
+      "earned_jam": true,
+      "elapsed": 12.2166666666669,
+      "flow_rules": 2,
+      "hp_remaining": 0.0,
+      "hp_remaining_fraction": 0.0,
+      "initial_hp": 883.200000000001,
+      "jam_activations": 9,
+      "jam_damage": 40.95,
+      "jam_launched": 10,
+      "live_balls_at_end": 0,
+      "ordinary_nodes_bought": 62,
+      "pair": [
+        "ricochet",
+        "splitter"
+      ],
+      "peak_balls": 27,
+      "pegs": 30,
+      "physics_seed": 1056928,
+      "policy": "track",
+      "power": 4.55,
+      "profile_io": 0,
+      "quick": true,
+      "remaining_pegs": [],
+      "seed_variant": 1,
+      "terminated": true,
+      "time_pickups": 0,
+      "total_damage": 883.199999999997,
+      "tray": 10,
+      "valid": true
+    },
+    {
+      "base_duration": 15.0,
+      "bonus_seconds": 3.0,
+      "cadence": 5,
+      "clear": true,
+      "coins": 751.45,
+      "damage_events": 222,
+      "destroyed": 30,
+      "drops": {
+        "impact": 0,
+        "normal": 50,
+        "ricochet": 7,
+        "shard": 3,
+        "splitter": 2
+      },
+      "early_access": false,
+      "earned_jam": true,
+      "elapsed": 15.6500000000004,
+      "flow_rules": 2,
+      "hp_remaining": 0.0,
+      "hp_remaining_fraction": 0.0,
+      "initial_hp": 883.200000000001,
+      "jam_activations": 6,
+      "jam_damage": 30.7125,
+      "jam_launched": 10,
+      "live_balls_at_end": 0,
+      "ordinary_nodes_bought": 62,
+      "pair": [
+        "ricochet",
+        "splitter"
+      ],
+      "peak_balls": 29,
+      "pegs": 30,
+      "physics_seed": 1064847,
+      "policy": "track",
+      "power": 4.55,
+      "profile_io": 0,
+      "quick": false,
+      "remaining_pegs": [],
+      "seed_variant": 2,
+      "terminated": true,
+      "time_pickups": 0,
+      "total_damage": 883.199999999997,
+      "tray": 10,
+      "valid": true
+    },
+    {
+      "base_duration": 15.0,
+      "bonus_seconds": 2.5,
+      "cadence": 4,
+      "clear": false,
+      "coins": 581.55,
+      "damage_events": 231,
+      "destroyed": 29,
+      "drops": {
+        "impact": 0,
+        "normal": 52,
+        "ricochet": 6,
+        "shard": 12,
+        "splitter": 8
+      },
+      "early_access": false,
+      "earned_jam": true,
+      "elapsed": 17.4999999999999,
+      "flow_rules": 2,
+      "hp_remaining": 1.43749999999999,
+      "hp_remaining_fraction": 0.00162760416666666,
+      "initial_hp": 883.200000000001,
+      "jam_activations": 6,
+      "jam_damage": 34.125,
+      "jam_launched": 13,
+      "live_balls_at_end": 12,
+      "ordinary_nodes_bought": 62,
+      "pair": [
+        "ricochet",
+        "splitter"
+      ],
+      "peak_balls": 28,
+      "pegs": 30,
+      "physics_seed": 1064847,
+      "policy": "track",
+      "power": 4.55,
+      "profile_io": 0,
+      "quick": true,
+      "remaining_pegs": [
+        {
+          "hp": 1.43749999999999,
+          "kind": "clock",
+          "max_hp": 27.6,
+          "position": [
+            226.0,
+            805.0
+          ]
+        }
+      ],
+      "seed_variant": 2,
+      "terminated": true,
+      "time_pickups": 0,
+      "total_damage": 881.762499999997,
+      "tray": 10,
+      "valid": true
+    },
+    {
+      "base_duration": 15.0,
+      "bonus_seconds": 3.0,
+      "cadence": 5,
+      "clear": true,
+      "coins": 797.1,
+      "damage_events": 264,
+      "destroyed": 32,
+      "drops": {
+        "impact": 9,
+        "normal": 46,
+        "ricochet": 0,
+        "shard": 12,
+        "splitter": 4
+      },
+      "early_access": false,
+      "earned_jam": true,
+      "elapsed": 15.6000000000004,
+      "flow_rules": 2,
+      "hp_remaining": 0.0,
+      "hp_remaining_fraction": 0.0,
+      "initial_hp": 966.000000000001,
+      "jam_activations": 6,
+      "jam_damage": 16.525,
+      "jam_launched": 9,
+      "live_balls_at_end": 0,
+      "ordinary_nodes_bought": 62,
+      "pair": [
+        "splitter",
+        "impact"
+      ],
+      "peak_balls": 31,
+      "pegs": 32,
+      "physics_seed": 1153738,
+      "policy": "track",
+      "power": 4.55,
+      "profile_io": 0,
+      "quick": false,
+      "remaining_pegs": [],
+      "seed_variant": 0,
+      "terminated": true,
+      "time_pickups": 0,
+      "total_damage": 965.999999999996,
+      "tray": 11,
+      "valid": true
+    },
+    {
+      "base_duration": 15.0,
+      "bonus_seconds": 3.0,
+      "cadence": 4,
+      "clear": true,
+      "coins": 784.7,
+      "damage_events": 263,
+      "destroyed": 32,
+      "drops": {
+        "impact": 5,
+        "normal": 39,
+        "ricochet": 0,
+        "shard": 12,
+        "splitter": 8
+      },
+      "early_access": false,
+      "earned_jam": true,
+      "elapsed": 13.7500000000003,
+      "flow_rules": 2,
+      "hp_remaining": 0.0,
+      "hp_remaining_fraction": 0.0,
+      "initial_hp": 966.000000000001,
+      "jam_activations": 7,
+      "jam_damage": 19.9375,
+      "jam_launched": 9,
+      "live_balls_at_end": 0,
+      "ordinary_nodes_bought": 62,
+      "pair": [
+        "splitter",
+        "impact"
+      ],
+      "peak_balls": 33,
+      "pegs": 32,
+      "physics_seed": 1153738,
+      "policy": "track",
+      "power": 4.55,
+      "profile_io": 0,
+      "quick": true,
+      "remaining_pegs": [],
+      "seed_variant": 0,
+      "terminated": true,
+      "time_pickups": 0,
+      "total_damage": 965.999999999996,
+      "tray": 11,
+      "valid": true
+    },
+    {
+      "base_duration": 15.0,
+      "bonus_seconds": 2.5,
+      "cadence": 5,
+      "clear": false,
+      "coins": 637.0,
+      "damage_events": 236,
+      "destroyed": 30,
+      "drops": {
+        "impact": 5,
+        "normal": 58,
+        "ricochet": 0,
+        "shard": 6,
+        "splitter": 3
+      },
+      "early_access": false,
+      "earned_jam": true,
+      "elapsed": 17.4999999999998,
+      "flow_rules": 2,
+      "hp_remaining": 5.14999999999999,
+      "hp_remaining_fraction": 0.00533126293995858,
+      "initial_hp": 966.000000000001,
+      "jam_activations": 7,
+      "jam_damage": 27.3,
+      "jam_launched": 11,
+      "live_balls_at_end": 8,
+      "ordinary_nodes_bought": 62,
+      "pair": [
+        "splitter",
+        "impact"
+      ],
+      "peak_balls": 29,
+      "pegs": 32,
+      "physics_seed": 1161657,
+      "policy": "track",
+      "power": 4.55,
+      "profile_io": 0,
+      "quick": false,
+      "remaining_pegs": [
+        {
+          "hp": 0.299999999999994,
+          "kind": "normal",
+          "max_hp": 27.6,
+          "position": [
+            405.0,
+            786.0
+          ]
+        },
+        {
+          "hp": 4.84999999999999,
+          "kind": "clock",
+          "max_hp": 27.6,
+          "position": [
+            621.0,
+            791.0
+          ]
+        }
+      ],
+      "seed_variant": 1,
+      "terminated": true,
+      "time_pickups": 0,
+      "total_damage": 960.849999999997,
+      "tray": 11,
+      "valid": true
+    },
+    {
+      "base_duration": 15.0,
+      "bonus_seconds": 3.0,
+      "cadence": 4,
+      "clear": true,
+      "coins": 772.35,
+      "damage_events": 244,
+      "destroyed": 32,
+      "drops": {
+        "impact": 2,
+        "normal": 47,
+        "ricochet": 0,
+        "shard": 3,
+        "splitter": 3
+      },
+      "early_access": false,
+      "earned_jam": true,
+      "elapsed": 13.7833333333336,
+      "flow_rules": 2,
+      "hp_remaining": 0.0,
+      "hp_remaining_fraction": 0.0,
+      "initial_hp": 966.000000000001,
+      "jam_activations": 8,
+      "jam_damage": 35.5625,
+      "jam_launched": 11,
+      "live_balls_at_end": 0,
+      "ordinary_nodes_bought": 62,
+      "pair": [
+        "splitter",
+        "impact"
+      ],
+      "peak_balls": 29,
+      "pegs": 32,
+      "physics_seed": 1161657,
+      "policy": "track",
+      "power": 4.55,
+      "profile_io": 0,
+      "quick": true,
+      "remaining_pegs": [],
+      "seed_variant": 1,
+      "terminated": true,
+      "time_pickups": 0,
+      "total_damage": 965.999999999996,
+      "tray": 11,
+      "valid": true
+    },
+    {
+      "base_duration": 15.0,
+      "bonus_seconds": 3.0,
+      "cadence": 5,
+      "clear": true,
+      "coins": 750.5,
+      "damage_events": 283,
+      "destroyed": 32,
+      "drops": {
+        "impact": 1,
+        "normal": 41,
+        "ricochet": 0,
+        "shard": 18,
+        "splitter": 8
+      },
+      "early_access": false,
+      "earned_jam": true,
+      "elapsed": 13.2500000000002,
+      "flow_rules": 2,
+      "hp_remaining": 0.0,
+      "hp_remaining_fraction": 0.0,
+      "initial_hp": 966.000000000001,
+      "jam_activations": 5,
+      "jam_damage": 20.475,
+      "jam_launched": 8,
+      "live_balls_at_end": 0,
+      "ordinary_nodes_bought": 62,
+      "pair": [
+        "splitter",
+        "impact"
+      ],
+      "peak_balls": 43,
+      "pegs": 32,
+      "physics_seed": 1169576,
+      "policy": "track",
+      "power": 4.55,
+      "profile_io": 0,
+      "quick": false,
+      "remaining_pegs": [],
+      "seed_variant": 2,
+      "terminated": true,
+      "time_pickups": 0,
+      "total_damage": 965.999999999996,
+      "tray": 11,
+      "valid": true
+    },
+    {
+      "base_duration": 15.0,
+      "bonus_seconds": 3.0,
+      "cadence": 4,
+      "clear": true,
+      "coins": 790.95,
+      "damage_events": 257,
+      "destroyed": 32,
+      "drops": {
+        "impact": 3,
+        "normal": 41,
+        "ricochet": 0,
+        "shard": 18,
+        "splitter": 8
+      },
+      "early_access": false,
+      "earned_jam": true,
+      "elapsed": 13.7666666666669,
+      "flow_rules": 2,
+      "hp_remaining": 0.0,
+      "hp_remaining_fraction": 0.0,
+      "initial_hp": 966.000000000001,
+      "jam_activations": 8,
+      "jam_damage": 30.7125,
+      "jam_launched": 10,
+      "live_balls_at_end": 0,
+      "ordinary_nodes_bought": 62,
+      "pair": [
+        "splitter",
+        "impact"
+      ],
+      "peak_balls": 29,
+      "pegs": 32,
+      "physics_seed": 1169576,
+      "policy": "track",
+      "power": 4.55,
+      "profile_io": 0,
+      "quick": true,
+      "remaining_pegs": [],
+      "seed_variant": 2,
+      "terminated": true,
+      "time_pickups": 0,
+      "total_damage": 965.999999999996,
+      "tray": 11,
+      "valid": true
+    },
+    {
+      "base_duration": 15.0,
+      "bonus_seconds": 3.0,
+      "cadence": 5,
+      "clear": true,
+      "coins": 726.7,
+      "damage_events": 229,
+      "destroyed": 32,
+      "drops": {
+        "impact": 4,
+        "normal": 37,
+        "ricochet": 10,
+        "shard": 0,
+        "splitter": 0
+      },
+      "early_access": false,
+      "earned_jam": true,
+      "elapsed": 13.6666666666669,
+      "flow_rules": 2,
+      "hp_remaining": 0.0,
+      "hp_remaining_fraction": 0.0,
+      "initial_hp": 966.000000000001,
+      "jam_activations": 5,
+      "jam_damage": 17.0625,
+      "jam_launched": 7,
+      "live_balls_at_end": 0,
+      "ordinary_nodes_bought": 62,
+      "pair": [
+        "ricochet",
+        "impact"
+      ],
+      "peak_balls": 26,
+      "pegs": 32,
+      "physics_seed": 1153738,
+      "policy": "track",
+      "power": 4.55,
+      "profile_io": 0,
+      "quick": false,
+      "remaining_pegs": [],
+      "seed_variant": 0,
+      "terminated": true,
+      "time_pickups": 0,
+      "total_damage": 965.999999999996,
+      "tray": 11,
+      "valid": true
+    },
+    {
+      "base_duration": 15.0,
+      "bonus_seconds": 3.0,
+      "cadence": 4,
+      "clear": true,
+      "coins": 785.4,
+      "damage_events": 234,
+      "destroyed": 32,
+      "drops": {
+        "impact": 8,
+        "normal": 34,
+        "ricochet": 12,
+        "shard": 0,
+        "splitter": 0
+      },
+      "early_access": false,
+      "earned_jam": true,
+      "elapsed": 14.316666666667,
+      "flow_rules": 2,
+      "hp_remaining": 0.0,
+      "hp_remaining_fraction": 0.0,
+      "initial_hp": 966.000000000001,
+      "jam_activations": 5,
+      "jam_damage": 18.5,
+      "jam_launched": 8,
+      "live_balls_at_end": 0,
+      "ordinary_nodes_bought": 62,
+      "pair": [
+        "ricochet",
+        "impact"
+      ],
+      "peak_balls": 27,
+      "pegs": 32,
+      "physics_seed": 1153738,
+      "policy": "track",
+      "power": 4.55,
+      "profile_io": 0,
+      "quick": true,
+      "remaining_pegs": [],
+      "seed_variant": 0,
+      "terminated": true,
+      "time_pickups": 0,
+      "total_damage": 965.999999999996,
+      "tray": 11,
+      "valid": true
+    },
+    {
+      "base_duration": 15.0,
+      "bonus_seconds": 3.0,
+      "cadence": 5,
+      "clear": true,
+      "coins": 762.7,
+      "damage_events": 237,
+      "destroyed": 32,
+      "drops": {
+        "impact": 4,
+        "normal": 44,
+        "ricochet": 7,
+        "shard": 0,
+        "splitter": 0
+      },
+      "early_access": false,
+      "earned_jam": true,
+      "elapsed": 14.766666666667,
+      "flow_rules": 2,
+      "hp_remaining": 0.0,
+      "hp_remaining_fraction": 0.0,
+      "initial_hp": 966.000000000001,
+      "jam_activations": 6,
+      "jam_damage": 27.3,
+      "jam_launched": 8,
+      "live_balls_at_end": 0,
+      "ordinary_nodes_bought": 62,
+      "pair": [
+        "ricochet",
+        "impact"
+      ],
+      "peak_balls": 26,
+      "pegs": 32,
+      "physics_seed": 1161657,
+      "policy": "track",
+      "power": 4.55,
+      "profile_io": 0,
+      "quick": false,
+      "remaining_pegs": [],
+      "seed_variant": 1,
+      "terminated": true,
+      "time_pickups": 0,
+      "total_damage": 965.999999999996,
+      "tray": 11,
+      "valid": true
+    },
+    {
+      "base_duration": 15.0,
+      "bonus_seconds": 3.0,
+      "cadence": 4,
+      "clear": true,
+      "coins": 762.1,
+      "damage_events": 234,
+      "destroyed": 32,
+      "drops": {
+        "impact": 6,
+        "normal": 45,
+        "ricochet": 8,
+        "shard": 0,
+        "splitter": 0
+      },
+      "early_access": false,
+      "earned_jam": true,
+      "elapsed": 15.6333333333337,
+      "flow_rules": 2,
+      "hp_remaining": 0.0,
+      "hp_remaining_fraction": 0.0,
+      "initial_hp": 966.000000000001,
+      "jam_activations": 6,
+      "jam_damage": 31.0125,
+      "jam_launched": 11,
+      "live_balls_at_end": 0,
+      "ordinary_nodes_bought": 62,
+      "pair": [
+        "ricochet",
+        "impact"
+      ],
+      "peak_balls": 27,
+      "pegs": 32,
+      "physics_seed": 1161657,
+      "policy": "track",
+      "power": 4.55,
+      "profile_io": 0,
+      "quick": true,
+      "remaining_pegs": [],
+      "seed_variant": 1,
+      "terminated": true,
+      "time_pickups": 0,
+      "total_damage": 965.999999999996,
+      "tray": 11,
+      "valid": true
+    },
+    {
+      "base_duration": 15.0,
+      "bonus_seconds": 3.0,
+      "cadence": 5,
+      "clear": true,
+      "coins": 776.5,
+      "damage_events": 231,
+      "destroyed": 32,
+      "drops": {
+        "impact": 7,
+        "normal": 42,
+        "ricochet": 11,
+        "shard": 0,
+        "splitter": 0
+      },
+      "early_access": false,
+      "earned_jam": true,
+      "elapsed": 15.9000000000004,
+      "flow_rules": 2,
+      "hp_remaining": 0.0,
+      "hp_remaining_fraction": 0.0,
+      "initial_hp": 966.000000000001,
+      "jam_activations": 6,
+      "jam_damage": 27.6,
+      "jam_launched": 8,
+      "live_balls_at_end": 0,
+      "ordinary_nodes_bought": 62,
+      "pair": [
+        "ricochet",
+        "impact"
+      ],
+      "peak_balls": 28,
+      "pegs": 32,
+      "physics_seed": 1169576,
+      "policy": "track",
+      "power": 4.55,
+      "profile_io": 0,
+      "quick": false,
+      "remaining_pegs": [],
+      "seed_variant": 2,
+      "terminated": true,
+      "time_pickups": 0,
+      "total_damage": 965.999999999996,
+      "tray": 11,
+      "valid": true
+    },
+    {
+      "base_duration": 15.0,
+      "bonus_seconds": 3.0,
+      "cadence": 4,
+      "clear": true,
+      "coins": 811.8,
+      "damage_events": 237,
+      "destroyed": 32,
+      "drops": {
+        "impact": 5,
+        "normal": 46,
+        "ricochet": 8,
+        "shard": 0,
+        "splitter": 0
+      },
+      "early_access": false,
+      "earned_jam": true,
+      "elapsed": 15.6333333333337,
+      "flow_rules": 2,
+      "hp_remaining": 0.0,
+      "hp_remaining_fraction": 0.0,
+      "initial_hp": 966.000000000001,
+      "jam_activations": 8,
+      "jam_damage": 27.6,
+      "jam_launched": 11,
+      "live_balls_at_end": 0,
+      "ordinary_nodes_bought": 62,
+      "pair": [
+        "ricochet",
+        "impact"
+      ],
+      "peak_balls": 23,
+      "pegs": 32,
+      "physics_seed": 1169576,
+      "policy": "track",
+      "power": 4.55,
+      "profile_io": 0,
+      "quick": true,
+      "remaining_pegs": [],
+      "seed_variant": 2,
+      "terminated": true,
+      "time_pickups": 0,
+      "total_damage": 965.999999999996,
+      "tray": 11,
+      "valid": true
+    },
+    {
+      "base_duration": 15.0,
+      "bonus_seconds": 3.0,
+      "cadence": 5,
+      "clear": true,
+      "coins": 770.85,
+      "damage_events": 274,
+      "destroyed": 32,
+      "drops": {
+        "impact": 0,
+        "normal": 30,
+        "ricochet": 9,
+        "shard": 15,
+        "splitter": 6
+      },
+      "early_access": false,
+      "earned_jam": true,
+      "elapsed": 11.9166666666668,
+      "flow_rules": 2,
+      "hp_remaining": 0.0,
+      "hp_remaining_fraction": 0.0,
+      "initial_hp": 966.000000000001,
+      "jam_activations": 4,
+      "jam_damage": 17.0625,
+      "jam_launched": 6,
+      "live_balls_at_end": 0,
+      "ordinary_nodes_bought": 62,
+      "pair": [
+        "ricochet",
+        "splitter"
+      ],
+      "peak_balls": 36,
+      "pegs": 32,
+      "physics_seed": 1153738,
+      "policy": "track",
+      "power": 4.55,
+      "profile_io": 0,
+      "quick": false,
+      "remaining_pegs": [],
+      "seed_variant": 0,
+      "terminated": true,
+      "time_pickups": 0,
+      "total_damage": 965.999999999995,
+      "tray": 11,
+      "valid": true
+    },
+    {
+      "base_duration": 15.0,
+      "bonus_seconds": 3.0,
+      "cadence": 4,
+      "clear": true,
+      "coins": 760.8,
+      "damage_events": 272,
+      "destroyed": 32,
+      "drops": {
+        "impact": 0,
+        "normal": 34,
+        "ricochet": 5,
+        "shard": 15,
+        "splitter": 8
+      },
+      "early_access": false,
+      "earned_jam": true,
+      "elapsed": 12.4666666666669,
+      "flow_rules": 2,
+      "hp_remaining": 0.0,
+      "hp_remaining_fraction": 0.0,
+      "initial_hp": 966.000000000001,
+      "jam_activations": 4,
+      "jam_damage": 20.475,
+      "jam_launched": 8,
+      "live_balls_at_end": 0,
+      "ordinary_nodes_bought": 62,
+      "pair": [
+        "ricochet",
+        "splitter"
+      ],
+      "peak_balls": 37,
+      "pegs": 32,
+      "physics_seed": 1153738,
+      "policy": "track",
+      "power": 4.55,
+      "profile_io": 0,
+      "quick": true,
+      "remaining_pegs": [],
+      "seed_variant": 0,
+      "terminated": true,
+      "time_pickups": 0,
+      "total_damage": 965.999999999996,
+      "tray": 11,
+      "valid": true
+    },
+    {
+      "base_duration": 15.0,
+      "bonus_seconds": 3.0,
+      "cadence": 5,
+      "clear": true,
+      "coins": 759.85,
+      "damage_events": 259,
+      "destroyed": 32,
+      "drops": {
+        "impact": 0,
+        "normal": 44,
+        "ricochet": 3,
+        "shard": 12,
+        "splitter": 5
+      },
+      "early_access": false,
+      "earned_jam": true,
+      "elapsed": 13.7666666666669,
+      "flow_rules": 2,
+      "hp_remaining": 0.0,
+      "hp_remaining_fraction": 0.0,
+      "initial_hp": 966.000000000001,
+      "jam_activations": 6,
+      "jam_damage": 27.3,
+      "jam_launched": 8,
+      "live_balls_at_end": 0,
+      "ordinary_nodes_bought": 62,
+      "pair": [
+        "ricochet",
+        "splitter"
+      ],
+      "peak_balls": 38,
+      "pegs": 32,
+      "physics_seed": 1161657,
+      "policy": "track",
+      "power": 4.55,
+      "profile_io": 0,
+      "quick": false,
+      "remaining_pegs": [],
+      "seed_variant": 1,
+      "terminated": true,
+      "time_pickups": 0,
+      "total_damage": 965.999999999996,
+      "tray": 11,
+      "valid": true
+    },
+    {
+      "base_duration": 15.0,
+      "bonus_seconds": 3.0,
+      "cadence": 4,
+      "clear": true,
+      "coins": 708.45,
+      "damage_events": 250,
+      "destroyed": 32,
+      "drops": {
+        "impact": 0,
+        "normal": 42,
+        "ricochet": 3,
+        "shard": 9,
+        "splitter": 4
+      },
+      "early_access": false,
+      "earned_jam": true,
+      "elapsed": 12.9833333333336,
+      "flow_rules": 2,
+      "hp_remaining": 0.0,
+      "hp_remaining_fraction": 0.0,
+      "initial_hp": 966.000000000001,
+      "jam_activations": 8,
+      "jam_damage": 37.5375,
+      "jam_launched": 10,
+      "live_balls_at_end": 0,
+      "ordinary_nodes_bought": 62,
+      "pair": [
+        "ricochet",
+        "splitter"
+      ],
+      "peak_balls": 31,
+      "pegs": 32,
+      "physics_seed": 1161657,
+      "policy": "track",
+      "power": 4.55,
+      "profile_io": 0,
+      "quick": true,
+      "remaining_pegs": [],
+      "seed_variant": 1,
+      "terminated": true,
+      "time_pickups": 0,
+      "total_damage": 965.999999999996,
+      "tray": 11,
+      "valid": true
+    },
+    {
+      "base_duration": 15.0,
+      "bonus_seconds": 3.0,
+      "cadence": 5,
+      "clear": true,
+      "coins": 740.7,
+      "damage_events": 260,
+      "destroyed": 32,
+      "drops": {
+        "impact": 0,
+        "normal": 41,
+        "ricochet": 4,
+        "shard": 9,
+        "splitter": 3
+      },
+      "early_access": false,
+      "earned_jam": true,
+      "elapsed": 12.7166666666669,
+      "flow_rules": 2,
+      "hp_remaining": 0.0,
+      "hp_remaining_fraction": 0.0,
+      "initial_hp": 966.000000000001,
+      "jam_activations": 6,
+      "jam_damage": 33.2875,
+      "jam_launched": 8,
+      "live_balls_at_end": 0,
+      "ordinary_nodes_bought": 62,
+      "pair": [
+        "ricochet",
+        "splitter"
+      ],
+      "peak_balls": 36,
+      "pegs": 32,
+      "physics_seed": 1169576,
+      "policy": "track",
+      "power": 4.55,
+      "profile_io": 0,
+      "quick": false,
+      "remaining_pegs": [],
+      "seed_variant": 2,
+      "terminated": true,
+      "time_pickups": 0,
+      "total_damage": 965.999999999996,
+      "tray": 11,
+      "valid": true
+    },
+    {
+      "base_duration": 15.0,
+      "bonus_seconds": 3.0,
+      "cadence": 4,
+      "clear": true,
+      "coins": 788.8,
+      "damage_events": 260,
+      "destroyed": 32,
+      "drops": {
+        "impact": 0,
+        "normal": 39,
+        "ricochet": 7,
+        "shard": 15,
+        "splitter": 5
+      },
+      "early_access": false,
+      "earned_jam": true,
+      "elapsed": 13.4833333333336,
+      "flow_rules": 2,
+      "hp_remaining": 0.0,
+      "hp_remaining_fraction": 0.0,
+      "initial_hp": 966.000000000001,
+      "jam_activations": 5,
+      "jam_damage": 20.475,
+      "jam_launched": 9,
+      "live_balls_at_end": 0,
+      "ordinary_nodes_bought": 62,
+      "pair": [
+        "ricochet",
+        "splitter"
+      ],
+      "peak_balls": 40,
+      "pegs": 32,
+      "physics_seed": 1169576,
+      "policy": "track",
+      "power": 4.55,
+      "profile_io": 0,
+      "quick": true,
+      "remaining_pegs": [],
+      "seed_variant": 2,
+      "terminated": true,
+      "time_pickups": 0,
+      "total_damage": 965.999999999996,
+      "tray": 11,
+      "valid": true
+    },
+    {
+      "base_duration": 15.0,
+      "bonus_seconds": 3.0,
+      "cadence": 5,
+      "clear": true,
+      "coins": 829.4,
+      "damage_events": 275,
+      "destroyed": 34,
+      "drops": {
+        "impact": 2,
+        "normal": 54,
+        "ricochet": 0,
+        "shard": 6,
+        "splitter": 3
+      },
+      "early_access": false,
+      "earned_jam": true,
+      "elapsed": 15.6333333333337,
+      "flow_rules": 2,
+      "hp_remaining": 0.0,
+      "hp_remaining_fraction": 0.0,
+      "initial_hp": 1048.8,
+      "jam_activations": 9,
+      "jam_damage": 23.05,
+      "jam_launched": 10,
+      "live_balls_at_end": 0,
+      "ordinary_nodes_bought": 62,
+      "pair": [
+        "splitter",
+        "impact"
+      ],
+      "peak_balls": 31,
+      "pegs": 34,
+      "physics_seed": 1258467,
+      "policy": "track",
+      "power": 4.55,
+      "profile_io": 0,
+      "quick": false,
+      "remaining_pegs": [],
+      "seed_variant": 0,
+      "terminated": true,
+      "time_pickups": 0,
+      "total_damage": 1048.8,
+      "tray": 12,
+      "valid": true
+    },
+    {
+      "base_duration": 15.0,
+      "bonus_seconds": 3.0,
+      "cadence": 4,
+      "clear": true,
+      "coins": 885.45,
+      "damage_events": 262,
+      "destroyed": 34,
+      "drops": {
+        "impact": 5,
+        "normal": 57,
+        "ricochet": 0,
+        "shard": 6,
+        "splitter": 3
+      },
+      "early_access": false,
+      "earned_jam": true,
+      "elapsed": 17.216666666667,
+      "flow_rules": 2,
+      "hp_remaining": 0.0,
+      "hp_remaining_fraction": 0.0,
+      "initial_hp": 1048.8,
+      "jam_activations": 9,
+      "jam_damage": 39.275,
+      "jam_launched": 14,
+      "live_balls_at_end": 0,
+      "ordinary_nodes_bought": 62,
+      "pair": [
+        "splitter",
+        "impact"
+      ],
+      "peak_balls": 27,
+      "pegs": 34,
+      "physics_seed": 1258467,
+      "policy": "track",
+      "power": 4.55,
+      "profile_io": 0,
+      "quick": true,
+      "remaining_pegs": [],
+      "seed_variant": 0,
+      "terminated": true,
+      "time_pickups": 0,
+      "total_damage": 1048.8,
+      "tray": 12,
+      "valid": true
+    },
+    {
+      "base_duration": 15.0,
+      "bonus_seconds": 3.0,
+      "cadence": 5,
+      "clear": true,
+      "coins": 772.8,
+      "damage_events": 246,
+      "destroyed": 34,
+      "drops": {
+        "impact": 8,
+        "normal": 42,
+        "ricochet": 0,
+        "shard": 3,
+        "splitter": 3
+      },
+      "early_access": false,
+      "earned_jam": true,
+      "elapsed": 14.0500000000003,
+      "flow_rules": 2,
+      "hp_remaining": 0.0,
+      "hp_remaining_fraction": 0.0,
+      "initial_hp": 1048.8,
+      "jam_activations": 5,
+      "jam_damage": 13.95,
+      "jam_launched": 8,
+      "live_balls_at_end": 0,
+      "ordinary_nodes_bought": 62,
+      "pair": [
+        "splitter",
+        "impact"
+      ],
+      "peak_balls": 31,
+      "pegs": 34,
+      "physics_seed": 1266386,
+      "policy": "track",
+      "power": 4.55,
+      "profile_io": 0,
+      "quick": false,
+      "remaining_pegs": [],
+      "seed_variant": 1,
+      "terminated": true,
+      "time_pickups": 0,
+      "total_damage": 1048.8,
+      "tray": 12,
+      "valid": true
+    },
+    {
+      "base_duration": 15.0,
+      "bonus_seconds": 3.0,
+      "cadence": 4,
+      "clear": true,
+      "coins": 848.05,
+      "damage_events": 256,
+      "destroyed": 34,
+      "drops": {
+        "impact": 6,
+        "normal": 55,
+        "ricochet": 0,
+        "shard": 12,
+        "splitter": 4
+      },
+      "early_access": false,
+      "earned_jam": true,
+      "elapsed": 17.216666666667,
+      "flow_rules": 2,
+      "hp_remaining": 0.0,
+      "hp_remaining_fraction": 0.0,
+      "initial_hp": 1048.8,
+      "jam_activations": 9,
+      "jam_damage": 27.3,
+      "jam_launched": 13,
+      "live_balls_at_end": 0,
+      "ordinary_nodes_bought": 62,
+      "pair": [
+        "splitter",
+        "impact"
+      ],
+      "peak_balls": 36,
+      "pegs": 34,
+      "physics_seed": 1266386,
+      "policy": "track",
+      "power": 4.55,
+      "profile_io": 0,
+      "quick": true,
+      "remaining_pegs": [],
+      "seed_variant": 1,
+      "terminated": true,
+      "time_pickups": 0,
+      "total_damage": 1048.8,
+      "tray": 12,
+      "valid": true
+    },
+    {
+      "base_duration": 15.0,
+      "bonus_seconds": 3.0,
+      "cadence": 5,
+      "clear": true,
+      "coins": 860.1,
+      "damage_events": 268,
+      "destroyed": 34,
+      "drops": {
+        "impact": 6,
+        "normal": 53,
+        "ricochet": 0,
+        "shard": 6,
+        "splitter": 3
+      },
+      "early_access": false,
+      "earned_jam": true,
+      "elapsed": 16.4000000000004,
+      "flow_rules": 2,
+      "hp_remaining": 0.0,
+      "hp_remaining_fraction": 0.0,
+      "initial_hp": 1048.8,
+      "jam_activations": 7,
+      "jam_damage": 37.5375,
+      "jam_launched": 10,
+      "live_balls_at_end": 0,
+      "ordinary_nodes_bought": 62,
+      "pair": [
+        "splitter",
+        "impact"
+      ],
+      "peak_balls": 28,
+      "pegs": 34,
+      "physics_seed": 1274305,
+      "policy": "track",
+      "power": 4.55,
+      "profile_io": 0,
+      "quick": false,
+      "remaining_pegs": [],
+      "seed_variant": 2,
+      "terminated": true,
+      "time_pickups": 0,
+      "total_damage": 1048.8,
+      "tray": 12,
+      "valid": true
+    },
+    {
+      "base_duration": 15.0,
+      "bonus_seconds": 2.5,
+      "cadence": 4,
+      "clear": false,
+      "coins": 771.5,
+      "damage_events": 258,
+      "destroyed": 32,
+      "drops": {
+        "impact": 4,
+        "normal": 58,
+        "ricochet": 0,
+        "shard": 9,
+        "splitter": 4
+      },
+      "early_access": false,
+      "earned_jam": true,
+      "elapsed": 17.4999999999999,
+      "flow_rules": 2,
+      "hp_remaining": 5.14999999999998,
+      "hp_remaining_fraction": 0.00491037376048816,
+      "initial_hp": 1048.8,
+      "jam_activations": 9,
+      "jam_damage": 33.5875,
+      "jam_launched": 14,
+      "live_balls_at_end": 11,
+      "ordinary_nodes_bought": 62,
+      "pair": [
+        "splitter",
+        "impact"
+      ],
+      "peak_balls": 30,
+      "pegs": 34,
+      "physics_seed": 1274305,
+      "policy": "track",
+      "power": 4.55,
+      "profile_io": 0,
+      "quick": true,
+      "remaining_pegs": [
+        {
+          "hp": 0.29999999999999,
+          "kind": "normal",
+          "max_hp": 27.6,
+          "position": [
+            549.0,
+            795.0
+          ]
+        },
+        {
+          "hp": 4.84999999999999,
+          "kind": "clock",
+          "max_hp": 27.6,
+          "position": [
+            212.0,
+            801.0
+          ]
+        }
+      ],
+      "seed_variant": 2,
+      "terminated": true,
+      "time_pickups": 0,
+      "total_damage": 1043.65,
+      "tray": 12,
+      "valid": true
+    },
+    {
+      "base_duration": 15.0,
+      "bonus_seconds": 3.0,
+      "cadence": 5,
+      "clear": true,
+      "coins": 775.8,
+      "damage_events": 254,
+      "destroyed": 34,
+      "drops": {
+        "impact": 2,
+        "normal": 47,
+        "ricochet": 5,
+        "shard": 0,
+        "splitter": 0
+      },
+      "early_access": false,
+      "earned_jam": true,
+      "elapsed": 14.4833333333336,
+      "flow_rules": 2,
+      "hp_remaining": 0.0,
+      "hp_remaining_fraction": 0.0,
+      "initial_hp": 1048.8,
+      "jam_activations": 7,
+      "jam_damage": 17.6625,
+      "jam_launched": 9,
+      "live_balls_at_end": 0,
+      "ordinary_nodes_bought": 62,
+      "pair": [
+        "ricochet",
+        "impact"
+      ],
+      "peak_balls": 27,
+      "pegs": 34,
+      "physics_seed": 1258467,
+      "policy": "track",
+      "power": 4.55,
+      "profile_io": 0,
+      "quick": false,
+      "remaining_pegs": [],
+      "seed_variant": 0,
+      "terminated": true,
+      "time_pickups": 0,
+      "total_damage": 1048.8,
+      "tray": 12,
+      "valid": true
+    },
+    {
+      "base_duration": 15.0,
+      "bonus_seconds": 3.0,
+      "cadence": 4,
+      "clear": false,
+      "coins": 663.3,
+      "damage_events": 260,
+      "destroyed": 33,
+      "drops": {
+        "impact": 4,
+        "normal": 51,
+        "ricochet": 13,
+        "shard": 0,
+        "splitter": 0
+      },
+      "early_access": false,
+      "earned_jam": true,
+      "elapsed": 17.9999999999998,
+      "flow_rules": 2,
+      "hp_remaining": 0.299999999999994,
+      "hp_remaining_fraction": 0.000286041189931344,
+      "initial_hp": 1048.8,
+      "jam_activations": 11,
+      "jam_damage": 24.4875,
+      "jam_launched": 12,
+      "live_balls_at_end": 10,
+      "ordinary_nodes_bought": 62,
+      "pair": [
+        "ricochet",
+        "impact"
+      ],
+      "peak_balls": 31,
+      "pegs": 34,
+      "physics_seed": 1258467,
+      "policy": "track",
+      "power": 4.55,
+      "profile_io": 0,
+      "quick": true,
+      "remaining_pegs": [
+        {
+          "hp": 0.299999999999994,
+          "kind": "normal",
+          "max_hp": 27.6,
+          "position": [
+            549.0,
+            795.0
+          ]
+        }
+      ],
+      "seed_variant": 0,
+      "terminated": true,
+      "time_pickups": 0,
+      "total_damage": 1048.5,
+      "tray": 12,
+      "valid": true
+    },
+    {
+      "base_duration": 15.0,
+      "bonus_seconds": 2.5,
+      "cadence": 5,
+      "clear": false,
+      "coins": 670.6,
+      "damage_events": 250,
+      "destroyed": 33,
+      "drops": {
+        "impact": 7,
+        "normal": 50,
+        "ricochet": 9,
+        "shard": 0,
+        "splitter": 0
+      },
+      "early_access": false,
+      "earned_jam": true,
+      "elapsed": 17.4999999999999,
+      "flow_rules": 2,
+      "hp_remaining": 1.43749999999999,
+      "hp_remaining_fraction": 0.00137061403508771,
+      "initial_hp": 1048.8,
+      "jam_activations": 7,
+      "jam_damage": 17.3625,
+      "jam_launched": 10,
+      "live_balls_at_end": 9,
+      "ordinary_nodes_bought": 62,
+      "pair": [
+        "ricochet",
+        "impact"
+      ],
+      "peak_balls": 30,
+      "pegs": 34,
+      "physics_seed": 1266386,
+      "policy": "track",
+      "power": 4.55,
+      "profile_io": 0,
+      "quick": false,
+      "remaining_pegs": [
+        {
+          "hp": 1.43749999999999,
+          "kind": "clock",
+          "max_hp": 27.6,
+          "position": [
+            212.0,
+            801.0
+          ]
+        }
+      ],
+      "seed_variant": 1,
+      "terminated": true,
+      "time_pickups": 0,
+      "total_damage": 1047.3625,
+      "tray": 12,
+      "valid": true
+    },
+    {
+      "base_duration": 15.0,
+      "bonus_seconds": 3.0,
+      "cadence": 4,
+      "clear": true,
+      "coins": 837.8,
+      "damage_events": 244,
+      "destroyed": 34,
+      "drops": {
+        "impact": 7,
+        "normal": 52,
+        "ricochet": 7,
+        "shard": 0,
+        "splitter": 0
+      },
+      "early_access": false,
+      "earned_jam": true,
+      "elapsed": 17.4833333333336,
+      "flow_rules": 2,
+      "hp_remaining": 0.0,
+      "hp_remaining_fraction": 0.0,
+      "initial_hp": 1048.8,
+      "jam_activations": 8,
+      "jam_damage": 20.475,
+      "jam_launched": 13,
+      "live_balls_at_end": 0,
+      "ordinary_nodes_bought": 62,
+      "pair": [
+        "ricochet",
+        "impact"
+      ],
+      "peak_balls": 28,
+      "pegs": 34,
+      "physics_seed": 1266386,
+      "policy": "track",
+      "power": 4.55,
+      "profile_io": 0,
+      "quick": true,
+      "remaining_pegs": [],
+      "seed_variant": 1,
+      "terminated": true,
+      "time_pickups": 0,
+      "total_damage": 1048.8,
+      "tray": 12,
+      "valid": true
+    },
+    {
+      "base_duration": 15.0,
+      "bonus_seconds": 3.0,
+      "cadence": 5,
+      "clear": true,
+      "coins": 795.3,
+      "damage_events": 256,
+      "destroyed": 34,
+      "drops": {
+        "impact": 7,
+        "normal": 47,
+        "ricochet": 4,
+        "shard": 0,
+        "splitter": 0
+      },
+      "early_access": false,
+      "earned_jam": true,
+      "elapsed": 15.366666666667,
+      "flow_rules": 2,
+      "hp_remaining": 0.0,
+      "hp_remaining_fraction": 0.0,
+      "initial_hp": 1048.8,
+      "jam_activations": 6,
+      "jam_damage": 27.6,
+      "jam_launched": 9,
+      "live_balls_at_end": 0,
+      "ordinary_nodes_bought": 62,
+      "pair": [
+        "ricochet",
+        "impact"
+      ],
+      "peak_balls": 29,
+      "pegs": 34,
+      "physics_seed": 1274305,
+      "policy": "track",
+      "power": 4.55,
+      "profile_io": 0,
+      "quick": false,
+      "remaining_pegs": [],
+      "seed_variant": 2,
+      "terminated": true,
+      "time_pickups": 0,
+      "total_damage": 1048.8,
+      "tray": 12,
+      "valid": true
+    },
+    {
+      "base_duration": 15.0,
+      "bonus_seconds": 3.0,
+      "cadence": 4,
+      "clear": false,
+      "coins": 740.6,
+      "damage_events": 253,
+      "destroyed": 33,
+      "drops": {
+        "impact": 4,
+        "normal": 55,
+        "ricochet": 9,
+        "shard": 0,
+        "splitter": 0
+      },
+      "early_access": false,
+      "earned_jam": true,
+      "elapsed": 17.9999999999998,
+      "flow_rules": 2,
+      "hp_remaining": 9.4,
+      "hp_remaining_fraction": 0.00896262395118229,
+      "initial_hp": 1048.8,
+      "jam_activations": 10,
+      "jam_damage": 37.8375,
+      "jam_launched": 13,
+      "live_balls_at_end": 7,
+      "ordinary_nodes_bought": 62,
+      "pair": [
+        "ricochet",
+        "impact"
+      ],
+      "peak_balls": 25,
+      "pegs": 34,
+      "physics_seed": 1274305,
+      "policy": "track",
+      "power": 4.55,
+      "profile_io": 0,
+      "quick": true,
+      "remaining_pegs": [
+        {
+          "hp": 9.4,
+          "kind": "normal",
+          "max_hp": 27.6,
+          "position": [
+            549.0,
+            795.0
+          ]
+        }
+      ],
+      "seed_variant": 2,
+      "terminated": true,
+      "time_pickups": 0,
+      "total_damage": 1039.4,
+      "tray": 12,
+      "valid": true
+    },
+    {
+      "base_duration": 15.0,
+      "bonus_seconds": 3.0,
+      "cadence": 5,
+      "clear": true,
+      "coins": 834.5,
+      "damage_events": 263,
+      "destroyed": 34,
+      "drops": {
+        "impact": 0,
+        "normal": 55,
+        "ricochet": 6,
+        "shard": 3,
+        "splitter": 2
+      },
+      "early_access": false,
+      "earned_jam": true,
+      "elapsed": 16.6833333333337,
+      "flow_rules": 2,
+      "hp_remaining": 0.0,
+      "hp_remaining_fraction": 0.0,
+      "initial_hp": 1048.8,
+      "jam_activations": 7,
+      "jam_damage": 10.5375,
+      "jam_launched": 11,
+      "live_balls_at_end": 0,
+      "ordinary_nodes_bought": 62,
+      "pair": [
+        "ricochet",
+        "splitter"
+      ],
+      "peak_balls": 29,
+      "pegs": 34,
+      "physics_seed": 1258467,
+      "policy": "track",
+      "power": 4.55,
+      "profile_io": 0,
+      "quick": false,
+      "remaining_pegs": [],
+      "seed_variant": 0,
+      "terminated": true,
+      "time_pickups": 0,
+      "total_damage": 1048.8,
+      "tray": 12,
+      "valid": true
+    },
+    {
+      "base_duration": 15.0,
+      "bonus_seconds": 3.0,
+      "cadence": 4,
+      "clear": true,
+      "coins": 807.3,
+      "damage_events": 266,
+      "destroyed": 34,
+      "drops": {
+        "impact": 0,
+        "normal": 52,
+        "ricochet": 6,
+        "shard": 3,
+        "splitter": 1
+      },
+      "early_access": false,
+      "earned_jam": true,
+      "elapsed": 15.5833333333337,
+      "flow_rules": 2,
+      "hp_remaining": 0.0,
+      "hp_remaining_fraction": 0.0,
+      "initial_hp": 1048.8,
+      "jam_activations": 8,
+      "jam_damage": 21.075,
+      "jam_launched": 13,
+      "live_balls_at_end": 0,
+      "ordinary_nodes_bought": 62,
+      "pair": [
+        "ricochet",
+        "splitter"
+      ],
+      "peak_balls": 33,
+      "pegs": 34,
+      "physics_seed": 1258467,
+      "policy": "track",
+      "power": 4.55,
+      "profile_io": 0,
+      "quick": true,
+      "remaining_pegs": [],
+      "seed_variant": 0,
+      "terminated": true,
+      "time_pickups": 0,
+      "total_damage": 1048.79999999999,
+      "tray": 12,
+      "valid": true
+    },
+    {
+      "base_duration": 15.0,
+      "bonus_seconds": 3.0,
+      "cadence": 5,
+      "clear": true,
+      "coins": 861.5,
+      "damage_events": 266,
+      "destroyed": 34,
+      "drops": {
+        "impact": 0,
+        "normal": 51,
+        "ricochet": 7,
+        "shard": 6,
+        "splitter": 3
+      },
+      "early_access": false,
+      "earned_jam": true,
+      "elapsed": 16.116666666667,
+      "flow_rules": 2,
+      "hp_remaining": 0.0,
+      "hp_remaining_fraction": 0.0,
+      "initial_hp": 1048.8,
+      "jam_activations": 7,
+      "jam_damage": 20.475,
+      "jam_launched": 10,
+      "live_balls_at_end": 0,
+      "ordinary_nodes_bought": 62,
+      "pair": [
+        "ricochet",
+        "splitter"
+      ],
+      "peak_balls": 26,
+      "pegs": 34,
+      "physics_seed": 1266386,
+      "policy": "track",
+      "power": 4.55,
+      "profile_io": 0,
+      "quick": false,
+      "remaining_pegs": [],
+      "seed_variant": 1,
+      "terminated": true,
+      "time_pickups": 0,
+      "total_damage": 1048.8,
+      "tray": 12,
+      "valid": true
+    },
+    {
+      "base_duration": 15.0,
+      "bonus_seconds": 3.0,
+      "cadence": 4,
+      "clear": true,
+      "coins": 733.75,
+      "damage_events": 267,
+      "destroyed": 34,
+      "drops": {
+        "impact": 0,
+        "normal": 43,
+        "ricochet": 5,
+        "shard": 3,
+        "splitter": 1
+      },
+      "early_access": false,
+      "earned_jam": true,
+      "elapsed": 12.9666666666669,
+      "flow_rules": 2,
+      "hp_remaining": 0.0,
+      "hp_remaining_fraction": 0.0,
+      "initial_hp": 1048.8,
+      "jam_activations": 9,
+      "jam_damage": 36.7,
+      "jam_launched": 10,
+      "live_balls_at_end": 0,
+      "ordinary_nodes_bought": 62,
+      "pair": [
+        "ricochet",
+        "splitter"
+      ],
+      "peak_balls": 27,
+      "pegs": 34,
+      "physics_seed": 1266386,
+      "policy": "track",
+      "power": 4.55,
+      "profile_io": 0,
+      "quick": true,
+      "remaining_pegs": [],
+      "seed_variant": 1,
+      "terminated": true,
+      "time_pickups": 0,
+      "total_damage": 1048.8,
+      "tray": 12,
+      "valid": true
+    },
+    {
+      "base_duration": 15.0,
+      "bonus_seconds": 3.0,
+      "cadence": 5,
+      "clear": true,
+      "coins": 789.2,
+      "damage_events": 276,
+      "destroyed": 34,
+      "drops": {
+        "impact": 0,
+        "normal": 42,
+        "ricochet": 8,
+        "shard": 12,
+        "splitter": 6
+      },
+      "early_access": false,
+      "earned_jam": true,
+      "elapsed": 14.9833333333337,
+      "flow_rules": 2,
+      "hp_remaining": 0.0,
+      "hp_remaining_fraction": 0.0,
+      "initial_hp": 1048.8,
+      "jam_activations": 6,
+      "jam_damage": 13.95,
+      "jam_launched": 8,
+      "live_balls_at_end": 0,
+      "ordinary_nodes_bought": 62,
+      "pair": [
+        "ricochet",
+        "splitter"
+      ],
+      "peak_balls": 36,
+      "pegs": 34,
+      "physics_seed": 1274305,
+      "policy": "track",
+      "power": 4.55,
+      "profile_io": 0,
+      "quick": false,
+      "remaining_pegs": [],
+      "seed_variant": 2,
+      "terminated": true,
+      "time_pickups": 0,
+      "total_damage": 1048.8,
+      "tray": 12,
+      "valid": true
+    },
+    {
+      "base_duration": 15.0,
+      "bonus_seconds": 3.0,
+      "cadence": 4,
+      "clear": true,
+      "coins": 828.3,
+      "damage_events": 270,
+      "destroyed": 34,
+      "drops": {
+        "impact": 0,
+        "normal": 41,
+        "ricochet": 6,
+        "shard": 6,
+        "splitter": 2
+      },
+      "early_access": false,
+      "earned_jam": true,
+      "elapsed": 12.9666666666669,
+      "flow_rules": 2,
+      "hp_remaining": 0.0,
+      "hp_remaining_fraction": 0.0,
+      "initial_hp": 1048.8,
+      "jam_activations": 7,
+      "jam_damage": 17.0625,
+      "jam_launched": 10,
+      "live_balls_at_end": 0,
+      "ordinary_nodes_bought": 62,
+      "pair": [
+        "ricochet",
+        "splitter"
+      ],
+      "peak_balls": 31,
+      "pegs": 34,
+      "physics_seed": 1274305,
+      "policy": "track",
+      "power": 4.55,
+      "profile_io": 0,
+      "quick": true,
+      "remaining_pegs": [],
+      "seed_variant": 2,
+      "terminated": true,
+      "time_pickups": 0,
+      "total_damage": 1048.8,
+      "tray": 12,
+      "valid": true
+    },
+    {
+      "base_duration": 15.0,
+      "bonus_seconds": 2.0,
+      "cadence": 5,
+      "clear": false,
+      "coins": 675.75,
+      "damage_events": 210,
+      "destroyed": 26,
+      "drops": {
+        "impact": 6,
+        "normal": 53,
+        "ricochet": 0,
+        "shard": 6,
+        "splitter": 5
+      },
+      "early_access": false,
+      "earned_jam": true,
+      "elapsed": 16.9999999999999,
+      "flow_rules": 2,
+      "hp_remaining": 37.6,
+      "hp_remaining_fraction": 0.0425724637681159,
+      "initial_hp": 883.200000000001,
+      "jam_activations": 7,
+      "jam_damage": 27.6,
+      "jam_launched": 10,
+      "live_balls_at_end": 9,
+      "ordinary_nodes_bought": 62,
+      "pair": [
+        "splitter",
+        "impact"
+      ],
+      "peak_balls": 24,
+      "pegs": 30,
+      "physics_seed": 1049009,
+      "policy": "sweep",
+      "power": 4.55,
+      "profile_io": 0,
+      "quick": false,
+      "remaining_pegs": [
+        {
+          "hp": 4.84999999999999,
+          "kind": "normal",
+          "max_hp": 27.6,
+          "position": [
+            417.0,
+            626.0
+          ]
+        },
+        {
+          "hp": 9.4,
+          "kind": "normal",
+          "max_hp": 27.6,
+          "position": [
+            390.0,
+            698.0
+          ]
+        },
+        {
+          "hp": 23.05,
+          "kind": "clock",
+          "max_hp": 27.6,
+          "position": [
+            389.0,
+            796.0
+          ]
+        },
+        {
+          "hp": 0.299999999999994,
+          "kind": "clock",
+          "max_hp": 27.6,
+          "position": [
+            226.0,
+            805.0
+          ]
+        }
+      ],
+      "seed_variant": 0,
+      "terminated": true,
+      "time_pickups": 0,
+      "total_damage": 845.599999999997,
+      "tray": 10,
+      "valid": true
+    },
+    {
+      "base_duration": 15.0,
+      "bonus_seconds": 2.5,
+      "cadence": 4,
+      "clear": false,
+      "coins": 708.35,
+      "damage_events": 220,
+      "destroyed": 29,
+      "drops": {
+        "impact": 11,
+        "normal": 49,
+        "ricochet": 0,
+        "shard": 12,
+        "splitter": 6
+      },
+      "early_access": false,
+      "earned_jam": true,
+      "elapsed": 17.4999999999999,
+      "flow_rules": 2,
+      "hp_remaining": 23.05,
+      "hp_remaining_fraction": 0.0260982789855072,
+      "initial_hp": 883.200000000001,
+      "jam_activations": 6,
+      "jam_damage": 30.7125,
+      "jam_launched": 12,
+      "live_balls_at_end": 7,
+      "ordinary_nodes_bought": 62,
+      "pair": [
+        "splitter",
+        "impact"
+      ],
+      "peak_balls": 24,
+      "pegs": 30,
+      "physics_seed": 1049009,
+      "policy": "sweep",
+      "power": 4.55,
+      "profile_io": 0,
+      "quick": true,
+      "remaining_pegs": [
+        {
+          "hp": 23.05,
+          "kind": "clock",
+          "max_hp": 27.6,
+          "position": [
+            226.0,
+            805.0
+          ]
+        }
+      ],
+      "seed_variant": 0,
+      "terminated": true,
+      "time_pickups": 0,
+      "total_damage": 860.149999999997,
+      "tray": 10,
+      "valid": true
+    },
+    {
+      "base_duration": 15.0,
+      "bonus_seconds": 2.5,
+      "cadence": 5,
+      "clear": false,
+      "coins": 696.2,
+      "damage_events": 232,
+      "destroyed": 27,
+      "drops": {
+        "impact": 8,
+        "normal": 51,
+        "ricochet": 0,
+        "shard": 15,
+        "splitter": 7
+      },
+      "early_access": false,
+      "earned_jam": true,
+      "elapsed": 17.4999999999999,
+      "flow_rules": 2,
+      "hp_remaining": 14.85,
+      "hp_remaining_fraction": 0.0168138586956521,
+      "initial_hp": 883.200000000001,
+      "jam_activations": 4,
+      "jam_damage": 20.475,
+      "jam_launched": 10,
+      "live_balls_at_end": 7,
+      "ordinary_nodes_bought": 62,
+      "pair": [
+        "splitter",
+        "impact"
+      ],
+      "peak_balls": 30,
+      "pegs": 30,
+      "physics_seed": 1056928,
+      "policy": "sweep",
+      "power": 4.55,
+      "profile_io": 0,
+      "quick": false,
+      "remaining_pegs": [
+        {
+          "hp": 11.975,
+          "kind": "armored",
+          "max_hp": 55.2,
+          "position": [
+            364.0,
+            351.0
+          ]
+        },
+        {
+          "hp": 0.299999999999994,
+          "kind": "normal",
+          "max_hp": 27.6,
+          "position": [
+            390.0,
+            698.0
+          ]
+        },
+        {
+          "hp": 2.57499999999999,
+          "kind": "clock",
+          "max_hp": 27.6,
+          "position": [
+            389.0,
+            796.0
+          ]
+        }
+      ],
+      "seed_variant": 1,
+      "terminated": true,
+      "time_pickups": 0,
+      "total_damage": 868.349999999997,
+      "tray": 10,
+      "valid": true
+    },
+    {
+      "base_duration": 15.0,
+      "bonus_seconds": 3.0,
+      "cadence": 4,
+      "clear": false,
+      "coins": 718.3,
+      "damage_events": 217,
+      "destroyed": 27,
+      "drops": {
+        "impact": 4,
+        "normal": 61,
+        "ricochet": 0,
+        "shard": 9,
+        "splitter": 3
+      },
+      "early_access": false,
+      "earned_jam": true,
+      "elapsed": 17.9999999999998,
+      "flow_rules": 2,
+      "hp_remaining": 30.775,
+      "hp_remaining_fraction": 0.0348448822463768,
+      "initial_hp": 883.200000000001,
+      "jam_activations": 8,
+      "jam_damage": 34.125,
+      "jam_launched": 15,
+      "live_balls_at_end": 8,
+      "ordinary_nodes_bought": 62,
+      "pair": [
+        "splitter",
+        "impact"
+      ],
+      "peak_balls": 30,
+      "pegs": 30,
+      "physics_seed": 1056928,
+      "policy": "sweep",
+      "power": 4.55,
+      "profile_io": 0,
+      "quick": true,
+      "remaining_pegs": [
+        {
+          "hp": 14.25,
+          "kind": "armored",
+          "max_hp": 55.2,
+          "position": [
+            364.0,
+            351.0
+          ]
+        },
+        {
+          "hp": 4.84999999999999,
+          "kind": "normal",
+          "max_hp": 27.6,
+          "position": [
+            417.0,
+            626.0
+          ]
+        },
+        {
+          "hp": 11.675,
+          "kind": "normal",
+          "max_hp": 27.6,
+          "position": [
+            390.0,
+            698.0
+          ]
+        }
+      ],
+      "seed_variant": 1,
+      "terminated": true,
+      "time_pickups": 0,
+      "total_damage": 852.424999999998,
+      "tray": 10,
+      "valid": true
+    },
+    {
+      "base_duration": 15.0,
+      "bonus_seconds": 2.5,
+      "cadence": 5,
+      "clear": false,
+      "coins": 728.95,
+      "damage_events": 214,
+      "destroyed": 28,
+      "drops": {
+        "impact": 7,
+        "normal": 51,
+        "ricochet": 0,
+        "shard": 12,
+        "splitter": 8
+      },
+      "early_access": false,
+      "earned_jam": true,
+      "elapsed": 17.4999999999999,
+      "flow_rules": 2,
+      "hp_remaining": 16.825,
+      "hp_remaining_fraction": 0.019050045289855,
+      "initial_hp": 883.200000000001,
+      "jam_activations": 6,
+      "jam_damage": 27.3,
+      "jam_launched": 10,
+      "live_balls_at_end": 7,
+      "ordinary_nodes_bought": 62,
+      "pair": [
+        "splitter",
+        "impact"
+      ],
+      "peak_balls": 24,
+      "pegs": 30,
+      "physics_seed": 1064847,
+      "policy": "sweep",
+      "power": 4.55,
+      "profile_io": 0,
+      "quick": false,
+      "remaining_pegs": [
+        {
+          "hp": 7.42499999999999,
+          "kind": "armored",
+          "max_hp": 55.2,
+          "position": [
+            364.0,
+            351.0
+          ]
+        },
+        {
+          "hp": 9.4,
+          "kind": "clock",
+          "max_hp": 27.6,
+          "position": [
+            389.0,
+            796.0
+          ]
+        }
+      ],
+      "seed_variant": 2,
+      "terminated": true,
+      "time_pickups": 0,
+      "total_damage": 866.374999999997,
+      "tray": 10,
+      "valid": true
+    },
+    {
+      "base_duration": 15.0,
+      "bonus_seconds": 3.0,
+      "cadence": 4,
+      "clear": false,
+      "coins": 659.3,
+      "damage_events": 217,
+      "destroyed": 29,
+      "drops": {
+        "impact": 10,
+        "normal": 51,
+        "ricochet": 0,
+        "shard": 9,
+        "splitter": 7
+      },
+      "early_access": false,
+      "earned_jam": true,
+      "elapsed": 17.9999999999998,
+      "flow_rules": 2,
+      "hp_remaining": 0.299999999999994,
+      "hp_remaining_fraction": 0.000339673913043471,
+      "initial_hp": 883.200000000001,
+      "jam_activations": 5,
+      "jam_damage": 30.7125,
+      "jam_launched": 12,
+      "live_balls_at_end": 8,
+      "ordinary_nodes_bought": 62,
+      "pair": [
+        "splitter",
+        "impact"
+      ],
+      "peak_balls": 28,
+      "pegs": 30,
+      "physics_seed": 1064847,
+      "policy": "sweep",
+      "power": 4.55,
+      "profile_io": 0,
+      "quick": true,
+      "remaining_pegs": [
+        {
+          "hp": 0.299999999999994,
+          "kind": "normal",
+          "max_hp": 27.6,
+          "position": [
+            150.0,
+            781.0
+          ]
+        }
+      ],
+      "seed_variant": 2,
+      "terminated": true,
+      "time_pickups": 0,
+      "total_damage": 882.899999999997,
+      "tray": 10,
+      "valid": true
+    },
+    {
+      "base_duration": 15.0,
+      "bonus_seconds": 2.5,
+      "cadence": 5,
+      "clear": false,
+      "coins": 634.7,
+      "damage_events": 203,
+      "destroyed": 28,
+      "drops": {
+        "impact": 6,
+        "normal": 51,
+        "ricochet": 9,
+        "shard": 0,
+        "splitter": 0
+      },
+      "early_access": false,
+      "earned_jam": true,
+      "elapsed": 17.4999999999999,
+      "flow_rules": 2,
+      "hp_remaining": 20.2375,
+      "hp_remaining_fraction": 0.0229138360507246,
+      "initial_hp": 883.200000000001,
+      "jam_activations": 6,
+      "jam_damage": 30.175,
+      "jam_launched": 10,
+      "live_balls_at_end": 10,
+      "ordinary_nodes_bought": 62,
+      "pair": [
+        "ricochet",
+        "impact"
+      ],
+      "peak_balls": 22,
+      "pegs": 30,
+      "physics_seed": 1049009,
+      "policy": "sweep",
+      "power": 4.55,
+      "profile_io": 0,
+      "quick": false,
+      "remaining_pegs": [
+        {
+          "hp": 1.7375,
+          "kind": "armored",
+          "max_hp": 55.2,
+          "position": [
+            364.0,
+            351.0
+          ]
+        },
+        {
+          "hp": 18.5,
+          "kind": "clock",
+          "max_hp": 27.6,
+          "position": [
+            226.0,
+            805.0
+          ]
+        }
+      ],
+      "seed_variant": 0,
+      "terminated": true,
+      "time_pickups": 0,
+      "total_damage": 862.962499999997,
+      "tray": 10,
+      "valid": true
+    },
+    {
+      "base_duration": 15.0,
+      "bonus_seconds": 3.0,
+      "cadence": 4,
+      "clear": false,
+      "coins": 709.0,
+      "damage_events": 205,
+      "destroyed": 29,
+      "drops": {
+        "impact": 7,
+        "normal": 50,
+        "ricochet": 11,
+        "shard": 0,
+        "splitter": 0
+      },
+      "early_access": false,
+      "earned_jam": true,
+      "elapsed": 17.9999999999998,
+      "flow_rules": 2,
+      "hp_remaining": 4.84999999999999,
+      "hp_remaining_fraction": 0.00549139492753622,
+      "initial_hp": 883.200000000001,
+      "jam_activations": 6,
+      "jam_damage": 30.7125,
+      "jam_launched": 12,
+      "live_balls_at_end": 8,
+      "ordinary_nodes_bought": 62,
+      "pair": [
+        "ricochet",
+        "impact"
+      ],
+      "peak_balls": 23,
+      "pegs": 30,
+      "physics_seed": 1049009,
+      "policy": "sweep",
+      "power": 4.55,
+      "profile_io": 0,
+      "quick": true,
+      "remaining_pegs": [
+        {
+          "hp": 4.84999999999999,
+          "kind": "normal",
+          "max_hp": 27.6,
+          "position": [
+            390.0,
+            698.0
+          ]
+        }
+      ],
+      "seed_variant": 0,
+      "terminated": true,
+      "time_pickups": 0,
+      "total_damage": 878.349999999997,
+      "tray": 10,
+      "valid": true
+    },
+    {
+      "base_duration": 15.0,
+      "bonus_seconds": 2.0,
+      "cadence": 5,
+      "clear": false,
+      "coins": 654.4,
+      "damage_events": 197,
+      "destroyed": 25,
+      "drops": {
+        "impact": 5,
+        "normal": 48,
+        "ricochet": 11,
+        "shard": 0,
+        "splitter": 0
+      },
+      "early_access": false,
+      "earned_jam": true,
+      "elapsed": 16.9999999999999,
+      "flow_rules": 2,
+      "hp_remaining": 63.225,
+      "hp_remaining_fraction": 0.071586277173913,
+      "initial_hp": 883.200000000001,
+      "jam_activations": 4,
+      "jam_damage": 24.1875,
+      "jam_launched": 9,
+      "live_balls_at_end": 8,
+      "ordinary_nodes_bought": 62,
+      "pair": [
+        "ricochet",
+        "impact"
+      ],
+      "peak_balls": 22,
+      "pegs": 30,
+      "physics_seed": 1056928,
+      "policy": "sweep",
+      "power": 4.55,
+      "profile_io": 0,
+      "quick": false,
+      "remaining_pegs": [
+        {
+          "hp": 23.35,
+          "kind": "armored",
+          "max_hp": 55.2,
+          "position": [
+            364.0,
+            351.0
+          ]
+        },
+        {
+          "hp": 13.95,
+          "kind": "normal",
+          "max_hp": 27.6,
+          "position": [
+            417.0,
+            626.0
+          ]
+        },
+        {
+          "hp": 5.98749999999999,
+          "kind": "normal",
+          "max_hp": 27.6,
+          "position": [
+            220.0,
+            733.0
+          ]
+        },
+        {
+          "hp": 9.4,
+          "kind": "clock",
+          "max_hp": 27.6,
+          "position": [
+            389.0,
+            796.0
+          ]
+        },
+        {
+          "hp": 10.5375,
+          "kind": "clock",
+          "max_hp": 27.6,
+          "position": [
+            226.0,
+            805.0
+          ]
+        }
+      ],
+      "seed_variant": 1,
+      "terminated": true,
+      "time_pickups": 0,
+      "total_damage": 819.974999999997,
+      "tray": 10,
+      "valid": true
+    },
+    {
+      "base_duration": 15.0,
+      "bonus_seconds": 2.0,
+      "cadence": 4,
+      "clear": false,
+      "coins": 609.3,
+      "damage_events": 206,
+      "destroyed": 26,
+      "drops": {
+        "impact": 4,
+        "normal": 54,
+        "ricochet": 6,
+        "shard": 0,
+        "splitter": 0
+      },
+      "early_access": false,
+      "earned_jam": true,
+      "elapsed": 16.9999999999999,
+      "flow_rules": 2,
+      "hp_remaining": 42.45,
+      "hp_remaining_fraction": 0.0480638586956521,
+      "initial_hp": 883.200000000001,
+      "jam_activations": 8,
+      "jam_damage": 41.0125,
+      "jam_launched": 13,
+      "live_balls_at_end": 9,
+      "ordinary_nodes_bought": 62,
+      "pair": [
+        "ricochet",
+        "impact"
+      ],
+      "peak_balls": 23,
+      "pegs": 30,
+      "physics_seed": 1056928,
+      "policy": "sweep",
+      "power": 4.55,
+      "profile_io": 0,
+      "quick": true,
+      "remaining_pegs": [
+        {
+          "hp": 23.35,
+          "kind": "armored",
+          "max_hp": 55.2,
+          "position": [
+            364.0,
+            351.0
+          ]
+        },
+        {
+          "hp": 0.299999999999994,
+          "kind": "normal",
+          "max_hp": 27.6,
+          "position": [
+            412.0,
+            437.0
+          ]
+        },
+        {
+          "hp": 13.95,
+          "kind": "clock",
+          "max_hp": 27.6,
+          "position": [
+            389.0,
+            796.0
+          ]
+        },
+        {
+          "hp": 4.84999999999999,
+          "kind": "clock",
+          "max_hp": 27.6,
+          "position": [
+            226.0,
+            805.0
+          ]
+        }
+      ],
+      "seed_variant": 1,
+      "terminated": true,
+      "time_pickups": 0,
+      "total_damage": 840.749999999998,
+      "tray": 10,
+      "valid": true
+    },
+    {
+      "base_duration": 15.0,
+      "bonus_seconds": 3.0,
+      "cadence": 5,
+      "clear": false,
+      "coins": 703.8,
+      "damage_events": 213,
+      "destroyed": 29,
+      "drops": {
+        "impact": 5,
+        "normal": 51,
+        "ricochet": 12,
+        "shard": 0,
+        "splitter": 0
+      },
+      "early_access": false,
+      "earned_jam": true,
+      "elapsed": 17.9999999999998,
+      "flow_rules": 2,
+      "hp_remaining": 0.599999999999998,
+      "hp_remaining_fraction": 0.000679347826086954,
+      "initial_hp": 883.200000000001,
+      "jam_activations": 4,
+      "jam_damage": 17.3625,
+      "jam_launched": 10,
+      "live_balls_at_end": 8,
+      "ordinary_nodes_bought": 62,
+      "pair": [
+        "ricochet",
+        "impact"
+      ],
+      "peak_balls": 26,
+      "pegs": 30,
+      "physics_seed": 1064847,
+      "policy": "sweep",
+      "power": 4.55,
+      "profile_io": 0,
+      "quick": false,
+      "remaining_pegs": [
+        {
+          "hp": 0.599999999999998,
+          "kind": "armored",
+          "max_hp": 55.2,
+          "position": [
+            364.0,
+            351.0
+          ]
+        }
+      ],
+      "seed_variant": 2,
+      "terminated": true,
+      "time_pickups": 0,
+      "total_damage": 882.599999999997,
+      "tray": 10,
+      "valid": true
+    },
+    {
+      "base_duration": 15.0,
+      "bonus_seconds": 2.0,
+      "cadence": 4,
+      "clear": false,
+      "coins": 685.4,
+      "damage_events": 201,
+      "destroyed": 28,
+      "drops": {
+        "impact": 7,
+        "normal": 43,
+        "ricochet": 14,
+        "shard": 0,
+        "splitter": 0
+      },
+      "early_access": false,
+      "earned_jam": true,
+      "elapsed": 16.9999999999999,
+      "flow_rules": 2,
+      "hp_remaining": 14.25,
+      "hp_remaining_fraction": 0.0161345108695652,
+      "initial_hp": 883.200000000001,
+      "jam_activations": 4,
+      "jam_damage": 27.3,
+      "jam_launched": 10,
+      "live_balls_at_end": 8,
+      "ordinary_nodes_bought": 62,
+      "pair": [
+        "ricochet",
+        "impact"
+      ],
+      "peak_balls": 22,
+      "pegs": 30,
+      "physics_seed": 1064847,
+      "policy": "sweep",
+      "power": 4.55,
+      "profile_io": 0,
+      "quick": true,
+      "remaining_pegs": [
+        {
+          "hp": 9.4,
+          "kind": "clock",
+          "max_hp": 27.6,
+          "position": [
+            389.0,
+            796.0
+          ]
+        },
+        {
+          "hp": 4.84999999999999,
+          "kind": "clock",
+          "max_hp": 27.6,
+          "position": [
+            226.0,
+            805.0
+          ]
+        }
+      ],
+      "seed_variant": 2,
+      "terminated": true,
+      "time_pickups": 0,
+      "total_damage": 868.949999999997,
+      "tray": 10,
+      "valid": true
+    },
+    {
+      "base_duration": 15.0,
+      "bonus_seconds": 2.5,
+      "cadence": 5,
+      "clear": false,
+      "coins": 659.35,
+      "damage_events": 221,
+      "destroyed": 26,
+      "drops": {
+        "impact": 0,
+        "normal": 56,
+        "ricochet": 6,
+        "shard": 3,
+        "splitter": 4
+      },
+      "early_access": false,
+      "earned_jam": true,
+      "elapsed": 17.4999999999999,
+      "flow_rules": 2,
+      "hp_remaining": 21.975,
+      "hp_remaining_fraction": 0.0248811141304347,
+      "initial_hp": 883.200000000001,
+      "jam_activations": 7,
+      "jam_damage": 41.25,
+      "jam_launched": 11,
+      "live_balls_at_end": 7,
+      "ordinary_nodes_bought": 62,
+      "pair": [
+        "ricochet",
+        "splitter"
+      ],
+      "peak_balls": 21,
+      "pegs": 30,
+      "physics_seed": 1049009,
+      "policy": "sweep",
+      "power": 4.55,
+      "profile_io": 0,
+      "quick": false,
+      "remaining_pegs": [
+        {
+          "hp": 2.875,
+          "kind": "armored",
+          "max_hp": 55.2,
+          "position": [
+            364.0,
+            351.0
+          ]
+        },
+        {
+          "hp": 2.57499999999999,
+          "kind": "normal",
+          "max_hp": 27.6,
+          "position": [
+            239.0,
+            628.0
+          ]
+        },
+        {
+          "hp": 1.43749999999999,
+          "kind": "normal",
+          "max_hp": 27.6,
+          "position": [
+            220.0,
+            733.0
+          ]
+        },
+        {
+          "hp": 15.0875,
+          "kind": "clock",
+          "max_hp": 27.6,
+          "position": [
+            226.0,
+            805.0
+          ]
+        }
+      ],
+      "seed_variant": 0,
+      "terminated": true,
+      "time_pickups": 0,
+      "total_damage": 861.224999999998,
+      "tray": 10,
+      "valid": true
+    },
+    {
+      "base_duration": 15.0,
+      "bonus_seconds": 2.0,
+      "cadence": 4,
+      "clear": false,
+      "coins": 666.0,
+      "damage_events": 221,
+      "destroyed": 27,
+      "drops": {
+        "impact": 0,
+        "normal": 51,
+        "ricochet": 7,
+        "shard": 9,
+        "splitter": 6
+      },
+      "early_access": false,
+      "earned_jam": true,
+      "elapsed": 16.9999999999999,
+      "flow_rules": 2,
+      "hp_remaining": 14.55,
+      "hp_remaining_fraction": 0.0164741847826087,
+      "initial_hp": 883.200000000001,
+      "jam_activations": 7,
+      "jam_damage": 37.5375,
+      "jam_launched": 12,
+      "live_balls_at_end": 9,
+      "ordinary_nodes_bought": 62,
+      "pair": [
+        "ricochet",
+        "splitter"
+      ],
+      "peak_balls": 28,
+      "pegs": 30,
+      "physics_seed": 1049009,
+      "policy": "sweep",
+      "power": 4.55,
+      "profile_io": 0,
+      "quick": true,
+      "remaining_pegs": [
+        {
+          "hp": 4.84999999999999,
+          "kind": "normal",
+          "max_hp": 27.6,
+          "position": [
+            220.0,
+            733.0
+          ]
+        },
+        {
+          "hp": 4.84999999999999,
+          "kind": "clock",
+          "max_hp": 27.6,
+          "position": [
+            389.0,
+            796.0
+          ]
+        },
+        {
+          "hp": 4.84999999999999,
+          "kind": "clock",
+          "max_hp": 27.6,
+          "position": [
+            226.0,
+            805.0
+          ]
+        }
+      ],
+      "seed_variant": 0,
+      "terminated": true,
+      "time_pickups": 0,
+      "total_damage": 868.649999999997,
+      "tray": 10,
+      "valid": true
+    },
+    {
+      "base_duration": 15.0,
+      "bonus_seconds": 2.0,
+      "cadence": 5,
+      "clear": false,
+      "coins": 639.35,
+      "damage_events": 217,
+      "destroyed": 23,
+      "drops": {
+        "impact": 0,
+        "normal": 51,
+        "ricochet": 9,
+        "shard": 9,
+        "splitter": 4
+      },
+      "early_access": false,
+      "earned_jam": true,
+      "elapsed": 16.9999999999999,
+      "flow_rules": 2,
+      "hp_remaining": 54.725,
+      "hp_remaining_fraction": 0.0619621829710144,
+      "initial_hp": 883.200000000001,
+      "jam_activations": 6,
+      "jam_damage": 20.775,
+      "jam_launched": 10,
+      "live_balls_at_end": 8,
+      "ordinary_nodes_bought": 62,
+      "pair": [
+        "ricochet",
+        "splitter"
+      ],
+      "peak_balls": 25,
+      "pegs": 30,
+      "physics_seed": 1056928,
+      "policy": "sweep",
+      "power": 4.55,
+      "profile_io": 0,
+      "quick": false,
+      "remaining_pegs": [
+        {
+          "hp": 0.600000000000003,
+          "kind": "armored",
+          "max_hp": 55.2,
+          "position": [
+            364.0,
+            351.0
+          ]
+        },
+        {
+          "hp": 7.125,
+          "kind": "normal",
+          "max_hp": 27.6,
+          "position": [
+            324.0,
+            594.0
+          ]
+        },
+        {
+          "hp": 25.325,
+          "kind": "normal",
+          "max_hp": 27.6,
+          "position": [
+            390.0,
+            698.0
+          ]
+        },
+        {
+          "hp": 0.299999999999997,
+          "kind": "normal",
+          "max_hp": 27.6,
+          "position": [
+            220.0,
+            733.0
+          ]
+        },
+        {
+          "hp": 2.57499999999999,
+          "kind": "normal",
+          "max_hp": 27.6,
+          "position": [
+            499.0,
+            743.0
+          ]
+        },
+        {
+          "hp": 11.675,
+          "kind": "clock",
+          "max_hp": 27.6,
+          "position": [
+            389.0,
+            796.0
+          ]
+        },
+        {
+          "hp": 7.12499999999999,
+          "kind": "clock",
+          "max_hp": 27.6,
+          "position": [
+            226.0,
+            805.0
+          ]
+        }
+      ],
+      "seed_variant": 1,
+      "terminated": true,
+      "time_pickups": 0,
+      "total_damage": 828.474999999998,
+      "tray": 10,
+      "valid": true
+    },
+    {
+      "base_duration": 15.0,
+      "bonus_seconds": 3.0,
+      "cadence": 4,
+      "clear": false,
+      "coins": 645.65,
+      "damage_events": 219,
+      "destroyed": 29,
+      "drops": {
+        "impact": 0,
+        "normal": 59,
+        "ricochet": 5,
+        "shard": 3,
+        "splitter": 4
+      },
+      "early_access": false,
+      "earned_jam": true,
+      "elapsed": 17.9999999999998,
+      "flow_rules": 2,
+      "hp_remaining": 18.8,
+      "hp_remaining_fraction": 0.021286231884058,
+      "initial_hp": 883.200000000001,
+      "jam_activations": 8,
+      "jam_damage": 39.575,
+      "jam_launched": 14,
+      "live_balls_at_end": 7,
+      "ordinary_nodes_bought": 62,
+      "pair": [
+        "ricochet",
+        "splitter"
+      ],
+      "peak_balls": 25,
+      "pegs": 30,
+      "physics_seed": 1056928,
+      "policy": "sweep",
+      "power": 4.55,
+      "profile_io": 0,
+      "quick": true,
+      "remaining_pegs": [
+        {
+          "hp": 18.8,
+          "kind": "armored",
+          "max_hp": 55.2,
+          "position": [
+            364.0,
+            351.0
+          ]
+        }
+      ],
+      "seed_variant": 1,
+      "terminated": true,
+      "time_pickups": 0,
+      "total_damage": 864.399999999997,
+      "tray": 10,
+      "valid": true
+    },
+    {
+      "base_duration": 15.0,
+      "bonus_seconds": 2.5,
+      "cadence": 5,
+      "clear": false,
+      "coins": 681.85,
+      "damage_events": 228,
+      "destroyed": 28,
+      "drops": {
+        "impact": 0,
+        "normal": 49,
+        "ricochet": 9,
+        "shard": 3,
+        "splitter": 8
+      },
+      "early_access": false,
+      "earned_jam": true,
+      "elapsed": 17.4999999999999,
+      "flow_rules": 2,
+      "hp_remaining": 9.69999999999999,
+      "hp_remaining_fraction": 0.0109827898550724,
+      "initial_hp": 883.200000000001,
+      "jam_activations": 7,
+      "jam_damage": 26.7625,
+      "jam_launched": 9,
+      "live_balls_at_end": 8,
+      "ordinary_nodes_bought": 62,
+      "pair": [
+        "ricochet",
+        "splitter"
+      ],
+      "peak_balls": 23,
+      "pegs": 30,
+      "physics_seed": 1064847,
+      "policy": "sweep",
+      "power": 4.55,
+      "profile_io": 0,
+      "quick": false,
+      "remaining_pegs": [
+        {
+          "hp": 4.84999999999999,
+          "kind": "normal",
+          "max_hp": 27.6,
+          "position": [
+            499.0,
+            743.0
+          ]
+        },
+        {
+          "hp": 4.84999999999999,
+          "kind": "clock",
+          "max_hp": 27.6,
+          "position": [
+            226.0,
+            805.0
+          ]
+        }
+      ],
+      "seed_variant": 2,
+      "terminated": true,
+      "time_pickups": 0,
+      "total_damage": 873.499999999997,
+      "tray": 10,
+      "valid": true
+    },
+    {
+      "base_duration": 15.0,
+      "bonus_seconds": 2.0,
+      "cadence": 4,
+      "clear": false,
+      "coins": 659.45,
+      "damage_events": 221,
+      "destroyed": 24,
+      "drops": {
+        "impact": 0,
+        "normal": 54,
+        "ricochet": 8,
+        "shard": 3,
+        "splitter": 2
+      },
+      "early_access": false,
+      "earned_jam": true,
+      "elapsed": 16.9999999999999,
+      "flow_rules": 2,
+      "hp_remaining": 33.95,
+      "hp_remaining_fraction": 0.0384397644927536,
+      "initial_hp": 883.200000000001,
+      "jam_activations": 9,
+      "jam_damage": 34.125,
+      "jam_launched": 13,
+      "live_balls_at_end": 10,
+      "ordinary_nodes_bought": 62,
+      "pair": [
+        "ricochet",
+        "splitter"
+      ],
+      "peak_balls": 20,
+      "pegs": 30,
+      "physics_seed": 1064847,
+      "policy": "sweep",
+      "power": 4.55,
+      "profile_io": 0,
+      "quick": true,
+      "remaining_pegs": [
+        {
+          "hp": 2.87499999999999,
+          "kind": "armored",
+          "max_hp": 55.2,
+          "position": [
+            457.0,
+            360.0
+          ]
+        },
+        {
+          "hp": 7.125,
+          "kind": "normal",
+          "max_hp": 27.6,
+          "position": [
+            390.0,
+            698.0
+          ]
+        },
+        {
+          "hp": 0.299999999999994,
+          "kind": "normal",
+          "max_hp": 27.6,
+          "position": [
+            499.0,
+            743.0
+          ]
+        },
+        {
+          "hp": 4.84999999999999,
+          "kind": "normal",
+          "max_hp": 27.6,
+          "position": [
+            575.0,
+            783.0
+          ]
+        },
+        {
+          "hp": 13.95,
+          "kind": "clock",
+          "max_hp": 27.6,
+          "position": [
+            389.0,
+            796.0
+          ]
+        },
+        {
+          "hp": 4.84999999999999,
+          "kind": "clock",
+          "max_hp": 27.6,
+          "position": [
+            226.0,
+            805.0
+          ]
+        }
+      ],
+      "seed_variant": 2,
+      "terminated": true,
+      "time_pickups": 0,
+      "total_damage": 849.249999999998,
+      "tray": 10,
+      "valid": true
+    },
+    {
+      "base_duration": 15.0,
+      "bonus_seconds": 3.0,
+      "cadence": 5,
+      "clear": true,
+      "coins": 688.7,
+      "damage_events": 248,
+      "destroyed": 30,
+      "drops": {
+        "impact": 2,
+        "normal": 33,
+        "ricochet": 0,
+        "shard": 15,
+        "splitter": 6
+      },
+      "early_access": false,
+      "earned_jam": true,
+      "elapsed": 10.9000000000001,
+      "flow_rules": 2,
+      "hp_remaining": 0.0,
+      "hp_remaining_fraction": 0.0,
+      "initial_hp": 883.200000000001,
+      "jam_activations": 4,
+      "jam_damage": 23.8875,
+      "jam_launched": 6,
+      "live_balls_at_end": 0,
+      "ordinary_nodes_bought": 62,
+      "pair": [
+        "splitter",
+        "impact"
+      ],
+      "peak_balls": 39,
+      "pegs": 30,
+      "physics_seed": 1049009,
+      "policy": "instant",
+      "power": 4.55,
+      "profile_io": 0,
+      "quick": false,
+      "remaining_pegs": [],
+      "seed_variant": 0,
+      "terminated": true,
+      "time_pickups": 0,
+      "total_damage": 883.199999999997,
+      "tray": 10,
+      "valid": true
+    },
+    {
+      "base_duration": 15.0,
+      "bonus_seconds": 3.0,
+      "cadence": 4,
+      "clear": true,
+      "coins": 747.15,
+      "damage_events": 229,
+      "destroyed": 30,
+      "drops": {
+        "impact": 1,
+        "normal": 45,
+        "ricochet": 0,
+        "shard": 9,
+        "splitter": 3
+      },
+      "early_access": false,
+      "earned_jam": true,
+      "elapsed": 13.0166666666669,
+      "flow_rules": 2,
+      "hp_remaining": 0.0,
+      "hp_remaining_fraction": 0.0,
+      "initial_hp": 883.200000000001,
+      "jam_activations": 8,
+      "jam_damage": 40.95,
+      "jam_launched": 11,
+      "live_balls_at_end": 0,
+      "ordinary_nodes_bought": 62,
+      "pair": [
+        "splitter",
+        "impact"
+      ],
+      "peak_balls": 34,
+      "pegs": 30,
+      "physics_seed": 1049009,
+      "policy": "instant",
+      "power": 4.55,
+      "profile_io": 0,
+      "quick": true,
+      "remaining_pegs": [],
+      "seed_variant": 0,
+      "terminated": true,
+      "time_pickups": 0,
+      "total_damage": 883.199999999997,
+      "tray": 10,
+      "valid": true
+    },
+    {
+      "base_duration": 15.0,
+      "bonus_seconds": 3.0,
+      "cadence": 5,
+      "clear": true,
+      "coins": 822.8,
+      "damage_events": 269,
+      "destroyed": 32,
+      "drops": {
+        "impact": 2,
+        "normal": 55,
+        "ricochet": 0,
+        "shard": 15,
+        "splitter": 6
+      },
+      "early_access": false,
+      "earned_jam": true,
+      "elapsed": 16.7000000000003,
+      "flow_rules": 2,
+      "hp_remaining": 0.0,
+      "hp_remaining_fraction": 0.0,
+      "initial_hp": 966.000000000001,
+      "jam_activations": 6,
+      "jam_damage": 13.95,
+      "jam_launched": 11,
+      "live_balls_at_end": 0,
+      "ordinary_nodes_bought": 62,
+      "pair": [
+        "splitter",
+        "impact"
+      ],
+      "peak_balls": 35,
+      "pegs": 32,
+      "physics_seed": 1153738,
+      "policy": "instant",
+      "power": 4.55,
+      "profile_io": 0,
+      "quick": false,
+      "remaining_pegs": [],
+      "seed_variant": 0,
+      "terminated": true,
+      "time_pickups": 0,
+      "total_damage": 965.999999999996,
+      "tray": 11,
+      "valid": true
+    },
+    {
+      "base_duration": 15.0,
+      "bonus_seconds": 3.0,
+      "cadence": 4,
+      "clear": true,
+      "coins": 781.9,
+      "damage_events": 272,
+      "destroyed": 32,
+      "drops": {
+        "impact": 3,
+        "normal": 37,
+        "ricochet": 0,
+        "shard": 18,
+        "splitter": 7
+      },
+      "early_access": false,
+      "earned_jam": true,
+      "elapsed": 12.4500000000002,
+      "flow_rules": 2,
+      "hp_remaining": 0.0,
+      "hp_remaining_fraction": 0.0,
+      "initial_hp": 966.000000000001,
+      "jam_activations": 5,
+      "jam_damage": 20.775,
+      "jam_launched": 9,
+      "live_balls_at_end": 0,
+      "ordinary_nodes_bought": 62,
+      "pair": [
+        "splitter",
+        "impact"
+      ],
+      "peak_balls": 34,
+      "pegs": 32,
+      "physics_seed": 1153738,
+      "policy": "instant",
+      "power": 4.55,
+      "profile_io": 0,
+      "quick": true,
+      "remaining_pegs": [],
+      "seed_variant": 0,
+      "terminated": true,
+      "time_pickups": 0,
+      "total_damage": 965.999999999995,
+      "tray": 11,
+      "valid": true
+    },
+    {
+      "base_duration": 15.0,
+      "bonus_seconds": 3.0,
+      "cadence": 5,
+      "clear": true,
+      "coins": 800.5,
+      "damage_events": 274,
+      "destroyed": 34,
+      "drops": {
+        "impact": 4,
+        "normal": 36,
+        "ricochet": 0,
+        "shard": 12,
+        "splitter": 6
+      },
+      "early_access": false,
+      "earned_jam": true,
+      "elapsed": 12.2000000000002,
+      "flow_rules": 2,
+      "hp_remaining": 0.0,
+      "hp_remaining_fraction": 0.0,
+      "initial_hp": 1048.8,
+      "jam_activations": 5,
+      "jam_damage": 20.775,
+      "jam_launched": 7,
+      "live_balls_at_end": 0,
+      "ordinary_nodes_bought": 62,
+      "pair": [
+        "splitter",
+        "impact"
+      ],
+      "peak_balls": 34,
+      "pegs": 34,
+      "physics_seed": 1258467,
+      "policy": "instant",
+      "power": 4.55,
+      "profile_io": 0,
+      "quick": false,
+      "remaining_pegs": [],
+      "seed_variant": 0,
+      "terminated": true,
+      "time_pickups": 0,
+      "total_damage": 1048.8,
+      "tray": 12,
+      "valid": true
+    },
+    {
+      "base_duration": 15.0,
+      "bonus_seconds": 3.0,
+      "cadence": 4,
+      "clear": true,
+      "coins": 822.8,
+      "damage_events": 290,
+      "destroyed": 34,
+      "drops": {
+        "impact": 3,
+        "normal": 43,
+        "ricochet": 0,
+        "shard": 15,
+        "splitter": 6
+      },
+      "early_access": false,
+      "earned_jam": true,
+      "elapsed": 13.9833333333336,
+      "flow_rules": 2,
+      "hp_remaining": 0.0,
+      "hp_remaining_fraction": 0.0,
+      "initial_hp": 1048.8,
+      "jam_activations": 8,
+      "jam_damage": 23.8875,
+      "jam_launched": 10,
+      "live_balls_at_end": 0,
+      "ordinary_nodes_bought": 62,
+      "pair": [
+        "splitter",
+        "impact"
+      ],
+      "peak_balls": 34,
+      "pegs": 34,
+      "physics_seed": 1258467,
+      "policy": "instant",
+      "power": 4.55,
+      "profile_io": 0,
+      "quick": true,
+      "remaining_pegs": [],
+      "seed_variant": 0,
+      "terminated": true,
+      "time_pickups": 0,
+      "total_damage": 1048.8,
+      "tray": 12,
+      "valid": true
+    }
+  ],
+  "source_hashes": [
+    {
+      "path": "scripts/area_ability_access.gd",
+      "sha256": "c09d982b508adea00e365153382398a6e3b651c520c5bcac34888244005452b3",
+      "workspace_sha256_at_report": "c09d982b508adea00e365153382398a6e3b651c520c5bcac34888244005452b3",
+      "matches_workspace_at_report": true
+    },
+    {
+      "path": "scripts/area_ability_ui.gd",
+      "sha256": "a414791f2c29694a5f77fab81a2541ac597e1380b0b27c1350697d854e00acae",
+      "workspace_sha256_at_report": "a414791f2c29694a5f77fab81a2541ac597e1380b0b27c1350697d854e00acae",
+      "matches_workspace_at_report": true
+    },
+    {
+      "path": "scripts/area_art.gd",
+      "sha256": "833c583682df69d83172ca88cebdb669b45e663e40e8059e241df88d5190d4c8",
+      "workspace_sha256_at_report": "833c583682df69d83172ca88cebdb669b45e663e40e8059e241df88d5190d4c8",
+      "matches_workspace_at_report": true
+    },
+    {
+      "path": "scripts/area_campaign.gd",
+      "sha256": "18665c9c53a26b09b6d1693595ac225160bca2629029387bdab5b386c860991c",
+      "workspace_sha256_at_report": "18665c9c53a26b09b6d1693595ac225160bca2629029387bdab5b386c860991c",
+      "matches_workspace_at_report": true
+    },
+    {
+      "path": "scripts/area_play_billing.gd",
+      "sha256": "528183cb6ff145b56ca5483b752ffe24ecee4691f407bb6e005b8f08c5cdbc99",
+      "workspace_sha256_at_report": "528183cb6ff145b56ca5483b752ffe24ecee4691f407bb6e005b8f08c5cdbc99",
+      "matches_workspace_at_report": true
+    },
+    {
+      "path": "scripts/audio_catalog.gd",
+      "sha256": "db3f396833060fb8eb039c913699736c9037967264637a2ac1ff2b9a66405caf",
+      "workspace_sha256_at_report": "db3f396833060fb8eb039c913699736c9037967264637a2ac1ff2b9a66405caf",
+      "matches_workspace_at_report": true
+    },
+    {
+      "path": "scripts/bakery_ability.gd",
+      "sha256": "212ce336e92050095a9c0c88911d2a2d6f047b30e3258ec3fb916a3a35fc5c7b",
+      "workspace_sha256_at_report": "212ce336e92050095a9c0c88911d2a2d6f047b30e3258ec3fb916a3a35fc5c7b",
+      "matches_workspace_at_report": true
+    },
+    {
+      "path": "scripts/coin_display.gd",
+      "sha256": "29fcfa88220832e516a1d1d1e6210893ec083360848bda21caea574c7a26fc23",
+      "workspace_sha256_at_report": "29fcfa88220832e516a1d1d1e6210893ec083360848bda21caea574c7a26fc23",
+      "matches_workspace_at_report": true
+    },
+    {
+      "path": "scripts/coin_feedback.gd",
+      "sha256": "77355e8533d1f8840b539a53155c3beacd3140a4a6fc0b2b0795ae5460cb1cfb",
+      "workspace_sha256_at_report": "77355e8533d1f8840b539a53155c3beacd3140a4a6fc0b2b0795ae5460cb1cfb",
+      "matches_workspace_at_report": true
+    },
+    {
+      "path": "scripts/combat_balance.gd",
+      "sha256": "9ad489b7b8f3960a401adc30829d94776845f58060a58f878460479d5b2568e7",
+      "workspace_sha256_at_report": "9ad489b7b8f3960a401adc30829d94776845f58060a58f878460479d5b2568e7",
+      "matches_workspace_at_report": true
+    },
+    {
+      "path": "scripts/countdown_feedback.gd",
+      "sha256": "44ded78cf9ef83874485fc632a0e53b5ff6af2f6aa10bd30ad511d542e2f0883",
+      "workspace_sha256_at_report": "44ded78cf9ef83874485fc632a0e53b5ff6af2f6aa10bd30ad511d542e2f0883",
+      "matches_workspace_at_report": true
+    },
+    {
+      "path": "scripts/crystal_launcher.gd",
+      "sha256": "af0b77e2a0b08ecd4760d27a82f55b41fb26ff57103d57c57da292733ec20a58",
+      "workspace_sha256_at_report": "af0b77e2a0b08ecd4760d27a82f55b41fb26ff57103d57c57da292733ec20a58",
+      "matches_workspace_at_report": true
+    },
+    {
+      "path": "scripts/crystal_upgrade_graph.gd",
+      "sha256": "d8715e6941f1df477e90e2c017392861ae9b4c3924afebf7009d26f994596671",
+      "workspace_sha256_at_report": "d8715e6941f1df477e90e2c017392861ae9b4c3924afebf7009d26f994596671",
+      "matches_workspace_at_report": true
+    },
+    {
+      "path": "scripts/developer_area_ui.gd",
+      "sha256": "9720214c2fdd09fdc510003b0e25a7e9a79218f25da53a9bd5b5632dd5d96c93",
+      "workspace_sha256_at_report": "9720214c2fdd09fdc510003b0e25a7e9a79218f25da53a9bd5b5632dd5d96c93",
+      "matches_workspace_at_report": true
+    },
+    {
+      "path": "scripts/environment_art.gd",
+      "sha256": "38745078b12953911de5c8aab75b6648dc0d53d44f018f020b53b1b1bb8770b2",
+      "workspace_sha256_at_report": "38745078b12953911de5c8aab75b6648dc0d53d44f018f020b53b1b1bb8770b2",
+      "matches_workspace_at_report": true
+    },
+    {
+      "path": "scripts/first_run_guide.gd",
+      "sha256": "ca6795dfc258334d369b16591f5ec0704692141dce3bb0720256a588c68b5399",
+      "workspace_sha256_at_report": "ca6795dfc258334d369b16591f5ec0704692141dce3bb0720256a588c68b5399",
+      "matches_workspace_at_report": true
+    },
+    {
+      "path": "scripts/flow_rules.gd",
+      "sha256": "98cc6d3ec935d021c11a47c4ccb4f4c819bca108af10afb17d5e442ca7812688",
+      "workspace_sha256_at_report": "98cc6d3ec935d021c11a47c4ccb4f4c819bca108af10afb17d5e442ca7812688",
+      "matches_workspace_at_report": true
+    },
+    {
+      "path": "scripts/food_art.gd",
+      "sha256": "d8ac12a56e6b6c35c97cac94229a218ac909f1887bf0e5ac6f0aaa3a9cc6bb7e",
+      "workspace_sha256_at_report": "d8ac12a56e6b6c35c97cac94229a218ac909f1887bf0e5ac6f0aaa3a9cc6bb7e",
+      "matches_workspace_at_report": true
+    },
+    {
+      "path": "scripts/game_audio.gd",
+      "sha256": "661f0f82a3b488541603e88d2e8204d5914f57ef63f1f68fb2a385e88d6dc952",
+      "workspace_sha256_at_report": "661f0f82a3b488541603e88d2e8204d5914f57ef63f1f68fb2a385e88d6dc952",
+      "matches_workspace_at_report": true
+    },
+    {
+      "path": "scripts/gelato_launcher.gd",
+      "sha256": "d735ac2812dbc6889bb3fad67649626e3a53352ffb6017831acc9bc83870ca19",
+      "workspace_sha256_at_report": "d735ac2812dbc6889bb3fad67649626e3a53352ffb6017831acc9bc83870ca19",
+      "matches_workspace_at_report": true
+    },
+    {
+      "path": "scripts/gelato_upgrade_graph.gd",
+      "sha256": "e9815d6ea340596e03b6a2646aec8a48d9a9dcf8dee183c9088e121f622586fd",
+      "workspace_sha256_at_report": "e9815d6ea340596e03b6a2646aec8a48d9a9dcf8dee183c9088e121f622586fd",
+      "matches_workspace_at_report": true
+    },
+    {
+      "path": "scripts/home_menu.gd",
+      "sha256": "1f2782cf38bbb8f81ace849b754c6119d11d6f34c7a94674a392dedca5efc5eb",
+      "workspace_sha256_at_report": "1f2782cf38bbb8f81ace849b754c6119d11d6f34c7a94674a392dedca5efc5eb",
+      "matches_workspace_at_report": true
+    },
+    {
+      "path": "scripts/impact_feedback.gd",
+      "sha256": "f3e41246e7492a7daa7eab26d9f851d0c903c38f89997a59404eba0594932ca8",
+      "workspace_sha256_at_report": "f3e41246e7492a7daa7eab26d9f851d0c903c38f89997a59404eba0594932ca8",
+      "matches_workspace_at_report": true
+    },
+    {
+      "path": "scripts/level_map.gd",
+      "sha256": "32fea91d9db63b288532de5c4a3a258fa36270aa051020ef6ef15bb5bf476250",
+      "workspace_sha256_at_report": "32fea91d9db63b288532de5c4a3a258fa36270aa051020ef6ef15bb5bf476250",
+      "matches_workspace_at_report": true
+    },
+    {
+      "path": "scripts/main.gd",
+      "sha256": "174375a28df2d2dbaa47b9ad5d6b66c8c66e3998057eef60bcee1fcd8bf73374",
+      "workspace_sha256_at_report": "174375a28df2d2dbaa47b9ad5d6b66c8c66e3998057eef60bcee1fcd8bf73374",
+      "matches_workspace_at_report": true
+    },
+    {
+      "path": "scripts/monetization_service.gd",
+      "sha256": "7a1763b27f796ab29c1187e418ffe6ac0491c4333e196b33a80fdb9b989ad5d8",
+      "workspace_sha256_at_report": "7a1763b27f796ab29c1187e418ffe6ac0491c4333e196b33a80fdb9b989ad5d8",
+      "matches_workspace_at_report": true
+    },
+    {
+      "path": "scripts/monetization_ui.gd",
+      "sha256": "6156dc1b45a8a87db8efd6595ae90f3eba9137802d77bb4384acbf7c7ef2e9c6",
+      "workspace_sha256_at_report": "6156dc1b45a8a87db8efd6595ae90f3eba9137802d77bb4384acbf7c7ef2e9c6",
+      "matches_workspace_at_report": true
+    },
+    {
+      "path": "scripts/page_transition.gd",
+      "sha256": "9f2244879f276ceca92cd672103e9fc64bdc1d0ac5624c18ac50479820f08e60",
+      "workspace_sha256_at_report": "9f2244879f276ceca92cd672103e9fc64bdc1d0ac5624c18ac50479820f08e60",
+      "matches_workspace_at_report": true
+    },
+    {
+      "path": "scripts/pause_transition.gd",
+      "sha256": "c58f991597e24d2617805c648ca20a97a9c72916f57e6ba6513a875142d5b0c2",
+      "workspace_sha256_at_report": "c58f991597e24d2617805c648ca20a97a9c72916f57e6ba6513a875142d5b0c2",
+      "matches_workspace_at_report": true
+    },
+    {
+      "path": "scripts/progress_reset_ui.gd",
+      "sha256": "75608c0fa638b08ba4cdf15029fee9574437d23da1615c2f7e68fbb20d4175be",
+      "workspace_sha256_at_report": "75608c0fa638b08ba4cdf15029fee9574437d23da1615c2f7e68fbb20d4175be",
+      "matches_workspace_at_report": true
+    },
+    {
+      "path": "scripts/result_comparison_ui.gd",
+      "sha256": "4ebaed65dbe076b6b2e5bf535393e8529ca3c39bfa623d68ac5abf52f43e2752",
+      "workspace_sha256_at_report": "4ebaed65dbe076b6b2e5bf535393e8529ca3c39bfa623d68ac5abf52f43e2752",
+      "matches_workspace_at_report": true
+    },
+    {
+      "path": "scripts/run_history.gd",
+      "sha256": "f2da83d6d0c8179f58e61ccc7745d7ecb0980c27593a8a71aae89448fd939b30",
+      "workspace_sha256_at_report": "f2da83d6d0c8179f58e61ccc7745d7ecb0980c27593a8a71aae89448fd939b30",
+      "matches_workspace_at_report": true
+    },
+    {
+      "path": "scripts/run_snapshot.gd",
+      "sha256": "7b36ca5fa358a686fc0e195e752a00c31f707b2e8d11fd8cd798edc58f84918c",
+      "workspace_sha256_at_report": "7b36ca5fa358a686fc0e195e752a00c31f707b2e8d11fd8cd798edc58f84918c",
+      "matches_workspace_at_report": true
+    },
+    {
+      "path": "scripts/run_transition.gd",
+      "sha256": "6b80a5f6344ed34f26cdffbc3c5780f8cf607995a74ae05ae8a70d056984a043",
+      "workspace_sha256_at_report": "6b80a5f6344ed34f26cdffbc3c5780f8cf607995a74ae05ae8a70d056984a043",
+      "matches_workspace_at_report": true
+    },
+    {
+      "path": "scripts/speech_bubble.gd",
+      "sha256": "a7fa2f48b72ff1c02a2617148a1c421c3bc55fe0e8dccc286441e43e2767969c",
+      "workspace_sha256_at_report": "a7fa2f48b72ff1c02a2617148a1c421c3bc55fe0e8dccc286441e43e2767969c",
+      "matches_workspace_at_report": true
+    },
+    {
+      "path": "scripts/startup.gd",
+      "sha256": "1d4a76ac093b69e44a5cb7e2bd266e36a8f71b7660f7f82092f38e683a05d588",
+      "workspace_sha256_at_report": "1d4a76ac093b69e44a5cb7e2bd266e36a8f71b7660f7f82092f38e683a05d588",
+      "matches_workspace_at_report": true
+    },
+    {
+      "path": "scripts/tone_bank.gd",
+      "sha256": "0eabc16e9ebf89d77e915ebc64ad44b030dd76003a4e02466d66267f9c5907c0",
+      "workspace_sha256_at_report": "0eabc16e9ebf89d77e915ebc64ad44b030dd76003a4e02466d66267f9c5907c0",
+      "matches_workspace_at_report": true
+    },
+    {
+      "path": "scripts/ui_art.gd",
+      "sha256": "12cf2661b153fb7701fba3028786deb14daf200462eaa23d00fbfe50bf2c5485",
+      "workspace_sha256_at_report": "12cf2661b153fb7701fba3028786deb14daf200462eaa23d00fbfe50bf2c5485",
+      "matches_workspace_at_report": true
+    },
+    {
+      "path": "scripts/upgrade_arc_art.gd",
+      "sha256": "4cefc77bef1b62f39b502f9ac8b1edadfd29f8fad05ccb280f10ef1a28a35ab1",
+      "workspace_sha256_at_report": "4cefc77bef1b62f39b502f9ac8b1edadfd29f8fad05ccb280f10ef1a28a35ab1",
+      "matches_workspace_at_report": true
+    },
+    {
+      "path": "scripts/upgrade_graph.gd",
+      "sha256": "3845bed72ffeefb5d747434e8b7dda326993762654b55d796e68d4e437777729",
+      "workspace_sha256_at_report": "3845bed72ffeefb5d747434e8b7dda326993762654b55d796e68d4e437777729",
+      "matches_workspace_at_report": true
+    },
+    {
+      "path": "scripts/upgrade_map.gd",
+      "sha256": "06dcac8d6cf2f32ecb96a25bd3d11605c3d3d53bf546e2c993758c73246986a3",
+      "workspace_sha256_at_report": "06dcac8d6cf2f32ecb96a25bd3d11605c3d3d53bf546e2c993758c73246986a3",
+      "matches_workspace_at_report": true
+    },
+    {
+      "path": "project.godot",
+      "sha256": "6f9c64e6e7c12f4e06bf774e1963a581f46e5829863b997993463f4ffcb14461",
+      "workspace_sha256_at_report": "6f9c64e6e7c12f4e06bf774e1963a581f46e5829863b997993463f4ffcb14461",
+      "matches_workspace_at_report": true
+    },
+    {
+      "path": "main.tscn",
+      "sha256": "e1199368c62dfc7dd6f17fcf54ad6f4f39278c5f729c89670eb28f7aef284b17",
+      "workspace_sha256_at_report": "e1199368c62dfc7dd6f17fcf54ad6f4f39278c5f729c89670eb28f7aef284b17",
+      "matches_workspace_at_report": true
+    },
+    {
+      "path": "startup.tscn",
+      "sha256": "bd52d9d5a059a18ea3f1878c95dd4ed9e258b330aef19d97bb59614e7f063e4f",
+      "workspace_sha256_at_report": "bd52d9d5a059a18ea3f1878c95dd4ed9e258b330aef19d97bb59614e7f063e4f",
+      "matches_workspace_at_report": true
+    },
+    {
+      "path": "tests/bakery_quick_jam_balance_probe.gd",
+      "sha256": "2c1781dd61de9998664b7d8e8142f583c93a83a0126ca9499e826024afce1473",
+      "workspace_sha256_at_report": "2c1781dd61de9998664b7d8e8142f583c93a83a0126ca9499e826024afce1473",
+      "matches_workspace_at_report": true
+    },
+    {
+      "path": "data/board_design.json",
+      "sha256": "7f924784be57d5cc15f96199467f8a884feb0bd8d5df19ed07f7eebe55aa2a14",
+      "workspace_sha256_at_report": "7f924784be57d5cc15f96199467f8a884feb0bd8d5df19ed07f7eebe55aa2a14",
+      "matches_workspace_at_report": true
+    },
+    {
+      "path": "data/crystal_board_design.json",
+      "sha256": "b9ce87470fd3e393ab4789c5b8d682a84bfe6911fce411af1cc516de7cba4e6e",
+      "workspace_sha256_at_report": "b9ce87470fd3e393ab4789c5b8d682a84bfe6911fce411af1cc516de7cba4e6e",
+      "matches_workspace_at_report": true
+    },
+    {
+      "path": "data/crystal_economy.json",
+      "sha256": "fa590359c4687c76ee14ce2149d6fba42a2a302100fe439f69ee301bfca90791",
+      "workspace_sha256_at_report": "fa590359c4687c76ee14ce2149d6fba42a2a302100fe439f69ee301bfca90791",
+      "matches_workspace_at_report": true
+    },
+    {
+      "path": "data/crystal_upgrade_layout.json",
+      "sha256": "e87e5f38d6c49d921b53d87f94a17b8df3d189a825c0f9e48d923c9f9f16aa31",
+      "workspace_sha256_at_report": "e87e5f38d6c49d921b53d87f94a17b8df3d189a825c0f9e48d923c9f9f16aa31",
+      "matches_workspace_at_report": true
+    },
+    {
+      "path": "data/economy.json",
+      "sha256": "9910256c6a6832d11248012bd60cafeef3e9017bb731bbf23dcf2503c0b27a8a",
+      "workspace_sha256_at_report": "9910256c6a6832d11248012bd60cafeef3e9017bb731bbf23dcf2503c0b27a8a",
+      "matches_workspace_at_report": true
+    },
+    {
+      "path": "data/gelato_board_design.json",
+      "sha256": "0f64d5ebd62f786b1c157a75d599f47d00543e749e4240afe38d0131cfb05add",
+      "workspace_sha256_at_report": "0f64d5ebd62f786b1c157a75d599f47d00543e749e4240afe38d0131cfb05add",
+      "matches_workspace_at_report": true
+    },
+    {
+      "path": "data/gelato_economy.json",
+      "sha256": "e98aa6365989a68cb618d15a5325bc1d8713767d04a693d2760b94fcf2efe352",
+      "workspace_sha256_at_report": "e98aa6365989a68cb618d15a5325bc1d8713767d04a693d2760b94fcf2efe352",
+      "matches_workspace_at_report": true
+    },
+    {
+      "path": "data/gelato_upgrade_layout.json",
+      "sha256": "9948870ef138871c4966cea60820c341766af962018a773fe28da5c28bade666",
+      "workspace_sha256_at_report": "9948870ef138871c4966cea60820c341766af962018a773fe28da5c28bade666",
+      "matches_workspace_at_report": true
+    },
+    {
+      "path": "data/upgrade_arc_art.json",
+      "sha256": "3abc28874c39d56d26fc1bff26e079319f646a3511459f2df61f2108539df85f",
+      "workspace_sha256_at_report": "3abc28874c39d56d26fc1bff26e079319f646a3511459f2df61f2108539df85f",
+      "matches_workspace_at_report": true
+    },
+    {
+      "path": "data/upgrade_layout.json",
+      "sha256": "6397704584fd20178fde7a15f4341dcac3576e8bc9eecf4919e26091bb32058e",
+      "workspace_sha256_at_report": "6397704584fd20178fde7a15f4341dcac3576e8bc9eecf4919e26091bb32058e",
+      "matches_workspace_at_report": true
+    },
+    {
+      "path": "data/art/branding/sources.json",
+      "sha256": "9ec1e1e6654ff58e88c2a21cf50d8e1ddbd1bba3b1d4f849da1543fbef6f033b",
+      "workspace_sha256_at_report": "9ec1e1e6654ff58e88c2a21cf50d8e1ddbd1bba3b1d4f849da1543fbef6f033b",
+      "matches_workspace_at_report": true
+    },
+    {
+      "path": "data/art/crystal/sources.json",
+      "sha256": "38e23862818931a54c5c3958e4abdf26809aa226d207b55892227586586eb57c",
+      "workspace_sha256_at_report": "38e23862818931a54c5c3958e4abdf26809aa226d207b55892227586586eb57c",
+      "matches_workspace_at_report": true
+    },
+    {
+      "path": "data/art/crystal/environment/regions.json",
+      "sha256": "3fe2cf77ca7a606c31a54ed89317a119bfbc6493983c060209a6ca81c7994581",
+      "workspace_sha256_at_report": "3fe2cf77ca7a606c31a54ed89317a119bfbc6493983c060209a6ca81c7994581",
+      "matches_workspace_at_report": true
+    },
+    {
+      "path": "data/art/crystal/food/regions.json",
+      "sha256": "b4233d00b77f959d7b1e1029b5a383876fcd1323825f4fb13423a75d93e3d14a",
+      "workspace_sha256_at_report": "b4233d00b77f959d7b1e1029b5a383876fcd1323825f4fb13423a75d93e3d14a",
+      "matches_workspace_at_report": true
+    },
+    {
+      "path": "data/art/environment/palette-refresh-sources.json",
+      "sha256": "e55176205c99bac498465ab9f37bffddb90294bf90c2d5150945337745d844d6",
+      "workspace_sha256_at_report": "e55176205c99bac498465ab9f37bffddb90294bf90c2d5150945337745d844d6",
+      "matches_workspace_at_report": true
+    },
+    {
+      "path": "data/art/environment/regions.json",
+      "sha256": "a192e38a74fe9ce83b3f19ce3c9794fb703a94f8e3b920d6e24f2ab120588671",
+      "workspace_sha256_at_report": "a192e38a74fe9ce83b3f19ce3c9794fb703a94f8e3b920d6e24f2ab120588671",
+      "matches_workspace_at_report": true
+    },
+    {
+      "path": "data/art/environment/sources.json",
+      "sha256": "b2e9e1bce5a322f7484904b53107d498ee9fc6619f05f4d45ac33c3e043611ff",
+      "workspace_sha256_at_report": "b2e9e1bce5a322f7484904b53107d498ee9fc6619f05f4d45ac33c3e043611ff",
+      "matches_workspace_at_report": true
+    },
+    {
+      "path": "data/art/food/palette-refresh-sources.json",
+      "sha256": "3e5b07b28ae19680c549c53918682616f3b8b0cddc24dd16a05e8ef6b417491f",
+      "workspace_sha256_at_report": "3e5b07b28ae19680c549c53918682616f3b8b0cddc24dd16a05e8ef6b417491f",
+      "matches_workspace_at_report": true
+    },
+    {
+      "path": "data/art/food/regions.json",
+      "sha256": "e7e38946dca95ab8d11a07df445067b8e3d7f756bf1beccda0b63cf6c417edf9",
+      "workspace_sha256_at_report": "e7e38946dca95ab8d11a07df445067b8e3d7f756bf1beccda0b63cf6c417edf9",
+      "matches_workspace_at_report": true
+    },
+    {
+      "path": "data/art/food/sources.json",
+      "sha256": "c5160904c639ffe182099e55786359a786cf76680ee49a97b1087e25a55123ca",
+      "workspace_sha256_at_report": "c5160904c639ffe182099e55786359a786cf76680ee49a97b1087e25a55123ca",
+      "matches_workspace_at_report": true
+    },
+    {
+      "path": "data/art/gelato/environment/palette-refresh-sources.json",
+      "sha256": "af01f7317d487ac6ae8009b00c067dd20b077fd5881d6a1eb6831d92627a6563",
+      "workspace_sha256_at_report": "af01f7317d487ac6ae8009b00c067dd20b077fd5881d6a1eb6831d92627a6563",
+      "matches_workspace_at_report": true
+    },
+    {
+      "path": "data/art/gelato/environment/regions.json",
+      "sha256": "a088409178687492fc24e19cc7a0c90445a29d4dd93c8c903fd582924b99ddef",
+      "workspace_sha256_at_report": "a088409178687492fc24e19cc7a0c90445a29d4dd93c8c903fd582924b99ddef",
+      "matches_workspace_at_report": true
+    },
+    {
+      "path": "data/art/gelato/environment/sources.json",
+      "sha256": "08aaede8627c66c3259f73dd5c1690800c9ec486c85d4f5eefb79fd3bcab8ac7",
+      "workspace_sha256_at_report": "08aaede8627c66c3259f73dd5c1690800c9ec486c85d4f5eefb79fd3bcab8ac7",
+      "matches_workspace_at_report": true
+    },
+    {
+      "path": "data/art/gelato/food/palette-refresh-sources.json",
+      "sha256": "6c8fe75901f57a69af5b5391bd4ca883d952f509990b1b5686bf5a26d3f515d6",
+      "workspace_sha256_at_report": "6c8fe75901f57a69af5b5391bd4ca883d952f509990b1b5686bf5a26d3f515d6",
+      "matches_workspace_at_report": true
+    },
+    {
+      "path": "data/art/gelato/food/regions.json",
+      "sha256": "33f3fffc2367758caf208e73984c799935d13828febd5bbde13e8a7156fb315a",
+      "workspace_sha256_at_report": "33f3fffc2367758caf208e73984c799935d13828febd5bbde13e8a7156fb315a",
+      "matches_workspace_at_report": true
+    },
+    {
+      "path": "data/art/gelato/food/sources.json",
+      "sha256": "a6a6fae9e16a785939e2718b3cad806790354a358c187ccfae81f4c1c54abc7c",
+      "workspace_sha256_at_report": "a6a6fae9e16a785939e2718b3cad806790354a358c187ccfae81f4c1c54abc7c",
+      "matches_workspace_at_report": true
+    },
+    {
+      "path": "data/art/gelato/ui/regions.json",
+      "sha256": "0df55d0d862a6b1dbcb6f07c3f527a9ac59912388b0f7b2881f79dcbc957138b",
+      "workspace_sha256_at_report": "0df55d0d862a6b1dbcb6f07c3f527a9ac59912388b0f7b2881f79dcbc957138b",
+      "matches_workspace_at_report": true
+    },
+    {
+      "path": "data/art/gelato/ui/sources.json",
+      "sha256": "964b568afe61f097f44c84af55612d5e521bd3d95189a6e0ced6ff698da6e231",
+      "workspace_sha256_at_report": "964b568afe61f097f44c84af55612d5e521bd3d95189a6e0ced6ff698da6e231",
+      "matches_workspace_at_report": true
+    },
+    {
+      "path": "data/art/ui/regions.json",
+      "sha256": "d37585077c0984a7ca30cf7d0185f1db42b1e400328b4743fda2510368b6434d",
+      "workspace_sha256_at_report": "d37585077c0984a7ca30cf7d0185f1db42b1e400328b4743fda2510368b6434d",
+      "matches_workspace_at_report": true
+    },
+    {
+      "path": "data/art/ui/sources.json",
+      "sha256": "3677647e19c70b535e3542be66c31deb7736ea886e624eb5b11e272e716f6d69",
+      "workspace_sha256_at_report": "3677647e19c70b535e3542be66c31deb7736ea886e624eb5b11e272e716f6d69",
+      "matches_workspace_at_report": true
+    },
+    {
+      "path": "data/audio/studio_warm_hum.provenance.json",
+      "sha256": "a3eb0fc29b08d98edcd3889c01d7c6f9fbe01f5560ca2b0285ea949f819875c5",
+      "workspace_sha256_at_report": "a3eb0fc29b08d98edcd3889c01d7c6f9fbe01f5560ca2b0285ea949f819875c5",
+      "matches_workspace_at_report": true
+    }
+  ],
+  "source_parity": {
+    "copied_snapshot_unchanged_during_run": true,
+    "all_source_inputs_match_current_at_report": true,
+    "scope": "All scripts, scenes, project settings, data JSON and probe are hashed. Cached art/audio used for parsing; no visual verification claim."
+  },
+  "evidence": {
+    "local_run": "verification/more-jam-20261103/balance-01",
+    "results_sha256": "f711fb5b2ab1872a0711cfbd7e59ec12aac09f4c70c535d6ddeca73f4806ee77",
+    "log_sha256": "45a4f836f24af642565e411943f8916f3efab3c9f9c8b93d6f6dd44d202066e2",
+    "isolation_log_sha256": "6ac357b8a02d5a6f156bd26adbbb3164a5cd308ebf46ace619563daaf51e57f1",
+    "actual_profile_path_was_verified_inside_disposable_run": true
+  }
+}

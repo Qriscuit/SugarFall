@@ -61,7 +61,7 @@ func title() -> String: return g.ability_access.CATALOG[g.area_id].title
 
 func effects() -> Array[String]:
 	match g.area_id:
-		"bakery": return ["Every fifth doughnut bursts with jam.","Splash nearby pegs on its first hit."]
+		"bakery": return ["Every fourth doughnut bursts with jam." if g.bakery_ability.quick_owned() else "Every fifth doughnut bursts with jam.","Splash nearby pegs on its first hit."]
 		"gelato": return ["Two slower launchers. Power starts over.","Power costs more and grows stronger."]
 	return ["Two Prisms can appear each run.","Tap a Prism to double the balls in play."]
 

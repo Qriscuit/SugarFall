@@ -1,6 +1,8 @@
 extends RefCounted
 ## Jam Burst charges only normal Bakery drops. Damage uses the shared peg budget.
 const EVERY = 5
+const QUICK_EVERY = 4
+const QUICK_TRAY = 10
 const RADIUS = 105.0
 const TARGET_LIMIT = 2
 const BURST_LIFETIME = .28
@@ -47,8 +49,41 @@ func activate(source: String) -> bool:
 	g.ability_unlock_source=source
 	return true
 
+func quick_owned() -> bool:
+	return owned() and g.bakery_jam_quick
+
+func routes_complete() -> bool:
+	if g.area_id!="bakery": return false
+	# Check every authored node, including the shared root; irregular legacy
+	# builds cannot skip a missing ancestor merely by owning the three tips.
+	for node in g.UpgradeGraph.nodes():
+		if not g.shop_node_owned(node.x,node.y): return false
+	return true
+
+func quick_unlocked() -> bool:
+	return owned() and not g.bakery_jam_quick and g.highest_unlocked>=QUICK_TRAY and routes_complete()
+
+func quick_buy() -> bool:
+	if not quick_unlocked() or g.mode!="shop" or g.profile_load_blocked or g.startup_blocked or g.run_transition.active or g.page_transition.is_blocking() or g.pause_transition.is_blocking(): return false
+	if not g.run_id.is_empty() and not g.shift_claimed: return false
+	var previous={"bakery_jam_quick":g.bakery_jam_quick,"note":g.note,"note_time":g.note_time}
+	g.bakery_jam_quick=true
+	if not g.testing and not g.save_game():
+		for key in previous: g.set(key,previous[key])
+		return false
+	g.note="More Jam unlocked"
+	g.note_time=3.0
+	g.feedback("upgrade")
+	return true
+
+func cadence() -> int:
+	# Airborne runs keep the interval they started with, even after restoring
+	# an older checkpoint into a profile that now owns the milestone.
+	if active() and g.run_ability_pinned and g.mode in ["play","paused","abandon_confirm"] and not g.shift_claimed: return int(g.bakery_run.get("every",EVERY))
+	return QUICK_EVERY if quick_owned() else EVERY
+
 func reset_run():
-	g.bakery_run={"enabled":owned(),"normal_launches":0}
+	g.bakery_run={"enabled":owned(),"normal_launches":0,"every":QUICK_EVERY if quick_owned() else EVERY}
 	bursts.clear()
 
 func active() -> bool:
@@ -59,7 +94,7 @@ func on_launch(ball: Dictionary):
 	# specials never spend or advance the next jam-filled doughnut.
 	if not active() or ball.kind!="normal" or ball.has("jam"): return
 	g.bakery_run.normal_launches+=1
-	ball.jam=int(g.bakery_run.normal_launches)%EVERY==0
+	ball.jam=int(g.bakery_run.normal_launches)%cadence()==0
 
 func on_hit(ball: Dictionary, direct_peg: Dictionary) -> int:
 	if not active() or ball.kind!="normal" or not ball.get("jam",false) or ball.used: return 0
@@ -126,18 +161,25 @@ func draw_effects(canvas: CanvasItem):
 
 func draw_charge(canvas: CanvasItem, center: Vector2):
 	if not active(): return
-	var charge=int(g.bakery_run.normal_launches)%EVERY
-	for index in range(EVERY):
-		var point=center+Vector2((index-2)*11.0,0)
+	var every=cadence()
+	var charge=int(g.bakery_run.normal_launches)%every
+	for index in range(every):
+		var point=center+Vector2((index-(every-1)*.5)*11.0,0)
 		canvas.draw_circle(point,3.3,JAM if index<charge else Color(.5,.28,.25,.3))
 
 func capture_extra() -> Dictionary:
-	return {"bakery_run":g.bakery_run.duplicate(true)}
+	var run=g.bakery_run.duplicate(true)
+	# Keep original Jam runs in schema6 with their exact legacy field shape.
+	if int(run.get("every",EVERY))==EVERY: run.erase("every")
+	return {"bakery_run":run}
 
 static func validate_extra(snapshot: Dictionary, state: Dictionary, game) -> Dictionary:
 	var run=snapshot.get("bakery_run")
-	if not run is Dictionary or run.size()!=2 or not run.has("enabled") or not run.has("normal_launches"): return {"ok":false}
+	var quick=snapshot.get("schema")==7
+	if not run is Dictionary or run.size()!=(3 if quick else 2) or not run.has("enabled") or not run.has("normal_launches"): return {"ok":false}
+	if quick and (not run.get("every") is int and not run.get("every") is float): return {"ok":false}
+	if quick and (run.every!=QUICK_EVERY or not game.bakery_jam_quick): return {"ok":false}
 	if not run.enabled is bool or not run.enabled or state.trial_active or not game.bakery_ability.owned(): return {"ok":false}
 	var count=run.normal_launches
 	if not (count is int or count is float) or not is_finite(float(count)) or count<0 or count>10000 or float(count)!=floorf(float(count)): return {"ok":false}
-	return {"ok":true,"bakery_run":{"enabled":true,"normal_launches":int(count)}}
+	return {"ok":true,"bakery_run":{"enabled":true,"normal_launches":int(count),"every":QUICK_EVERY if quick else EVERY}}

@@ -59,6 +59,7 @@ var tuning = {"core_step":0.5,"core_tier_gains":[0.5,0.5,0.5,0.35,0.35,0.35,0.25
 var levels: Array = [0,0,0,0,0,0,0,0]
 var twin_launchers = false
 var bakery_jam_burst = false
+var bakery_jam_quick = false
 var bakery_run: Dictionary = {}
 var ability_unlock_source = "earned"
 var bakery_ability
@@ -1235,7 +1236,7 @@ func begin_trial(board):
 	trial_active=true
 	twin_launchers=false
 	crystal_second_prism=false
-	bakery_jam_burst=false; bakery_run={}; ability_unlock_source="earned"
+	bakery_jam_burst=false; bakery_jam_quick=false; bakery_run={}; ability_unlock_source="earned"
 	power_reset_tier=0
 	levels=RunSnapshot.TRIAL_LEVELS.duplicate()
 	current_level=board
@@ -1421,7 +1422,7 @@ func clear_area_transients():
 
 func campaign_profile():
 	if area_id=="gelato" and not trial_active: ensure_gelato_shop_state()
-	return {"bank":round_credits(bank),"levels":levels.duplicate(),"twin_launchers":twin_launchers,"bakery_jam_burst":bakery_jam_burst,"ability_unlock_source":ability_unlock_source,"crystal_second_prism":crystal_second_prism,"power_reset_tier":power_reset_tier,"gelato_shop_revision":gelato_shop_revision,"gelato_owned_nodes":gelato_owned_nodes.duplicate(true),"gelato_reset_power_nodes":gelato_reset_power_nodes.duplicate(true),"best_wave":best_wave,"total_shifts":total_shifts,"current_level":current_level,"force_special":force_special,"equipped":equipped.duplicate(),"highest_unlocked":highest_unlocked,"chapter_complete":chapter_complete,"module_vouchers":module_vouchers,"module_milestones":module_milestones.duplicate()}
+	return {"bank":round_credits(bank),"levels":levels.duplicate(),"twin_launchers":twin_launchers,"bakery_jam_burst":bakery_jam_burst,"bakery_jam_quick":bakery_jam_quick,"ability_unlock_source":ability_unlock_source,"crystal_second_prism":crystal_second_prism,"power_reset_tier":power_reset_tier,"gelato_shop_revision":gelato_shop_revision,"gelato_owned_nodes":gelato_owned_nodes.duplicate(true),"gelato_reset_power_nodes":gelato_reset_power_nodes.duplicate(true),"best_wave":best_wave,"total_shifts":total_shifts,"current_level":current_level,"force_special":force_special,"equipped":equipped.duplicate(),"highest_unlocked":highest_unlocked,"chapter_complete":chapter_complete,"module_vouchers":module_vouchers,"module_milestones":module_milestones.duplicate()}
 
 func pending_result_data():
 	return {"area_id":run_area_id,"peg_total":result_peg_total if result_peg_total>0 else board_peg_count(wave),"coins":round_credits(shift_coins),"won":level_won,"wave":wave,"destroyed":destroyed,"combo":max_combo,"stats":special_stats,"drops":type_drops,"run_id":run_id,"trial":trial_active,"run_elapsed":run_elapsed,"equipped":equipped.duplicate(),"reward_earned":test_commerce_available() and reward_earned}
@@ -1541,7 +1542,7 @@ func reset_profile_runtime():
 	levels=[0,0,0,0,0,0,0,0]
 	twin_launchers=false; power_reset_tier=0
 	crystal_second_prism=false
-	bakery_jam_burst=false; bakery_run={}; ability_unlock_source="earned"
+	bakery_jam_burst=false; bakery_jam_quick=false; bakery_run={}; ability_unlock_source="earned"
 	crystal_launcher.reset_run()
 	gelato_shop_revision=AreaCampaign.GELATO_SHOP_REVISION
 	gelato_owned_nodes=[]; gelato_reset_power_nodes=[]
@@ -1742,6 +1743,7 @@ func _load_game_impl():
 	bank = safe_credits(data.get("bank",0))
 	twin_launchers=area_id=="gelato" and data.get("twin_launchers",false)==true
 	bakery_jam_burst=area_id=="bakery" and data.get("bakery_jam_burst",false)==true
+	bakery_jam_quick=area_id=="bakery" and data.get("bakery_jam_quick",false)==true
 	ability_unlock_source=str(data.get("ability_unlock_source","earned"))
 	crystal_second_prism=area_id=="crystal" and data.get("crystal_second_prism",false)==true
 	crystal_launcher.reset_run()
@@ -1795,7 +1797,7 @@ func _load_game_impl():
 			trial_active=true
 			twin_launchers=false
 			crystal_second_prism=false
-			bakery_jam_burst=false; bakery_run={}; ability_unlock_source="earned"
+			bakery_jam_burst=false; bakery_jam_quick=false; bakery_run={}; ability_unlock_source="earned"
 			power_reset_tier=0
 			levels=RunSnapshot.TRIAL_LEVELS.duplicate()
 			current_level=trial_board
@@ -2367,7 +2369,7 @@ func draw_guide():
 		["cookie_clock","Extra time","Clock cookies and pickups add time.",""],
 		["pomegranate","Mix in specials","Equipped specials drop by chance.","Free unlocks on trays 2, 5 and 8."]]
 	if area_id=="bakery":
-		sections[4]=["donut","Jam Burst","Every fifth doughnut splashes nearby pegs.","Earn from tray 8, or unlock early."]
+		sections[4]=["donut","Jam Burst","Every %s normal doughnut splashes nearby pegs." % ("fourth" if bakery_ability.cadence()==4 else "fifth"),"Earn from tray 8, or unlock early."]
 	if area_id=="gelato":
 		sections[0]=["donut","Aim the curved drop","Drag to aim along the dotted curve.","Each launcher shows its own falling path."]
 		sections[1]=["cookie_normal","Crumble wafers","Bronze, Silver, Gold, then Diamond.","Stronger wafers at trays 4, 7 and 10."]

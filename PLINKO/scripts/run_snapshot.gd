@@ -1,7 +1,9 @@
 extends RefCounted
-## Schema 6 saves active Bakery Jam Burst charge and spent balls. Unowned Bakery
+## Schema 7 pins More Jam to every fourth normal drop; schema6 keeps every fifth.
+## Unowned Bakery
 ## and Gelato keep schema4; Crystal keeps its schema5 Prism state.
-const SCHEMA = 6
+const SCHEMA = 7
+const BAKERY_QUICK_SCHEMA = 7
 const CRYSTAL_SCHEMA = 5
 const BAKERY_SCHEMA = 6
 const LEGACY_AREA_SCHEMA = 4
@@ -98,7 +100,8 @@ static func capture(game) -> Dictionary:
 	if fingerprint.is_empty():
 		return {}
 	var schema = CRYSTAL_SCHEMA if game.area_id=="crystal" else LEGACY_AREA_SCHEMA
-	if game.area_id=="bakery" and game.bakery_run.get("enabled",false): schema=BAKERY_SCHEMA
+	if game.area_id=="bakery" and game.bakery_run.get("enabled",false):
+		schema=BAKERY_QUICK_SCHEMA if game.bakery_run.get("every",BakeryAbility.EVERY)==BakeryAbility.QUICK_EVERY else BAKERY_SCHEMA
 	var snapshot = {
 		"schema": schema, "area_id": game.area_id, "fingerprint": fingerprint, "run_id": identity,
 		# Godot exposes these uint64 RNG values as signed int64 Variants. Never
@@ -114,7 +117,7 @@ static func capture(game) -> Dictionary:
 	if game.area_id=="crystal":
 		var extra: Dictionary=game.crystal_launcher.capture_extra()
 		for key in extra: snapshot[key]=_encode(extra[key])
-	elif schema==BAKERY_SCHEMA:
+	elif (schema==BAKERY_SCHEMA or schema==BAKERY_QUICK_SCHEMA):
 		var extra: Dictionary=game.bakery_ability.capture_extra()
 		for key in extra: snapshot[key]=_encode(extra[key])
 	return snapshot
@@ -136,7 +139,7 @@ static func validate_and_decode(snapshot, game) -> Dictionary:
 		if snapshot.get("area_id")!="crystal": return _failure("Crystal checkpoint schema belongs to Crystal")
 		root_keys+=CRYSTAL_FIELDS
 	elif snapshot.get("area_id")=="crystal": return _failure("Crystal checkpoint requires its own run state")
-	if snapshot.schema==BAKERY_SCHEMA:
+	if (snapshot.schema==BAKERY_SCHEMA or snapshot.schema==BAKERY_QUICK_SCHEMA):
 		if snapshot.get("area_id")!="bakery": return _failure("Jam Burst checkpoint belongs to Bakery")
 		root_keys+=BAKERY_FIELDS
 	if snapshot.schema < 4:
@@ -229,8 +232,8 @@ static func validate_and_decode(snapshot, game) -> Dictionary:
 		if not crystal.ok: return _failure("Invalid Crystal run state")
 		for key in CRYSTAL_FIELDS: state[key]=crystal[key]
 	elif game.area_id=="bakery":
-		state.bakery_run={"enabled":false,"normal_launches":0}
-		if snapshot.schema==BAKERY_SCHEMA:
+		state.bakery_run={"enabled":false,"normal_launches":0,"every":BakeryAbility.EVERY}
+		if (snapshot.schema==BAKERY_SCHEMA or snapshot.schema==BAKERY_QUICK_SCHEMA):
 			var bakery=BakeryAbility.validate_extra(snapshot,state,game)
 			if not bakery.ok: return _failure("Invalid Jam Burst run state")
 			state.bakery_run=bakery.bakery_run
@@ -279,7 +282,7 @@ static func validate_and_decode(snapshot, game) -> Dictionary:
 			state[key][kind] = int(snapshot[key][kind])
 	if _sum_values(state.special_stats) != state.destroyed or _sum_values(state.type_drops) != state.total_spawned:
 		return _failure("Checkpoint counters are inconsistent")
-	if snapshot.schema==BAKERY_SCHEMA and state.bakery_run.normal_launches!=state.type_drops.normal:
+	if (snapshot.schema==BAKERY_SCHEMA or snapshot.schema==BAKERY_QUICK_SCHEMA) and state.bakery_run.normal_launches!=state.type_drops.normal:
 		return _failure("Jam Burst charge does not match normal launches")
 	if state.combo > state.max_combo or state.max_combo > state.destroyed:
 		return _failure("Checkpoint combo is inconsistent")
@@ -334,7 +337,7 @@ static func validate_and_decode(snapshot, game) -> Dictionary:
 	state.balls = []
 	for ball in snapshot.balls:
 		var ball_keys = ["p", "v", "kind", "r", "used", "productive", "cool", "life", "dead"]
-		if snapshot.schema==BAKERY_SCHEMA and ball is Dictionary and ball.has("jam"): ball_keys.append("jam")
+		if (snapshot.schema==BAKERY_SCHEMA or snapshot.schema==BAKERY_QUICK_SCHEMA) and ball is Dictionary and ball.has("jam"): ball_keys.append("jam")
 		if not _keys_match(ball, ball_keys):
 			return _failure("Invalid ball fields")
 		if not _vector(ball.p, -100.0, 1500.0) or not _vector(ball.v, -10000.0, 10000.0):

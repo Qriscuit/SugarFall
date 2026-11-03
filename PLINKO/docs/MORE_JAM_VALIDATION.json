@@ -1,0 +1,355 @@
+{
+  "date": "2026-11-03",
+  "engine": "Godot 4.6.3",
+  "change_id": "CHG-040",
+  "status": "More Jam built and integrated; focused source, save, map and desktop render checks pass. Bakery tray-10 phone retest remains open.",
+  "feature": {
+    "title": "More Jam",
+    "area": "bakery",
+    "node": [
+      8,
+      2
+    ],
+    "position": [
+      6350,
+      1000
+    ],
+    "requires": [
+      "Effective Jam Burst ownership",
+      "Tray 10 unlocked, not completed",
+      "All 62 ordinary/root upgrades across three lanes owned"
+    ],
+    "price_coins": 0,
+    "new_paid_product": false,
+    "old_normal_drop_interval": 5,
+    "new_normal_drop_interval": 4,
+    "reveal": "Reach tray 10 or finish any lane; existing eligible players are focused on the new node when opening Upgrades.",
+    "art_and_audio": "Reuses the existing native Jam donut, state-colored tile art and upgrade success cue.",
+    "compatibility": "Optional area-local bakery_jam_quick defaults false. Legacy schema6 active runs stay every5; new schema7 pins every4. Area revisit, reset, Trial isolation, failed-save rollback and duplicate claims checked."
+  },
+  "software_suites": [
+    {
+      "name": "bakery_more_jam_qa",
+      "passed": 97,
+      "failed": 0,
+      "evidence": "verification/more-jam-20261103/backend-04/bakery_more_jam_qa.log",
+      "scope": "Current backend and persistence files. Later unrelated upgrade-map changes are covered by final map/GPU suites."
+    },
+    {
+      "name": "bakery_ability_qa",
+      "passed": 36,
+      "failed": 0,
+      "evidence": "verification/more-jam-20261103/backend-04/bakery_ability_qa.log",
+      "scope": "Current backend and persistence files. Later unrelated upgrade-map changes are covered by final map/GPU suites."
+    },
+    {
+      "name": "bakery_ability_save_qa",
+      "passed": 12,
+      "failed": 0,
+      "evidence": "verification/more-jam-20261103/backend-04/bakery_ability_save_qa.log",
+      "scope": "Current backend and persistence files. Later unrelated upgrade-map changes are covered by final map/GPU suites."
+    },
+    {
+      "name": "resume_qa",
+      "passed": 122,
+      "failed": 0,
+      "evidence": "verification/more-jam-20261103/save-regression-01/resume_qa.log",
+      "scope": "Current backend and persistence files. Later unrelated upgrade-map changes are covered by final map/GPU suites."
+    },
+    {
+      "name": "reset_progress_qa",
+      "passed": 63,
+      "failed": 0,
+      "evidence": "verification/more-jam-20261103/save-regression-01/reset_progress_qa.log",
+      "scope": "Current backend and persistence files. Later unrelated upgrade-map changes are covered by final map/GPU suites."
+    },
+    {
+      "name": "area_progression_qa",
+      "passed": 90,
+      "failed": 0,
+      "evidence": "verification/more-jam-20261103/save-regression-01/area_progression_qa.log",
+      "scope": "Current backend and persistence files. Later unrelated upgrade-map changes are covered by final map/GPU suites."
+    },
+    {
+      "name": "gelato_launcher_save_qa",
+      "passed": 176,
+      "failed": 0,
+      "evidence": "verification/more-jam-20261103/save-regression-01/gelato_launcher_save_qa.log",
+      "scope": "Current backend and persistence files. Later unrelated upgrade-map changes are covered by final map/GPU suites."
+    },
+    {
+      "name": "crystal_save_qa",
+      "passed": 21,
+      "failed": 0,
+      "evidence": "verification/more-jam-20261103/save-regression-01/crystal_save_qa.log",
+      "scope": "Current backend and persistence files. Later unrelated upgrade-map changes are covered by final map/GPU suites."
+    },
+    {
+      "name": "developer_area_qa",
+      "passed": 101,
+      "failed": 0,
+      "evidence": "verification/more-jam-20261103/save-regression-01/developer_area_qa.log",
+      "scope": "Current backend and persistence files. Later unrelated upgrade-map changes are covered by final map/GPU suites."
+    },
+    {
+      "name": "bakery_more_jam_map_qa",
+      "passed": 26,
+      "failed": 0,
+      "evidence": "verification/area-ability-20261103/more-jam-map-final-01/bakery_more_jam_map_qa.log",
+      "scope": "Current final runtime source; before/after hashes match."
+    },
+    {
+      "name": "v04_map_qa",
+      "passed": 284,
+      "failed": 0,
+      "evidence": "verification/area-ability-20261103/more-jam-map-final-01/v04_map_qa.log",
+      "scope": "Current final runtime source; before/after hashes match."
+    },
+    {
+      "name": "upgrade_layout_qa",
+      "passed": 32,
+      "failed": 0,
+      "evidence": "verification/area-ability-20261103/more-jam-map-final-01/upgrade_layout_qa.log",
+      "scope": "Current final runtime source; before/after hashes match."
+    }
+  ],
+  "renderer": {
+    "passed": 79,
+    "failed": 0,
+    "captures": 14,
+    "resolutions": [
+      [
+        450,
+        800
+      ],
+      [
+        450,
+        1000
+      ]
+    ],
+    "evidence": "verification/more-jam-20261103/gpu-01/screens/preview-summary.json",
+    "source_manifest": "verification/more-jam-20261103/gpu-01/source-manifest.json",
+    "source_manifest_sha256": "5e42cb8ce18c01ce978520efd097d7c2ac66ccc60a53d8e718747f57416281aa",
+    "current_input_count": 253,
+    "current_inputs_match": true,
+    "review": "Reviewed eligible, lane-locked, tray-locked, owned/three-lane overview and charging/fourth-ball captures. Cards fit their safe bounds and paths avoid unrelated nodes; no phone listening or feel claim."
+  },
+  "balance": {
+    "record": "BAKERY_MORE_JAM_BALANCE.json",
+    "sha256": "93cc4e7ff6a8368518feb0ea034e541fc4c65d10ffac7234c0a052602f732d2b",
+    "comparison_runs": 78,
+    "deterministic_replays": 1,
+    "conclusion": "More Jam increases measured Jam damage, but does not establish resolution of the reported difficulty wall. Tray10 bounded tracking clears8/9 at each cadence; broad sweeps clear0/9 at each cadence. Final-peg cleanup and physical retesting remain open.",
+    "scope": "Synthetic max-upgrade/legal-loadout simulations with automatic pickup collection; no natural-wallet campaign or human playtest."
+  },
+  "final_source": {
+    "files": [
+      {
+        "path": "scripts/area_ability_access.gd",
+        "sha256": "c09d982b508adea00e365153382398a6e3b651c520c5bcac34888244005452b3"
+      },
+      {
+        "path": "scripts/area_ability_ui.gd",
+        "sha256": "a414791f2c29694a5f77fab81a2541ac597e1380b0b27c1350697d854e00acae"
+      },
+      {
+        "path": "scripts/area_art.gd",
+        "sha256": "833c583682df69d83172ca88cebdb669b45e663e40e8059e241df88d5190d4c8"
+      },
+      {
+        "path": "scripts/area_campaign.gd",
+        "sha256": "18665c9c53a26b09b6d1693595ac225160bca2629029387bdab5b386c860991c"
+      },
+      {
+        "path": "scripts/area_play_billing.gd",
+        "sha256": "528183cb6ff145b56ca5483b752ffe24ecee4691f407bb6e005b8f08c5cdbc99"
+      },
+      {
+        "path": "scripts/audio_catalog.gd",
+        "sha256": "db3f396833060fb8eb039c913699736c9037967264637a2ac1ff2b9a66405caf"
+      },
+      {
+        "path": "scripts/bakery_ability.gd",
+        "sha256": "212ce336e92050095a9c0c88911d2a2d6f047b30e3258ec3fb916a3a35fc5c7b"
+      },
+      {
+        "path": "scripts/coin_display.gd",
+        "sha256": "29fcfa88220832e516a1d1d1e6210893ec083360848bda21caea574c7a26fc23"
+      },
+      {
+        "path": "scripts/coin_feedback.gd",
+        "sha256": "77355e8533d1f8840b539a53155c3beacd3140a4a6fc0b2b0795ae5460cb1cfb"
+      },
+      {
+        "path": "scripts/combat_balance.gd",
+        "sha256": "9ad489b7b8f3960a401adc30829d94776845f58060a58f878460479d5b2568e7"
+      },
+      {
+        "path": "scripts/countdown_feedback.gd",
+        "sha256": "44ded78cf9ef83874485fc632a0e53b5ff6af2f6aa10bd30ad511d542e2f0883"
+      },
+      {
+        "path": "scripts/crystal_launcher.gd",
+        "sha256": "af0b77e2a0b08ecd4760d27a82f55b41fb26ff57103d57c57da292733ec20a58"
+      },
+      {
+        "path": "scripts/crystal_upgrade_graph.gd",
+        "sha256": "d8715e6941f1df477e90e2c017392861ae9b4c3924afebf7009d26f994596671"
+      },
+      {
+        "path": "scripts/developer_area_ui.gd",
+        "sha256": "9720214c2fdd09fdc510003b0e25a7e9a79218f25da53a9bd5b5632dd5d96c93"
+      },
+      {
+        "path": "scripts/environment_art.gd",
+        "sha256": "38745078b12953911de5c8aab75b6648dc0d53d44f018f020b53b1b1bb8770b2"
+      },
+      {
+        "path": "scripts/first_run_guide.gd",
+        "sha256": "ca6795dfc258334d369b16591f5ec0704692141dce3bb0720256a588c68b5399"
+      },
+      {
+        "path": "scripts/flow_rules.gd",
+        "sha256": "98cc6d3ec935d021c11a47c4ccb4f4c819bca108af10afb17d5e442ca7812688"
+      },
+      {
+        "path": "scripts/food_art.gd",
+        "sha256": "d8ac12a56e6b6c35c97cac94229a218ac909f1887bf0e5ac6f0aaa3a9cc6bb7e"
+      },
+      {
+        "path": "scripts/game_audio.gd",
+        "sha256": "661f0f82a3b488541603e88d2e8204d5914f57ef63f1f68fb2a385e88d6dc952"
+      },
+      {
+        "path": "scripts/gelato_launcher.gd",
+        "sha256": "d735ac2812dbc6889bb3fad67649626e3a53352ffb6017831acc9bc83870ca19"
+      },
+      {
+        "path": "scripts/gelato_upgrade_graph.gd",
+        "sha256": "e9815d6ea340596e03b6a2646aec8a48d9a9dcf8dee183c9088e121f622586fd"
+      },
+      {
+        "path": "scripts/home_menu.gd",
+        "sha256": "1f2782cf38bbb8f81ace849b754c6119d11d6f34c7a94674a392dedca5efc5eb"
+      },
+      {
+        "path": "scripts/impact_feedback.gd",
+        "sha256": "f3e41246e7492a7daa7eab26d9f851d0c903c38f89997a59404eba0594932ca8"
+      },
+      {
+        "path": "scripts/level_map.gd",
+        "sha256": "32fea91d9db63b288532de5c4a3a258fa36270aa051020ef6ef15bb5bf476250"
+      },
+      {
+        "path": "scripts/main.gd",
+        "sha256": "174375a28df2d2dbaa47b9ad5d6b66c8c66e3998057eef60bcee1fcd8bf73374"
+      },
+      {
+        "path": "scripts/monetization_service.gd",
+        "sha256": "7a1763b27f796ab29c1187e418ffe6ac0491c4333e196b33a80fdb9b989ad5d8"
+      },
+      {
+        "path": "scripts/monetization_ui.gd",
+        "sha256": "6156dc1b45a8a87db8efd6595ae90f3eba9137802d77bb4384acbf7c7ef2e9c6"
+      },
+      {
+        "path": "scripts/page_transition.gd",
+        "sha256": "9f2244879f276ceca92cd672103e9fc64bdc1d0ac5624c18ac50479820f08e60"
+      },
+      {
+        "path": "scripts/pause_transition.gd",
+        "sha256": "c58f991597e24d2617805c648ca20a97a9c72916f57e6ba6513a875142d5b0c2"
+      },
+      {
+        "path": "scripts/progress_reset_ui.gd",
+        "sha256": "75608c0fa638b08ba4cdf15029fee9574437d23da1615c2f7e68fbb20d4175be"
+      },
+      {
+        "path": "scripts/result_comparison_ui.gd",
+        "sha256": "4ebaed65dbe076b6b2e5bf535393e8529ca3c39bfa623d68ac5abf52f43e2752"
+      },
+      {
+        "path": "scripts/run_history.gd",
+        "sha256": "f2da83d6d0c8179f58e61ccc7745d7ecb0980c27593a8a71aae89448fd939b30"
+      },
+      {
+        "path": "scripts/run_snapshot.gd",
+        "sha256": "7b36ca5fa358a686fc0e195e752a00c31f707b2e8d11fd8cd798edc58f84918c"
+      },
+      {
+        "path": "scripts/run_transition.gd",
+        "sha256": "6b80a5f6344ed34f26cdffbc3c5780f8cf607995a74ae05ae8a70d056984a043"
+      },
+      {
+        "path": "scripts/speech_bubble.gd",
+        "sha256": "a7fa2f48b72ff1c02a2617148a1c421c3bc55fe0e8dccc286441e43e2767969c"
+      },
+      {
+        "path": "scripts/startup.gd",
+        "sha256": "1d4a76ac093b69e44a5cb7e2bd266e36a8f71b7660f7f82092f38e683a05d588"
+      },
+      {
+        "path": "scripts/tone_bank.gd",
+        "sha256": "0eabc16e9ebf89d77e915ebc64ad44b030dd76003a4e02466d66267f9c5907c0"
+      },
+      {
+        "path": "scripts/ui_art.gd",
+        "sha256": "12cf2661b153fb7701fba3028786deb14daf200462eaa23d00fbfe50bf2c5485"
+      },
+      {
+        "path": "scripts/upgrade_arc_art.gd",
+        "sha256": "4cefc77bef1b62f39b502f9ac8b1edadfd29f8fad05ccb280f10ef1a28a35ab1"
+      },
+      {
+        "path": "scripts/upgrade_graph.gd",
+        "sha256": "3845bed72ffeefb5d747434e8b7dda326993762654b55d796e68d4e437777729"
+      },
+      {
+        "path": "scripts/upgrade_map.gd",
+        "sha256": "06dcac8d6cf2f32ecb96a25bd3d11605c3d3d53bf546e2c993758c73246986a3"
+      },
+      {
+        "path": "data/board_design.json",
+        "sha256": "7f924784be57d5cc15f96199467f8a884feb0bd8d5df19ed07f7eebe55aa2a14"
+      },
+      {
+        "path": "data/crystal_board_design.json",
+        "sha256": "b9ce87470fd3e393ab4789c5b8d682a84bfe6911fce411af1cc516de7cba4e6e"
+      },
+      {
+        "path": "data/crystal_economy.json",
+        "sha256": "fa590359c4687c76ee14ce2149d6fba42a2a302100fe439f69ee301bfca90791"
+      },
+      {
+        "path": "data/crystal_upgrade_layout.json",
+        "sha256": "e87e5f38d6c49d921b53d87f94a17b8df3d189a825c0f9e48d923c9f9f16aa31"
+      },
+      {
+        "path": "data/economy.json",
+        "sha256": "9910256c6a6832d11248012bd60cafeef3e9017bb731bbf23dcf2503c0b27a8a"
+      },
+      {
+        "path": "data/gelato_board_design.json",
+        "sha256": "0f64d5ebd62f786b1c157a75d599f47d00543e749e4240afe38d0131cfb05add"
+      },
+      {
+        "path": "data/gelato_economy.json",
+        "sha256": "e98aa6365989a68cb618d15a5325bc1d8713767d04a693d2760b94fcf2efe352"
+      },
+      {
+        "path": "data/gelato_upgrade_layout.json",
+        "sha256": "9948870ef138871c4966cea60820c341766af962018a773fe28da5c28bade666"
+      },
+      {
+        "path": "data/upgrade_arc_art.json",
+        "sha256": "3abc28874c39d56d26fc1bff26e079319f646a3511459f2df61f2108539df85f"
+      },
+      {
+        "path": "data/upgrade_layout.json",
+        "sha256": "6397704584fd20178fde7a15f4341dcac3576e8bc9eecf4919e26091bb32058e"
+      }
+    ]
+  },
+  "phone_verified": false,
+  "delivery": "The exact v0.7.8 package and Drive readback are recorded separately in ANDROID_SUGARFALL_v0.7.8.json."
+}

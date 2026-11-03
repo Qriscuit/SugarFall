@@ -149,6 +149,7 @@ func inspect_layout(game):
 	var nodes=Graph.nodes()
 	var all_nodes=nodes.duplicate()
 	all_nodes.append(map.TWIN_NODE)
+	all_nodes.append(map.MORE_JAM_NODE)
 	var positions: Dictionary=map._positions
 	var paths: Dictionary=map._paths
 	var expected={}
@@ -156,9 +157,11 @@ func inspect_layout(game):
 		for parent in Graph.prerequisites(child.x,child.y):
 			expected[Vector4i(parent.x,parent.y,child.x,child.y)]=true
 	expected[Vector4i(map.TWIN_PARENT.x,map.TWIN_PARENT.y,map.TWIN_NODE.x,map.TWIN_NODE.y)]=true
-	var complete=positions.size()==63 and positions.size()==all_nodes.size()
+	for parent in map.node_prerequisites(map.MORE_JAM_NODE):
+		expected[Vector4i(parent.x,parent.y,map.MORE_JAM_NODE.x,map.MORE_JAM_NODE.y)]=true
+	var complete=positions.size()==64 and positions.size()==all_nodes.size()
 	for node in all_nodes: complete=complete and positions.has(node)
-	check(complete,"All62 original recipes and Jam Burst have exactly one production-map position")
+	check(complete,"All62 original recipes, Jam Burst and More Jam have exactly one production-map position")
 	if not complete: return
 	var exact=paths.size()==expected.size()
 	for key in expected: exact=exact and paths.has(key)
@@ -171,7 +174,7 @@ func inspect_layout(game):
 	for node in all_nodes: finite=finite and positions[node].is_finite()
 	for edge in paths:
 		var path: PackedVector2Array=paths[edge]
-		straight=straight and path.size()==2
+		if Vector2i(edge.z,edge.w)!=map.MORE_JAM_NODE: straight=straight and path.size()==2
 		if path.size()<2:
 			nonsingular=false
 			continue
@@ -181,12 +184,13 @@ func inspect_layout(game):
 		attached=attached and Rect2(source-map.TILE_SIZE*.5,map.TILE_SIZE).grow(EPS).has_point(path[0]) and Rect2(destination-map.TILE_SIZE*.5,map.TILE_SIZE).grow(EPS).has_point(path[-1])
 		for i in range(path.size()-1): nonsingular=nonsingular and path[i].distance_to(path[i+1])>EPS
 	check(finite,"All positions and rendered path points are finite")
-	check(straight and paths.size()==62,"All61 recipe prerequisites plus the Jam Burst branch are straight connections")
+	check(straight and paths.size()==65,"Original62 straight links are retained alongside three authored More Jam trails")
 	check(nonsingular,"Every route has at least two distinct points and no zero-length segments")
 	check(attached,"Every rendered route attaches to its own source and destination tile")
 	if not finite or not nonsingular: return
 	var recipe_positions=positions.duplicate()
 	recipe_positions.erase(map.TWIN_NODE)
+	recipe_positions.erase(map.MORE_JAM_NODE)
 	var arc_report=inspect_arc(recipe_positions,map.TILE_SIZE)
 	var layout_bounds=Rect2(positions[nodes[0]],Vector2.ZERO)
 	for node in all_nodes: layout_bounds=layout_bounds.expand(positions[node])

@@ -159,22 +159,40 @@ def author():
         'edges': [{'from': list(ids[a]), 'to': list(ids[b]), 'points': [points[a].tolist(), points[b].tolist()]} for a, b in edges]
     }
     print(f'{accepted} accepted independent moves; {len(ids)} nodes, {len(edges)} straight edges; route lengths {list(map(len, routes))}')
+    add_more_jam(result)
     return result
+
+
+def add_more_jam(data):
+    """A completion reward joins the three finished lanes beyond their tips."""
+    target = [6350.0, 1000.0]
+    positions = {tuple(node['id']): node['position'] for node in data['nodes']}
+    bends = [
+        [[6860.0, -130.0], [6930.0, 290.0], [6800.0, 680.0]],
+        [[6220.0, 140.0], [6360.0, 460.0], [6420.0, 770.0]],
+        [[5530.0, 630.0], [5910.0, 850.0]],
+    ]
+    data['special_nodes'] = [{'id': [8, 2], 'position': target, 'title': 'More Jam'}]
+    data['special_edges'] = [
+        {'from': route[-1], 'to': [8, 2],
+         'points': [positions[tuple(route[-1])]] + bends[index] + [target]}
+        for index, route in enumerate(data['routes'])
+    ]
 
 
 def preview(data, destination):
     destination.mkdir(parents=True, exist_ok=True)
-    positions = {tuple(n['id']): np.array(n['position']) for n in data['nodes']}
+    positions = {tuple(n['id']): np.array(n['position']) for n in data['nodes'] + data.get('special_nodes', [])}
     points = np.array(list(positions.values()))
     low, high = points.min(axis=0)-180, points.max(axis=0)+180
     scale = 1750/(high-low)[0]
     picture = Image.new('RGB', tuple(np.ceil((high-low)*scale).astype(int)), '#dce9d8')
     draw = ImageDraw.Draw(picture)
     def screen(p): return tuple((np.array(p)-low)*scale)
-    for edge in data['edges']:
+    for edge in data['edges'] + data.get('special_edges', []):
         draw.line([screen(p) for p in edge['points']], fill='#526e5c', width=2)
-    names = ['Feed', 'Power', 'Bounce', 'Ricochet', 'Split', 'Impact', 'Gold', 'Time']
-    colors = ['#d2ab85', '#e1a390', '#dfb7d6', '#eadc8f', '#b7cf91', '#dba86a', '#f0cf70', '#a6c6c1']
+    names = ['Feed', 'Power', 'Bounce', 'Ricochet', 'Split', 'Impact', 'Gold', 'Time', 'More Jam']
+    colors = ['#d2ab85', '#e1a390', '#dfb7d6', '#eadc8f', '#b7cf91', '#dba86a', '#f0cf70', '#a6c6c1', '#b73c68']
     for (family, tier), p in positions.items():
         x, y = screen(p)
         r = TILE*.5*scale
