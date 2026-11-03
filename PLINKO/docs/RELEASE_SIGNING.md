@@ -26,3 +26,5 @@ The GitHub source backup deliberately does **not** back up the private key. Keep
 ## Preview compatibility
 
 The release package installs separately from `org.pegfoundry.prototype.preview`. It does not overwrite the preview or automatically import its progress. Simulated preview purchases are not real paid entitlements. Public candidates disable simulated commerce and developer controls while retaining ordinary game progression.
+
+See [the tracked Android release procedure](ANDROID_RELEASE_BUILD.md) for toolchain setup, exact unsigned export commands, environment-reference signing, and artifact verification.

@@ -1,0 +1,225 @@
+{
+  "build_date": "2026-11-03",
+  "app_name": "Sugarfall",
+  "godot": "4.6.3.stable.official.7d41c59c4",
+  "version_name": "0.8.0-rc1",
+  "version_code": 30,
+  "package": "com.qriscuit.sugarfall",
+  "status": "Local signed release candidate; commerce disabled; no Google Play publication or phone acceptance",
+  "export_mode": "release (nondebug); unsigned Godot exports followed by protected-key signing",
+  "custom_features": [
+    "sugarfall_public"
+  ],
+  "minimum_sdk": 24,
+  "target_sdk": 36,
+  "architectures": [
+    "arm64-v8a"
+  ],
+  "requested_android_permissions": [],
+  "signing_certificate_sha256": "e31ab7654afed05f9acd5fb6b59846d990198b8005d8fafd01e070c1dbc4dc29",
+  "file_name": "Sugarfall-v0.8.0-rc1-Android-2026-11-03.apk",
+  "local_path": "builds/Sugarfall-v0.8.0-rc1-Android-2026-11-03.apk",
+  "size_bytes": 87583943,
+  "sha256": "f1e0ba502e2fbfc755479b44c6801660a53653d0bcdf3067b64e00ff103c122c",
+  "md5": "3bee8ae20f8e8d1a4a5df34acd73eef6",
+  "bundle": {
+    "file_name": "Sugarfall-v0.8.0-rc1-Android-2026-11-03.aab",
+    "local_path": "builds/Sugarfall-v0.8.0-rc1-Android-2026-11-03.aab",
+    "size_bytes": 86872100,
+    "sha256": "f37bc66695ae39402dc6330349f732f1713977e7da3df954237c8f09450ed48b",
+    "game_asset_delivery": "Godot install-time asset pack;335 game payloads exactly equal APK",
+    "signing_certificate_sha256": "e31ab7654afed05f9acd5fb6b59846d990198b8005d8fafd01e070c1dbc4dc29"
+  },
+  "changes": [
+    "Public candidates hide and reject developer settings, infinite-money controls, performance diagnostics and all simulated ads/purchases. The public feature overrides debug/developer features.",
+    "Public services reject simulated requests, callbacks, ownership restore and saved preview entitlements. Pending base results remain collectible exactly once; simulated reward flags and Toolkit multipliers cannot increase public payouts.",
+    "Warm studio spotlight, grounded heartbeat stamp and quiet sustained hum precede the existing cream reveal. Saved Sound and Reduced Motion preferences, background pauses, restored runs and startup failure recovery are preserved. Original studio image bytes are unchanged.",
+    "All ten gameplay JSON files and all three gameplay fingerprints are unchanged from v0.7.4; no prices, strength tiers, layouts or physics were rebalanced."
+  ],
+  "monetization": {
+    "public_rc": "disabled; no real provider or SDK connected",
+    "preview": "local simulator retained",
+    "future_scope": "free game with optional ads/IAP remains planned, not delivered by this candidate"
+  },
+  "update_compatibility": "New Android package and new release signing identity install separately from the existing preview. No automatic cross-app progress migration. Within a supplied compatible profile, earned wallet/upgrades/area progress survive while optional fake ownership and pending simulated bonus are discarded. Profile 5 and area checkpoint schemas/fingerprints remain unchanged.",
+  "verification": {
+    "assertions_passed": 1520,
+    "assertions_failed": 0,
+    "counts": {
+      "passed": 1520,
+      "failed": 0,
+      "suites": {
+        "public-qa-03/preview-policy": 60,
+        "public-qa-03/release-policy": 66,
+        "preview-regression-01/resume": 122,
+        "preview-regression-01/navigation": 89,
+        "preview-regression-01/run-comparison": 102,
+        "preview-regression-01/reset-progress": 63,
+        "preview-regression-01/monetization": 81,
+        "preview-regression-01/area-progression": 90,
+        "preview-regression-01/developer-area-ui": 59,
+        "preview-regression-01/developer-money": 50
+      },
+      "studio_passed": 738,
+      "native_asset_checks_separate": 6,
+      "toolchain_checks_separate": 7,
+      "policy_source_scope": [
+        "main.gd",
+        "monetization_service.gd",
+        "monetization_ui.gd",
+        "result_comparison_ui.gd",
+        "progress_reset_ui.gd"
+      ],
+      "scope": "656 existing preview assertions +60 preview policy +66 actual nondebug Windows policy +738 final startup/profile/audio/GPU assertions. The five public-policy runtime files match both earlier regression copies; final warm studio source is verified by its own final suites and renderer. No Android device execution or Play upload.",
+      "phone_verified": false
+    },
+    "native_asset_checks_separate": 6,
+    "aab_toolchain_checks_separate": 7,
+    "payload_checks_passed": 508,
+    "payload_checks_total": 508,
+    "android_metadata_checks_passed": 16,
+    "android_metadata_checks_total": 16,
+    "bundle_checks_passed": 30,
+    "bundle_checks_total": 30,
+    "signature_v2": true,
+    "signature_v3": true,
+    "zip_alignment_16_kib": true,
+    "aab_jar_signature_verified": true,
+    "bundletool_validated": true,
+    "apk_zip_entries": 452,
+    "aab_zip_entries": 459,
+    "runtime_scripts": 33,
+    "game_payloads_equal_between_apk_aab": 335,
+    "all43_runtime_inputs_match_final_renderer": true,
+    "all8_startup_inputs_match_final_renderer": true,
+    "source_inputs_unchanged_across_export": true,
+    "checkpoint_compatibility": {
+      "fingerprints": {
+        "bakery": {
+          "previous": "cf5e777d9b76e7ee53247c49b4a795fa086d2eeb58fb017307f9f8004ca23936",
+          "current": "cf5e777d9b76e7ee53247c49b4a795fa086d2eeb58fb017307f9f8004ca23936"
+        },
+        "gelato": {
+          "previous": "0ed640180e172a175bce0d5ad81a97196d6f8d72ff031b099f2f254afe512f67",
+          "current": "0ed640180e172a175bce0d5ad81a97196d6f8d72ff031b099f2f254afe512f67"
+        },
+        "crystal": {
+          "previous": "61dd81c0b0088fbc84f2b042e0afffdd72b251f541464ac2612772113b913d19",
+          "current": "61dd81c0b0088fbc84f2b042e0afffdd72b251f541464ac2612772113b913d19"
+        }
+      },
+      "bakery_metadata_only_compatibility": true,
+      "gelato_fingerprint_unchanged": true,
+      "checkpoint_schema_by_area": {
+        "bakery": 4,
+        "gelato": 4,
+        "crystal": 5
+      },
+      "profile_envelope_version": 5,
+      "profile_read_versions": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "gelato_shop_revision": 1,
+      "gelato_launcher_rules_revision": 2,
+      "combat_trial_rules_revision": 1
+    },
+    "source_scope": {
+      "changed_previous_runtime_files": [
+        "res://scripts/main.gd",
+        "res://scripts/monetization_service.gd",
+        "res://scripts/monetization_ui.gd",
+        "res://scripts/progress_reset_ui.gd",
+        "res://scripts/result_comparison_ui.gd",
+        "res://scripts/startup.gd"
+      ],
+      "added_runtime_files": []
+    },
+    "actual_nondebug_windows_policy_checks": 66,
+    "phone_installed": false,
+    "phone_verified": false,
+    "play_uploaded": false
+  },
+  "source_sha256": {
+    "res://scripts/area_art.gd": "833c583682df69d83172ca88cebdb669b45e663e40e8059e241df88d5190d4c8",
+    "res://scripts/area_campaign.gd": "5cc491a00df4180e460a334b93ec204b2bb608e5188a3fbec0b7aa4e4017d172",
+    "res://scripts/coin_display.gd": "29fcfa88220832e516a1d1d1e6210893ec083360848bda21caea574c7a26fc23",
+    "res://scripts/coin_feedback.gd": "77355e8533d1f8840b539a53155c3beacd3140a4a6fc0b2b0795ae5460cb1cfb",
+    "res://scripts/combat_balance.gd": "9ad489b7b8f3960a401adc30829d94776845f58060a58f878460479d5b2568e7",
+    "res://scripts/countdown_feedback.gd": "44ded78cf9ef83874485fc632a0e53b5ff6af2f6aa10bd30ad511d542e2f0883",
+    "res://scripts/crystal_launcher.gd": "78375118890fdc0aa654fae2607e2cdb49294192739ddabbac42dc3369480853",
+    "res://scripts/crystal_upgrade_graph.gd": "d8715e6941f1df477e90e2c017392861ae9b4c3924afebf7009d26f994596671",
+    "res://scripts/developer_area_ui.gd": "9720214c2fdd09fdc510003b0e25a7e9a79218f25da53a9bd5b5632dd5d96c93",
+    "res://scripts/environment_art.gd": "38745078b12953911de5c8aab75b6648dc0d53d44f018f020b53b1b1bb8770b2",
+    "res://scripts/first_run_guide.gd": "b1fc6ff4606b3cd164511d1906e40fc32264567e51353c91a95deec82b95fedf",
+    "res://scripts/food_art.gd": "d8ac12a56e6b6c35c97cac94229a218ac909f1887bf0e5ac6f0aaa3a9cc6bb7e",
+    "res://scripts/gelato_launcher.gd": "3ef818ac89c084741ac5076d33dcf4847b08079349cc5992d11d622b51032932",
+    "res://scripts/gelato_upgrade_graph.gd": "e9815d6ea340596e03b6a2646aec8a48d9a9dcf8dee183c9088e121f622586fd",
+    "res://scripts/home_menu.gd": "78eb34ed19c12c8d88eab735709f3b69affe6b39ee3e689c00bffe2a50ff6a57",
+    "res://scripts/impact_feedback.gd": "f3e41246e7492a7daa7eab26d9f851d0c903c38f89997a59404eba0594932ca8",
+    "res://scripts/level_map.gd": "aab3869d9aa25b88d884b373e5e97cdca195d4992344f9ea6a6a77238fdb3d40",
+    "res://scripts/main.gd": "1582c1742277e7e7af6582061e56d9fb0ba420accdaf7c9e51432bc25fc466b6",
+    "res://scripts/monetization_service.gd": "7a1763b27f796ab29c1187e418ffe6ac0491c4333e196b33a80fdb9b989ad5d8",
+    "res://scripts/monetization_ui.gd": "6156dc1b45a8a87db8efd6595ae90f3eba9137802d77bb4384acbf7c7ef2e9c6",
+    "res://scripts/page_transition.gd": "6af0141f4cb80de5f6f1c4ed4ca684c04256ec9e727143c1da478cdfc5ef7c5c",
+    "res://scripts/progress_reset_ui.gd": "63f1f271a0de9a6c003814004dd1dea1ebbcf75a4e234a4bc984327413fafe80",
+    "res://scripts/result_comparison_ui.gd": "4ebaed65dbe076b6b2e5bf535393e8529ca3c39bfa623d68ac5abf52f43e2752",
+    "res://scripts/run_history.gd": "f2da83d6d0c8179f58e61ccc7745d7ecb0980c27593a8a71aae89448fd939b30",
+    "res://scripts/run_snapshot.gd": "903cbb595a6f5df297a3fb8815041007ffe76f35655710e91dd73ef786166f56",
+    "res://scripts/run_transition.gd": "6b80a5f6344ed34f26cdffbc3c5780f8cf607995a74ae05ae8a70d056984a043",
+    "res://scripts/speech_bubble.gd": "a7fa2f48b72ff1c02a2617148a1c421c3bc55fe0e8dccc286441e43e2767969c",
+    "res://scripts/startup.gd": "300a431a7d0e5fac9a51e6c0471bcc813b780477a148f71761c9a7390fd40d4f",
+    "res://scripts/tone_bank.gd": "0eabc16e9ebf89d77e915ebc64ad44b030dd76003a4e02466d66267f9c5907c0",
+    "res://scripts/ui_art.gd": "a3de442459a2408b91a201c80636d73949be74939590a8b9123eba0e1399db65",
+    "res://scripts/upgrade_arc_art.gd": "4cefc77bef1b62f39b502f9ac8b1edadfd29f8fad05ccb280f10ef1a28a35ab1",
+    "res://scripts/upgrade_graph.gd": "3845bed72ffeefb5d747434e8b7dda326993762654b55d796e68d4e437777729",
+    "res://scripts/upgrade_map.gd": "a0401ed89490088a930f126e2b060f5a4c09dbe5daa7d0b526f02b8cc4a25837"
+  },
+  "source_json_sha256": {
+    "res://data/board_design.json": "7f924784be57d5cc15f96199467f8a884feb0bd8d5df19ed07f7eebe55aa2a14",
+    "res://data/crystal_board_design.json": "b9ce87470fd3e393ab4789c5b8d682a84bfe6911fce411af1cc516de7cba4e6e",
+    "res://data/crystal_economy.json": "fa590359c4687c76ee14ce2149d6fba42a2a302100fe439f69ee301bfca90791",
+    "res://data/crystal_upgrade_layout.json": "e87e5f38d6c49d921b53d87f94a17b8df3d189a825c0f9e48d923c9f9f16aa31",
+    "res://data/economy.json": "9910256c6a6832d11248012bd60cafeef3e9017bb731bbf23dcf2503c0b27a8a",
+    "res://data/gelato_board_design.json": "0f64d5ebd62f786b1c157a75d599f47d00543e749e4240afe38d0131cfb05add",
+    "res://data/gelato_economy.json": "e98aa6365989a68cb618d15a5325bc1d8713767d04a693d2760b94fcf2efe352",
+    "res://data/gelato_upgrade_layout.json": "9948870ef138871c4966cea60820c341766af962018a773fe28da5c28bade666",
+    "res://data/upgrade_arc_art.json": "3abc28874c39d56d26fc1bff26e079319f646a3511459f2df61f2108539df85f",
+    "res://data/upgrade_layout.json": "e675a7104b1d0dc4bcb81633144c144a9a70ca7fa11cac066c83906e36da0983"
+  },
+  "source_other_sha256": {
+    "res://data/art/branding/studio_spotlight.gdshader": "51800566a4e4521a2b3c823174749c28ec1f3c1f72a304644dd88857808eb184",
+    "res://data/art/branding/studio_stamp.gdshader": "b044f3505fa013ffa257cae6a027ffa06788e008baae32856e7eaa3d53841b33",
+    "res://data/audio/studio_warm_hum.wav": "5e341dc297486fffc00828a3c7d0f0fc95b2fa23dd0ab73a03cc445e29da0e1f",
+    "res://export_presets.cfg": "d997514a9fc2c368c6a16d37cd94f1de4f352a64a8e489ba124ecc01ea0d5bea",
+    "res://main.tscn": "e1199368c62dfc7dd6f17fcf54ad6f4f39278c5f729c89670eb28f7aef284b17",
+    "res://project.godot": "6f9c64e6e7c12f4e06bf774e1963a581f46e5829863b997993463f4ffcb14461",
+    "res://startup.tscn": "bd52d9d5a059a18ea3f1878c95dd4ed9e258b330aef19d97bb59614e7f063e4f"
+  },
+  "source_commit_before_packaging": "1ab3cef673ab8fa9a78271cd0fc01bf8f90a6a70",
+  "build_configuration_note": "APK-only Min/Target overrides removed after initial source commit because Godot non-Gradle exports require template defaults. Final output independently verifies 24/36; preset hashes above identify the actual build input. AAB retains explicit 24/36.",
+  "evidence_directory": "verification/android-release-v080",
+  "distribution": {
+    "local_only": true,
+    "drive_preview_replaced": false,
+    "github_binary_release_created": false,
+    "google_play_submission": false
+  },
+  "remaining_release_work": [
+    "Connect and verify real ad/billing providers before shipping the planned monetized product.",
+    "Finish physical Android acceptance, Google Play testing/listing/compliance and store setup.",
+    "Back up the release key and password off-device; configure and record Play App Signing separately.",
+    "Rebuild/restore on a second clean environment before claiming reproducible release recovery."
+  ],
+  "build_notes": [
+    "Signing passwords were supplied by environment references after unsigned export, never command argument values or export configuration.",
+    "Installed SDK licenses were reused; no new license terms were accepted.",
+    "Godot AAB exporter emitted editor shutdown scan/ObjectDB warnings after successful export. Artifact CRC, full source/payload parity, signatures and bundletool validation passed; this is not evidence of a runtime leak.",
+    "Gradle's isolated daemon was stopped after the first successful AAB export to release inherited console handles. The reusable AAB helper now disables its daemon.",
+    "JAR verification reports the expected self-signed application certificate and no timestamp; certificate expiry is 2054-03-21.",
+    "One successful final APK/AAB build was produced; byte-for-byte rebuild reproducibility was not measured."
+  ]
+}
