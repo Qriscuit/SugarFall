@@ -83,7 +83,7 @@ func controller_contract():
 	g.page_transition.enabled = false
 	check(not g.page_transition.is_blocking() and g.page_transition.snapshot == null and g.page_transition.progress() == 1.0,"Disabling presentation releases its snapshot and input gate")
 	g.page_transition.enabled = true
-	for destination in ["home","shop","boards","guide","support","developer_areas","reset_confirm","loadout","trials","monetization","monetization_tools","test_ad","test_purchase","play","paused","abandon_confirm","result","bonus_confirm"]:
+	for destination in ["home","shop","boards","guide","support","developer_areas","reset_confirm","loadout","trials","monetization","monetization_tools","test_ad","test_purchase","play","result","bonus_confirm"]:
 		g.page_transition.enabled = false; g.mode = "fixture_previous"; g.page_transition.enabled = true
 		g.mode = destination
 		check(g.mode == destination and g.page_transition.active and g.page_transition.to_mode == destination,"Mode setter covers "+destination)
@@ -165,9 +165,9 @@ func clocks_and_resume():
 		var control = fixture(area); control.start_shift(); control.step(1.0/60.0)
 		check(equal(state(g),state(control)),"First resumed "+area+" physics tick matches a directly started control")
 		g.mode = "paused"
-		check(g.page_transition.active,"Pause uses the shared "+area+" transition")
+		check(not g.page_transition.active and g.pause_transition.active,"Pause fades over the "+area+" board without cream")
 		settle(g); g.go_back()
-		check(g.mode == "play" and g.page_transition.active and g.run_serial == 1,"Resume reveals the same "+area+" run without a duplicate attempt")
+		check(g.mode == "play" and not g.page_transition.active and g.pause_transition.active and g.run_serial == 1,"Resume fades back to the same "+area+" run without cream or a duplicate attempt")
 		control.free(); g.free()
 
 func guide_and_lifecycle():
@@ -209,7 +209,7 @@ func reduced_motion():
 	check(g.run_elapsed > 0,"Reduced Motion gameplay has no hidden page-animation delay")
 	g.reduced_motion = false; g.mode = "paused"
 	g.reduced_motion = true; g._process(.01)
-	check(not g.page_transition.active and g.page_transition.snapshot == null,"Enabling Reduced Motion settles an in-flight wipe and releases its snapshot")
+	check(not g.page_transition.active and g.page_transition.snapshot == null and not g.pause_transition.active and g.pause_transition.menu_alpha == 1.0,"Enabling Reduced Motion settles the pause fade immediately without a cream snapshot")
 	g.page_transition.finish(); g.mode = "support"; g.page_transition.enabled = false
 	g.mode = "home"; g.start_shift(true)
 	check(not g.page_transition.active and not g.run_transition.active,"Disabled fixture behavior and Reduced Motion remain deterministic")

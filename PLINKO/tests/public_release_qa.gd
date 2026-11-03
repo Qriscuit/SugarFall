@@ -9,11 +9,11 @@ var failures: Array[String] = []
 class Fixture extends "res://scripts/main.gd":
 	var labels: Array[String] = []
 	func _ready(): pass
-	func button(_rect, label, _primary = false, _subtitle = ""): labels.append(label)
-	func ui_panel(_rect: Rect2): pass
-	func heading_centered(_value, _y, _size = 40, _color = WHITE): pass
-	func fitted_text(value, _rect: Rect2, _size = 24, _color = WHITE, _align_center = false): labels.append(value)
-	func centered(value, _y, _size = 24, _color = WHITE): labels.append(value)
+	func button(_rect, label, _primary = false, _subtitle = "", _painter: CanvasItem = null): labels.append(label)
+	func ui_panel(_rect: Rect2, _painter: CanvasItem = null): pass
+	func heading_centered(_value, _y, _size = 40, _color = WHITE, _painter: CanvasItem = null): pass
+	func fitted_text(value, _rect: Rect2, _size = 24, _color = WHITE, _align_center = false, _painter: CanvasItem = null): labels.append(value)
+	func centered(value, _y, _size = 24, _color = WHITE, _painter: CanvasItem = null): labels.append(value)
 
 func check(ok: bool, label: String):
 	if ok: passed += 1

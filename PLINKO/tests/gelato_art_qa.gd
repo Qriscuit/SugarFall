@@ -42,16 +42,16 @@ class ArtGame extends "res://scripts/main.gd":
 		if pos.x < -1 or pos.x+width > WIDTH+1 or top < -1 or bottom > HEIGHT+1:
 			var issue = "%s outside canvas: %s" % [capture_name,value]
 			if issue not in text_overflows: text_overflows.append(issue)
-	func text_at(value, pos, size=24, color=WHITE):
+	func text_at(value, pos, size=24, color=WHITE, painter: CanvasItem=null):
 		record_text(str(value),pos,size,font)
-		super.text_at(value,pos,size,color)
-	func heading(value, pos, size=40, color=WHITE):
+		super.text_at(value,pos,size,color,painter)
+	func heading(value, pos, size=40, color=WHITE, painter: CanvasItem=null):
 		record_text(str(value),pos,size,display_font)
-		super.heading(value,pos,size,color)
-	func fitted_text(value, rect: Rect2, size=24, color=WHITE, align_center=false):
+		super.heading(value,pos,size,color,painter)
+	func fitted_text(value, rect: Rect2, size=24, color=WHITE, align_center=false, painter: CanvasItem=null):
 		if font.get_string_size(str(value),HORIZONTAL_ALIGNMENT_LEFT,-1,14).x > rect.size.x+1:
 			text_overflows.append("%s exceeds fitting width: %s" % [capture_name,value])
-		super.fitted_text(value,rect,size,color,align_center)
+		super.fitted_text(value,rect,size,color,align_center,painter)
 	func fitted_number(value: String, rect: Rect2, size=34, color=WHITE, align_center=false):
 		if value not in visible_text: visible_text.append(value)
 		if number_font.get_string_size(value,HORIZONTAL_ALIGNMENT_LEFT,-1,16).x > rect.size.x+1:

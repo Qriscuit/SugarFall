@@ -1,0 +1,55 @@
+{
+  "date": "2026-11-03",
+  "stage": "Pause fade/blur integrated and desktop verified; physical phone acceptance pending",
+  "passed": 1184,
+  "failed": 0,
+  "suites": {
+    "page_routes": 161,
+    "pause_fade": 98,
+    "home_entry": 58,
+    "resume": 122,
+    "navigation": 89,
+    "first_run_guide": 159,
+    "developer_ui": 59,
+    "public_policy_preview": 60,
+    "gpu": 378
+  },
+  "captures": 57,
+  "visual_source_inputs": 214,
+  "source_parity": [
+    {
+      "run": "functional-01",
+      "runtime_inputs": 48,
+      "copied_test_inputs": 3,
+      "evidence": "verification/pause-transition-20261103/functional-01/final-source-parity.json"
+    },
+    {
+      "run": "regression-02",
+      "runtime_inputs": 48,
+      "copied_test_inputs": 111,
+      "evidence": "verification/pause-transition-20261103/regression-02/final-source-parity.json"
+    }
+  ],
+  "main_sha256": "06b326e1195d6b2922316e91b19796cfa8c95060b11ae76aef4a79e8ad6298eb",
+  "unchanged_gameplay_json": [
+    "data/board_design.json",
+    "data/crystal_board_design.json",
+    "data/crystal_economy.json",
+    "data/crystal_upgrade_layout.json",
+    "data/economy.json",
+    "data/gelato_board_design.json",
+    "data/gelato_economy.json",
+    "data/gelato_upgrade_layout.json",
+    "data/upgrade_arc_art.json",
+    "data/upgrade_layout.json"
+  ],
+  "visual_evidence": "verification/pause-transition-20261103/gpu-02/visual-review.json",
+  "known_environment_message": "The exact Windows root-certificate-store startup message is retained in offline QA logs and narrowly exempted. Other engine, parser, shader and assertion failures remain failures.",
+  "superseded_attempts": {
+    "regression-01": "Copied runner initially retained source-relative helper paths; setup failed before fixture execution. The corrected runner passed in regression-02.",
+    "gpu-01": "One overly strict corner-luminance assertion failed because blur can brighten a dark local pixel. Replaced with complete backdrop coverage, opaque changed corners and overall dimming; final gpu-02 passed with three additional cream-layer captures."
+  },
+  "phone_verified": false,
+  "new_apk_built": false,
+  "drive_replaced": false
+}

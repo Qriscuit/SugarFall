@@ -8,13 +8,13 @@ class AntlerPreview extends BasePreview.PreviewGame:
 	func write_profile_file(_data: Dictionary) -> bool:
 		persistence_attempts += 1
 		return false
-	func fitted_text(value, rect: Rect2, size = 24, color = WHITE, align_center = false):
+	func fitted_text(value, rect: Rect2, size = 24, color = WHITE, align_center = false, painter: CanvasItem = null):
 		if mode=="shop" and not str(value).is_empty() and rect.position.y>=838 and rect.end.y<=1078:
 			var fit = size
 			while fit>14 and font.get_string_size(str(value),HORIZONTAL_ALIGNMENT_LEFT,-1,fit).x>rect.size.x: fit-=1
 			if font.get_height(fit)>rect.size.y+.01 or font.get_string_size(str(value),HORIZONTAL_ALIGNMENT_LEFT,-1,fit).x>rect.size.x+.01:
 				text_overflows.append("Card row cannot contain glyphs: "+str(value))
-		super.fitted_text(value,rect,size,color,align_center)
+		super.fitted_text(value,rect,size,color,align_center,painter)
 
 func _initialize(): call_deferred("run")
 

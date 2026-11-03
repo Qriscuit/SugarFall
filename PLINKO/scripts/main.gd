@@ -100,6 +100,7 @@ var mode = "home":
 		if value == mode: return
 		if value in ["monetization","monetization_tools","test_ad","test_purchase","bonus_confirm"] and monetization != null and not test_commerce_available(): return
 		if page_transition != null: page_transition.begin(mode,value)
+		if pause_transition != null: pause_transition.begin(mode,value)
 		mode = value
 var return_mode = "home"
 var page = 0
@@ -163,6 +164,7 @@ var home_menu
 var level_map
 var run_transition
 var page_transition
+var pause_transition
 var gelato_launcher
 var crystal_launcher
 var first_run_guide
@@ -188,6 +190,7 @@ func _init():
 	level_map=preload("res://scripts/level_map.gd").new(self)
 	run_transition=preload("res://scripts/run_transition.gd").new(self)
 	page_transition=preload("res://scripts/page_transition.gd").new(self)
+	pause_transition=preload("res://scripts/pause_transition.gd").new(self)
 	gelato_launcher=preload("res://scripts/gelato_launcher.gd").new(self)
 	crystal_launcher=preload("res://scripts/crystal_launcher.gd").new(self)
 	monetization_ui=preload("res://scripts/monetization_ui.gd").new(self)
@@ -243,6 +246,7 @@ func load_presentation():
 	environment_art.load_assets()
 	first_run_guide.load_assets()
 	page_transition.load_assets()
+	pause_transition.attach()
 
 var tone_bank
 func setup_audio():
@@ -282,7 +286,7 @@ func update_safe_area():
 
 func go_back():
 	if startup_blocked: return
-	if page_transition.is_blocking(): return
+	if page_transition.is_blocking() or pause_transition.is_blocking(): return
 	if navigation_delay>0 and not run_transition.active: return
 	if mode=="boards" and level_map.close_overlay():
 		navigation_delay=.25
@@ -327,7 +331,7 @@ func _notification(what):
 	if not profile_initialization_complete: return
 	if what==NOTIFICATION_WM_GO_BACK_REQUEST:
 		if startup_blocked: return
-		if page_transition.is_blocking(): return
+		if page_transition.is_blocking() or pause_transition.is_blocking(): return
 		if navigation_delay>0 and not run_transition.active: return
 		if mode=="home" and not testing:
 			if home_menu.close_menu():
@@ -341,6 +345,7 @@ func _notification(what):
 		page_transition.enabled = false
 		run_transition.finish()
 		if mode=="play": mode="paused"
+		pause_transition.settle()
 		save_game()
 		page_transition.enabled = pages_enabled
 	if what == NOTIFICATION_APPLICATION_PAUSED or what == NOTIFICATION_WM_WINDOW_FOCUS_OUT:
@@ -355,6 +360,7 @@ func _notification(what):
 		if level_map!=null: level_map.cancel_gestures()
 		if mode == "play":
 			mode = "paused"
+		pause_transition.settle()
 		if not testing:
 			save_game()
 		page_transition.enabled = pages_enabled
@@ -369,7 +375,7 @@ var diagnostic_draw_us=0.0
 var last_redraw_mode=""
 
 func update_coin_feedback(delta: float) -> bool:
-	if page_transition.is_blocking(): return false
+	if page_transition.is_blocking() or pause_transition.is_blocking() or mode in ["paused","abandon_confirm"]: return false
 	var run_advances = mode=="play" and not first_run_guide.blocks_simulation() and not run_transition.active
 	var was_animating = bank_coin_feedback.active() or (run_advances and run_coin_feedback.active())
 	bank_coin_feedback.advance(delta)
@@ -384,8 +390,10 @@ func _process(delta):
 	if startup_blocked: return
 	var page_was_active = page_transition.active
 	var page_changed = page_transition.update(delta)
-	var page_frozen = page_was_active or page_transition.is_blocking()
-	var presentation_frozen = page_frozen or run_transition.active
+	var pause_was_active = pause_transition.active
+	var pause_changed = pause_transition.update(delta)
+	var page_frozen = page_was_active or page_transition.is_blocking() or pause_was_active or pause_transition.is_blocking()
+	var presentation_frozen = page_frozen or run_transition.active or mode in ["paused","abandon_confirm"]
 	if not presentation_frozen and mode not in ["result","bonus_confirm","test_ad"]: elapsed += delta
 	var coin_feedback_changed = false if presentation_frozen else update_coin_feedback(delta)
 	var guide_was_blocking = first_run_guide.blocks_simulation()
@@ -402,7 +410,7 @@ func _process(delta):
 	result_input_delay=maxf(0,result_input_delay-delta)
 	navigation_delay=maxf(0,navigation_delay-delta)
 	var note_was_visible=note_time>0
-	note_time = maxf(0, note_time - delta)
+	if not presentation_frozen: note_time = maxf(0, note_time - delta)
 	sound_cooldown = maxf(0, sound_cooldown - delta)
 
 	if screenshot_timer > 0:
@@ -412,7 +420,7 @@ func _process(delta):
 			var img = get_viewport().get_texture().get_image()
 			img.save_png("res://builds/gameplay.png")
 			get_tree().quit()
-	if mode=="play" or mode!=last_redraw_mode or note_was_visible or diagnostics_on or map_changed or journey_changed or entrance_changed or guide_changed or coin_feedback_changed or page_changed:
+	if mode=="play" or mode!=last_redraw_mode or note_was_visible or diagnostics_on or map_changed or journey_changed or entrance_changed or guide_changed or coin_feedback_changed or page_changed or pause_changed:
 		queue_redraw()
 	last_redraw_mode=mode
 
@@ -424,7 +432,7 @@ func _physics_process(delta):
 		if diagnostics_on: diagnostic_step_us=lerpf(diagnostic_step_us,float(Time.get_ticks_usec()-started),.1)
 
 func start_shift(from_home: bool = false):
-	if startup_blocked or page_transition.is_blocking() or (from_home and run_transition.active): return
+	if startup_blocked or page_transition.is_blocking() or pause_transition.is_blocking() or (from_home and run_transition.active): return
 	run_transition.finish()
 	impact_feedback.reset()
 	reward_earned=false
@@ -529,7 +537,7 @@ func build_wave():
 	wave_flash=2.0
 
 func step(dt):
-	if startup_blocked or mode != "play" or run_transition.active or page_transition.is_blocking() or first_run_guide.blocks_simulation(): return
+	if startup_blocked or mode != "play" or run_transition.active or page_transition.is_blocking() or pause_transition.is_blocking() or first_run_guide.blocks_simulation(): return
 	if not clear_draining and board_is_clear(): begin_clear_drain()
 	if not clear_draining and remaining <= 0:
 		finish_shift()
@@ -1712,7 +1720,7 @@ func _load_game_impl():
 
 func _input(event):
 	if startup_blocked: return
-	if page_transition.is_blocking(): return
+	if page_transition.is_blocking() or pause_transition.is_blocking(): return
 	if mode=="developer_areas" and developer_area_ui.handle_input(event): return
 	if mode=="reset_confirm" and progress_reset_ui.handle_input(event): return
 	if first_run_guide.handle_input(event): return
@@ -1760,7 +1768,7 @@ func inside(p, rect):
 	return rect.has_point(p)
 
 func handle_press(p):
-	if startup_blocked or navigation_delay>0 or run_transition.active or page_transition.is_blocking(): return
+	if startup_blocked or navigation_delay>0 or run_transition.active or page_transition.is_blocking() or pause_transition.is_blocking(): return
 	var previous=mode
 	_handle_press_impl(p)
 	if mode!=previous:
@@ -1850,33 +1858,36 @@ func _handle_press_impl(p):
 			elif inside(p,Rect2(48,1132,624,82)): mode = "home"
 	queue_redraw()
 
-func text_at(value, pos, size = 24, color = WHITE):
-	draw_string(font, pos, value, HORIZONTAL_ALIGNMENT_LEFT, -1, size, color)
+func text_at(value, pos, size = 24, color = WHITE, painter: CanvasItem = null):
+	var canvas = painter if painter != null else self
+	canvas.draw_string(font, pos, value, HORIZONTAL_ALIGNMENT_LEFT, -1, size, color)
 
-func centered(value, y, size = 24, color = WHITE):
+func centered(value, y, size = 24, color = WHITE, painter: CanvasItem = null):
 	var width = font.get_string_size(value,HORIZONTAL_ALIGNMENT_LEFT,-1,size).x
-	text_at(value,Vector2((WIDTH-width)/2,y),size,color)
+	text_at(value,Vector2((WIDTH-width)/2,y),size,color,painter)
 
-func heading(value, pos, size = 40, color = WHITE):
-	draw_string(display_font,pos,value,HORIZONTAL_ALIGNMENT_LEFT,-1,size,color)
+func heading(value, pos, size = 40, color = WHITE, painter: CanvasItem = null):
+	var canvas = painter if painter != null else self
+	canvas.draw_string(display_font,pos,value,HORIZONTAL_ALIGNMENT_LEFT,-1,size,color)
 
-func heading_centered(value, y, size = 40, color = WHITE):
+func heading_centered(value, y, size = 40, color = WHITE, painter: CanvasItem = null):
 	var width = display_font.get_string_size(value,HORIZONTAL_ALIGNMENT_LEFT,-1,size).x
-	heading(value,Vector2((WIDTH-width)*.5,y),size,color)
+	heading(value,Vector2((WIDTH-width)*.5,y),size,color,painter)
 
-func fitted_text(value, rect: Rect2, size = 24, color = WHITE, align_center = false):
+func fitted_text(value, rect: Rect2, size = 24, color = WHITE, align_center = false, painter: CanvasItem = null):
 	var fit = size
 	while fit > 14 and font.get_string_size(value,HORIZONTAL_ALIGNMENT_LEFT,-1,fit).x > rect.size.x: fit -= 1
 	var width = font.get_string_size(value,HORIZONTAL_ALIGNMENT_LEFT,-1,fit).x
 	var x = rect.position.x+(rect.size.x-width)*.5 if align_center else rect.position.x
-	text_at(value,Vector2(x,rect.position.y+(rect.size.y-font.get_height(fit))*.5+font.get_ascent(fit)),fit,color)
+	text_at(value,Vector2(x,rect.position.y+(rect.size.y-font.get_height(fit))*.5+font.get_ascent(fit)),fit,color,painter)
 
 func area_surface(role: String) -> Color:
 	# Presentation colors follow the active area; semantic action colors stay shared.
 	return AREA_SURFACES.get(area_id,AREA_SURFACES.bakery)[role]
 
-func ui_panel(rect: Rect2):
-	if not ui_art.skin(self,"panel",rect): box(rect,area_surface("panel"),24)
+func ui_panel(rect: Rect2, painter: CanvasItem = null):
+	var canvas = painter if painter != null else self
+	if not ui_art.skin(canvas,"panel",rect): box(rect,area_surface("panel"),24,Color.TRANSPARENT,canvas)
 
 func fitted_number(value: String, rect: Rect2, size = 34, color = WHITE, align_center = false):
 	var fit = size
@@ -1885,44 +1896,45 @@ func fitted_number(value: String, rect: Rect2, size = 34, color = WHITE, align_c
 	var x = rect.position.x+(rect.size.x-width)*.5 if align_center else rect.position.x
 	draw_string(number_font,Vector2(x,rect.position.y+(rect.size.y-number_font.get_height(fit))*.5+number_font.get_ascent(fit)),value,HORIZONTAL_ALIGNMENT_LEFT,-1,fit,color)
 
-func symbol(kind: String, center: Vector2, size: float, color = WHITE):
+func symbol(kind: String, center: Vector2, size: float, color = WHITE, painter: CanvasItem = null):
 	# Simple navigation marks stay crisp and do not rely on font glyph coverage.
+	var canvas = painter if painter != null else self
 	var r = size*.34
 	var width = maxf(2.5,size*.07)
 	match kind:
 		"pause":
-			for x in [-.35,.35]: draw_line(center+Vector2(r*x,-r),center+Vector2(r*x,r),color,width*1.6,true)
-		"play": draw_colored_polygon(PackedVector2Array([center+Vector2(-r*.6,-r),center+Vector2(r,r*0),center+Vector2(-r*.6,r)]),color)
+			for x in [-.35,.35]: canvas.draw_line(center+Vector2(r*x,-r),center+Vector2(r*x,r),color,width*1.6,true)
+		"play": canvas.draw_colored_polygon(PackedVector2Array([center+Vector2(-r*.6,-r),center+Vector2(r,r*0),center+Vector2(-r*.6,r)]),color)
 		"back":
-			draw_polyline(PackedVector2Array([center+Vector2(r*.3,-r),center+Vector2(-r*.65,0),center+Vector2(r*.3,r)]),color,width,true)
-		"check": draw_polyline(PackedVector2Array([center+Vector2(-r,0),center+Vector2(-r*.2,r*.65),center+Vector2(r,-r*.7)]),color,width,true)
+			canvas.draw_polyline(PackedVector2Array([center+Vector2(r*.3,-r),center+Vector2(-r*.65,0),center+Vector2(r*.3,r)]),color,width,true)
+		"check": canvas.draw_polyline(PackedVector2Array([center+Vector2(-r,0),center+Vector2(-r*.2,r*.65),center+Vector2(r,-r*.7)]),color,width,true)
 		"lock":
-			draw_arc(center+Vector2(0,-r*.25),r*.55,PI,TAU,16,color,width,true)
-			box(Rect2(center+Vector2(-r*.8,-r*.2),Vector2(r*1.6,r*1.35)),color,4)
+			canvas.draw_arc(center+Vector2(0,-r*.25),r*.55,PI,TAU,16,color,width,true)
+			box(Rect2(center+Vector2(-r*.8,-r*.2),Vector2(r*1.6,r*1.35)),color,4,Color.TRANSPARENT,canvas)
 		"target":
-			draw_arc(center,r*.7,0,TAU,24,color,width,true)
-			for v in [Vector2.LEFT,Vector2.RIGHT,Vector2.UP,Vector2.DOWN]: draw_line(center+v*r*.5,center+v*r*1.2,color,width,true)
+			canvas.draw_arc(center,r*.7,0,TAU,24,color,width,true)
+			for v in [Vector2.LEFT,Vector2.RIGHT,Vector2.UP,Vector2.DOWN]: canvas.draw_line(center+v*r*.5,center+v*r*1.2,color,width,true)
 		"plus", "minus":
-			draw_line(center+Vector2(-r,0),center+Vector2(r,0),color,width,true)
-			if kind == "plus": draw_line(center+Vector2(0,-r),center+Vector2(0,r),color,width,true)
+			canvas.draw_line(center+Vector2(-r,0),center+Vector2(r,0),color,width,true)
+			if kind == "plus": canvas.draw_line(center+Vector2(0,-r),center+Vector2(0,r),color,width,true)
 		"boards":
 			for y in [-1,1]:
-				for x in [-1,1]: box(Rect2(center+Vector2(x,y)*r*.55-Vector2.ONE*r*.3,Vector2.ONE*r*.6),color,3)
+				for x in [-1,1]: box(Rect2(center+Vector2(x,y)*r*.55-Vector2.ONE*r*.3,Vector2.ONE*r*.6),color,3,Color.TRANSPARENT,canvas)
 		"upgrade":
 			for v in [Vector2(-r,r*.6),Vector2(0,-r*.7),Vector2(r,r*.6)]:
-				draw_line(center,v+center,color,width,true)
-				draw_circle(v+center,size*.1,color)
+				canvas.draw_line(center,v+center,color,width,true)
+				canvas.draw_circle(v+center,size*.1,color)
 		"settings":
-			draw_arc(center,r*.65,0,TAU,24,color,width*1.5,true)
+			canvas.draw_arc(center,r*.65,0,TAU,24,color,width*1.5,true)
 			for n in range(8):
 				var v = Vector2.from_angle(n*TAU/8)
-				draw_line(center+v*r*.65,center+v*r,color,width*1.5,true)
+				canvas.draw_line(center+v*r*.65,center+v*r,color,width*1.5,true)
 		"help":
-			draw_arc(center,r,0,TAU,24,color,width,true)
-			fitted_text("?",Rect2(center-Vector2.ONE*size*.45,Vector2.ONE*size*.9),int(size*.7),color,true)
+			canvas.draw_arc(center,r,0,TAU,24,color,width,true)
+			fitted_text("?",Rect2(center-Vector2.ONE*size*.45,Vector2.ONE*size*.9),int(size*.7),color,true,canvas)
 
 var style_cache = {}
-func box(rect, color, radius = 18.0, border = Color.TRANSPARENT):
+func box(rect, color, radius = 18.0, border = Color.TRANSPARENT, painter: CanvasItem = null):
 	var key = str(color)+":"+str(int(radius))+":"+str(border)
 	if not style_cache.has(key):
 		var style = StyleBoxFlat.new()
@@ -1932,29 +1944,31 @@ func box(rect, color, radius = 18.0, border = Color.TRANSPARENT):
 			style.border_color = border
 			style.set_border_width_all(2)
 		style_cache[key] = style
-	draw_style_box(style_cache[key], rect)
+	var canvas = painter if painter != null else self
+	canvas.draw_style_box(style_cache[key], rect)
 
-func button(rect, label, primary = false, subtitle = ""):
+func button(rect, label, primary = false, subtitle = "", painter: CanvasItem = null):
+	var canvas = painter if painter != null else self
 	if rect.size.x/rect.size.y < 1.5 and label in ["","<","II","⌖","−","+"]:
 		# Round icon controls use their own saucer, keeping wide endcaps uncompressed.
-		if not ui_art.draw(self,"node",rect): box(rect,area_surface("panel"),24)
-	elif not ui_art.skin(self,"button_mint" if primary else "button_cream",rect): box(rect,Color("9dc8b5") if primary else area_surface("panel"),24)
+		if not ui_art.draw(canvas,"node",rect): box(rect,area_surface("panel"),24,Color.TRANSPARENT,canvas)
+	elif not ui_art.skin(canvas,"button_mint" if primary else "button_cream",rect): box(rect,Color("9dc8b5") if primary else area_surface("panel"),24,Color.TRANSPARENT,canvas)
 	var symbols = {"<":"back","II":"pause","⌖":"target","−":"minus","+":"plus"}
 	if symbols.has(label):
-		symbol(symbols[label],rect.get_center()-Vector2(0,2),38)
+		symbol(symbols[label],rect.get_center()-Vector2(0,2),38,WHITE,canvas)
 		return
 	var text_rect = rect.grow(-22)
 	if subtitle != "":
 		text_rect.size.y = rect.size.y*.45
 		text_rect.position.y = rect.position.y+10
-		fitted_text(subtitle,Rect2(rect.position+Vector2(22,rect.size.y*.52),Vector2(rect.size.x-44,rect.size.y*.3)),18,MUTED,true)
+		fitted_text(subtitle,Rect2(rect.position+Vector2(22,rect.size.y*.52),Vector2(rect.size.x-44,rect.size.y*.3)),18,MUTED,true,canvas)
 	if primary and subtitle=="" and not label.contains("Collect") and not label.contains("coins"):
 		var size = 30
 		while size>20 and display_font.get_string_size(label,HORIZONTAL_ALIGNMENT_LEFT,-1,size).x>text_rect.size.x: size -= 1
 		var width = display_font.get_string_size(label,HORIZONTAL_ALIGNMENT_LEFT,-1,size).x
-		heading(label,Vector2(text_rect.get_center().x-width*.5,text_rect.position.y+(text_rect.size.y-display_font.get_height(size))*.5+display_font.get_ascent(size)),size)
+		heading(label,Vector2(text_rect.get_center().x-width*.5,text_rect.position.y+(text_rect.size.y-display_font.get_height(size))*.5+display_font.get_ascent(size)),size,WHITE,canvas)
 	else:
-		fitted_text(label,text_rect,28 if subtitle=="" else 25,WHITE,true)
+		fitted_text(label,text_rect,28 if subtitle=="" else 25,WHITE,true,canvas)
 
 var paper_texture=preload("res://data/art/paper.svg")
 var tray_dots_texture=preload("res://data/art/tray_dots.svg")
@@ -1970,7 +1984,8 @@ func _draw():
 		box(Rect2(24,1175,672,84),area_surface("panel"),8)
 		text_at("%d FPS · %d balls · %d live pegs" % [Engine.get_frames_per_second(),balls.size(),pegs.size()-destroyed],Vector2(38,1208),21,WHITE)
 		text_at("CPU step %.2f ms · draw %.2f ms (not GPU)" % [diagnostic_step_us/1000,diagnostic_draw_us/1000],Vector2(38,1240),19,MUTED)
-	page_transition.draw()
+	pause_transition.sync_visuals()
+	page_transition.redraw()
 
 func draw_frame():
 	var bounds = get_global_transform_with_canvas().affine_inverse()*get_viewport_rect()
@@ -1982,8 +1997,6 @@ func draw_frame():
 		"play", "paused", "abandon_confirm":
 			if run_transition.active: run_transition.draw()
 			else: draw_game()
-			if mode == "paused": draw_pause()
-			elif mode=="abandon_confirm": draw_abandon_confirm()
 		"shop": draw_shop()
 		"result": draw_result()
 		"bonus_confirm":
@@ -2164,24 +2177,24 @@ func draw_game_hud(hud_offset: Vector2 = Vector2.ZERO):
 		draw_string(font,label.baseline,row.text,HORIZONTAL_ALIGNMENT_LEFT,-1,label.font_size,row.color)
 	draw_set_transform(Vector2.ZERO)
 
-func draw_pause():
-	draw_rect(get_global_transform_with_canvas().affine_inverse()*get_viewport_rect(),Color(area_surface("overlay"),.50))
-	ui_panel(Rect2(48,288,624,758))
-	ui_art.draw(self,"timer",Rect2(314,328,92,92))
-	heading_centered("Welcome back" if resumed_run else "A little breather",477,42)
-	centered("Your timer is paused.",525,24,MUTED)
-	button(Rect2(80,600,560,96),"Resume",true)
-	button(Rect2(80,700,560,96),"Sound  ·  " + ("On" if sound_on else "Off"))
-	button(Rect2(80,800,560,96),"Reduced motion  ·  " + ("On" if reduced_motion else "Off"))
-	button(Rect2(80,900,560,96),"End shift…")
+func draw_pause(painter: CanvasItem = null):
+	var canvas = painter if painter != null else self
+	ui_panel(Rect2(48,288,624,758),canvas)
+	ui_art.draw(canvas,"timer",Rect2(314,328,92,92))
+	heading_centered("Welcome back" if resumed_run else "A little breather",477,42,WHITE,canvas)
+	centered("Your timer is paused.",525,24,MUTED,canvas)
+	button(Rect2(80,600,560,96),"Resume",true,"",canvas)
+	button(Rect2(80,700,560,96),"Sound  ·  " + ("On" if sound_on else "Off"),false,"",canvas)
+	button(Rect2(80,800,560,96),"Reduced motion  ·  " + ("On" if reduced_motion else "Off"),false,"",canvas)
+	button(Rect2(80,900,560,96),"End shift…",false,"",canvas)
 
-func draw_abandon_confirm():
-	draw_rect(get_global_transform_with_canvas().affine_inverse()*get_viewport_rect(),Color(area_surface("overlay"),.50))
-	ui_panel(Rect2(48,350,624,570))
-	heading_centered("Finish this shift?",450,42)
-	centered("Keep your credits. The tray stays uncleared." if not trial_active else "Return to Trials. Campaign progress stays safe.",522,22,MUTED)
-	button(Rect2(80,650,560,96),"Finish & collect",true)
-	button(Rect2(80,780,560,96),"Keep playing")
+func draw_abandon_confirm(painter: CanvasItem = null):
+	var canvas = painter if painter != null else self
+	ui_panel(Rect2(48,350,624,570),canvas)
+	heading_centered("Finish this shift?",450,42,WHITE,canvas)
+	centered("Keep your credits. The tray stays uncleared." if not trial_active else "Return to Trials. Campaign progress stays safe.",522,22,MUTED,canvas)
+	button(Rect2(80,650,560,96),"Finish & collect",true,"",canvas)
+	button(Rect2(80,780,560,96),"Keep playing",false,"",canvas)
 
 func draw_shop():
 	upgrade_map.draw()

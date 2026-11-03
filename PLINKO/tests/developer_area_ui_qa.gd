@@ -32,12 +32,12 @@ class FixtureGame extends "res://scripts/main.gd":
 	func developer_tools_available() -> bool: return tools_allowed
 	func area_content_ready(id: String) -> bool:
 		return id!=blocked_content and super.area_content_ready(id)
-	func heading(value, _pos, _size=40, _color=Color.WHITE): drawn_text.append(str(value))
-	func centered(value, _y, _size=24, _color=Color.WHITE): drawn_text.append(str(value))
-	func text_at(value, _pos, _size=24, _color=Color.WHITE): drawn_text.append(str(value))
-	func fitted_text(value, _rect: Rect2, _size=24, _color=Color.WHITE, _center=false): drawn_text.append(str(value))
-	func ui_panel(_rect: Rect2): pass
-	func button(rect, label, primary=false, _subtitle=""):
+	func heading(value, _pos, _size=40, _color=Color.WHITE, _painter: CanvasItem = null): drawn_text.append(str(value))
+	func centered(value, _y, _size=24, _color=Color.WHITE, _painter: CanvasItem = null): drawn_text.append(str(value))
+	func text_at(value, _pos, _size=24, _color=Color.WHITE, _painter: CanvasItem = null): drawn_text.append(str(value))
+	func fitted_text(value, _rect: Rect2, _size=24, _color=Color.WHITE, _center=false, _painter: CanvasItem = null): drawn_text.append(str(value))
+	func ui_panel(_rect: Rect2, _painter: CanvasItem = null): pass
+	func button(rect, label, primary=false, _subtitle="", _painter: CanvasItem = null):
 		drawn_buttons.append({"rect":rect,"label":label,"primary":primary})
 
 func check(ok: bool, label: String):

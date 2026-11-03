@@ -1,6 +1,6 @@
 # Sugarfall — default area checklist
 
-Template version 3 · 3 November 2026
+Template version 4 · 3 November 2026
 
 An **area** is a themed campaign with its own mechanic, boards, upgrades, economy and saved progress. A **tray** is one playable board inside an area. The current default is **12 trays per area**.
 
@@ -120,7 +120,7 @@ Effects are deliverables too. Specify their visual form and trigger, even when r
 | F08 | Countdown urgency, tray clear/failure and special-upgrade purchase/transformation feedback. | Decide | No | No | No | |
 | F09 | Sound cues for the applicable actions; music/ambience decision; Sound off works. | Decide | No | No | No | |
 | F10 | Reduced Motion, effect clutter, text contrast and state/strength cues beyond color; inspect at actual phone scale. | Decide | No | No | No | |
-| F11 | Define transitions by route: wipes fully cover the viewport before the visible page swap; document continuous/morph entries and frozen-board modal results as exceptions. Gate repeated input, provide Reduced Motion alternatives and verify supported pages/area palettes. | Decide | No | No | No | |
+| F11 | Define transitions by route: fully covered wipes, continuous/morph entries, frozen-board results and pause fade/blur. Keep pause controls sharp; Resume removes the menu before the blur. Gate input and gameplay through settling, provide Reduced Motion alternatives and verify supported pages/area palettes. | Decide | No | No | No | |
 
 ## 5. Trays, difficulty and rewards
 

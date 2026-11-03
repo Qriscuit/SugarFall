@@ -162,8 +162,9 @@ func input_guard():
 	check(equal(before,state(g)),"Escape during entry preserves the untouched run")
 	g.navigation_delay = 0
 	g.go_back()
-	check(g.mode=="paused" and g.page_transition.active,"Pause page transition still gates repeated Back after interrupting entry")
-	g.page_transition.finish(); g.go_back(); g.page_transition.finish()
+	check(g.mode=="paused" and not g.page_transition.active and g.pause_transition.active,"Pause fade still gates repeated Back after interrupting entry without cream")
+	g._process(1); g._process(0); g.navigation_delay=0
+	g.go_back(); g._process(1); g._process(0)
 	check(g.mode=="play" and not g.run_transition.active,"Resume after interrupting entry starts at the finished board without replaying its morph")
 	g.step(.1)
 	check(g.run_elapsed>0 and g.remaining<float(before.remaining),"The interrupted run can resume real gameplay normally")

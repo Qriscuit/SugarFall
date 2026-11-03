@@ -1,8 +1,8 @@
 # Sugarfall — current area status
 
-Updated 3 November 2026 · Local v0.8.0-rc1 (code 30) · Drive v0.7.4-preview · CHG-033
+Updated 3 November 2026 · Source CHG-034 after local v0.8.0-rc1 · Drive v0.7.4-preview unchanged
 
-All seven earlier software, design-documentation and targeted verification actions remain complete and integrated. The existing private Drive file holds the v0.7.4 preview. The new local release candidate is recorded below. The remaining two area actions are human progression and physical-phone acceptance; the user will test the APK.
+All seven earlier software, design-documentation and targeted verification actions remain complete and integrated. The existing private Drive file holds the v0.7.4 preview. The local v0.8.0-rc1 candidate predates the latest pause source revision recorded below. The remaining two area actions are human progression and physical-phone acceptance; the user will test the APK.
 
 Counts include test activities as well as production content. Verified means the recorded scope passed; it does not imply a phone playtest. Intentional omissions remain N/A.
 
@@ -57,6 +57,14 @@ Public builds hide and reject simulated commerce, fake entitlements, developer c
 See [the candidate record](PLINKO/docs/ANDROID_SUGARFALL_v0.8.0-rc1.md) and [signing and recovery](PLINKO/docs/RELEASE_SIGNING.md). AF-008/009 remain Ready to test, and no physical result has been added to the area checklists.
 
 Source, art, tests and production records are backed up in [Qriscuit/SugarFall](https://github.com/Qriscuit/SugarFall). Tag `v0.8.0-rc1` records the 881-file baseline at commit `1bf3632`; a fresh remote recovery clone passed 13 integrity/completeness checks. See [source-control evidence](PLINKO/docs/SOURCE_CONTROL.md). CHG-032/033 record this revision; SF-007 and SF-042 are Done. Signing-key recovery, Play setup and physical acceptance remain separate open work.
+
+## Current pause presentation
+
+CHG-034 replaces cream on play/pause/abandon routes with a sharp menu fading over a gently blurred and shaded frozen board. Resume fades the menu out first, then clears the background treatment before gameplay continues. The blur fills normal and tall viewports. Reduced Motion settles immediately. Ordinary menu and studio-to-restored-pause cream routes, Home tray morph and result windows retain their intended behavior.
+
+Current source verification passes 1,184 checks: 161 page routes, 98 pause behavior, 58 Home entrance, 489 related regressions and 378 GPU assertions across 57 captures in all three areas at 450×800 and 450×1000. Functional/regression copies match 48 runtime inputs each; GPU parity covers 214 inputs. All ten gameplay JSON files remain unchanged. See [transition behavior](PLINKO/docs/MENU_TRANSITIONS.md) and [verification](PLINKO/docs/PAUSE_FADE_VALIDATION.json).
+
+Template version 4 refines F11 without adding requirements; all 83-per-area/249 states and SF/AF statuses remain. Phone D17 is Pending. This revision is source-only: no new APK, AAB or Drive replacement was requested or produced. The existing v0.8.0-rc1 artifacts and v0.7.4 Drive preview do not include it.
 
 ## Fix queue
 
