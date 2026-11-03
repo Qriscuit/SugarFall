@@ -140,7 +140,7 @@ func buy() -> bool:
 		g.note=previous_note
 		g.note_time=previous_note_time
 		return false
-	g.tone(720,.08)
+	g.feedback("twin_transform")
 	g.note="Twin launchers ready. Rebuild Power for both."
 	g.note_time=4
 	return true

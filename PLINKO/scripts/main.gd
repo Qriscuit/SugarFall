@@ -11,6 +11,7 @@ const CombatBalance = preload("res://scripts/combat_balance.gd")
 const FlowRules = preload("res://scripts/flow_rules.gd")
 var run_rules_revision = FlowRules.CURRENT_REVISION
 signal peg_damaged(position: Vector2, actual_damage: float, impact_first_hit: bool)
+signal audio_feedback_requested(event_name: String, event_area: String)
 const WIDTH = 720.0
 const HEIGHT = 1280.0
 const BOARD_SCALE = 1.05
@@ -111,7 +112,9 @@ var mode = "home":
 		if value in ["monetization","monetization_tools","test_ad","test_purchase","bonus_confirm"] and monetization != null and not test_commerce_available(): return
 		if page_transition != null: page_transition.begin(mode,value)
 		if pause_transition != null: pause_transition.begin(mode,value)
+		var previous = mode
 		mode = value
+		_audio_mode_changed(previous,value)
 var return_mode = "home"
 var page = 0
 var pegs: Array = []
@@ -155,9 +158,14 @@ var testing = false
 var startup_blocked = false
 var profile_initialization_complete = true
 var screenshot_timer = -1.0
-var sound_on = true
-var synth: AudioStreamPlayer
-var sound_cooldown = 0.0
+var game_audio
+var audio_application_paused = false
+var audio_focus_lost = false
+var audio_restoring = false
+var sound_on = true:
+	set(value):
+		sound_on = value
+		if game_audio != null: game_audio.set_enabled(value)
 var reduced_motion = false
 var run_id = ""
 var run_area_id = "bakery"
@@ -261,20 +269,45 @@ func load_presentation():
 	page_transition.load_assets()
 	pause_transition.attach()
 
-var tone_bank
 func setup_audio():
-	tone_bank = preload("res://scripts/tone_bank.gd").new()
-	synth = AudioStreamPlayer.new()
-	add_child(synth)
-	synth.volume_db = -21
+	if game_audio != null: return
+	game_audio = preload("res://scripts/game_audio.gd").new()
+	game_audio.set_enabled(sound_on)
+	game_audio.set_suspended(audio_application_paused or audio_focus_lost)
+	add_child(game_audio)
+	game_audio.prepare()
+
+func feedback(event_name: String, options: Dictionary = {}):
+	if not sound_on or startup_blocked or not profile_initialization_complete or audio_application_paused or audio_focus_lost or audio_restoring: return
+	audio_feedback_requested.emit(event_name,area_id)
+	if game_audio != null and not testing: game_audio.play_event(event_name,area_id,options)
+
+func _audio_mode_changed(previous: String, destination: String):
+	if startup_blocked or not profile_initialization_complete or audio_application_paused or audio_focus_lost or audio_restoring: return
+	if destination=="paused" and previous=="play":
+		if game_audio != null: game_audio.stop_all()
+		feedback("pause")
+	elif destination=="play" and previous in ["paused","abandon_confirm"]:
+		if game_audio != null: game_audio.stop_all()
+		feedback("resume")
+	elif destination=="result" and previous in ["play","paused"]:
+		if game_audio != null: game_audio.stop_all()
+		feedback("tray_win" if level_won else "tray_loss")
+	elif destination=="play" or (previous=="result" and destination=="home"):
+		pass # The committed run start or reward collection supplies its own cue.
+	else:
+		feedback("ui_back" if destination=="home" or previous in ["ability_offer","reset_confirm","guide","developer_areas"] else "ui_tap")
 
 func tone(freq: float, duration: float = 0.045):
-	if not sound_on or testing or sound_cooldown > 0 or tone_bank == null: return
-	var audio = tone_bank.stream_for(freq, duration)
-	if audio == null: return
-	sound_cooldown = 0.055
-	synth.stream = audio
-	synth.play()
+	# Keep old combat call arguments (including their RNG draw) unchanged.
+	# Playback now uses authored samples rather than synthesizing sine tones.
+	if not is_finite(freq) or not is_finite(duration): return
+	if is_equal_approx(duration,.025) and freq>=260 and freq<=340:
+		feedback("peg_hit",{"pitch":clampf(freq/300.0,.9,1.1)})
+	elif is_equal_approx(duration,.045) and freq>=520 and freq<=1170:
+		feedback("peg_break",{"pitch":clampf(1.0+(freq-520.0)/6500.0,.9,1.1)})
+	elif is_equal_approx(duration,.08) and is_equal_approx(freq,950): feedback("time_pickup")
+	elif is_equal_approx(duration,.08) and is_equal_approx(freq,720): feedback("upgrade")
 
 func apply_safe_area(rect):
 	# The background paints the expanded viewport; only the interactive board
@@ -340,6 +373,13 @@ func _go_back_impl():
 	elif mode in ["guide","shop","support","loadout","boards","trials"]: mode="home"
 
 func _notification(what):
+	if what in [NOTIFICATION_APPLICATION_PAUSED,NOTIFICATION_WM_CLOSE_REQUEST]: audio_application_paused=true
+	elif what==NOTIFICATION_APPLICATION_RESUMED: audio_application_paused=false
+	elif what==NOTIFICATION_WM_WINDOW_FOCUS_OUT: audio_focus_lost=true
+	elif what==NOTIFICATION_WM_WINDOW_FOCUS_IN: audio_focus_lost=false
+	if game_audio != null:
+		game_audio.set_suspended(audio_application_paused or audio_focus_lost)
+		if what==NOTIFICATION_WM_CLOSE_REQUEST: game_audio.stop_all()
 	# A nested focus/close event while startup restores a profile must never
 	# persist the temporary default campaign over that profile.
 	if not profile_initialization_complete: return
@@ -404,6 +444,7 @@ func update_coin_feedback(delta: float) -> bool:
 
 func _process(delta):
 	if startup_blocked: return
+	if game_audio != null: game_audio.advance(delta)
 	var page_was_active = page_transition.active
 	var page_changed = page_transition.update(delta)
 	var pause_was_active = pause_transition.active
@@ -427,7 +468,6 @@ func _process(delta):
 	navigation_delay=maxf(0,navigation_delay-delta)
 	var note_was_visible=note_time>0
 	if not presentation_frozen: note_time = maxf(0, note_time - delta)
-	sound_cooldown = maxf(0, sound_cooldown - delta)
 
 	if screenshot_timer > 0:
 		screenshot_timer -= delta
@@ -502,6 +542,7 @@ func start_shift(from_home: bool = false):
 	build_wave()
 	result_peg_total=pegs.size()
 	if from_home and not page_transition.active: run_transition.begin()
+	feedback("run_start")
 	first_run_guide.on_run_started()
 	if not testing: save_game()
 
@@ -571,7 +612,9 @@ func step(dt):
 	if not clear_draining:
 		if not trial_active: monetization.advance(dt)
 		run_elapsed += dt
+		var previous_second = ceili(remaining)
 		remaining -= dt
+		if remaining>0 and remaining<=3 and ceili(remaining)<previous_second: feedback("countdown")
 		if remaining <= 0:
 			finish_shift()
 			return
@@ -585,6 +628,7 @@ func step(dt):
 	pickup_clock -= dt
 	if area_id!="crystal" and not clear_draining and pickup_clock <= 0 and time_bonus < BONUS_TIME_CAP:
 		pickups.append({"p":Vector2(rng.randf_range(90,630),rng.randf_range(365,740)), "life":4.0})
+		feedback("pickup_appear")
 		pickup_clock = 100.0 # One free pickup per run; clock pegs share the bonus cap.
 		if first_run_guide.on_time_pickup_spawned(): return
 	for pickup in pickups:
@@ -667,6 +711,7 @@ func step(dt):
 					ball.cool = .08
 					if ball.kind == "impact": ball.used = true
 					if ball.kind == "splitter" and not ball.used:
+						feedback("special_split")
 						for j in range(3):
 							pending.append({"p":ball.p, "v":Vector2((j-1)*145, -165), "kind":"shard", "productive":true})
 					ball.used = true
@@ -674,6 +719,7 @@ func step(dt):
 		if ball.p.y > BUCKET_CATCH_Y:
 			var bin = clampi(int((ball.p.x - 42) / 127.2), 0, 4)
 			impact_feedback.catch_food(bin)
+			feedback("cup_catch",{"pitch":.96+bin*.025})
 			catch_settle_remaining = impact_feedback.BUCKET_DURATION
 			settling_bucket = bin
 			if not tuning.productive_bins_only or ball.productive:
@@ -748,6 +794,7 @@ func spawn_ball(pos, kind, velocity = Vector2(0, 85), jitter: bool = true):
 	total_spawned += 1
 	type_drops[kind] = type_drops.get(kind,0) + 1
 	if area_id=="bakery": bakery_ability.on_launch(balls[-1])
+	if kind!="shard": feedback("special_ricochet" if kind=="ricochet" else "launch")
 
 func ball_radius(kind):
 	return 6.0 if kind=="shard" else (11.25 if kind=="impact" else 9.0)
@@ -774,6 +821,7 @@ func add_time(amount):
 	if allowed <= 0: return
 	time_bonus += allowed
 	remaining += allowed
+	feedback("time_pickup")
 	add_float(Vector2(280,300),"+%.1fs" % allowed,TEAL)
 
 func collect_pickups(pos):
@@ -783,7 +831,6 @@ func collect_pickups(pos):
 		if pickup.life > 0 and pickup.p.distance_to(pos) < 45:
 			pickup.life = 0
 			add_time(2.0)
-			tone(950,.08)
 			first_run_guide.on_time_pickup_collected()
 
 func damage_peg(peg, damage, impact_first_hit: bool = false) -> Dictionary:
@@ -794,6 +841,7 @@ func damage_peg(peg, damage, impact_first_hit: bool = false) -> Dictionary:
 	peg.hp = maxf(0.0,before_hp-float(damage))
 	event.damage=before_hp-peg.hp
 	if event.damage<=0.0: return event
+	if impact_first_hit: feedback("special_impact")
 	impact_feedback.hit_peg(peg.p)
 	var damage_budget=FlowRules.damage_budget(CombatBalance.damage_budget(peg.kind,tuning),wave,trial_active,run_rules_revision)
 	event.coins=CombatBalance.damage_coins(float(peg.max),before_hp,peg.hp,damage_budget)
@@ -891,6 +939,7 @@ func collect_reward(_legacy_bonus = false):
 	if new_voucher: note="Free treat unlock earned"
 	note_time = 4
 	first_run_guide.on_collected()
+	feedback("collect")
 	if not testing:
 		save_game()
 
@@ -1024,11 +1073,14 @@ func toggle_module(kind):
 		note="Buy in workshop or earn a free unlock on boards 2, 5, 8"
 	elif kind in equipped:
 		equipped.erase(kind)
+		feedback("ui_confirm")
 		note="Module unequipped. Swaps are always free."
 	elif equipped.size()>=module_slots():
 		note="Unequip another module to make space"
+		feedback("ui_error")
 	else:
 		equipped.append(kind)
+		feedback("ui_confirm")
 		note="Module equipped. Special drops happen by chance."
 	note_time=3
 	if not testing: save_game()
@@ -1273,6 +1325,7 @@ func developer_money_enabled() -> bool:
 func set_developer_money(enabled: bool) -> bool:
 	if not developer_area_navigation_allowed(): return false
 	developer_free_purchases[area_id]=enabled
+	feedback("ui_confirm")
 	queue_redraw()
 	return true
 
@@ -1505,7 +1558,7 @@ func reset_profile_runtime():
 	module_cooldowns={"ricochet":0.0,"splitter":0.0,"impact":0.0}
 	pulse_charge=0; pulse_flash=0; pulse_origin=Vector2.ZERO
 	combo=0; combo_timer=0; max_combo=0; wave_flash=0
-	checkpoint_clock=5.0; sound_cooldown=0; note=""; note_time=0
+	checkpoint_clock=5.0; note=""; note_time=0
 	diagnostics_on=false; diagnostic_step_us=0; diagnostic_draw_us=0
 	pegs=[]; balls=[]; pickups=[]; particles=[]; floats=[]; buckets=[]
 	mode="home"; return_mode="home"; result_input_delay=0; navigation_delay=.25
@@ -1524,9 +1577,12 @@ func reject_snapshot(reason):
 
 func restore_active_run(snapshot):
 	var pages_enabled = page_transition.enabled
+	var was_restoring = audio_restoring
+	audio_restoring = true
 	page_transition.enabled = false
 	var restored = _restore_active_run_impl(snapshot)
 	page_transition.enabled = pages_enabled
+	audio_restoring = was_restoring
 	return restored
 
 func _restore_active_run_impl(snapshot):
@@ -1598,9 +1654,12 @@ func legacy_profile_path() -> String:
 
 func load_game():
 	var pages_enabled = page_transition.enabled
+	var was_restoring = audio_restoring
+	audio_restoring = true
 	page_transition.enabled = false
 	_load_game_impl()
 	page_transition.enabled = pages_enabled
+	audio_restoring = was_restoring
 
 func _load_game_impl():
 	run_transition.finish()
@@ -1855,9 +1914,11 @@ func _handle_press_impl(p):
 			if inside(p,actions.resume): mode = "play"
 			elif inside(p,actions.sound):
 				sound_on = not sound_on
+				feedback("ui_confirm")
 				if not testing: save_game()
 			elif inside(p,actions.motion):
 				reduced_motion=not reduced_motion
+				feedback("ui_confirm")
 				if reduced_motion: particles=[]; floats=[]; pulse_flash=0
 				impact_feedback.reset()
 				if not testing: save_game()
@@ -1903,14 +1964,18 @@ func _handle_press_impl(p):
 			var actions = settings_menu_layout().actions
 			if inside(p,actions.sound):
 				sound_on=not sound_on
+				feedback("ui_confirm")
 				if not testing: save_game()
 			elif inside(p,actions.motion):
 				reduced_motion=not reduced_motion
+				feedback("ui_confirm")
 				impact_feedback.reset()
 				if not testing: save_game()
 			elif inside(p,actions.reset): request_progress_reset()
 			elif actions.has("developer") and inside(p,actions.developer): open_developer_areas()
-			elif actions.has("performance") and inside(p,actions.performance): diagnostics_on=not diagnostics_on
+			elif actions.has("performance") and inside(p,actions.performance):
+				diagnostics_on=not diagnostics_on
+				feedback("ui_confirm")
 			elif actions.has("commerce") and inside(p,actions.commerce):
 				mode="monetization"
 				commerce_message="Local simulation. No money is charged."

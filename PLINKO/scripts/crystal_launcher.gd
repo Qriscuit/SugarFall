@@ -34,6 +34,7 @@ func buy() -> bool:
 	if not g.testing and not g.save_game():
 		for key in before: g.set(key,before[key])
 		return false
+	g.feedback("ability_purchase")
 	return true
 
 func activate(source: String) -> bool:
@@ -140,6 +141,7 @@ func advance(_dt: float):
 	state.offer_started=g.run_elapsed
 	state.offer_position=Vector2(230 if index==0 else 490,610 if index==0 else 710)
 	state.offer_life=OFFER_LIFETIME
+	g.feedback("pickup_appear")
 
 func try_collect(point: Vector2) -> bool:
 	if g.area_id!="crystal" or g.mode!="play" or g.run_transition.active or g.clear_draining or g.crystal_run.is_empty(): return false
@@ -149,9 +151,7 @@ func try_collect(point: Vector2) -> bool:
 	state.offer_life=0.0
 	state.collected+=1
 	g.add_float(state.offer_position,"×2",g.TEAL)
-	# Reuse the prewarmed pickup cue; unsupported frequencies are intentionally
-	# silent, so a new pitch must never be requested without a registered stream.
-	g.tone(950,.08)
+	g.feedback("prism")
 	return true
 
 func duplicate_live_balls() -> int:
@@ -220,6 +220,7 @@ func _hit_peg(ball: Dictionary, peg: Dictionary, pending: Array):
 	ball.cool=.08
 	if ball.kind=="impact": ball.used=true
 	if ball.kind=="splitter" and not ball.used:
+		g.feedback("special_split")
 		for index in range(3):
 			pending.append({"p":ball.p,"v":prepare_velocity(ball.v.rotated((index-1)*PI/6.0)),"kind":"shard","productive":true})
 		ball.used=true
@@ -228,6 +229,7 @@ func _hit_peg(ball: Dictionary, peg: Dictionary, pending: Array):
 func _catch(ball: Dictionary):
 	var bin=clampi(int((ball.p.x-42)/127.2),0,4)
 	g.impact_feedback.catch_food(bin)
+	g.feedback("cup_catch",{"pitch":.96+bin*.025})
 	g.catch_settle_remaining=g.impact_feedback.BUCKET_DURATION
 	g.settling_bucket=bin
 	if not g.tuning.productive_bins_only or ball.productive: g.buckets[bin].hits+=1

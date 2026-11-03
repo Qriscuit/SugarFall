@@ -36,6 +36,7 @@ func cancel_gestures():
 
 func close_menu() -> bool:
 	if not menu_open: return false
+	g.feedback("ui_back")
 	reset()
 	g.queue_redraw()
 	return true
@@ -88,8 +89,12 @@ func handle_input(event) -> bool:
 
 func press(p: Vector2):
 	match target_at(p):
-		"menu": menu_open = not menu_open
-		"dismiss": menu_open = false
+		"menu":
+			menu_open = not menu_open
+			g.feedback("ui_tap" if menu_open else "ui_back")
+		"dismiss":
+			menu_open = false
+			g.feedback("ui_back")
 		"settings": reset(); g.mode = "support"
 		"help": reset(); g.mode = "guide"
 		"trials": reset(); g.mode = "trials"

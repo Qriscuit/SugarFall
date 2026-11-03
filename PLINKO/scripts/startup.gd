@@ -2,8 +2,15 @@ extends Node
 ## A small loading stage. All progression continues to belong to main.gd.
 const MAIN_SCENE = "res://main.tscn"
 const SAVE_PATH = "user://sugarfall_save.json"
-const MINIMUM_SECONDS = 1.8
-const BEAT_SECONDS = .9
+const MINIMUM_SECONDS = 2.6
+const BEAT_SECONDS = 1.3
+const FIRST_RISE_START = .06
+const FIRST_PEAK = .28
+const FIRST_RELEASE_END = .63
+const SECOND_RISE_START = .65
+const SECOND_PEAK = .78
+const SECOND_RELEASE_END = 1.04
+const SECOND_STRENGTH = .50
 const HUM_VOLUME_DB = -7.0
 const MAX_PENDING = 3
 const FoodArt = preload("res://scripts/food_art.gd")
@@ -105,10 +112,13 @@ func _read_startup_preferences() -> Dictionary:
 	return {"reduced_motion":parser.data.get("reduced_motion",false)==true,"sound_on":parser.data.get("sound",true)==true}
 
 static func heartbeat_at(seconds: float) -> float:
+	if not is_finite(seconds): return 0.0
 	var phase = fposmod(maxf(0.0,seconds),BEAT_SECONDS)
-	if phase < .04 or phase > .65: return 0.0
-	# Strong quick beat, smaller second thump, then a long quiet interval.
-	return clampf(exp(-pow((phase-.14)/.055,2.0))+.55*exp(-pow((phase-.30)/.075,2.0)),0.0,1.0)
+	# Slow, rounded rise and release; a gentler second pulse feels alive without
+	# snapping the scale or spotlight. Exact quiet intervals permit clean reveals.
+	var first=smoothstep(FIRST_RISE_START,FIRST_PEAK,phase)*(1.0-smoothstep(FIRST_PEAK,FIRST_RELEASE_END,phase))
+	var second=smoothstep(SECOND_RISE_START,SECOND_PEAK,phase)*(1.0-smoothstep(SECOND_PEAK,SECOND_RELEASE_END,phase))
+	return first+SECOND_STRENGTH*second
 
 func _render_heartbeat():
 	var beat = 0.0 if reduced_motion or status == "error" else heartbeat_at(heartbeat_elapsed)
@@ -135,7 +145,7 @@ func _update_hum_volume():
 	if hum == null: return
 	var phase = fposmod(heartbeat_elapsed,BEAT_SECONDS)
 	# Every cycle ends in silence, so the settled-frame reveal has no cut thump.
-	var gain = smoothstep(.04,.10,phase)*(1.0-smoothstep(.57,.65,phase))
+	var gain = smoothstep(FIRST_RISE_START,FIRST_RISE_START+.06,phase)*(1.0-smoothstep(SECOND_RELEASE_END-.08,SECOND_RELEASE_END,phase))
 	hum.volume_db = HUM_VOLUME_DB+linear_to_db(maxf(.001,gain))
 
 func _pause_hum():
@@ -174,6 +184,7 @@ static func warmup_paths() -> Array[String]:
 	for name in UIArt.GELATO_OVERRIDES: unique[UIArt.GELATO_ROOT+name+".png"] = true
 	for area in ["bakery","gelato","crystal"]: unique[UIArt.MENU_ROOT+area+"_frame.png"] = true
 	unique["res://data/art/bakery_ability/jam_donut.png"] = true
+	for path in preload("res://scripts/audio_catalog.gd").resource_paths(): unique[path] = true
 	for path in [FoodArt.CRYSTAL_ROOT+"regions.json",EnvironmentArt.CRYSTAL_ROOT+"regions.json"]:
 		var regions = JSON.parse_string(FileAccess.get_file_as_string(path))
 		if regions is Dictionary:

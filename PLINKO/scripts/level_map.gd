@@ -62,8 +62,9 @@ func area_option_rect(id: String) -> Rect2:
 	var index = Campaign.IDS.find(id)
 	return Rect2(168,150+112*index,492,94) if index>=0 else Rect2()
 
-func close_overlay() -> bool:
+func close_overlay(with_sound: bool = true) -> bool:
 	if not area_menu_open and not entry_open: return false
+	if with_sound: g.feedback("ui_back")
 	area_menu_open = false
 	entry_open = false
 	entry_destination = ""
@@ -81,6 +82,7 @@ func open_entry(destination: String = "") -> bool:
 	area_menu_open = false
 	entry_open = true
 	entry_destination = target
+	g.feedback("ui_tap")
 	cancel_gestures()
 	g.navigation_delay = .25
 	g.queue_redraw()
@@ -265,7 +267,10 @@ func select_at(p: Vector2):
 	if not _input_allowed() or not map_input_at(p): return
 	for n in range(LEVEL_COUNT,0,-1):
 		if not Rect2(point(n)-NODE_SIZE*.5,NODE_SIZE).has_point(p): continue
-		if n > g.highest_unlocked: return
+		if n > g.highest_unlocked:
+			g.feedback("ui_error")
+			return
+		g.feedback("ui_tap")
 		var changed = g.current_level != n
 		g.current_level = n
 		if not g.reduced_motion: tap_feedback[n] = 0.0
@@ -291,13 +296,14 @@ func press(p: Vector2):
 			elif g.area_owned(id):
 				if g.switch_area(id): close_overlay()
 			else:
-				close_overlay()
+				close_overlay(false)
 				scroll = scroll_bounds().x
-				open_entry(id)
+				if not open_entry(id): g.feedback("ui_back")
 		else: close_overlay()
 		g.navigation_delay = .25
 		return
 	if action == "areas":
+		g.feedback("ui_tap")
 		area_menu_open = true
 		cancel_gestures()
 		g.navigation_delay = .25

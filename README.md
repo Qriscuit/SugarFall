@@ -1,5 +1,7 @@
 # Sugarfall
 
+CHG-038 adds action feedback and a slower studio pulse/hum in source. [Audio coverage](PLINKO/docs/AUDIO_FEEDBACK.md) and [Play readiness](PLINKO/docs/GOOGLE_PLAY_READINESS.md) record the checks and remaining work. The current Drive download remains v0.7.6; no new APK or phone result is claimed.
+
 CHG-037 delivers [v0.7.6-preview](PLINKO/docs/ANDROID_SUGARFALL_v0.7.6.json), including the area frames, signature abilities and Flow-2 source work. Real billing, current legal progression and phone acceptance remain open.
 
 A portrait arcade game built in Godot, with three themed areas: Bakery, Gelato Garden and Crystal Candyworks. Each area has its own twelve trays, upgrade map, economy, art and ball mechanics.
@@ -10,6 +12,7 @@ The current private test download is **v0.7.6-preview (code 32)**, with concise 
 
 ## Production records
 
+- [Google Play release queue](PLINKO/docs/GOOGLE_PLAY_READINESS.md): official requirements checked 3 November 2026 and the remaining work.
 - [Area template](AREA_CHECKLIST.md): use this before building another area.
 - [Area status](AREA_STATUS.md): built, integrated and verified are separate states.
 - [Launch tracker](outputs/launch-tracker-01a18eec/Sugarfall%20Launch%20Tracker.xlsx): outstanding fixes and change history.

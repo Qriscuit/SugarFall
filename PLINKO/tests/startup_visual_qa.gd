@@ -44,15 +44,15 @@ func run():
 		if resolution==Vector2i(720,1280):
 			var static_boot=Image.load_from_file(ProjectSettings.globalize_path("res://data/art/branding/studio_boot.png"))
 			check(same_pixels(resting,static_boot),"Engine first frame exactly matches animated scene at rest")
-		for moment in [.14,.30,.72,1.94]:
+		for moment in [.28,.78,1.08,2.88]:
 			studio.heartbeat_elapsed=moment; studio._render_heartbeat()
 			await snap(viewport,game,output,"studio-heart-"+str(roundi(moment*100)),resolution)
 			var frame=viewport.get_texture().get_image()
-			if moment==.72: check(same_pixels(resting,frame),"Heartbeat settles back to the exact subdued image")
-			if moment==.14: check(not same_pixels(resting,frame) and studio.stamp.scale.x>1.05,"Heartbeat visibly brightens and grows the stamp")
-			if moment==.14: check(studio.stamp.get_global_transform()*studio.stamp.pivot_offset==bottom_anchor,"Rendered pulse stays anchored at the mark's bottom center")
-			if moment==1.94: check(studio.stamp.scale.x>1.05,"Heartbeat repeats while real loading is pending")
-		show_studio(game,"bakery",true); studio.heartbeat_elapsed=.14; studio._render_heartbeat()
+			if moment==1.08: check(same_pixels(resting,frame),"Heartbeat settles back to the exact subdued image")
+			if moment==.28: check(not same_pixels(resting,frame) and studio.stamp.scale.x>1.05,"Heartbeat visibly brightens and grows the stamp")
+			if moment==.28: check(studio.stamp.get_global_transform()*studio.stamp.pivot_offset==bottom_anchor,"Rendered pulse stays anchored at the mark's bottom center")
+			if moment==2.88: check(studio.stamp.scale.x>1.05,"Heartbeat repeats while real loading is pending")
+		show_studio(game,"bakery",true); studio.heartbeat_elapsed=.28; studio._render_heartbeat()
 		await snap(viewport,game,output,"studio-reduced",resolution)
 		check(same_pixels(resting,viewport.get_texture().get_image()) and studio.stamp.scale==Vector2.ONE,"Reduced Motion remains exactly static")
 		studio._fail("fixture missing resource")
@@ -66,7 +66,7 @@ func run():
 		check(controls_fit,"Loading recovery controls fit with viewport edge padding")
 		check(error_message.get_minimum_size().x<=studio.failure.size.x,"Loading error text fits its control")
 		for area in ["bakery","gelato","crystal"]:
-			show_studio(game,area); studio.heartbeat_elapsed=1.8; studio._render_heartbeat()
+			show_studio(game,area); studio.heartbeat_elapsed=2.6; studio._render_heartbeat()
 			var source: Image=await render_image(viewport,game)
 			var profile=game.AreaCampaign.capture_local(game)
 			game.page_transition.enabled=true; game.page_transition.begin("studio",game.mode)

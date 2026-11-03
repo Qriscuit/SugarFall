@@ -654,6 +654,7 @@ func select_at(p):
 	for node in nodes:
 		var rect = node_rect(node.x,node.y)
 		if rect.has_point(p):
+			g.feedback("ui_tap")
 			twin_selected = node==TWIN_NODE
 			selected = -1 if twin_selected else node.x
 			tier = node.y
@@ -668,7 +669,10 @@ func press(p):
 		if buy_rect().has_point(p) and not special_owned() and not special_unlocked():
 			g.ability_ui.open("shop")
 			return
-		if buy_rect().has_point(p) and special_buy():
+		var requested = buy_rect().has_point(p)
+		var purchased = special_buy() if requested else false
+		if requested and not purchased and not special_owned(): g.feedback("ui_error")
+		if purchased:
 			g.note = ""
 			g.note_time = 0
 			_card_bounce_age = -1.0 if g.reduced_motion else 0.0
@@ -682,7 +686,9 @@ func press(p):
 		_request_redraw()
 		return
 	if selected < 0 or not node_visible(selected,tier) or not buy_rect().has_point(p): return
-	if not g.shop_node_unlocked(selected,tier): return
+	if not g.shop_node_unlocked(selected,tier):
+		g.feedback("ui_error")
+		return
 	_sync_states()
 	var before = visible_nodes()
 	var bought = Vector2i(selected,tier)
@@ -694,6 +700,7 @@ func press(p):
 		_select_next_upgrade(before,bought)
 		_frame_new_upgrades(before)
 	else:
+		g.feedback("ui_error")
 		_sync_states()
 	_request_redraw()
 

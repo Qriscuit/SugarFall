@@ -5,11 +5,20 @@
   "sample_rate": 44100,
   "channels": 2,
   "sample_width_bits": 16,
-  "frames": 39690,
-  "duration_seconds": 0.9,
+  "frames": 57330,
+  "duration_seconds": 1.3,
   "peak_dbfs": -6.020599913279624,
-  "rms_dbfs": -20.24428222136654,
-  "quiet_tail_seconds": 0.25,
+  "rms_dbfs": -19.627285127440782,
+  "timing": {
+    "first_rise_start": 0.06,
+    "first_peak": 0.28,
+    "first_release_end": 0.63,
+    "second_rise_start": 0.65,
+    "second_peak": 0.78,
+    "second_release_end": 1.04,
+    "second_strength": 0.5
+  },
+  "quiet_tail_seconds": 0.26,
   "clipped_samples": 0,
-  "sha256": "5e341dc297486fffc00828a3c7d0f0fc95b2fa23dd0ab73a03cc445e29da0e1f"
+  "sha256": "f90b3b557fd9cf96610943d1ef263dc9a704d445650cae6ba535b897197461ce"
 }

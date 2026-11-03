@@ -1,0 +1,558 @@
+{
+  "date": "2026-11-03",
+  "engine": "Godot 4.6.3",
+  "status": "Action audio implemented and integrated; focused behavior, regressions, native PCM and actual mixer checks pass.",
+  "design": "AUDIO_FEEDBACK.md",
+  "native_provenance": "GAME_AUDIO_ASSETS.json",
+  "content": {
+    "original_wavs": 33,
+    "semantic_events": 25,
+    "pcm_bytes": 441600,
+    "voice_limit": 6,
+    "gameplay_voice_limit": 3,
+    "runtime_synthesis": false,
+    "queued_playback": false
+  },
+  "integration_suites": [
+    {
+      "name": "audio_feedback_integration_qa",
+      "passed": 82,
+      "failed": 0,
+      "log": "verification/area-ability-20261103/audio-menu-final-02/audio_feedback_integration_qa.log",
+      "source_manifest": "verification/area-ability-20261103/audio-menu-final-02/source-hashes.json",
+      "subsequently_changed_files": [],
+      "scope": "Current-source suite."
+    },
+    {
+      "name": "level_map_audio_qa",
+      "passed": 6,
+      "failed": 0,
+      "log": "verification/area-ability-20261103/audio-menu-final-02/level_map_audio_qa.log",
+      "source_manifest": "verification/area-ability-20261103/audio-menu-final-02/source-hashes.json",
+      "subsequently_changed_files": [],
+      "scope": "Current-source suite."
+    },
+    {
+      "name": "v04_map_qa",
+      "passed": 284,
+      "failed": 0,
+      "log": "verification/area-ability-20261103/audio-menu-final-02/v04_map_qa.log",
+      "source_manifest": "verification/area-ability-20261103/audio-menu-final-02/source-hashes.json",
+      "subsequently_changed_files": [],
+      "scope": "Current-source suite."
+    },
+    {
+      "name": "area_ability_integration_qa",
+      "passed": 125,
+      "failed": 0,
+      "log": "verification/area-ability-20261103/audio-regressions-01/area_ability_integration_qa.log",
+      "source_manifest": "verification/area-ability-20261103/audio-regressions-01/source-hashes.json",
+      "subsequently_changed_files": [
+        "scripts/level_map.gd",
+        "scripts/startup.gd"
+      ],
+      "scope": "Earlier regression snapshot; later startup pulse amplitude and single-cue area-dialog replacement are covered by SLOW_STUDIO_VALIDATION.json and audio-menu-final-02. All other tested runtime files match."
+    },
+    {
+      "name": "combat_balance_qa",
+      "passed": 364,
+      "failed": 0,
+      "log": "verification/area-ability-20261103/audio-regressions-01/combat_balance_qa.log",
+      "source_manifest": "verification/area-ability-20261103/audio-regressions-01/source-hashes.json",
+      "subsequently_changed_files": [
+        "scripts/level_map.gd",
+        "scripts/startup.gd"
+      ],
+      "scope": "Earlier regression snapshot; later startup pulse amplitude and single-cue area-dialog replacement are covered by SLOW_STUDIO_VALIDATION.json and audio-menu-final-02. All other tested runtime files match."
+    },
+    {
+      "name": "pause_transition_qa",
+      "passed": 98,
+      "failed": 0,
+      "log": "verification/area-ability-20261103/audio-regressions-01/pause_transition_qa.log",
+      "source_manifest": "verification/area-ability-20261103/audio-regressions-01/source-hashes.json",
+      "subsequently_changed_files": [
+        "scripts/level_map.gd",
+        "scripts/startup.gd"
+      ],
+      "scope": "Earlier regression snapshot; later startup pulse amplitude and single-cue area-dialog replacement are covered by SLOW_STUDIO_VALIDATION.json and audio-menu-final-02. All other tested runtime files match."
+    }
+  ],
+  "audio_components": {
+    "mixer": {
+      "passed": 91,
+      "failed": 0,
+      "evidence": "verification/game-audio-20261103/controller-02/mixer/audio-results.json",
+      "scope": "Actual Godot mixer with Dummy output; all 33 clips captured, priority/voice limits, mute/background silence and no stale replay. Tested six-voice peak 0.541."
+    },
+    "prism": {
+      "passed": 11,
+      "failed": 0,
+      "evidence": "verification/game-audio-20261103/integration-01/crystal_audio_path_qa.log",
+      "scope": "Real Crystal collection reaches the cached chime once; muted/testing modes preserve action without playback."
+    },
+    "cache": {
+      "passed": 85,
+      "failed": 0,
+      "evidence": "verification/game-audio-20261103/integration-01/audio-cache.json",
+      "scope": "2000 resource lookups and 40 paced playback calls; fixed voice/cache identities and unchanged gameplay RNG."
+    },
+    "native": {
+      "evidence": "verification/game-audio-20261103/native-validation.json",
+      "scope": "All 33 original WAVs regenerate byte-exact and pass PCM/headroom/tail checks."
+    }
+  },
+  "audio_source_validation": {
+    "date": "2026-11-03",
+    "engine": "Godot4.6.3",
+    "scopes": [
+      {
+        "scope": "controller",
+        "evidence_root": "verification/game-audio-20261103/controller-02",
+        "source_parity": true,
+        "files": [
+          {
+            "path": "scripts/game_audio.gd",
+            "tested_sha256": "661f0f82a3b488541603e88d2e8204d5914f57ef63f1f68fb2a385e88d6dc952",
+            "workspace_sha256": "661f0f82a3b488541603e88d2e8204d5914f57ef63f1f68fb2a385e88d6dc952",
+            "matches_workspace": true
+          },
+          {
+            "path": "scripts/audio_catalog.gd",
+            "tested_sha256": "db3f396833060fb8eb039c913699736c9037967264637a2ac1ff2b9a66405caf",
+            "workspace_sha256": "db3f396833060fb8eb039c913699736c9037967264637a2ac1ff2b9a66405caf",
+            "matches_workspace": true
+          },
+          {
+            "path": "tests/game_audio_qa.gd",
+            "tested_sha256": "82295e43e67ba74ec0640f02c852f9fb0f43d22072ae1c3731d3bd5634c01e6c",
+            "workspace_sha256": "82295e43e67ba74ec0640f02c852f9fb0f43d22072ae1c3731d3bd5634c01e6c",
+            "matches_workspace": true
+          }
+        ]
+      },
+      {
+        "scope": "production_audio_paths",
+        "evidence_root": "verification/game-audio-20261103/integration-01",
+        "source_parity": true,
+        "files": [
+          {
+            "path": "scripts/main.gd",
+            "tested_sha256": "9344a0fd6d73fa7e26a7d2039f9329491c40d88c6e79a6d85436e1f66722f35c",
+            "workspace_sha256": "9344a0fd6d73fa7e26a7d2039f9329491c40d88c6e79a6d85436e1f66722f35c",
+            "matches_workspace": true
+          },
+          {
+            "path": "scripts/game_audio.gd",
+            "tested_sha256": "661f0f82a3b488541603e88d2e8204d5914f57ef63f1f68fb2a385e88d6dc952",
+            "workspace_sha256": "661f0f82a3b488541603e88d2e8204d5914f57ef63f1f68fb2a385e88d6dc952",
+            "matches_workspace": true
+          },
+          {
+            "path": "scripts/audio_catalog.gd",
+            "tested_sha256": "db3f396833060fb8eb039c913699736c9037967264637a2ac1ff2b9a66405caf",
+            "workspace_sha256": "db3f396833060fb8eb039c913699736c9037967264637a2ac1ff2b9a66405caf",
+            "matches_workspace": true
+          },
+          {
+            "path": "scripts/crystal_launcher.gd",
+            "tested_sha256": "af0b77e2a0b08ecd4760d27a82f55b41fb26ff57103d57c57da292733ec20a58",
+            "workspace_sha256": "af0b77e2a0b08ecd4760d27a82f55b41fb26ff57103d57c57da292733ec20a58",
+            "matches_workspace": true
+          },
+          {
+            "path": "tests/crystal_audio_path_qa.gd",
+            "tested_sha256": "5ddfd31e1f37d1ae86ab96a71b481d5634e885ab6ea77e102949a0e80f47c488",
+            "workspace_sha256": "5ddfd31e1f37d1ae86ab96a71b481d5634e885ab6ea77e102949a0e80f47c488",
+            "matches_workspace": true
+          },
+          {
+            "path": "tests/performance/audio_cache_qa.gd",
+            "tested_sha256": "376a567c2d4ef45e44cfd2b17fd8bba10b94c4163776e9160e7171f02fe2b326",
+            "workspace_sha256": "376a567c2d4ef45e44cfd2b17fd8bba10b94c4163776e9160e7171f02fe2b326",
+            "matches_workspace": true
+          }
+        ]
+      }
+    ],
+    "assets": [
+      {
+        "path": "data/audio/feedback/ability_purchase.wav",
+        "sha256": "5481c4daef27315746a33f8414cfd1fedffcd60e94cce73ecf64051a1d3dea2e",
+        "matches_provenance": true,
+        "import_sha256": "f50b8e8e24c5a8d5c90d81ebb8a45a7257766a0ce015fddcf0d4e9c6f6ff4418"
+      },
+      {
+        "path": "data/audio/feedback/bakery_cup_catch.wav",
+        "sha256": "92389f6aa4f3991c009b37a8bb51723ede3b0508a39576368f2117d1e5617e41",
+        "matches_provenance": true,
+        "import_sha256": "1246fe3f49cf6f87dbe414f59ca9798a57fb7e2454902582944b1346412b1fef"
+      },
+      {
+        "path": "data/audio/feedback/bakery_launch.wav",
+        "sha256": "2df0f360fcf12ec0a3df72d8c2e270fa63bfd188e8bb68182fae3e98154cfb07",
+        "matches_provenance": true,
+        "import_sha256": "1b4d92e95ab1f4e453cb36edf4b2a8100eeb61879aaf480bf739af8e313fef5f"
+      },
+      {
+        "path": "data/audio/feedback/bakery_peg_break.wav",
+        "sha256": "fcec8dcb58993c1822b094c8bdc4bd112a70d4366e1ce6507cc1cc54e4bf4b90",
+        "matches_provenance": true,
+        "import_sha256": "7d6d74a5f6902da3648335b9cdd2b2632eccfdde8974bbe8abb4f04a037bbb92"
+      },
+      {
+        "path": "data/audio/feedback/bakery_peg_hit.wav",
+        "sha256": "f13a0d09bbd384a298c24ae78b712132353c1ccce5197d44e2a469782622f818",
+        "matches_provenance": true,
+        "import_sha256": "588a5f3e1859cf66e5b6479b7265f5b925f038d851e9f3eb74aec83c9c081692"
+      },
+      {
+        "path": "data/audio/feedback/collect.wav",
+        "sha256": "a5452575f58a9a8e0adb1a86e48c3a3ba16842364c498cc34723fe1b083e4389",
+        "matches_provenance": true,
+        "import_sha256": "84e7878d853425f59f79a4a3afbfe62e86bda3c48040cc2e46302f18aa6d9c0c"
+      },
+      {
+        "path": "data/audio/feedback/countdown.wav",
+        "sha256": "4894b683102e0eb5a652f448623f17e312eeb825d37cd262552143c3be6b77ff",
+        "matches_provenance": true,
+        "import_sha256": "1a2098b7a86c0e492521517c62401b60f8a68814488b8b2e7092df71e1484212"
+      },
+      {
+        "path": "data/audio/feedback/crystal_cup_catch.wav",
+        "sha256": "305415d5435535a7e898157a88a9eba3f48a3b4c4c73d40486e6da428355d11e",
+        "matches_provenance": true,
+        "import_sha256": "6d35d43cd5ddf00263052f22126f58e9b2e64a260d314aed532dc1dae09fb661"
+      },
+      {
+        "path": "data/audio/feedback/crystal_launch.wav",
+        "sha256": "4cbed1cf86c53b6a6e6a6c43a9393c31c09d12469be91f2deac05733db772fc7",
+        "matches_provenance": true,
+        "import_sha256": "1b477faa32aae276b1014c465e734bc46b606aa6fe098834083c965a5bce1cb0"
+      },
+      {
+        "path": "data/audio/feedback/crystal_peg_break.wav",
+        "sha256": "e187f7bf0f874e6d9d11e6655bec064aa2cd9c867d178cfc00cb1e43f80aaf0a",
+        "matches_provenance": true,
+        "import_sha256": "0eb7af0d706813819138cdfeca95a5a98fe0d4cb96268c06ebac2c5e743287ea"
+      },
+      {
+        "path": "data/audio/feedback/crystal_peg_hit.wav",
+        "sha256": "49c94993b6d938d2c3740ef8a950deab084cf8395f18cd62261e99b345e8cf8a",
+        "matches_provenance": true,
+        "import_sha256": "9afd8a4de770d7d9afb66bd06d66471f9f2558e9f828ff826381238baf8ed3ef"
+      },
+      {
+        "path": "data/audio/feedback/gelato_cup_catch.wav",
+        "sha256": "bb293fc8fb15828b3b0a898fa8f8f3aa46187efeff5eac21c68df0dad9125047",
+        "matches_provenance": true,
+        "import_sha256": "470a883b835dcbb1dc80b1bb58476bb7483673c8768564e13dae78864f476add"
+      },
+      {
+        "path": "data/audio/feedback/gelato_launch.wav",
+        "sha256": "464b1795e0c5ca578b8292e631fe3fe866d27eba8430c92c67ba9d2cebf47aac",
+        "matches_provenance": true,
+        "import_sha256": "f12a951152ac454dfd11cb22bf17233c053037c5db990a1f673bb0508794736d"
+      },
+      {
+        "path": "data/audio/feedback/gelato_peg_break.wav",
+        "sha256": "0fd83cb03d735b6e1910c49140bd868d4abd051db2a236d6171af996cafab36a",
+        "matches_provenance": true,
+        "import_sha256": "4676be0aa65860c1f722a70329c262912e95a7d8c27e7d627684a939319c7961"
+      },
+      {
+        "path": "data/audio/feedback/gelato_peg_hit.wav",
+        "sha256": "9ce5d153cba0e7a41b13f149996b33328272a93374ea5d2db617941b9bb86c7e",
+        "matches_provenance": true,
+        "import_sha256": "573f81cdcb25fe1590a3f1ecf9b0d8afbe15dff76aae1331047e5f6efe90d47e"
+      },
+      {
+        "path": "data/audio/feedback/jam_splash.wav",
+        "sha256": "aa168ca603fd4f8bb903cd5b971c456762376b34875197c602d1e15f643be373",
+        "matches_provenance": true,
+        "import_sha256": "eaa1b2c0a62b02ff73b8259a060c3c06f107a86e47182d90259a7344d8e17399"
+      },
+      {
+        "path": "data/audio/feedback/pause.wav",
+        "sha256": "2d63a4159e78c1747d4d97338a5aca621fe0b0b1955e80c947233935924f9904",
+        "matches_provenance": true,
+        "import_sha256": "d26641873f0df4449181553d5e54179619cb7a26337fef7800c2256293e9b5ef"
+      },
+      {
+        "path": "data/audio/feedback/pickup_appear.wav",
+        "sha256": "32b3a9624e093164d3afa62d833d87745e40acf484db33c17c421e702e630f06",
+        "matches_provenance": true,
+        "import_sha256": "bec82d1c2a5d215e91b7196a0c2f3b11aeb4cbfb4eca455a09637c57c614cfd9"
+      },
+      {
+        "path": "data/audio/feedback/prism.wav",
+        "sha256": "8374f5868cc618cd029b8578139ee9e3317501923ff2963c4e094402a9c099bd",
+        "matches_provenance": true,
+        "import_sha256": "b33bc29453f0d1294ec322923878d687f612777d90fa4b59ccb74cdbee383427"
+      },
+      {
+        "path": "data/audio/feedback/resume.wav",
+        "sha256": "771aae3c7b04b1ab4a7b8645235c1b51b8795e64cdee88bf8757f84e8e842fb5",
+        "matches_provenance": true,
+        "import_sha256": "72c7b2133ddd6317b2580add6a70a70822f8b98a6d87ed5e2a6cfdd9f2941a2c"
+      },
+      {
+        "path": "data/audio/feedback/run_start.wav",
+        "sha256": "d1625eea49fb66a30506c6f88262b848594f76401be2e4fe3543b715a2790468",
+        "matches_provenance": true,
+        "import_sha256": "52857ea907078b9942993451ab6dd268c243c698d41e5aa0322960fe8bac5d1d"
+      },
+      {
+        "path": "data/audio/feedback/special_impact.wav",
+        "sha256": "ff14354a5114aa1df1e1068da18418f62256342e9b55303a8a42b29adb85a840",
+        "matches_provenance": true,
+        "import_sha256": "22530abd346182be20e7a824fefc14328acdbce36451ae1892ec5c17761c8bca"
+      },
+      {
+        "path": "data/audio/feedback/special_ricochet.wav",
+        "sha256": "2e42da533e820a63c45378bcc0530fe82aa21f220e3f65ac1231fcdeb408cb62",
+        "matches_provenance": true,
+        "import_sha256": "1988f013a0af9367a60adbca8fec91176f82de80e3dfa39de479c5244bf5e6cd"
+      },
+      {
+        "path": "data/audio/feedback/special_split.wav",
+        "sha256": "ec53acd2f37d7c9c6271d89f342a2aab944a6d7a173f79d73b9d26b6438fcec7",
+        "matches_provenance": true,
+        "import_sha256": "009f181774c82593c0587c40d819dd8f5d3e9b3a4daedbddd65a0eccf1c76a84"
+      },
+      {
+        "path": "data/audio/feedback/time_pickup.wav",
+        "sha256": "4768bfb1c3e741186540aa1ea56da508dbc972a7363a08042f9c2d6bbbcff194",
+        "matches_provenance": true,
+        "import_sha256": "17d3790e403940e0452e7fc07857831e42e7bf7fbb39c97630cffc9e26b8a016"
+      },
+      {
+        "path": "data/audio/feedback/tray_loss.wav",
+        "sha256": "e1ba046c41587498a9fc982529ebe515803215712a1df461fde99479695725b1",
+        "matches_provenance": true,
+        "import_sha256": "2932b46d0b80329b7b3068f0c63626fff39052706936081ee32d9cb8fdffd321"
+      },
+      {
+        "path": "data/audio/feedback/tray_win.wav",
+        "sha256": "5f306c5dafdc4bb2f96868737ae078bdbe7712195c0c4642dbd286cc92a3fcfa",
+        "matches_provenance": true,
+        "import_sha256": "3c305f98e77ede6669cad0412c6170e34aa33afbf08a1adb927984fdbf05e803"
+      },
+      {
+        "path": "data/audio/feedback/twin_transform.wav",
+        "sha256": "cf31330810f4d2e21c37797f324f2a7e640439ba3b0f362e3a49a4f4e1d215f3",
+        "matches_provenance": true,
+        "import_sha256": "9b9932b4c0ccf0604c438faf0b003620cbc85eb2b07f10279441bdc008479a7d"
+      },
+      {
+        "path": "data/audio/feedback/ui_back.wav",
+        "sha256": "0436f86ff10be82be62b03d217e390cf3ddc1aa09641d0783a59f21b6ff8b106",
+        "matches_provenance": true,
+        "import_sha256": "e170d7ebd11b38da0db107893be1ba0cb2178cfbbba8a238771fa04659467eec"
+      },
+      {
+        "path": "data/audio/feedback/ui_confirm.wav",
+        "sha256": "19a4ee54381b8202a2dfb83544d1d514a925c02ccc71cbe92949f9ea9eb0aaa9",
+        "matches_provenance": true,
+        "import_sha256": "d8a829f157ded2a4a76af65aa83ba6f1bb8b2612216e8bb218aa16ea01969b91"
+      },
+      {
+        "path": "data/audio/feedback/ui_error.wav",
+        "sha256": "b83c045324065bc89b4407a8c80fe7c370117e024a728986a0aa729b321d1015",
+        "matches_provenance": true,
+        "import_sha256": "a90c7436e4b60e05623fce40574874051ec2fa539208278c0c55b804297195f8"
+      },
+      {
+        "path": "data/audio/feedback/ui_tap.wav",
+        "sha256": "0a754bc8edb2482e114d6ee7267d8ecc73613ff84ae50aeeb044abc2329927a5",
+        "matches_provenance": true,
+        "import_sha256": "db68b4618fcbee3adffc26ef16aac08c3ddb686cb53eb8fed5d21f2210fe6ae1"
+      },
+      {
+        "path": "data/audio/feedback/upgrade.wav",
+        "sha256": "674b1dda2d5ee1efd4a739d8eb30cc76916f8559998636da2ae894af42a63b34",
+        "matches_provenance": true,
+        "import_sha256": "306f16bc28c2716b69e8749e8e8f9e9509ba019824b0c65467e23b994e0c6962"
+      }
+    ],
+    "player_profile_io": 0,
+    "human_listening_verified": false,
+    "phone_verified": false,
+    "startup_scope": "Startup changed after the production-audio fixture snapshot; tested separately by startup owner."
+  },
+  "game_runtime_files": [
+    {
+      "path": "scripts/area_ability_access.gd",
+      "sha256": "c09d982b508adea00e365153382398a6e3b651c520c5bcac34888244005452b3"
+    },
+    {
+      "path": "scripts/area_ability_ui.gd",
+      "sha256": "873dc98a4fb8f12199efce4ba74a67f35f7b4a83f1bda570463be797d6e36164"
+    },
+    {
+      "path": "scripts/area_art.gd",
+      "sha256": "833c583682df69d83172ca88cebdb669b45e663e40e8059e241df88d5190d4c8"
+    },
+    {
+      "path": "scripts/area_campaign.gd",
+      "sha256": "65d6817c839bd12474d95b73d0f1c1f0c90e5ec7f78f6b0705eb157351c942a3"
+    },
+    {
+      "path": "scripts/area_play_billing.gd",
+      "sha256": "528183cb6ff145b56ca5483b752ffe24ecee4691f407bb6e005b8f08c5cdbc99"
+    },
+    {
+      "path": "scripts/audio_catalog.gd",
+      "sha256": "db3f396833060fb8eb039c913699736c9037967264637a2ac1ff2b9a66405caf"
+    },
+    {
+      "path": "scripts/bakery_ability.gd",
+      "sha256": "d82d191f8524ef4cdb51a7cec2c9d1ac24c99ee2f6fbc08b2b78fe1b37af8437"
+    },
+    {
+      "path": "scripts/coin_display.gd",
+      "sha256": "29fcfa88220832e516a1d1d1e6210893ec083360848bda21caea574c7a26fc23"
+    },
+    {
+      "path": "scripts/coin_feedback.gd",
+      "sha256": "77355e8533d1f8840b539a53155c3beacd3140a4a6fc0b2b0795ae5460cb1cfb"
+    },
+    {
+      "path": "scripts/combat_balance.gd",
+      "sha256": "9ad489b7b8f3960a401adc30829d94776845f58060a58f878460479d5b2568e7"
+    },
+    {
+      "path": "scripts/countdown_feedback.gd",
+      "sha256": "44ded78cf9ef83874485fc632a0e53b5ff6af2f6aa10bd30ad511d542e2f0883"
+    },
+    {
+      "path": "scripts/crystal_launcher.gd",
+      "sha256": "af0b77e2a0b08ecd4760d27a82f55b41fb26ff57103d57c57da292733ec20a58"
+    },
+    {
+      "path": "scripts/crystal_upgrade_graph.gd",
+      "sha256": "d8715e6941f1df477e90e2c017392861ae9b4c3924afebf7009d26f994596671"
+    },
+    {
+      "path": "scripts/developer_area_ui.gd",
+      "sha256": "9720214c2fdd09fdc510003b0e25a7e9a79218f25da53a9bd5b5632dd5d96c93"
+    },
+    {
+      "path": "scripts/environment_art.gd",
+      "sha256": "38745078b12953911de5c8aab75b6648dc0d53d44f018f020b53b1b1bb8770b2"
+    },
+    {
+      "path": "scripts/first_run_guide.gd",
+      "sha256": "ca6795dfc258334d369b16591f5ec0704692141dce3bb0720256a588c68b5399"
+    },
+    {
+      "path": "scripts/flow_rules.gd",
+      "sha256": "98cc6d3ec935d021c11a47c4ccb4f4c819bca108af10afb17d5e442ca7812688"
+    },
+    {
+      "path": "scripts/food_art.gd",
+      "sha256": "d8ac12a56e6b6c35c97cac94229a218ac909f1887bf0e5ac6f0aaa3a9cc6bb7e"
+    },
+    {
+      "path": "scripts/game_audio.gd",
+      "sha256": "661f0f82a3b488541603e88d2e8204d5914f57ef63f1f68fb2a385e88d6dc952"
+    },
+    {
+      "path": "scripts/gelato_launcher.gd",
+      "sha256": "d735ac2812dbc6889bb3fad67649626e3a53352ffb6017831acc9bc83870ca19"
+    },
+    {
+      "path": "scripts/gelato_upgrade_graph.gd",
+      "sha256": "e9815d6ea340596e03b6a2646aec8a48d9a9dcf8dee183c9088e121f622586fd"
+    },
+    {
+      "path": "scripts/home_menu.gd",
+      "sha256": "1f2782cf38bbb8f81ace849b754c6119d11d6f34c7a94674a392dedca5efc5eb"
+    },
+    {
+      "path": "scripts/impact_feedback.gd",
+      "sha256": "f3e41246e7492a7daa7eab26d9f851d0c903c38f89997a59404eba0594932ca8"
+    },
+    {
+      "path": "scripts/level_map.gd",
+      "sha256": "32fea91d9db63b288532de5c4a3a258fa36270aa051020ef6ef15bb5bf476250"
+    },
+    {
+      "path": "scripts/main.gd",
+      "sha256": "9344a0fd6d73fa7e26a7d2039f9329491c40d88c6e79a6d85436e1f66722f35c"
+    },
+    {
+      "path": "scripts/monetization_service.gd",
+      "sha256": "7a1763b27f796ab29c1187e418ffe6ac0491c4333e196b33a80fdb9b989ad5d8"
+    },
+    {
+      "path": "scripts/monetization_ui.gd",
+      "sha256": "6156dc1b45a8a87db8efd6595ae90f3eba9137802d77bb4384acbf7c7ef2e9c6"
+    },
+    {
+      "path": "scripts/page_transition.gd",
+      "sha256": "9f2244879f276ceca92cd672103e9fc64bdc1d0ac5624c18ac50479820f08e60"
+    },
+    {
+      "path": "scripts/pause_transition.gd",
+      "sha256": "c58f991597e24d2617805c648ca20a97a9c72916f57e6ba6513a875142d5b0c2"
+    },
+    {
+      "path": "scripts/progress_reset_ui.gd",
+      "sha256": "75608c0fa638b08ba4cdf15029fee9574437d23da1615c2f7e68fbb20d4175be"
+    },
+    {
+      "path": "scripts/result_comparison_ui.gd",
+      "sha256": "4ebaed65dbe076b6b2e5bf535393e8529ca3c39bfa623d68ac5abf52f43e2752"
+    },
+    {
+      "path": "scripts/run_history.gd",
+      "sha256": "f2da83d6d0c8179f58e61ccc7745d7ecb0980c27593a8a71aae89448fd939b30"
+    },
+    {
+      "path": "scripts/run_snapshot.gd",
+      "sha256": "d095eb6650619bf059e926c9bbd1c873d766ed92e333493c465d5686c530f875"
+    },
+    {
+      "path": "scripts/run_transition.gd",
+      "sha256": "6b80a5f6344ed34f26cdffbc3c5780f8cf607995a74ae05ae8a70d056984a043"
+    },
+    {
+      "path": "scripts/speech_bubble.gd",
+      "sha256": "a7fa2f48b72ff1c02a2617148a1c421c3bc55fe0e8dccc286441e43e2767969c"
+    },
+    {
+      "path": "scripts/tone_bank.gd",
+      "sha256": "0eabc16e9ebf89d77e915ebc64ad44b030dd76003a4e02466d66267f9c5907c0"
+    },
+    {
+      "path": "scripts/ui_art.gd",
+      "sha256": "12cf2661b153fb7701fba3028786deb14daf200462eaa23d00fbfe50bf2c5485"
+    },
+    {
+      "path": "scripts/upgrade_arc_art.gd",
+      "sha256": "4cefc77bef1b62f39b502f9ac8b1edadfd29f8fad05ccb280f10ef1a28a35ab1"
+    },
+    {
+      "path": "scripts/upgrade_graph.gd",
+      "sha256": "3845bed72ffeefb5d747434e8b7dda326993762654b55d796e68d4e437777729"
+    },
+    {
+      "path": "scripts/upgrade_map.gd",
+      "sha256": "6135740e7377e9dea18baa089a2f59983afa5e1136afdfd2f5b21ef78c6de8f9"
+    }
+  ],
+  "studio_validation": "SLOW_STUDIO_VALIDATION.json",
+  "audition": "verification/game-audio-20261103/controller-02/mixer/feedback-demo.wav",
+  "audition_seconds": 6.04,
+  "no_aggregate_historical_total": true,
+  "isolation": "Disposable APPDATA confirmed before direct-project tests. Fixtures intercept profile writes and avoid production _ready/load; no player profile read or written.",
+  "phone_listening_verified": false,
+  "android_package_built_for_this_change": false,
+  "drive_artifact": "v0.7.6-preview (predates this audio pass)",
+  "remaining": [
+    "Phone loudness, masking, comfort and interruption checks",
+    "Export and inspect a requested APK containing the new audio",
+    "Current normal-wallet progression and remaining Google Play setup/billing/listing work"
+  ]
+}

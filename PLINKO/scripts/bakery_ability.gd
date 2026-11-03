@@ -36,6 +36,7 @@ func buy() -> bool:
 		return false
 	g.note="Jam Burst unlocked"
 	g.note_time=3.0
+	g.feedback("ability_purchase")
 	return true
 
 func activate(source: String) -> bool:
@@ -64,6 +65,7 @@ func on_hit(ball: Dictionary, direct_peg: Dictionary) -> int:
 	if not active() or ball.kind!="normal" or not ball.get("jam",false) or ball.used: return 0
 	# Spend before damaging neighbours: a clear, pause or save cannot replay it.
 	ball.used=true
+	g.feedback("jam_splash")
 	var candidates: Array[Dictionary]=[]
 	for index in range(g.pegs.size()):
 		var peg: Dictionary=g.pegs[index]

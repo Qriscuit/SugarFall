@@ -32,7 +32,10 @@ func _store_result(product: String, outcome: String):
 	# on the next run, never change an airborne run's ability or Power midway.
 	if product!=g.ability_access.CATALOG[g.area_id].product_id: return
 	if outcome=="completed" and g.mode in ["home","shop","ability_offer"]:
-		if restore_activation(): message="Unlocked"; stage="details"
+		var was_owned = owned()
+		if restore_activation():
+			message="Unlocked"; stage="details"
+			if not was_owned and owned(): _purchase_feedback()
 	elif outcome=="pending": message="Purchase pending"
 	elif outcome in ["failed","cancelled","unavailable"]:
 		message="Purchase cancelled" if outcome=="cancelled" else "Store unavailable"
@@ -48,6 +51,9 @@ func owned() -> bool:
 
 func controller():
 	return g.bakery_ability if g.area_id=="bakery" else (g.gelato_launcher if g.area_id=="gelato" else g.crystal_launcher)
+
+func _purchase_feedback():
+	g.feedback("twin_transform" if g.area_id=="gelato" else "ability_purchase")
 
 func unlocked() -> bool: return controller().unlocked()
 func cost() -> int: return controller().cost()
@@ -136,25 +142,33 @@ func press(p: Vector2):
 		"back": close()
 		"cancel":
 			g.ability_access.cancel_pending_preview(); stage="details"; message=""
+			g.feedback("ui_back")
 		"earn":
 			if g.ability_early_access(g.area_id):
 				message="Restored" if restore_activation() else "Could not save. Try again."
+				g.feedback("ui_confirm" if message=="Restored" else "ui_error")
 				return
 			if controller().buy():
 				message="Unlocked"; g.note=""; g.note_time=0
+			else: g.feedback("ui_error")
 		"early":
 			var offer=g.ability_access.offer(g.area_id,owned())
 			if offer.owned: return
-			if not offer.available: message="Store unavailable"; return
+			if not offer.available:
+				message="Store unavailable"; g.feedback("ui_error"); return
 			var request=g.ability_access.request_purchase(g.area_id,owned())
 			if request.is_empty(): message="Use Restore purchases"; return
 			stage="confirm" if offer.preview else "pending"
 			message=""
+			g.feedback("ui_tap")
 		"confirm":
 			if g.ability_access.pending.is_empty(): return
 			var result=g.ability_access.resolve_preview(g.ability_access.pending.id,"completed",persist_activation)
-			if result.get("granted",false): stage="details"; message="Unlocked"
-			elif result.get("outcome","")=="save_failed": message="Could not save. Try again."
+			if result.get("granted",false):
+				stage="details"; message="Unlocked"
+				_purchase_feedback()
+			elif result.get("outcome","")=="save_failed":
+				message="Could not save. Try again."; g.feedback("ui_error")
 		"restore":
 			if g.ability_access.preview_enabled():
 				var receipts: Dictionary=g.ability_access.export_state().preview_receipts
@@ -170,6 +184,7 @@ func press(p: Vector2):
 				var store=billing.offer(g.ability_access.CATALOG[g.area_id].product_id)
 				if not str(store.get("error","")).is_empty(): message="Store unavailable"
 				else: g.ability_access.restore(); message="Restore requested"
+			g.feedback("ui_error" if message.begins_with("Could not") or message=="Store unavailable" else "ui_confirm")
 	g.navigation_delay=.25
 	g.queue_redraw()
 

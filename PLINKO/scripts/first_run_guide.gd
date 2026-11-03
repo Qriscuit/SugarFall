@@ -223,6 +223,7 @@ func _ready_text() -> bool:
 
 func advance():
 	if not active: return
+	g.feedback("ui_tap")
 	if not _ready_text():
 		revealed = float(dialogue().length())
 		g.queue_redraw()

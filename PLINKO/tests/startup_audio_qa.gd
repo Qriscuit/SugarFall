@@ -34,7 +34,7 @@ func run():
 	studio._start_hum(); await create_timer(.2).timeout
 	check(not studio.hum.playing and peak(take())==0,"Saved mute produces no mixer samples before first play")
 	studio.sound_on=true; studio.heartbeat_elapsed=0; studio._start_hum()
-	await create_timer(1.8).timeout
+	await create_timer(2.6).timeout
 	var audible=take()
 	check(audible.size()>AudioServer.get_mix_rate(),"Real audio mixer captures more than a second of the original hum")
 	check(peak(audible)>.01 and peak(audible)<.30,"Hum is audible and leaves ample peak headroom at the chosen -7dB gain")
@@ -43,9 +43,9 @@ func run():
 	await create_timer(.15).timeout
 	check(peak(take())<.0001 and studio.heartbeat_elapsed==elapsed,"Background has silent mixer output and a frozen visual clock")
 	studio._notification(Node.NOTIFICATION_APPLICATION_RESUMED)
-	await create_timer(.9).timeout
+	await create_timer(1.3).timeout
 	check(peak(take())>.01 and studio.hum_start_count==1,"Foreground resumes the same audible voice without duplication")
-	studio.heartbeat_elapsed=.14; studio._update_hum_volume(); studio._stop_hum(true)
+	studio.heartbeat_elapsed=.28; studio._update_hum_volume(); studio._stop_hum(true)
 	await create_timer(.18).timeout; take()
 	await create_timer(.15).timeout
 	check(not studio.hum.playing and not studio.hum_releasing and peak(take())<.0001,"Handoff release ends in actual mixer silence")

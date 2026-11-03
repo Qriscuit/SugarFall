@@ -71,14 +71,19 @@ func queue_fixture(g, paths: Array[String]):
 	g._fill_requests()
 
 func heartbeat_and_native_layout():
-	check(Startup.heartbeat_at(0) == 0 and Startup.heartbeat_at(.03) == 0 and Startup.heartbeat_at(.70) == 0,"Native engine still and quiet runtime heartbeat use exactly zero pulse")
-	check(Startup.heartbeat_at(.14) > .99 and Startup.heartbeat_at(.30) > .54 and Startup.heartbeat_at(.30) < .57,"Heartbeat has one strong beat and one smaller second thump")
-	check(is_equal_approx(Startup.heartbeat_at(.14),Startup.heartbeat_at(1.04)),"Heartbeat repeats every 0.9 seconds")
+	check(Startup.heartbeat_at(0) == 0 and Startup.heartbeat_at(.03) == 0 and Startup.heartbeat_at(1.10) == 0,"Native engine still and quiet runtime heartbeat use exactly zero pulse")
+	check(Startup.heartbeat_at(.28) == 1.0 and is_equal_approx(Startup.heartbeat_at(.78),.50),"Heartbeat has one rounded strong beat and a gentler second pulse")
+	check(is_equal_approx(Startup.heartbeat_at(.28),Startup.heartbeat_at(1.58)),"Heartbeat repeats every 1.3 seconds")
+	check(is_equal_approx(Startup.heartbeat_at(.17),.5) and is_equal_approx(Startup.heartbeat_at(.455),.5),"Primary beat takes 220 ms to rise and 350 ms to release instead of snapping in or out")
+	check(Startup.heartbeat_at(NAN)==0 and Startup.heartbeat_at(INF)==0 and Startup.heartbeat_at(-1)==0,"Invalid timing never injects nonfinite pulse values into shaders")
 	var bounded = true
-	for tick in range(901):
+	var continuous = true
+	for tick in range(1301):
 		var value = Startup.heartbeat_at(tick*.01)
 		bounded = bounded and value >= 0 and value <= 1
+		continuous = continuous and absf(Startup.heartbeat_at(tick*.001+.001)-Startup.heartbeat_at(tick*.001))<.007
 	check(bounded,"All sampled heartbeat strengths stay within shader bounds")
+	check(continuous,"Rise, release and cycle seams have a bounded smooth pulse slope")
 	var g = fixture()
 	check(g.preference_reads == 0 and g.status == "preview" and g.requests.is_empty(),"Opted-in scene fixture bypasses preference discovery and automatic loading")
 	check(g.stamp.texture.get_size() == Vector2(301,855),"Production scene retains the supplied native stamp dimensions")
@@ -88,7 +93,7 @@ func heartbeat_and_native_layout():
 	check(g.stamp.position+g.stamp.size*.5 == viewport*.5,"Stamp stays centered in the actual viewport")
 	check(g.stamp.pivot_offset == Vector2(g.stamp.size.x*.5,g.stamp.size.y),"Warm heartbeat is anchored at the stamp bottom center")
 	var anchor = g.stamp.get_transform()*g.stamp.pivot_offset
-	g.heartbeat_elapsed = .14; g._render_heartbeat()
+	g.heartbeat_elapsed = .28; g._render_heartbeat()
 	check(is_equal_approx(g.stamp.scale.x,1.055) and g.stamp.material.get_shader_parameter("heartbeat") > .99,"Strong beat changes runtime scale and shader contrast together")
 	check(g.stamp.get_transform()*g.stamp.pivot_offset == anchor,"Scaling leaves the stamp bottom-center anchor exactly fixed")
 	check(g.background.material.get_shader_parameter("heartbeat") > .99,"The warm spotlight follows the same heartbeat as the native mark")
@@ -99,25 +104,25 @@ func heartbeat_and_native_layout():
 func warm_hum_contract():
 	var g = fixture()
 	var original_stream = g.hum.stream
-	check(original_stream is AudioStreamWAV and absf(original_stream.get_length()-.9)<.001,"Original warm hum is a real 0.9-second WAV matching the pulse cycle")
+	check(original_stream is AudioStreamWAV and absf(original_stream.get_length()-Startup.BEAT_SECONDS)<.001,"Original warm hum is a real 1.3-second WAV matching the pulse cycle")
 	g._start_hum()
 	check(not g.hum.playing and g.hum_start_count==0,"Startup cannot make sound before preference discovery")
 	g.audio_preference_read = true; g.sound_on = false; g._start_hum()
 	check(not g.hum.playing and g.hum_start_count==0,"Saved Sound off prevents the first sample from playing")
-	g.sound_on = true; g.heartbeat_elapsed = .14; g._start_hum(); g._start_hum()
+	g.sound_on = true; g.heartbeat_elapsed = .28; g._start_hum(); g._start_hum()
 	check(g.hum.playing and g.hum_start_count==1,"Repeated start requests retain one playing hum without duplicate voices")
 	check(g.hum.stream!=original_stream and g.hum.stream.loop_mode==AudioStreamWAV.LOOP_FORWARD,"Loop settings apply to a private WAV instance")
 	g._notification(Node.NOTIFICATION_APPLICATION_PAUSED); g._process(10)
-	check(g.hum.stream_paused and is_equal_approx(g.heartbeat_elapsed,.14),"Background pauses the hum and heartbeat together")
+	check(g.hum.stream_paused and is_equal_approx(g.heartbeat_elapsed,.28),"Background pauses the hum and heartbeat together")
 	g._notification(Node.NOTIFICATION_APPLICATION_RESUMED); g._process(10)
-	check(not g.hum.stream_paused and g.hum.playing and g.hum_start_count==1 and is_equal_approx(g.heartbeat_elapsed,.14),"Resume realigns the same voice without spending background time")
-	g.heartbeat_elapsed = .72; g._update_hum_volume()
+	check(not g.hum.stream_paused and g.hum.playing and g.hum_start_count==1 and is_equal_approx(g.heartbeat_elapsed,.28),"Resume realigns the same voice without spending background time")
+	g.heartbeat_elapsed = 1.10; g._update_hum_volume()
 	check(g.hum.volume_db<=-60,"Each heartbeat has a silent release before the cream handoff")
-	g.heartbeat_elapsed = 1.81; g._update_hum_volume()
-	check(g.hum.volume_db<=-60,"The start-of-cycle quiet frame also stays silent at the normal 1.8-second handoff")
+	g.heartbeat_elapsed = 2.61; g._update_hum_volume()
+	check(g.hum.volume_db<=-60,"The start-of-cycle quiet frame also stays silent at the normal 2.6-second handoff")
 	g._fail("fixture")
 	check(not g.hum.playing,"Loading failure stops the hum while Retry and Close stay available")
-	g.status = "preview"; g.heartbeat_elapsed = .14; g._start_hum()
+	g.status = "preview"; g.heartbeat_elapsed = .28; g._start_hum()
 	check(g.hum.playing and g.hum_start_count==2,"A retry can restart the same stopped player")
 	g._stop_hum(true)
 	check(g.hum_releasing,"An immediate Reduced Motion handoff can release an unfinished note without delaying the game")
@@ -138,6 +143,9 @@ func active_asset_roster():
 	check(exists and not retired,"Every warmup target exists and excludes retired art versions")
 	check(Startup.MAIN_SCENE in paths and "res://data/art/transitions/cream_wave.png" in paths,"Warmup includes the actual main scene and shared reveal texture")
 	check("res://data/art/crystal/food/balls_atlas.png" in paths and "res://data/art/crystal/food/pegs_atlas.png" in paths and "res://data/art/crystal/environment/upgrade_courtyard.png" in paths,"Crystal warmup follows current atlas metadata and the authored courtyard")
+	var audio_warmed=true
+	for path in preload("res://scripts/audio_catalog.gd").resource_paths(): audio_warmed=audio_warmed and path in paths
+	check(audio_warmed,"Every gameplay sound resource is in the real startup readiness queue")
 
 func real_progress_and_bounds():
 	var g = fixture()
@@ -180,12 +188,12 @@ func failures_and_retry():
 func foreground_and_handoff():
 	var g = fixture()
 	g.status = "ready"
-	g._process(.6); g._process(.6)
-	check(g.handoff_count == 0 and g.status == "ready","A fast load retains two short heartbeat cycles before handoff")
+	g._process(1.0); g._process(1.0)
+	check(g.handoff_count == 0 and g.status == "ready","A fast load retains two slower heartbeat cycles before handoff")
 	g._process(.61)
 	check(g.handoff_count == 0,"A settled logo frame renders before the cream-wave snapshot is taken")
 	g._process(0.0)
-	check(g.handoff_count == 1 and g.status == "handed_off","Ready startup hands off after the 1.8-second minimum")
+	check(g.handoff_count == 1 and g.status == "handed_off","Ready startup hands off after the 2.6-second minimum without waiting for another cycle")
 	g._process(10); g._handoff()
 	check(g.handoff_count == 1,"Completed startup cannot hand off or replay twice")
 	g.free()
@@ -209,19 +217,19 @@ func foreground_and_handoff():
 	g._process(20)
 	check(g.heartbeat_elapsed == 0,"The first resumed frame discards background-sized delta")
 	g.free()
-	g = fixture(); g.status = "ready"; g.heartbeat_elapsed = 1.7
+	g = fixture(); g.status = "ready"; g.heartbeat_elapsed = 2.5
 	g._notification(Node.NOTIFICATION_WM_WINDOW_FOCUS_OUT); g._process(100)
-	check(g.handoff_count == 0 and g.heartbeat_elapsed == 1.7,"A ready but backgrounded splash defers handoff and keeps its elapsed time")
+	check(g.handoff_count == 0 and g.heartbeat_elapsed == 2.5,"A ready but backgrounded splash defers handoff and keeps its elapsed time")
 	g._notification(Node.NOTIFICATION_WM_WINDOW_FOCUS_IN); g._process(100)
-	check(g.handoff_count == 0 and g.heartbeat_elapsed == 1.7,"Foreground notification cannot spend background time on the remaining heartbeat")
+	check(g.handoff_count == 0 and g.heartbeat_elapsed == 2.5,"Foreground notification cannot spend background time on the remaining heartbeat")
 	g._process(.11)
 	g._process(0.0)
 	check(g.handoff_count == 1,"A ready splash continues once after actual foreground time")
 	g.free()
-	g = fixture(); g.status = "ready"; g.heartbeat_elapsed = 1.94; g.frames_shown = 3
+	g = fixture(); g.status = "ready"; g.heartbeat_elapsed = 2.88; g.frames_shown = 3
 	g._process(0.0)
 	check(g.handoff_count == 0 and g.stamp.material.get_shader_parameter("heartbeat") > .99,"Loading that finishes during a bright beat waits for the logo to settle")
-	g._process(.52)
+	g._process(.78)
 	check(g.handoff_count == 0 and g.stamp.scale == Vector2.ONE,"Quiet phase gets its own rendered rest frame before reveal")
 	g._process(0.0)
 	check(g.handoff_count == 1,"Mid-beat readiness hands off once after the quiet frame")

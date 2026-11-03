@@ -351,3 +351,7 @@ Primary sources:
 Full Godot MIT and bundled-component copyright notices are included in both `docs/licenses/` and packaged `data/licenses/`. The in-game Model screen identifies the engine and its licensing page. Preserve applicable notices when redistributing builds.
 
 The source archive uses an explicit allowlist: project configuration, scenes, original scripts, data, notices, reproducible tests and user-facing documentation. It excludes `.godot`, QA saves/screenshots, generated test telemetry/logs, downloaded tools/templates, signing keys, report-render intermediates and binaries. The original game's source is not included, and no ownership/license claim is made over another game's work.
+
+## CHG-038 source after v0.7.6
+
+Action audio and slower studio startup are integrated and source-verified; no new APK/AAB or Drive replacement was requested. Reopened I09 tracks the next export/payload checks. Keep the existing v0.7.6 and v0.8.0-rc1 manifests historical. See [audio](AUDIO_FEEDBACK.md) and [Play readiness](GOOGLE_PLAY_READINESS.md).

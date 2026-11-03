@@ -1,0 +1,254 @@
+{
+  "date": "2026-11-03",
+  "scope": "Slower studio heartbeat and synchronized original hum; separate from gameplay feedback verification.",
+  "engine": "Godot 4.6.3",
+  "status": "Final curve, audio and native rendering checks passed; phone listening/feel remain unverified.",
+  "source_scope": "Each accepted run had exact before/after parity across 256 inputs. The later level_map.gd menu-audio correction suppresses duplicate Back/Tap feedback when one overlay replaces another. That unrelated file now differs from the recorded whole-workspace snapshot; startup-specific source, assets and harnesses remain unchanged. No startup tests were repeated for this menu-only correction.",
+  "timing": {
+    "pivot": "bottom center",
+    "second_strength": 0.5,
+    "silent_tail_seconds": 0.26,
+    "first_release": [
+      0.28,
+      0.63
+    ],
+    "maximum_scale": 1.055,
+    "first_rise": [
+      0.06,
+      0.28
+    ],
+    "second_release": [
+      0.78,
+      1.04
+    ],
+    "second_rise": [
+      0.65,
+      0.78
+    ],
+    "minimum_seconds": 2.6,
+    "cycle_seconds": 1.3
+  },
+  "preserved": [
+    "Unchanged supplied studio stamp and existing shaders",
+    "True bounded asynchronous loading, at most 3 pending top-level requests",
+    "Saved mute read before first hum sample",
+    "Reduced Motion bypass of animation and presentation minimum",
+    "Background pause/resume phase alignment",
+    "Quiet-frame cream handoff to restored Home/paused/result destination"
+  ],
+  "final_source_checks": {
+    "failed": 0,
+    "passed": 447,
+    "runs": [
+      {
+        "scope": "Curve timing, bounded easing, two-cycle handoff, async loader/retry/input/lifecycle and all sound paths in warmup",
+        "matches_current_workspace": false,
+        "name": "startup_controller",
+        "startup_specific_files_match": true,
+        "source_manifest": "verification/slow-studio-20261103/unit-final-02/source-manifest.json",
+        "full_runtime_before_after_parity": true,
+        "subsequently_changed_files": [
+          "scripts/level_map.gd"
+        ],
+        "passed": 78,
+        "source_files": 256,
+        "failed": 0,
+        "run": "unit-final-02",
+        "log": "verification/slow-studio-20261103/unit-final-02/unit.log"
+      },
+      {
+        "scope": "Real AudioEffectCapture mixer: saved mute, one voice, background pause/resume, headroom and final silence",
+        "matches_current_workspace": false,
+        "name": "startup_mixer",
+        "startup_specific_files_match": true,
+        "source_manifest": "verification/slow-studio-20261103/mixer-final-02/source-manifest.json",
+        "full_runtime_before_after_parity": true,
+        "subsequently_changed_files": [
+          "scripts/level_map.gd"
+        ],
+        "passed": 7,
+        "source_files": 256,
+        "failed": 0,
+        "run": "mixer-final-02",
+        "log": "verification/slow-studio-20261103/mixer-final-02/mixer.log"
+      },
+      {
+        "scope": "Native stamp/spotlight, both pulses, rest, reduced motion, recovery controls, all-area cream handoff and paused/result destinations",
+        "matches_current_workspace": false,
+        "name": "startup_renderer",
+        "startup_specific_files_match": true,
+        "source_manifest": "verification/slow-studio-20261103/visual-final-02/source-manifest.json",
+        "full_runtime_before_after_parity": true,
+        "subsequently_changed_files": [
+          "scripts/level_map.gd"
+        ],
+        "passed": 362,
+        "source_files": 256,
+        "failed": 0,
+        "run": "visual-final-02",
+        "log": "verification/slow-studio-20261103/visual-final-02/visual.log"
+      }
+    ],
+    "files": [
+      {
+        "sha256": "1d4a76ac093b69e44a5cb7e2bd266e36a8f71b7660f7f82092f38e683a05d588",
+        "path": "scripts/startup.gd"
+      },
+      {
+        "sha256": "db3f396833060fb8eb039c913699736c9037967264637a2ac1ff2b9a66405caf",
+        "path": "scripts/audio_catalog.gd"
+      },
+      {
+        "sha256": "2fb0679d7a07bf76a3f416fc5ad8242435410b9ff8e89d4ec74f5461bb73cc81",
+        "path": "tools/generate_studio_hum.py"
+      },
+      {
+        "sha256": "06d8b555dd718c9daa44d983dddd82b5b5c77895407b2a500d1484dcf6186cec",
+        "path": "tests/studio_hum_asset_qa.py"
+      },
+      {
+        "sha256": "00819d73db4a434183e70d634c805e4551512098b04efd3d1c8b22c96bc6c287",
+        "path": "tests/startup_qa.gd"
+      },
+      {
+        "sha256": "e49a26b6b65214fe6c2cbe897b6a5c1fc38a2d1ea99717f753c232702c9e91fe",
+        "path": "tests/startup_audio_qa.gd"
+      },
+      {
+        "sha256": "14a94ea619ab89697733e4860bbda3e817c88ed0468db1a84028a3a042a8d1dc",
+        "path": "tests/startup_visual_qa.gd"
+      },
+      {
+        "sha256": "08a2aeb7cad23ace3002d71ff3ab8930ccbc23c9b980fdaddc2a7c375599252b",
+        "path": "tests/startup_profile_qa.gd"
+      },
+      {
+        "sha256": "bd52d9d5a059a18ea3f1878c95dd4ed9e258b330aef19d97bb59614e7f063e4f",
+        "path": "startup.tscn"
+      },
+      {
+        "sha256": "f90b3b557fd9cf96610943d1ef263dc9a704d445650cae6ba535b897197461ce",
+        "path": "data/audio/studio_warm_hum.wav"
+      },
+      {
+        "sha256": "98783e5aadd966cd3dd5c96416fb04de67e5c5e35621bef68ccaee1cbb59cc71",
+        "path": "data/audio/studio_warm_hum.wav.import"
+      },
+      {
+        "sha256": "a3eb0fc29b08d98edcd3889c01d7c6f9fbe01f5560ca2b0285ea949f819875c5",
+        "path": "data/audio/studio_warm_hum.provenance.json"
+      },
+      {
+        "sha256": "a7e295efc6232750e58fc230372987b7382da3c102ac445dbf8d7e91cd3a2d53",
+        "path": "data/art/branding/studio_stamp.png"
+      },
+      {
+        "sha256": "b044f3505fa013ffa257cae6a027ffa06788e008baae32856e7eaa3d53841b33",
+        "path": "data/art/branding/studio_stamp.gdshader"
+      },
+      {
+        "sha256": "51800566a4e4521a2b3c823174749c28ec1f3c1f72a304644dd88857808eb184",
+        "path": "data/art/branding/studio_spotlight.gdshader"
+      },
+      {
+        "sha256": "3e84e91f493a050ec9f1a0601470f8eee2d763e2e3723fa7f74a224f7191256c",
+        "path": "data/art/branding/studio_boot.png"
+      }
+    ]
+  },
+  "native_asset_checks": {
+    "duration_seconds": 1.3,
+    "failed": 0,
+    "passed": 12,
+    "second_to_first_rms": 0.5049244866178288,
+    "peak": 0.5,
+    "scope": "Reads actual generated PCM and original logo bytes; separate from the 447 controller/mixer/renderer assertions.",
+    "maximum_sample_step": 0.02618408203125,
+    "report": "verification/slow-studio-20261103/assets-final.json"
+  },
+  "audio": {
+    "mixer_report": "verification/slow-studio-20261103/mixer-final-02/audio-results.json",
+    "mixer_peak": 0.223280444741249,
+    "mixer_recording": "verification/slow-studio-20261103/mixer-final-02/studio-mixer.wav",
+    "original_synthesis": true,
+    "source": "PLINKO/data/audio/studio_warm_hum.wav",
+    "provenance": "PLINKO/data/audio/studio_warm_hum.provenance.json",
+    "generator": "PLINKO/tools/generate_studio_hum.py",
+    "catalog": "PLINKO/scripts/audio_catalog.gd",
+    "physical_listening": false,
+    "gameplay_warmup_paths": 33,
+    "catalog_loads_audio_synchronously": false
+  },
+  "renderer": {
+    "reviewed": [
+      "studio-rest-450x800.png",
+      "studio-heart-28-450x800.png",
+      "studio-heart-78-450x800.png",
+      "studio-heart-108-450x1000.png"
+    ],
+    "profile_io": 0,
+    "captures": 72,
+    "sizes": [
+      "450x800",
+      "720x1280",
+      "450x1000"
+    ],
+    "images": "verification/slow-studio-20261103/visual-final-02/",
+    "passed": 362,
+    "renderer": "Intel(R) Iris(R) Xe Graphics",
+    "summary": "verification/slow-studio-20261103/visual-final-02/preview-summary.json",
+    "failed": 0,
+    "observations": [
+      "Primary bright pulse and quieter secondary remain distinct.",
+      "Secondary .50 is legible; the .38 experiment nearly matched background luminance.",
+      "Rest remains subdued and pixel-matches the static engine frame at 720x1280.",
+      "Existing logo aspect, bottom-center anchor and cream/art composition remain unchanged."
+    ]
+  },
+  "profile_baseline": {
+    "scope": "Actual production threaded loading/main initialization and disk profiles at 1.30s/2.60s, before only the secondary amplitude/hum changed from .38 to .50. Lifecycle, preference, save and handoff code did not change after this run. Kept separate from 447 final-source assertions; no claim of a final-amplitude profile rerun.",
+    "cases": [
+      "fresh/bakery",
+      "normal/bakery",
+      "paused/bakery",
+      "result/bakery",
+      "normal/gelato",
+      "paused/gelato",
+      "result/gelato",
+      "normal/crystal",
+      "paused/crystal",
+      "result/crystal",
+      "normal/gelato/reduced",
+      "paused/crystal/reduced",
+      "blocked/bakery"
+    ],
+    "matches_entire_final_source": false,
+    "source_manifest": "verification/slow-studio-20261103/profile-final-01/source-manifest.json",
+    "before_after_hashes_match": true,
+    "passed": 295,
+    "changed_since_test": [
+      "data/audio/studio_warm_hum.provenance.json",
+      "data/audio/studio_warm_hum.wav",
+      "scripts/level_map.gd",
+      "scripts/startup.gd",
+      "tools/generate_studio_hum.py"
+    ],
+    "failed": 0,
+    "log": "verification/slow-studio-20261103/profile-final-01/profile.log"
+  },
+  "superseded": {
+    "controller_and_mixer": "unit-final-01 and mixer-final-01 used .38 secondary strength; final-02 replaces them",
+    "visual": "visual-final-01: 362/0 and 72 captures at .38 secondary strength, superseded after visual review",
+    "runner": "unit-01/mixer-01 stopped before test execution because of a runner path-list construction error; unit-02/mixer-02 were the first passing owned-file checks"
+  },
+  "isolation": "Actual Godot user directory was probed under disposable APPDATA. Profile fixtures used that directory exclusively; visual fixtures performed zero profile IO. No player profile was read or written.",
+  "known_environment_message": "Only the exact offline Windows root-certificate-store startup warning was permitted; other engine/script errors fail the runners.",
+  "apk_built": false,
+  "phone_verified": false,
+  "physical_listening": false,
+  "remaining": [
+    "Phone startup pacing and physical speaker/headphone listening",
+    "Android cold/warm launch and background/foreground acceptance",
+    "Future APK packaging verification for changed hum and catalog"
+  ]
+}
