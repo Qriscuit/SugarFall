@@ -1,8 +1,8 @@
 # Sugarfall — current area status
 
-Updated 3 November 2026 · v0.7.7-preview/code 33 delivered · CHG-039
+Updated 3 November 2026 · v0.7.8-preview/code 34 delivered · CHG-040
 
-The current Drive APK is v0.7.7-preview, including the action sounds and slower studio pulse/hum. All three I09 export checks are verified again for that exact package. Phone listening/feel, real public billing and current legal-campaign progression remain open; the local public v0.8.0-rc1 artifacts are unchanged.
+The current Drive APK is v0.7.8-preview with Bakery’s free More Jam upgrade. It addresses the user’s report that tray 10 could not be cleared despite having all upgrades; the phone retest remains open. All three I09 export checks remain verified for the current exact package. Full device/audio acceptance, real public billing and current legal-campaign progression remain open; the local public v0.8.0-rc1 artifacts are unchanged.
 
 Counts include test activities as well as production content. Verified means the recorded scope passed; it does not imply a phone playtest. Intentional omissions remain N/A.
 
@@ -98,11 +98,23 @@ CHG-038 is source-only after v0.7.6. 33 original WAVs cover 25 events across men
 
 SF-032 is Done for the dated official-requirements audit; the launch tracker now has 12 Done and 53 open tasks. No other SF or AF status is closed. F09 stays unverified for phone listening, I09 awaits the new export, and all 17 phone checks remain Pending. Template v7 keeps 85 requirements per area/255 total. See [audio coverage](PLINKO/docs/AUDIO_FEEDBACK.md), [studio startup](PLINKO/docs/STUDIO_STARTUP.md) and [the ordered Google Play queue](PLINKO/docs/GOOGLE_PLAY_READINESS.md).
 
-## Current v0.7.7 preview delivery
+## v0.7.7 preview delivery — historical milestone
 
 CHG-039 delivers v0.7.7-preview/code 33, including action sounds, the slower studio pulse/hum and the final area-picker cue correction. 823 payload checks and 16 Android metadata/signature/alignment checks pass. The APK is 93,047,202 bytes; SHA-256 `dd1eaa5982985a6e180a91ba214b1da0500f90f541d7b9104396faeb8c12adc9`. All 8 Drive readback checks pass; the existing private file ID, folder, owner permissions and URL are retained. No remote checksum comparison is claimed. Physical installation, retained saves, listening/feel, legal progression and real billing remain open. Public v0.8.0-rc1 artifacts are unchanged.
 
 Only the three I09 verification flags close. F09 phone listening, all 17 device checks, current legal progression and real payments remain open. All 65 SF and 9 AF statuses are unchanged; 12 SF tasks are Done and 53 remain open. See [the exact build record](PLINKO/docs/ANDROID_SUGARFALL_v0.7.7.json) and [download](PLINKO/BUILD_LINKS.txt).
+
+## Current More Jam preview — CHG-040
+
+More Jam is a free, once-only Bakery claim requiring tray 10 unlocked, effective Jam Burst access and all 62 ordinary upgrade nodes, including the shared root and all three routes. It affects newly started campaign runs and introduces no paid product. Base Jam Burst can be earned or accessed through its existing early route; More Jam itself cannot be bought early. On 3 November 2026, the user reported being unable to clear Bakery tray 10 despite having all upgrades. The exact installed build, phone/OS, node ownership/loadout, attempts, aim pattern, remaining pegs and time are unconfirmed. This is an open difficulty finding, not a completed phone or campaign acceptance pass.
+
+1,060 software checks pass across 12 focused backend, save and map suites. Separately, 79 GPU checks pass across 14 captures at 450x800 and 450x1000; 253 final renderer inputs match. No phone result is implied. The far-end More Jam node connects all three routes, reveals at tray 10 or any completed lane, and focuses eligible players on entry. Final map/GPU checks cover locked, green free-claim, owned, card and four-drop feedback states.
+
+78 fixed-build comparisons plus one deterministic replay have no invariant/profile/termination failures. Tray-10 tracking clears 8/9 at both cadences; broad sweeps clear 0/9 at both. Tracking trays 11/12 change 8/9 to 9/9 and 8/9 to 6/9. Jam damage rises, but this does not establish resolution of the phone difficulty or natural-wallet/human progression.
+
+CHG-040 delivers v0.7.8-preview/code 34 with More Jam, a free late Bakery upgrade that charges a Jam doughnut every fourth normal drop instead of every fifth. 786 payload checks and 16 Android metadata/signature/alignment checks pass. The APK is 93,051,298 bytes; SHA-256 `9bb0f427a1bb47ac916ec01b5ea73b50d590026f8cfa51f0c37905f602035998`. All 8 Drive readback checks pass; the existing private file ID, folder, owner permissions and URL are retained. No remote checksum comparison is claimed. The specific Bakery tray-10 phone finding awaits retest; full device/audio acceptance, normal-wallet progression and real billing remain open. Public v0.8.0-rc1 artifacts are unchanged.
+
+SF-054 is In progress for the reported issue and retest. All other SF statuses, nine AF statuses and 255 requirement states remain unchanged; 12 SF tasks are Done and 53 remain open. F09, current legal progression, real billing and D01–D17 remain open. See [More Jam](PLINKO/docs/BAKERY_MORE_JAM.md), [the exact build](PLINKO/docs/ANDROID_SUGARFALL_v0.7.8.json) and [download](PLINKO/BUILD_LINKS.txt).
 
 ## Fix queue
 
@@ -115,8 +127,8 @@ Only the three I09 verification flags close. F09 phone listening, all 17 device 
 | AF-005 | Complete targeted Crystal lifecycle checks | Done | Sixty-eight Crystal lifecycle checks pass: legal 63-position traversal, failed writes, actual disk entry/Trial/result restoration, reward conservation, histories, milestones and actual touch/menu guards. No lifecycle runtime defect found. |
 | AF-006 | Check crowded Bakery and Gelato physics | Done | 108 fixed-60Hz stress checks pass: 610 px/s contacts, cooldowns, population limits, expiry, clumped rendering schedules and an 83-ball final-split drain. No production physics defect found; no physics change needed. |
 | AF-007 | Finish current Gelato and Crystal visual coverage | Done | Completed 58 current GPU captures with 287 passing assertions at both sizes. Reviewed missing menus, live effects, Reduced Motion, result states and deep Crystal cards/edges. Added a cream backing so rebounding balls cannot obscure damage numbers. |
-| AF-008 | Measure legal progression through all three areas | Ready to test | Six linked campaigns across two legal shopping policies and three seeds passed 9,044 assertions and cleared all 18 sampled area campaigns. Wall builds, earnings, purchases, fees, Twin rebuild and Second Prism are measured. Five unique tray/seed pacing flags remain historical. CHG-036 Flow-2 rules and signature gates now require fresh legal-campaign/human revalidation; bounded probes do not replace it. |
-| AF-009 | Run the physical-phone acceptance pass | Ready to test | Verified v0.7.7 is delivered for the user's phone test, including new action sounds and slower startup. No physical installation, save retention, listening, input or performance result is claimed; D01–D17 stay Pending. |
+| AF-008 | Measure legal progression through all three areas | Ready to test | Six linked campaigns across two legal shopping policies and three seeds passed 9,044 assertions and cleared all 18 sampled area campaigns. Wall builds, earnings, purchases, fees, Twin rebuild and Second Prism are measured. Five unique tray/seed pacing flags remain historical. CHG-036 Flow-2 rules and signature gates now require fresh legal-campaign/human revalidation; bounded probes do not replace it. CHG-040 records the user’s Bakery tray-10 difficulty finding and bounded More Jam probes; the specific phone retry and natural-wallet pacing remain open. |
+| AF-009 | Run the physical-phone acceptance pass | Ready to test | Verified v0.7.8 is delivered for More Jam testing. The user’s specific Bakery tray-10 difficulty report is recorded, while the fix retest and full installation, save, listening, input and performance protocol remain open. D01–D17 stay Pending. |
 
 ## Continue one finding at a time
 
@@ -124,7 +136,7 @@ Use the workbook’s **Area checklist** and **Area fixes** tabs. Keep Built, Int
 
 - [Phone and human playtest protocol](PLINKO/docs/AREA_PLAYTEST.md)
 - [Measured legal progression and flagged trays](PLINKO/docs/AREA_PROGRESSION_BALANCE.md)
-- [Verified APK record](PLINKO/docs/ANDROID_SUGARFALL_v0.7.7.json)
+- [Verified APK record](PLINKO/docs/ANDROID_SUGARFALL_v0.7.8.json)
 - [Download details](PLINKO/BUILD_LINKS.txt)
 - [Editable launch workbook](outputs/launch-tracker-01a18eec/Sugarfall%20Launch%20Tracker.xlsx)
 

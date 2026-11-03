@@ -6,7 +6,7 @@ Each area has one permanent ability that changes its play pattern. The player ca
 
 | Area | Ability | Earned route | Behavior |
 |---|---|---|---|
-| Bakery | Jam Burst | Tray 8 unlocked, Power 4, 1,200 Bakery coins | Every fifth normal doughnut splashes nearby pegs on its first hit |
+| Bakery | Jam Burst | Tray 8 unlocked, Power 4, 1,200 Bakery coins | Every fifth normal doughnut splashes nearby pegs on its first hit; More Jam later changes new runs to every fourth |
 | Gelato Garden | Dual Shot | Tray 8 unlocked, Power 6, 3,000 Gelato coins | Two gravity launchers follow the same finger target along separate trajectories; Power resets and is rebuilt |
 | Crystal Candyworks | Second Prism | Tray 8 unlocked, Power 4, 900 Crystal coins | A second timed opportunity to duplicate live candy in a run |
 
@@ -14,9 +14,13 @@ The Home offer and special upgrade node expose the same choice. Locked earned ro
 
 ## Jam Burst
 
-[`bakery_ability.gd`](../scripts/bakery_ability.gd) counts actual normal launcher drops. Specials and fragments do not advance the count. Each fifth normal doughnut carries the [native jam sprite](AREA_MENU_ART.md); its first peg contact spends the charge before applying splash damage. Up to two other living pegs within 105 logical pixels of the directly hit peg receive 0.75 times current Power. Targets are selected by distance, with a stable index tie-break. The directly hit peg is excluded.
+[`bakery_ability.gd`](../scripts/bakery_ability.gd) counts actual normal launcher drops. Specials and fragments do not advance the count. By default, each fifth normal doughnut carries the [native jam sprite](AREA_MENU_ART.md); its first peg contact spends the charge before applying splash damage. Up to two other living pegs within 105 logical pixels of the directly hit peg receive 0.75 times current Power. Targets are selected by distance, with a stable index tie-break. The directly hit peg is excluded.
 
 Splash damage uses the shared damage-budget path, so it cannot create coins beyond each peg's fixed budget. Spent charges cannot replay after another contact or restored checkpoint. Run-local charge count, ownership source and spent-ball state are part of the compatibility checks. A short jam burst and charge dots communicate the effect; Reduced Motion removes the moving splash presentation without changing damage.
+
+## Free Bakery enhancement — More Jam
+
+More Jam is a free, once-only Bakery claim requiring tray 10 unlocked, effective Jam Burst access and all 62 ordinary upgrade nodes, including the shared root and all three routes. It affects newly started campaign runs and introduces no paid product. Base Jam Burst can be earned or accessed through its existing early route; More Jam itself cannot be bought early. New eligible runs charge every fourth normal drop; existing schema-6 runs keep every fifth. Splash strength and coin budgets are unchanged. The existing Jam art/audio is reused. CHG-040 delivers this enhancement in v0.7.8; the user’s tray-10 difficulty finding remains open pending phone retest. See [More Jam design and evidence](BAKERY_MORE_JAM.md).
 
 ## Existing abilities and compatibility
 
@@ -36,4 +40,4 @@ Campaign activation history is distinct from the physics of a newly started run.
 
 ## Acceptance scope
 
-Current source verification is recorded in [area status](../../AREA_STATUS.md). Real Play products, plugin installation, backend verification/acknowledgement, public purchase/restore testing, phone feel and fresh legal progression remain separate requirements. [The verified v0.7.6 preview](ANDROID_SUGARFALL_v0.7.6.json) includes CHG-036; package/delivery checks do not establish phone or real billing acceptance.
+Current source verification is recorded in [area status](../../AREA_STATUS.md). Real Play products, plugin installation, backend verification/acknowledgement, public purchase/restore testing, phone feel and fresh legal progression remain separate requirements. [The v0.7.6 preview](ANDROID_SUGARFALL_v0.7.6.json) first delivered CHG-036; [current v0.7.8](ANDROID_SUGARFALL_v0.7.8.json) includes the More Jam enhancement. Package/delivery checks do not establish phone or real billing acceptance.

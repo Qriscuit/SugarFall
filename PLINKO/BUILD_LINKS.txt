@@ -1,25 +1,26 @@
 CURRENT PRIVATE PREVIEWS - SUGARFALL - 3 November 2026
 
-ANDROID v0.7.7 - UPDATED 3 NOVEMBER 2026
-APK (93,047,202 bytes):
+ANDROID v0.7.8 - UPDATED 3 NOVEMBER 2026
+APK (93,051,298 bytes):
 https://drive.google.com/file/d/1GF1zo3lt0VR5voajNPGjoP1FYuPe0FYz/view?usp=drivesdk
-Sugarfall 0.7.7-preview, version code 33. ARM64, Android 7 or newer.
-Same preview package/certificate as v0.7.6; install over the existing preview
+Sugarfall 0.7.8-preview, version code 34. ARM64, Android 7 or newer.
+Same preview package/certificate as v0.7.7; install over the existing preview
 to retain its data. Physical installation/save retention remains unverified.
 
-This build delivers CHG-038: 33 original action sounds for 25 event types,
-area-specific material cues and a bounded cached mixer with mute/background
-handling. The studio pulse/hum slows to a 1.30-second cycle and 2.60-second
-minimum. The final area-picker cue correction is included.
+More Jam is a free far-end Bakery node requiring tray 10 unlocked, Jam Burst
+access and all 62 ordinary upgrade nodes. New runs charge every fourth normal
+drop instead of every fifth; legacy active Jam runs retain their old cadence.
+Existing art, sounds, peg HP, rewards and board geometry are retained.
+The user's Bakery tray-10 difficulty report awaits a phone retest.
 
-The three areas, themed menu frames, signature abilities, Flow-2 balance,
-preview test purchases and developer settings remain. Real Play billing is
-not connected. Gameplay data and progress compatibility are retained.
+The three areas, themed menu frames, signature abilities, action sounds,
+slower studio pulse/hum and developer settings remain. Real Play billing
+is not connected. More Jam introduces no new paid product.
 
-823 payload checks and 16 Android metadata/signature/alignment checks pass. The APK is 93,047,202 bytes; SHA-256 dd1eaa5982985a6e180a91ba214b1da0500f90f541d7b9104396faeb8c12adc9.
+786 payload checks and 16 Android metadata/signature/alignment checks pass. The APK is 93,051,298 bytes; SHA-256 9bb0f427a1bb47ac916ec01b5ea73b50d590026f8cfa51f0c37905f602035998.
 All 8 Drive readback checks pass; the existing private file ID, folder, owner permissions and URL are retained. No remote checksum comparison is claimed.
-Manifest: docs/ANDROID_SUGARFALL_v0.7.7.json.
-Audio/startup source, mixer, native and GPU scopes are recorded separately.
+Manifest: docs/ANDROID_SUGARFALL_v0.7.8.json.
+Feature, save, UI and bounded pacing scopes are recorded separately.
 Phone listening/feel, normal-wallet progression and real billing remain open.
 The separate public v0.8.0-rc1 APK/AAB were not rebuilt or uploaded here.
 

@@ -1,6 +1,6 @@
 # Sugarfall
 
-CHG-039 delivers [v0.7.7-preview](PLINKO/docs/ANDROID_SUGARFALL_v0.7.7.json), including the new action sounds and slower studio pulse/hum. Phone acceptance and the [remaining Google Play work](PLINKO/docs/GOOGLE_PLAY_READINESS.md) stay open.
+CHG-040 delivers [v0.7.8-preview](PLINKO/docs/ANDROID_SUGARFALL_v0.7.8.json) with [More Jam](PLINKO/docs/BAKERY_MORE_JAM.md), a free late Bakery upgrade addressing the reported tray-10 difficulty. The phone retest and [remaining Google Play work](PLINKO/docs/GOOGLE_PLAY_READINESS.md) stay open.
 
 CHG-037 delivers [v0.7.6-preview](PLINKO/docs/ANDROID_SUGARFALL_v0.7.6.json), including the area frames, signature abilities and Flow-2 source work. Real billing, current legal progression and phone acceptance remain open.
 
@@ -8,7 +8,7 @@ A portrait arcade game built in Godot, with three themed areas: Bakery, Gelato G
 
 Open **`PLINKO/project.godot` in Godot 4.6.3**. The entry scene is `startup.tscn`; it loads the game behind the studio heartbeat and cream reveal. Keyboard/mouse desktop controls support development; Android phone acceptance remains part of the release checklist.
 
-The current private test download is **v0.7.7-preview (code 33)**, with new action audio and slower startup plus the existing area/menu work. See [the verified APK record](PLINKO/docs/ANDROID_SUGARFALL_v0.7.7.json) and [download links](PLINKO/BUILD_LINKS.txt). The separate public v0.8.0-rc1 APK/AAB remain unchanged; phone acceptance is still open.
+The current private test download is **v0.7.8-preview (code 34)**, with More Jam and the existing action audio, slower startup and area/menu work. See [the verified APK record](PLINKO/docs/ANDROID_SUGARFALL_v0.7.8.json) and [download links](PLINKO/BUILD_LINKS.txt). The separate public v0.8.0-rc1 APK/AAB remain unchanged; phone acceptance is still open.
 
 ## Production records
 
