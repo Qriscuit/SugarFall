@@ -1,8 +1,8 @@
 # Sugarfall — current area status
 
-Updated 3 November 2026 · Android v0.7.4-preview (code 29) · CHG-031
+Updated 3 November 2026 · Local v0.8.0-rc1 (code 30) · Drive v0.7.4-preview · CHG-033
 
-All seven software, design-documentation and targeted verification actions are complete and integrated. The APK is updated in the existing private Drive file. The remaining two actions are human progression and physical-phone acceptance; the user will test the APK.
+All seven earlier software, design-documentation and targeted verification actions remain complete and integrated. The existing private Drive file holds the v0.7.4 preview. The new local release candidate is recorded below. The remaining two area actions are human progression and physical-phone acceptance; the user will test the APK.
 
 Counts include test activities as well as production content. Verified means the recorded scope passed; it does not imply a phone playtest. Intentional omissions remain N/A.
 
@@ -39,6 +39,24 @@ Tall-screen backgrounds fill the physical viewport while the logical board fits 
 The current route rules deliberately differ from the earlier universal cream navigation: Home Play uses a continuous tray/peg morph with equipment entrances; end-run results appear over a darkened frozen board. Neither route uses the cream wipe. Studio startup and ordinary menu navigation retain their existing transitions. The blank template’s F11 now records these route-specific exceptions without adding an ID.
 
 v0.7.4 packaging and replacement of the same private Drive file are verified. All 83-per-area/249 requirements and prior SF/AF status distinctions remain. Physical tall-screen layout, all six cup faces and run-flow feel are pending under AREA_PLAYTEST.md D15/D16.
+
+## Warm studio revision
+
+The shared startup now uses a soft amber spotlight and gradient. Its dark plum logo brightens to warm gold on each heartbeat and scales from the lower center. An original quiet hum follows the beat before the existing cream reveal. The supplied logo bytes are unchanged. Saved Sound off applies before the first sample; backgrounding silences playback, resume uses one voice, and handoff fades to silence. Reduced Motion keeps the presentation static.
+
+This revision passes 738 focused checks: 74 controller, 295 actual disk-profile checks across 13 cases, 7 actual audio-mixer checks and 362 GPU checks across 72 captures. Six native-asset checks pass separately. The earlier startup and v0.7.4 evidence above remain historical records. Physical brightness, sound level, headphones and interruption feel remain D14/AF-009.
+
+See [current startup design and provenance](PLINKO/docs/STUDIO_STARTUP.md). The area counts and all 249 requirement states remain unchanged.
+
+## Public release candidate
+
+Signed local APK and Google Play AAB artifacts are prepared as **v0.8.0-rc1 (code 30)** for `com.qriscuit.sugarfall`. This package installs separately from the preview and does not automatically import its save. The existing private Drive download remains v0.7.4-preview; the candidate has not been published to Play.
+
+Public builds hide and reject simulated commerce, fake entitlements, developer controls and diagnostics. Preview builds retain their test tools. The current source changes pass 1,520 focused assertions: 738 warm-startup, 656 preview regressions and 126 public-policy checks, including an actual nondebug Windows export. Native-asset and toolchain checks are recorded separately. The signed APK passes 508 payload plus 16 Android metadata checks; the signed AAB passes 30 checks. Phone acceptance, real ads/billing, Play setup, an off-device signing backup and clean-machine rebuild verification remain open.
+
+See [the candidate record](PLINKO/docs/ANDROID_SUGARFALL_v0.8.0-rc1.md) and [signing and recovery](PLINKO/docs/RELEASE_SIGNING.md). AF-008/009 remain Ready to test, and no physical result has been added to the area checklists.
+
+Source, art, tests and production records are backed up in [Qriscuit/SugarFall](https://github.com/Qriscuit/SugarFall). Tag `v0.8.0-rc1` records the 881-file baseline at commit `1bf3632`; a fresh remote recovery clone passed 13 integrity/completeness checks. See [source-control evidence](PLINKO/docs/SOURCE_CONTROL.md). CHG-032/033 record this revision; SF-007 and SF-042 are Done. Signing-key recovery, Play setup and physical acceptance remain separate open work.
 
 ## Fix queue
 

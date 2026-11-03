@@ -11,6 +11,7 @@ Open **`PLINKO/project.godot` in Godot 4.6.3**. The entry scene is `startup.tscn
 - [Launch tracker](outputs/launch-tracker-01a18eec/Sugarfall%20Launch%20Tracker.xlsx): outstanding fixes and change history.
 - [Game and design notes](PLINKO/README.md): mechanics and earlier preview deliveries.
 - [Signing and recovery](PLINKO/docs/RELEASE_SIGNING.md): release identity and private local key handling.
+- [Source backup verification](PLINKO/docs/SOURCE_CONTROL.md): GitHub tag and independently recovered checkout.
 - [Third-party notices](PLINKO/THIRD_PARTY_NOTICES.md): engine and font attribution.
 
 ## Building and testing
