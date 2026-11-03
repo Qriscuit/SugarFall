@@ -1,0 +1,30 @@
+INTERACTION PREVIEW REVIEW — 23 October 2026
+
+Reviewed in the Codex in-app browser via a local-only server.
+Preview URL: http://127.0.0.1:8765/concept-art/upgrades-touch-v1/interaction-preview.html
+The HTML also uses relative local assets and may be opened directly in a browser.
+
+Observed checks:
+- All food images and both bundled fonts load.
+- Expanded state: wallet65, Feed1 owned, Time15, Gold35 selectable.
+- Buying Gold leaves30, Gold1 owned, Gold2 revealed, and four existing nodes change
+  affordable-to-unaffordable. Purchase stays disabled on the owned selected tier.
+- Earn+50 gives80 and six visible next nodes change to affordable.
+- Fresh start shows only Feed1. Buying it for30 leaves35 and reveals Feed2 and the
+  seven other first upgrades.
+- Wheel up enlarges the map around the pointer over Split; Split stays beneath it.
+- Drag beginning on Impact pans without changing the Gold selection or wallet.
+- Recenter restores the map without altering selection or wallet.
+- Fixed header and purchase drawer remain outside the map transform.
+- Phone frame adapts to available browser height so Buy is visible without
+  scrolling through the phone itself at the reviewed 699x646 browser viewport.
+- Final HTML JavaScript syntax validated with bundled Node.
+- Reduced-motion and pinch handling are present in source; physical multi-touch
+  feel has NOT been tested on a phone.
+
+Evidence: interaction-after-purchase.png is a direct browser screenshot after
+Gold purchase; no image manipulation. Generated polished art concepts remain
+01-pastry-platter.png and 02-recipe-trails.png.
+
+This is a design study with temporary in-memory state. No Godot code, production
+assets, real purchases, monetization configuration or saved game data was changed.

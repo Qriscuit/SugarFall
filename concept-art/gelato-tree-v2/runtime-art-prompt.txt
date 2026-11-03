@@ -1,0 +1,28 @@
+Use case: stylized-concept / production game background illustration.
+Create one finished PORTRAIT 2:3 background image for Sugarfall's Gelato Garden upgrade map, ideally 1536x2304. Output the entire canvas, no crop. This is runtime BACKGROUND ART; live upgrades will be drawn on top separately.
+
+REFERENCES:
+Image 1 is an EXACT PLACEMENT BLUEPRINT ONLY. Its GREEN islands are the only allowed locations for scenery. Lavender rectangles and brown paths are keepout areas that must become completely empty lavender paper. Do not draw ANY blueprint rectangle, label, number, node, connecting path or header.
+Image 2 is the reference for the lovely softly painted cream/copper gelato architecture, glass garden structures and flowerbeds.
+Image 3 is the reference for caramel-bark winding trees, mint foliage and strawberry-pink blossoms. Do not copy its huge empty square composition; follow the portrait placement in image 1.
+
+Art direction: polished cozy hand-painted 2.5D game illustration, soft modeled forms, cream ceramics, restrained copper, soft pistachio/sage foliage, pink blossoms, lavender flowers. Light from upper left. A continuous very pale lavender textured paper ground across the entire canvas, quiet and uniform to the edges. The background remains cool lavender everywhere outside scenery; no cream ground wash or green lawn spanning the empty corridors.
+The layout should feel like a richly decorated long vertical gelato garden with small landmarks in its center and winding trees/floral scenery on both outer sides. The game paths themselves bend and wind; DO NOT paint any road, route, vine, line, river or staircase joining the artwork islands. Each island has an organic, softly shadowed silhouette without a visible enclosing box.
+
+Exact allowed scenery areas (percentages measured from canvas top-left). Fit each COMPLETE object, every leaf, petal, planter and its shadow WITHIN its specified rectangle with approximately 10% inset on each side. Keep shapes compact inside these limits; absolutely no loose decorations outside them:
+central_fountain: x 41.30%–54.35%, y 49.64%–60.51%: a cream ceramic gelato sundae fountain with three pastel scoops, tiny turquoise water basin, copper accent and flowers, all one compact landscaped vignette.
+central_kiosk: x 44.02%–55.98%, y 18.48%–30.07%: a small cream gelato kiosk with a waffle-colored roof, lavender striped awning and mint plants; no sign or text.
+central_pavilion: x 45.11%–63.59%, y 32.25%–43.12%: a beautiful rounded glass garden conservatory, copper frame, pale mint roof panels and lavender/white flowers, slightly off center exactly as in guide.
+central_flower_island: x 47.17%–52.83%, y 64.86%–73.55%: a very slender curling flowering topiary with pink blossoms and mint leaves in a small cream planter.
+left_upper_garden: x 3.80%–14.67%, y 11.96%–29.35%: one tall slender S-bending caramel-bark flowering tree, sage and mint leaves, pink blossoms, small flowers around its base.
+right_upper_garden: x 85.33%–96.20%, y 15.58%–34.42%: a differently shaped tall slender curling tree with mint foliage, strawberry-pink flowers and tiny cream planters at its base.
+left_lower_garden: x 6.52%–15.76%, y 43.84%–59.78%: a slim winding ornamental tree with lavender flowers and a cream flower urn at its base.
+right_lower_garden: x 84.24%–93.48%, y 46.01%–62.68%: a slim leafy flowering tree and small clipped mint hedge, graceful curving trunk.
+bottom_left_flowers: x 14.13%–30.43%, y 80.80%–92.39%: a compact cream garden bench with copper details surrounded by pink, white and lavender flowers.
+bottom_right_flowers: x 70.65%–86.96%, y 82.25%–93.12%: a little cream and copper gelato trolley among soft mint foliage and flowers; no lettering.
+entry_left_topiary: x 40.22%–46.74%, y 93.12%–97.10%: one small cream urn with a rounded pink-blossom topiary, with the entire urn visible.
+entry_right_topiary: x 53.26%–59.78%, y 93.12%–97.10%: one small cream urn with a rounded white-blossom and mint topiary, with the entire urn visible.
+
+Preserve the quiet empty channels between ALL green islands exactly as the blueprint indicates. Those open channels will hold the real purchasable upgrades and connecting routes. Each of the twelve scenery vignettes must be present, especially the three central landmarks, all four outer trees, both low outer decorations, and the two small entry urns near the bottom. All objects should share the same rendering style and lighting, feel planted in the same gentle paper garden, and stay within their allowed islands.
+Leave the top strip, outermost margins, and areas around the central bottom starting point completely calm lavender. No border or frame. The bottom entry urns are deliberately small and must not be enlarged or moved toward the center.
+No text, lettering, logos, UI, buttons, circles, upgrade tiles, badges, locks, arrows, medallions, paths, numbered nodes, outlines from the guide, characters or animals. No literal antlers. No collage panel boundaries. No hard-edged backgrounds behind the islands. Only the finished garden scenery and quiet lavender paper.

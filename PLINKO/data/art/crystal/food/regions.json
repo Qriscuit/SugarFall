@@ -1,0 +1,245 @@
+{
+  "donut": {
+    "texture": "res://data/art/crystal/food/balls_atlas.png",
+    "uv": [
+      0.0520833333,
+      0.0712890625,
+      0.24609375,
+      0.373046875
+    ]
+  },
+  "ricochet": {
+    "texture": "res://data/art/crystal/food/balls_atlas.png",
+    "uv": [
+      0.373046875,
+      0.0712890625,
+      0.2486979167,
+      0.373046875
+    ]
+  },
+  "pomegranate": {
+    "texture": "res://data/art/crystal/food/balls_atlas.png",
+    "uv": [
+      0.6927083333,
+      0.0703125,
+      0.2578125,
+      0.3759765625
+    ]
+  },
+  "pumpkin": {
+    "texture": "res://data/art/crystal/food/balls_atlas.png",
+    "uv": [
+      0.0494791667,
+      0.53515625,
+      0.2591145833,
+      0.38671875
+    ]
+  },
+  "seed": {
+    "texture": "res://data/art/crystal/food/balls_atlas.png",
+    "uv": [
+      0.4296875,
+      0.5712890625,
+      0.1243489583,
+      0.3212890625
+    ]
+  },
+  "multiply_pickup": {
+    "texture": "res://data/art/crystal/food/balls_atlas.png",
+    "uv": [
+      0.6842447917,
+      0.5263671875,
+      0.2682291667,
+      0.4013671875
+    ]
+  },
+  "cookie_normal": {
+    "texture": "res://data/art/crystal/food/pegs_atlas.png",
+    "uv": [
+      0.0031897927,
+      0.0295055821,
+      0.2424242424,
+      0.211323764
+    ]
+  },
+  "cookie_normal_damage_1": {
+    "texture": "res://data/art/crystal/food/pegs_atlas.png",
+    "uv": [
+      0.2531897927,
+      0.0295055821,
+      0.2424242424,
+      0.211323764
+    ]
+  },
+  "cookie_normal_damage_2": {
+    "texture": "res://data/art/crystal/food/pegs_atlas.png",
+    "uv": [
+      0.5031897927,
+      0.0295055821,
+      0.2424242424,
+      0.211323764
+    ]
+  },
+  "cookie_normal_damage_3": {
+    "texture": "res://data/art/crystal/food/pegs_atlas.png",
+    "uv": [
+      0.7531897927,
+      0.0295055821,
+      0.2424242424,
+      0.211323764
+    ]
+  },
+  "cookie_armored": {
+    "texture": "res://data/art/crystal/food/pegs_atlas.png",
+    "uv": [
+      0.0023923445,
+      0.2683413078,
+      0.2456140351,
+      0.2192982456
+    ]
+  },
+  "cookie_armored_damage_1": {
+    "texture": "res://data/art/crystal/food/pegs_atlas.png",
+    "uv": [
+      0.2523923445,
+      0.2683413078,
+      0.2456140351,
+      0.2192982456
+    ]
+  },
+  "cookie_armored_damage_2": {
+    "texture": "res://data/art/crystal/food/pegs_atlas.png",
+    "uv": [
+      0.5023923445,
+      0.2683413078,
+      0.2456140351,
+      0.2192982456
+    ]
+  },
+  "cookie_armored_damage_3": {
+    "texture": "res://data/art/crystal/food/pegs_atlas.png",
+    "uv": [
+      0.7523923445,
+      0.2683413078,
+      0.2456140351,
+      0.2192982456
+    ]
+  },
+  "cookie_prism": {
+    "texture": "res://data/art/crystal/food/pegs_atlas.png",
+    "uv": [
+      0.0039872408,
+      0.5111642743,
+      0.2424242424,
+      0.2137161085
+    ]
+  },
+  "cookie_prism_damage_1": {
+    "texture": "res://data/art/crystal/food/pegs_atlas.png",
+    "uv": [
+      0.2539872408,
+      0.5111642743,
+      0.2424242424,
+      0.2137161085
+    ]
+  },
+  "cookie_prism_damage_2": {
+    "texture": "res://data/art/crystal/food/pegs_atlas.png",
+    "uv": [
+      0.5039872408,
+      0.5111642743,
+      0.2424242424,
+      0.2137161085
+    ]
+  },
+  "cookie_prism_damage_3": {
+    "texture": "res://data/art/crystal/food/pegs_atlas.png",
+    "uv": [
+      0.7539872408,
+      0.5111642743,
+      0.2424242424,
+      0.2137161085
+    ]
+  },
+  "cookie_clock": {
+    "texture": "res://data/art/crystal/food/pegs_atlas.png",
+    "uv": [
+      0.0031897927,
+      0.7515948963,
+      0.2432216906,
+      0.2185007974
+    ]
+  },
+  "cookie_clock_damage_1": {
+    "texture": "res://data/art/crystal/food/pegs_atlas.png",
+    "uv": [
+      0.2531897927,
+      0.7515948963,
+      0.2432216906,
+      0.2185007974
+    ]
+  },
+  "cookie_clock_damage_2": {
+    "texture": "res://data/art/crystal/food/pegs_atlas.png",
+    "uv": [
+      0.5031897927,
+      0.7515948963,
+      0.2432216906,
+      0.2185007974
+    ]
+  },
+  "cookie_clock_damage_3": {
+    "texture": "res://data/art/crystal/food/pegs_atlas.png",
+    "uv": [
+      0.7531897927,
+      0.7515948963,
+      0.2432216906,
+      0.2185007974
+    ]
+  },
+  "hopper": {
+    "texture": "res://data/art/crystal/food/equipment_atlas.png",
+    "uv": [
+      0.0709728868,
+      0.023923445,
+      0.3811802233,
+      0.45215311
+    ]
+  },
+  "cup_cream": {
+    "texture": "res://data/art/crystal/food/equipment_atlas.png",
+    "uv": [
+      0.5741626794,
+      0.0494417863,
+      0.3205741627,
+      0.4505582137
+    ]
+  },
+  "cup_gold": {
+    "texture": "res://data/art/crystal/food/equipment_atlas.png",
+    "uv": [
+      0.0877192982,
+      0.5311004785,
+      0.3213716108,
+      0.4242424242
+    ]
+  },
+  "tray": {
+    "texture": "res://data/art/crystal/food/tray.png",
+    "uv": [
+      0.0634765625,
+      0.0540364583,
+      0.87109375,
+      0.876953125
+    ]
+  },
+  "countertop": {
+    "texture": "res://data/art/crystal/environment/candyworks_room.png",
+    "uv": [
+      0.0,
+      0.0,
+      1.0,
+      1.0
+    ]
+  }
+}

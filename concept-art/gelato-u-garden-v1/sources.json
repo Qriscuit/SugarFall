@@ -1,0 +1,32 @@
+{
+  "schema": 1,
+  "date": "2026-11-02",
+  "method": "Built-in image_gen, new complete scene generation",
+  "intent": "New Gelato-only U-shaped upgrade-map scenery",
+  "asset": {
+    "source": "C:/Users/Hursh/.codex/generated_images/01a19e36-3e19-71d2-8e7e-6669c939e195/exec-b72bde91-1808-4998-b03a-a14b69beebd6.png",
+    "destination": "PLINKO/data/art/gelato/environment/upgrade_u_garden_v1.png",
+    "prompt": "prompt.txt",
+    "geometry": "geometry.json",
+    "sha256": "b51e4dda70bd548259b949ad0d9aacfd7ff285391b05f988afdec9a18de7362c",
+    "size": [1254, 1254],
+    "mode": "RGB",
+    "bytes": 2879457,
+    "copied_without_pixel_changes": true,
+    "requested_size": [2048, 2048],
+    "resolution_note": "The built-in tool returned a native 1254-square image. It was preserved without programmatic upscaling or retouching.",
+    "world_rect": [-5200, -9650, 10400, 10400],
+    "suggested_base_color": "c9bddc",
+    "edge_fade_fraction": 0.025
+  },
+  "visual_review": {
+    "status": "passed standalone inspection; live-node overlay review belongs to integration QA",
+    "bottom_center_entry": true,
+    "upward_opening_u": true,
+    "distinct_left_and_right_districts": true,
+    "no_baked_interface_or_text": true,
+    "palette": "Cool lilac promenade, lavender/cream architecture, restrained copper and mint, berry/wafer right district",
+    "style_reference_inspected": "PLINKO/data/art/gelato/environment/upgrade_arc_illustrated_v4.png",
+    "input_reference_images": []
+  }
+}

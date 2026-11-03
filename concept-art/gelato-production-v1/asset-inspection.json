@@ -1,0 +1,376 @@
+{
+  "food\\cookie_armored.png": {
+    "size": [
+      1254,
+      1254
+    ],
+    "alpha_range": [
+      0,
+      255
+    ],
+    "bytes": 1546072
+  },
+  "food\\cookie_armored_damage_1.png": {
+    "size": [
+      1254,
+      1254
+    ],
+    "alpha_range": [
+      0,
+      255
+    ],
+    "bytes": 1514597
+  },
+  "food\\cookie_armored_damage_2.png": {
+    "size": [
+      1254,
+      1254
+    ],
+    "alpha_range": [
+      0,
+      255
+    ],
+    "bytes": 1445240
+  },
+  "food\\cookie_armored_damage_3.png": {
+    "size": [
+      1254,
+      1254
+    ],
+    "alpha_range": [
+      0,
+      255
+    ],
+    "bytes": 1367441
+  },
+  "food\\cookie_clock.png": {
+    "size": [
+      1254,
+      1254
+    ],
+    "alpha_range": [
+      0,
+      255
+    ],
+    "bytes": 1524543
+  },
+  "food\\cookie_clock_damage_1.png": {
+    "size": [
+      1254,
+      1254
+    ],
+    "alpha_range": [
+      0,
+      255
+    ],
+    "bytes": 1468713
+  },
+  "food\\cookie_clock_damage_2.png": {
+    "size": [
+      1254,
+      1254
+    ],
+    "alpha_range": [
+      0,
+      255
+    ],
+    "bytes": 1409785
+  },
+  "food\\cookie_clock_damage_3.png": {
+    "size": [
+      1254,
+      1254
+    ],
+    "alpha_range": [
+      0,
+      255
+    ],
+    "bytes": 1355695
+  },
+  "food\\cookie_normal.png": {
+    "size": [
+      1254,
+      1254
+    ],
+    "alpha_range": [
+      0,
+      255
+    ],
+    "bytes": 1913976
+  },
+  "food\\cookie_normal_damage_1.png": {
+    "size": [
+      1254,
+      1254
+    ],
+    "alpha_range": [
+      0,
+      255
+    ],
+    "bytes": 1741777
+  },
+  "food\\cookie_normal_damage_2.png": {
+    "size": [
+      1254,
+      1254
+    ],
+    "alpha_range": [
+      0,
+      255
+    ],
+    "bytes": 1683305
+  },
+  "food\\cookie_normal_damage_3.png": {
+    "size": [
+      1254,
+      1254
+    ],
+    "alpha_range": [
+      0,
+      255
+    ],
+    "bytes": 1641049
+  },
+  "food\\cookie_prism.png": {
+    "size": [
+      1254,
+      1254
+    ],
+    "alpha_range": [
+      0,
+      255
+    ],
+    "bytes": 1695383
+  },
+  "food\\cookie_prism_damage_1.png": {
+    "size": [
+      1254,
+      1254
+    ],
+    "alpha_range": [
+      0,
+      255
+    ],
+    "bytes": 1643467
+  },
+  "food\\cookie_prism_damage_2.png": {
+    "size": [
+      1254,
+      1254
+    ],
+    "alpha_range": [
+      0,
+      255
+    ],
+    "bytes": 1519919
+  },
+  "food\\cookie_prism_damage_3.png": {
+    "size": [
+      1254,
+      1254
+    ],
+    "alpha_range": [
+      0,
+      255
+    ],
+    "bytes": 1571468
+  },
+  "food\\countertop.png": {
+    "size": [
+      941,
+      1672
+    ],
+    "alpha_range": [
+      255,
+      255
+    ],
+    "bytes": 1646286
+  },
+  "food\\cup_cream.png": {
+    "size": [
+      1121,
+      1403
+    ],
+    "alpha_range": [
+      0,
+      255
+    ],
+    "bytes": 1253213
+  },
+  "food\\cup_gold.png": {
+    "size": [
+      1254,
+      1254
+    ],
+    "alpha_range": [
+      0,
+      255
+    ],
+    "bytes": 1113122
+  },
+  "food\\donut.png": {
+    "size": [
+      1254,
+      1254
+    ],
+    "alpha_range": [
+      0,
+      255
+    ],
+    "bytes": 1606242
+  },
+  "food\\hopper.png": {
+    "size": [
+      1254,
+      1254
+    ],
+    "alpha_range": [
+      0,
+      255
+    ],
+    "bytes": 1218562
+  },
+  "food\\pomegranate.png": {
+    "size": [
+      1254,
+      1254
+    ],
+    "alpha_range": [
+      0,
+      255
+    ],
+    "bytes": 1415697
+  },
+  "food\\pumpkin.png": {
+    "size": [
+      1254,
+      1254
+    ],
+    "alpha_range": [
+      0,
+      255
+    ],
+    "bytes": 1057546
+  },
+  "food\\ricochet.png": {
+    "size": [
+      1254,
+      1254
+    ],
+    "alpha_range": [
+      0,
+      255
+    ],
+    "bytes": 1363645
+  },
+  "food\\seed.png": {
+    "size": [
+      1254,
+      1254
+    ],
+    "alpha_range": [
+      0,
+      255
+    ],
+    "bytes": 462281
+  },
+  "food\\tray.png": {
+    "size": [
+      1049,
+      1500
+    ],
+    "alpha_range": [
+      0,
+      255
+    ],
+    "bytes": 1402735
+  },
+  "environment\\bakery_landmark.png": {
+    "size": [
+      1312,
+      1199
+    ],
+    "alpha_range": [
+      0,
+      255
+    ],
+    "bytes": 1624540
+  },
+  "environment\\home_counter.png": {
+    "size": [
+      941,
+      1672
+    ],
+    "alpha_range": [
+      255,
+      255
+    ],
+    "bytes": 1778739
+  },
+  "environment\\journey_backdrop.png": {
+    "size": [
+      941,
+      1672
+    ],
+    "alpha_range": [
+      255,
+      255
+    ],
+    "bytes": 2337527
+  },
+  "environment\\play_counter.png": {
+    "size": [
+      941,
+      1672
+    ],
+    "alpha_range": [
+      255,
+      255
+    ],
+    "bytes": 1646286
+  },
+  "environment\\upgrade_counter.png": {
+    "size": [
+      941,
+      1672
+    ],
+    "alpha_range": [
+      255,
+      255
+    ],
+    "bytes": 2162539
+  },
+  "ui\\level_badge_muted.png": {
+    "size": [
+      1278,
+      1230
+    ],
+    "alpha_range": [
+      0,
+      255
+    ],
+    "bytes": 1642435
+  },
+  "ui\\level_selector.png": {
+    "size": [
+      2172,
+      724
+    ],
+    "alpha_range": [
+      0,
+      255
+    ],
+    "bytes": 1221683
+  },
+  "ui\\panel.png": {
+    "size": [
+      1484,
+      1060
+    ],
+    "alpha_range": [
+      0,
+      255
+    ],
+    "bytes": 1297253
+  }
+}

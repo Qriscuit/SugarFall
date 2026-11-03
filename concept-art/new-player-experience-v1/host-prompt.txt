@@ -1,0 +1,13 @@
+Built-in image_gen generation (transparent_background: true), 25 October 2026.
+No reference images supplied to the generator; existing Sugarfall donut art and ART_DIRECTION.md inspected for visual vocabulary before prompting.
+
+Use case: stylized-concept
+Asset type: transparent character sprite for the new-player tutorial in the cozy mobile bakery game Sugarfall.
+Primary request: Create one original friendly female bakery mentor, working name Mabel. She welcomes the player and explains the game from beside a live speech bubble.
+Subject: A warm, capable woman around forty, expressive kind brown eyes, lightly freckled cheeks and a confident welcoming smile, chestnut-brown soft curls swept into a practical pinned updo. Wear a muted mint-green short-sleeved blouse with rolled cuffs and a clean warm-ivory baker's apron with subtle copper buttons and a very small strawberry embroidered detail. Rounded appealing proportions, a mature approachable face.
+Pose and composition: Portrait sprite from head to upper hips, entire head, hair, both arms and all fingers contained within the frame with breathing room. Three-quarter body facing slightly toward the viewer's right, face engaging the player, one hand rests at her apron waist and the other hand makes a welcoming palm-up presentation gesture toward the viewer's right where a speech bubble will appear. Clear silhouette at small mobile size. No props in hands.
+Style/medium: Polished softly painted 2.5D casual game character art, sculpted rounded volume, appealing expressive facial features, clean silhouette, no heavy black outlines, broad simple readable fabric folds, softly detailed textures. Complement soft glazed ceramic, mint enamel, warm copper and freshly baked food game assets. No photographic realism, no flat vector look.
+Lighting/mood: Warm broad upper-left light, gentle lower-right shading, cheerful and inviting.
+Scene/backdrop: Truly transparent background and transparent empty space around the character. Isolated sprite, no floor, scenery, panel, vignette or drop shadow.
+Text: None. Speech bubble will be rendered live by the game.
+Constraints: One original character only. Not an existing branded game character. No logos, letters, watermark, accessories blocking face, duplicate limbs or cropped hands. Genuine alpha transparency. Portrait 1024x1536 composition if available.

@@ -1,0 +1,136 @@
+UPGRADE MAP — TOUCH AND VISUAL DESIGN STUDY
+23 October 2026 / concept proposal, not a shipped game change
+
+DELIVERABLES
+01-pastry-platter.png: rounded saucers on a scalloped ceramic platter.
+02-recipe-trails.png: rounded recipe tiles on parchment with curved copper links.
+interaction-preview.html: separate, local browser study for movement and purchase feedback.
+prompts.txt: exact image-generation prompts and reference roles.
+sources.json: generation provenance.
+
+RECOMMENDATION
+Develop Recipe Trails. It keeps the radial branching familiar, but the continuous
+parchment surface can expand with progress. The platter is a strong, compact
+alternative; its outer rim must not imply that later upgrades are bounded by it.
+Use a slightly offset hub, unequal branch lengths and gentle curved paths.
+Avoid an evenly spaced wheel as the map grows. Keep each branch in a recognizable
+sector, avoid crossings, and do not imply new prerequisites between branches.
+
+MATCH THE GAME
+Reference: PLINKO/docs/ART_DIRECTION.md, current upgrade and gameplay captures.
+Soft painted 2.5D food; cream ceramic, mint enamel, warm copper and parchment.
+Warm upper-left light. Food is the strongest detail; paths and backdrop stay quiet.
+Keep Fraunces headings and Nunito operational text. No additional font needed.
+Use existing hopper, armored cookie, donut, orange, pomegranate, pumpkin, gold cup
+and cookie-clock identities. Food aspect ratios remain natural.
+The generated PNGs are concept screens with example labels baked in. They are not
+production sprites. Later implementation must separate artwork from live prices,
+wallets, ownership marks and text. The interactive study reuses current sprites;
+its CSS surfaces explore behavior and are not a claim of final rendered art.
+
+STATE LANGUAGE
+Affordable next upgrade:
+  Full pistachio/mint-green tile face, clear coin-plus/available mark, live price.
+Unaffordable next upgrade:
+  Full strawberry-red tile face, coin-shortfall mark, live price.
+  Still selectable. Detail card reads "Need N more" with disabled Buy.
+Owned:
+  Warm cream face and persistent check. No purchase action.
+Selected:
+  Double copper/cream rim independent of the green/red/owned state.
+Future prerequisite not purchased:
+  Entirely absent, including labels and connecting path. Do not use red for locked
+  future upgrades. No ghost nodes or padlock clutter.
+Maxed branch:
+  Last owned node retains its check; concise "Complete" detail; no next tile.
+Color is reinforced by icons, prices and accessible state text. No pulsing idle
+green tiles; users must be able to inspect and compare without constant movement.
+
+PHONE LAYOUT
+720 x 1280 design canvas, also review at 450 x 800 and narrow phone CSS sizes.
+Compact fixed header: Back, Upgrades, wallet. Preserve precise decimal credits.
+Map takes the main central area; clip at its edges instead of hiding whole nodes.
+Fixed bottom selection card: icon, short name/tier, one effect line, Buy/price.
+Keep purchase confirmation in thumb reach, separate from Play/navigation.
+Use one small recenter control, not persistent plus/minus zoom controls.
+First-use contextual hint: "Drag to explore · Pinch to zoom"; dismiss after use.
+Artwork can use low text, but effect changes must remain accurate and inspectable.
+Protect safe-area insets and useful touch targets at the smallest usable zoom.
+At distant overview, focus a branch before fine selection if targets become small.
+
+INPUT CONTRACT
+One finger: drag to pan; a stationary release selects a tile.
+Two fingers: spread to zoom in, bring together to zoom out.
+Mouse: drag to pan; wheel up zooms in, wheel down zooms out.
+Zoom anchors to pinch midpoint or cursor, preserving the point beneath it.
+Header, wallet, details and purchase controls never zoom.
+Selection never spends money. Only the explicit Buy action purchases.
+After buying, keep the purchased tier selected as Owned. Repeated taps cannot
+silently buy the next tier. Do not move the map out from under the user's finger.
+Once a pointer has dragged or participated in a pinch, releasing must not select.
+A second pointer cancels the tap candidate; preserve remaining-finger drag continuity.
+Clear gesture state on navigation, focus loss, pause and pointer cancellation.
+Recenter brings the revealed map back into a useful view; retain progress/ownership.
+
+PURCHASE FEEDBACK
+1. Validate the selected next tier and current wallet.
+2. Deduct the exact price; update wallet, ownership and revealed next node together.
+3. Purchased tile: one small squash/pop, then its cream face and check settle.
+4. Compare affordability for pre-existing visible next nodes before/after payment.
+   Animate only those that changed green-to-red or red-to-green.
+5. Newly revealed node: separate brief fade/pop; no fake affordability transition.
+6. Keep camera position stable. Paths grow only enough to connect the new tile.
+
+Timing proposal:
+  Around 280 ms total for each changed tile.
+  Initial 0-60 ms: compress very slightly (approximately 1.04 x, 0.96 y).
+  60-150 ms: lift 4-6 screen px and stretch very slightly.
+  150-280 ms: return to exact original scale and position.
+  Blend face color through the same response; at most a tiny bounded stagger.
+  A rapid second wallet event cancels/replaces the old tween; never stacks scale.
+  Optional subtle tap sound follows existing audio preference.
+Reduced Motion: no displacement, squash or zoom tween; brief color change and
+persistent state marks provide the same information.
+
+Spending usually turns other affordable tiles red. Income can turn them green.
+Do not animate every tile whenever the wallet changes. If no affordability state
+changes, only the purchased node and the wallet need transaction feedback.
+
+PROGRESSION
+Fresh map: only Feed 1. Buying reveals Feed 2 and the seven other first tiers.
+Later purchases reveal only the immediate next node on their own branch.
+Retain owned nodes and save compatibility. Do not reset upgrades in this art pass.
+The concepts show 65 credits after Feed 1 is already owned, with next prices:
+Feed 42, Power 40, Bounce 30, Ricochet 50, Split 60, Impact 70, Gold 35, Time 40.
+These are illustrative concept labels, not an economy specification. In particular,
+the rendered Time price is 40; the game's economy configuration overrides its base
+price to 15. The browser study uses that 15-credit price and its own temporary
+balance, never the game's profile data. Preserve the real tuning on integration.
+
+LATER GODOT IMPLEMENTATION NOTES
+upgrade_map.gd currently handles only touch index 0; add an active-pointer set.
+main.gd ignores mouse-button events after touch emulation, so consume map wheel
+input before that early return and avoid processing synthetic duplicate gestures.
+Existing .55 minimum zoom makes targets too small. Re-evaluate range against
+phone pixel size rather than preserving it blindly.
+The renderer currently omits a node if its full bounds leave the map. A clipped
+map viewport would preserve partial tiles/paths and make panning feel continuous.
+Map motion needs a UI update/redraw path outside gameplay step().
+Keep upgrade costs, purchase guards, milestone unlocks and save schema unchanged.
+
+REVIEW BEFORE INTEGRATION
+- All eight families recognizable at phone scale; no overlaps or crossing paths.
+- Green/red/owned and selected remain distinguishable without color alone.
+- Fresh, first-purchase, progressed and maxed maps remain useful.
+- Pinch midpoint and cursor anchor do not jump.
+- Releasing a pinch or dragging across Buy never spends currency.
+- Existing revealed nodes bounce only on real affordability changes.
+- Rapid purchases cannot buy an unseen tier; animations remain bounded.
+- Reduced Motion, safe areas, long/decimal wallet values and clipped nodes work.
+- Run the existing map/progression QA with revised gesture expectations.
+- Real two-finger behavior needs testing on a physical phone before shipping.
+
+SCOPE
+This folder records proposed visual and interaction direction.
+No Godot gameplay, monetization, production assets, economy or save files were
+changed for this concept pass.

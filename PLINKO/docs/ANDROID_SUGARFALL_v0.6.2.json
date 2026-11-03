@@ -1,0 +1,111 @@
+{
+  "build_date": "2026-10-25",
+  "godot": "4.6.3.stable.official.7d41c59c4",
+  "app_name": "Sugarfall",
+  "file_name": "Sugarfall-v0.6.2-Android-Preview-2026-10-25.apk",
+  "local_path": "builds/Sugarfall-v0.6.2-Android-Preview-2026-10-25.apk",
+  "size_bytes": 67074257,
+  "sha256": "ed080a2dc3223d80f5eb1b0d9157978d31355d74921f28a90651d5607e4ad107",
+  "md5": "13352b06cdf398d3664cba5a890a5263",
+  "package": "org.pegfoundry.prototype.preview",
+  "version_name": "0.6.2-preview",
+  "version_code": 12,
+  "export_preset": "Android Preview",
+  "export_mode": "debug",
+  "minimum_sdk": 24,
+  "target_sdk": 36,
+  "architectures": [
+    "arm64-v8a"
+  ],
+  "requested_android_permissions": [],
+  "signing_certificate_sha256": "926f0d0c634978f4d84727a272068bacd3bb157277a9a8b18810e7c60aef70bc",
+  "changes": [
+    "The upgrade map now occupies a compact 120-degree arc with 62 preserved tiers and 61 straight connections.",
+    "Three independent mixed upgrade routes; each non-root upgrade has one prerequisite.",
+    "One complete illustrated background per area, with larger architecture and sage/lavender courtyards.",
+    "Larger live upgrade tiles, readable route strokes and semantic overview sizing.",
+    "Retired modular scenery is omitted from the APK while its source artwork remains in the workspace."
+  ],
+  "update_compatibility": "Same Android preview package and development signing certificate as v0.6.1, with version code increased from 11 to 12. Install over the existing preview to retain its package-private app data. Existing owned upgrades and area progress are preserved by the game.",
+  "monetization": "Local test service; no real ad or purchase accounts connected",
+  "source_sha256": {
+    "res://scripts/area_art.gd": "8abd9f6a5d24a59803d4e28d6579a153b47639689baafe33170e62f45e5a03c7",
+    "res://scripts/area_campaign.gd": "e2b2864c9c9936c76cd199816c6f726ee7cff1e8df168879036891a5ec9ce859",
+    "res://scripts/coin_display.gd": "29fcfa88220832e516a1d1d1e6210893ec083360848bda21caea574c7a26fc23",
+    "res://scripts/environment_art.gd": "10c937af652cd7a199a1262f17ac57a21afae189642a89fb83684d0f030686aa",
+    "res://scripts/food_art.gd": "05bb07471118ed5d0ab5f72678a4395baf1e908d4cc1b482e376f11e420eda8f",
+    "res://scripts/home_menu.gd": "636c018c68f47cac1cb9fe2f6fc95eff0048e8ae8707bc49500f41fe33dd3350",
+    "res://scripts/impact_feedback.gd": "b9a0a6267ff7fb48701a4a75dc776ca8013f7619ceac3f2bf37b30aca6b6bb21",
+    "res://scripts/level_map.gd": "b08dc6b2fc830ee1a37391bf33f1e8ca65b65da06ef1dd61046ad2e5d765d944",
+    "res://scripts/main.gd": "773b0da6ba34cc51751cf4df1d2043d08d6bcc2ba75d6e6723c968e909b72cd9",
+    "res://scripts/monetization_service.gd": "c32c959fe6d527ecda6229e46b60ab31d3a629de90fb04ca0388332ed2119921",
+    "res://scripts/monetization_ui.gd": "666283c7228ad97e3460b38f8cf99f6b6e45c565cdf6afdd24122c48599c5dee",
+    "res://scripts/run_snapshot.gd": "b6f49ebe8d05e5ce19acb33bfc37193ff7ba8e720deb32695ee781135918f023",
+    "res://scripts/run_transition.gd": "0632923b9239d3a03fc543a112f55b6afc2a4535a3cd1790f6c4ad393677e8e5",
+    "res://scripts/tone_bank.gd": "0eabc16e9ebf89d77e915ebc64ad44b030dd76003a4e02466d66267f9c5907c0",
+    "res://scripts/ui_art.gd": "d82347f33d6b81b55d3b9f8cec53015afd19b15d95ca389a9181d6b1a6dcf0b5",
+    "res://scripts/upgrade_arc_art.gd": "b827b90637c4fae6c4eb83db16c3a26aed5bcd8edb02d31fdb5ff2012f4879b9",
+    "res://scripts/upgrade_graph.gd": "03be4ebd336a294d0fe6a48959cadcbbb67074ed98d4b89b2399448771f8479a",
+    "res://scripts/upgrade_map.gd": "00161f82c5f69812fba9f7a8b4ba61b369a7da88f4ade0fc80a5cb5a667d8aee"
+  },
+  "source_json_sha256": {
+    "res://data/board_design.json": "09de3d027efeaf4747fb003d3b077f1435c40f9845991f80788dca0df6d4e8a3",
+    "res://data/economy.json": "cc5ecacffa7707d1500558cfba3e2e5cd0be8cf2dedee155e6792b9fb74c2125",
+    "res://data/gelato_board_design.json": "85df1caf2a17a26fffb4d8e13b3d84d94f50ebc4d96bdebf65e72f6bf2e0ef5d",
+    "res://data/upgrade_arc_art.json": "9f26d1e12c28167cbdfdc12e67797f235f84cb8d55a246f3b6905a7510b073d8",
+    "res://data/upgrade_layout.json": "e675a7104b1d0dc4bcb81633144c144a9a70ca7fa11cac066c83906e36da0983"
+  },
+  "source_export_preset_sha256": "094cd9f3dfd65b068862e64b6d68a79096a0ccc97340d3b444ca77b7c7b4384c",
+  "verification": {
+    "payload_checks_passed": 279,
+    "android_metadata_checks_passed": 16,
+    "signature_v2": true,
+    "signature_v3": true,
+    "zip_alignment_16_kib": true,
+    "runtime_art_textures_checked": 79,
+    "full_scene_backgrounds_checked": 2,
+    "runtime_scripts_packaged": 18,
+    "source_inputs_unchanged_across_export": true,
+    "latest_source_checks": 382,
+    "final_background_art_recheck": 24,
+    "rendered_captures": 24,
+    "physical_android_device_tested": false,
+    "android_emulator_tested": false,
+    "evidence_directory": "../../verification/android-preview-v062",
+    "latest_render_evidence_directory": "../../verification/illustrated-arc-v4"
+  },
+  "drive": {
+    "id": "1GF1zo3lt0VR5voajNPGjoP1FYuPe0FYz",
+    "title": "Sugarfall-v0.6.2-Android-Preview-2026-10-25.apk",
+    "mime_type": "application/vnd.android.package-archive",
+    "size": "67074257",
+    "url": "https://drive.google.com/file/d/1GF1zo3lt0VR5voajNPGjoP1FYuPe0FYz/view?usp=drivesdk",
+    "display_url": "https://drive.google.com/file/d/1GF1zo3lt0VR5voajNPGjoP1FYuPe0FYz/view?usp=drivesdk",
+    "file_or_folder": "file",
+    "created_time": null,
+    "modified_time": "2026-10-25T21:24:10.365Z",
+    "parent_ids": [
+      "1TXLZwTNVlHGTBy7y0CVMMk3zABEKu8X-"
+    ],
+    "drive_id": null,
+    "current_user_can_share": null,
+    "has_augmented_permissions": null,
+    "shared": false,
+    "permissions": [
+      {
+        "type": "user",
+        "role": "owner",
+        "emailAddress": "americlasagna@gmail.com",
+        "domain": null,
+        "displayName": "Americ Lasagna",
+        "allowFileDiscovery": null
+      }
+    ],
+    "source_visibility_status": "permission_metadata_available",
+    "operation": "Replaced Android preview bytes and name in place",
+    "metadata_readback_verified": true,
+    "sharing_changed": false,
+    "remote_checksum_exposed_by_connector": false,
+    "local_sha256": "ed080a2dc3223d80f5eb1b0d9157978d31355d74921f28a90651d5607e4ad107"
+  }
+}

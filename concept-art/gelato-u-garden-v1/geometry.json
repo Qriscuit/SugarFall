@@ -1,0 +1,8 @@
+{
+  "world_rect": [-5200, -9650, 10400, 10400],
+  "aspect_ratio": 1.0,
+  "root": [0, 0],
+  "root_uv": [0.5, 0.9278846153846154],
+  "quiet_lane_fraction": 0.08,
+  "note": "Live upgrade nodes remain separate. Scenery generation follows the authored mirrored hyperbola; both route tips remain inside the square canvas."
+}

@@ -1,0 +1,15 @@
+{
+  "width": 1024,
+  "height": 1536,
+  "pixel_format": "Format32bppArgb",
+  "alpha_bounds_threshold": 128,
+  "alpha_bounds": [
+    9,
+    21,
+    1010,
+    1515
+  ],
+  "transparent_pixels": 718627,
+  "opaque_pixels": 0,
+  "partial_alpha_pixels": 854237
+}

@@ -1,0 +1,275 @@
+{
+  "area": "Gelato Garden",
+  "assets": [
+    {
+      "family": "food",
+      "name": "donut",
+      "prompt": "Sugarfall Gelato Garden production game asset. Detailed softly painted 2.5D sculpted food/enamel, rounded handmade forms, broad soft warm upper-left light and intrinsic lower-right shading, warm cream, dusty lavender #B8A2CF and thin polished copper where specified. No black outlines, no flat vectors, no photographic background. One isolated object centered, generous transparent margins, no scene or floor, no cast floor shadow, no text/letters/numbers, no UI, no frame, no watermark. Genuine RGBA transparency. Clear broad silhouette readable at 32 pixels. Square canvas unless a portrait/landscape shape is specifically requested.\nA single small round strawberry gelato scoop, soft pink with three or four darker berry flecks, subtle scoop ridges and shallow scalloped underside. Nearly circular silhouette viewed from front slightly above. No cone, bowl, stem or melting drips. Volume feels firm enough to bounce. Centered occupying about80% of square.",
+      "source": "C:\\Users\\Hursh\\.codex\\generated_images\\01a1698f-a59c-7e10-a1df-92fe5d8b1f60\\exec-abb8cb10-7102-424b-9295-00701c911ba3.png",
+      "target": "C:\\Users\\Hursh\\Documents\\Plinko\\PLINKO\\data\\art\\gelato\\food\\donut.png",
+      "method": "built-in image_gen.imagegen",
+      "created": "2026-10-24",
+      "pixels_modified": false
+    },
+    {
+      "family": "food",
+      "name": "pomegranate",
+      "prompt": "Sugarfall Gelato Garden production game asset. Detailed softly painted 2.5D sculpted food/enamel, rounded handmade forms, broad soft warm upper-left light and intrinsic lower-right shading, warm cream, dusty lavender #B8A2CF and thin polished copper where specified. No black outlines, no flat vectors, no photographic background. One isolated object centered, generous transparent margins, no scene or floor, no cast floor shadow, no text/letters/numbers, no UI, no frame, no watermark. Genuine RGBA transparency. Clear broad silhouette readable at 32 pixels. Square canvas unless a portrait/landscape shape is specifically requested.\nOne ripe strawberry as a round compact game ball, ruby-red fruit, very short green leafy crown, a few broad pale seeds, front view. Rounded heart shape with only a slightly pointed base. No slice or bowl, no reflections on a floor. Centered about80%of square.",
+      "source": "C:\\Users\\Hursh\\.codex\\generated_images\\01a1698f-a59c-7e10-a1df-92fe5d8b1f60\\exec-f7516b0c-a57c-4a6c-9877-f87fd558a33e.png",
+      "target": "C:\\Users\\Hursh\\Documents\\Plinko\\PLINKO\\data\\art\\gelato\\food\\pomegranate.png",
+      "method": "built-in image_gen.imagegen",
+      "created": "2026-10-24",
+      "pixels_modified": false
+    },
+    {
+      "family": "food",
+      "name": "pumpkin",
+      "prompt": "Sugarfall Gelato Garden production game asset. Detailed softly painted 2.5D sculpted food/enamel, rounded handmade forms, broad soft warm upper-left light and intrinsic lower-right shading, warm cream, dusty lavender #B8A2CF and thin polished copper where specified. No black outlines, no flat vectors, no photographic background. One isolated object centered, generous transparent margins, no scene or floor, no cast floor shadow, no text/letters/numbers, no UI, no frame, no watermark. Genuine RGBA transparency. Clear broad silhouette readable at 32 pixels. Square canvas unless a portrait/landscape shape is specifically requested.\nOne round glossy dark-chocolate bonbon with exactly one broad pale-milk-chocolate curved stripe. Smooth shell, NO nuts or studded surface. Clear round ball with shallowintrinsicshadow. It must look distinct from a flat wafer. Front view centered80%of square.",
+      "source": "C:\\Users\\Hursh\\.codex\\generated_images\\01a1698f-a59c-7e10-a1df-92fe5d8b1f60\\exec-80b58f85-de3b-426a-a321-3f09037aa1dc.png",
+      "target": "C:\\Users\\Hursh\\Documents\\Plinko\\PLINKO\\data\\art\\gelato\\food\\pumpkin.png",
+      "method": "built-in image_gen.imagegen",
+      "created": "2026-10-24",
+      "pixels_modified": false
+    },
+    {
+      "family": "food",
+      "name": "seed",
+      "prompt": "Sugarfall Gelato Garden production game asset. Detailed softly painted 2.5D sculpted food/enamel, rounded handmade forms, broad soft warm upper-left light and intrinsic lower-right shading, warm cream, dusty lavender #B8A2CF and thin polished copper where specified. No black outlines, no flat vectors, no photographic background. One isolated object centered, generous transparent margins, no scene or floor, no cast floor shadow, no text/letters/numbers, no UI, no frame, no watermark. Genuine RGBA transparency. Clear broad silhouette readable at 32 pixels. Square canvas unless a portrait/landscape shape is specifically requested.\nOne tiny strawberry fruit fragment for a splitter projectile. Single compact ruby-red rounded triangular teardrop chunk, subtle red interior and one pale seed, no leaf, no cluster, no juice trail. Frontview, centeredabout75%of square.",
+      "source": "C:\\Users\\Hursh\\.codex\\generated_images\\01a1698f-a59c-7e10-a1df-92fe5d8b1f60\\exec-8bcfcb43-5f49-4bf1-b800-81414603faa1.png",
+      "target": "C:\\Users\\Hursh\\Documents\\Plinko\\PLINKO\\data\\art\\gelato\\food\\seed.png",
+      "method": "built-in image_gen.imagegen",
+      "created": "2026-10-24",
+      "pixels_modified": false
+    },
+    {
+      "family": "food",
+      "name": "ricochet",
+      "prompt": "Sugarfall Gelato Garden production game asset. Detailed softly painted 2.5D sculpted food/enamel, rounded handmade forms, broad soft warm upper-left light and intrinsic lower-right shading, warm cream, dusty lavender #B8A2CF and thin polished copper where specified. No black outlines, no flat vectors, no photographic background. One isolated object centered, generous transparent margins, no scene or floor, no cast floor shadow, no text/letters/numbers, no UI, no frame, no watermark. Genuine RGBA transparency. Clear broad silhouette readable at 32 pixels. Square canvas unless a portrait/landscape shape is specifically requested.\nOne round yellow lemon hard candy with a broad simple spiral incised in its face and soft glossy highlights. Compact bright lemon disc with shallow sphericalvolume, no wrapper, no stick, no extra candies. Front view centered80%of square.",
+      "source": "C:\\Users\\Hursh\\.codex\\generated_images\\01a1698f-a59c-7e10-a1df-92fe5d8b1f60\\exec-6aebbe9a-c244-4ec3-bfd5-e0579eaf46ca.png",
+      "target": "C:\\Users\\Hursh\\Documents\\Plinko\\PLINKO\\data\\art\\gelato\\food\\ricochet.png",
+      "method": "built-in image_gen.imagegen",
+      "created": "2026-10-24",
+      "pixels_modified": false
+    },
+    {
+      "family": "food",
+      "name": "cookie_normal",
+      "prompt": "Sugarfall Gelato Garden production game asset. Detailed softly painted 2.5D sculpted food/enamel, rounded handmade forms, broad soft warm upper-left light and intrinsic lower-right shading, warm cream, dusty lavender #B8A2CF and thin polished copper where specified. No black outlines, no flat vectors, no photographic background. One isolated object centered, generous transparent margins, no scene or floor, no cast floor shadow, no text/letters/numbers, no UI, no frame, no watermark. Genuine RGBA transparency. Clear broad silhouette readable at 32 pixels. Square canvas unless a portrait/landscape shape is specifically requested.\nOne intact shallow circular golden wafer biscuit peg, front-on orthographic face, slight visible depth at lower-right edge. Seven broad waffle grid cells across diameter, toasted honey rim, clean round silhouette. NOT a spherical waffle ball. No filling or icing, no bite, no crumbs, no cracks. Center at exactlycanvasmidpoint, diameter80%of square.",
+      "source": "C:\\Users\\Hursh\\.codex\\generated_images\\01a1698f-a59c-7e10-a1df-92fe5d8b1f60\\exec-9feebe99-8eb1-4b95-8e1e-72dbcb0687b2.png",
+      "target": "C:\\Users\\Hursh\\Documents\\Plinko\\PLINKO\\data\\art\\gelato\\food\\cookie_normal.png",
+      "method": "built-in image_gen.imagegen",
+      "created": "2026-10-24",
+      "pixels_modified": false
+    },
+    {
+      "family": "food",
+      "name": "cookie_armored",
+      "prompt": "Sugarfall Gelato Garden production game asset. Detailed softly painted 2.5D sculpted food/enamel, rounded handmade forms, broad soft warm upper-left light and intrinsic lower-right shading, warm cream, dusty lavender #B8A2CF and thin polished copper where specified. No black outlines, no flat vectors, no photographic background. One isolated object centered, generous transparent margins, no scene or floor, no cast floor shadow, no text/letters/numbers, no UI, no frame, no watermark. Genuine RGBA transparency. Clear broad silhouette readable at 32 pixels. Square canvas unless a portrait/landscape shape is specifically requested.\nOne intact shallow circular wafer biscuit peg with a smooth deep chocolate-coated FACE and a thin clearly visible honey-gold wafer rim. Front-on orthographic disc, same evenly roundshape and broad border as a waffle coin. Slight lower-right thickness. A subtle large waffle grid embossed in chocolate; NO nuts or studs. No bite, no crumbs or cracks. Center at exactlycanvasmidpoint, diameter80%of square.",
+      "source": "C:\\Users\\Hursh\\.codex\\generated_images\\01a1698f-a59c-7e10-a1df-92fe5d8b1f60\\exec-c07b510c-27b2-40fe-8c6c-0477a2eff10a.png",
+      "target": "C:\\Users\\Hursh\\Documents\\Plinko\\PLINKO\\data\\art\\gelato\\food\\cookie_armored.png",
+      "method": "built-in image_gen.imagegen",
+      "created": "2026-10-24",
+      "pixels_modified": false
+    },
+    {
+      "family": "food",
+      "name": "cookie_prism",
+      "prompt": "Sugarfall Gelato Garden production game asset. Detailed softly painted 2.5D sculpted food/enamel, rounded handmade forms, broad soft warm upper-left light and intrinsic lower-right shading, warm cream, dusty lavender #B8A2CF and thin polished copper where specified. No black outlines, no flat vectors, no photographic background. One isolated object centered, generous transparent margins, no scene or floor, no cast floor shadow, no text/letters/numbers, no UI, no frame, no watermark. Genuine RGBA transparency. Clear broad silhouette readable at 32 pixels. Square canvas unless a portrait/landscape shape is specifically requested.\nOne intact shallow circular golden wafer biscuit peg, front-on orthographic disc. Bright ruby strawberry glaze covers most of its face and has exactly three thick diagonal ivory icing lines. A thin honeygold waffle rim remainsvisible. No sprinkles, fruit slices, bite, crumbs orcracks. Centerexactlycanvasmidpoint, diameter80%of square.",
+      "source": "C:\\Users\\Hursh\\.codex\\generated_images\\01a1698f-a59c-7e10-a1df-92fe5d8b1f60\\exec-04cdce0c-556a-4c45-bbf4-96054994f013.png",
+      "target": "C:\\Users\\Hursh\\Documents\\Plinko\\PLINKO\\data\\art\\gelato\\food\\cookie_prism.png",
+      "method": "built-in image_gen.imagegen",
+      "created": "2026-10-24",
+      "pixels_modified": false
+    },
+    {
+      "family": "food",
+      "name": "cookie_clock",
+      "prompt": "Sugarfall Gelato Garden production game asset. Detailed softly painted 2.5D sculpted food/enamel, rounded handmade forms, broad soft warm upper-left light and intrinsic lower-right shading, warm cream, dusty lavender #B8A2CF and thin polished copper where specified. No black outlines, no flat vectors, no photographic background. One isolated object centered, generous transparent margins, no scene or floor, no cast floor shadow, no text/letters/numbers, no UI, no frame, no watermark. Genuine RGBA transparency. Clear broad silhouette readable at 32 pixels. Square canvas unless a portrait/landscape shape is specifically requested.\nOne intact shallow round golden wafer biscuit peg, front-on orthographicdisc. The face has smooth vanilla cream icing with a simple dark-cocoa CLOCK mark: two thick hands showingroughly10:10 and fourlarge cocoa hour dots at12/3/6/9. No numerals orothertext. Thin honeygold waffle biscuit rim. No bite/crumbs/cracks. Centerexactlycanvasmidpoint,diameter80%of square.",
+      "source": "C:\\Users\\Hursh\\.codex\\generated_images\\01a1698f-a59c-7e10-a1df-92fe5d8b1f60\\exec-58e9ada5-51e8-45bf-a960-e16b08e53c07.png",
+      "target": "C:\\Users\\Hursh\\Documents\\Plinko\\PLINKO\\data\\art\\gelato\\food\\cookie_clock.png",
+      "method": "built-in image_gen.imagegen",
+      "created": "2026-10-24",
+      "pixels_modified": false
+    },
+    {
+      "family": "food",
+      "name": "cup_cream",
+      "prompt": "Sugarfall Gelato Garden production game asset. Detailed softly painted 2.5D sculpted food/enamel, rounded handmade forms, broad soft warm upper-left light and intrinsic lower-right shading, warm cream, dusty lavender #B8A2CF and thin polished copper where specified. No black outlines, no flat vectors, no photographic background. One isolated object centered, generous transparent margins, no scene or floor, no cast floor shadow, no text/letters/numbers, no UI, no frame, no watermark. Genuine RGBA transparency. Clear broad silhouette readable at 32 pixels. Square canvas unless a portrait/landscape shape is specifically requested.\nOne EMPTY sundae collection cup, fullobject isolated. Front view with slight elevation revealing a wide oval open cream interior. Cream glazed ceramic body with a BROAD BLANK FLAT FRONT for a live game multiplier, no badge or label. Small goldenwaffle texture panels on left/right sides only. Short dusty-lavender pedestal base with thin polished copper foot. Cup mouth broad, deepvisibleinner cavity, naturalround proportions. Entire cup andbase uncropped, no handles/spoon/food. Approximately0.8width-to-height ratio onportraitcanvas.",
+      "source": "C:\\Users\\Hursh\\.codex\\generated_images\\01a1698f-a59c-7e10-a1df-92fe5d8b1f60\\exec-4da01a81-6532-4865-a2d0-fc49b6d5fb97.png",
+      "target": "C:\\Users\\Hursh\\Documents\\Plinko\\PLINKO\\data\\art\\gelato\\food\\cup_cream.png",
+      "method": "built-in image_gen.imagegen",
+      "created": "2026-10-24",
+      "pixels_modified": false
+    },
+    {
+      "family": "food",
+      "name": "cup_gold",
+      "prompt": "Sugarfall Gelato Garden production game asset. Detailed softly painted 2.5D sculpted food/enamel, rounded handmade forms, broad soft warm upper-left light and intrinsic lower-right shading, warm cream, dusty lavender #B8A2CF and thin polished copper where specified. No black outlines, no flat vectors, no photographic background. One isolated object centered, generous transparent margins, no scene or floor, no cast floor shadow, no text/letters/numbers, no UI, no frame, no watermark. Genuine RGBA transparency. Clear broad silhouette readable at 32 pixels. Square canvas unless a portrait/landscape shape is specifically requested.\nOne EMPTY gold sundae collection cup, fullobject isolated. Front view with slight elevation revealing a wide oval open gold interior. Warm polished honeygold metal body, broad smooth BLANK FRONT for livegame multiplier. Verysubtle broad sidefluting, shortpedestalbase androundfoot. Match proportions of an artisan cream ceramic sundae cup: approximately0.8width-to-height. No ornatecrest, labels, numbers,handles,spoon orfood. Deepvisibleinner cavity, entirecup/baseuncropped.",
+      "source": "C:\\Users\\Hursh\\.codex\\generated_images\\01a1698f-a59c-7e10-a1df-92fe5d8b1f60\\exec-bd27b5c8-9d15-48ba-8713-88c263b5bfac.png",
+      "target": "C:\\Users\\Hursh\\Documents\\Plinko\\PLINKO\\data\\art\\gelato\\food\\cup_gold.png",
+      "method": "built-in image_gen.imagegen",
+      "created": "2026-10-24",
+      "pixels_modified": false
+    },
+    {
+      "family": "food",
+      "name": "hopper",
+      "prompt": "Sugarfall Gelato Garden production game asset. Detailed softly painted 2.5D sculpted food/enamel, rounded handmade forms, broad soft warm upper-left light and intrinsic lower-right shading, warm cream, dusty lavender #B8A2CF and thin polished copper where specified. No black outlines, no flat vectors, no photographic background. One isolated object centered, generous transparent margins, no scene or floor, no cast floor shadow, no text/letters/numbers, no UI, no frame, no watermark. Genuine RGBA transparency. Clear broad silhouette readable at 32 pixels. Square canvas unless a portrait/landscape shape is specifically requested.\nOne compact GELATO DISPENSER feeder, isolated frontview slightlyabove. A deep dustylavender enamel bowl/tank with thickpolished copper lip andtwo small side mounts. Topopening reveals threefirm pink icecream scoops. Below, a visibly deep tapered conical lavender funnel leads to a DOWNWARD round copper outlet at bottom center. Correct fullheight anddepth: not a flattened saucer. The outlet must clearly dispensefood downwards. No stand, pipe extendingoutsideobject, text, lever, button, platform orbackground. Entireobjectwithmodesttransparentpadding, roughlysquare silhouette.",
+      "source": "C:\\Users\\Hursh\\.codex\\generated_images\\01a1698f-a59c-7e10-a1df-92fe5d8b1f60\\exec-df655b49-ee35-478e-92b9-7efbb25d1207.png",
+      "target": "C:\\Users\\Hursh\\Documents\\Plinko\\PLINKO\\data\\art\\gelato\\food\\hopper.png",
+      "method": "built-in image_gen.imagegen",
+      "created": "2026-10-24",
+      "pixels_modified": false
+    },
+    {
+      "family": "food",
+      "name": "tray",
+      "prompt": "Sugarfall Gelato Garden production game asset. Detailed softly painted 2.5D sculpted food/enamel, rounded handmade forms, broad soft warm upper-left light and intrinsic lower-right shading, warm cream, dusty lavender #B8A2CF and thin polished copper where specified. No black outlines, no flat vectors, no photographic background. One isolated object centered, generous transparent margins, no scene or floor, no cast floor shadow, no text/letters/numbers, no UI, no frame, no watermark. Genuine RGBA transparency. Clear broad silhouette readable at 32 pixels. Square canvas unless a portrait/landscape shape is specifically requested.\nOne EMPTY portrait vertical game peg tray, front-on almostorthographic. Tallroundedrectangle aspect about0.70width/height. Thin dustylavender enamel rails andrestrainedpolished coppercorner fittings. Huge quiet smoothwarmvanillaceramic interior,uniform lowcontrast, no gradientbands. A smallrolledrail allfour sides, roundcorners. No pegs, food, dispenser,cups, scenery,words,ornaments, dividers orUI. Isolatedfullobjectwithgenuinetransparentbackground around itsoutline, evenlypadded. Center area must be stretchable; shortsoft intrinsic rimshading only.",
+      "source": "C:\\Users\\Hursh\\.codex\\generated_images\\01a1698f-a59c-7e10-a1df-92fe5d8b1f60\\exec-212d86d7-e51d-4c64-807f-a17ccc824eb9.png",
+      "target": "C:\\Users\\Hursh\\Documents\\Plinko\\PLINKO\\data\\art\\gelato\\food\\tray.png",
+      "method": "built-in image_gen.imagegen",
+      "created": "2026-10-24",
+      "pixels_modified": false
+    },
+    {
+      "family": "food",
+      "name": "cookie_normal_damage_1",
+      "prompt": "Edit this single game sprite into damage stage 1 of 3 for a small peg in Sugarfall. Remove one small but visibly legible wedge of the upper-right rim, about 12 percent of the whole silhouette, with one broad dark crack extending inward. Broken surfaces reveal thick crisp wafer beneath the original coating. Preserve EXACT original canvas size, the disc's center, original scale, circular silhouette of the surviving edges, front-facing orientation, upper-left light, material, icing decorations on the surviving part, and all other colors. Missing chunks must become true transparent holes with jagged edges. No floating pieces outside the original disc bounds; no crumbs outside original bounds. One isolated object only. No progress ring, text, UI, background, floor or shadow. Broad, legible damage at 30 pixel display size. Keep transparency.",
+      "reference": "C:\\Users\\Hursh\\Documents\\Plinko\\PLINKO\\data\\art\\gelato\\food\\cookie_normal.png",
+      "source": "C:\\Users\\Hursh\\.codex\\generated_images\\01a1698f-a59c-7e10-a1df-92fe5d8b1f60\\exec-ffef6faf-28ce-4637-8da9-db7f8caee7ef.png",
+      "target": "C:\\Users\\Hursh\\Documents\\Plinko\\PLINKO\\data\\art\\gelato\\food\\cookie_normal_damage_1.png",
+      "method": "built-in image_gen.imagegen",
+      "created": "2026-10-24",
+      "pixels_modified": false
+    },
+    {
+      "family": "food",
+      "name": "cookie_normal_damage_2",
+      "prompt": "Edit this single game sprite into damage stage 2 of 3 for a small peg in Sugarfall. Remove about 25 percent of the original disc from the upper-right side, a broad jagged missing wedge plus one clearly readable deep crack. Broken surfaces reveal thick crisp wafer beneath the original coating. Preserve EXACT original canvas size, the disc's center, original scale, circular silhouette of the surviving edges, front-facing orientation, upper-left light, material, icing decorations on the surviving part, and all other colors. Missing chunks must become true transparent holes with jagged edges. No floating pieces outside the original disc bounds; no crumbs outside original bounds. One isolated object only. No progress ring, text, UI, background, floor or shadow. Broad, legible damage at 30 pixel display size. Keep transparency.",
+      "reference": "C:\\Users\\Hursh\\Documents\\Plinko\\PLINKO\\data\\art\\gelato\\food\\cookie_normal.png",
+      "source": "C:\\Users\\Hursh\\.codex\\generated_images\\01a1698f-a59c-7e10-a1df-92fe5d8b1f60\\exec-8f908b17-2dde-465b-9b86-870bcd027fc9.png",
+      "target": "C:\\Users\\Hursh\\Documents\\Plinko\\PLINKO\\data\\art\\gelato\\food\\cookie_normal_damage_2.png",
+      "method": "built-in image_gen.imagegen",
+      "created": "2026-10-24",
+      "pixels_modified": false
+    },
+    {
+      "family": "food",
+      "name": "cookie_normal_damage_3",
+      "prompt": "Edit this single game sprite into damage stage 3 of 3 for a small peg in Sugarfall. Remove about 40 percent of the disc, with a large jagged missing upper-right quadrant and an additional missing lower-right rim chunk; show deep cracks through the remaining connected wafer. The object is nearly crumbled but remains recognizable. Broken surfaces reveal thick crisp wafer beneath the original coating. Preserve EXACT original canvas size, the disc's center, original scale, circular silhouette of the surviving edges, front-facing orientation, upper-left light, material, icing decorations on the surviving part, and all other colors. Missing chunks must become true transparent holes with jagged edges. No floating pieces outside the original disc bounds; no crumbs outside original bounds. One isolated object only. No progress ring, text, UI, background, floor or shadow. Broad, legible damage at 30 pixel display size. Keep transparency.",
+      "reference": "C:\\Users\\Hursh\\Documents\\Plinko\\PLINKO\\data\\art\\gelato\\food\\cookie_normal.png",
+      "source": "C:\\Users\\Hursh\\.codex\\generated_images\\01a1698f-a59c-7e10-a1df-92fe5d8b1f60\\exec-87e6884a-5474-4d72-b2f6-db4d851ce9ff.png",
+      "target": "C:\\Users\\Hursh\\Documents\\Plinko\\PLINKO\\data\\art\\gelato\\food\\cookie_normal_damage_3.png",
+      "method": "built-in image_gen.imagegen",
+      "created": "2026-10-24",
+      "pixels_modified": false
+    },
+    {
+      "family": "food",
+      "name": "cookie_armored_damage_1",
+      "prompt": "Edit this single game sprite into damage stage 1 of 3 for a small peg in Sugarfall. Remove one small but visibly legible wedge of the upper-right rim, about 12 percent of the whole silhouette, with one broad dark crack extending inward. Broken surfaces reveal thick crisp wafer beneath the original coating. Preserve EXACT original canvas size, the disc's center, original scale, circular silhouette of the surviving edges, front-facing orientation, upper-left light, material, icing decorations on the surviving part, and all other colors. Missing chunks must become true transparent holes with jagged edges. No floating pieces outside the original disc bounds; no crumbs outside original bounds. One isolated object only. No progress ring, text, UI, background, floor or shadow. Broad, legible damage at 30 pixel display size. Keep transparency.",
+      "reference": "C:\\Users\\Hursh\\Documents\\Plinko\\PLINKO\\data\\art\\gelato\\food\\cookie_armored.png",
+      "source": "C:\\Users\\Hursh\\.codex\\generated_images\\01a1698f-a59c-7e10-a1df-92fe5d8b1f60\\exec-4b6f047b-5a12-49ed-ab78-1012594af90c.png",
+      "target": "C:\\Users\\Hursh\\Documents\\Plinko\\PLINKO\\data\\art\\gelato\\food\\cookie_armored_damage_1.png",
+      "method": "built-in image_gen.imagegen",
+      "created": "2026-10-24",
+      "pixels_modified": false
+    },
+    {
+      "family": "food",
+      "name": "cookie_armored_damage_2",
+      "prompt": "Edit this single game sprite into damage stage 2 of 3 for a small peg in Sugarfall. Remove about 25 percent of the original disc from the upper-right side, a broad jagged missing wedge plus one clearly readable deep crack. Broken surfaces reveal thick crisp wafer beneath the original coating. Preserve EXACT original canvas size, the disc's center, original scale, circular silhouette of the surviving edges, front-facing orientation, upper-left light, material, icing decorations on the surviving part, and all other colors. Missing chunks must become true transparent holes with jagged edges. No floating pieces outside the original disc bounds; no crumbs outside original bounds. One isolated object only. No progress ring, text, UI, background, floor or shadow. Broad, legible damage at 30 pixel display size. Keep transparency.",
+      "reference": "C:\\Users\\Hursh\\Documents\\Plinko\\PLINKO\\data\\art\\gelato\\food\\cookie_armored.png",
+      "source": "C:\\Users\\Hursh\\.codex\\generated_images\\01a1698f-a59c-7e10-a1df-92fe5d8b1f60\\exec-97d3953e-55c4-43da-a213-e1355bf9fd9a.png",
+      "target": "C:\\Users\\Hursh\\Documents\\Plinko\\PLINKO\\data\\art\\gelato\\food\\cookie_armored_damage_2.png",
+      "method": "built-in image_gen.imagegen",
+      "created": "2026-10-24",
+      "pixels_modified": false
+    },
+    {
+      "family": "food",
+      "name": "cookie_armored_damage_3",
+      "prompt": "Edit this single game sprite into damage stage 3 of 3 for a small peg in Sugarfall. Remove about 40 percent of the disc, with a large jagged missing upper-right quadrant and an additional missing lower-right rim chunk; show deep cracks through the remaining connected wafer. The object is nearly crumbled but remains recognizable. Broken surfaces reveal thick crisp wafer beneath the original coating. Preserve EXACT original canvas size, the disc's center, original scale, circular silhouette of the surviving edges, front-facing orientation, upper-left light, material, icing decorations on the surviving part, and all other colors. Missing chunks must become true transparent holes with jagged edges. No floating pieces outside the original disc bounds; no crumbs outside original bounds. One isolated object only. No progress ring, text, UI, background, floor or shadow. Broad, legible damage at 30 pixel display size. Keep transparency.",
+      "reference": "C:\\Users\\Hursh\\Documents\\Plinko\\PLINKO\\data\\art\\gelato\\food\\cookie_armored.png",
+      "source": "C:\\Users\\Hursh\\.codex\\generated_images\\01a1698f-a59c-7e10-a1df-92fe5d8b1f60\\exec-1d2f5310-6ddd-4c83-bd28-294a561a02ef.png",
+      "target": "C:\\Users\\Hursh\\Documents\\Plinko\\PLINKO\\data\\art\\gelato\\food\\cookie_armored_damage_3.png",
+      "method": "built-in image_gen.imagegen",
+      "created": "2026-10-24",
+      "pixels_modified": false
+    },
+    {
+      "family": "food",
+      "name": "cookie_prism_damage_1",
+      "prompt": "Edit this single game sprite into damage stage 1 of 3 for a small peg in Sugarfall. Remove one small but visibly legible wedge of the upper-right rim, about 12 percent of the whole silhouette, with one broad dark crack extending inward. Broken surfaces reveal thick crisp wafer beneath the original coating. Preserve EXACT original canvas size, the disc's center, original scale, circular silhouette of the surviving edges, front-facing orientation, upper-left light, material, icing decorations on the surviving part, and all other colors. Missing chunks must become true transparent holes with jagged edges. No floating pieces outside the original disc bounds; no crumbs outside original bounds. One isolated object only. No progress ring, text, UI, background, floor or shadow. Broad, legible damage at 30 pixel display size. Keep transparency.",
+      "reference": "C:\\Users\\Hursh\\Documents\\Plinko\\PLINKO\\data\\art\\gelato\\food\\cookie_prism.png",
+      "source": "C:\\Users\\Hursh\\.codex\\generated_images\\01a1698f-a59c-7e10-a1df-92fe5d8b1f60\\exec-b33f8092-4eba-4e7f-a9d5-dd1f54f7f07a.png",
+      "target": "C:\\Users\\Hursh\\Documents\\Plinko\\PLINKO\\data\\art\\gelato\\food\\cookie_prism_damage_1.png",
+      "method": "built-in image_gen.imagegen",
+      "created": "2026-10-24",
+      "pixels_modified": false
+    },
+    {
+      "family": "food",
+      "name": "cookie_prism_damage_2",
+      "prompt": "Edit this single game sprite into damage stage 2 of 3 for a small peg in Sugarfall. Remove about 25 percent of the original disc from the upper-right side, a broad jagged missing wedge plus one clearly readable deep crack. Broken surfaces reveal thick crisp wafer beneath the original coating. Preserve EXACT original canvas size, the disc's center, original scale, circular silhouette of the surviving edges, front-facing orientation, upper-left light, material, icing decorations on the surviving part, and all other colors. Missing chunks must become true transparent holes with jagged edges. No floating pieces outside the original disc bounds; no crumbs outside original bounds. One isolated object only. No progress ring, text, UI, background, floor or shadow. Broad, legible damage at 30 pixel display size. Keep transparency.",
+      "reference": "C:\\Users\\Hursh\\Documents\\Plinko\\PLINKO\\data\\art\\gelato\\food\\cookie_prism.png",
+      "source": "C:\\Users\\Hursh\\.codex\\generated_images\\01a1698f-a59c-7e10-a1df-92fe5d8b1f60\\exec-8cf750bd-557f-479e-a1da-d77465c62a2a.png",
+      "target": "C:\\Users\\Hursh\\Documents\\Plinko\\PLINKO\\data\\art\\gelato\\food\\cookie_prism_damage_2.png",
+      "method": "built-in image_gen.imagegen",
+      "created": "2026-10-24",
+      "pixels_modified": false
+    },
+    {
+      "family": "food",
+      "name": "cookie_prism_damage_3",
+      "prompt": "Edit this single game sprite into damage stage 3 of 3 for a small peg in Sugarfall. Remove about 40 percent of the disc, with a large jagged missing upper-right quadrant and an additional missing lower-right rim chunk; show deep cracks through the remaining connected wafer. The object is nearly crumbled but remains recognizable. Broken surfaces reveal thick crisp wafer beneath the original coating. Preserve EXACT original canvas size, the disc's center, original scale, circular silhouette of the surviving edges, front-facing orientation, upper-left light, material, icing decorations on the surviving part, and all other colors. Missing chunks must become true transparent holes with jagged edges. No floating pieces outside the original disc bounds; no crumbs outside original bounds. One isolated object only. No progress ring, text, UI, background, floor or shadow. Broad, legible damage at 30 pixel display size. Keep transparency.",
+      "reference": "C:\\Users\\Hursh\\Documents\\Plinko\\PLINKO\\data\\art\\gelato\\food\\cookie_prism.png",
+      "source": "C:\\Users\\Hursh\\.codex\\generated_images\\01a1698f-a59c-7e10-a1df-92fe5d8b1f60\\exec-2686c2c9-1d68-44d5-ba9f-59ba90bdfd64.png",
+      "target": "C:\\Users\\Hursh\\Documents\\Plinko\\PLINKO\\data\\art\\gelato\\food\\cookie_prism_damage_3.png",
+      "method": "built-in image_gen.imagegen",
+      "created": "2026-10-24",
+      "pixels_modified": false
+    },
+    {
+      "family": "food",
+      "name": "cookie_clock_damage_1",
+      "prompt": "Edit this single game sprite into damage stage 1 of 3 for a small peg in Sugarfall. Remove one small but visibly legible wedge of the upper-right rim, about 12 percent of the whole silhouette, with one broad dark crack extending inward. Broken surfaces reveal thick crisp wafer beneath the original coating. Preserve EXACT original canvas size, the disc's center, original scale, circular silhouette of the surviving edges, front-facing orientation, upper-left light, material, icing decorations on the surviving part, and all other colors. Missing chunks must become true transparent holes with jagged edges. No floating pieces outside the original disc bounds; no crumbs outside original bounds. One isolated object only. No progress ring, text, UI, background, floor or shadow. Broad, legible damage at 30 pixel display size. Keep transparency.",
+      "reference": "C:\\Users\\Hursh\\Documents\\Plinko\\PLINKO\\data\\art\\gelato\\food\\cookie_clock.png",
+      "source": "C:\\Users\\Hursh\\.codex\\generated_images\\01a1698f-a59c-7e10-a1df-92fe5d8b1f60\\exec-165940c1-2731-425a-83c9-be000a68bc5a.png",
+      "target": "C:\\Users\\Hursh\\Documents\\Plinko\\PLINKO\\data\\art\\gelato\\food\\cookie_clock_damage_1.png",
+      "method": "built-in image_gen.imagegen",
+      "created": "2026-10-24",
+      "pixels_modified": false
+    },
+    {
+      "family": "food",
+      "name": "cookie_clock_damage_2",
+      "prompt": "Edit this single game sprite into damage stage 2 of 3 for a small peg in Sugarfall. Remove about 25 percent of the original disc from the upper-right side, a broad jagged missing wedge plus one clearly readable deep crack. Broken surfaces reveal thick crisp wafer beneath the original coating. Preserve EXACT original canvas size, the disc's center, original scale, circular silhouette of the surviving edges, front-facing orientation, upper-left light, material, icing decorations on the surviving part, and all other colors. Missing chunks must become true transparent holes with jagged edges. No floating pieces outside the original disc bounds; no crumbs outside original bounds. One isolated object only. No progress ring, text, UI, background, floor or shadow. Broad, legible damage at 30 pixel display size. Keep transparency.",
+      "reference": "C:\\Users\\Hursh\\Documents\\Plinko\\PLINKO\\data\\art\\gelato\\food\\cookie_clock.png",
+      "source": "C:\\Users\\Hursh\\.codex\\generated_images\\01a1698f-a59c-7e10-a1df-92fe5d8b1f60\\exec-b9163ea5-2ef0-416d-82a1-cd45509794f4.png",
+      "target": "C:\\Users\\Hursh\\Documents\\Plinko\\PLINKO\\data\\art\\gelato\\food\\cookie_clock_damage_2.png",
+      "method": "built-in image_gen.imagegen",
+      "created": "2026-10-24",
+      "pixels_modified": false
+    },
+    {
+      "family": "food",
+      "name": "cookie_clock_damage_3",
+      "prompt": "Edit this single game sprite into damage stage 3 of 3 for a small peg in Sugarfall. Remove about 40 percent of the disc, with a large jagged missing upper-right quadrant and an additional missing lower-right rim chunk; show deep cracks through the remaining connected wafer. The object is nearly crumbled but remains recognizable. Broken surfaces reveal thick crisp wafer beneath the original coating. Preserve EXACT original canvas size, the disc's center, original scale, circular silhouette of the surviving edges, front-facing orientation, upper-left light, material, icing decorations on the surviving part, and all other colors. Missing chunks must become true transparent holes with jagged edges. No floating pieces outside the original disc bounds; no crumbs outside original bounds. One isolated object only. No progress ring, text, UI, background, floor or shadow. Broad, legible damage at 30 pixel display size. Keep transparency.",
+      "reference": "C:\\Users\\Hursh\\Documents\\Plinko\\PLINKO\\data\\art\\gelato\\food\\cookie_clock.png",
+      "source": "C:\\Users\\Hursh\\.codex\\generated_images\\01a1698f-a59c-7e10-a1df-92fe5d8b1f60\\exec-eda97ca4-c8ba-48b2-be9c-63535ecdd1cb.png",
+      "target": "C:\\Users\\Hursh\\Documents\\Plinko\\PLINKO\\data\\art\\gelato\\food\\cookie_clock_damage_3.png",
+      "method": "built-in image_gen.imagegen",
+      "created": "2026-10-24",
+      "pixels_modified": false
+    },
+    {
+      "family": "food",
+      "name": "countertop",
+      "method": "identical file copy",
+      "source": "PLINKO/data/art/gelato/environment/play_counter.png",
+      "target": "PLINKO/data/art/gelato/food/countertop.png",
+      "pixels_modified": false
+    }
+  ]
+}

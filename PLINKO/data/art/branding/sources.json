@@ -1,0 +1,29 @@
+{
+  "name": "Sugarfall app icon",
+  "date": "2026-10-23",
+  "generation_method": "Built-in image_gen imagegen",
+  "assets": [
+    {
+      "path": "sugarfall_icon.png",
+      "generated_source": "C:/Users/Hursh/.codex/generated_images/01a1698f-a59c-7e10-a1df-92fe5d8b1f60/exec-377ab8d4-4323-476d-ab48-16844a5443f7.png",
+      "prompt": "Use case: stylized-concept. Asset type: final square Android game app icon for Sugarfall, a food-themed peg-drop incremental game. Create a single polished 1024x1024 full-bleed square icon, NOT a phone mockup or an icon sheet. Primary subject: one large golden ring donut with glossy strawberry-pink icing and a few chunky colorful sprinkles, falling diagonally slightly toward lower right, with a small pair of cream-frosted scalloped cookie pegs beneath it suggesting a bounce. Donut is the unmistakable hero. Established art direction: softly painted 2.5D sculpted bakery food, rounded volume, restrained baked texture, warm upper-left light and soft lower-right shading, no black outline. Palette: pink icing, warm golden baked edges, calm mint enamel background (#8ACBB5 trending deeper mint toward bottom), ivory cookie frosting, very restrained warm copper accent. Composition: beautifully simple and readable at 48 pixels; circular donut hole clearly open; keep all essential food inside central 62% diameter safe circle for Android adaptive masking, donut roughly 48% of canvas width, cookies much smaller; subtle short curved cream motion accent above the donut, no complicated trail. Calm seamless mint background fills ALL edges. Broad lighting only; do not draw a square plaque, border, frame, rounded tile, drop shadow outside a tile, or corner shape. No words, letters, numbers, title, watermark, face, mascot, coins, UI, or extra unrelated objects. The image must feel like the existing food game assets rather than a flat vector logo or a photoreal food photograph.",
+      "role": "Opaque legacy launcher/project icon. Production food art was visually inspected to establish style; generation used text specification."
+    },
+    {
+      "path": "sugarfall_adaptive_foreground.png",
+      "generated_source": "C:/Users/Hursh/.codex/generated_images/01a1698f-a59c-7e10-a1df-92fe5d8b1f60/exec-04f9306a-03c7-4378-9f51-7065b1396502.png",
+      "reference_roles": "First edit targets opaque icon to extract transparent foreground; second edit targets extracted foreground for Android safe padding.",
+      "edit_prompts": [
+        "Use case: precise-object-edit. Asset type: Android adaptive launcher foreground for Sugarfall. Use the provided icon as the exact artwork/style reference. Create a transparent foreground PNG of the same pink-frosted golden donut, two little cream-frosted cookie pegs and the two short cream falling-motion strokes. Remove the entire mint background and every cast shadow on it. Preserve all the warm sculpted food materials, pink icing and chunky sprinkles. CRITICAL FRAMING: scale down the whole composition and center it within the middle 58% of a square canvas. Leave at least 21% of canvas empty transparent on every side, with the donut and both cookies fully inside a centered circle of diameter 62% of canvas width. This intentionally generous empty margin is needed for Android adaptive icon masks. The donut is large relative to the cookies; hole stays genuinely transparent. Exactly one clean icon foreground. No text, no new objects, no tile, no frame, no floor, no background, no shadows outside food, no checkerboard. Genuine RGBA transparency outside all food and in donut hole.",
+        "Use case: precise-object-edit. This is a technical padding correction for an Android adaptive icon. The reference image has a pink donut, two cookies, and cream motion strokes on transparency. KEEP ALL OF THAT ART EXACTLY; change only its size and placement on the canvas. The entire visible composition must be MUCH SMALLER, exactly HALF of its current size, centered on a same-size square transparent canvas. The visible food group must occupy only the middle 40% of the canvas width and middle 45% of the canvas height. All of the outer 28% on EVERY SIDE must be empty alpha transparency. This is intentionally a tiny floating food cluster in a large transparent square; do not zoom or crop to fill the image. Preserve the donut hole transparency, original colors, lighting, two cookies and stroke arrangement. Do not add background, border, text, checkers, shadow, guides, a device, or extra objects. Output a square PNG with true alpha and very wide transparent padding."
+      ],
+      "intermediate_generated_source": "C:/Users/Hursh/.codex/generated_images/01a1698f-a59c-7e10-a1df-92fe5d8b1f60/exec-8e388c17-21c8-4f14-8fd9-ee077fb880ff.png",
+      "role": "Adaptive foreground; alpha also supplies Android themed monochrome mask."
+    },
+    {
+      "path": "sugarfall_adaptive_background.svg",
+      "generation_method": "Native SVG gradient authored for launcher integration",
+      "role": "Opaque mint background behind adaptive foreground; Android applies launcher mask."
+    }
+  ]
+}

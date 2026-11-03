@@ -1,0 +1,26 @@
+[
+  {
+    "asset": "planting_225.png",
+    "visual_axis_degrees": -42.0,
+    "arc_tangent_degrees": -45,
+    "difference": 3.0
+  },
+  {
+    "asset": "planting_255.png",
+    "visual_axis_degrees": -8.97,
+    "arc_tangent_degrees": -15,
+    "difference": 6.03
+  },
+  {
+    "asset": "planting_285.png",
+    "visual_axis_degrees": 19.03,
+    "arc_tangent_degrees": 15,
+    "difference": 4.03
+  },
+  {
+    "asset": "planting_315.png",
+    "visual_axis_degrees": 39.03,
+    "arc_tangent_degrees": 45,
+    "difference": 5.97
+  }
+]

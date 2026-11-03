@@ -1,0 +1,130 @@
+{
+  "method": "built-in image_gen",
+  "references": [
+    "C:/Users/Hursh/Documents/Plinko/verification/lower-cups-hopper/gameplay.png",
+    "C:/Users/Hursh/Documents/Plinko/PLINKO/data/art/food/tray.png"
+  ],
+  "prompt_file": "concept-art/ui-bakery-v1/prompts.txt",
+  "assets": [
+    {
+      "name": "panel",
+      "source": "C:\\Users\\Hursh\\.codex\\generated_images\\01a1698f-a59c-7e10-a1df-92fe5d8b1f60\\exec-d32f358e-4b6d-4172-a12c-d28ba45f46a2.png",
+      "project_path": "PLINKO/data/art/ui/panel.png"
+    },
+    {
+      "name": "button_mint",
+      "source": "C:\\Users\\Hursh\\.codex\\generated_images\\01a1698f-a59c-7e10-a1df-92fe5d8b1f60\\exec-dc6d530f-a1f8-4b6b-b650-868dc0447a01.png",
+      "project_path": "PLINKO/data/art/ui/button_mint.png"
+    },
+    {
+      "name": "button_cream",
+      "source": "C:\\Users\\Hursh\\.codex\\generated_images\\01a1698f-a59c-7e10-a1df-92fe5d8b1f60\\exec-453d3d28-2a9a-4d46-afa6-1bb94049a557.png",
+      "project_path": "PLINKO/data/art/ui/button_cream.png"
+    },
+    {
+      "name": "timer",
+      "source": "C:\\Users\\Hursh\\.codex\\generated_images\\01a1698f-a59c-7e10-a1df-92fe5d8b1f60\\exec-f04a9158-1bc5-4e7d-b1e1-6c26a1b2db4a.png",
+      "project_path": "PLINKO/data/art/ui/timer.png"
+    },
+    {
+      "name": "coin",
+      "source": "C:\\Users\\Hursh\\.codex\\generated_images\\01a1698f-a59c-7e10-a1df-92fe5d8b1f60\\exec-de935ef2-ffce-4534-9724-dac3206e57e9.png",
+      "project_path": "PLINKO/data/art/ui/coin.png"
+    },
+    {
+      "name": "node",
+      "source": "C:\\Users\\Hursh\\.codex\\generated_images\\01a1698f-a59c-7e10-a1df-92fe5d8b1f60\\exec-594f54aa-b3c8-478b-9313-6e660aa250e0.png",
+      "project_path": "PLINKO/data/art/ui/node.png"
+    },
+    {
+      "name": "upgrade_tile_green",
+      "source": "C:/Users/Hursh/.codex/generated_images/01a1698f-a59c-7e10-a1df-92fe5d8b1f60/exec-934fa292-3155-4c67-870b-60a79b29492a.png",
+      "project_path": "PLINKO\\data\\art\\ui\\upgrade_tile_green.png",
+      "prompt_file": "concept-art/recipe-trails-assets-v1/prompts.txt",
+      "references": [
+        "concept-art/upgrades-touch-v1/02-recipe-trails.png",
+        "PLINKO/data/art/ui/node.png"
+      ]
+    },
+    {
+      "name": "upgrade_tile_red",
+      "source": "C:/Users/Hursh/.codex/generated_images/01a1698f-a59c-7e10-a1df-92fe5d8b1f60/exec-bf9cae3d-6af5-4e45-a877-bc6f2103d4c3.png",
+      "project_path": "PLINKO\\data\\art\\ui\\upgrade_tile_red.png",
+      "prompt_file": "concept-art/recipe-trails-assets-v1/prompts.txt",
+      "references": [
+        "PLINKO/data/art/ui/upgrade_tile_green.png"
+      ]
+    },
+    {
+      "name": "upgrade_tile_cream",
+      "source": "C:/Users/Hursh/.codex/generated_images/01a1698f-a59c-7e10-a1df-92fe5d8b1f60/exec-90f62926-8b07-455e-b73d-c9163f7a0e9a.png",
+      "project_path": "PLINKO\\data\\art\\ui\\upgrade_tile_cream.png",
+      "prompt_file": "concept-art/recipe-trails-assets-v1/prompts.txt",
+      "references": [
+        "PLINKO/data/art/ui/upgrade_tile_green.png"
+      ]
+    },
+    {
+      "name": "upgrade_parchment",
+      "source": "C:/Users/Hursh/.codex/generated_images/01a1698f-a59c-7e10-a1df-92fe5d8b1f60/exec-74001ec1-86b4-4d9f-a413-e4ede5f8bc96.png",
+      "project_path": "PLINKO\\data\\art\\ui\\upgrade_parchment.png",
+      "prompt_file": "concept-art/recipe-trails-assets-v1/prompts.txt",
+      "references": [
+        "concept-art/upgrades-touch-v1/02-recipe-trails.png",
+        "PLINKO/data/art/ui/node.png"
+      ]
+    },
+    {
+      "name": "level_badge_cream",
+      "source": "C:\\Users\\Hursh\\.codex\\generated_images\\01a1698f-a59c-7e10-a1df-92fe5d8b1f60\\exec-158cd553-e352-4e2b-863c-1115351d7493.png",
+      "project_path": "PLINKO/data/art/ui/level_badge_cream.png",
+      "prompt_file": "concept-art/bakery-world-assets-v1/prompts.txt",
+      "prompt_section": "level_badge_cream",
+      "references": [
+        {
+          "path": "concept-art/home-journey-v1/02-level-map.png",
+          "role": "edit target; material and composition source"
+        }
+      ]
+    },
+    {
+      "name": "level_selector",
+      "source": "C:\\Users\\Hursh\\.codex\\generated_images\\01a1698f-a59c-7e10-a1df-92fe5d8b1f60\\exec-07ced0cc-3bd2-4984-be78-12ccd79902ea.png",
+      "project_path": "PLINKO/data/art/ui/level_selector.png",
+      "prompt_file": "concept-art/bakery-world-assets-v1/prompts.txt",
+      "prompt_section": "level_selector",
+      "references": [
+        {
+          "path": "concept-art/home-journey-v1/01-home.png",
+          "role": "edit target; material and composition source"
+        }
+      ]
+    },
+    {
+      "name": "level_badge_mint",
+      "source": "C:\\Users\\Hursh\\.codex\\generated_images\\01a1698f-a59c-7e10-a1df-92fe5d8b1f60\\exec-82062b68-36ea-42b4-b255-f2287ddc010d.png",
+      "project_path": "PLINKO/data/art/ui/level_badge_mint.png",
+      "prompt_file": "concept-art/bakery-world-assets-v1/badge-variant-prompts.txt",
+      "prompt_section": "level_badge_mint",
+      "references": [
+        {
+          "path": "PLINKO/data/art/ui/level_badge_cream.png",
+          "role": "edit target; material and composition source"
+        }
+      ]
+    },
+    {
+      "name": "level_badge_muted",
+      "source": "C:\\Users\\Hursh\\.codex\\generated_images\\01a1698f-a59c-7e10-a1df-92fe5d8b1f60\\exec-46745744-ee29-46f7-b6f8-d848db682cdc.png",
+      "project_path": "PLINKO/data/art/ui/level_badge_muted.png",
+      "prompt_file": "concept-art/bakery-world-assets-v1/badge-variant-prompts.txt",
+      "prompt_section": "level_badge_muted",
+      "references": [
+        {
+          "path": "PLINKO/data/art/ui/level_badge_cream.png",
+          "role": "edit target; material and composition source"
+        }
+      ]
+    }
+  ]
+}

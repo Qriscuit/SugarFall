@@ -1,0 +1,209 @@
+{
+  "schema": 1,
+  "date": "2026-10-25",
+  "method": "built-in image_gen.imagegen; one precise-object edit per asset; original output pixels preserved",
+  "assets": [
+    {
+      "id": "bakery-arc",
+      "source": "C:/Users/Hursh/.codex/generated_images/01a173c0-7a0e-7573-a977-1595f71b5672/exec-b22995c3-4c75-475d-a8cf-e7ef83371b99.png",
+      "destination": "PLINKO/data/art/environment/upgrade_arc_v3.png",
+      "reference": "C:/Users/Hursh/Documents/Plinko/PLINKO/data/art/environment/upgrade_arc_v2.png",
+      "prompt": "bakery-arc-prompt.txt",
+      "transparent_background": false,
+      "sha256": "89636b8812abd37635c93976478a52396f839ed387fef4f1a46d11e195650267",
+      "reference_backup": "references/bakery-arc/input.png",
+      "size": [
+        1659,
+        948
+      ],
+      "mode": "RGB"
+    },
+    {
+      "id": "bakery-home",
+      "source": "C:/Users/Hursh/.codex/generated_images/01a173c0-7a0e-7573-a977-1595f71b5672/exec-844ed631-d110-4576-b2cb-4c35b150f040.png",
+      "destination": "PLINKO/data/art/environment/home_counter.png",
+      "reference": "C:/Users/Hursh/Documents/Plinko/PLINKO/data/art/environment/home_counter.png",
+      "prompt": "bakery-home-prompt.txt",
+      "transparent_background": false,
+      "sha256": "4a3f732222b7ad7062afa4a6ac1081b0d12b2353c284668e48d8ddc2f2061133",
+      "reference_backup": "references/bakery-home/input.png",
+      "size": [
+        941,
+        1672
+      ],
+      "mode": "RGB"
+    },
+    {
+      "id": "bakery-play",
+      "source": "C:/Users/Hursh/.codex/generated_images/01a173c0-7a0e-7573-a977-1595f71b5672/exec-4ceab681-b763-4bef-841e-d2e7e4e0f388.png",
+      "destination": "PLINKO/data/art/environment/play_counter.png",
+      "reference": "C:/Users/Hursh/Documents/Plinko/PLINKO/data/art/environment/play_counter.png",
+      "prompt": "bakery-play-prompt.txt",
+      "transparent_background": false,
+      "sha256": "87f28f8b57d856aa4dffa205314e568461e9aa2824fcdeb55ebebe29c70aa297",
+      "reference_backup": "references/bakery-play/input.png",
+      "size": [
+        941,
+        1672
+      ],
+      "mode": "RGB"
+    },
+    {
+      "id": "gelato-arc",
+      "source": "C:/Users/Hursh/.codex/generated_images/01a173c0-7a0e-7573-a977-1595f71b5672/exec-3bf544b3-dbf7-4e23-8d6d-9e114324e3e4.png",
+      "destination": "PLINKO/data/art/gelato/environment/upgrade_arc_v3.png",
+      "reference": "C:/Users/Hursh/Documents/Plinko/PLINKO/data/art/gelato/environment/upgrade_arc_v2.png",
+      "prompt": "gelato-arc-prompt.txt",
+      "transparent_background": false,
+      "sha256": "0cb4c4ebed8a8c981aa5f3f202625b8f8023ed1242fa3da8743466cffbd3282c",
+      "reference_backup": "references/gelato-arc/input.png",
+      "size": [
+        1659,
+        948
+      ],
+      "mode": "RGB"
+    },
+    {
+      "id": "bakery-journey",
+      "source": "C:/Users/Hursh/.codex/generated_images/01a173c0-7a0e-7573-a977-1595f71b5672/exec-14346dc6-379a-48db-aacc-f0c9bdbd88b7.png",
+      "destination": "PLINKO/data/art/environment/journey_backdrop.png",
+      "reference": "C:/Users/Hursh/Documents/Plinko/PLINKO/data/art/environment/journey_backdrop.png",
+      "prompt": "bakery-journey-prompt.txt",
+      "transparent_background": false,
+      "sha256": "ac14bdd534fa3da7527f95b3a4c3eff265a1bb683d7b944591ccf2e5aa7a16db",
+      "reference_backup": "references/bakery-journey/input.png",
+      "size": [
+        941,
+        1672
+      ],
+      "mode": "RGB"
+    },
+    {
+      "id": "gelato-home",
+      "source": "C:/Users/Hursh/.codex/generated_images/01a173c0-7a0e-7573-a977-1595f71b5672/exec-c98409b7-441b-4010-9923-a4b2127d7c59.png",
+      "destination": "PLINKO/data/art/gelato/environment/home_counter.png",
+      "reference": "C:/Users/Hursh/Documents/Plinko/PLINKO/data/art/gelato/environment/home_counter.png",
+      "prompt": "gelato-home-prompt.txt",
+      "transparent_background": false,
+      "sha256": "2f25083dde149be3d6408158ad8f8330bbb73e8963ca3177423c3d1e88c63572",
+      "reference_backup": "references/gelato-home/input.png",
+      "size": [
+        941,
+        1672
+      ],
+      "mode": "RGB"
+    },
+    {
+      "id": "gelato-play",
+      "source": "C:/Users/Hursh/.codex/generated_images/01a173c0-7a0e-7573-a977-1595f71b5672/exec-ab22190f-9db5-44fe-9162-aec82ac7e22a.png",
+      "destination": "PLINKO/data/art/gelato/environment/play_counter.png",
+      "reference": "C:/Users/Hursh/Documents/Plinko/PLINKO/data/art/gelato/environment/play_counter.png",
+      "prompt": "gelato-play-prompt.txt",
+      "transparent_background": false,
+      "sha256": "5eeccedf29be382bf8fffd96bda2842522b7e5c2c10d2590faeafba23028b8bb",
+      "reference_backup": "references/gelato-play/input.png",
+      "size": [
+        941,
+        1672
+      ],
+      "mode": "RGB"
+    },
+    {
+      "id": "gelato-journey",
+      "source": "C:/Users/Hursh/.codex/generated_images/01a173c0-7a0e-7573-a977-1595f71b5672/exec-821ecb82-894c-47a1-9f3b-52186ced656d.png",
+      "destination": "PLINKO/data/art/gelato/environment/journey_backdrop.png",
+      "reference": "C:/Users/Hursh/Documents/Plinko/PLINKO/data/art/gelato/environment/journey_backdrop.png",
+      "prompt": "gelato-journey-prompt.txt",
+      "transparent_background": false,
+      "sha256": "f5c44a40ca7295fe923e0cb712ab0ae5f9b86d3eaf67c46b8d5b1d4f26846d64",
+      "reference_backup": "references/gelato-journey/input.png",
+      "size": [
+        941,
+        1672
+      ],
+      "mode": "RGB"
+    },
+    {
+      "id": "bakery-tray",
+      "source": "C:/Users/Hursh/.codex/generated_images/01a173c0-7a0e-7573-a977-1595f71b5672/exec-eafc9924-f6f5-4a94-ae76-2e376c3e4adb.png",
+      "destination": "PLINKO/data/art/food/tray.png",
+      "reference": "C:/Users/Hursh/Documents/Plinko/PLINKO/data/art/food/tray.png",
+      "prompt": "bakery-tray-prompt.txt",
+      "transparent_background": true,
+      "sha256": "de2d403c1675720940ec3de131295737e7466a6b4d3f7eb5dac515f393762278",
+      "reference_backup": "references/bakery-tray/input.png",
+      "size": [
+        1086,
+        1448
+      ],
+      "mode": "RGBA",
+      "source_bounds": [
+        0.01289134438305709,
+        0.026933701657458564,
+        0.9871086556169429,
+        0.9730662983425414
+      ]
+    },
+    {
+      "id": "gelato-tray",
+      "source": "C:/Users/Hursh/.codex/generated_images/01a173c0-7a0e-7573-a977-1595f71b5672/exec-f463ba9e-283a-4e1c-8d3f-5a620cb327f0.png",
+      "destination": "PLINKO/data/art/gelato/food/tray.png",
+      "reference": "C:/Users/Hursh/Documents/Plinko/PLINKO/data/art/gelato/food/tray.png",
+      "prompt": "gelato-tray-prompt.txt",
+      "transparent_background": true,
+      "sha256": "695f994f585fcf6119bf42816a24afa1bc64f8e3a3958d111f3739e3d134dfc2",
+      "reference_backup": "references/gelato-tray/input.png",
+      "size": [
+        1049,
+        1500
+      ],
+      "mode": "RGBA",
+      "source_bounds": [
+        0.09532888465204957,
+        0.056666666666666664,
+        0.8102955195424214,
+        0.878
+      ]
+    },
+    {
+      "id": "bakery-upgrade",
+      "source": "C:/Users/Hursh/.codex/generated_images/01a173c0-7a0e-7573-a977-1595f71b5672/exec-037a914a-58fd-4c6d-8816-6bac4fd2ae3d.png",
+      "destination": "PLINKO/data/art/environment/upgrade_counter.png",
+      "reference": "C:/Users/Hursh/Documents/Plinko/PLINKO/data/art/environment/upgrade_counter.png",
+      "prompt": "bakery-upgrade-prompt.txt",
+      "transparent_background": false,
+      "sha256": "224057efc3903dad5305b032e16a4f0f54f7eb07b2a1a4369feb30ecc534bbfc",
+      "reference_backup": "references/bakery-upgrade/input.png",
+      "size": [
+        941,
+        1672
+      ],
+      "mode": "RGB"
+    },
+    {
+      "id": "gelato-upgrade",
+      "source": "C:/Users/Hursh/.codex/generated_images/01a173c0-7a0e-7573-a977-1595f71b5672/exec-af455b8e-81c3-4b49-947c-393549c26236.png",
+      "destination": "PLINKO/data/art/gelato/environment/upgrade_counter.png",
+      "reference": "C:/Users/Hursh/Documents/Plinko/PLINKO/data/art/gelato/environment/upgrade_counter.png",
+      "prompt": "gelato-upgrade-prompt.txt",
+      "transparent_background": false,
+      "sha256": "b4f925b3c0b55e9aab6761b3cb86ba78083dfe0b2c701e13d99a05b7e4f817cc",
+      "reference_backup": "references/gelato-upgrade/input.png",
+      "size": [
+        941,
+        1672
+      ],
+      "mode": "RGB"
+    }
+  ],
+  "aliases": [
+    {
+      "source": "PLINKO/data/art/environment/play_counter.png",
+      "destination": "PLINKO/data/art/food/countertop.png"
+    },
+    {
+      "source": "PLINKO/data/art/gelato/environment/play_counter.png",
+      "destination": "PLINKO/data/art/gelato/food/countertop.png"
+    }
+  ]
+}

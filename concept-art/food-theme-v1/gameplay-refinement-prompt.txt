@@ -1,0 +1,6 @@
+FINAL GAMEPLAY EDIT
+
+Use case: precise-object-edit.
+Input image: edit target, the existing food-themed Peg Foundry gameplay screen.
+Make exactly one localized correction: shrink ONLY the airborne orange pumpkin in the upper-right playfield, including its attached stem and local shadow, so its round body is approximately 1.25 times the diameter of the pink donut immediately below the feeder. The current pumpkin is much too large. Keep its center position near the same point and retain its visible pumpkin ridges and weighty appearance. Smoothly reconstruct the parchment and the short motion trail around the smaller pumpkin.
+Keep EVERYTHING ELSE unchanged: image dimensions, camera, mint baking tray, cookies, donuts, pomegranate with three seed fragments, catch cups, background, all UI text, header, bottom special icons and pulse button, lighting and detailed material style. Do not change the pumpkin portrait in the bottom-right special button. This is the same screen with the single airborne pumpkin scaled down.

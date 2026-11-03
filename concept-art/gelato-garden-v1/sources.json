@@ -1,0 +1,45 @@
+{
+  "date": "2026-10-23",
+  "status": "Design proposal; not integrated",
+  "tool": "Built-in image_gen; no CLI/API fallback",
+  "style_references_inspected": [
+    "verification/cookie-crumble-v1/gameplay-final.png",
+    "verification/area-gate-ui-final/levels-last-450x800.png",
+    "PLINKO/docs/ART_DIRECTION.md"
+  ],
+  "prompts": "prompts.txt",
+  "refinement_prompt": "gameplay-refinement-prompt.txt",
+  "images": [
+    {
+      "file": "01-gelato-gameplay.png",
+      "role": "Final gameplay concept",
+      "source": "C:/Users/Hursh/.codex/generated_images/01a1698f-a59c-7e10-a1df-92fe5d8b1f60/exec-988dac79-8a9b-4fdc-bb07-b11c2a31c576.png",
+      "operation": "Built-in edit of initial gameplay to distinguish wafer pegs from smaller falling food",
+      "edit_target": "01-gelato-gameplay-initial.png"
+    },
+    {
+      "file": "01-gelato-gameplay-initial.png",
+      "role": "Retained initial exploration",
+      "source": "C:/Users/Hursh/.codex/generated_images/01a1698f-a59c-7e10-a1df-92fe5d8b1f60/exec-8f3b4de1-3f10-4fa4-810e-1adca6d009b0.png",
+      "operation": "New generation from written brief"
+    },
+    {
+      "file": "02-gelato-journey.png",
+      "role": "Full-page winding level-map concept",
+      "source": "C:/Users/Hursh/.codex/generated_images/01a1698f-a59c-7e10-a1df-92fe5d8b1f60/exec-0b37c385-d2e9-4742-bc18-92924aba1a07.png",
+      "operation": "New generation from written brief"
+    },
+    {
+      "file": "03-gelato-entry.png",
+      "role": "First-entry confirmation concept",
+      "source": "C:/Users/Hursh/.codex/generated_images/01a1698f-a59c-7e10-a1df-92fe5d8b1f60/exec-a44c6afb-467b-42f2-bc39-38e8409b0511.png",
+      "operation": "New generation from written brief"
+    }
+  ],
+  "production_notes": [
+    "All images are opaque concept compositions, not individual sprites.",
+    "Generated text is illustrative. Runtime text, values, locks and state marks must be separate from final production artwork.",
+    "Journey's elaborate garden scenery is a mood option; simplify central detail and separate route/scenery layers for phone scrolling.",
+    "No runtime scripts, prices, save files, entitlements or area-entry gates were changed by this design pass."
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "date": "2026-10-23",
+  "method": "built-in image_gen",
+  "status": "concept-only; not runtime assets",
+  "references": [
+    {
+      "path": "verification/fullscreen-recipe-trails/previews/home-450x800.png",
+      "role": "main-menu redesign target and navigation context"
+    },
+    {
+      "path": "verification/fullscreen-recipe-trails/previews/shop-mixed-450x800.png",
+      "role": "approved materials, food icons and typography"
+    },
+    {
+      "path": "verification/fullscreen-recipe-trails/previews/gameplay-early-450x800.png",
+      "role": "tray, hopper, cookie pegs and collection cups"
+    }
+  ],
+  "outputs": [
+    {
+      "file": "01-home.png",
+      "source": "C:/Users/Hursh/.codex/generated_images/01a1698f-a59c-7e10-a1df-92fe5d8b1f60/exec-983cfc10-6337-42a6-8d21-655242484161.png",
+      "prompt_section": "HOME",
+      "role": "proposed main-menu screen"
+    },
+    {
+      "file": "02-level-map.png",
+      "source": "C:/Users/Hursh/.codex/generated_images/01a1698f-a59c-7e10-a1df-92fe5d8b1f60/exec-f2ebb6af-23e5-4390-be2c-4b3fd5ee4415.png",
+      "prompt_section": "MAP",
+      "role": "phone viewport of vertical journey"
+    },
+    {
+      "file": "03-full-journey.png",
+      "source": "C:/Users/Hursh/.codex/generated_images/01a1698f-a59c-7e10-a1df-92fe5d8b1f60/exec-3d510ff9-490a-41c6-9627-d3984b1ac4c2.png",
+      "prompt_section": "JOURNEY",
+      "role": "initial extended scroll-content concept; superseded by v2 for completed-state marks"
+    },
+    {
+      "file": "03-full-journey-v2.png",
+      "source": "C:/Users/Hursh/.codex/generated_images/01a1698f-a59c-7e10-a1df-92fe5d8b1f60/exec-55359209-c568-4ab7-b4db-1304176df16c.png",
+      "prompt_file": "journey-review-prompt.txt",
+      "edit_target": "03-full-journey.png",
+      "role": "reviewed extended route, exactly twelve ascending stops, with next-area teaser"
+    }
+  ],
+  "prompts": "prompts.txt",
+  "brief": "design-brief.txt",
+  "review": {
+    "route": "Exactly twelve numbered stops ascending from1 bottom to12 top; checks on1–3, mint4, locks5–12.",
+    "copy": "Only functional area/level, wallet, navigation, number and state labels.",
+    "phone": "Phone map exposes six stops2–7; full route is scroll content, not one squeezed viewport.",
+    "production": "Home preview peg arrangement is illustrative; render actual selected board live. All numbers/state marks must be separate from production art.",
+    "theme": "Berry Orchard is a proposed next-area example."
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "schema": 3,
+  "description": "One complete illustration per area: Bakery's 120-degree arc and Gelato's ceramic garden courtyard. Pale glazed tiles replace the purple ground beneath the central landmarks, outer flowering trees, entry pots and live mixed-upgrade paths.",
+  "world_rect": [
+    -2450,
+    -4650,
+    10800,
+    6171.428571428572
+  ],
+  "edge_fade_fraction": 0.025,
+  "areas": {
+    "crystal": {
+      "texture": "res://data/art/crystal/environment/upgrade_courtyard.png",
+      "base_color": "dbf0f4",
+      "world_rect": [-3300, -9000, 6600, 9900]
+    },
+    "bakery": {
+      "texture": "res://data/art/environment/upgrade_arc_illustrated_v4.png",
+      "base_color": "9fb79e"
+    },
+    "gelato": {
+      "texture": "res://data/art/gelato/environment/upgrade_ceramic_garden_v1.png",
+      "base_color": "fef1d8",
+      "world_rect": [-4600, -12250, 9200, 13800]
+    }
+  }
+}

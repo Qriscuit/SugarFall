@@ -1,0 +1,181 @@
+{
+  "godot": "4.6.3.stable.official.7d41c59c4",
+  "app_name": "Sugarfall",
+  "package": "org.pegfoundry.prototype.preview",
+  "export_preset": "Android Preview",
+  "export_mode": "debug",
+  "minimum_sdk": 24,
+  "target_sdk": 36,
+  "architectures": [
+    "arm64-v8a"
+  ],
+  "requested_android_permissions": [],
+  "signing_certificate_sha256": "926f0d0c634978f4d84727a272068bacd3bb157277a9a8b18810e7c60aef70bc",
+  "monetization": "Local test service; no real ad or purchase accounts connected",
+  "build_date": "2026-11-03",
+  "file_name": "Sugarfall-v0.7.1-Android-Preview-2026-11-03.apk",
+  "local_path": "builds/Sugarfall-v0.7.1-Android-Preview-2026-11-03.apk",
+  "size_bytes": 87125393,
+  "sha256": "d1e4f1defc01523479cbdc8f0a859810230ee28b0dcd133f4d6336b089905485",
+  "md5": "c727785d12bbec6d62fcdf5d49df60f6",
+  "version_name": "0.7.1-preview",
+  "version_code": 26,
+  "status": "Private test APK built, verified and replaced in the established Drive file; user phone playtest pending",
+  "changes": [
+    "Crystal Prism collection now uses the prewarmed 950 Hz pickup cue; Sound off and the actual playback path are verified without new runtime PCM synthesis.",
+    "Gelato Help now describes the visible Dual Shot node below Feed 1 and its tray 8 plus Power 6 purchase requirements.",
+    "Damage numbers receive a pale backing rectangle for legibility over moving balls, including Reduced Motion.",
+    "Bakery trays 2–12 have specific teaching briefs. Only trait_brief metadata changed; an exact old/new fingerprint compatibility pair preserves the previous Bakery checkpoints.",
+    "Targeted Crystal lifecycle, crowded Bakery/Gelato physics, save compatibility and expanded desktop presentation checks now cover the audited gaps. No prices, HP, layouts or gameplay economy parameters changed."
+  ],
+  "update_compatibility": "Same preview package and signing identity as v0.7.0, with version code increased from 25 to 26. Profile envelope remains 5; reads versions 1–5. Bakery/Gelato checkpoints remain schema 4 and Crystal schema 5. Gelato and Crystal fingerprints are unchanged. Bakery's exact previous fingerprint is accepted only for this metadata-only current fingerprint; packaged dictionaries differ only in tray teaching text. Actual Android install-over-save behavior remains untested.",
+  "source_sha256": {
+    "res://scripts/area_art.gd": "833c583682df69d83172ca88cebdb669b45e663e40e8059e241df88d5190d4c8",
+    "res://scripts/area_campaign.gd": "5cc491a00df4180e460a334b93ec204b2bb608e5188a3fbec0b7aa4e4017d172",
+    "res://scripts/coin_display.gd": "29fcfa88220832e516a1d1d1e6210893ec083360848bda21caea574c7a26fc23",
+    "res://scripts/coin_feedback.gd": "77355e8533d1f8840b539a53155c3beacd3140a4a6fc0b2b0795ae5460cb1cfb",
+    "res://scripts/combat_balance.gd": "9ad489b7b8f3960a401adc30829d94776845f58060a58f878460479d5b2568e7",
+    "res://scripts/countdown_feedback.gd": "44ded78cf9ef83874485fc632a0e53b5ff6af2f6aa10bd30ad511d542e2f0883",
+    "res://scripts/crystal_launcher.gd": "78375118890fdc0aa654fae2607e2cdb49294192739ddabbac42dc3369480853",
+    "res://scripts/crystal_upgrade_graph.gd": "d8715e6941f1df477e90e2c017392861ae9b4c3924afebf7009d26f994596671",
+    "res://scripts/developer_area_ui.gd": "9720214c2fdd09fdc510003b0e25a7e9a79218f25da53a9bd5b5632dd5d96c93",
+    "res://scripts/environment_art.gd": "38745078b12953911de5c8aab75b6648dc0d53d44f018f020b53b1b1bb8770b2",
+    "res://scripts/first_run_guide.gd": "b1fc6ff4606b3cd164511d1906e40fc32264567e51353c91a95deec82b95fedf",
+    "res://scripts/food_art.gd": "0cb27cd798b98961f4dbf5e9aab804c4cbc0785469afc6be0d716eac22750ae7",
+    "res://scripts/gelato_launcher.gd": "3ef818ac89c084741ac5076d33dcf4847b08079349cc5992d11d622b51032932",
+    "res://scripts/gelato_upgrade_graph.gd": "e9815d6ea340596e03b6a2646aec8a48d9a9dcf8dee183c9088e121f622586fd",
+    "res://scripts/home_menu.gd": "16d94a6f8303c00e8e4af5f7abd50eef9d516026b01352fa87473ca4d8fd08d8",
+    "res://scripts/impact_feedback.gd": "a15a3b1af0b2be37359910cbe02f2ab6a77e7d979ea385a2eb77b5e37ea35093",
+    "res://scripts/level_map.gd": "aab3869d9aa25b88d884b373e5e97cdca195d4992344f9ea6a6a77238fdb3d40",
+    "res://scripts/main.gd": "7cceb0a99f85fd4486eb0886a5ba7eaaf98d72ba506b1b4787f87a1483b90587",
+    "res://scripts/monetization_service.gd": "c32c959fe6d527ecda6229e46b60ab31d3a629de90fb04ca0388332ed2119921",
+    "res://scripts/monetization_ui.gd": "666283c7228ad97e3460b38f8cf99f6b6e45c565cdf6afdd24122c48599c5dee",
+    "res://scripts/progress_reset_ui.gd": "a4be3e104765e3309d392ae2a8ee07f61fc8c11873085a4eb0b522f7a810b146",
+    "res://scripts/result_comparison_ui.gd": "c7f44b73d75b2ddb3f9ac6ab9586ffb639874cfb5608b9d1719e6e93c14434cc",
+    "res://scripts/run_history.gd": "f2da83d6d0c8179f58e61ccc7745d7ecb0980c27593a8a71aae89448fd939b30",
+    "res://scripts/run_snapshot.gd": "903cbb595a6f5df297a3fb8815041007ffe76f35655710e91dd73ef786166f56",
+    "res://scripts/run_transition.gd": "6b80a5f6344ed34f26cdffbc3c5780f8cf607995a74ae05ae8a70d056984a043",
+    "res://scripts/speech_bubble.gd": "a7fa2f48b72ff1c02a2617148a1c421c3bc55fe0e8dccc286441e43e2767969c",
+    "res://scripts/tone_bank.gd": "0eabc16e9ebf89d77e915ebc64ad44b030dd76003a4e02466d66267f9c5907c0",
+    "res://scripts/ui_art.gd": "a3de442459a2408b91a201c80636d73949be74939590a8b9123eba0e1399db65",
+    "res://scripts/upgrade_arc_art.gd": "4cefc77bef1b62f39b502f9ac8b1edadfd29f8fad05ccb280f10ef1a28a35ab1",
+    "res://scripts/upgrade_graph.gd": "3845bed72ffeefb5d747434e8b7dda326993762654b55d796e68d4e437777729",
+    "res://scripts/upgrade_map.gd": "a0401ed89490088a930f126e2b060f5a4c09dbe5daa7d0b526f02b8cc4a25837"
+  },
+  "source_json_sha256": {
+    "res://data/board_design.json": "7f924784be57d5cc15f96199467f8a884feb0bd8d5df19ed07f7eebe55aa2a14",
+    "res://data/crystal_board_design.json": "b9ce87470fd3e393ab4789c5b8d682a84bfe6911fce411af1cc516de7cba4e6e",
+    "res://data/crystal_economy.json": "fa590359c4687c76ee14ce2149d6fba42a2a302100fe439f69ee301bfca90791",
+    "res://data/crystal_upgrade_layout.json": "e87e5f38d6c49d921b53d87f94a17b8df3d189a825c0f9e48d923c9f9f16aa31",
+    "res://data/economy.json": "9910256c6a6832d11248012bd60cafeef3e9017bb731bbf23dcf2503c0b27a8a",
+    "res://data/gelato_board_design.json": "0f64d5ebd62f786b1c157a75d599f47d00543e749e4240afe38d0131cfb05add",
+    "res://data/gelato_economy.json": "e98aa6365989a68cb618d15a5325bc1d8713767d04a693d2760b94fcf2efe352",
+    "res://data/gelato_upgrade_layout.json": "9948870ef138871c4966cea60820c341766af962018a773fe28da5c28bade666",
+    "res://data/upgrade_arc_art.json": "3abc28874c39d56d26fc1bff26e079319f646a3511459f2df61f2108539df85f",
+    "res://data/upgrade_layout.json": "e675a7104b1d0dc4bcb81633144c144a9a70ca7fa11cac066c83906e36da0983"
+  },
+  "source_export_preset_sha256": "60dca86109c0e12a14e6767e16779a0c0262a1a97332dbb5a38229d34916665c",
+  "source_project_sha256": "7b6048fb6b99b3dadc0733631136a211a0c3089cb377e0f8208d829894199cb8",
+  "source_main_scene_sha256": "e1199368c62dfc7dd6f17fcf54ad6f4f39278c5f729c89670eb28f7aef284b17",
+  "verification": {
+    "payload_checks_passed": 465,
+    "payload_checks_total": 465,
+    "android_metadata_checks_passed": 16,
+    "android_metadata_checks_total": 16,
+    "signature_v2": true,
+    "signature_v3": true,
+    "zip_alignment_16_kib": true,
+    "zip_entries": 416,
+    "all41_runtime_inputs_match_final_renderer": true,
+    "source_inputs_unchanged_across_export": true,
+    "source_scope": {
+      "changed_previous_runtime_files": [
+        "res://data/board_design.json",
+        "res://scripts/crystal_launcher.gd",
+        "res://scripts/impact_feedback.gd",
+        "res://scripts/main.gd",
+        "res://scripts/run_snapshot.gd"
+      ],
+      "added_runtime_files": []
+    },
+    "checkpoint_compatibility": {
+      "fingerprints": {
+        "bakery": {
+          "previous": "3186f8149fb229ec8d39dd79416a9722e661896595d150e3d4101f474db4a9c0",
+          "current": "cf5e777d9b76e7ee53247c49b4a795fa086d2eeb58fb017307f9f8004ca23936"
+        },
+        "gelato": {
+          "previous": "0ed640180e172a175bce0d5ad81a97196d6f8d72ff031b099f2f254afe512f67",
+          "current": "0ed640180e172a175bce0d5ad81a97196d6f8d72ff031b099f2f254afe512f67"
+        },
+        "crystal": {
+          "previous": "61dd81c0b0088fbc84f2b042e0afffdd72b251f541464ac2612772113b913d19",
+          "current": "61dd81c0b0088fbc84f2b042e0afffdd72b251f541464ac2612772113b913d19"
+        }
+      },
+      "bakery_metadata_only_compatibility": true,
+      "gelato_fingerprint_unchanged": true,
+      "checkpoint_schema_by_area": {
+        "bakery": 4,
+        "gelato": 4,
+        "crystal": 5
+      },
+      "profile_envelope_version": 5,
+      "profile_read_versions": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "gelato_shop_revision": 1,
+      "gelato_launcher_rules_revision": 2,
+      "combat_trial_rules_revision": 1
+    },
+    "previous_apk_preserved_and_hash_verified": true,
+    "previous_manifest_preserved_and_hash_verified": true,
+    "packaging_readiness_distinct_suites": 11,
+    "packaging_readiness_checks_passed": 1210,
+    "packaging_readiness_failed": 0,
+    "rendered_checks": 287,
+    "rendered_captures": 58,
+    "counting_note": "1,210 assertions across 11 distinct suites includes 287 renderer assertions and excludes independent pacing runs. The 465 payload and 16 Android-tool checks are separate packaging validation. Prior release totals are not carried forward as newly executed checks.",
+    "physical_android_device_tested": false,
+    "android_emulator_tested": false,
+    "human_difficulty_validated": false,
+    "physical_phone_touch_contrast_performance_tested": false,
+    "evidence_directory": "../../verification/android-preview-v071",
+    "packaging_readiness_file": "../../verification/android-preview-v071/packaging-readiness.json",
+    "renderer_evidence_file": "../../verification/area-fixes-20261103/visual-approved/screens/rendered-source-hashes.json",
+    "limits": [
+      "Human normal-wallet pacing",
+      "Physical Android installation or install-over-save behavior",
+      "Android emulator execution",
+      "Phone input, contrast, audio listening, sustained performance or background/resume"
+    ],
+    "scope": "Local export, static package/signature/alignment checks and Drive metadata readback passed. Source/GPU checks are frozen current-source evidence, not runtime Android execution. User phone acceptance and human pacing remain open.",
+    "drive_metadata_checks_passed": 8,
+    "legal_progression_assertions_passed": 9044,
+    "legal_campaigns": 6,
+    "legal_area_campaigns_completed": 18,
+    "legal_progression_evidence": "../../verification/area-fixes-20261103/pacing/summary.json"
+  },
+  "distribution": {
+    "local_apk_ready": true,
+    "drive_uploaded": true,
+    "previous_drive_build_changed": true
+  },
+  "drive": {
+    "file_id": "1GF1zo3lt0VR5voajNPGjoP1FYuPe0FYz",
+    "url": "https://drive.google.com/file/d/1GF1zo3lt0VR5voajNPGjoP1FYuPe0FYz/view?usp=drivesdk",
+    "size_bytes": 87125393,
+    "modified_time": "2026-11-03T17:10:12.841Z",
+    "parent_ids": [
+      "1TXLZwTNVlHGTBy7y0CVMMk3zABEKu8X-"
+    ],
+    "private": true,
+    "replaced_in_place": true,
+    "remote_checksum_available": false,
+    "verification_file": "../../verification/android-upload-v071/verification.json"
+  }
+}

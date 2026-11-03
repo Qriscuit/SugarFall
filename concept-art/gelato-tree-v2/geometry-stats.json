@@ -1,0 +1,56 @@
+{
+  "nodes": 62,
+  "edges": 61,
+  "route_lengths": [
+    14,
+    14
+  ],
+  "branch_lengths": [
+    6,
+    6,
+    5,
+    6,
+    6,
+    4
+  ],
+  "spine_handoffs": 6,
+  "minimum_spacing": 342.0,
+  "world_rect": [
+    -4600,
+    -12250,
+    9200,
+    13800
+  ],
+  "twin": {
+    "id": [
+      8,
+      1
+    ],
+    "parent": [
+      0,
+      1
+    ],
+    "position": [
+      0.0,
+      440.0
+    ],
+    "requires": {
+      "tray": 8,
+      "power": 6
+    },
+    "always_visible": true
+  },
+  "node_bounds": [
+    -2774.5481,
+    -10800.0,
+    2840.473,
+    440.0
+  ],
+  "scenery_islands": 12,
+  "curved_links": 61,
+  "curve_samples": 25,
+  "compact_keepouts_validated": true,
+  "shared_endpoint_and_self_crossings_checked": true,
+  "fork_tangent_handoffs_validated": true,
+  "full_detail_and_peak_compact_visible_handoffs_validated": true
+}

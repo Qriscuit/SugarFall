@@ -1,0 +1,50 @@
+# Track the authored game and production records, not this workstation's tools.
+/*
+!/.gitignore
+!/.gitattributes
+!/README.md
+!/AGENTS.md
+!/AREA_CHECKLIST.md
+!/AREA_STATUS.md
+!/PLINKO/
+!/concept-art/
+!/outputs/
+/outputs/*
+!/outputs/launch-tracker-01a18eec/
+/outputs/launch-tracker-01a18eec/*
+!/outputs/launch-tracker-01a18eec/Sugarfall Launch Tracker.xlsx
+
+# Godot/editor state and build/test products.
+**/.godot/
+**/.gradle/
+**/__pycache__/
+**/node_modules/
+**/.DS_Store
+**/Thumbs.db
+**/*.log
+**/*.tmp
+**/*.bak
+**/*.pyc
+PLINKO/builds/
+PLINKO/logs/
+PLINKO/verification/
+PLINKO/qa/
+PLINKO/.qa_data/
+PLINKO/related_materials/
+PLINKO/android/
+PLINKO/FILE_INVENTORY.*
+
+# Signing material and personal configuration must never enter source control.
+**/*.keystore
+**/*.jks
+**/*.p12
+**/*.pfx
+**/*.pem
+**/*.key
+**/*credentials*
+**/.env
+**/.env.*
+**/export_credentials.cfg
+**/*secret*
+**/local.properties
+**/*token*

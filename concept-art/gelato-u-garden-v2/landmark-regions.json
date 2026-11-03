@@ -1,0 +1,12 @@
+{
+  "schema": 1,
+  "asset": "PLINKO/data/art/gelato/environment/upgrade_u_garden_v2.png",
+  "image_size": [1254, 1254],
+  "world_rect": [-5200, -9650, 10400, 10400],
+  "method": "Conservative rectangles reviewed against the actual generated pixels, including plants, low walls and visible shadows. These refine the requested central reserve to the final native image; all nodes and links are checked against the actual regions.",
+  "regions": [
+    {"name": "Mint workshop and berry gelateria", "pixel_rect": [430, 138, 390, 255]},
+    {"name": "Glass conservatory garden", "pixel_rect": [450, 340, 350, 305]},
+    {"name": "Gelato fountain and planting", "pixel_rect": [462, 561, 320, 194]}
+  ]
+}

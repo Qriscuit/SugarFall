@@ -1,0 +1,556 @@
+{
+  "godot": "4.6.3.stable.official.7d41c59c4",
+  "app_name": "Sugarfall",
+  "package": "org.pegfoundry.prototype.preview",
+  "export_preset": "Android Preview",
+  "export_mode": "debug",
+  "minimum_sdk": 24,
+  "target_sdk": 36,
+  "architectures": [
+    "arm64-v8a"
+  ],
+  "requested_android_permissions": [],
+  "signing_certificate_sha256": "926f0d0c634978f4d84727a272068bacd3bb157277a9a8b18810e7c60aef70bc",
+  "monetization": "Local test service; no real ad or purchase accounts connected",
+  "build_date": "2026-11-03",
+  "file_name": "Sugarfall-v0.7.0-Android-Preview-2026-11-03.apk",
+  "local_path": "builds/Sugarfall-v0.7.0-Android-Preview-2026-11-03.apk",
+  "size_bytes": 87121297,
+  "sha256": "869a1497d4cd3f3a79c7373e4400880b4e26e5aa1282d5dae95ac9ef25363159",
+  "md5": "ef94396989720d53eed3f8ab500c646b",
+  "version_name": "0.7.0-preview",
+  "version_code": 25,
+  "changes": [
+    "Adds Crystal Candyworks as an independent third area after Gelato completion, with a one-time 1500-coin entry and twelve authored Crystal boards. Developer area switching and test wallets include Crystal.",
+    "Crystal launches candy along straight finger-directed trajectories at constant speed without gravity. The preview stops at the first target or wall; bounded collision stepping, finite ball lifetimes and clear-drain handling belong to Crystal.",
+    "A timed Prism pickup duplicates live balls while preserving their spent-special, lifetime and cooldown state. The optional Second Prism upgrade costs900 coins, requires tray6 and Power4, and adds a second scheduled offer without resetting Power.",
+    "A Crystal-specific three-spire upgrade map uses all62 sequential family/tier identities and an always-visible Second Prism tile. Seven original native PNGs provide candy atlases, equipment, tray, room, journey and upgrade courtyard art through bounded per-key UV metadata.",
+    "Profile envelope5 adds independent Crystal ownership. Crystal checkpoints use schema5 with exact offer/Prism state; Bakery and Gelato keep schema4 captures and unchanged gameplay fingerprints. Existing maps, Gelato node ownership and earlier area economies remain."
+  ],
+  "update_compatibility": "Same Android preview package and signing identity as v0.6.14 with code25. Install over the preview to retain package-private app data. The loader accepts profile versions1 through5 and writes version5; Crystal has independent money, upgrades and Second Prism ownership. Crystal active runs use schema5; Bakery/Gelato captures remain schema4, with their content fingerprints unchanged and legacy checkpoint decoding preserved. An older preview does not understand profile5 and must not overwrite it through ordinary autosave. Physical Android installation remains for user testing.",
+  "source_sha256": {
+    "res://scripts/area_art.gd": "833c583682df69d83172ca88cebdb669b45e663e40e8059e241df88d5190d4c8",
+    "res://scripts/area_campaign.gd": "5cc491a00df4180e460a334b93ec204b2bb608e5188a3fbec0b7aa4e4017d172",
+    "res://scripts/coin_display.gd": "29fcfa88220832e516a1d1d1e6210893ec083360848bda21caea574c7a26fc23",
+    "res://scripts/coin_feedback.gd": "77355e8533d1f8840b539a53155c3beacd3140a4a6fc0b2b0795ae5460cb1cfb",
+    "res://scripts/combat_balance.gd": "9ad489b7b8f3960a401adc30829d94776845f58060a58f878460479d5b2568e7",
+    "res://scripts/countdown_feedback.gd": "44ded78cf9ef83874485fc632a0e53b5ff6af2f6aa10bd30ad511d542e2f0883",
+    "res://scripts/crystal_launcher.gd": "0b20eb9e5f87ea74302067cad8c92f08b37faafc0fd25bd2d980e01eefd75499",
+    "res://scripts/crystal_upgrade_graph.gd": "d8715e6941f1df477e90e2c017392861ae9b4c3924afebf7009d26f994596671",
+    "res://scripts/developer_area_ui.gd": "9720214c2fdd09fdc510003b0e25a7e9a79218f25da53a9bd5b5632dd5d96c93",
+    "res://scripts/environment_art.gd": "38745078b12953911de5c8aab75b6648dc0d53d44f018f020b53b1b1bb8770b2",
+    "res://scripts/first_run_guide.gd": "b1fc6ff4606b3cd164511d1906e40fc32264567e51353c91a95deec82b95fedf",
+    "res://scripts/food_art.gd": "0cb27cd798b98961f4dbf5e9aab804c4cbc0785469afc6be0d716eac22750ae7",
+    "res://scripts/gelato_launcher.gd": "3ef818ac89c084741ac5076d33dcf4847b08079349cc5992d11d622b51032932",
+    "res://scripts/gelato_upgrade_graph.gd": "e9815d6ea340596e03b6a2646aec8a48d9a9dcf8dee183c9088e121f622586fd",
+    "res://scripts/home_menu.gd": "16d94a6f8303c00e8e4af5f7abd50eef9d516026b01352fa87473ca4d8fd08d8",
+    "res://scripts/impact_feedback.gd": "f3e41246e7492a7daa7eab26d9f851d0c903c38f89997a59404eba0594932ca8",
+    "res://scripts/level_map.gd": "aab3869d9aa25b88d884b373e5e97cdca195d4992344f9ea6a6a77238fdb3d40",
+    "res://scripts/main.gd": "19369e9c563045df13311a16c4d698c72550e7ac5010da5004670d43dab60832",
+    "res://scripts/monetization_service.gd": "c32c959fe6d527ecda6229e46b60ab31d3a629de90fb04ca0388332ed2119921",
+    "res://scripts/monetization_ui.gd": "666283c7228ad97e3460b38f8cf99f6b6e45c565cdf6afdd24122c48599c5dee",
+    "res://scripts/progress_reset_ui.gd": "a4be3e104765e3309d392ae2a8ee07f61fc8c11873085a4eb0b522f7a810b146",
+    "res://scripts/result_comparison_ui.gd": "c7f44b73d75b2ddb3f9ac6ab9586ffb639874cfb5608b9d1719e6e93c14434cc",
+    "res://scripts/run_history.gd": "f2da83d6d0c8179f58e61ccc7745d7ecb0980c27593a8a71aae89448fd939b30",
+    "res://scripts/run_snapshot.gd": "9459c6bbc3442427940cdf181c5b537e986d8dbc35db863823ffdc95d8572c32",
+    "res://scripts/run_transition.gd": "6b80a5f6344ed34f26cdffbc3c5780f8cf607995a74ae05ae8a70d056984a043",
+    "res://scripts/speech_bubble.gd": "a7fa2f48b72ff1c02a2617148a1c421c3bc55fe0e8dccc286441e43e2767969c",
+    "res://scripts/tone_bank.gd": "0eabc16e9ebf89d77e915ebc64ad44b030dd76003a4e02466d66267f9c5907c0",
+    "res://scripts/ui_art.gd": "a3de442459a2408b91a201c80636d73949be74939590a8b9123eba0e1399db65",
+    "res://scripts/upgrade_arc_art.gd": "4cefc77bef1b62f39b502f9ac8b1edadfd29f8fad05ccb280f10ef1a28a35ab1",
+    "res://scripts/upgrade_graph.gd": "3845bed72ffeefb5d747434e8b7dda326993762654b55d796e68d4e437777729",
+    "res://scripts/upgrade_map.gd": "a0401ed89490088a930f126e2b060f5a4c09dbe5daa7d0b526f02b8cc4a25837"
+  },
+  "source_json_sha256": {
+    "res://data/board_design.json": "e39586be1d1c4b2ecb289e3ba497e1e469d62b6af07ffc9242d8e792afeb7dcf",
+    "res://data/crystal_board_design.json": "b9ce87470fd3e393ab4789c5b8d682a84bfe6911fce411af1cc516de7cba4e6e",
+    "res://data/crystal_economy.json": "fa590359c4687c76ee14ce2149d6fba42a2a302100fe439f69ee301bfca90791",
+    "res://data/crystal_upgrade_layout.json": "e87e5f38d6c49d921b53d87f94a17b8df3d189a825c0f9e48d923c9f9f16aa31",
+    "res://data/economy.json": "9910256c6a6832d11248012bd60cafeef3e9017bb731bbf23dcf2503c0b27a8a",
+    "res://data/gelato_board_design.json": "0f64d5ebd62f786b1c157a75d599f47d00543e749e4240afe38d0131cfb05add",
+    "res://data/gelato_economy.json": "e98aa6365989a68cb618d15a5325bc1d8713767d04a693d2760b94fcf2efe352",
+    "res://data/gelato_upgrade_layout.json": "9948870ef138871c4966cea60820c341766af962018a773fe28da5c28bade666",
+    "res://data/upgrade_arc_art.json": "3abc28874c39d56d26fc1bff26e079319f646a3511459f2df61f2108539df85f",
+    "res://data/upgrade_layout.json": "e675a7104b1d0dc4bcb81633144c144a9a70ca7fa11cac066c83906e36da0983"
+  },
+  "source_export_preset_sha256": "266b17a6801edc0bde06a48821e5d8d3e9dd31285724a55d5eb329ce12234978",
+  "source_project_sha256": "7b6048fb6b99b3dadc0733631136a211a0c3089cb377e0f8208d829894199cb8",
+  "source_main_scene_sha256": "e1199368c62dfc7dd6f17fcf54ad6f4f39278c5f729c89670eb28f7aef284b17",
+  "verification": {
+    "payload_checks_passed": 462,
+    "android_metadata_checks_passed": 16,
+    "signature_v2": true,
+    "signature_v3": true,
+    "zip_alignment_16_kib": true,
+    "runtime_scripts_packaged": 31,
+    "runtime_json_packaged": 10,
+    "all41_runtime_inputs_match_final_renderer": true,
+    "source_inputs_unchanged_across_export": true,
+    "source_scope": {
+      "changed_previous_runtime_files": [
+        "res://data/upgrade_arc_art.json",
+        "res://scripts/area_art.gd",
+        "res://scripts/area_campaign.gd",
+        "res://scripts/developer_area_ui.gd",
+        "res://scripts/environment_art.gd",
+        "res://scripts/food_art.gd",
+        "res://scripts/level_map.gd",
+        "res://scripts/main.gd",
+        "res://scripts/result_comparison_ui.gd",
+        "res://scripts/run_history.gd",
+        "res://scripts/run_snapshot.gd",
+        "res://scripts/ui_art.gd",
+        "res://scripts/upgrade_arc_art.gd",
+        "res://scripts/upgrade_map.gd"
+      ],
+      "added_runtime_files": [
+        "res://data/crystal_board_design.json",
+        "res://data/crystal_economy.json",
+        "res://data/crystal_upgrade_layout.json",
+        "res://scripts/crystal_launcher.gd",
+        "res://scripts/crystal_upgrade_graph.gd"
+      ]
+    },
+    "previous_apk_preserved_and_hash_verified": true,
+    "existing_area_layouts_and_fingerprint_data_unchanged_from_v0614": true,
+    "checkpoint_compatibility": {
+      "fingerprints": {
+        "bakery": {
+          "previous": "3186f8149fb229ec8d39dd79416a9722e661896595d150e3d4101f474db4a9c0",
+          "current": "3186f8149fb229ec8d39dd79416a9722e661896595d150e3d4101f474db4a9c0"
+        },
+        "gelato": {
+          "previous": "0ed640180e172a175bce0d5ad81a97196d6f8d72ff031b099f2f254afe512f67",
+          "current": "0ed640180e172a175bce0d5ad81a97196d6f8d72ff031b099f2f254afe512f67"
+        },
+        "crystal": {
+          "previous": null,
+          "current": "61dd81c0b0088fbc84f2b042e0afffdd72b251f541464ac2612772113b913d19"
+        }
+      },
+      "previous_v0614_old_area_fingerprints_unchanged": true,
+      "checkpoint_schema_by_area": {
+        "bakery": 4,
+        "gelato": 4,
+        "crystal": 5
+      },
+      "profile_envelope_version": 5,
+      "profile_read_versions": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "gelato_shop_revision": 1,
+      "gelato_launcher_rules_revision": 2,
+      "combat_trial_rules_revision": 1
+    },
+    "profile_envelope_write_version": 5,
+    "profile_envelope_read_versions": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "checkpoint_schema_by_area": {
+      "bakery": 4,
+      "gelato": 4,
+      "crystal": 5
+    },
+    "bakery_gelato_art_textures_checked": 79,
+    "additional_mabel_result_textures_checked": 5,
+    "full_scene_backgrounds_checked": 3,
+    "native_crystal_assets": [
+      {
+        "path": "data/art/crystal/food/balls_atlas.png",
+        "sha256": "e28bb783b08f822274b98bf79544f406f1352d27bf95f34240a8e11c4ff285f1",
+        "bytes": 2500638,
+        "dimensions": [
+          1536,
+          1024
+        ],
+        "mode": "RGBA"
+      },
+      {
+        "path": "data/art/crystal/food/pegs_atlas.png",
+        "sha256": "b500c4bed35edf382bb4f6a862994641f5e80fe39443e4d448429b244d3404da",
+        "bytes": 2247994,
+        "dimensions": [
+          1254,
+          1254
+        ],
+        "mode": "RGBA"
+      },
+      {
+        "path": "data/art/crystal/food/equipment_atlas.png",
+        "sha256": "d32877f88749bc78a816a0d7aa0e1f22b6b0540be481a82b98db565f613b9cac",
+        "bytes": 1503964,
+        "dimensions": [
+          1254,
+          1254
+        ],
+        "mode": "RGBA"
+      },
+      {
+        "path": "data/art/crystal/food/tray.png",
+        "sha256": "895d831a4b32c8a4047fec2d3e287ef868252161066060fe4b4fc7cfea967596",
+        "bytes": 1500586,
+        "dimensions": [
+          1024,
+          1536
+        ],
+        "mode": "RGBA"
+      },
+      {
+        "path": "data/art/crystal/environment/candyworks_room.png",
+        "sha256": "9b151f84f6b11a7210a991cf91f3ebdb80568c1e695e7928c048d84c8d9d104f",
+        "bytes": 1790559,
+        "dimensions": [
+          1024,
+          1536
+        ],
+        "mode": "RGB"
+      },
+      {
+        "path": "data/art/crystal/environment/journey_backdrop.png",
+        "sha256": "cfb5ddcc8cf43b003e9fba8405bd4c19b736e7de47e5287b0392587441ffacda",
+        "bytes": 2433473,
+        "dimensions": [
+          1024,
+          1536
+        ],
+        "mode": "RGB"
+      },
+      {
+        "path": "data/art/crystal/environment/upgrade_courtyard.png",
+        "sha256": "3c74d02ccb8d4a74b035e8c98773510eef9938268e076d65e52e3bc757ac4678",
+        "bytes": 1709081,
+        "dimensions": [
+          1024,
+          1536
+        ],
+        "mode": "RGB"
+      }
+    ],
+    "native_crystal_asset_bytes": 13686295,
+    "crystal_native_sources_byte_exact_to_generated_art": true,
+    "crystal_imported_texture_bytes_match_current_imports": true,
+    "crystal_uv_metadata": [
+      {
+        "path": "data/art/crystal/food/regions.json",
+        "sha256": "b4233d00b77f959d7b1e1029b5a383876fcd1323825f4fb13423a75d93e3d14a",
+        "required_entries": 27,
+        "all_uv_regions_contained": true
+      },
+      {
+        "path": "data/art/crystal/environment/regions.json",
+        "sha256": "3fe2cf77ca7a606c31a54ed89317a119bfbc6493983c060209a6ca81c7994581",
+        "required_entries": 5,
+        "all_uv_regions_contained": true
+      }
+    ],
+    "crystal_uv_runtime_roles": {
+      "food": 27,
+      "environment": 5
+    },
+    "native_atlas_measurements": {
+      "path": "verification/crystal-20261103/native-atlas-measurements.json",
+      "sha256": "cfc8157fd1b7467b60f3130c9de8609d0513ab5ac4498c531ba9be9dc8be8f38",
+      "method": "Read-only alpha>=32 bounds plus four-pixel padding. The four damage stages of each peg role share one normalized local union frame."
+    },
+    "official_debug_runtime_libraries_match": true,
+    "debug_runtime_libraries": [
+      "lib/arm64-v8a/libc++_shared.so",
+      "lib/arm64-v8a/libgodot_android.so"
+    ],
+    "developer_controls_available_in_debug_build": true,
+    "test_measurement_baseline_provenance_and_retired_art_excluded": true,
+    "consolidated_distinct_suites": 21,
+    "consolidated_checks_passed": 2494,
+    "consolidated_failed": 0,
+    "headless_suites": 20,
+    "headless_checks": 2319,
+    "rendered_checks": 175,
+    "rendered_captures": 40,
+    "counting_note": "The2494 consolidated checks include175 GPU checks. The253 art/persistence/GPU checks are a subset, not additional. The216 pacing simulations are separate runs, not assertion counts.",
+    "source_checks_by_log": {
+      "verification/crystal-20261103/physics-03/crystal-physics.log": 75,
+      "verification/crystal-20261103/physics-03/resume.log": 122,
+      "verification/crystal-20261103/physics-03/final-ball-drain.log": 66,
+      "verification/crystal-20261103/physics-03/gelato-trajectory.log": 245,
+      "verification/crystal-candyworks-20261103/ui-03/crystal-area-ui.log": 35,
+      "verification/crystal-candyworks-20261103/ui-01/gelato-upgrade-map.log": 196,
+      "verification/crystal-candyworks-20261103/ui-01/gelato-twin-node.log": 81,
+      "verification/crystal-candyworks-20261103/ui-01/map.log": 281,
+      "verification/crystal-candyworks-20261103/ui-02/gelato-navigation.log": 58,
+      "verification/crystal-candyworks-20261103/ui-02/gelato-launcher-shop.log": 105,
+      "verification/crystal-candyworks-20261103/ui-02/developer-area.log": 101,
+      "verification/crystal-candyworks-20261103/ui-02/developer-area-ui.log": 59,
+      "verification/crystal-candyworks-20261103/ui-02/developer-money.log": 50,
+      "verification/crystal-area-20261103/profile-regression-02/first-run-guide.log": 159,
+      "verification/crystal-area-20261103/profile-regression-03/reset-progress.log": 63,
+      "verification/crystal-area-20261103/profile-regression-03/area-progression.log": 90,
+      "verification/crystal-area-20261103/profile-regression-03/gelato-node-ownership.log": 279,
+      "verification/crystal-area-20261103/profile-regression-03/gelato-launcher-save.log": 176,
+      "verification/crystal-20261103/art-02/crystal-art.log": 57,
+      "verification/crystal-20261103/save-02/crystal-save.log": 21,
+      "verification/crystal-20261103/gpu-02/preview.log": 175
+    },
+    "post_headless_drawing_changes": [
+      "Physics tests preceded only the pickup artwork role change to multiply_pickup.",
+      "Map behavior tests preceded only the Crystal special-node icon change to its dedicated multiply_pickup artwork.",
+      "Both final drawing paths are covered by GPU-02 and its current 41 runtime hashes."
+    ],
+    "disk_persistence": {
+      "actual_disk_roundtrip": true,
+      "profile_envelope": 5,
+      "active_crystal_checkpoint": 5,
+      "three_independent_area_records_preserved": true,
+      "second_prism_purchase_save_failure_rollback": true,
+      "wallet_upgrades_and_second_prism_preserved": true,
+      "checkpoint_includes_first_offer_clones_and_live_second_offer": true,
+      "second_offer_remaining_seconds": 3.25,
+      "fresh_load_pauses_run": true,
+      "load_keeps_file_bytes_unchanged": true,
+      "resumed_physics_matches_uninterrupted_steps": 30,
+      "normal_player_profile_io": 0,
+      "isolated_fixture_file_io": true,
+      "isolation_probe": "verification/crystal-20261103/save-02/isolation.log",
+      "safety": "Explicit absolute disposable path must be inside the verified Godot user directory, with opt-in CLI marker; legacy-profile discovery overridden empty. Only that fixture file and its temporary companion are removed."
+    },
+    "visual_inspection": {
+      "inspected_final_frames": [
+        "second-prism-purchase-450x800.png",
+        "crystal-upgrades-overview-720x1280.png",
+        "diamond-damage-450x800.png",
+        "gelato-control-450x800.png"
+      ],
+      "other_inspected_frames": [
+        "crystal-home-450x800.png",
+        "aim-100-450x800.png",
+        "prism-ready-450x800.png",
+        "prism-collected-450x800.png",
+        "second-prism-ready-450x800.png",
+        "crystal-resume-450x800.png",
+        "crystal-result-450x800.png"
+      ],
+      "findings": [
+        "Crystal copper/aqua spout, tray, cups and candy sprites render on alpha without opaque atlas cells or visible neighbor bleed.",
+        "Peg damage removes visible material while preserving the physical frame; diamond tint remains readable against the quiet board.",
+        "Straight dotted aim aligns with the rotating spout; the available multiplier has its own medallion, x2 label and shrinking timer ring.",
+        "Second Prism uses the dedicated multiplier sprite in both map node and card; its copy and purchase button fit at 450x800.",
+        "Overview nodes remain readable and visually clear of the six courtyard scenery groups. This is a visual inspection, not a new pixel-mask geometry proof.",
+        "Bakery and Gelato control frames retain their own established themes. Shared UI skins are intentionally reused.",
+        "The immediate post-collection frame captures newly duplicated balls at their parents positions; actual disk continuation proves their subsequent motion, not a separated-ball screenshot."
+      ]
+    },
+    "synthetic_pacing_runs": 216,
+    "synthetic_pacing_all_runs_terminated": true,
+    "synthetic_pacing_summary": [
+      {
+        "build": "new",
+        "pickup": "off",
+        "runs": 24,
+        "clears": 0,
+        "mean_damage_percent": 31.5,
+        "mean_launches": 9.0,
+        "mean_clones": 0.0,
+        "mean_coins": 49.0,
+        "cleared_boards": []
+      },
+      {
+        "build": "new",
+        "pickup": "one",
+        "runs": 24,
+        "clears": 0,
+        "mean_damage_percent": 41.8,
+        "mean_launches": 9.0,
+        "mean_clones": 2.8,
+        "mean_coins": 69.9,
+        "cleared_boards": []
+      },
+      {
+        "build": "new",
+        "pickup": "two",
+        "runs": 24,
+        "clears": 0,
+        "mean_damage_percent": 50.1,
+        "mean_launches": 9.0,
+        "mean_clones": 10.0,
+        "mean_coins": 86.5,
+        "cleared_boards": []
+      },
+      {
+        "build": "mid",
+        "pickup": "off",
+        "runs": 24,
+        "clears": 3,
+        "mean_damage_percent": 73.1,
+        "mean_launches": 12.9,
+        "mean_clones": 0.0,
+        "mean_coins": 166.2,
+        "cleared_boards": [
+          1,
+          2,
+          3
+        ]
+      },
+      {
+        "build": "mid",
+        "pickup": "one",
+        "runs": 24,
+        "clears": 3,
+        "mean_damage_percent": 82.1,
+        "mean_launches": 12.8,
+        "mean_clones": 3.0,
+        "mean_coins": 190.3,
+        "cleared_boards": [
+          1,
+          2
+        ]
+      },
+      {
+        "build": "mid",
+        "pickup": "two",
+        "runs": 24,
+        "clears": 5,
+        "mean_damage_percent": 89.1,
+        "mean_launches": 12.8,
+        "mean_clones": 12.3,
+        "mean_coins": 229.0,
+        "cleared_boards": [
+          1,
+          2,
+          3,
+          5
+        ]
+      },
+      {
+        "build": "max",
+        "pickup": "off",
+        "runs": 24,
+        "clears": 9,
+        "mean_damage_percent": 95.9,
+        "mean_launches": 18.4,
+        "mean_clones": 0.0,
+        "mean_coins": 276.2,
+        "cleared_boards": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          8
+        ]
+      },
+      {
+        "build": "max",
+        "pickup": "one",
+        "runs": 24,
+        "clears": 15,
+        "mean_damage_percent": 98.0,
+        "mean_launches": 16.8,
+        "mean_clones": 4.8,
+        "mean_coins": 317.2,
+        "cleared_boards": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      },
+      {
+        "build": "max",
+        "pickup": "two",
+        "runs": 24,
+        "clears": 20,
+        "mean_damage_percent": 99.4,
+        "mean_launches": 15.5,
+        "mean_clones": 16.8,
+        "mean_coins": 380.5,
+        "cleared_boards": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ]
+      }
+    ],
+    "synthetic_pacing_limits": [
+      "Synthetic deterministic targeting only: frontmost living target or periodic sweep, not human phone pacing.",
+      "Builds are fixed new/mid/max snapshots; this is not a simulated purchase path or economy completion time.",
+      "off means ignoring the base Prism; one means normal base Prism collection; two forces the Second Prism flag for mechanic comparison even where new-build unlock prerequisites are absent.",
+      "Extra balls change peg-break paths and RNG consumption through normal damage effects, so every individual run need not improve monotonically.",
+      "Two-offer max build with direct-front aim cleared all12 boards; slower sweep missed a few near-complete boards."
+    ],
+    "real_player_profile_accesses": 0,
+    "isolated_fixture_file_io_exercised": true,
+    "physical_android_device_tested": false,
+    "android_emulator_tested": false,
+    "human_difficulty_validated": false,
+    "physical_phone_touch_contrast_performance_tested": false,
+    "evidence_directory": "../../verification/android-preview-v070",
+    "consolidated_evidence_file": "../../verification/crystal-area-20261103/validation.json",
+    "renderer_evidence_file": "../../verification/crystal-20261103/gpu-02/screens/rendered-source-hashes.json",
+    "physics_and_pacing_evidence_file": "../../verification/crystal-20261103/physics-pacing-manifest.json",
+    "art_and_persistence_evidence_file": "../../verification/crystal-20261103/art-persistence-manifest.json",
+    "limits": [
+      "Initial economy is provisional; synthetic aiming and forced second offers for low-tier comparison do not establish human difficulty.",
+      "GPU review uses the Windows renderer at phone dimensions; physical Android touch feel, contrast and performance remain untested.",
+      "Windows OpenGL preview; no Android device or emulator run in this scope.",
+      "Human pacing, touch feel and physical phone contrast remain untested.",
+      "Prior Gelato foreground masks are not reused for the new Crystal artwork."
+    ],
+    "scope": "Export/static Android checks are new. Gameplay, persistence and GPU results are the frozen final source evidence, not rerun by the packaging workflow. Tests used isolated fixture profiles; no normal player profile was accessed. Initial Crystal economy remains provisional."
+  },
+  "drive": {
+    "file_id": "1GF1zo3lt0VR5voajNPGjoP1FYuPe0FYz",
+    "url": "https://drive.google.com/file/d/1GF1zo3lt0VR5voajNPGjoP1FYuPe0FYz/view?usp=drivesdk",
+    "file_name": "Sugarfall-v0.7.0-Android-Preview-2026-11-03.apk",
+    "parent_ids": [
+      "1TXLZwTNVlHGTBy7y0CVMMk3zABEKu8X-"
+    ],
+    "modified_time": "2026-11-03T15:43:03.782Z",
+    "size_bytes": 87121297,
+    "replaced_in_place": true,
+    "permissions_unchanged": true,
+    "private": true
+  },
+  "upload_verification": {
+    "status": "passed",
+    "file_id": "1GF1zo3lt0VR5voajNPGjoP1FYuPe0FYz",
+    "name": "Sugarfall-v0.7.0-Android-Preview-2026-11-03.apk",
+    "size": 87121297,
+    "local_sha256": "869a1497d4cd3f3a79c7373e4400880b4e26e5aa1282d5dae95ac9ef25363159",
+    "remote_checksum_available": false,
+    "remote_link": "https://drive.google.com/file/d/1GF1zo3lt0VR5voajNPGjoP1FYuPe0FYz/view?usp=drivesdk",
+    "modified_time": "2026-11-03T15:43:03.782Z",
+    "checks": {
+      "same_file_id": true,
+      "expected_name": true,
+      "expected_size": true,
+      "same_parent": true,
+      "same_permissions": true,
+      "private": true,
+      "correct_mime": true,
+      "modified_time_updated": true
+    },
+    "evidence_directory": "../../verification/android-upload-v070",
+    "method": "Completed raw-file replacement followed by fresh connector metadata readback. The connector exposes no remote checksum."
+  }
+}

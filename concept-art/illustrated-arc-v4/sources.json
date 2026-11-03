@@ -1,0 +1,92 @@
+{
+  "schema": 1,
+  "method": "Built-in image_gen; complete scene generation followed by targeted image edits",
+  "composition_guide": "composition-guide.png",
+  "geometry": "guide.json",
+  "assets": [
+    {
+      "id": "bakery_initial",
+      "source": "C:/Users/Hursh/.codex/generated_images/01a173c0-7a0e-7573-a977-1595f71b5672/exec-e41c356d-4264-41d6-8699-591521a06c36.png",
+      "destination": "concept-art/illustrated-arc-v4/bakery-initial.png",
+      "prompt": "bakery-prompt.txt",
+      "references": [
+        {
+          "path": "concept-art/illustrated-arc-v4/composition-guide.png",
+          "role": "Layout and clear courtyard"
+        },
+        {
+          "path": "PLINKO/data/art/environment/upgrade_arc_v2.png",
+          "role": "Original illustrated style"
+        }
+      ],
+      "sha256": "d8b638ae3e05bbaec9d8ed161a50f06bdb8b736ba6a37979f5d9a3be8ac76ca7",
+      "size": [
+        1659,
+        948
+      ],
+      "mode": "RGB",
+      "copied_without_pixel_changes": true
+    },
+    {
+      "id": "bakery_clearance",
+      "source": "C:/Users/Hursh/.codex/generated_images/01a173c0-7a0e-7573-a977-1595f71b5672/exec-cf7b6292-d141-49ec-a833-b3981230fe2f.png",
+      "destination": "concept-art/illustrated-arc-v4/bakery-before-sage.png",
+      "prompt": "inner-clearance-prompt.txt",
+      "references": [
+        {
+          "path": "concept-art/illustrated-arc-v4/bakery-initial.png",
+          "role": "Edit target"
+        },
+        {
+          "path": "concept-art/illustrated-arc-v4/composition-guide.png",
+          "role": "Inner garden clearance guide"
+        }
+      ],
+      "sha256": "d8a92114a59ca74d95514c1272b20ca509774af381482618806077ad78ed9c1b",
+      "size": [
+        1660,
+        948
+      ],
+      "mode": "RGB",
+      "copied_without_pixel_changes": true
+    },
+    {
+      "id": "gelato_final",
+      "source": "C:/Users/Hursh/.codex/generated_images/01a173c0-7a0e-7573-a977-1595f71b5672/exec-5cade096-2fc0-4bfe-89e4-2f73c2feb123.png",
+      "destination": "PLINKO/data/art/gelato/environment/upgrade_arc_illustrated_v4.png",
+      "prompt": "gelato-prompt.txt",
+      "references": [
+        {
+          "path": "concept-art/illustrated-arc-v4/bakery-before-sage.png",
+          "role": "Edit target; preserve composition and clearance"
+        }
+      ],
+      "sha256": "ccf99f549256a82b53d09e4bfbbb225a8a1e1146b1b8926b9af9a8e3711709b1",
+      "size": [
+        1660,
+        948
+      ],
+      "mode": "RGB",
+      "copied_without_pixel_changes": true
+    },
+    {
+      "id": "bakery_final",
+      "source": "C:/Users/Hursh/.codex/generated_images/01a173c0-7a0e-7573-a977-1595f71b5672/exec-81e9af73-a4be-493c-b48d-6cbfc94d2358.png",
+      "destination": "PLINKO/data/art/environment/upgrade_arc_illustrated_v4.png",
+      "prompt": "sage-courtyard-prompt.txt",
+      "references": [
+        {
+          "path": "concept-art/illustrated-arc-v4/bakery-before-sage.png",
+          "role": "Edit target; only floor palette changes"
+        }
+      ],
+      "sha256": "6a7bd0f6e63c6d68fefa99c5bca4daf2c0bd706078e654e92271a9ffdc8b4856",
+      "size": [
+        1659,
+        948
+      ],
+      "mode": "RGB",
+      "copied_without_pixel_changes": true
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+METHOD: built-in image_gen targeted edits of level_badge_cream.png. These final prompts supersede the initial mint/muted prompts in prompts.txt.
+
+=== level_badge_mint ===
+Use case: precise-object-edit. Edit this exact production cream level-medallion PNG. Change ONLY the blank ivory glazed inner face to muted mint-green enamel matching the approved bakery UI (roughly #8acbb5). Preserve the complete twelve-lobed silhouette, cookie edge, copper rim, object dimensions and placement, alpha transparency, surface highlights, lighting, and proportions exactly. No additional ring, numbers, icons, locks, checks, badges, text, scene or shadow. The entire central face stays BLANK with quiet subtle texture. Keep genuine transparent background. One sprite only.
+
+=== level_badge_muted ===
+Use case: precise-object-edit. Edit this exact production cream level-medallion PNG. Change ONLY its material color/contrast to create a clearly subdued locked-level version: pale low-saturation oatmeal-gray face, softer biscuit edge and muted low-saturation copper rim. Keep face readable but less vivid than cream or mint. Preserve exact complete twelve-lobed silhouette, size/placement, alpha transparency, lighting and proportions. No numbers, icons, locks, checks, state marks, text, scenery, extra rings or floor shadow; the central face stays blank. Keep genuine transparent background. One sprite only.

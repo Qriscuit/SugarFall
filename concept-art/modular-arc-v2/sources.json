@@ -1,0 +1,51 @@
+{
+  "schema": 1,
+  "method": "Built-in image_gen; one generation call per separate piece. Phase two is exact layer placement, without regeneration of those pieces.",
+  "composition_reference": "PLINKO/data/art/environment/upgrade_arc_v2.png",
+  "style_reference": "PLINKO/data/art/arc_props/bakery_house.png",
+  "prompt_set": "generation-prompts.json",
+  "assets": [
+    {
+      "id": "garden_border",
+      "source": "C:/Users/Hursh/.codex/generated_images/01a173c0-7a0e-7573-a977-1595f71b5672/exec-424d4f58-9bb4-4bc3-9a8a-81e14341f6bd.png",
+      "destination": "PLINKO/data/art/arc_sections/garden_border.png",
+      "transparent_background": true,
+      "prompt": "Use case: stylized-concept. Asset type: one individual, reusable, transparent environment cutout for Sugarfall, a premium miniature garden-town game. Image 1 is the original overall arc composition reference ONLY: reproduce its appealing garden architecture vocabulary, not its whole scene, beige ground or grain. Image 2 is the finished individual bakery house style reference: match its crisp, carefully sculpted, smooth detailed materials. Create ONLY the requested freestanding piece. Three-quarter aerial view, front and right sides visible, camera looks down about 35 degrees, soft neutral daylight from upper left. Every leaf, stone and flower has a clear deliberate silhouette. Controlled sage and jade greens, ivory stone, muted coral and lavender accents. No granular texture, no mottled noise, no repeated procedural pattern, no fuzzy foliage, no vignette, no text, no UI, no people, no buildings. True transparent background, no large ground plane and no opaque shadow patch. Entire piece fits with a little clear margin, large within frame.\nSubject: one generous low curved garden-border planter, an elegant shallow crescent of pale ivory limestone with a rounded cap and just a few large beautifully cut masonry blocks. A dense but intentionally designed lush planting arrangement of broad sage leaves, soft rounded dark-green shrubs, three groups of white daisies and muted pink flowers. A short slender cypress rises at the left end and one smaller at the right, with asymmetrical heights. The bed itself has low sides and reads clearly as a sculpted garden boundary, viewed from in front. Wide landscape silhouette, approximately 1.6:1 overall width to height; no giant tree. This module will sit between individually placed houses along an outer city-garden wall.",
+      "sha256": "7fbcf14ebbe3659246a00c070f434c2ab5e128adbda26f52fa14bc911c3c01c7",
+      "size": [
+        1586,
+        992
+      ],
+      "mode": "RGBA",
+      "source_pixels_unchanged": true
+    },
+    {
+      "id": "herb_garden",
+      "source": "C:/Users/Hursh/.codex/generated_images/01a173c0-7a0e-7573-a977-1595f71b5672/exec-4b5f25a0-0957-48a5-a7cb-ce28dfb2acf8.png",
+      "destination": "PLINKO/data/art/arc_sections/herb_garden.png",
+      "transparent_background": true,
+      "prompt": "Use case: stylized-concept. Asset type: one individual, reusable, transparent environment cutout for Sugarfall, a premium miniature garden-town game. Image 1 is the original overall arc composition reference ONLY: reproduce its appealing garden architecture vocabulary, not its whole scene, beige ground or grain. Image 2 is the finished individual bakery house style reference: match its crisp, carefully sculpted, smooth detailed materials. Create ONLY the requested freestanding piece. Three-quarter aerial view, front and right sides visible, camera looks down about 35 degrees, soft neutral daylight from upper left. Every leaf, stone and flower has a clear deliberate silhouette. Controlled sage and jade greens, ivory stone, muted coral and lavender accents. No granular texture, no mottled noise, no repeated procedural pattern, no fuzzy foliage, no vignette, no text, no UI, no people, no buildings. True transparent background, no large ground plane and no opaque shadow patch. Entire piece fits with a little clear margin, large within frame.\nSubject: one compact asymmetrical ornamental kitchen-garden island. A low irregular oval pale stone border enclosing three contrasting masses of carefully sculpted broad-leaf mint, upright lavender stems and rosemary; five white daisies near front and a small muted coral flowering shrub at rear. Include two larger smooth pale stones, a tiny copper watering can and a terracotta herb pot at the right. Natural grouped design, varying heights, no grid of plants, no buildings or trees. Wide landscape silhouette approximately1.4:1. This piece will join a greenhouse and a bench as independently composed layers.",
+      "sha256": "977395e2f558e9338040e1f4d8c618f4ca8faf377e375cc97a7cc53c928f96bc",
+      "size": [
+        1484,
+        1060
+      ],
+      "mode": "RGBA",
+      "source_pixels_unchanged": true
+    },
+    {
+      "id": "courtyard_steps",
+      "source": "C:/Users/Hursh/.codex/generated_images/01a173c0-7a0e-7573-a977-1595f71b5672/exec-b087641a-1658-495a-800b-8dbd4190e511.png",
+      "destination": "PLINKO/data/art/arc_sections/courtyard_steps.png",
+      "transparent_background": true,
+      "prompt": "Use case: stylized-concept. Asset type: one individual, reusable, transparent environment cutout for Sugarfall, a premium miniature garden-town game. Image 1 is the original overall arc composition reference ONLY: reproduce its appealing garden architecture vocabulary, not its whole scene, beige ground or grain. Image 2 is the finished individual bakery house style reference: match its crisp, carefully sculpted, smooth detailed materials. Create ONLY the requested freestanding piece. Three-quarter aerial view, front and right sides visible, camera looks down about 35 degrees, soft neutral daylight from upper left. Every leaf, stone and flower has a clear deliberate silhouette. Controlled sage and jade greens, ivory stone, muted coral and lavender accents. No granular texture, no mottled noise, no repeated procedural pattern, no fuzzy foliage, no vignette, no text, no UI, no people, no buildings. True transparent background, no large ground plane and no opaque shadow patch. Entire piece fits with a little clear margin, large within frame.\nSubject: one small elegant bakery entrance forecourt foundation, by itself, without a house. A softly rounded rectangular platform of smooth warm-gray limestone with two shallow broad curved steps at front. The top is mostly open and quiet for a separate house sprite to stand behind it; only nine or ten large irregular flagstones with crisp thin joints, no small paving pattern. Two low pale stone corner blocks with subtle copper finials at rear corners. Clean handcrafted geometry, smooth solid surfaces. Wide low silhouette about2:1; aerial three-quarter perspective matching the bakery house. No plants, furniture or lamps. Transparent around every edge.",
+      "sha256": "a26e0f5d334e1da25833d90116b95b362dadbe994cd00f8bd5bfb8a24608f3e0",
+      "size": [
+        1774,
+        887
+      ],
+      "mode": "RGBA",
+      "source_pixels_unchanged": true
+    }
+  ]
+}

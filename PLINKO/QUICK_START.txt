@@ -1,0 +1,21 @@
+SUGARFALL v0.5 • PERFORMANCE TEST BUILD
+
+CURRENT SOURCE NOTE — 26 October 2026
+The package/performance details below describe the older v0.5 checkpoint. Current source uses one campaign. Home menu → Settings → Reset progress opens a confirmation; confirming clears gameplay progress and simulated purchase/ad state, keeps Sound and Reduced Motion, and starts Bakery tray 1 with Mabel. Cancel keeps the current campaign. See README.md for current setup and verification.
+
+Android: install the versioned APK only if you trust this private development build. It uses the same signer/package as the RECENT rebuilt v0.3 and v0.4, not the lost original development signer. Do not uninstall merely to solve a signature conflict, because that can erase local progress. Actual phone update compatibility remains untested.
+Windows: extract the ZIP and run the EXE. Windows execution has not been tested here.
+
+PLAY
+Drag to aim. Clear every peg before time runs out. A fresh run starts at10seconds and normal pegs need6baseline hits. Damage earns coins even on losses. Collect, choose a node on the Upgrade map, then buy using its separate coin button. Drag the map or use zoom/recenter. Retries are free.
+
+REPLAY THE INTRODUCTION WITHOUT RESETTING
+In Bakery, Home menu → Help → Learn with Mabel replays the guide while keeping campaign progress. Fresh Test Profile and Return to Main are retired controls.
+
+CHECK THE PIXEL6 PERFORMANCE FIX
+1. Home → Setup → Performance Display ON.
+2. Play a board that previously felt laggy, using the same save/build and similar aiming.
+3. Note the FPS and peg/ball counts near the start and near the end. A screenshot or short recording is useful. CPU step/draw values exclude GPU time.
+4. Mention whether the phone is hot or in battery-saver mode and whether sound changes the behavior. This is local display only; nothing is uploaded automatically.
+
+Sound and Reduced Motion controls are also in Setup. Performance Display defaults OFF each launch. The game targets at most60FPS; this is a cap, not a guarantee.

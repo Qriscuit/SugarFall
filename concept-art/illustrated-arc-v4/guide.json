@@ -1,0 +1,20 @@
+{
+  "world_rect": [
+    -2450.0,
+    -4650.0,
+    10800.0,
+    6171.428571428572
+  ],
+  "size": [
+    2100,
+    1200
+  ],
+  "shape_center": [
+    2944.4863728670916,
+    1700.0
+  ],
+  "upgrade_sweep_degrees": 120,
+  "illustrated_court_sweep_degrees": 128,
+  "inner_radius": 1750,
+  "outer_radius": 5050
+}

@@ -1,0 +1,81 @@
+{
+  "method": "built-in image_gen.imagegen; one precise-object edit per asset; original output pixels preserved",
+  "record": "concept-art/palette-refresh-v1/sources.json",
+  "assets": [
+    {
+      "id": "bakery-arc",
+      "source": "C:/Users/Hursh/.codex/generated_images/01a173c0-7a0e-7573-a977-1595f71b5672/exec-b22995c3-4c75-475d-a8cf-e7ef83371b99.png",
+      "destination": "PLINKO/data/art/environment/upgrade_arc_v3.png",
+      "reference": "C:/Users/Hursh/Documents/Plinko/PLINKO/data/art/environment/upgrade_arc_v2.png",
+      "prompt": "bakery-arc-prompt.txt",
+      "transparent_background": false,
+      "sha256": "89636b8812abd37635c93976478a52396f839ed387fef4f1a46d11e195650267",
+      "reference_backup": "references/bakery-arc/input.png",
+      "size": [
+        1659,
+        948
+      ],
+      "mode": "RGB"
+    },
+    {
+      "id": "bakery-home",
+      "source": "C:/Users/Hursh/.codex/generated_images/01a173c0-7a0e-7573-a977-1595f71b5672/exec-844ed631-d110-4576-b2cb-4c35b150f040.png",
+      "destination": "PLINKO/data/art/environment/home_counter.png",
+      "reference": "C:/Users/Hursh/Documents/Plinko/PLINKO/data/art/environment/home_counter.png",
+      "prompt": "bakery-home-prompt.txt",
+      "transparent_background": false,
+      "sha256": "4a3f732222b7ad7062afa4a6ac1081b0d12b2353c284668e48d8ddc2f2061133",
+      "reference_backup": "references/bakery-home/input.png",
+      "size": [
+        941,
+        1672
+      ],
+      "mode": "RGB"
+    },
+    {
+      "id": "bakery-play",
+      "source": "C:/Users/Hursh/.codex/generated_images/01a173c0-7a0e-7573-a977-1595f71b5672/exec-4ceab681-b763-4bef-841e-d2e7e4e0f388.png",
+      "destination": "PLINKO/data/art/environment/play_counter.png",
+      "reference": "C:/Users/Hursh/Documents/Plinko/PLINKO/data/art/environment/play_counter.png",
+      "prompt": "bakery-play-prompt.txt",
+      "transparent_background": false,
+      "sha256": "87f28f8b57d856aa4dffa205314e568461e9aa2824fcdeb55ebebe29c70aa297",
+      "reference_backup": "references/bakery-play/input.png",
+      "size": [
+        941,
+        1672
+      ],
+      "mode": "RGB"
+    },
+    {
+      "id": "bakery-journey",
+      "source": "C:/Users/Hursh/.codex/generated_images/01a173c0-7a0e-7573-a977-1595f71b5672/exec-14346dc6-379a-48db-aacc-f0c9bdbd88b7.png",
+      "destination": "PLINKO/data/art/environment/journey_backdrop.png",
+      "reference": "C:/Users/Hursh/Documents/Plinko/PLINKO/data/art/environment/journey_backdrop.png",
+      "prompt": "bakery-journey-prompt.txt",
+      "transparent_background": false,
+      "sha256": "ac14bdd534fa3da7527f95b3a4c3eff265a1bb683d7b944591ccf2e5aa7a16db",
+      "reference_backup": "references/bakery-journey/input.png",
+      "size": [
+        941,
+        1672
+      ],
+      "mode": "RGB"
+    },
+    {
+      "id": "bakery-upgrade",
+      "source": "C:/Users/Hursh/.codex/generated_images/01a173c0-7a0e-7573-a977-1595f71b5672/exec-037a914a-58fd-4c6d-8816-6bac4fd2ae3d.png",
+      "destination": "PLINKO/data/art/environment/upgrade_counter.png",
+      "reference": "C:/Users/Hursh/Documents/Plinko/PLINKO/data/art/environment/upgrade_counter.png",
+      "prompt": "bakery-upgrade-prompt.txt",
+      "transparent_background": false,
+      "sha256": "224057efc3903dad5305b032e16a4f0f54f7eb07b2a1a4369feb30ecc534bbfc",
+      "reference_backup": "references/bakery-upgrade/input.png",
+      "size": [
+        941,
+        1672
+      ],
+      "mode": "RGB"
+    }
+  ]
+}

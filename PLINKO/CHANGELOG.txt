@@ -1,0 +1,20 @@
+PEG FOUNDRY v0.5 • 23 October 2026
+Performance-focused revision following the player's Pixel 6 report.
+
+CHANGES
+- Replaced hundreds of per-frame decorative circle commands and multi-command peg shading with cached original SVG textures. The toy-machine design remains; these are original vector assets, not copied artwork.
+- Reuses rounded-panel style resources instead of allocating them every redraw.
+- Stops redrawing static menus when nothing changes. Input, navigation and status updates still redraw immediately.
+- Caps presentation at 60 FPS rather than spending extra work on 90/120 Hz screens. Physics remains at 60 steps per second.
+- Uses ordered fixed-geometry collision rows to skip distant pegs, preserving collision order and the original full-scan behavior during collision cooldown.
+- Prewarms 31 small sound streams before gameplay rather than synthesizing PCM during hits. Fixed tones remain exact. Random nonlethal-hit pitch is rounded to the nearest 5 Hz (at most 2.5 Hz difference); random-number consumption is unchanged.
+- Adds Setup → Performance Display, OFF by default. It shows local FPS, ball/peg counts and CPU step/draw timing. It does not measure GPU time or send data anywhere.
+
+UNCHANGED
+Ten-second fresh base runs, six baseline hits, damage/upgrade economy, time bonuses, 80-ball cap, ball lifetime, splitter behavior, all-clear goal, free retries and save/profile rules are unchanged. Main and Fresh Test profiles remain separate. Existing v0.4 active checkpoints remain compatible because gameplay data is unchanged. Previous artifacts are preserved.
+
+VALIDATION
+All six regression suites pass: 16 smoke,112 independent,99 resume,16 balance,45 map,61 profile assertions. The resume suite includes96 checkpoint matrix cases. The collision candidate passed198,328 exact per-step state/RNG comparisons, including restore-style array replacement. Cloud Linux GUI verified textures, diagnostic display, completed-result restore and map navigation.
+
+LIMITS
+Cloud CPU benchmarks indicate reduced work, not a measured Pixel6 frame-rate improvement. Physical Android installation, GPU timing, thermal behavior and Windows execution remain untested. See PERFORMANCE_NOTES.txt for before/after numbers and the next phone check. No live ads, payments, analytics, network SDK or public release was added.

@@ -1,0 +1,8 @@
+Use case: stylized-concept. Create production TRANSPARENT sprite atlas for Sugarfall Crystal Candyworks. A perfect 4-column by 4-row grid of SIXTEEN separate round faceted hard-candy target pegs, on true transparent alpha. Square canvas ideally2048x2048. Uniform cells centered at12.5%,37.5%,62.5%,87.5% ofwidthandheight. Eachwhole intactpeg occupiescentral68%ofitscell; transparentgutteraroundeveryitem. Soft detailed2.5D edible sugar, roundedoctagonal silhouette approximatescircle, upperleftlighting; don'tdrawrectangularbricks.
+Columns define DAMAGE, lefttoright: intact; small outerchip+hairlinecrack; two larger missingedgechunks+clearcracks; heavily chipped withabout40%materialgone, stillreadable identity. Brokenawayparts arefullytransparent, no detacheddebris. Acrossfourcolumns keep sameoriginalscaleandcenter; don'tenlarge damagedremnants.
+Rows define ROLES:
+Row1 normal: pale neutral white/icy translucent rock-candy disc with restrainedfacets, meanttobe tintedBronze/Silver/Gold/Diamond bygame. Lightneutralbody.
+Row2 armored: samecandy disc in thick silverywhite sugar shell with thin warmcopper protective rim; robustediblecoating.
+Row3 prism: samepalecandy disc with smallbrightcoral/aqua triangular sugarinlay incenter.
+Row4 clock: samepalecandy disc with smallcopperclockface candyinlay, twoclearclockhands,nodigits.
+Keep tintableneutralwhitebody for everyrole, decorationssmallbutdistinct. Everycolumnstillshows roledecorationwhenpossible. No gridlines, captions, letters, text, labels, scenery, ground, backdrop or watermark. No glows or halos beyond object silhouette. Thisisassetart, notgameplay screenshot. Referenceonlyshowsquality/materialsoftness, notwaffletexture. Outputindividualspritesinexactgridonalpha.

@@ -1,0 +1,106 @@
+{
+  "schema": 1,
+  "method": "built-in image_gen; four separate directional image generations, then existing-image layer composition",
+  "assets": [
+    {
+      "id": "planting_225",
+      "angle": 225,
+      "prompt_id": "planting_left_rise",
+      "prompt_set": "generation-prompts.json",
+      "source": "C:/Users/Hursh/.codex/generated_images/01a173c0-7a0e-7573-a977-1595f71b5672/exec-578806c1-3720-489f-9d7c-0aa197e34082.png",
+      "destination": "PLINKO/data/art/arc_sections/v3/planting_225.png",
+      "references": [
+        {
+          "path": "concept-art/modular-arc-v3/guides/planting-225.png",
+          "role": "Screen orientation and curved footprint guide"
+        },
+        {
+          "path": "PLINKO/data/art/arc_sections/garden_border.png",
+          "role": "Foliage material reference only; stone border excluded"
+        }
+      ],
+      "transparent_background": true,
+      "sha256": "f3e2e2d941002e41d3b3f1652cd7475c565a6ba584632338d860af5b927494a3",
+      "size": [
+        1254,
+        1254
+      ],
+      "source_pixels_unchanged": true
+    },
+    {
+      "id": "planting_255",
+      "angle": 255,
+      "prompt_id": "planting_left_crown",
+      "prompt_set": "generation-prompts.json",
+      "source": "C:/Users/Hursh/.codex/generated_images/01a173c0-7a0e-7573-a977-1595f71b5672/exec-b9c64f43-d135-41b7-a957-e4549df9cb51.png",
+      "destination": "PLINKO/data/art/arc_sections/v3/planting_255.png",
+      "references": [
+        {
+          "path": "concept-art/modular-arc-v3/guides/planting-255.png",
+          "role": "Screen orientation and curved footprint guide"
+        },
+        {
+          "path": "PLINKO/data/art/arc_sections/garden_border.png",
+          "role": "Foliage material reference only; stone border excluded"
+        }
+      ],
+      "transparent_background": true,
+      "sha256": "63337527f6b3a0456ba2cf300395cc8d3bff3fc427886435c2bc76ea87c3a84b",
+      "size": [
+        1628,
+        966
+      ],
+      "source_pixels_unchanged": true
+    },
+    {
+      "id": "planting_285",
+      "angle": 285,
+      "prompt_id": "planting_right_crown",
+      "prompt_set": "generation-prompts.json",
+      "source": "C:/Users/Hursh/.codex/generated_images/01a173c0-7a0e-7573-a977-1595f71b5672/exec-252ee57a-6ba4-4f4b-b46c-eccaa288815d.png",
+      "destination": "PLINKO/data/art/arc_sections/v3/planting_285.png",
+      "references": [
+        {
+          "path": "concept-art/modular-arc-v3/guides/planting-285.png",
+          "role": "Screen orientation and curved footprint guide"
+        },
+        {
+          "path": "PLINKO/data/art/arc_sections/garden_border.png",
+          "role": "Foliage material reference only; stone border excluded"
+        }
+      ],
+      "transparent_background": true,
+      "sha256": "f8628a9078ff567209f06569ee34ddf91d7799498b9a1cc8862ee3b1a23f0f2e",
+      "size": [
+        1628,
+        966
+      ],
+      "source_pixels_unchanged": true
+    },
+    {
+      "id": "planting_315",
+      "angle": 315,
+      "prompt_id": "planting_right_fall",
+      "prompt_set": "generation-prompts.json",
+      "source": "C:/Users/Hursh/.codex/generated_images/01a173c0-7a0e-7573-a977-1595f71b5672/exec-f4961229-2150-4e27-937e-7e8f4fd9dc6f.png",
+      "destination": "PLINKO/data/art/arc_sections/v3/planting_315.png",
+      "references": [
+        {
+          "path": "concept-art/modular-arc-v3/guides/planting-315.png",
+          "role": "Screen orientation and curved footprint guide"
+        },
+        {
+          "path": "PLINKO/data/art/arc_sections/garden_border.png",
+          "role": "Foliage material reference only; stone border excluded"
+        }
+      ],
+      "transparent_background": true,
+      "sha256": "ab68e90cc64540ba1da311134cfa9cba8bcbb57819050ffa1f5fc0c96fa6f760",
+      "size": [
+        1254,
+        1254
+      ],
+      "source_pixels_unchanged": true
+    }
+  ]
+}

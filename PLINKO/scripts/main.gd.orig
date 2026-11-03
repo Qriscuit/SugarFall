@@ -1,0 +1,1407 @@
+extends Node2D
+## Original, self-contained prototype. No advertising, billing or network code.
+const RunSnapshot = preload("res://scripts/run_snapshot.gd")
+const WIDTH = 720.0
+const HEIGHT = 1280.0
+const MAIN_SAVE_FILE = "user://peg_foundry_v1.json"
+const FRESH_SAVE_FILE = "user://peg_foundry_fresh_test_v1.json"
+const PROFILE_FILE = "user://peg_foundry_profile.json"
+var SAVE_FILE = MAIN_SAVE_FILE
+var fresh_profile = false
+const BG = Color("f2e8d7")
+const PANEL = Color("fff9ec")
+const PANEL_LIGHT = Color("e8ddc9")
+const WHITE = Color("2d414b")
+const MUTED = Color("677576")
+const TEAL = Color("3d8673")
+const GOLD = Color("ad711b")
+const PINK = Color("d87388")
+const BLUE = Color("729aca")
+const UPGRADE_NAMES = ["FEEDER", "CORE POWER", "SPRING ALLOY", "RICOCHET", "SPLITTER", "IMPACT", "GOLD BINS", "SHIFT CLOCK"]
+const UPGRADE_DESC = ["More drops each second", "More peg damage", "Keep more bounce energy", "Chance of an extra-bouncy ball", "Chance to split on first hit", "Chance to crush the first peg", "Higher payout in a gold bin", "More time to clear the level"]
+const BASE_COSTS = [30,40,30,50,60,70,35,40]
+const BASE_SECONDS = 10.0
+const CLOCK_STEP = 0.5
+const BONUS_TIME_CAP = 3.0
+const MAX_LEVELS = [10,10,6,6,6,6,8,10]
+var tuning = {"core_step":0.75,"core_cost_growth":1.4,"clock_base_cost":40,"peg_base":4,"peg_level_step":1.0,"peg_level_offset":0,"combo_credit_cap":5,"clear_base":100,"clear_per_level":25,"productive_bins_only":false,"min_rebound_speed":0.0}
+var levels: Array = [0,0,0,0,0,0,0,0]
+var bank = 0
+var best_wave = 1
+var current_level = 1
+var highest_unlocked = 1
+var chapter_complete = false
+var trial_active=false
+var trial_snapshot={}
+var trial_records={}
+var run_elapsed=0.0
+var result_input_delay=0.0
+var result_peg_total=0
+var module_vouchers = 0
+var module_milestones: Array = []
+var equipped: Array = []
+var board_data: Array = []
+var level_won = false
+var pickups: Array = []
+var pickup_clock = 4.0
+var time_bonus = 0.0
+var total_shifts = 0
+var mode = "home"
+var return_mode = "home"
+var page = 0
+var pegs: Array = []
+var balls: Array = []
+var particles: Array = []
+var floats: Array = []
+var buckets: Array = []
+var rng = RandomNumberGenerator.new()
+var font: Font
+var elapsed = 0.0
+var remaining = BASE_SECONDS
+var spawn_clock = 0.0
+var aim_x = 360.0
+var aim_y = 515.0
+var special_stats = {}
+var type_drops = {}
+var force_special = ""
+var queued_special = ""
+var module_cooldowns = {"ricochet":0.0,"splitter":0.0,"impact":0.0}
+var cosmetic = 0
+var shift_coins = 0
+var destroyed = 0
+var wave = 1
+var pulse_charge = 1.0
+var pulse_flash = 0.0
+var pulse_origin = Vector2.ZERO
+var combo = 0
+var combo_timer = 0.0
+var max_combo = 0
+var wave_flash = 0.0
+var note = ""
+var note_time = 0.0
+var total_spawned = 0
+var shift_claimed = false
+var testing = false
+var screenshot_timer = -1.0
+var sound_on = true
+var synth: AudioStreamPlayer
+var sound_cooldown = 0.0
+var show_reset_confirm = false
+var reduced_motion = false
+var run_id = ""
+var run_serial = 0
+var last_claimed_run_id = ""
+var resumed_run = false
+var checkpoint_clock = 5.0
+var snapshot_rejection = ""
+var navigation_delay = 0.0
+var upgrade_map
+
+func _init():
+	upgrade_map=preload("res://scripts/upgrade_map.gd").new(self)
+	if FileAccess.file_exists("res://data/economy.json"):
+		var parsed = JSON.parse_string(FileAccess.get_file_as_string("res://data/economy.json"))
+		if parsed is Dictionary:
+			for key in tuning:
+				if key in parsed: tuning[key]=parsed[key]
+
+func _ready():
+	Engine.max_fps=60 # Avoid unnecessary 90/120 Hz rendering; physics remains60 Hz.
+	font = ThemeDB.fallback_font
+	if OS.get_name()=="Android":
+		get_viewport().size_changed.connect(update_safe_area)
+		call_deferred("update_safe_area")
+	rng.randomize()
+	if FileAccess.file_exists("res://data/board_design.json"):
+		var parsed = JSON.parse_string(FileAccess.get_file_as_string("res://data/board_design.json"))
+		if parsed is Array: board_data=parsed
+		elif parsed is Dictionary: board_data=parsed.get("boards",[])
+	testing = "--self-test" in OS.get_cmdline_user_args()
+	if not testing:
+		load_profile_choice()
+		load_game()
+	for kind in ["normal","prism","clock","armored"]:
+		for suffix in ["","_flash"]: peg_textures[kind+suffix]=load("res://data/art/"+kind+suffix+".svg")
+	setup_audio()
+	if testing:
+		self_test()
+	elif "--capture" in OS.get_cmdline_user_args():
+		levels = [2,2,2,3,3,2,2,2]
+		start_shift()
+		screenshot_timer = 8.0
+	queue_redraw()
+
+func setup_audio():
+	synth = AudioStreamPlayer.new()
+	add_child(synth)
+	synth.volume_db = -21
+
+func tone(freq: float, duration: float = 0.045):
+	if not sound_on or testing or sound_cooldown > 0:
+		return
+	sound_cooldown = 0.055
+	var audio = AudioStreamWAV.new()
+	audio.format = AudioStreamWAV.FORMAT_16_BITS
+	audio.mix_rate = 22050
+	var samples = int(22050 * duration)
+	var bytes = PackedByteArray()
+	bytes.resize(samples * 2)
+	for i in range(samples):
+		var env = pow(1.0 - float(i) / samples, 2)
+		var value = int(sin(float(i) / 22050 * TAU * freq) * env * 11000)
+		bytes.encode_s16(i * 2, value)
+	audio.data = bytes
+	synth.stream = audio
+	synth.play()
+
+func apply_safe_area(rect):
+	var safe=rect.intersection(Rect2(0,0,WIDTH,HEIGHT))
+	if safe.size.x<=0 or safe.size.y<=0: return
+	var factor=minf(safe.size.x/WIDTH,safe.size.y/HEIGHT)
+	scale=Vector2.ONE*factor
+	position=safe.position+(safe.size-Vector2(WIDTH,HEIGHT)*factor)*.5
+
+func update_safe_area():
+	if OS.get_name()!="Android": return
+	var safe=Rect2(DisplayServer.get_display_safe_area())
+	if safe.size.x<=0 or safe.size.y<=0: return
+	var local_safe=get_viewport().get_screen_transform().affine_inverse()*safe
+	apply_safe_area(local_safe)
+
+func go_back():
+	if navigation_delay>0: return
+	var previous=mode
+	_go_back_impl()
+	if mode!=previous:
+		navigation_delay=.25
+		if previous=="shop": upgrade_map.dragging=false
+
+func _go_back_impl():
+	if mode=="abandon_confirm": mode="paused"
+	elif mode=="play":
+		mode="paused"
+		if not testing: save_game()
+	elif mode=="paused": mode="play"
+	elif mode=="result":
+		note="Use Back to Trials to return safely" if trial_active else "Choose Collect to keep your result"
+		note_time=3
+	elif mode=="bonus_confirm":
+		mode="result"
+		result_input_delay=.25
+	elif trial_active: end_trial()
+	elif mode in ["guide","shop","support","loadout","boards","trials"]: mode="home"
+
+func _notification(what):
+	if what==NOTIFICATION_WM_GO_BACK_REQUEST:
+		if navigation_delay>0: return
+		if mode=="home" and not testing:
+			save_game()
+			get_tree().quit()
+		else: go_back()
+	if what==NOTIFICATION_WM_CLOSE_REQUEST and not testing:
+		if mode=="play": mode="paused"
+		save_game()
+	if what == NOTIFICATION_APPLICATION_PAUSED or what == NOTIFICATION_WM_WINDOW_FOCUS_OUT:
+		if upgrade_map!=null: upgrade_map.dragging=false
+		if mode == "play":
+			mode = "paused"
+		if not testing:
+			save_game()
+
+var diagnostics_on=false
+var diagnostic_step_us=0.0
+var diagnostic_draw_us=0.0
+var last_redraw_mode=""
+
+func _process(delta):
+	elapsed += delta
+	if mode=="play" and not testing:
+		checkpoint_clock-=delta
+		if checkpoint_clock<=0:
+			checkpoint_clock=5.0
+			save_game()
+	result_input_delay=maxf(0,result_input_delay-delta)
+	navigation_delay=maxf(0,navigation_delay-delta)
+	var note_was_visible=note_time>0
+	note_time = maxf(0, note_time - delta)
+	sound_cooldown = maxf(0, sound_cooldown - delta)
+
+	if screenshot_timer > 0:
+		screenshot_timer -= delta
+		if screenshot_timer <= 0:
+			await RenderingServer.frame_post_draw
+			var img = get_viewport().get_texture().get_image()
+			img.save_png("res://builds/gameplay.png")
+			get_tree().quit()
+	if mode=="play" or mode!=last_redraw_mode or note_was_visible or diagnostics_on:
+		queue_redraw()
+	last_redraw_mode=mode
+
+func _physics_process(delta):
+	if mode == "play" and not testing:
+		var started=Time.get_ticks_usec() if diagnostics_on else 0
+		step(delta)
+		if diagnostics_on: diagnostic_step_us=lerpf(diagnostic_step_us,float(Time.get_ticks_usec()-started),.1)
+
+func start_shift():
+	run_serial+=1
+	run_id="%d:%d" % [run_serial,Time.get_ticks_usec()]
+	resumed_run=false
+	checkpoint_clock=5.0
+	mode = "play"
+	queued_special=""
+	run_elapsed=0.0
+	module_cooldowns={"ricochet":0.0,"splitter":0.0,"impact":0.0}
+	rng.seed = 1719 + current_level * 104729
+	remaining = BASE_SECONDS + levels[7] * CLOCK_STEP
+	level_won = false
+	pickups.clear()
+	pickup_clock = 4.0
+	time_bonus = 0.0
+	shift_coins = 0
+	destroyed = 0
+	wave = current_level
+	combo = 0
+	max_combo = 0
+	combo_timer = 0
+	balls.clear()
+	particles.clear()
+	floats.clear()
+	buckets.clear()
+	for i in range(5):
+		buckets.append({"hits":0, "gold":i == (total_shifts % 5)})
+	aim_x = 360
+	spawn_clock = 0.25
+	pulse_charge = .5
+	total_spawned = 0
+	shift_claimed = false
+	special_stats = {"normal":0,"ricochet":0,"splitter":0,"impact":0,"shard":0,"pulse":0}
+	type_drops = {"normal":0,"ricochet":0,"splitter":0,"impact":0,"shard":0}
+	build_wave()
+	result_peg_total=pegs.size()
+	if not testing: save_game()
+
+func peg_position(i, family):
+	if family == "compact":
+		return Vector2(220+(i%4)*90+(15 if int(i/4)%2 else 0),345+int(i/4)*72)
+	if family == "splitclusters":
+		var index=int(i/2)
+		return Vector2(90+(i%2)*360+(index%3)*80,345+int(index/3)*66)
+	if family == "denseclusters":
+		var cluster=i%4
+		var index=int(i/4)
+		return Vector2(135+(cluster%2)*330+(index%3)*57,350+int(cluster/2)*220+int(index/3)*56)
+	return Vector2(78+(i%8)*80+(12 if int(i/8)%2 else 0),345+int(i/8)*70)
+
+func build_wave():
+	pegs.clear()
+	var spec = board_data[wave-1] if wave>=1 and wave<=board_data.size() else {}
+	var count = int(spec.get("peg_count",24+mini(22,(wave-1)*2)))
+	var family = str(spec.get("family","broadstagger"))
+	var base_hp = float(spec.get("base_hp",6.0))
+	var clock_count = int(spec.get("clock_peg_count",0 if wave==1 else 2))
+	var armor_count = int(spec.get("armored_count",1 if wave>=10 else 0))
+	for i in range(count):
+		var pos = peg_position(i,family)
+		var kind="normal"
+		if armor_count>0 and i<armor_count: kind="armored"
+		elif i>=count-clock_count: kind="clock"
+		elif wave>=3 and i%13==7: kind="prism"
+		var hp=base_hp*(float(spec.get("armored_hp_multiplier",2.5)) if kind=="armored" else 1.0)
+		pegs.append({"p":pos,"hp":hp,"max":hp,"kind":kind,"flash":0.0})
+	if family == "splitclusters": aim_x=170
+	elif family == "denseclusters": aim_x=192
+	wave_flash=2.0
+
+func step(dt):
+	if mode != "play": return
+	if remaining <= 0:
+		finish_shift()
+		return
+	dt = minf(maxf(0,dt),remaining)
+	run_elapsed += dt
+	remaining -= dt
+	if remaining <= 0:
+		finish_shift()
+		return
+	for kind in module_cooldowns: module_cooldowns[kind]=maxf(0,module_cooldowns[kind]-dt)
+	pulse_charge = minf(1, pulse_charge + dt / 12.0)
+	pulse_flash = maxf(0, pulse_flash - dt)
+	wave_flash = maxf(0, wave_flash - dt)
+	combo_timer -= dt
+	if combo_timer <= 0:
+		combo = 0
+	pickup_clock -= dt
+	if pickup_clock <= 0 and time_bonus < BONUS_TIME_CAP:
+		pickups.append({"p":Vector2(rng.randf_range(90,630),rng.randf_range(365,740)), "life":4.0})
+		pickup_clock = 100.0 # One free pickup per run; clock pegs share the bonus cap.
+	for pickup in pickups:
+		pickup.life -= dt
+	pickups = pickups.filter(func(p): return p.life > 0)
+	spawn_clock -= dt
+	if spawn_clock <= 0 and balls.size() < 80:
+		spawn_ball(Vector2(aim_x, 267), random_ball())
+		spawn_clock += maxf(.13, .74 / (1.0 + levels[0] * .18))
+	for peg in pegs:
+		peg.flash = maxf(0, peg.flash - dt)
+	var pending: Array = []
+	for ball in balls:
+		ball.life += dt
+		ball.v.y += 400 * dt
+		ball.p += ball.v * dt
+		ball.cool -= dt
+		if ball.p.x < 54:
+			ball.p.x = 54
+			ball.v.x = absf(ball.v.x) * .85
+		if ball.p.x > 666:
+			ball.p.x = 666
+			ball.v.x = -absf(ball.v.x) * .85
+		if ball.p.y < 260:
+			ball.p.y = 260
+			ball.v.y = absf(ball.v.y)
+		for peg in pegs:
+			if peg.hp <= 0:
+				continue
+			var diff: Vector2 = ball.p - peg.p
+			var radius = 22.0 + ball.r
+			if diff.length_squared() < radius * radius:
+				var normal = diff.normalized() if diff.length_squared() > .001 else Vector2.UP
+				ball.p = peg.p + normal * (radius + 1)
+				if ball.v.dot(normal) < 0:
+					ball.v = ball.v.bounce(normal) * restitution(ball.kind)
+					var outward = ball.v.dot(normal)
+					if outward < tuning.min_rebound_speed:
+						ball.v += normal * (tuning.min_rebound_speed - outward)
+					ball.v.x += rng.randf_range(-35, 35)
+					ball.v = ball.v.limit_length(610)
+				if ball.cool <= 0:
+					var dmg = 1.0 + levels[1] * tuning.core_step
+					if ball.kind == "impact" and not ball.used:
+						dmg = 9999
+					if ball.kind == "shard": dmg *= .5
+					var was_alive = peg.hp > 0
+					ball.productive = true
+					damage_peg(peg, dmg)
+					if was_alive and peg.hp <= 0:
+						special_stats[ball.kind] = special_stats.get(ball.kind,0) + 1
+					ball.cool = .08
+					if ball.kind == "splitter" and not ball.used:
+						for j in range(3):
+							pending.append({"p":ball.p, "v":Vector2((j-1)*145, -165), "kind":"shard", "productive":true})
+					ball.used = true
+				break
+		if ball.p.y > 837:
+			var bin = clampi(int((ball.p.x - 42) / 127.2), 0, 4)
+			if not tuning.productive_bins_only or ball.productive:
+				buckets[bin].hits += 1
+			var reward = bucket_reward(bin)
+			if ball.kind == "shard": reward = maxi(1,int(reward*.5))
+			if tuning.productive_bins_only and not ball.productive: reward=0
+			shift_coins += reward
+			if reward > 0: add_float(Vector2(106 + bin * 127, 841), "+%d" % reward, GOLD)
+			ball.dead = true
+		if ball.life > 16:
+			ball.dead = true
+	balls = balls.filter(func(b): return not b.dead)
+	for b in pending:
+		if balls.size() < 80:
+			spawn_ball(b.p, b.kind, b.v)
+			balls[-1].productive = b.productive
+	for p in particles:
+		p.p += p.v * dt
+		p.v.y += 180 * dt
+		p.life -= dt
+	particles = particles.filter(func(p): return p.life > 0)
+	for f in floats:
+		f.p.y -= 32 * dt
+		f.life -= dt
+	floats = floats.filter(func(f): return f.life > 0)
+	var alive = 0
+	for p in pegs:
+		if p.hp > 0:
+			alive += 1
+	if alive == 0:
+		shift_coins += int(tuning.clear_base + wave * tuning.clear_per_level)
+		level_won = true
+		finish_shift()
+	if remaining <= 0:
+		finish_shift()
+
+func queue_module(kind):
+	if mode!="play" or remaining<=0 or kind not in equipped or module_cooldowns.get(kind,1)>0: return false
+	queued_special=kind
+	return true
+
+func random_ball():
+	if queued_special!="":
+		var selected=queued_special
+		queued_special=""
+		if selected in equipped and module_cooldowns.get(selected,1)<=0:
+			module_cooldowns[selected]=16.0
+			if force_special==selected: force_special=""
+			return selected
+	if force_special != "" and force_special in equipped:
+		var next = force_special
+		force_special = ""
+		return next
+	var roll = rng.randf()
+	var impact_chance = .04 + .008 * levels[5] if levels[5] > 0 and "impact" in equipped else 0.0
+	var splitter_chance = .04 + .008 * levels[4] if levels[4] > 0 and "splitter" in equipped else 0.0
+	var ricochet_chance = .06 + .012 * levels[3] if levels[3] > 0 and "ricochet" in equipped else 0.0
+	if roll < impact_chance:
+		return "impact"
+	if roll < impact_chance + splitter_chance:
+		return "splitter"
+	if roll < impact_chance + splitter_chance + ricochet_chance:
+		return "ricochet"
+	return "normal"
+
+func spawn_ball(pos, kind, velocity = Vector2(0, 85)):
+	balls.append({"p":pos, "v":velocity + Vector2(rng.randf_range(-18,18),0), "kind":kind, "r":6.0 if kind == "shard" else 9.0, "used":false, "productive":false, "cool":0.0, "life":0.0, "dead":false})
+	total_spawned += 1
+	type_drops[kind] = type_drops.get(kind,0) + 1
+
+func restitution(kind):
+	return minf(1.06, .73 + levels[2] * .035 + (.25 if kind == "ricochet" else 0))
+
+func bucket_reward(index):
+	var base = 3 + levels[6] if buckets[index].gold else 1
+	return base + mini(4, int(buckets[index].hits / 8))
+
+func add_time(amount):
+	var allowed = minf(amount,BONUS_TIME_CAP-time_bonus)
+	if allowed <= 0: return
+	time_bonus += allowed
+	remaining += allowed
+	add_float(Vector2(280,300),"+%.1fs" % allowed,TEAL)
+
+func collect_pickups(pos):
+	for pickup in pickups:
+		if pickup.life > 0 and pickup.p.distance_to(pos) < 45:
+			pickup.life = 0
+			add_time(2.0)
+			tone(950,.08)
+
+func damage_peg(peg, damage):
+	if peg.hp <= 0:
+		return
+	# Credit only actual HP removed, never overkill. Fractional HP is credited
+	# when crossing a whole-HP boundary, so retries reward productive hits.
+	var before_hp = maxf(0, peg.hp)
+	peg.hp -= damage
+	shift_coins += maxi(0, int(ceil(before_hp) - ceil(maxf(0, peg.hp))))
+	peg.flash = .12
+	if peg.hp <= 0:
+		destroyed += 1
+		combo += 1
+		combo_timer = 1.3
+		max_combo = maxi(max_combo, combo)
+		var reward = int(tuning.peg_base + floor((wave - tuning.peg_level_offset) * tuning.peg_level_step)) + mini(combo, int(tuning.combo_credit_cap))
+		if peg.kind == "clock":
+			add_time(.5)
+		if peg.kind == "prism":
+			reward *= 3
+			pulse_charge = minf(1, pulse_charge + .12)
+		shift_coins += reward
+		add_float(peg.p, "+%d" % reward, TEAL)
+		for i in range(5):
+			var particle={"p":peg.p, "v":Vector2(rng.randf_range(-95,95), rng.randf_range(-130,40)), "life":.55, "c":TEAL if peg.kind != "prism" else PINK}
+			if not reduced_motion: particles.append(particle)
+		tone(520 + mini(combo, 10)*65)
+	else:
+		tone(260 + rng.randf_range(0,80), .025)
+
+func pulse():
+	if mode != "play" or pulse_charge < .99:
+		return
+	pulse_charge = 0
+	pulse_origin = Vector2(aim_x, aim_y)
+	pulse_flash = .5
+	for peg in pegs:
+		if peg.p.distance_to(pulse_origin) < 105:
+			var was_alive = peg.hp > 0
+			damage_peg(peg, 1.0 + levels[1] * .20)
+			if was_alive and peg.hp <= 0: special_stats.pulse += 1
+	tone(130, .13)
+
+func add_float(pos, value, color):
+	if not reduced_motion and floats.size() < 45:
+		floats.append({"p":pos, "text":value, "c":color, "life":.85})
+
+func finish_shift():
+	if mode != "play" and mode != "paused": return
+	remaining = maxf(0,remaining)
+	mode = "result"
+	result_input_delay=.5
+	if trial_active:
+		if level_won:
+			var key=str(wave)
+			if not key in trial_records or run_elapsed<float(trial_records[key]): trial_records[key]=run_elapsed
+		if not testing: save_game()
+		return
+	best_wave = maxi(best_wave, wave)
+	total_shifts += 1
+	# Persist pending result, so closing before collecting cannot lose a finished run.
+	if not testing: save_game()
+
+func collect_reward(bonus = false):
+	if mode != "result" or shift_claimed:
+		return
+	if trial_active:
+		end_trial()
+		return
+	shift_claimed = true
+	last_claimed_run_id=run_id
+	var payout = shift_coins + (int(shift_coins * .5) if bonus else 0)
+	bank += payout
+	var new_voucher=false
+	if level_won:
+		if wave in [2,5,8] and wave not in module_milestones:
+			module_milestones.append(wave)
+			if levels[3]>0 and levels[4]>0 and levels[5]>0:
+				bank+=60
+				payout+=60
+			else:
+				module_vouchers+=1
+				new_voucher=true
+		if current_level == 12: chapter_complete = true
+		current_level = mini(12,current_level+1)
+		highest_unlocked = maxi(highest_unlocked,current_level)
+	mode = "loadout" if new_voucher else "shop"
+	result_input_delay=.4
+	return_mode = "home"
+	note = "Collected %d credits%s" % [payout, " • simulated reward" if bonus else ""]
+	if new_voucher: note="Free lab unlock earned. Choose one module."
+	note_time = 4
+	if not testing:
+		save_game()
+
+func module_slots():
+	return 2 if trial_active or highest_unlocked >= 4 else 1
+
+func claim_module(kind):
+	var idx=["ricochet","splitter","impact"].find(kind)+3
+	if idx<3 or idx>5 or module_vouchers<=0 or levels[idx]>0: return false
+	module_vouchers-=1
+	navigation_delay=.25
+	levels[idx]=1
+	if equipped.size()<module_slots():
+		equipped.append(kind)
+		force_special=kind
+		note="Free module equipped. Watch the first drop!"
+	else:
+		note="Module unlocked. Unequip another to try it."
+	note_time=4
+	if not testing: save_game()
+	return true
+
+func toggle_module(kind):
+	var idx = ["ricochet","splitter","impact"].find(kind)+3
+	if levels[idx]<=0:
+		if module_vouchers>0:
+			claim_module(kind)
+			return
+		note="Buy in workshop or earn a free unlock on boards 2, 5, 8"
+	elif kind in equipped:
+		equipped.erase(kind)
+		note="Module unequipped. Swaps are always free."
+	elif equipped.size()>=module_slots():
+		note="Unequip another module to make space"
+	else:
+		equipped.append(kind)
+		if force_special == "" or force_special not in equipped: force_special=kind
+		note="Module equipped for your next shift"
+	note_time=3
+	if not testing: save_game()
+
+func upgrade_cost(i):
+	return int((tuning.clock_base_cost if i==7 else BASE_COSTS[i]) * pow(tuning.core_cost_growth if i==1 else 1.40, levels[i]))
+
+func buy_upgrade(i):
+	if i < 0 or i >= levels.size() or levels[i] >= MAX_LEVELS[i]:
+		return false
+	var cost = upgrade_cost(i)
+	if bank < cost:
+		note = "Need %d more credits" % (cost - bank)
+		note_time = 2
+		return false
+	bank -= cost
+	levels[i] += 1
+	if levels[i] == 1 and i in [3,4,5]:
+		var kind = ["ricochet","splitter","impact"][i-3]
+		if equipped.size() < module_slots(): equipped.append(kind)
+		if kind in equipped: force_special = kind
+	tone(720, .08)
+	note = "%s upgraded to level %d" % [UPGRADE_NAMES[i], levels[i]]
+	note_time = 2
+	if not testing:
+		save_game()
+	return true
+
+func begin_trial(board):
+	if trial_active or highest_unlocked<4 or board not in [4,8,12] or mode not in ["trials","home"]: return false
+	trial_snapshot={"bank":bank,"levels":levels.duplicate(),"best_wave":best_wave,"total_shifts":total_shifts,"current_level":current_level,"force_special":force_special,"equipped":equipped.duplicate(),"highest_unlocked":highest_unlocked,"chapter_complete":chapter_complete,"module_vouchers":module_vouchers,"module_milestones":module_milestones.duplicate()}
+	trial_active=true
+	levels=RunSnapshot.TRIAL_LEVELS.duplicate()
+	current_level=board
+	bank=0
+	module_vouchers=0
+	equipped=["ricochet","splitter"]
+	force_special="ricochet"
+	mode="loadout"
+	note="Choose any two modules. Campaign upgrades are untouched."
+	note_time=4
+	return true
+
+func end_trial():
+	if not trial_active: return
+	for key in trial_snapshot: set(key,trial_snapshot[key])
+	trial_active=false
+	trial_snapshot={}
+	queued_special=""
+	shift_claimed=true
+	mode="trials"
+	result_input_delay=.4
+	if not testing: save_game()
+
+func campaign_profile():
+	return {"bank":bank,"levels":levels.duplicate(),"best_wave":best_wave,"total_shifts":total_shifts,"current_level":current_level,"force_special":force_special,"equipped":equipped.duplicate(),"highest_unlocked":highest_unlocked,"chapter_complete":chapter_complete,"module_vouchers":module_vouchers,"module_milestones":module_milestones.duplicate()}
+
+func pending_result_data():
+	return {"peg_total":result_peg_total if result_peg_total>0 else board_peg_count(wave),"coins":shift_coins,"won":level_won,"wave":wave,"destroyed":destroyed,"combo":max_combo,"stats":special_stats,"drops":type_drops,"run_id":run_id,"trial":trial_active,"run_elapsed":run_elapsed,"equipped":equipped.duplicate()}
+
+func save_game():
+	var data=campaign_profile()
+	if trial_active: data.merge(trial_snapshot,true)
+	data.merge({"version":2,"balance_revision":4,"sound":sound_on,"reduced_motion":reduced_motion,"trial_records":trial_records,"run_serial":run_serial,"last_claimed_run_id":last_claimed_run_id},true)
+	if mode in ["result","bonus_confirm"] and not shift_claimed:
+		data["pending_result"]=pending_result_data()
+	elif mode in ["play","paused","abandon_confirm"] and not shift_claimed:
+		# A lifecycle pause at a terminal boundary commits a result, never a dead run.
+		var any_alive=false
+		for peg in pegs:
+			if peg.hp>0: any_alive=true; break
+		if remaining<=0 or not any_alive:
+			if not any_alive and not level_won:
+				shift_coins+=int(tuning.clear_base+wave*tuning.clear_per_level)
+				level_won=true
+			mode="paused"
+			finish_shift()
+			return
+		data["active_run"]=RunSnapshot.capture(self)
+	var file=FileAccess.open(SAVE_FILE+".tmp",FileAccess.WRITE)
+	if file:
+		file.store_string(JSON.stringify(data,"",true,true))
+		file.flush()
+		var write_status=file.get_error()
+		file.close()
+		if write_status==OK and DirAccess.rename_absolute(SAVE_FILE+".tmp",SAVE_FILE)==OK: return true
+	note="Save unavailable: keep the game open"
+	note_time=5
+	return false
+
+func load_profile_choice():
+	fresh_profile=false
+	SAVE_FILE=MAIN_SAVE_FILE
+	if not FileAccess.file_exists(PROFILE_FILE): return
+	var file=FileAccess.open(PROFILE_FILE,FileAccess.READ)
+	if not file or file.get_length()>128: return
+	var choice=JSON.parse_string(file.get_as_text())
+	if choice is Dictionary and typeof(choice.get("version")) in [TYPE_INT,TYPE_FLOAT] and typeof(choice.get("fresh")) == TYPE_BOOL and choice.version == 1 and choice.fresh:
+		fresh_profile=true
+		SAVE_FILE=FRESH_SAVE_FILE
+
+func switch_test_profile():
+	# Switch only from a non-playing screen. Save both branches independently.
+	if mode not in ["home","support"] or trial_active: return false
+	if not save_game(): return false
+	var choice=FileAccess.open(PROFILE_FILE+".tmp",FileAccess.WRITE)
+	if not choice:
+		note="Profile switch unavailable. Main save is safe."; note_time=5; return false
+	choice.store_string(JSON.stringify({"version":1,"fresh":not fresh_profile}))
+	choice.flush()
+	var status=choice.get_error()
+	choice.close()
+	if status!=OK or DirAccess.rename_absolute(PROFILE_FILE+".tmp",PROFILE_FILE)!=OK:
+		note="Profile switch unavailable. Current save is safe."; note_time=5; return false
+	fresh_profile=not fresh_profile
+	SAVE_FILE=FRESH_SAVE_FILE if fresh_profile else MAIN_SAVE_FILE
+	reset_profile_runtime()
+	load_game()
+	note="Fresh test profile • separate progress" if fresh_profile else "Main profile restored"
+	note_time=5
+	return true
+
+func reset_profile_runtime():
+	levels=[0,0,0,0,0,0,0,0]
+	bank=0; best_wave=1; current_level=1; highest_unlocked=1; chapter_complete=false
+	total_shifts=0; module_vouchers=0; module_milestones=[]; equipped=[]; force_special=""
+	trial_active=false; trial_snapshot={}; trial_records={}
+	run_id=""; run_serial=0; last_claimed_run_id=""; resumed_run=false
+	shift_coins=0; destroyed=0; wave=1; level_won=false; shift_claimed=true
+	result_peg_total=0; run_elapsed=0; queued_special=""; snapshot_rejection=""
+	pegs=[]; balls=[]; pickups=[]; particles=[]; floats=[]; buckets=[]
+	mode="home"; return_mode="home"; result_input_delay=0; navigation_delay=.25
+	upgrade_map.pan=Vector2.ZERO; upgrade_map.selected=-1; upgrade_map.dragging=false
+
+func reject_snapshot(reason):
+	snapshot_rejection=reason
+	mode="home"
+	trial_active=false
+	trial_snapshot={}
+	note="Run could not resume. Workshop progress kept."
+	note_time=8
+
+func restore_active_run(snapshot):
+	var checked=RunSnapshot.validate_and_decode(snapshot,self)
+	if not checked.ok:
+		reject_snapshot(checked.reason)
+		return false
+	var state=checked.state
+	if state.run_id==last_claimed_run_id:
+		reject_snapshot("This run reward was already claimed.")
+		return false
+	var campaign=campaign_profile()
+	for key in state:
+		if key not in ["rng_seed","rng_state"]: set(key,state[key])
+	if trial_active: trial_snapshot=campaign
+	else: trial_snapshot={}
+	rng.seed=int(state.rng_seed)
+	rng.state=int(state.rng_state)
+	particles=[]; floats=[]; pulse_flash=0; wave_flash=0
+	mode="paused"
+	resumed_run=true
+	checkpoint_clock=5.0
+	note="Interrupted trial restored." if trial_active else "Interrupted run restored. Timer stayed stopped."
+	note_time=5
+	return true
+
+func safe_number(value, fallback=0):
+	if (value is int or value is float) and is_finite(float(value)):
+		return int(clampf(float(value),-100000000,100000000))
+	return fallback
+
+func safe_stats(value):
+	var result={}
+	if value is Dictionary:
+		for key in ["normal","ricochet","splitter","impact","shard","pulse"]:
+			result[key]=clampi(safe_number(value.get(key,0)),0,1000000)
+	return result
+
+func load_game():
+	if not FileAccess.file_exists(SAVE_FILE):
+		return
+	var file = FileAccess.open(SAVE_FILE, FileAccess.READ)
+	if not file:
+		return
+	if file.get_length()>1048576:
+		note="Save file too large to read safely."; note_time=8
+		return
+	var parser=JSON.new()
+	if parser.parse(file.get_as_text())!=OK:
+		note="Save is unreadable. Current workshop kept."; note_time=8
+		return
+	var data=parser.data
+	if not data is Dictionary or safe_number(data.get("version", 0)) not in [1,2]:
+		return
+	mode="home"
+	trial_active=false
+	trial_snapshot={}
+	resumed_run=false
+	snapshot_rejection=""
+	run_serial=maxi(0,safe_number(data.get("run_serial",0)))
+	last_claimed_run_id=str(data.get("last_claimed_run_id",""))
+	reduced_motion=data.get("reduced_motion",false)==true
+	trial_records={}
+	var records=data.get("trial_records",{})
+	if records is Dictionary and safe_number(data.get("balance_revision",0))==4:
+		for key in ["4","8","12"]:
+			var value=records.get(key,0)
+			if (value is float or value is int) and is_finite(float(value)) and value>0 and value<=120: trial_records[key]=float(value)
+	bank = clampi(safe_number(data.get("bank",0)),0,100000000)
+	var saved = data.get("levels",[])
+	if saved is Array and saved.size() == 8:
+		for i in range(8):
+			levels[i] = clampi(safe_number(saved[i]),0,MAX_LEVELS[i])
+	best_wave = clampi(safe_number(data.get("best_wave",1),1),1,999)
+	total_shifts = maxi(0,safe_number(data.get("total_shifts",0)))
+	sound_on = bool(data.get("sound",true))
+	current_level = clampi(safe_number(data.get("current_level",1),1),1,12)
+	highest_unlocked = clampi(safe_number(data.get("highest_unlocked",current_level),current_level),current_level,12)
+	chapter_complete = data.get("chapter_complete",false) == true
+	module_vouchers=clampi(safe_number(data.get("module_vouchers",0)),0,3)
+	module_milestones=[]
+	var milestones=data.get("module_milestones",[])
+	if milestones is Array:
+		for milestone in milestones:
+			var valid_milestone=safe_number(milestone,-1)
+			if valid_milestone in [2,5,8] and valid_milestone not in module_milestones: module_milestones.append(valid_milestone)
+	equipped=[]
+	var saved_equipped = data.get("equipped",[])
+	if saved_equipped is Array:
+		for kind in saved_equipped:
+			if kind is String and kind in ["ricochet","splitter","impact"] and kind not in equipped and equipped.size()<module_slots():
+				var idx = ["ricochet","splitter","impact"].find(kind)+3
+				if levels[idx]>0: equipped.append(kind)
+	force_special = str(data.get("force_special",""))
+	if force_special not in ["","ricochet","splitter","impact"]: force_special=""
+	var pending = data.get("pending_result",null)
+	if pending is Dictionary:
+		run_id=str(pending.get("run_id","legacy-pending"))
+		if run_id==last_claimed_run_id:
+			reject_snapshot("Completed reward already claimed.")
+			return
+		var pending_trial=pending.get("trial",false)==true
+		if pending_trial:
+			var trial_board=safe_number(pending.get("wave",0))
+			if trial_board not in [4,8,12] or highest_unlocked<4:
+				reject_snapshot("Incompatible trial result."); return
+			trial_snapshot=campaign_profile()
+			trial_active=true
+			levels=RunSnapshot.TRIAL_LEVELS.duplicate()
+			current_level=trial_board
+			bank=0
+			module_vouchers=0
+			equipped=[]
+			var saved_modules=pending.get("equipped",[])
+			if saved_modules is Array:
+				for kind in saved_modules:
+					if kind in ["ricochet","splitter","impact"] and kind not in equipped and equipped.size()<2: equipped.append(kind)
+			var elapsed_value=pending.get("run_elapsed",0)
+			run_elapsed=clampf(float(elapsed_value),0,120) if (elapsed_value is int or elapsed_value is float) and is_finite(float(elapsed_value)) else 0.0
+		shift_coins=clampi(safe_number(pending.get("coins",0)),0,10000000)
+		level_won=bool(pending.get("won",false))
+		wave=clampi(safe_number(pending.get("wave",1),1),1,999)
+		destroyed=maxi(0,safe_number(pending.get("destroyed",0)))
+		var legacy_total=24+mini(22,maxi(0,wave-1)*2) if safe_number(data.get("balance_revision",0))!=4 else board_peg_count(wave)
+		result_peg_total=clampi(safe_number(pending.get("peg_total",legacy_total)),1,48)
+		max_combo=maxi(0,safe_number(pending.get("combo",0)))
+		special_stats=safe_stats(pending.get("stats",{}))
+		type_drops=safe_stats(pending.get("drops",{}))
+		mode="result"
+		result_input_delay=.5
+		shift_claimed=false
+	elif data.has("active_run"):
+		restore_active_run(data.active_run)
+
+func _input(event):
+	if mode=="shop" and upgrade_map.handle_input(event): return
+	if event is InputEventKey and event.pressed:
+		if event.echo or navigation_delay>0: return
+		if event.keycode == KEY_ESCAPE:
+			go_back()
+		elif event.keycode == KEY_SPACE and mode == "play":
+			pulse()
+	var pos = Vector2.ZERO
+	var press = false
+	var motion = false
+	if event is InputEventScreenTouch:
+		if event.index!=0: return
+		pos = to_local(event.position)
+		press = event.pressed
+	elif event is InputEventScreenDrag:
+		if event.index!=0: return
+		pos = to_local(event.position)
+		motion = true
+	elif event is InputEventMouseButton:
+		# Mouse is converted to touch by project settings.
+		return
+	elif event is InputEventMouseMotion:
+		pos = to_local(event.position)
+		motion = event.button_mask == MOUSE_BUTTON_MASK_LEFT
+		if mode == "play": collect_pickups(pos)
+	else:
+		return
+	if mode == "play" and (press or motion) and pos.y >= 210 and pos.y < 920:
+		aim_x = clampf(pos.x,66,654)
+		aim_y = clampf(pos.y,330,770)
+	if mode == "play" and (press or motion): collect_pickups(pos)
+	if press:
+		handle_press(pos)
+
+func inside(p, rect):
+	return rect.has_point(p)
+
+func handle_press(p):
+	if navigation_delay>0: return
+	var previous=mode
+	_handle_press_impl(p)
+	if mode!=previous:
+		navigation_delay=.25
+		if previous=="shop": upgrade_map.dragging=false
+
+func _handle_press_impl(p):
+	if mode in ["shop","loadout","trials"] and result_input_delay>0: return
+	match mode:
+		"home":
+			if inside(p,Rect2(48,875,624,96)): start_shift()
+			elif inside(p,Rect2(48,980,302,96)): mode = "shop"; return_mode = "home"
+			elif inside(p,Rect2(370,980,302,96)): mode = "guide"
+			elif inside(p,Rect2(48,1080,196,96)): mode = "boards"
+			elif inside(p,Rect2(262,1080,196,96)): mode = "trials"
+			elif inside(p,Rect2(476,1080,196,96)): mode = "support"
+		"play":
+			if inside(p,Rect2(580,22,104,96)):
+				mode = "paused"
+				if not testing: save_game()
+			elif inside(p,Rect2(48,1030,624,96)): pulse()
+			else:
+				for i in range(equipped.size()):
+					if inside(p,Rect2(48+i*322,930,302,96)): queue_module(equipped[i])
+		"paused":
+			if inside(p,Rect2(80,600,560,96)): mode = "play"
+			elif inside(p,Rect2(80,700,560,96)):
+				sound_on = not sound_on
+				if not testing: save_game()
+			elif inside(p,Rect2(80,800,560,96)):
+				reduced_motion=not reduced_motion
+				if reduced_motion: particles=[]; floats=[]; pulse_flash=0
+				if not testing: save_game()
+			elif inside(p,Rect2(80,900,560,96)): mode="abandon_confirm"
+		"abandon_confirm":
+			if inside(p,Rect2(80,650,560,96)):
+				mode="paused"
+				finish_shift()
+			elif inside(p,Rect2(80,780,560,96)): mode="paused"
+		"result":
+			if result_input_delay>0: return
+			if inside(p,Rect2(60,800,600,96)): collect_reward(false)
+			elif inside(p,Rect2(60,910,600,100)) and not trial_active:
+				mode="bonus_confirm"
+				result_input_delay=.25
+		"bonus_confirm":
+			if result_input_delay>0: return
+			if inside(p,Rect2(60,620,600,96)):
+				mode="result"
+				collect_reward(true)
+			elif inside(p,Rect2(60,740,600,96)):
+				mode="result"
+				result_input_delay=.25
+		"shop":
+			upgrade_map.press(p)
+			if inside(p,Rect2(286,1090,386,96)): start_shift()
+			elif inside(p,Rect2(48,1090,220,96)): mode="loadout"
+			elif inside(p,Rect2(36,22,100,96)): mode = "home"
+		"loadout":
+			for i in range(3):
+				if inside(p,Rect2(48,260+i*220,624,190)): toggle_module(["ricochet","splitter","impact"][i])
+			if inside(p,Rect2(48,1080,624,96)):
+				if trial_active: start_shift()
+				else: mode="shop"
+			elif trial_active and inside(p,Rect2(36,22,100,96)): end_trial()
+		"trials":
+			for i in range(3):
+				if inside(p,Rect2(48,260+i*220,624,180)): begin_trial([4,8,12][i])
+			if inside(p,Rect2(48,1080,624,96)): mode="home"
+		"boards":
+			for i in range(12):
+				var rect=Rect2(48+(i%3)*214,260+int(i/3)*175,196,150)
+				if inside(p,rect) and i+1<=highest_unlocked:
+					current_level=i+1
+					mode="home"
+					if not testing: save_game()
+			if inside(p,Rect2(48,1080,624,96)): mode="home"
+		"support":
+			if inside(p,Rect2(48,230,624,96)):
+				sound_on=not sound_on
+				if not testing: save_game()
+			elif inside(p,Rect2(48,350,624,96)):
+				reduced_motion=not reduced_motion
+				if not testing: save_game()
+			elif inside(p,Rect2(48,520,624,96)): switch_test_profile()
+			elif inside(p,Rect2(48,760,624,96)): diagnostics_on=not diagnostics_on
+			elif inside(p,Rect2(48,1080,624,96)): mode="home"
+		"guide":
+			if inside(p,Rect2(48,1080,624,96)): mode = "home"
+	queue_redraw()
+
+func text_at(value, pos, size = 24, color = WHITE):
+	draw_string(font, pos, value, HORIZONTAL_ALIGNMENT_LEFT, -1, size, color)
+
+func centered(value, y, size = 24, color = WHITE):
+	var width = font.get_string_size(value,HORIZONTAL_ALIGNMENT_LEFT,-1,size).x
+	text_at(value,Vector2((WIDTH-width)/2,y),size,color)
+
+var style_cache = {}
+func box(rect, color, radius = 18.0, border = Color.TRANSPARENT):
+	var key = str(color)+":"+str(int(radius))+":"+str(border)
+	if not style_cache.has(key):
+		var style = StyleBoxFlat.new()
+		style.bg_color = color
+		style.set_corner_radius_all(int(radius))
+		if border.a > 0:
+			style.border_color = border
+			style.set_border_width_all(2)
+		style_cache[key] = style
+	draw_style_box(style_cache[key], rect)
+
+func button(rect, label, primary = false, subtitle = ""):
+	box(Rect2(rect.position+Vector2(0,5),rect.size),Color("c8bca6"),24)
+	box(rect, Color("8acbb5") if primary else PANEL_LIGHT,24)
+	var color = WHITE
+	var size = 27 if subtitle == "" else 25
+	var tw = font.get_string_size(label,HORIZONTAL_ALIGNMENT_LEFT,-1,size).x
+	text_at(label,Vector2(rect.position.x+(rect.size.x-tw)/2,rect.position.y+rect.size.y*.5+(9 if subtitle=="" else -2)),size,color)
+	if subtitle != "":
+		var sw = font.get_string_size(subtitle,HORIZONTAL_ALIGNMENT_LEFT,-1,18).x
+		text_at(subtitle,Vector2(rect.position.x+(rect.size.x-sw)/2,rect.position.y+rect.size.y*.5+27),18,WHITE if primary else MUTED)
+
+var paper_texture=preload("res://data/art/paper.svg")
+var tray_dots_texture=preload("res://data/art/tray_dots.svg")
+var peg_textures={}
+
+func _draw():
+	var started=Time.get_ticks_usec() if diagnostics_on else 0
+	draw_frame()
+	if diagnostics_on:
+		diagnostic_draw_us=lerpf(diagnostic_draw_us,float(Time.get_ticks_usec()-started),.1)
+		box(Rect2(24,1175,672,84),PANEL,8)
+		text_at("%d FPS · %d balls · %d live pegs" % [Engine.get_frames_per_second(),balls.size(),pegs.size()-destroyed],Vector2(38,1208),21,WHITE)
+		text_at("CPU step %.2f ms · draw %.2f ms (not GPU)" % [diagnostic_step_us/1000,diagnostic_draw_us/1000],Vector2(38,1240),19,MUTED)
+
+func draw_frame():
+	draw_texture(paper_texture,Vector2.ZERO)
+	match mode:
+		"home": draw_home()
+		"play", "paused", "abandon_confirm":
+			draw_game()
+			if mode == "paused": draw_pause()
+			elif mode=="abandon_confirm": draw_abandon_confirm()
+		"shop": draw_shop()
+		"result": draw_result()
+		"bonus_confirm":
+			draw_result()
+			draw_bonus_confirm()
+		"guide": draw_guide()
+		"support": draw_support()
+		"loadout": draw_loadout()
+		"boards": draw_boards()
+		"trials": draw_trials()
+	if note_time > 0:
+		box(Rect2(24,1190,672,60),PANEL_LIGHT,14)
+		centered(note,1228,21,TEAL)
+	else:
+		centered("FRESH TEST • separate save" if fresh_profile else "PEG FOUNDRY  /  0.5",1240,18,PINK if fresh_profile else MUTED)
+
+func draw_home():
+	text_at("FRESH TEST PROFILE" if fresh_profile else "YOUR LITTLE BALL MACHINE",Vector2(48,78),19,PINK if fresh_profile else TEAL)
+	text_at("PEG",Vector2(42,166),82,WHITE)
+	text_at("FOUNDRY",Vector2(42,254),82,WHITE)
+	box(Rect2(48,292,624,90),PANEL,18)
+	text_at("COINS",Vector2(72,325),17,MUTED)
+	text_at("%d credits" % bank,Vector2(72,361),30,GOLD)
+	text_at("LEVEL %02d" % current_level,Vector2(440,346),21,TEAL)
+	box(Rect2(48,412,624,315),PANEL,28)
+	var spec=board_data[current_level-1] if current_level<=board_data.size() else {}
+	text_at(board_name(current_level),Vector2(72,451),27,TEAL)
+	var count=int(spec.get("peg_count",24))
+	var armor=int(spec.get("armored_count",0))
+	for i in range(count):
+		var source=peg_position(i,str(spec.get("family","broadstagger")))
+		var point=Vector2(82+(source.x-54)*.90,489+(source.y-345)*.49)
+		var color=BLUE if i<armor else TEAL
+		draw_circle(point,8,PANEL_LIGHT)
+		draw_arc(point,8,0,TAU,16,color,2,true)
+	text_at("%d pegs  •  6 base hits" % count,Vector2(72,703),20,MUTED)
+	centered("Clear the tray.",780,25,WHITE)
+	centered("%.1fs  •  %d hits / peg" % [BASE_SECONDS+levels[7]*CLOCK_STEP,ceili(6.0/(1+levels[1]*tuning.core_step))],821,22,MUTED)
+	button(Rect2(48,875,624,96),"PLAY",true)
+	button(Rect2(48,980,302,96),"UPGRADES")
+	button(Rect2(370,980,302,96),"HELP")
+	button(Rect2(48,1080,196,96),"BOARDS")
+	button(Rect2(262,1080,196,96),"TRIALS")
+	button(Rect2(476,1080,196,96),"SETUP")
+
+func ball_color(kind):
+	match kind:
+		"ricochet": return Color("edc553")
+		"splitter": return PINK
+		"impact": return BLUE
+		"shard": return Color("ffb0c7")
+	return Color("64bca6")
+
+func draw_game():
+	text_at("TEST MACHINE" if fresh_profile else "PEG FOUNDRY",Vector2(36,78),29,PINK if fresh_profile else WHITE)
+	button(Rect2(580,22,104,96),"II")
+	box(Rect2(36,124,648,85),PANEL)
+	text_at("SHIFT",Vector2(58,150),15,MUTED)
+	text_at("%02d:%02d" % [int(ceil(remaining))/60,int(ceil(remaining))%60],Vector2(58,190),34,WHITE if remaining>3 else PINK)
+	text_at("TRIAL SCORE" if trial_active else "CREDITS",Vector2(275,150),15,MUTED)
+	text_at(str(shift_coins),Vector2(275,190),34,GOLD)
+	text_at(("TRIAL %02d" if trial_active else "LEVEL %02d") % wave,Vector2(510,162),24,TEAL)
+	text_at("%d left" % (pegs.size()-destroyed),Vector2(510,190),22,MUTED)
+	box(Rect2(30,234,660,682),Color("bfac91"),36)
+	box(Rect2(36,230,648,677),Color("dfcab0"),32)
+	box(Rect2(49,281,622,546),Color("fff7e7"),22)
+	draw_texture(tray_dots_texture,Vector2(49,281))
+	draw_line(Vector2(aim_x,280),Vector2(aim_x,790),Color(.3,.9,.8,.12),2)
+	draw_arc(Vector2(aim_x,aim_y),32,0,TAU,32,Color(.3,.95,.85,.24),2,true)
+	draw_line(Vector2(aim_x-40,aim_y),Vector2(aim_x+40,aim_y),Color(.3,.95,.85,.2),1)
+	box(Rect2(aim_x-28,238,56,33),TEAL,9)
+	draw_circle(Vector2(aim_x,269),12,BG)
+	draw_line(Vector2(aim_x-17,250),Vector2(aim_x+17,250),BG,3)
+	for peg in pegs:
+		if peg.hp <= 0: continue
+		var texture_key=peg.kind+ ("_flash" if peg.flash>0 and not reduced_motion else "")
+		if not peg_textures.has(texture_key): peg_textures[texture_key]=load("res://data/art/"+texture_key+".svg")
+		draw_texture(peg_textures[texture_key],peg.p-Vector2(28,28))
+		draw_arc(peg.p,21,-PI/2,-PI/2+TAU*maxf(.01,peg.hp/peg.max),28,WHITE,3,true)
+	for pickup in pickups:
+		var wobble = 0.0 if reduced_motion else sin(elapsed*8)*3
+		draw_circle(pickup.p,30+wobble,Color(.3,.95,.85,.12))
+		draw_circle(pickup.p,25,PANEL_LIGHT)
+		draw_arc(pickup.p,26,-PI/2,-PI/2+TAU*pickup.life/4,32,TEAL,3,true)
+		text_at("+2s",pickup.p+Vector2(-20,7),20,TEAL)
+	for ball in balls:
+		var color = ball_color(ball.kind)
+		if not reduced_motion: draw_circle(ball.p-ball.v.normalized()*7,ball.r+2,Color(color,.15))
+		draw_circle(ball.p,ball.r,color)
+		draw_circle(ball.p+Vector2(-2,-3),2.5,Color(1,1,1,.75))
+	for i in range(5):
+		var rect = Rect2(45+i*127.2,840,121,58)
+		box(rect,Color("edc573") if buckets[i].gold else Color("b9cbbc"),8)
+		text_at("%dx" % bucket_reward(i),rect.position+Vector2(39,35),24,WHITE)
+		draw_rect(Rect2(rect.position+Vector2(8,48),Vector2(105*(buckets[i].hits%8)/8.0,3)),GOLD)
+	for p in particles:
+		draw_circle(p.p,3,Color(p.c,minf(1,p.life*2)))
+	for f in floats:
+		text_at(f.text,f.p,20,Color(f.c,minf(1,f.life*2)))
+	if pulse_flash>0 and not reduced_motion:
+		draw_circle(pulse_origin,105*(1-pulse_flash/.5),Color(.3,.95,.85,pulse_flash*.35))
+		draw_arc(pulse_origin,105*(1-pulse_flash/.5),0,TAU,48,Color(TEAL,pulse_flash*1.8),4,true)
+	if equipped.is_empty():
+		text_at("Drag to aim",Vector2(48,946),20,TEAL)
+		text_at("Break. Upgrade. Try again.",Vector2(48,979),21,MUTED)
+	else:
+		for i in range(equipped.size()):
+			var kind=equipped[i]
+			var ready=module_cooldowns[kind]<=0
+			var label=kind.to_upper()+ (" QUEUED" if queued_special==kind else (" READY" if ready else " %ds" % ceili(module_cooldowns[kind])))
+			button(Rect2(48+i*322,930,302,96),label,ready,"")
+	button(Rect2(48,1030,624,96),"PULSE" if pulse_charge>=.99 else "PULSE · %ds" % ceili((1-pulse_charge)*12),pulse_charge>=.99,"")
+	draw_rect(Rect2(67,1138,586*pulse_charge,5),TEAL)
+
+func draw_pause():
+	draw_rect(Rect2(0,0,720,1280),Color(.95,.91,.84,.97))
+	centered("RUN RESTORED" if resumed_run else "SHIFT PAUSED",440,40)
+	centered("Your timer is stopped. Resume when ready.",495,23,MUTED)
+	centered("Trial progress is separate." if trial_active else "Board and queued shots stay paused.",540,21,MUTED)
+	button(Rect2(80,600,560,96),"RESUME",true)
+	button(Rect2(80,700,560,96),"SOUND: " + ("ON" if sound_on else "OFF"))
+	button(Rect2(80,800,560,96),"REDUCED MOTION: " + ("ON" if reduced_motion else "OFF"))
+	button(Rect2(80,900,560,96),"END SHIFT…")
+
+func draw_abandon_confirm():
+	draw_rect(Rect2(0,0,720,1280),Color(.95,.91,.84,.97))
+	centered("END THIS SHIFT?",430,38)
+	centered("The timer is stopped while you decide.",495,22,MUTED)
+	centered("Keep earned credits; this board stays uncleared." if not trial_active else "Return to Trials; campaign progress stays safe.",550,21,MUTED)
+	button(Rect2(80,650,560,96),"END & VIEW RESULT",true)
+	button(Rect2(80,780,560,96),"KEEP THIS RUN")
+
+func draw_shop():
+	upgrade_map.draw()
+
+func upgrade_preview(i):
+	var now=levels[i]
+	var next=mini(now+1,MAX_LEVELS[i])
+	match i:
+		0: return "%.2f → %.2f balls/s" % [(1+now*.18)/.74,(1+next*.18)/.74]
+		1: return "%.1f → %.1f dmg · %d → %d hits" % [1+now*tuning.core_step,1+next*tuning.core_step,ceili(6.0/(1+now*tuning.core_step)),ceili(6.0/(1+next*tuning.core_step))]
+		2: return "%.0f%% → %.0f%% bounce energy" % [(.73+now*.035)*100,(.73+next*.035)*100]
+		6: return "Gold bin: %dx → %dx" % [3+now,3+next]
+		7: return "Shift: %.1fs → %.1fs" % [BASE_SECONDS+now*CLOCK_STEP,BASE_SECONDS+next*CLOCK_STEP]
+	var kind=["ricochet","splitter","impact"][i-3]
+	var base=.06 if i==3 else .04
+	var growth=.012 if i==3 else .008
+	var state="EQUIPPED" if kind in equipped else ("UNEQUIPPED" if now>0 else "LOCKED")
+	return "%.1f%% → %.1f%% • %s" % [(base+growth*now)*100 if now>0 else 0,(base+growth*next)*100,state]
+
+func upgrade_value(i):
+	match i:
+		0: return "%.2f balls / sec" % ((1+levels[0]*.18)/.74)
+		1: return "%.2f damage / hit" % (1+levels[1]*tuning.core_step)
+		2: return "%.0f%% energy retained" % ((.73+levels[2]*.035)*100)
+		3: return "%.1f%% chance • extra bounce" % ((.06+.012*levels[3])*100 if levels[3]>0 else 0)
+		4: return "%.1f%% chance • 3 half-power shards" % ((.04+.008*levels[4])*100 if levels[4]>0 else 0)
+		5: return "%.1f%% chance • first-hit crush" % ((.04+.008*levels[5])*100 if levels[5]>0 else 0)
+		6: return "Gold bin base: %dx" % (3+levels[6])
+		7: return "%.1f seconds per shift" % (BASE_SECONDS+levels[7]*CLOCK_STEP)
+	return ""
+
+func draw_result():
+	if trial_active:
+		draw_trial_result()
+		return
+	text_at("LEVEL CLEAR!" if level_won else "TRY AGAIN",Vector2(48,108),42)
+	text_at("Chapter complete! Replay and try new builds." if wave>=12 and level_won else ("Every peg cleared. Next board unlocked." if level_won else "Your coins are safe."),Vector2(48,155),24,MUTED)
+	box(Rect2(48,205,624,255),PANEL,25)
+	centered("CREDITS EARNED",259,20,MUTED)
+	centered(str(shift_coins),368,92,GOLD)
+	centered("Ready for upgrades.",419,22,MUTED)
+	var labels=["PEGS RECYCLED","LEVEL","BEST CHAIN"]
+	var vals=[str(destroyed),str(wave),str(max_combo)+"x"]
+	for i in range(3):
+		box(Rect2(48+i*214,493,196,142),PANEL,18)
+		text_at(labels[i],Vector2(60+i*214,529),14,MUTED)
+		text_at(vals[i],Vector2(80+i*214,596),44,TEAL)
+	centered("",680,17,MUTED)
+	centered("Core %d  •  Bounce %d  •  Split %d  •  Impact %d" % [special_stats.get("normal",0),special_stats.get("ricochet",0),special_stats.get("splitter",0)+special_stats.get("shard",0),special_stats.get("impact",0)],718,21,TEAL)
+	centered("Pulse %d  •  No energy wait. Retry freely." % special_stats.get("pulse",0),756,19,MUTED)
+	button(Rect2(60,800,600,96),"COLLECT %d" % shift_coins,true)
+	button(Rect2(60,910,600,100),"DEMO BONUS +%d" % int(shift_coins*.5),false,"Simulated +50% reward • no ad shown")
+	centered("",1065,20,MUTED)
+	centered("No real ads or purchases.",1105,19,MUTED)
+
+func draw_bonus_confirm():
+	draw_rect(Rect2(0,0,WIDTH,HEIGHT),Color(.95,.91,.84,.97))
+	box(Rect2(36,370,648,510),PANEL,24)
+	centered("SIMULATED BONUS",450,36,GOLD)
+	centered("Add %d extra credits once?" % int(shift_coins*.5),518,27,WHITE)
+	centered("No ad plays. No payment is made.",560,23,MUTED)
+	button(Rect2(60,620,600,96),"ADD DEMO BONUS",true)
+	button(Rect2(60,740,600,96),"CANCEL — KEEP RESULT")
+
+func draw_guide():
+	text_at("MAKE EVERY",Vector2(48,110),46)
+	text_at("BOUNCE COUNT.",Vector2(48,169),46,TEAL)
+	var sections=[
+		["01  AIM THE FEEDER","Drag anywhere on the board to move your emitter.","Balls drop automatically. Try different angles."],
+		["02  RECYCLE THE PEGS","Six base hits per peg. Damage earns credits.","Clock +0.5s; one +2s pickup; bonus cap +3s."],
+		["03  CHARGE THE BINS","Balls reaching the bottom pay their bin multiplier.","Every 8 catches improves that bin during this shift."],
+		["04  USE YOUR PULSE","Drag to aim its marker, then tap Pulse when ready.","Break ALL pegs to unlock the next level."],
+		["05  CHOOSE SPECIAL SHOTS","Free module choices unlock on boards 2, 5 and 8.","Aim first, then tap its button to queue the next ball."]]
+	for i in range(5):
+		var y=245+i*153
+		text_at(sections[i][0],Vector2(48,y),25,GOLD)
+		text_at(sections[i][1],Vector2(48,y+39),21,WHITE)
+		text_at(sections[i][2],Vector2(48,y+70),21,MUTED)
+	button(Rect2(48,1080,624,96),"LET'S BUILD",true)
+
+func draw_support():
+	text_at("SETUP",Vector2(48,115),45)
+	text_at("Fresh test" if fresh_profile else "Main profile",Vector2(48,171),28,PINK if fresh_profile else TEAL)
+	button(Rect2(48,230,624,96),"SOUND: "+("ON" if sound_on else "OFF"))
+	button(Rect2(48,350,624,96),"REDUCED MOTION: "+("ON" if reduced_motion else "OFF"))
+	button(Rect2(48,520,624,96),"RETURN TO MAIN" if fresh_profile else "FRESH TEST PROFILE",true)
+	centered("Separate saves. Your main progress stays safe.",670,22,MUTED)
+	centered("The test profile keeps its own progress between visits.",710,20,MUTED)
+	button(Rect2(48,760,624,96),"PERFORMANCE DISPLAY: "+("ON" if diagnostics_on else "OFF"))
+	centered("Local only. No data leaves this device.",895,20,MUTED)
+	button(Rect2(48,1080,624,96),"BACK",true)
+
+func board_peg_count(index):
+	if index>=1 and index<=board_data.size(): return int(board_data[index-1].get("peg_count",24+mini(22,(index-1)*2)))
+	return 24+mini(22,maxi(0,index-1)*2)
+
+func board_name(index):
+	if index >= 1 and index <= board_data.size():
+		return str(board_data[index-1].get("name","Board %d" % index))
+	return "Board %02d" % index
+
+func draw_loadout():
+	if trial_active: button(Rect2(36,22,100,96),"<")
+	text_at("TRIAL LOADOUT" if trial_active else "YOUR LOADOUT",Vector2(160 if trial_active else 48,110),36 if trial_active else 42)
+	text_at("%d / %d module slots equipped" % [equipped.size(),module_slots()],Vector2(48,165),27,TEAL)
+	text_at(("Fixed core %.1f damage • fixed feeder • all modules free" % (1+levels[1]*tuning.core_step)) if trial_active else ("%d FREE UNLOCK • tap an unowned module" % module_vouchers if module_vouchers>0 else "Free lab unlocks: clear boards 2, 5 and 8."),Vector2(48,207),21,GOLD if module_vouchers>0 else MUTED)
+	var names=["RICOCHET","SPLITTER","IMPACT"]
+	var kinds=["ricochet","splitter","impact"]
+	var descs=[["Retains more energy after peg collisions.","Try on separated targets and repeat hits."],["First contact creates three half-power shards.","Try on dense groups of fragile pegs."],["Crushes its first peg, regardless of its armor.","Aim its queued shot at a tough target."]]
+	for i in range(3):
+		var r=Rect2(48,260+i*220,624,190)
+		var active=kinds[i] in equipped
+		box(r,PANEL,18,TEAL if active else Color.TRANSPARENT)
+		draw_circle(r.position+Vector2(43,45),15,ball_color(kinds[i]))
+		text_at(names[i],r.position+Vector2(80,53),30)
+		text_at("EQUIPPED" if active else ("TAP TO EQUIP" if levels[i+3]>0 else ("FREE UNLOCK" if module_vouchers>0 else "BUY / EARN")),r.position+Vector2(400,50),19,TEAL if active else MUTED)
+		text_at(descs[i][0],r.position+Vector2(24,105),23,MUTED)
+		text_at(descs[i][1],r.position+Vector2(24,140),23,MUTED)
+	text_at("Choose any two. Campaign upgrades stay unchanged." if trial_active else "Free swaps. Second slot opens after board 3.",Vector2(48,990),23,TEAL)
+	button(Rect2(48,1080,624,96),"START TRIAL" if trial_active else "BACK TO WORKSHOP",true)
+
+func draw_trials():
+	text_at("WORKSHOP TRIALS",Vector2(48,110),38)
+	text_at("Same machine. Different choices.",Vector2(48,167),26,TEAL)
+	text_at("Free replay • no credits spent or earned",Vector2(48,211),22,MUTED)
+	for i in range(3):
+		var board=[4,8,12][i]
+		var r=Rect2(48,260+i*220,624,180)
+		box(r,PANEL,18)
+		text_at(["WIDE REACH","CLUSTER CONTROL","ARMORED FINISH"][i],r.position+Vector2(24,48),29,TEAL)
+		text_at("Board %d • fixed stats • choose two modules" % board,r.position+Vector2(24,90),22,MUTED)
+		var record=trial_records.get(str(board),0)
+		text_at("Clear campaign board 3 to unlock" if highest_unlocked<4 else ("Best clear: %.1fs • tap to compare a new build" % record if record>0 else "No clear yet • tap to try"),r.position+Vector2(24,140),22,GOLD)
+	text_at("No medals required. Your campaign stays untouched.",Vector2(48,990),22,MUTED)
+	button(Rect2(48,1080,624,96),"BACK",true)
+
+func draw_trial_result():
+	text_at("TRIAL CLEAR" if level_won else "TRIAL COMPLETE",Vector2(48,120),43,TEAL)
+	text_at(board_name(wave),Vector2(48,180),28,MUTED)
+	centered("%.1f seconds" % run_elapsed,360,48,GOLD)
+	centered("%d / %d pegs cleared" % [destroyed,result_peg_total if result_peg_total>0 else board_peg_count(wave)],440,27,WHITE)
+	centered("Campaign wallet and upgrades are unchanged.",535,23,MUTED)
+	centered("Try another loadout to compare your clear time.",578,22,MUTED)
+	centered("Bounce %d • Split %d • Impact %d • Pulse %d" % [special_stats.get("ricochet",0),special_stats.get("splitter",0)+special_stats.get("shard",0),special_stats.get("impact",0),special_stats.get("pulse",0)],680,22,TEAL)
+	button(Rect2(60,800,600,96),"BACK TO TRIALS",true)
+
+func draw_boards():
+	text_at("CHAPTER ONE",Vector2(48,110),44)
+	text_at("12 boards. Every peg matters.",Vector2(48,167),27,TEAL)
+	text_at("Replay unlocked boards with a different loadout.",Vector2(48,211),22,MUTED)
+	for i in range(12):
+		var r=Rect2(48+(i%3)*214,260+int(i/3)*175,196,150)
+		var unlocked=i+1<=highest_unlocked
+		box(r,PANEL_LIGHT if unlocked else PANEL,18,TEAL if i+1==current_level else Color.TRANSPARENT)
+		text_at("%02d" % (i+1),r.position+Vector2(20,59),40,TEAL if unlocked else MUTED)
+		text_at(board_name(i+1),r.position+Vector2(14,101),18,WHITE if unlocked else MUTED)
+		text_at("PLAY" if unlocked else "LOCKED",r.position+Vector2(20,132),17,MUTED)
+	centered("CHAPTER COMPLETE" if chapter_complete else "%d / 12 boards unlocked" % highest_unlocked,1030,25,GOLD)
+	button(Rect2(48,1080,624,96),"BACK",true)
+
+func self_test():
+	var checks=0
+	rng.seed=12345
+	start_shift()
+	assert(pegs.size()==board_peg_count(1))
+	checks+=1
+	var old_count=balls.size()
+	spawn_ball(Vector2(360,300),"splitter")
+	assert(balls.size()==old_count+1)
+	checks+=1
+	for n in range(3600):
+		aim_x=100+fmod(n*1.7,520)
+		if n%720==0: pulse()
+		if mode=="play": step(1.0/60)
+		for b in balls:
+			assert(is_finite(b.p.x) and is_finite(b.p.y))
+		assert(balls.size()<=80)
+	assert(shift_coins>0) # Productive damage earns progress even without a break.
+	checks+=2
+	finish_shift()
+	var before=bank
+	var earned=shift_coins
+	collect_reward(false)
+	assert(bank==before+earned)
+	collect_reward(true)
+	assert(bank==before+earned)
+	checks+=2
+	bank=100000
+	for i in range(8):
+		var previous=levels[i]
+		assert(buy_upgrade(i))
+		assert(levels[i]==previous+1)
+		checks+=1
+	bank=0
+	assert(not buy_upgrade(0))
+	checks+=1
+	levels=[10,10,6,6,6,6,8,10]
+	start_shift()
+	for n in range(3600):
+		aim_x=90+fmod(n*2.2,540)
+		if n%360==0: pulse()
+		if mode=="play": step(1.0/60)
+		assert(balls.size()<=80)
+	assert(destroyed==board_peg_count(1))
+	checks+=1
+	print("SELF_TEST_PASS checks=",checks," max_upgrade_shift_credits=",shift_coins," pegs=",destroyed," wave=",wave)
+	get_tree().quit(0)

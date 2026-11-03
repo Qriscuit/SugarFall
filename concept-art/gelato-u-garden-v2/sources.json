@@ -1,0 +1,38 @@
+{
+  "schema": 1,
+  "date": "2026-11-02",
+  "method": "Built-in image_gen; two image-edit passes",
+  "intent": "Keep Gelato's scenery landmarks clear of the expanded U-map nodes and avoid painted clues to the continuing route",
+  "input_images": [
+    {"role": "edit target and style reference", "path": "PLINKO/data/art/gelato/environment/upgrade_u_garden_v1.png", "sha256": "b51e4dda70bd548259b949ad0d9aacfd7ff285391b05f988afdec9a18de7362c"},
+    {"role": "placement guide only", "path": "concept-art/gelato-u-garden-v2/layout-guide.png", "method": "New geometric diagram drawn with System.Drawing; no existing pixels edited"}
+  ],
+  "first_pass": {
+    "prompt": "prompt.txt",
+    "output": "C:/Users/Hursh/.codex/generated_images/01a19e64-fdb5-7f13-bc97-2b89f6ceda22/exec-5da0eec2-38bd-44ce-ab21-2212062dc6c9.png",
+    "status": "Not integrated; cluster exceeded requested reserve"
+  },
+  "final_pass": {
+    "prompt": "correction-prompt.txt",
+    "source": "C:/Users/Hursh/.codex/generated_images/01a19e64-fdb5-7f13-bc97-2b89f6ceda22/exec-8ddbb811-4192-416a-bdd7-e35031d9f35e.png",
+    "destination": "PLINKO/data/art/gelato/environment/upgrade_u_garden_v2.png",
+    "size": [1254, 1254],
+    "mode": "RGB",
+    "bytes": 1844826,
+    "sha256": "d326f036d45ee3cd1987f472831263ccb04f85bd26aa3ddc607e8e568a8e1490",
+    "copied_without_pixel_changes": true,
+    "requested_size": [2048, 2048],
+    "resolution_note": "The built-in tool returned native 1254-square images. The final output was retained without programmatic upscaling or retouching.",
+    "world_rect": [-5200, -9650, 10400, 10400],
+    "surrounding_surface_color": "d9c1e7",
+    "surface_color_method": "Mean RGB of 24 samples along the native image edges; source pixels are unchanged."
+  },
+  "clearance": {
+    "geometry": "geometry.json",
+    "actual_landmark_regions": "landmark-regions.json",
+    "validation": "landmark-validation.json",
+    "checks": 375,
+    "failed": 0,
+    "note": "Final native silhouettes are checked using actual conservative landmark boxes rather than assuming the generator followed the nominal mask exactly."
+  }
+}

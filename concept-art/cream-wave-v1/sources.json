@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "date": "2026-11-03",
+  "method": "built-in image_gen.imagegen",
+  "use_case": "stylized-concept",
+  "scope": "Shared white-cream menu transition for Bakery, Gelato Garden and Crystal Candyworks",
+  "assets": [
+    {
+      "runtime_path": "PLINKO/data/art/transitions/cream_wave.png",
+      "source_path": "C:/Users/Hursh/.codex/generated_images/01a18eec-0873-77c1-9160-dfb0c076a936/exec-c8dc16fe-c1c2-47df-ad57-2e1104129552.png",
+      "native_size": [
+        1536,
+        1024
+      ],
+      "mode": "RGBA",
+      "prompt": "Use case: stylized-concept\nAsset type: production 2D mobile-game menu-transition sprite, a single cream wave crest on a transparent background, landscape 1536 x 1024.\nPrimary request: A huge delicious wave of pure white whipped cream that will wash upward over a portrait game UI. This is an actual game effect asset, not a mockup or a scene.\nComposition: one continuous broad horizontal crest spanning the entire canvas width and clipped by both left and right edges. The upper silhouette rises and dips into three large curling, softly rounded whipped-cream swells. A few small attached droplets or pointed tips; no isolated objects. Above the crest is genuinely transparent. Below the crest is a continuous opaque white cream body that extends to the bottom edge and both side edges, never transparent. The lowest quarter is calm, nearly flat pure white so a solid white panel can join seamlessly below it. Leave no transparent side margins. The crest sits around the upper third, with the tallest curl near the right third and a gentler low curl on the left. Nothing is cut out of the solid lower body.\nStyle/medium: polished softly painted game food art with rounded appetizing volume, upper-left highlights, delicate cool pearl-gray shadows in the folds, broad readable forms. Match a cozy premium ceramic-and-food mobile game. Mostly white; subtle shadows, no beige wash, no dark outlines.\nConstraints: one connected cream wave only; true alpha background outside silhouette; no container, ocean water, scenery, icons, text, UI, frame, checkerboard pattern, drop shadow outside the cream, or watermark. Bottom fill is white #FFFFFF.",
+      "pixel_edits": "None. Native PNG copied byte-for-byte; runtime crops the decorative upper region and supplies an opaque white coverage mask.",
+      "usage": "Animated cream crest and white body, shared deliberately across all three areas. Live UI is never baked into this art.",
+      "sha256": "46c7f133bbf7cfe3e08f3e457734487139a08cbb50a2ef59e244c8a3449be93d"
+    }
+  ]
+}

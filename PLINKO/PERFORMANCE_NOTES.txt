@@ -1,0 +1,32 @@
+PEG FOUNDRY v0.5 • PERFORMANCE ENGINEERING NOTES
+23 October 2026 UTC
+
+PLAYER EVIDENCE
+The player identified a Pixel 6 and reported more lag while many pegs were present, improving as pegs disappeared. That correlation did not establish whether collision, procedural rendering, audio, GPU work or another component caused the problem. This patch addresses measured CPU work while preserving gameplay.
+
+REPEATABLE CLOUD CPU PROXIES, NOT PHONE FPS
+Draw-command generation (300 measured frames after60warmup; microseconds, median/p95):
+8 pegs /0balls: v0.4 1041/1373 → v0.5 286/412.
+34 pegs /0balls: 1351/1941 →516/939.
+34 pegs /80balls stress: 1934/2627 →1088/2653.
+The stress median improved but its p95 did not in this pass. Earlier paired stress probes were2223/2464→762/1105. Shared-cloud scheduling causes variance; these numbers exclude GPU rasterization, real display/compositor cost, phone thermals and input latency. No guaranteed FPS uplift is claimed.
+
+Physics step serial comparison (microseconds, median/p95):
+Natural seeded workload:47/102→27/53.
+Artificial80balls/34pegs, no contact:956/1222→359/443.
+80contactballs:799/1038→612/754.
+20simultaneous splitters:374/475→345/431.
+240particle stress had a lower median but a p95 regression; do not interpret every proxy as uniformly improved. The ordered broadphase matched198,328 exact state/RNG comparisons, including replaced peg arrays as used by restore. It does not reduce the ball cap, remove pegs, change damage, omit shard effects or change lifetimes.
+
+AUDIO AND CHECKPOINTS
+Previously each allowed sound synthesized its PCM synchronously. Cloud median generation for45ms combo tones was~0.23ms and130ms pulse~0.69ms; cached playback lookup was~0.004ms in the initial control. The shipped bank contains31streams and53,346PCM bytes plus resource overhead. Fixed tones are byte-identical, while random hit pitches round to nearest5Hz. Sound throttle and gameplay RNG calls stay unchanged.
+Checkpoint saves measured~0.25ms fresh,0.66ms representative mid-run and1.88ms at artificial80ball/34peg stress. The save implementation was intentionally not rewritten: preserving atomic interruption safety outweighed the small fingerprint-cache gain. On-device storage latency remains unknown.
+
+RENDERING CHANGES
+Original vector artwork caches the paper dots, tray dots and eight normal/flash peg sprites at import. Dynamic HP rings remain live. Rounded panels reuse style resources. Static screens no longer rebuild their draw commands every frame. The display is capped at60FPS, physics remains60Hz, and optional local diagnostics expose FPS and CPU measurements without telemetry.
+
+VALIDATION AND NEXT CHECK
+The full prior behavior/resume/profile suites pass. Actual cloud Linux GUI shows correct textured pegs, readable HP, working gameplay, result restore, local diagnostic display and map input. Physical Pixel6 testing is still needed. Install as an update without deleting the save, enable Setup→Performance Display, and compare a previously laggy board at similar peg/ball counts. Report FPS near start/end, sound setting, heat/battery-saver state and any visible stutter. GPU-specific profiling and release-grade device coverage remain open.
+
+ENGINEERING CONSTRAINT
+The broadphase assumes stationary pegs and the current maximum9px ball radius. Future moving pegs or larger balls must update its cache invalidation/bounds. Current build_wave and snapshot array replacement are covered. No third-party analytics or profiling SDK was added.

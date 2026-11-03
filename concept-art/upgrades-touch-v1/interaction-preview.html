@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Recipe Trails · upgrade interaction study</title>
+<style>
+@font-face{font-family:Fraunces;src:url('../../PLINKO/data/fonts/Fraunces-Variable.ttf') format('truetype');font-weight:100 900;font-display:swap}
+@font-face{font-family:Nunito;src:url('../../PLINKO/data/fonts/Nunito-Variable.ttf') format('truetype');font-weight:200 900;font-display:swap}
+:root{color-scheme:light;--ink:#4e4035;--muted:#796d5b;--copper:#ac704c;--cream:#fff4dc;--mint:#b9d8bf;--rose:#e8b5ab}
+*{box-sizing:border-box}body{margin:0;background:#e8e2d4;color:var(--ink);font:600 16px/1.5 Nunito,system-ui,sans-serif}button{font:inherit;color:inherit;cursor:pointer}button:focus-visible{outline:4px solid #4e6860;outline-offset:5px}button:disabled{cursor:default}h1,h2,h3,p{margin:0}h1,h2,h3,.display{font-family:Fraunces,Georgia,serif;font-variation-settings:'wght' 650,'SOFT' 70,'opsz' 36,'WONK' 1;font-weight:650}svg{display:block}main{display:grid;grid-template-columns:minmax(300px,450px) minmax(280px,430px);align-items:center;justify-content:center;gap:64px;min-height:100vh;padding:32px}.phone-wrap{width:100%;aspect-ratio:9/16;position:relative;border-radius:38px;box-shadow:0 26px 65px #56452f2b,0 0 0 8px #fff7e48f;overflow:hidden;background:#f5ead1}.phone{position:absolute;width:720px;height:1280px;transform-origin:top left;overflow:hidden;background:radial-gradient(ellipse at 30% 30%,#fff9eacc,transparent 65%),#f3e8d2}.phone:before{content:'';position:absolute;inset:0;pointer-events:none;opacity:.1;background-image:url('../../PLINKO/data/art/food/countertop.png');background-size:720px}.topbar{height:170px;position:absolute;inset:0 0 auto;background:linear-gradient(#c4deca,#bed7c1);border-bottom:5px solid #ad7d57;box-shadow:0 7px 0 #d8c5a655;z-index:4;padding:32px 36px}.topline{display:flex;align-items:center;justify-content:space-between;gap:16px}.topbar h1{font-size:45px;line-height:1.1}.eyebrow{font-size:16px;color:#4f6b5c;letter-spacing:1.8px;font-weight:800}.wallet{display:flex;align-items:center;gap:5px;border:2px solid #bf976b;border-radius:28px;background:#fff4dc;min-width:150px;padding:6px 19px 6px 10px;box-shadow:inset 0 3px 0 #fff9ed,0 3px 0 #a6845c33}.wallet img{width:46px;height:46px;object-fit:contain}.wallet output{font-size:34px;font-weight:800;min-width:44px;text-align:right}.subtitle{margin-top:16px;font-size:20px;color:#506653}.viewport{position:absolute;left:24px;top:190px;width:672px;height:774px;border:2px solid #d8c3a2;border-radius:46px;overflow:hidden;touch-action:none;background:radial-gradient(ellipse,#fff9e6bb,#eadfc522);box-shadow:inset 0 2px 8px #a48c5b11;cursor:grab;isolation:isolate}.viewport.dragging{cursor:grabbing}.world{position:absolute;left:0;top:0;transform-origin:0 0;width:672px;height:774px}.connections{position:absolute;overflow:visible;inset:0;width:672px;height:774px;pointer-events:none}.path-shadow{fill:none;stroke:#bca17d;stroke-width:9;opacity:.22;stroke-linecap:round;transform:translateY(4px)}.path{fill:none;stroke:#c6a77a;stroke-width:5;stroke-linecap:round}.path.owned{stroke:#9ab997}.path-dots{fill:none;stroke:#fff3d7;stroke-width:2;stroke-dasharray:1 12;stroke-linecap:round}.orbit{position:absolute;left:336px;top:375px;width:540px;height:540px;border:1.5px dashed #c8b78e66;border-radius:50%;transform:translate(-50%,-50%);pointer-events:none}.orbit:before{content:'';position:absolute;inset:32px;border:1px solid #cfbb9333;border-radius:50%}.flourish{position:absolute;left:292px;top:445px;width:88px;opacity:.38;pointer-events:none;color:#ab8a61}.node-anchor{position:absolute;width:118px;height:132px;transform:translate(-50%,-50%)}.node{position:relative;width:118px;height:132px;padding:7px 5px 5px;border:3px solid #829779;border-radius:37px;background:linear-gradient(140deg,#d4ead0,var(--mint) 65%,#9dbd9e);box-shadow:inset 0 4px 0 #ffffff80,inset 0 -5px 0 #71856b2c,0 6px 0 #bba988,0 8px 12px #8e755a22;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;transition:background-color 160ms,border-color 160ms;user-select:none;-webkit-user-select:none;-webkit-tap-highlight-color:transparent;touch-action:none}.node.unaffordable{background:linear-gradient(140deg,#f1cec2,var(--rose) 65%,#d49a91);border-color:#b47a70}.node.owned{background:linear-gradient(140deg,#fffbed,#f4e4c1 75%,#e7d1a4);border-color:#b69b71}.node.selected:after{content:'';position:absolute;inset:-10px;border:3px solid var(--copper);border-radius:44px;box-shadow:0 0 0 3px #fff9e4,0 0 0 5px var(--copper);pointer-events:none}.node img{width:66px;height:62px;object-fit:contain;pointer-events:none;filter:drop-shadow(0 2px 1px #6d52352b)}.node-name{font-size:18px;font-weight:800;line-height:1.1;white-space:nowrap}.node-price{font-size:18px;font-weight:800;display:flex;align-items:center;gap:4px;line-height:1.5}.node-price svg{width:18px;height:18px;flex:none}.tier{position:absolute;top:-9px;right:-6px;width:29px;height:29px;display:grid;place-items:center;background:#fff6df;border:2px solid #b5976a;border-radius:50%;font-size:16px;font-weight:800;box-shadow:0 2px 0 #b5976a33}.node.owned .tier{background:#d5e6cb}.root .node{border-radius:48px}.root .node.selected:after{border-radius:55px}.root .node img{width:70px}.map-caption{position:absolute;top:18px;left:24px;right:24px;text-align:center;font-size:15px;font-weight:800;letter-spacing:1.5px;color:#9a8663;pointer-events:none}.map-tools{position:absolute;left:48px;right:48px;top:895px;display:flex;align-items:center;justify-content:space-between;z-index:3;pointer-events:none}.gesture-hint{background:#f9f0dded;border-radius:18px;padding:8px 15px;color:#7a6b52;font-size:18px;box-shadow:0 2px 5px #8e755a12}.recenter{pointer-events:auto;width:56px;height:56px;border:2px solid #b7976a;border-radius:19px;background:#fff4dc;display:grid;place-items:center;box-shadow:0 3px 0 #cbb68e}.recenter svg{width:28px;height:28px}.drawer{position:absolute;bottom:26px;left:26px;right:26px;height:270px;border:3px solid #bd956b;border-radius:37px;background:linear-gradient(130deg,#fff9e9,#f5e9cb);box-shadow:inset 0 4px 0 #fffdf2,0 7px 0 #bba47a33,0 -8px 25px #9c7a4720;padding:24px 26px;z-index:5}.detail-head{display:flex;align-items:center;gap:18px}.detail-img{width:72px;height:72px;object-fit:contain}.detail-title{font-size:31px;line-height:1.1}.detail-state{font-size:18px;color:#697954;margin-top:5px;font-weight:800}.detail-description{font-size:21px;line-height:1.35;margin-top:11px;min-height:28px}.purchase{position:absolute;bottom:21px;left:26px;right:26px;height:70px;border:3px solid #6b9273;border-radius:24px;background:linear-gradient(#cce4c6,#a7cba8);box-shadow:inset 0 3px 0 #eaf6dd,0 4px 0 #839e78;font-size:26px;font-weight:850;display:flex;align-items:center;justify-content:center;gap:10px}.purchase svg{width:25px;height:25px}.purchase img{width:33px;height:33px}.purchase:disabled{border-color:#bb8e80;background:linear-gradient(#edd0c0,#e2b7a9);box-shadow:inset 0 3px 0 #fff0dd,0 4px 0 #bc9681;color:#714e45}.purchase.is-owned:disabled{border-color:#bca27a;background:linear-gradient(#f8ecd2,#e9d7b0);box-shadow:inset 0 3px 0 #fff9e9,0 4px 0 #bca27a;color:#79674e}.legend{display:flex;gap:16px;align-items:center;margin-top:12px;font-size:16px;color:#6e6957}.legend i{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:6px;margin-right:5px;font-style:normal;vertical-align:middle}.legend .yes{background:#bed9ba;border:1px solid #789472}.legend .no{background:#e7b8ac;border:1px solid #ad786e}.legend svg{width:13px;height:13px}.study{padding:12px 0}.study .kicker{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#8a7356;font-weight:850;margin-bottom:12px}.study h2{font-size:40px;line-height:1.1;max-width:350px}.study .intro{font-size:17px;margin-top:20px;color:#6b6152;max-width:370px}.study-controls{margin:26px 0;padding:20px;border-radius:22px;background:#f8f2e5;border:1px solid #cab99a;box-shadow:0 4px 18px #826d4710}.study-controls h3{font-family:Nunito,sans-serif;font-size:14px;font-weight:850;margin-bottom:12px}.control-row{display:flex;flex-wrap:wrap;gap:8px}.study-controls button{border:1px solid #bba583;background:#fff9e9;border-radius:11px;padding:9px 12px;box-shadow:0 2px 0 #d7c7a7;font-size:14px;font-weight:800}.study-controls button:hover{background:#e1ebd7}.study-controls .earn{background:#d1e1c5;border-color:#91ac83}.study-controls small{display:block;font-size:12px;line-height:1.45;margin-top:13px;color:#847763}.notes{display:grid;gap:16px}.note{display:grid;grid-template-columns:30px 1fr;gap:12px}.note .number{width:28px;height:28px;display:grid;place-items:center;border-radius:50%;border:1px solid #b89b73;font-size:12px;font-weight:850;color:#98744f;background:#f9f0da}.note strong{display:block;font-size:15px}.note p{font-size:14px;line-height:1.45;color:#7b6e5b;margin-top:3px}.study-status{min-height:62px;font-size:13px;color:#6f6453;line-height:1.45;border-top:1px solid #cdbf9e;margin-top:25px;padding-top:16px}.sr-only{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}@keyframes affordability-pop{0%{transform:translateY(0) scale(1)}30%{transform:translateY(5px) scale(1.04,.94)}65%{transform:translateY(-9px) scale(.97,1.04)}100%{transform:translateY(0) scale(1)}}@keyframes purchased-pop{0%{transform:scale(1)}30%{transform:scale(1.08,.9)}65%{transform:scale(.96,1.07)}100%{transform:scale(1)}}@keyframes reveal{0%{opacity:0;transform:scale(.78)}65%{opacity:1;transform:scale(1.04)}100%{opacity:1;transform:scale(1)}}.node.changed{animation:affordability-pop 300ms ease-out}.node.purchased{animation:purchased-pop 280ms ease-out}.node.revealed{animation:reveal 300ms ease-out}@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}@media(max-width:830px){main{gap:32px;padding:24px;grid-template-columns:minmax(280px,420px)}.study{max-width:420px}.study h2{max-width:none;font-size:32px}.notes{gap:12px}.study .intro{max-width:none}.phone-wrap{border-radius:30px}}@media(max-width:420px){main{padding:12px}.phone-wrap{border-radius:24px;box-shadow:0 12px 35px #56452f20}.study{padding:20px 8px}}
+.phone-wrap{width:min(100%,calc((100svh - 48px) * .5625));min-width:280px;justify-self:center}
+</style>
+</head>
+<body>
+<main>
+  <div class="phone-wrap" id="phone-wrap">
+    <section class="phone" id="phone" aria-label="Interactive upgrade map concept">
+      <header class="topbar">
+        <div class="topline"><div><div class="eyebrow">YOUR RECIPE</div><h1>Upgrades</h1></div><div class="wallet" aria-label="Available demo coins"><img src="../../PLINKO/data/art/ui/coin.png" alt=""><output id="wallet">65</output></div></div>
+        <div class="legend"><span><i class="yes" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M5 10h10M10 5v10" stroke="currentColor" stroke-width="2.5"/></svg></i>Ready to buy</span><span><i class="no" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M5 10h10" stroke="currentColor" stroke-width="2.5"/></svg></i>Save a little more</span></div>
+      </header>
+      <div class="viewport" id="viewport" aria-label="Recipe map. Drag to explore. Pinch or scroll to zoom. Tab to select upgrades.">
+        <div class="world" id="world">
+          <div class="orbit" aria-hidden="true"></div>
+          <svg class="connections" id="connections" aria-hidden="true"></svg>
+          <svg class="flourish" viewBox="0 0 100 36" aria-hidden="true"><path d="M10 18c20 8 22-14 40 0 18-14 20 8 40 0M22 24c15 12 20-8 28 0 8-8 13 12 28 0" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+          <div id="nodes"></div>
+        </div>
+        <div class="map-caption" aria-hidden="true">A LITTLE SOMETHING GOOD IN EVERY DIRECTION</div>
+      </div>
+      <div class="map-tools"><span class="gesture-hint">Drag · pinch · explore</span><button type="button" class="recenter" id="recenter" aria-label="Recenter recipe map" title="Recenter map"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="8" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 2v8m0 12v8M2 16h8m12 0h8" stroke="currentColor" stroke-width="2"/></svg></button></div>
+      <section class="drawer" aria-label="Selected upgrade details">
+        <div class="detail-head"><img id="detail-img" class="detail-img" alt=""><div><h2 id="detail-title" class="detail-title"></h2><div id="detail-state" class="detail-state"></div></div></div>
+        <p id="detail-description" class="detail-description"></p>
+        <button id="buy" class="purchase" type="button"></button>
+      </section>
+      <div id="announcement" class="sr-only" role="status" aria-live="polite"></div>
+    </section>
+  </div>
+  <aside class="study">
+    <p class="kicker">Interaction concept · 01</p>
+    <h2>A recipe that grows with you.</h2>
+    <p class="intro">Soft ceramic tiles, winding copper paths, and food you can almost pick up. The map moves under your fingers; your coins and purchase button stay put.</p>
+    <div class="study-controls">
+      <h3>Try the interaction</h3>
+      <div class="control-row"><button id="fresh" type="button">Fresh start</button><button id="expanded" type="button">Expanded</button><button id="earn" class="earn" type="button">Earn +50</button><button id="reset" type="button">Reset</button></div>
+      <small>Local design study. Illustrative progression and values. No real purchases, game launch, account connection, or saved progress.</small>
+    </div>
+    <div class="notes">
+      <div class="note"><span class="number">1</span><div><strong>Touch the map, not zoom buttons.</strong><p>One finger pans. Spread two fingers to zoom in; pinch to zoom out. A mouse wheel zooms toward the pointer.</p></div></div>
+      <div class="note"><span class="number">2</span><div><strong>See what your coins can do.</strong><p>Green tiles have a plus and price. Red tiles have a minus and price. Owned tiles are cream with a check. Selection gets its own copper outline.</p></div></div>
+      <div class="note"><span class="number">3</span><div><strong>One purchase. A small ripple.</strong><p>Buy Gold to watch newly unaffordable tiles bounce. Earn coins to reverse it. Only changed tiles react; the camera stays still.</p></div></div>
+    </div>
+    <p class="study-status" id="study-status">Expanded example: Feed 1 is owned. Select a tile, then buy from the fixed drawer. Try Gold first.</p>
+  </aside>
+</main>
+<script>
+'use strict';
+// This standalone study intentionally does not read or write game data.
+const ART = '../../PLINKO/data/art/';
+const BRANCHES = [
+  {name:'Feed', art:'hopper', cost:30, description:'Drop more donuts each second.', angle:-90, radius:234},
+  {name:'Power', art:'cookie_armored', cost:40, description:'Stronger peg hits. Break cookies faster.', angle:-44, radius:249},
+  {name:'Bounce', art:'donut', cost:30, description:'Keep more bounce energy after each hit.', angle:0, radius:231},
+  {name:'Ricochet', art:'ricochet', cost:50, description:'More chances for extra-bouncy oranges.', angle:43, radius:245},
+  {name:'Split', art:'pomegranate', cost:60, description:'More pomegranates that split into seeds.', angle:90, radius:232},
+  {name:'Impact', art:'pumpkin', cost:70, description:'More pumpkins that crush their first peg.', angle:137, radius:249},
+  {name:'Gold', art:'cup_gold', cost:35, description:'Earn a higher payout from gold cups.', angle:180, radius:232},
+  {name:'Time', art:'cookie_clock', cost:15, description:'More time to clear the level.', angle:224, radius:248}
+];
+const els = Object.fromEntries(['phone-wrap','phone','viewport','world','connections','nodes','wallet','detail-img','detail-title','detail-state','detail-description','buy','announcement','study-status'].map(id=>[id,document.getElementById(id)]));
+const check = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="m4 10 4 4 8-9" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+const plus = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 10h10M10 5v10" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>';
+const minus = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 10h10" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>';
+let bank=65, levels=[1,0,0,0,0,0,0,0], selected='6:1', scenario='expanded';
+let camera={x:0,y:0,z:1}, phoneScale=1;
+const nodes = new Map();
+function key(i,tier){return `${i}:${tier}`;}
+function splitKey(id){return id.split(':').map(Number);}
+function cost(i,tier){return Math.floor(BRANCHES[i].cost*Math.pow(i===1?1.55:1.4,tier-1));}
+function point(i,tier){
+  if(i===0&&tier===1)return {x:336,y:375};
+  const depth=i===0?tier-2:tier-1;
+  const angle=(BRANCHES[i].angle+(depth%2?5:0))*Math.PI/180;
+  const radius=BRANCHES[i].radius+depth*164;
+  return {x:336+Math.cos(angle)*radius,y:375+Math.sin(angle)*radius};
+}
+function visible(){
+  if(!levels.some(Boolean))return [[0,1]];
+  const all=[];
+  levels.forEach((owned,i)=>{for(let tier=1;tier<=Math.min(owned+1,6);tier++)all.push([i,tier]);});
+  return all;
+}
+function state(i,tier){return tier<=levels[i]?'owned':bank>=cost(i,tier)?'affordable':'unaffordable';}
+function snapshot(){return new Map(visible().map(([i,tier])=>[key(i,tier),state(i,tier)]));}
+function announce(message){els.announcement.textContent=message;els['study-status'].textContent=message;}
+function animate(node,kind){
+  node.classList.remove('changed','purchased','revealed');
+  // A forced layout starts a new finite response even after rapid demo inputs.
+  void node.offsetWidth;
+  node.classList.add(kind);
+}
+function render(previous=null,purchased=null){
+  const items=visible(), ids=new Set(items.map(([i,tier])=>key(i,tier)));
+  for(const [id,entry] of nodes){if(!ids.has(id)){entry.anchor.remove();nodes.delete(id);}}
+  items.forEach(([i,tier])=>{
+    const id=key(i,tier), p=point(i,tier), current=state(i,tier);
+    let entry=nodes.get(id);
+    if(!entry){
+      const anchor=document.createElement('div');anchor.className='node-anchor'+(id==='0:1'?' root':'');
+      const button=document.createElement('button');button.type='button';button.dataset.node=id;
+      anchor.append(button);els.nodes.append(anchor);entry={anchor,button};nodes.set(id,entry);
+      button.addEventListener('click',event=>{
+        // Pointer selection is handled at pointerup. Native keyboard/AT clicks have detail 0.
+        if(event.detail===0){select(id);ensureVisible(id);}
+      });
+      button.addEventListener('focus',()=>{if(!pointers.size)ensureVisible(id);});
+      button.addEventListener('animationend',()=>button.classList.remove('changed','purchased','revealed'));
+    }
+    entry.anchor.style.left=p.x+'px';entry.anchor.style.top=p.y+'px';
+    entry.button.className='node '+current+(selected===id?' selected':'');
+    entry.button.setAttribute('aria-pressed',String(selected===id));
+    entry.button.setAttribute('aria-label',`${BRANCHES[i].name}, tier ${tier}. ${current==='owned'?'Owned':cost(i,tier)+' coins. '+(current==='affordable'?'Ready to buy':'Need '+(cost(i,tier)-bank)+' more coins')}. Select for details.`);
+    entry.button.innerHTML=`<img src="${ART}food/${BRANCHES[i].art}.png" alt="" draggable="false"><span class="node-name">${BRANCHES[i].name}</span><span class="node-price">${current==='owned'?check+'Owned':(current==='affordable'?plus:minus)+cost(i,tier)}</span><span class="tier">${tier}</span>`;
+    if(purchased===id)animate(entry.button,'purchased');
+    else if(previous&&!previous.has(id))animate(entry.button,'revealed');
+    else if(previous&&previous.get(id)!==current&&previous.get(id)!=='owned'&&current!=='owned')animate(entry.button,'changed');
+  });
+  els.connections.innerHTML=items.map(([i,tier])=>{
+    if(i===0&&tier===1)return '';
+    const parent=tier===1?'0:1':key(i,tier-1);
+    if(!ids.has(parent))return '';
+    const [pi,pt]=splitKey(parent),a=point(pi,pt),b=point(i,tier),dx=b.x-a.x,dy=b.y-a.y;
+    const length=Math.hypot(dx,dy),bend=25;
+    const c={x:(a.x+b.x)/2-dy/length*bend,y:(a.y+b.y)/2+dx/length*bend};
+    const d=`M${a.x},${a.y} Q${c.x},${c.y} ${b.x},${b.y}`;
+    return `<path class="path-shadow" d="${d}"/><path class="path ${tier<=levels[i]?'owned':''}" d="${d}"/><path class="path-dots" d="${d}"/>`;
+  }).join('');
+  els.wallet.value=String(bank);els.wallet.textContent=String(bank);renderDetails();
+}
+function renderDetails(){
+  const [i,tier]=splitKey(selected), current=state(i,tier), price=cost(i,tier);
+  els['detail-img'].src=ART+'food/'+BRANCHES[i].art+'.png';
+  els['detail-title'].textContent=BRANCHES[i].name+' · '+tier;
+  els['detail-state'].textContent=current==='owned'?'Added to your recipe':current==='affordable'?'Ready to buy':'Need '+(price-bank)+' more coins';
+  els['detail-state'].style.color=current==='unaffordable'?'#986355':'#697954';
+  els['detail-description'].textContent=BRANCHES[i].description;
+  els.buy.disabled=current!=='affordable';els.buy.classList.toggle('is-owned',current==='owned');
+  els.buy.innerHTML=current==='owned'?check+'Owned':current==='unaffordable'?minus+`Save up · ${price} coins`:`Buy upgrade <img src="${ART}ui/coin.png" alt=""> ${price}`;
+}
+function select(id){
+  if(!nodes.has(id))return;
+  selected=id;
+  for(const [other,entry] of nodes){entry.button.classList.toggle('selected',other===id);entry.button.setAttribute('aria-pressed',String(other===id));}
+  renderDetails();
+}
+els.buy.addEventListener('click',()=>{
+  const [i,tier]=splitKey(selected);
+  if(tier!==levels[i]+1||state(i,tier)!=='affordable')return;
+  const previous=snapshot(),price=cost(i,tier),bought=selected;
+  bank-=price;levels[i]=tier;
+  // Selection stays on the bought tier. A second press cannot buy the next tier.
+  render(previous,bought);
+  const changed=[...previous].filter(([id,before])=>{const [bi,bt]=splitKey(id);return id!==bought&&before==='affordable'&&state(bi,bt)==='unaffordable';}).length;
+  announce(`Bought ${BRANCHES[i].name} ${tier} for ${price} coins. ${bank} coins remain. ${changed?changed+' other '+(changed===1?'tile is':'tiles are')+' now red. ':''}The next choice is revealed; the camera has not moved.`);
+});
+function reset(mode){
+  scenario=mode;bank=65;levels=mode==='fresh'?[0,0,0,0,0,0,0,0]:[1,0,0,0,0,0,0,0];selected=mode==='fresh'?'0:1':'6:1';
+  camera={x:0,y:0,z:1};applyCamera();render();
+  announce(mode==='fresh'?'Fresh recipe: only Feed 1 is visible. Buy it to reveal the first eight branches.':'Expanded example: Feed 1 is owned. Buy Gold to see the affordability changes.');
+}
+document.getElementById('fresh').addEventListener('click',()=>reset('fresh'));
+document.getElementById('expanded').addEventListener('click',()=>reset('expanded'));
+document.getElementById('reset').addEventListener('click',()=>reset(scenario));
+document.getElementById('earn').addEventListener('click',()=>{
+  const previous=snapshot();bank+=50;render(previous);
+  const changed=[...previous].filter(([id,before])=>{const [i,t]=splitKey(id);return before==='unaffordable'&&state(i,t)==='affordable';}).length;
+  announce(`Earned 50 demo coins. Wallet: ${bank}. ${changed?changed+' '+(changed===1?'tile became':'tiles became')+' affordable and bounced.':'No tile changed affordability.'}`);
+});
+// World transforms use logical 720px-design coordinates, independent of the phone preview size.
+function applyCamera(){els.world.style.transform=`translate(${camera.x}px,${camera.y}px) scale(${camera.z})`;}
+function clampCamera(){
+  const points=visible().map(([i,t])=>point(i,t));
+  const minX=Math.min(...points.map(p=>p.x))-80,maxX=Math.max(...points.map(p=>p.x))+80;
+  const minY=Math.min(...points.map(p=>p.y))-85,maxY=Math.max(...points.map(p=>p.y))+85;
+  // Always keep at least part of the recipe on screen, with room to inspect its outer leaves.
+  camera.x=Math.min(592-minX*camera.z,Math.max(80-maxX*camera.z,camera.x));
+  camera.y=Math.min(679-minY*camera.z,Math.max(95-maxY*camera.z,camera.y));
+}
+function localPoint(event){const r=els.viewport.getBoundingClientRect();return {x:(event.clientX-r.left)/phoneScale,y:(event.clientY-r.top)/phoneScale};}
+// A node stays at least 44 physical CSS pixels wide, including on a narrow phone.
+function minimumZoom(){return Math.max(.75,Math.min(1,44/(118*phoneScale)));}
+function zoomAt(point,zoom){
+  const next=Math.max(minimumZoom(),Math.min(1.75,zoom));
+  const ratio=next/camera.z;
+  camera.x=point.x-(point.x-camera.x)*ratio;camera.y=point.y-(point.y-camera.y)*ratio;camera.z=next;
+  clampCamera();applyCamera();
+}
+document.getElementById('recenter').addEventListener('click',()=>{camera={x:0,y:0,z:1};applyCamera();announce('Recipe map recentered. Selection and wallet are unchanged.');});
+els.viewport.addEventListener('wheel',event=>{
+  event.preventDefault();const units=event.deltaMode===1?16:event.deltaMode===2?774:1;
+  zoomAt(localPoint(event),camera.z*Math.exp(-event.deltaY*units*.0014));
+},{passive:false});
+function ensureVisible(id){
+  const [i,tier]=splitKey(id),p=point(i,tier),screen={x:p.x*camera.z+camera.x,y:p.y*camera.z+camera.y};
+  const margin=90*camera.z;
+  if(screen.x<margin)camera.x+=margin-screen.x;
+  if(screen.x>672-margin)camera.x-=screen.x-(672-margin);
+  if(screen.y<margin+40)camera.y+=margin+40-screen.y;
+  if(screen.y>690-margin)camera.y-=screen.y-(690-margin);
+  clampCamera();applyCamera();
+}
+const pointers=new Map();let gesture=null,blockTap=false;
+function pair(){return [...pointers.values()].slice(0,2);}
+function pinchStart(){
+  const [a,b]=pair(),mid={x:(a.x+b.x)/2,y:(a.y+b.y)/2};
+  gesture={kind:'pinch',distance:Math.max(1,Math.hypot(a.x-b.x,a.y-b.y)),zoom:camera.z,world:{x:(mid.x-camera.x)/camera.z,y:(mid.y-camera.y)/camera.z}};
+  blockTap=true;
+}
+els.viewport.addEventListener('pointerdown',event=>{
+  if(event.pointerType==='mouse'&&event.button!==0)return;
+  const p=localPoint(event);pointers.set(event.pointerId,p);
+  els.viewport.setPointerCapture(event.pointerId);els.viewport.classList.add('dragging');
+  if(pointers.size===1){blockTap=false;gesture={kind:'pan',start:p,last:p,moved:false,node:event.target.closest('[data-node]')?.dataset.node??null};}
+  else if(pointers.size===2)pinchStart();
+});
+els.viewport.addEventListener('pointermove',event=>{
+  if(!pointers.has(event.pointerId))return;
+  const p=localPoint(event);pointers.set(event.pointerId,p);
+  if(pointers.size>=2){
+    if(gesture?.kind!=='pinch')pinchStart();
+    const [a,b]=pair(),mid={x:(a.x+b.x)/2,y:(a.y+b.y)/2};
+    const distance=Math.hypot(a.x-b.x,a.y-b.y);
+    camera.z=Math.max(minimumZoom(),Math.min(1.75,gesture.zoom*distance/gesture.distance));
+    camera.x=mid.x-gesture.world.x*camera.z;camera.y=mid.y-gesture.world.y*camera.z;
+    clampCamera();applyCamera();
+  }else if(gesture?.kind==='pan'){
+    // 7 physical CSS pixels avoids a twitch being interpreted as a drag.
+    if(Math.hypot(p.x-gesture.start.x,p.y-gesture.start.y)*phoneScale>7)gesture.moved=true;
+    if(gesture.moved){camera.x+=p.x-gesture.last.x;camera.y+=p.y-gesture.last.y;clampCamera();applyCamera();}
+    gesture.last=p;
+  }
+});
+function endPointer(event,cancelled=false){
+  if(!pointers.has(event.pointerId))return;
+  const was=gesture;
+  pointers.delete(event.pointerId);
+  if(!cancelled&&pointers.size===0&&!blockTap&&was?.kind==='pan'&&!was.moved&&was.node)select(was.node);
+  if(pointers.size>=2)pinchStart();
+  else if(pointers.size===1){const p=[...pointers.values()][0];gesture={kind:'pan',start:p,last:p,moved:true,node:null};blockTap=true;}
+  else{gesture=null;blockTap=false;els.viewport.classList.remove('dragging');}
+}
+els.viewport.addEventListener('pointerup',event=>endPointer(event));
+els.viewport.addEventListener('pointercancel',event=>endPointer(event,true));
+els.viewport.addEventListener('lostpointercapture',event=>endPointer(event,true));
+els.viewport.addEventListener('dragstart',event=>event.preventDefault());
+// Controls stay fixed and comfortably readable while only the map content transforms.
+const resizeObserver=new ResizeObserver(()=>{
+  phoneScale=els['phone-wrap'].clientWidth/720;els.phone.style.transform=`scale(${phoneScale})`;
+  if(camera.z<minimumZoom())zoomAt({x:336,y:375},minimumZoom());
+});
+resizeObserver.observe(els['phone-wrap']);
+render();applyCamera();
+</script>
+</body>
+</html>

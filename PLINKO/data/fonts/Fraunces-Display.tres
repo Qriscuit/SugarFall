@@ -1,0 +1,12 @@
+[gd_resource type="FontVariation" load_steps=2 format=3]
+
+[ext_resource type="FontFile" path="res://data/fonts/Fraunces-Variable.ttf" id="1_base"]
+
+[resource]
+base_font = ExtResource("1_base")
+variation_opentype = {
+1397704276: 70.0,
+1464815179: 1.0,
+1869640570: 36.0,
+2003265652: 650.0
+}

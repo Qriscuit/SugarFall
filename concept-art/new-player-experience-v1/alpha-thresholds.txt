@@ -1,0 +1,8 @@
+threshold=1 count=854237 bounds=0,17,1024,1519
+threshold=16 count=828319 bounds=9,19,1011,1517
+threshold=64 count=823526 bounds=9,20,1010,1516
+threshold=128 count=819380 bounds=9,21,1010,1515
+threshold=240 count=809089 bounds=10,23,1008,1513
+threshold=254 count=16224 bounds=18,57,948,1479
+threshold=255 count=0 bounds=1024,1536,-1024,-1536
+

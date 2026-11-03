@@ -1,0 +1,1284 @@
+{
+  "schema_version": 1,
+  "status": "Fixed irregular layouts; authored scatter is stable across retries, previews and saves. Pacing still requires human playtests.",
+  "chapter": "Foundry",
+  "base_timer_seconds": 10,
+  "boards": [
+    {
+      "level": 1,
+      "name": "First Pour",
+      "family": "compact",
+      "trait_brief": "A compact irregular group introduces aiming.",
+      "peg_count": 8,
+      "base_hp": 6,
+      "strength_tier": "bronze",
+      "armored_count": 0,
+      "armored_hp_multiplier": 1.0,
+      "clock_peg_count": 0,
+      "recommended_module": null,
+      "positions": [
+        [
+          361,
+          350
+        ],
+        [
+          273,
+          377
+        ],
+        [
+          461,
+          395
+        ],
+        [
+          329,
+          429
+        ],
+        [
+          270,
+          477
+        ],
+        [
+          325,
+          527
+        ],
+        [
+          442,
+          553
+        ],
+        [
+          212,
+          562
+        ]
+      ],
+      "layout_seed": 100740
+    },
+    {
+      "level": 2,
+      "name": "Clockwork Rows",
+      "family": "compact",
+      "trait_brief": "Open a column toward the two low clock pegs to extend the run.",
+      "peg_count": 12,
+      "base_hp": 6,
+      "strength_tier": "bronze",
+      "armored_count": 0,
+      "armored_hp_multiplier": 1.0,
+      "clock_peg_count": 2,
+      "recommended_module": null,
+      "positions": [
+        [
+          366,
+          347
+        ],
+        [
+          265,
+          385
+        ],
+        [
+          539,
+          401
+        ],
+        [
+          160,
+          448
+        ],
+        [
+          443,
+          459
+        ],
+        [
+          347,
+          472
+        ],
+        [
+          242,
+          514
+        ],
+        [
+          315,
+          557
+        ],
+        [
+          485,
+          606
+        ],
+        [
+          402,
+          625
+        ],
+        [
+          233,
+          628
+        ],
+        [
+          313,
+          641
+        ]
+      ],
+      "layout_seed": 108659
+    },
+    {
+      "level": 3,
+      "name": "Open Assembly",
+      "family": "compact",
+      "trait_brief": "Sweep the wider bronze spread; finish isolated pegs after the center opens.",
+      "peg_count": 16,
+      "base_hp": 6,
+      "strength_tier": "bronze",
+      "armored_count": 0,
+      "armored_hp_multiplier": 1.0,
+      "clock_peg_count": 2,
+      "recommended_module": null,
+      "positions": [
+        [
+          354,
+          354
+        ],
+        [
+          480,
+          406
+        ],
+        [
+          599,
+          418
+        ],
+        [
+          408,
+          426
+        ],
+        [
+          296,
+          439
+        ],
+        [
+          128,
+          467
+        ],
+        [
+          401,
+          500
+        ],
+        [
+          253,
+          523
+        ],
+        [
+          110,
+          543
+        ],
+        [
+          600,
+          550
+        ],
+        [
+          187,
+          551
+        ],
+        [
+          334,
+          615
+        ],
+        [
+          210,
+          621
+        ],
+        [
+          122,
+          631
+        ],
+        [
+          388,
+          683
+        ],
+        [
+          481,
+          688
+        ]
+      ],
+      "layout_seed": 116578
+    },
+    {
+      "level": 4,
+      "name": "Outer Rails",
+      "family": "splitclusters",
+      "trait_brief": "Silver pegs need repeat hits. Shift between the left and right groups.",
+      "peg_count": 18,
+      "base_hp": 12,
+      "strength_tier": "silver",
+      "trial_base_hp": 6,
+      "armored_count": 0,
+      "armored_hp_multiplier": 1.0,
+      "clock_peg_count": 2,
+      "recommended_module": "ricochet",
+      "positions": [
+        [
+          166,
+          349
+        ],
+        [
+          618,
+          358
+        ],
+        [
+          420,
+          384
+        ],
+        [
+          91,
+          429
+        ],
+        [
+          500,
+          431
+        ],
+        [
+          620,
+          436
+        ],
+        [
+          321,
+          446
+        ],
+        [
+          421,
+          487
+        ],
+        [
+          265,
+          504
+        ],
+        [
+          187,
+          540
+        ],
+        [
+          386,
+          568
+        ],
+        [
+          579,
+          604
+        ],
+        [
+          331,
+          655
+        ],
+        [
+          400,
+          718
+        ],
+        [
+          546,
+          723
+        ],
+        [
+          314,
+          780
+        ],
+        [
+          158,
+          783
+        ],
+        [
+          412,
+          792
+        ]
+      ],
+      "layout_seed": 124497
+    },
+    {
+      "level": 5,
+      "name": "Twin Silos",
+      "family": "splitclusters",
+      "trait_brief": "Keep both silver groups active instead of spending the whole run on one side.",
+      "peg_count": 20,
+      "base_hp": 12,
+      "strength_tier": "silver",
+      "armored_count": 0,
+      "armored_hp_multiplier": 1.0,
+      "clock_peg_count": 2,
+      "recommended_module": "ricochet",
+      "positions": [
+        [
+          164,
+          346
+        ],
+        [
+          97,
+          376
+        ],
+        [
+          555,
+          392
+        ],
+        [
+          414,
+          408
+        ],
+        [
+          342,
+          453
+        ],
+        [
+          462,
+          466
+        ],
+        [
+          577,
+          472
+        ],
+        [
+          135,
+          503
+        ],
+        [
+          404,
+          522
+        ],
+        [
+          490,
+          571
+        ],
+        [
+          291,
+          582
+        ],
+        [
+          590,
+          592
+        ],
+        [
+          95,
+          618
+        ],
+        [
+          387,
+          634
+        ],
+        [
+          222,
+          670
+        ],
+        [
+          103,
+          706
+        ],
+        [
+          604,
+          763
+        ],
+        [
+          498,
+          764
+        ],
+        [
+          382,
+          776
+        ],
+        [
+          203,
+          786
+        ]
+      ],
+      "layout_seed": 132416
+    },
+    {
+      "level": 6,
+      "name": "Wide Return",
+      "family": "splitclusters",
+      "trait_brief": "Clear the wide silver spread, then return left for the low clock pair.",
+      "peg_count": 22,
+      "base_hp": 12,
+      "strength_tier": "silver",
+      "armored_count": 0,
+      "armored_hp_multiplier": 1.0,
+      "clock_peg_count": 2,
+      "recommended_module": "ricochet",
+      "positions": [
+        [
+          164,
+          350
+        ],
+        [
+          603,
+          381
+        ],
+        [
+          510,
+          383
+        ],
+        [
+          362,
+          421
+        ],
+        [
+          244,
+          438
+        ],
+        [
+          125,
+          456
+        ],
+        [
+          541,
+          469
+        ],
+        [
+          435,
+          479
+        ],
+        [
+          358,
+          509
+        ],
+        [
+          216,
+          552
+        ],
+        [
+          115,
+          586
+        ],
+        [
+          558,
+          593
+        ],
+        [
+          425,
+          601
+        ],
+        [
+          306,
+          617
+        ],
+        [
+          235,
+          673
+        ],
+        [
+          389,
+          678
+        ],
+        [
+          163,
+          691
+        ],
+        [
+          301,
+          710
+        ],
+        [
+          614,
+          714
+        ],
+        [
+          453,
+          768
+        ],
+        [
+          94,
+          777
+        ],
+        [
+          258,
+          781
+        ]
+      ],
+      "layout_seed": 140335
+    },
+    {
+      "level": 7,
+      "name": "Packed Crates",
+      "family": "denseclusters",
+      "trait_brief": "Gold pegs resist single hits. Splitter spreads damage through packed targets.",
+      "peg_count": 24,
+      "base_hp": 18,
+      "strength_tier": "gold",
+      "armored_count": 0,
+      "armored_hp_multiplier": 1.0,
+      "clock_peg_count": 2,
+      "recommended_module": "splitter",
+      "positions": [
+        [
+          189,
+          347
+        ],
+        [
+          566,
+          363
+        ],
+        [
+          376,
+          400
+        ],
+        [
+          213,
+          414
+        ],
+        [
+          492,
+          416
+        ],
+        [
+          615,
+          421
+        ],
+        [
+          348,
+          476
+        ],
+        [
+          255,
+          484
+        ],
+        [
+          433,
+          488
+        ],
+        [
+          590,
+          500
+        ],
+        [
+          169,
+          525
+        ],
+        [
+          100,
+          554
+        ],
+        [
+          330,
+          564
+        ],
+        [
+          600,
+          573
+        ],
+        [
+          202,
+          598
+        ],
+        [
+          386,
+          630
+        ],
+        [
+          470,
+          646
+        ],
+        [
+          267,
+          648
+        ],
+        [
+          605,
+          680
+        ],
+        [
+          375,
+          702
+        ],
+        [
+          462,
+          735
+        ],
+        [
+          221,
+          753
+        ],
+        [
+          552,
+          776
+        ],
+        [
+          628,
+          782
+        ]
+      ],
+      "layout_seed": 148254
+    },
+    {
+      "level": 8,
+      "name": "Split Production",
+      "family": "denseclusters",
+      "trait_brief": "Break a route through the gold pack to reach the low central clock pair.",
+      "peg_count": 26,
+      "base_hp": 18,
+      "strength_tier": "gold",
+      "trial_base_hp": 6,
+      "armored_count": 0,
+      "armored_hp_multiplier": 1.0,
+      "clock_peg_count": 2,
+      "recommended_module": "splitter",
+      "positions": [
+        [
+          193,
+          352
+        ],
+        [
+          324,
+          388
+        ],
+        [
+          130,
+          390
+        ],
+        [
+          427,
+          401
+        ],
+        [
+          563,
+          407
+        ],
+        [
+          611,
+          469
+        ],
+        [
+          229,
+          470
+        ],
+        [
+          379,
+          483
+        ],
+        [
+          142,
+          485
+        ],
+        [
+          307,
+          506
+        ],
+        [
+          466,
+          544
+        ],
+        [
+          136,
+          563
+        ],
+        [
+          293,
+          587
+        ],
+        [
+          571,
+          601
+        ],
+        [
+          404,
+          609
+        ],
+        [
+          205,
+          612
+        ],
+        [
+          108,
+          631
+        ],
+        [
+          532,
+          663
+        ],
+        [
+          373,
+          704
+        ],
+        [
+          588,
+          713
+        ],
+        [
+          124,
+          722
+        ],
+        [
+          211,
+          728
+        ],
+        [
+          303,
+          743
+        ],
+        [
+          470,
+          758
+        ],
+        [
+          370,
+          801
+        ],
+        [
+          254,
+          803
+        ]
+      ],
+      "layout_seed": 156173
+    },
+    {
+      "level": 9,
+      "name": "Fragment Yard",
+      "family": "denseclusters",
+      "trait_brief": "Use the gaps left by broken pegs to aim at scattered gold survivors.",
+      "peg_count": 28,
+      "base_hp": 18,
+      "strength_tier": "gold",
+      "armored_count": 0,
+      "armored_hp_multiplier": 1.0,
+      "clock_peg_count": 2,
+      "recommended_module": "splitter",
+      "positions": [
+        [
+          198,
+          353
+        ],
+        [
+          529,
+          365
+        ],
+        [
+          413,
+          368
+        ],
+        [
+          264,
+          390
+        ],
+        [
+          105,
+          395
+        ],
+        [
+          602,
+          402
+        ],
+        [
+          331,
+          435
+        ],
+        [
+          487,
+          441
+        ],
+        [
+          408,
+          457
+        ],
+        [
+          163,
+          472
+        ],
+        [
+          549,
+          492
+        ],
+        [
+          255,
+          528
+        ],
+        [
+          145,
+          556
+        ],
+        [
+          504,
+          560
+        ],
+        [
+          584,
+          592
+        ],
+        [
+          238,
+          599
+        ],
+        [
+          377,
+          611
+        ],
+        [
+          101,
+          613
+        ],
+        [
+          484,
+          637
+        ],
+        [
+          173,
+          676
+        ],
+        [
+          597,
+          690
+        ],
+        [
+          416,
+          710
+        ],
+        [
+          340,
+          714
+        ],
+        [
+          495,
+          732
+        ],
+        [
+          257,
+          761
+        ],
+        [
+          567,
+          785
+        ],
+        [
+          188,
+          789
+        ],
+        [
+          446,
+          801
+        ]
+      ],
+      "layout_seed": 164092
+    },
+    {
+      "level": 10,
+      "name": "Heavy Gate",
+      "family": "armored",
+      "trait_brief": "Diamond pegs and two front armored pegs reward an equipped Impact treat.",
+      "peg_count": 30,
+      "base_hp": 24,
+      "strength_tier": "diamond",
+      "armored_count": 2,
+      "armored_hp_multiplier": 2.0,
+      "clock_peg_count": 2,
+      "recommended_module": "impact",
+      "positions": [
+        [
+          364,
+          351
+        ],
+        [
+          457,
+          360
+        ],
+        [
+          154,
+          389
+        ],
+        [
+          601,
+          394
+        ],
+        [
+          293,
+          395
+        ],
+        [
+          514,
+          421
+        ],
+        [
+          412,
+          437
+        ],
+        [
+          208,
+          449
+        ],
+        [
+          110,
+          470
+        ],
+        [
+          584,
+          493
+        ],
+        [
+          323,
+          515
+        ],
+        [
+          493,
+          516
+        ],
+        [
+          231,
+          521
+        ],
+        [
+          423,
+          528
+        ],
+        [
+          610,
+          566
+        ],
+        [
+          148,
+          590
+        ],
+        [
+          324,
+          594
+        ],
+        [
+          417,
+          626
+        ],
+        [
+          239,
+          628
+        ],
+        [
+          540,
+          635
+        ],
+        [
+          602,
+          672
+        ],
+        [
+          291,
+          692
+        ],
+        [
+          390,
+          698
+        ],
+        [
+          131,
+          702
+        ],
+        [
+          220,
+          733
+        ],
+        [
+          499,
+          743
+        ],
+        [
+          150,
+          781
+        ],
+        [
+          575,
+          783
+        ],
+        [
+          389,
+          796
+        ],
+        [
+          226,
+          805
+        ]
+      ],
+      "layout_seed": 172011
+    },
+    {
+      "level": 11,
+      "name": "Mixed Machinery",
+      "family": "armored",
+      "trait_brief": "Three armored pegs compete with wide cleanup; alternate focused hits and spread.",
+      "peg_count": 32,
+      "base_hp": 24,
+      "strength_tier": "diamond",
+      "armored_count": 3,
+      "armored_hp_multiplier": 2.0,
+      "clock_peg_count": 2,
+      "recommended_module": "impact",
+      "positions": [
+        [
+          363,
+          353
+        ],
+        [
+          282,
+          361
+        ],
+        [
+          434,
+          362
+        ],
+        [
+          531,
+          379
+        ],
+        [
+          129,
+          407
+        ],
+        [
+          210,
+          413
+        ],
+        [
+          373,
+          429
+        ],
+        [
+          457,
+          431
+        ],
+        [
+          594,
+          441
+        ],
+        [
+          310,
+          477
+        ],
+        [
+          102,
+          494
+        ],
+        [
+          515,
+          511
+        ],
+        [
+          403,
+          514
+        ],
+        [
+          175,
+          515
+        ],
+        [
+          627,
+          521
+        ],
+        [
+          255,
+          525
+        ],
+        [
+          213,
+          585
+        ],
+        [
+          93,
+          589
+        ],
+        [
+          625,
+          605
+        ],
+        [
+          320,
+          608
+        ],
+        [
+          458,
+          633
+        ],
+        [
+          526,
+          657
+        ],
+        [
+          162,
+          675
+        ],
+        [
+          342,
+          680
+        ],
+        [
+          607,
+          681
+        ],
+        [
+          440,
+          710
+        ],
+        [
+          253,
+          728
+        ],
+        [
+          112,
+          753
+        ],
+        [
+          510,
+          776
+        ],
+        [
+          405,
+          786
+        ],
+        [
+          621,
+          791
+        ],
+        [
+          193,
+          797
+        ]
+      ],
+      "layout_seed": 179930
+    },
+    {
+      "level": 12,
+      "name": "Foundry Finale",
+      "family": "armored",
+      "trait_brief": "Four armored pegs guard the finale. Open routes, collect time, then clean up.",
+      "peg_count": 34,
+      "base_hp": 24,
+      "strength_tier": "diamond",
+      "trial_base_hp": 6,
+      "armored_count": 4,
+      "armored_hp_multiplier": 2.0,
+      "clock_peg_count": 2,
+      "recommended_module": "impact",
+      "positions": [
+        [
+          362,
+          347
+        ],
+        [
+          221,
+          361
+        ],
+        [
+          629,
+          373
+        ],
+        [
+          473,
+          375
+        ],
+        [
+          565,
+          408
+        ],
+        [
+          139,
+          414
+        ],
+        [
+          283,
+          434
+        ],
+        [
+          622,
+          453
+        ],
+        [
+          359,
+          461
+        ],
+        [
+          471,
+          479
+        ],
+        [
+          177,
+          484
+        ],
+        [
+          106,
+          499
+        ],
+        [
+          307,
+          512
+        ],
+        [
+          577,
+          522
+        ],
+        [
+          156,
+          554
+        ],
+        [
+          361,
+          568
+        ],
+        [
+          268,
+          577
+        ],
+        [
+          95,
+          601
+        ],
+        [
+          459,
+          616
+        ],
+        [
+          597,
+          618
+        ],
+        [
+          198,
+          623
+        ],
+        [
+          529,
+          643
+        ],
+        [
+          92,
+          673
+        ],
+        [
+          292,
+          680
+        ],
+        [
+          162,
+          695
+        ],
+        [
+          377,
+          703
+        ],
+        [
+          593,
+          731
+        ],
+        [
+          234,
+          733
+        ],
+        [
+          482,
+          737
+        ],
+        [
+          314,
+          770
+        ],
+        [
+          395,
+          780
+        ],
+        [
+          549,
+          795
+        ],
+        [
+          135,
+          796
+        ],
+        [
+          212,
+          801
+        ]
+      ],
+      "layout_seed": 187849
+    }
+  ],
+  "layout_revision": 2
+}

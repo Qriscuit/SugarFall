@@ -1,0 +1,64 @@
+# Current blockers
+
+Historical v0.5 validation record. Its Fresh Test/profile-switch instructions are retired. Current source uses a single save and a confirmed **Settings → Reset progress** action; see [README](README.md#start-over-or-replay-the-introduction) for current behavior and [the GDD](docs/NEW_PLAYER_EXPERIENCE_GDD.md) for current onboarding evidence.
+
+PEG FOUNDRY 0.5.0 — BLOCKERS AND VALIDATION LIMITS
+Updated 23 October 2026, UTC
+
+This is a playable private prototype, not a store-ready release. v0.5 supersedes the recommended v0.4 checkpoint; the original checkpoint and separate Lab remain preserved.
+
+OPEN: PHYSICAL ANDROID TESTING
+No phone or emulator is attached. The APK was exported, signature-checked and inspected, but installation, touchscreen feel, actual cutouts/gesture bars, low-end graphics, battery use, thermal behavior and Android process-death behavior remain unverified. Independent progress: logic tests, synthetic safe-area/input tests, desktop gameplay QA and package checks.
+
+OPEN: WINDOWS RUNTIME TESTING
+The versioned Windows EXE/ZIP exported successfully and archive integrity was verified. It has not been executed on Windows. Cloud Linux source gameplay and isolated Linux export startup were checked instead.
+
+OPEN: HUMAN PLAYER AND COMMERCIAL EVIDENCE
+No external player study has established enjoyment, retention, willingness to pay, acquisition cost, ad fill or revenue. Automated controllers are engineering tools, not human pacing predictions. The campaign remains a short showcase. Independent progress: paired economy tests, meaningful early module choices, optional fixed-stat Trials and a research/validation plan.
+
+OPEN: ACCESSIBILITY AND RELEASE POLISH
+Sound can be switched off. Reduced motion now suppresses decorative effects without changing physics. Screen-reader semantic UI is still absent. Further art/audio polish, accessibility review, device matrix, release signing, store listing and platform certification remain outstanding. The prototype uses original toy-machine vector art and generated tones. The upgrade map is pannable; screen-reader semantics remain absent.
+
+INTENTIONALLY EXCLUDED: LIVE MONETIZATION
+No live ads, purchases, billing SDK, accounts, external analytics or network calls are integrated. The reward button is a clearly labeled simulation. Nothing is charged, published or submitted to a store. This is not evidence that ads or paid unlocks will succeed.
+
+SEPARATE MONETIZATION LAB
+The separate Lab compares a simulated one-time content unlock and sparse optional reward outcomes. It uses isolated local profiles, no real charges, ads, billing SDKs or network calls. Its hypothetical price and synthetic actions are not customer conversion, willingness-to-pay or revenue evidence. The Lab is not a third live commercial product.
+
+RESEARCH LIMIT: ORIGINAL GAME CATALOG
+The complete Plink Lab ball/upgrade catalog was not verified firsthand. Official advertised descriptions and update notes were checked, but the browser demo reported missing WebGL support. No GPU/security changes were attempted. Two optional academic records were inaccessible; no conclusions rely on them. Peg Foundry is original implementation, not a claim of exhaustive reproduction.
+
+RESOLVED FOR DESKTOP QA: INITIAL GRAPHICS ROUTE
+An initial shell-launched display route was blocked. An authorized existing cloud Godot interface provided a separate working route for actual desktop gameplay and screenshots. No restriction was bypassed. This does not resolve physical-phone testing.
+
+RESOLVED FOR DEBUG EXPORT: ANDROID TOOLING
+No proprietary Google SDK agreement was accepted. Separately licensed Debian AOSP tools and official Godot templates produced a development-signed APK. The limited tooling does not supply a full Gradle/NDK setup or an emulator. A production signing identity and store setup remain separate work.
+
+IMPLEMENTED SAFEGUARDS, STILL REQUIRING DEVICE VALIDATION
+- Android Back pauses/navigates; completed results are not discarded.
+- Focus loss pauses gameplay and checkpoints live state; completed results save locally.
+- OS-reported safe-area fitting and matching touch coordinate conversion are implemented.
+- Secondary touches are ignored; result buttons have a half-second click-through guard.
+- The optional simulated bonus requires separate confirmation; Cancel preserves the normal result.
+- Trials use separate temporary stats and cannot change campaign credits or upgrades.
+- Interrupted runs restore paused, including board/time/RNG/queued shots; no offline timer advance. Abrupt termination can lose work since the latest successful checkpoint (normally within five active seconds). Physical Android process-kill behavior remains untested.
+
+OPEN: BUILD DELIVERY
+The APK and Windows ZIP exceed the current chat attachment limit. Source/report files were deliverable. Private Drive upload is approved. The parent will upload and verify the new versioned files; this build phase does not claim delivery until confirmed.
+
+OPEN: DEVICE UPGRADE VALIDATION
+v0.5 retains the main Android package, with versionCode 5. It uses the latest recovered v0.3 development signer, NOT the lost original signer. Certificate continuity with the rebuilt v0.3 must be verified in the export manifest. Save migration is fixture-tested, but installation/update on a phone is not. Do not uninstall merely to update; uninstalling can remove data.
+
+RESOLVED IN v0.3 DESKTOP/SYNTHETIC QA
+Interrupted campaign and Trial runs restore paused; completed-result collection remains once-only. Closing the End Shift confirmation preserves the run. Reduced motion is available. Rapid navigation/collection taps are guarded, and restored Trial results show the correct peg total. These fixes do not substitute for physical Android testing.
+
+No blocker authorizes spending, publishing, changing sharing/security settings, copying protected assets or accepting undisclosed agreements.
+
+IMPLEMENTED IN v0.4
+Ten-second fresh runs, six baseline hits per normal peg, productive-damage earnings, adjusted upgrades/time bonuses, original toy-machine art and pannable upgrade map. A separately saved Fresh Test profile allows testing the opening without deleting Main progress. 61 profile assertions and actual desktop switching verified isolation. Old in-run balance snapshots and old Trial best times are incompatible; valid workshop progress and pending completed earnings are retained.
+
+BALANCE LIMIT
+Automated twelve-board journeys completed, but fresh opening required several attempts under tested policies. Later boards can be cleared without continued purchases after an early build. This is not proof every level needs new upgrades, nor a prediction of human pacing or enjoyment. Existing upgraded saves intentionally retain power; use Fresh Test for the new opening.
+
+OPEN: PIXEL6 PERFORMANCE VALIDATION
+The user reported v0.4 lag on Pixel6 correlated with many pegs. v0.5 reduces measured cloud CPU rendering/physics/audio work, but phoneGPU/frame pacing/thermal behavior is not verified. Default-off local performance display assists the next test. Gameplay data is unchanged, so v0.4 active checkpoints remain compatible. Prior version-migration notes refer to older pre-v0.4 balance.

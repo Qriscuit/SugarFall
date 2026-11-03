@@ -1,0 +1,20 @@
+{
+  "nodes": 62,
+  "special_nodes": 1,
+  "edges": 61,
+  "minimum_spacing": 365.0,
+  "world_rect": [
+    -3300,
+    -9000,
+    6600,
+    9900
+  ],
+  "peak_compact_footprints_checked": true,
+  "unrelated_tile_path_stroke_clearance": 64,
+  "node_bounds": [
+    -1279.8909,
+    -8225.0,
+    1275.8263,
+    440.0
+  ]
+}

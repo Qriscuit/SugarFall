@@ -1,0 +1,1237 @@
+{
+  "schema_version": 1,
+  "area_id": "gelato",
+  "chapter": "Gelato Garden",
+  "status": "Authored downward-fan layouts for the fixed top launcher. Four three-tray strength bands; human pacing validation remains required.",
+  "base_timer_seconds": 10,
+  "boards": [
+    {
+      "level": 1,
+      "name": "First Fan",
+      "family": "launcher_fan",
+      "trait_brief": "Two opening wafers frame a clear center lane for a first aimed scoop.",
+      "peg_count": 8,
+      "base_hp": 6,
+      "armored_count": 0,
+      "armored_hp_multiplier": 1,
+      "clock_peg_count": 0,
+      "recommended_module": null,
+      "positions": [
+        [
+          290,
+          350
+        ],
+        [
+          430,
+          350
+        ],
+        [
+          230,
+          450
+        ],
+        [
+          360,
+          450
+        ],
+        [
+          490,
+          450
+        ],
+        [
+          170,
+          570
+        ],
+        [
+          360,
+          570
+        ],
+        [
+          550,
+          570
+        ]
+      ],
+      "strength_tier": "bronze"
+    },
+    {
+      "level": 2,
+      "name": "Sundae Fork",
+      "family": "launcher_fork",
+      "trait_brief": "Choose either fork, then aim through the center gap to the lower pair.",
+      "peg_count": 10,
+      "base_hp": 6,
+      "armored_count": 0,
+      "armored_hp_multiplier": 1,
+      "clock_peg_count": 2,
+      "recommended_module": null,
+      "positions": [
+        [
+          210,
+          450
+        ],
+        [
+          510,
+          450
+        ],
+        [
+          150,
+          540
+        ],
+        [
+          285,
+          540
+        ],
+        [
+          435,
+          540
+        ],
+        [
+          570,
+          540
+        ],
+        [
+          225,
+          650
+        ],
+        [
+          495,
+          650
+        ],
+        [
+          270,
+          365
+        ],
+        [
+          450,
+          365
+        ]
+      ],
+      "strength_tier": "bronze"
+    },
+    {
+      "level": 3,
+      "name": "Wafer Cascade",
+      "family": "launcher_cascade",
+      "trait_brief": "A narrow opening widens into offset rows with open shots down both sides.",
+      "peg_count": 12,
+      "base_hp": 6,
+      "armored_count": 0,
+      "armored_hp_multiplier": 1,
+      "clock_peg_count": 2,
+      "recommended_module": null,
+      "positions": [
+        [
+          176,
+          460
+        ],
+        [
+          300,
+          460
+        ],
+        [
+          420,
+          460
+        ],
+        [
+          544,
+          460
+        ],
+        [
+          110,
+          600
+        ],
+        [
+          210,
+          600
+        ],
+        [
+          310,
+          600
+        ],
+        [
+          410,
+          600
+        ],
+        [
+          510,
+          600
+        ],
+        [
+          610,
+          600
+        ],
+        [
+          256,
+          350
+        ],
+        [
+          464,
+          350
+        ]
+      ],
+      "strength_tier": "bronze"
+    },
+    {
+      "level": 4,
+      "name": "Ribbon Lanes",
+      "family": "launcher_ribbon",
+      "trait_brief": "Offset ribbons leave diagonal lanes between the next set of wafers.",
+      "peg_count": 16,
+      "base_hp": 12,
+      "armored_count": 0,
+      "armored_hp_multiplier": 1,
+      "clock_peg_count": 2,
+      "recommended_module": "ricochet",
+      "positions": [
+        [
+          182,
+          450
+        ],
+        [
+          300,
+          450
+        ],
+        [
+          440,
+          450
+        ],
+        [
+          538,
+          450
+        ],
+        [
+          200,
+          540
+        ],
+        [
+          320,
+          540
+        ],
+        [
+          440,
+          540
+        ],
+        [
+          560,
+          540
+        ],
+        [
+          140,
+          630
+        ],
+        [
+          280,
+          630
+        ],
+        [
+          420,
+          630
+        ],
+        [
+          560,
+          630
+        ],
+        [
+          260,
+          720
+        ],
+        [
+          500,
+          720
+        ],
+        [
+          250,
+          360
+        ],
+        [
+          470,
+          360
+        ]
+      ],
+      "strength_tier": "silver",
+      "trial_base_hp": 6
+    },
+    {
+      "level": 5,
+      "name": "Open Chevron",
+      "family": "launcher_chevron",
+      "trait_brief": "An open chevron spreads into a wide lower fan without closing the top.",
+      "peg_count": 18,
+      "base_hp": 12,
+      "armored_count": 0,
+      "armored_hp_multiplier": 1,
+      "clock_peg_count": 2,
+      "recommended_module": "ricochet",
+      "positions": [
+        [
+          200,
+          450
+        ],
+        [
+          360,
+          450
+        ],
+        [
+          520,
+          450
+        ],
+        [
+          140,
+          540
+        ],
+        [
+          280,
+          540
+        ],
+        [
+          440,
+          540
+        ],
+        [
+          580,
+          540
+        ],
+        [
+          100,
+          650
+        ],
+        [
+          230,
+          650
+        ],
+        [
+          360,
+          650
+        ],
+        [
+          490,
+          650
+        ],
+        [
+          620,
+          650
+        ],
+        [
+          180,
+          770
+        ],
+        [
+          300,
+          770
+        ],
+        [
+          420,
+          770
+        ],
+        [
+          540,
+          770
+        ],
+        [
+          260,
+          360
+        ],
+        [
+          460,
+          360
+        ]
+      ],
+      "strength_tier": "silver"
+    },
+    {
+      "level": 6,
+      "name": "Sprinkle Sweeps",
+      "family": "launcher_sweeps",
+      "trait_brief": "Alternate between the two sweeping lanes and the central cleanup targets.",
+      "peg_count": 20,
+      "base_hp": 12,
+      "armored_count": 0,
+      "armored_hp_multiplier": 1,
+      "clock_peg_count": 2,
+      "recommended_module": "ricochet",
+      "positions": [
+        [
+          189,
+          440
+        ],
+        [
+          300,
+          440
+        ],
+        [
+          420,
+          440
+        ],
+        [
+          531,
+          440
+        ],
+        [
+          137,
+          530
+        ],
+        [
+          260,
+          530
+        ],
+        [
+          460,
+          530
+        ],
+        [
+          583,
+          530
+        ],
+        [
+          180,
+          620
+        ],
+        [
+          320,
+          620
+        ],
+        [
+          400,
+          620
+        ],
+        [
+          540,
+          620
+        ],
+        [
+          140,
+          710
+        ],
+        [
+          280,
+          710
+        ],
+        [
+          440,
+          710
+        ],
+        [
+          580,
+          710
+        ],
+        [
+          240,
+          800
+        ],
+        [
+          480,
+          800
+        ],
+        [
+          256,
+          350
+        ],
+        [
+          464,
+          350
+        ]
+      ],
+      "strength_tier": "silver"
+    },
+    {
+      "level": 7,
+      "name": "Twin Fans",
+      "family": "launcher_twin_fans",
+      "trait_brief": "Two broad fans leave a center route to the deepest wafers.",
+      "peg_count": 24,
+      "base_hp": 18,
+      "armored_count": 0,
+      "armored_hp_multiplier": 1,
+      "clock_peg_count": 3,
+      "recommended_module": "splitter",
+      "positions": [
+        [
+          189,
+          440
+        ],
+        [
+          440,
+          440
+        ],
+        [
+          531,
+          440
+        ],
+        [
+          180,
+          530
+        ],
+        [
+          300,
+          530
+        ],
+        [
+          420,
+          530
+        ],
+        [
+          540,
+          530
+        ],
+        [
+          110,
+          620
+        ],
+        [
+          250,
+          620
+        ],
+        [
+          470,
+          620
+        ],
+        [
+          610,
+          620
+        ],
+        [
+          160,
+          710
+        ],
+        [
+          260,
+          710
+        ],
+        [
+          360,
+          710
+        ],
+        [
+          460,
+          710
+        ],
+        [
+          560,
+          710
+        ],
+        [
+          120,
+          800
+        ],
+        [
+          240,
+          800
+        ],
+        [
+          360,
+          800
+        ],
+        [
+          480,
+          800
+        ],
+        [
+          600,
+          800
+        ],
+        [
+          256,
+          350
+        ],
+        [
+          464,
+          350
+        ],
+        [
+          280,
+          440
+        ]
+      ],
+      "strength_tier": "gold"
+    },
+    {
+      "level": 8,
+      "name": "Broken Arches",
+      "family": "launcher_arches",
+      "trait_brief": "Broken arches offer gaps for aiming beyond the first row.",
+      "peg_count": 26,
+      "base_hp": 18,
+      "armored_count": 0,
+      "armored_hp_multiplier": 1,
+      "clock_peg_count": 3,
+      "recommended_module": "splitter",
+      "positions": [
+        [
+          177,
+          459
+        ],
+        [
+          430,
+          440
+        ],
+        [
+          543,
+          459
+        ],
+        [
+          124,
+          555
+        ],
+        [
+          235,
+          540
+        ],
+        [
+          360,
+          530
+        ],
+        [
+          485,
+          540
+        ],
+        [
+          596,
+          555
+        ],
+        [
+          150,
+          650
+        ],
+        [
+          255,
+          635
+        ],
+        [
+          360,
+          625
+        ],
+        [
+          465,
+          635
+        ],
+        [
+          570,
+          650
+        ],
+        [
+          100,
+          745
+        ],
+        [
+          204,
+          730
+        ],
+        [
+          308,
+          720
+        ],
+        [
+          412,
+          720
+        ],
+        [
+          516,
+          730
+        ],
+        [
+          620,
+          745
+        ],
+        [
+          180,
+          835
+        ],
+        [
+          300,
+          815
+        ],
+        [
+          420,
+          815
+        ],
+        [
+          540,
+          835
+        ],
+        [
+          256,
+          350
+        ],
+        [
+          464,
+          350
+        ],
+        [
+          290,
+          440
+        ]
+      ],
+      "strength_tier": "gold",
+      "trial_base_hp": 6
+    },
+    {
+      "level": 9,
+      "name": "Zigzag Lanes",
+      "family": "launcher_zigzag",
+      "trait_brief": "Zigzag rows change the open firing angle as the front wafers clear.",
+      "peg_count": 28,
+      "base_hp": 18,
+      "armored_count": 0,
+      "armored_hp_multiplier": 1,
+      "clock_peg_count": 3,
+      "recommended_module": "splitter",
+      "positions": [
+        [
+          192,
+          435
+        ],
+        [
+          280,
+          455
+        ],
+        [
+          541,
+          455
+        ],
+        [
+          127,
+          550
+        ],
+        [
+          235,
+          530
+        ],
+        [
+          360,
+          550
+        ],
+        [
+          485,
+          530
+        ],
+        [
+          593,
+          550
+        ],
+        [
+          150,
+          625
+        ],
+        [
+          255,
+          645
+        ],
+        [
+          360,
+          625
+        ],
+        [
+          465,
+          645
+        ],
+        [
+          570,
+          625
+        ],
+        [
+          100,
+          740
+        ],
+        [
+          204,
+          720
+        ],
+        [
+          308,
+          740
+        ],
+        [
+          412,
+          720
+        ],
+        [
+          516,
+          740
+        ],
+        [
+          620,
+          720
+        ],
+        [
+          130,
+          815
+        ],
+        [
+          225,
+          835
+        ],
+        [
+          320,
+          815
+        ],
+        [
+          415,
+          835
+        ],
+        [
+          510,
+          815
+        ],
+        [
+          605,
+          835
+        ],
+        [
+          256,
+          350
+        ],
+        [
+          464,
+          350
+        ],
+        [
+          420,
+          435
+        ]
+      ],
+      "strength_tier": "gold"
+    },
+    {
+      "level": 10,
+      "name": "Chocolate Lattice",
+      "family": "launcher_lattice",
+      "trait_brief": "Offset lattice rows reward deliberate lanes; armor guards two lower targets.",
+      "peg_count": 30,
+      "base_hp": 24,
+      "armored_count": 2,
+      "armored_hp_multiplier": 2,
+      "clock_peg_count": 3,
+      "recommended_module": "impact",
+      "positions": [
+        [
+          620,
+          830
+        ],
+        [
+          145,
+          830
+        ],
+        [
+          185,
+          446
+        ],
+        [
+          430,
+          446
+        ],
+        [
+          535,
+          446
+        ],
+        [
+          131,
+          542
+        ],
+        [
+          204,
+          542
+        ],
+        [
+          308,
+          542
+        ],
+        [
+          412,
+          542
+        ],
+        [
+          516,
+          542
+        ],
+        [
+          589,
+          542
+        ],
+        [
+          145,
+          638
+        ],
+        [
+          240,
+          638
+        ],
+        [
+          335,
+          638
+        ],
+        [
+          430,
+          638
+        ],
+        [
+          525,
+          638
+        ],
+        [
+          620,
+          638
+        ],
+        [
+          100,
+          734
+        ],
+        [
+          195,
+          734
+        ],
+        [
+          290,
+          734
+        ],
+        [
+          385,
+          734
+        ],
+        [
+          480,
+          734
+        ],
+        [
+          575,
+          734
+        ],
+        [
+          240,
+          830
+        ],
+        [
+          335,
+          830
+        ],
+        [
+          430,
+          830
+        ],
+        [
+          525,
+          830
+        ],
+        [
+          256,
+          350
+        ],
+        [
+          464,
+          350
+        ],
+        [
+          290,
+          446
+        ]
+      ],
+      "strength_tier": "diamond"
+    },
+    {
+      "level": 11,
+      "name": "Stepped Crown",
+      "family": "launcher_crown",
+      "trait_brief": "Stepped arcs widen into a crown with armor near the lower edge.",
+      "peg_count": 32,
+      "base_hp": 24,
+      "armored_count": 3,
+      "armored_hp_multiplier": 2,
+      "clock_peg_count": 3,
+      "recommended_module": "impact",
+      "positions": [
+        [
+          100,
+          835
+        ],
+        [
+          620,
+          835
+        ],
+        [
+          187,
+          825
+        ],
+        [
+          290,
+          455
+        ],
+        [
+          430,
+          455
+        ],
+        [
+          528,
+          435
+        ],
+        [
+          127,
+          550
+        ],
+        [
+          235,
+          530
+        ],
+        [
+          360,
+          540
+        ],
+        [
+          485,
+          530
+        ],
+        [
+          593,
+          550
+        ],
+        [
+          100,
+          645
+        ],
+        [
+          187,
+          635
+        ],
+        [
+          273,
+          625
+        ],
+        [
+          360,
+          625
+        ],
+        [
+          447,
+          625
+        ],
+        [
+          533,
+          635
+        ],
+        [
+          620,
+          645
+        ],
+        [
+          100,
+          720
+        ],
+        [
+          187,
+          730
+        ],
+        [
+          273,
+          740
+        ],
+        [
+          360,
+          740
+        ],
+        [
+          447,
+          740
+        ],
+        [
+          533,
+          730
+        ],
+        [
+          620,
+          720
+        ],
+        [
+          273,
+          815
+        ],
+        [
+          360,
+          815
+        ],
+        [
+          447,
+          815
+        ],
+        [
+          533,
+          825
+        ],
+        [
+          256,
+          350
+        ],
+        [
+          464,
+          350
+        ],
+        [
+          192,
+          435
+        ]
+      ],
+      "strength_tier": "diamond"
+    },
+    {
+      "level": 12,
+      "name": "Grand Cascade",
+      "family": "launcher_grand_cascade",
+      "trait_brief": "A narrow opening expands into a full cascade with four lower armored wafers.",
+      "peg_count": 36,
+      "base_hp": 24,
+      "armored_count": 4,
+      "armored_hp_multiplier": 2,
+      "clock_peg_count": 3,
+      "recommended_module": "impact",
+      "positions": [
+        [
+          100,
+          830
+        ],
+        [
+          620,
+          830
+        ],
+        [
+          187,
+          830
+        ],
+        [
+          533,
+          830
+        ],
+        [
+          195,
+          430
+        ],
+        [
+          430,
+          430
+        ],
+        [
+          525,
+          430
+        ],
+        [
+          148,
+          510
+        ],
+        [
+          235,
+          510
+        ],
+        [
+          360,
+          510
+        ],
+        [
+          485,
+          510
+        ],
+        [
+          572,
+          510
+        ],
+        [
+          145,
+          590
+        ],
+        [
+          240,
+          590
+        ],
+        [
+          335,
+          590
+        ],
+        [
+          430,
+          590
+        ],
+        [
+          525,
+          590
+        ],
+        [
+          613,
+          590
+        ],
+        [
+          100,
+          670
+        ],
+        [
+          195,
+          670
+        ],
+        [
+          290,
+          670
+        ],
+        [
+          385,
+          670
+        ],
+        [
+          480,
+          670
+        ],
+        [
+          575,
+          670
+        ],
+        [
+          145,
+          750
+        ],
+        [
+          240,
+          750
+        ],
+        [
+          335,
+          750
+        ],
+        [
+          430,
+          750
+        ],
+        [
+          525,
+          750
+        ],
+        [
+          620,
+          750
+        ],
+        [
+          273,
+          830
+        ],
+        [
+          360,
+          830
+        ],
+        [
+          447,
+          830
+        ],
+        [
+          256,
+          350
+        ],
+        [
+          464,
+          350
+        ],
+        [
+          290,
+          430
+        ]
+      ],
+      "strength_tier": "diamond",
+      "trial_base_hp": 6
+    }
+  ],
+  "layout_revision": "top_launcher_v1",
+  "launcher_origin": [
+    360,
+    267
+  ]
+}

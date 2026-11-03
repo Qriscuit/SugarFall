@@ -1,0 +1,36 @@
+{
+  "method": "built-in image_gen",
+  "source_pixels_preserved": true,
+  "world_rect": [-1900, -5300, 10850, 6200],
+  "source_size": [1659, 948],
+  "assets": [
+    {
+      "name": "bakery_upgrade_arc",
+      "project_path": "PLINKO/data/art/environment/upgrade_arc_v2.png",
+      "source": "C:/Users/Hursh/.codex/generated_images/01a173c0-7a0e-7573-a977-1595f71b5672/exec-d600c253-f664-4a43-9ec9-371305ec911c.png",
+      "prompt_chain": ["prompts.txt", "clearance-revision-prompt.txt", "inner-courtyard-prompt.txt"],
+      "references": [
+        {"path": "concept-art/upgrade-arc-world-v1/arc-composition-guide.png", "role": "exact map-space geometry guide, initial edit target"},
+        {"path": "PLINKO/data/art/environment/bakery_landmark.png", "role": "production materials, color and lighting style reference"},
+        {"path": "PLINKO/data/art/environment/journey_backdrop.png", "role": "production background material reference"},
+        {"path": "verification/arc-art-v1/renders/bakery-whole-arc.png", "role": "live tile placement clearance reference for revision"}
+      ],
+      "intermediate_sources": [
+        "C:/Users/Hursh/.codex/generated_images/01a173c0-7a0e-7573-a977-1595f71b5672/exec-aedca3f5-8465-4b3f-a554-56d161e00824.png",
+        "C:/Users/Hursh/.codex/generated_images/01a173c0-7a0e-7573-a977-1595f71b5672/exec-c4fcdce1-501c-461f-8147-8aeac1fe6c8c.png"
+      ]
+    },
+    {
+      "name": "gelato_upgrade_arc",
+      "project_path": "PLINKO/data/art/gelato/environment/upgrade_arc_v2.png",
+      "source": "C:/Users/Hursh/.codex/generated_images/01a173c0-7a0e-7573-a977-1595f71b5672/exec-4f775e1e-02d0-40f1-8f00-0a87e7068aa5.png",
+      "prompt_chain": ["gelato-final-prompt.txt"],
+      "references": [
+        {"path": "PLINKO/data/art/environment/upgrade_arc_v2.png", "role": "edit target; approved geometry and clearance"},
+        {"path": "PLINKO/data/art/gelato/environment/journey_backdrop.png", "role": "production lavender garden palette and planting style reference"}
+      ],
+      "retired_source": "C:/Users/Hursh/.codex/generated_images/01a173c0-7a0e-7573-a977-1595f71b5672/exec-8d4ff513-9363-4838-9d45-68358fbda331.png",
+      "retired_prompt": "gelato-prompt.txt"
+    }
+  ]
+}

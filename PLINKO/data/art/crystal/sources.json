@@ -1,0 +1,136 @@
+{
+  "area": "crystal",
+  "title": "Crystal Candyworks",
+  "created": "2026-11-03",
+  "assets": [
+    {
+      "path": "PLINKO/data/art/crystal/food/balls_atlas.png",
+      "source": "C:/Users/Hursh/.codex/generated_images/01a18eec-0873-77c1-9160-dfb0c076a936/exec-21e076e4-4bc7-4f48-84ec-e57904d40390.png",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "bytes": 2500638,
+      "sha256": "e28bb783b08f822274b98bf79544f406f1352d27bf95f34240a8e11c4ff285f1",
+      "mode": "RGBA",
+      "transparent_background_requested": true,
+      "grid_columns_rows": [
+        3,
+        2
+      ],
+      "method": "built-in image_gen.imagegen",
+      "pixels_modified": false,
+      "prompt_file": "concept-art/crystal-candyworks-v1/balls-prompt-01.txt",
+      "prompt": "Use case: stylized-concept. Production transparent sprite atlas for Sugarfall Area 3, Crystal Candyworks. Reference image is style only: rich edible detail, softly sculpted 2.5D, clear food silhouette, light upper left. Create a 3-column by 2-row uniform grid of SIX INDIVIDUAL sprites, on real transparent alpha. Canvas landscape 1536x1024. Cell centers exactly x=16.67%,50%,83.33%; y=25%,75%. Every sprite fully inside its cell, no object, shadow or sparkle beyond central70% of cell; no cells touch. No grid lines, words, numbers or labels.\nTop row left: normal shot, one round faceted pale-aqua hard-candy marble with tiny visible sugar crystals, mouthwatering glossy translucency, circular silhouette.\nTop middle: ricochet shot, one bright amber lemon crystal candy marble with a clean spiral groove, circular silhouette, distinct golden color.\nTop right: splitter shot, one coral-pink raspberry sugar crystal cluster, approximately round, visible separate segments that suggest splitting.\nBottom left: impact shot, one deep-blue blueberry sugar sphere with thick faceted crystal shell and small warm copper-glaze core, round hefty silhouette.\nBottom middle: shard shot, one small pale-pink elongated diamond-shaped candy fragment, centered, simple readable pointed silhouette.\nBottom right: multiplier pickup, two small aqua candy marbles side-by-side inside a softly radiant peach crystal medallion, approximately round silhouette. NO baked \u00d72 text; game draws its own text/timer.\nPalette harmonizes icy aqua, pale peach, warm copper. These are edible candy objects, not precious jewelry. No ground plane, rectangle backdrop, shadow plate, environment, frames or watermark. Individual soft self shadows containedinsideobjects, isolatedalphaoutside. All six items should read at small mobile size.\n"
+    },
+    {
+      "path": "PLINKO/data/art/crystal/food/pegs_atlas.png",
+      "source": "C:/Users/Hursh/.codex/generated_images/01a18eec-0873-77c1-9160-dfb0c076a936/exec-ba23ce76-247c-4361-af36-f41be8e50657.png",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "bytes": 2247994,
+      "sha256": "b500c4bed35edf382bb4f6a862994641f5e80fe39443e4d448429b244d3404da",
+      "mode": "RGBA",
+      "transparent_background_requested": true,
+      "grid_columns_rows": [
+        4,
+        4
+      ],
+      "method": "built-in image_gen.imagegen",
+      "pixels_modified": false,
+      "prompt_file": "concept-art/crystal-candyworks-v1/pegs-prompt-01.txt",
+      "prompt": "Use case: stylized-concept. Create production TRANSPARENT sprite atlas for Sugarfall Crystal Candyworks. A perfect 4-column by 4-row grid of SIXTEEN separate round faceted hard-candy target pegs, on true transparent alpha. Square canvas ideally2048x2048. Uniform cells centered at12.5%,37.5%,62.5%,87.5% ofwidthandheight. Eachwhole intactpeg occupiescentral68%ofitscell; transparentgutteraroundeveryitem. Soft detailed2.5D edible sugar, roundedoctagonal silhouette approximatescircle, upperleftlighting; don'tdrawrectangularbricks.\nColumns define DAMAGE, lefttoright: intact; small outerchip+hairlinecrack; two larger missingedgechunks+clearcracks; heavily chipped withabout40%materialgone, stillreadable identity. Brokenawayparts arefullytransparent, no detacheddebris. Acrossfourcolumns keep sameoriginalscaleandcenter; don'tenlarge damagedremnants.\nRows define ROLES:\nRow1 normal: pale neutral white/icy translucent rock-candy disc with restrainedfacets, meanttobe tintedBronze/Silver/Gold/Diamond bygame. Lightneutralbody.\nRow2 armored: samecandy disc in thick silverywhite sugar shell with thin warmcopper protective rim; robustediblecoating.\nRow3 prism: samepalecandy disc with smallbrightcoral/aqua triangular sugarinlay incenter.\nRow4 clock: samepalecandy disc with smallcopperclockface candyinlay, twoclearclockhands,nodigits.\nKeep tintableneutralwhitebody for everyrole, decorationssmallbutdistinct. Everycolumnstillshows roledecorationwhenpossible. No gridlines, captions, letters, text, labels, scenery, ground, backdrop or watermark. No glows or halos beyond object silhouette. Thisisassetart, notgameplay screenshot. Referenceonlyshowsquality/materialsoftness, notwaffletexture. Outputindividualspritesinexactgridonalpha.\n"
+    },
+    {
+      "path": "PLINKO/data/art/crystal/food/equipment_atlas.png",
+      "source": "C:/Users/Hursh/.codex/generated_images/01a18eec-0873-77c1-9160-dfb0c076a936/exec-29fa76b2-47c2-4e2a-b227-eaf3fed9f2df.png",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "bytes": 1503964,
+      "sha256": "d32877f88749bc78a816a0d7aa0e1f22b6b0540be481a82b98db565f613b9cac",
+      "mode": "RGBA",
+      "transparent_background_requested": true,
+      "grid_columns_rows": [
+        2,
+        2
+      ],
+      "method": "built-in image_gen.imagegen",
+      "pixels_modified": false,
+      "prompt_file": "concept-art/crystal-candyworks-v1/equipment-prompt-01.txt",
+      "prompt": "Use case: stylized-concept. Production individual equipment sprite atlas for Sugarfall Crystal Candyworks. Reference1 shows launcher orientation and polished copper; reference2 shows tray material only. Create4 separate props arranged exact2columns\u00d72rows uniform squaregrid on genuinely transparent alpha, native ideally1536x1536. Eachitemfullyinsidetop/bottomleft/rightcell with12%cleartransparentgutter, nointersection, nogrid or labels.\nTOPLEFT: upright candy-spout launcher, glossy paleaqua ceramic funnel with warm copper rim and circularjoint, filledwithseveral small faceted aqua/peach sugarcandy marbles. A short copper nozzle points STRAIGHT DOWN atbottomcenter. Compactupperbody, outletbottomcenter mustbe lowestpoint. Frontal slightlyelevatedview, volumetricpaintedstyle.\nTOPRIGHT: empty collector cup in paleblue translucent sugarglass with ivoryglazedbase and thin copperrim. Uprightopentop ellipticalmouth, visibleemptyinterior; roundedtallvessel seenfrontallyfromslightabove. Noletters,numbers orcontents.\nBOTTOMLEFT: matching collector cup, warmgoldhoney crystalglass and brighter restrainedgoldrim, samecamera anddimensions asothercup.\nBOTTOMRIGHT: CrystalCandyworks landmark building, miniaturecozy candyworkshop with facetsugarglassroof, warmcopperframework, ivorywalls, tiny pastelcandygrowths atthebase, no signs/windows-as-faces. Distinctfromgelato kiosk; compactsinglebuilding.\nSoft2.5D detailedediblematerialillustration, upperleft light, paleaqua/peach/copperpalette. No environment, floor, backdrop, drop-shadowplate, detachedsparkles, text, watermark orbakedUI. Everyitemisolatedonalpha.\n"
+    },
+    {
+      "path": "PLINKO/data/art/crystal/food/tray.png",
+      "source": "C:/Users/Hursh/.codex/generated_images/01a18eec-0873-77c1-9160-dfb0c076a936/exec-2e50a5c0-3e4d-43f5-9b9e-5a3c7234cd8a.png",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "bytes": 1500586,
+      "sha256": "895d831a4b32c8a4047fec2d3e287ef868252161066060fe4b4fc7cfea967596",
+      "mode": "RGBA",
+      "transparent_background_requested": true,
+      "grid_columns_rows": null,
+      "method": "built-in image_gen.imagegen",
+      "pixels_modified": false,
+      "prompt_file": "concept-art/crystal-candyworks-v1/tray-prompt-01.txt",
+      "prompt": "Use case: precise-object-edit. Create one new standalone CrystalCandyworks gameplay tray sprite using referenceonly for exact usefulframing: preserveportrait2:3 ratio, upright roundedrectangle, straightverticalsideedges andthinrails. Replace lavenderrail with icy paleaqua glazed ceramic and warmcopper cornerjoints. Interior is a VERY QUIET paleiceblue/silver satin sugar-glass surface, subtlyfaceted onlynearouteredge, centeralmostuniform so candyprojectiles/targetsreadclearly. Thinwarmcopperoutline. Entiretray visible with6%transparentmargin onallsides. Upperleftsoftlighting andpolished2.5D Sugarfallmaterialstyle. True transparentalpha OUTSIDEthetray; interioropaque. Nofood,pegs,balls,spout,buckets,text,icons,UI,controls,decorations, floor orshadowoutsideobject. Nativeportrait1024x1536.\n"
+    },
+    {
+      "path": "PLINKO/data/art/crystal/environment/candyworks_room.png",
+      "source": "C:/Users/Hursh/.codex/generated_images/01a18eec-0873-77c1-9160-dfb0c076a936/exec-96ebb91c-3380-46f5-9601-336d9fdc99ef.png",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "bytes": 1790559,
+      "sha256": "9b151f84f6b11a7210a991cf91f3ebdb80568c1e695e7928c048d84c8d9d104f",
+      "mode": "RGB",
+      "transparent_background_requested": false,
+      "grid_columns_rows": null,
+      "method": "built-in image_gen.imagegen",
+      "pixels_modified": false,
+      "prompt_file": "concept-art/crystal-candyworks-v1/room-prompt-01.txt",
+      "prompt": "Use case: stylized-concept. Production whole-screen background art for Sugarfall Area3 CrystalCandyworks. Portrait2:3 fullcanvas ideally1024x1536. Reference1 is equipment/style only: icy aqua candyglass, ivory ceramic and restrained warmcopper, softly detailed2.5D illustration. Create a cozy artisan hard-candy workshop counter seen from above and slightly toward backwall, designed UNDER a portrait game board. The central76%ofwidth fromy15%to95% muststay veryquiet paleicy-blue satin marble/candyglass work surface with sparse restrainedfaceting nearouteredges, evenlylit, neverdark. At far leftandrightmarginonly: slimcopper candy-makingpipes, tiny sugarglassjars with peach/aqua candies, roundedarchitecturaltrim. Uppercornersshow hints of facetedwindowglass and softdaylight. Nofood spritesorlargeequipmentinthecenter. No gameplaytray, spout, cups, pegs, balls, UI, letters,numbers,labels,signs,characters orwatermarks. No floorcheckerpattern,no purple,no bakerycookies/no icecream. Atmosphericsoftblue/cream withtiny peachaccents. Entirebackgroundopaque, pleasantlysoftcontrast underlivecontrols.\n"
+    },
+    {
+      "path": "PLINKO/data/art/crystal/environment/journey_backdrop.png",
+      "source": "C:/Users/Hursh/.codex/generated_images/01a18eec-0873-77c1-9160-dfb0c076a936/exec-2feab2ee-54eb-4c7e-992a-798b670ca596.png",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "bytes": 2433473,
+      "sha256": "cfb5ddcc8cf43b003e9fba8405bd4c19b736e7de47e5287b0392587441ffacda",
+      "mode": "RGB",
+      "transparent_background_requested": false,
+      "grid_columns_rows": null,
+      "method": "built-in image_gen.imagegen",
+      "pixels_modified": false,
+      "prompt_file": "concept-art/crystal-candyworks-v1/journey-prompt-01.txt",
+      "prompt": "Use case: stylized-concept. Complete portrait2:3 background for Sugarfall CrystalCandyworks level journey. Opaque fullcanvas1024x1536. Same polishedstorybook2.5D sugarglass/copperstyle asreferenceequipment. A vertical candyworks garden passage paved in verypale aquastone, with compact faceted sugarcrystal planters, small copper pipe arches and miniature candy-glass workshop accents along ONLYouteredges(left0-22%andright78-100%). Keep middle60%ofcanvas quiet open continuous paleicyblue paving fromtop tobottom; livemap nodes drawthere separately. Decorations variedandspacedwithopenbreathingroom, peach and turquoise candycrystals, restrainedcopper,naturalsoftshadows. No bakedpath, connectinglines, steps, track, gameplayobjects, labels, text, coins, buttons, UI, people orwatermark. Fairlyuniform top-down surface scalethroughwholeimage, no horizon orvanishingpoint. Beautifulwarmdaylightwithcoldblueground, refinedlowcontrast sooverlaidjourney staysreadable.\n"
+    },
+    {
+      "path": "PLINKO/data/art/crystal/environment/upgrade_courtyard.png",
+      "source": "C:/Users/Hursh/.codex/generated_images/01a18eec-0873-77c1-9160-dfb0c076a936/exec-3fca1eae-6029-4512-b0bc-76f365581f8c.png",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "bytes": 1709081,
+      "sha256": "3c74d02ccb8d4a74b035e8c98773510eef9938268e076d65e52e3bc757ac4678",
+      "mode": "RGB",
+      "transparent_background_requested": false,
+      "grid_columns_rows": null,
+      "method": "built-in image_gen.imagegen",
+      "pixels_modified": false,
+      "prompt_file": "concept-art/crystal-candyworks-v1/courtyard-prompt-01.txt",
+      "prompt": "Use case: stylized-concept. Production fullbackground for Sugarfall CrystalCandyworks UPGRADE map. Image1 is EXACTPLACEMENTGUIDE ONLY: all shadednodefootprintsandroutes mustbe blankquietground inoutput, NO guideelements. Image2 is styleonly forcandyglass/copperarchitecture. Wholeportrait2:3canvas1024x1536. Worldis anairyiced-aqua ceramiccandyworks courtyard, gentlyfaceted paleaqua/ivoryground lowcontrastacrosswholeimage. Three live winding upgrade columns occupy centralpart andMUSTNOT bepainted. Place6SMALLsceneryislandsONLY atcenters (14%,20%),(86%,20%),(14%,48%),(86%,48%),(14%,76%),(86%,76%). Each COMPLETEsilhouetteincludingfoliage/shadow widthMAX14%canvasandheightMAX11%. Types: miniaturecopperframedcrystalsugar greenhouse, peach/aquacandycrystalgarden, delicatecoppercandy-machinegazebo, slimfacetedrock-candytopiary, tinycandy-glassworkshop, smallcopperbenchwithcrystalplanters. Keepallgroupsstrictlywithinx7%-21%or79%-93%; doNOTmove themintomiddle. The central56%ofcanvas acrossfullheightmustbe just quietground. Optionalsubtlehexagonalceramicseamsonly, restrainedandnotcoloredroutes. Outer3% fadesgentlytouniformpaleaqua#e2f0f2 toblendwithgameedge. NOtext,numbers,nodes,icons,buttons,connectinglines,paths,frames orwatermark. No purple. Do not copy guideheader/boxes.\n"
+    }
+  ],
+  "notes": "Seven native generated images. Individual atlas items are referenced through normalized runtime source regions; no atlas image was cropped, resized, recolored, or retouched. Native sizes, not requested sizes, are authoritative. Damage stages share per-role framing to prevent remaining fragments from enlarging."
+}

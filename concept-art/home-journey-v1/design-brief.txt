@@ -1,0 +1,89 @@
+HOME + LEVEL JOURNEY / concept pass / 23 October 2026
+
+STATUS
+Design proposals only. No runtime screens, saves, economy or area progression
+changed in this pass. Illustrations are composition/material references, not
+production sprites. Use separate assets and live content when implemented.
+
+HOME
+Top: a prominent clickable current-level plaque, for example Bakery · 4 / 12,
+with a winding-path icon and chevron. The entire plaque opens the level map.
+A small settings/menu control keeps Help and Trials accessible.
+Wallet remains exact and readable. Center the current tray as a tangible food
+object, without another surrounding content card. Its production preview must
+use the actual selected level's peg arrangement and food assets; the concept's
+eight cookies illustrate styling, not the final level-4 configuration.
+Bottom: one dominant Play action and one quieter Upgrades action.
+Remove the slogan, large game title, redundant level heading, instructions and
+separate Trays button. Do not add an invented energy system, stars or offers.
+
+LEVEL MAP
+Open centered on the current level. One finger scrolls vertically through an
+original winding bakery trail, from level1 at the bottom to level12 at the top.
+Desktop wheel scrolls this map. Unlike the freeform upgrade map, this linear
+journey needs no zoom controls or pinch interaction.
+Show about five or six comfortable targets at once, with continuing path and
+partial edge nodes implying scrolling. The page itself is the map; no inset box.
+The phone concept shows levels2–7. The full-route illustration describes the
+entire scrollable content and is not intended to fit inside one phone viewport.
+
+Completed: ivory biscuit/ceramic, live number and check.
+Current/selected: mint enamel, copper selection rim, small donut marker.
+Locked: muted cream, live number and padlock; never purchasable or selectable.
+Keep red reserved for unaffordable upgrades. Do not invent star ratings.
+Use the existing 200ms tiny tap bounce and Reduced Motion behavior for available
+level selection. Keep labels and state icons separate from generated art.
+
+NAVIGATION
+Home Play -> current selected level, one tap.
+Home current-level plaque -> map centered on that level, one tap.
+Map available node -> selection; fixed Play · N -> run directly.
+Map back -> home. Completed levels in the active area remain replayable.
+Future nodes remain locked. Clearing any replay must not skip progression.
+Upgrades -> existing Recipe Trails; its Play action remains direct.
+
+AREA HANDOFF
+Clear level12 (not merely select or reach it), collect the result, then enter a
+short area-completion/next-area step. The gateway and environment preview make
+the next destination visible. Berry Orchard is an illustrative proposed theme,
+not a finalized requirement. Other food environments can use the same grammar.
+The next area's local ladder begins at level1 with local upgrades reset. The
+proposed reset also clears local coins/equipment/unlock vouchers; finalize the
+exact reset contract before implementing persistence or balance.
+Communicate the actual changes briefly, e.g. new area name, Level 1,
+Upgrades reset, Coins -> 0 (if coins reset), and Continue. These are functional
+consequences, not flavor text. No surprise reset on an ordinary map tap.
+Preserve prior area completion history, settings and permanent paid ownership,
+including Remove Ads, Baker Toolkit, restore records and entitlement state.
+Do not use the full-profile reset function to advance an area.
+
+CURRENT IMPLEMENTATION BOUNDARY
+The game currently has one area of 12 levels. Clearing 12 sets chapter_complete
+and leaves current_level at 12. A new area ID, per-area progress, reset contract,
+save migration and theme selection are future implementation work.
+
+STYLE
+Keep softly painted 2.5D food, rounded clean forms, cream ceramic, mint enamel,
+fine copper fittings and upper-left light. Fraunces for short actions/area names,
+Nunito for digits and operational labels. The proposed orchard changes scenery,
+food accents and material colors while keeping controls recognizable.
+Generated scenes are an art-direction target, with fine background detail
+reduced during production if it competes with phone-size targets or labels.
+Only useful labels: area/level, currency, Play, Upgrades, numbers and state marks.
+No flavor copy, slogans, gesture hints or explanatory decoration in the UI.
+
+FUTURE ASSET BREAKDOWN
+Reuse: food sprites, coin, primary/secondary button skins, fonts, live check and
+lock symbols, gameplay tray, cups and hopper.
+Create: quiet home background; blank current-level selector if existing panel
+cannot support its icon/chevron; modular vertical bakery map scenery; blank
+round level medallions for completed/current/locked states; small donut marker;
+area-end gateway; next-area environment pieces and appropriate food variations.
+Render route geometry, labels, counters, selection and progress live in Godot.
+Generate individual art pieces with real transparency where needed; do not
+slice text-bearing concept screenshots into runtime controls.
+
+NEXT DESIGN CHECK
+Review home hierarchy, path readability and the proposed orchard transition.
+After selecting the direction, create individual assets, integrate the screens,
+then implement and validate area progression separately from art replacement.

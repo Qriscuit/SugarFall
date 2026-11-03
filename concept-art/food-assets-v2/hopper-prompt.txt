@@ -1,0 +1,10 @@
+Generated with built-in image_gen.
+References: PLINKO/data/art/food/hopper.png and verification/decimal-buckets/gameplay.png
+
+Use case: precise-object-edit.
+Asset type: one production sprite for a 2D food-themed Godot game, genuinely transparent background.
+Input image 1: the existing mint-and-copper donut hopper to redesign. Input image 2: gameplay screenshot, STYLE AND MATERIAL REFERENCE ONLY. Do not recreate the screen.
+Primary request: remake the donut feeder as a roomier, taller, clearly readable little machine. The old version feels flattened and squished. Preserve its mint enamel, warm copper accents, pink sprinkled donuts, painterly 2.5D materials, and upper-left lighting, but change the geometry substantially.
+Subject: one upright mint-enamel hopper with a rounded open top holding three plump strawberry-frosted ring donuts. A deep tapered funnel body narrows into a distinct short copper cylindrical outlet at the bottom center. The outlet points DOWN into the game board, with a clearly readable dark mouth near the bottom edge. Overall occupied object height about 1.05 times its width, nearly square rather than wide and shallow. Donuts should have round, unsquashed proportions. The funnel and nozzle need enough vertical separation to read as a dispenser at112px high.
+View: front-facing with only a slight view into the open top. Avoid a steep overhead view, extreme foreshortening, or a horizontal serving-tray silhouette. No side crank or extra appendages. Bold silhouette and restrained surface detail.
+Composition: exactly one object centered and fully visible, filling about85% of a square canvas, clean transparent margin all around. The three donuts are contained in the hopper, no loose falling donut. No floor or external cast shadow. Genuine clean alpha, including outside all outlines. No checkerboard, background, board, text, numbers, UI, labels or watermark.

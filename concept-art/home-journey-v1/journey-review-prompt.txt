@@ -1,0 +1,4 @@
+Use case: precise-object-edit.
+Edit target: the supplied full vertical twelve-level bakery journey concept.
+Change ONLY the completed-state marks on the three lowest level medallions: add a small unmistakable deep mint-green check mark below the large number on level 1, on level 2, and on level 3, inside each medallion. Preserve the numbers and their legibility. These three nodes mean completed. Leave level4 mint/current and levels5 through12 with padlocks exactly as they are.
+Preserve all other composition, numbering, route order, node sizes/positions, path, scenery, upper Berry Orchard gateway, typography, palette, lighting and aspect ratio. No extra text, no new UI, no other changes. Screen remains opaque.

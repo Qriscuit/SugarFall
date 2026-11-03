@@ -1,0 +1,36 @@
+{
+  "name": "upgrade_ceramic_garden_v1",
+  "source": "C:/Users/Hursh/.codex/generated_images/01a18eec-0873-77c1-9160-dfb0c076a936/exec-10b7afc0-e9cc-40ad-b5ea-807007302418.png",
+  "path": "PLINKO/data/art/gelato/environment/upgrade_ceramic_garden_v1.png",
+  "dimensions": [
+    1024,
+    1536
+  ],
+  "bytes": 2391084,
+  "sha256": "f1261a1aa3f948095c9f76bad4ef5bba5ab5c1a8a1bd66079a3941c619b4d6e7",
+  "method": "built-in image_gen.imagegen",
+  "pixels_modified": false,
+  "transparent": false,
+  "prompt_file": "concept-art/gelato-ceramic-v1/prompt.txt",
+  "prompt": "Use case: precise-object-edit.\nAsset type: production background illustration for Sugarfall, a portrait mobile game's scrolling Gelato upgrade garden.\nImage 1 is the EDIT TARGET: existing complete garden scenery on a lavender background. Image 2 is a REFERENCE ONLY showing the exact live UI, upgrade routes and overall phone screen; DO NOT copy any UI into the output.\nPrimary request: replace the lavender/purple empty ground in Image 1 with a cohesive pale ceramic-tile garden courtyard that these existing objects stand upon. Keep every existing building, fountain, winding tree, bench, cart and flower urn at its exact current relative position, silhouette size and arrangement. Preserve their illustrated style and colors. Change the ground, not the layout.\nGround design: softly glazed warm ivory and very pale sage/mint square ceramic pavers, seen from above with a restrained diagonal grid, thin low-contrast warm grout, gently irregular handmade edges, soft glaze variation. Tile width approximately 1/28 of the canvas width. A quiet sunlit Italian gelato garden patio, painterly to match the charming existing illustration. Small blush accents in occasional edge tiles only. Ground remains light and visually subordinate to game icons and connection lines. Existing flower groups can have subtle tiny planting beds/shadows immediately beneath their original footprints. No additional large props, no new structures, no trees or vegetation crossing the blank routes.\nComposition: preserve the exact full 2:3 portrait framing and all existing object positions, ideally output native 2048x3072. No camera perspective horizon, vanishing point, or receding tile sizes: uniform surface scale across the entire map. Tile ground fills the whole canvas. The outermost 3 percent softly quietens into a pale warm ivory ground so the game can extend that ground beyond the painting without a hard rectangular seam. Completely replace the purple ground; do not leave a purple border, purple haze or purple gaps.\nConstraints: output only the finished background art, no upgrade nodes, icons, connecting lines, map paths, headings, numbers, buttons, text, UI frames, watermark or extra objects. Keep the central and side scenery small as in Image 1. Do not enlarge, reposition, remove or duplicate existing objects. Avoid busy decorative motifs behind the live upgrade routes.\n",
+  "references": [
+    {
+      "role": "edit target",
+      "path": "PLINKO/data/art/gelato/environment/upgrade_winding_garden_v2.png"
+    },
+    {
+      "role": "full-screen UI reference only",
+      "path": "verification/gelato-tree-20261102/screens/full-antlers-720x1280.png"
+    }
+  ],
+  "created": "2026-11-02",
+  "world_rect": [
+    -4600,
+    -12250,
+    9200,
+    13800
+  ],
+  "base_color": "fef1d8",
+  "base_color_method": "Rounded mean of the four outermost native pixel edges: RGB 254,241,216. Image bytes unchanged.",
+  "notes": "Ground edit to warm ivory and pale mint ceramic courtyard. Existing twelve scenery groups retained by visual comparison. Requested 2048x3072; actual generated native output is 1024x1536 and is used without resizing. No programmatic pixel edits. Prior purple foreground-clearance measurement does not apply to the new floor; focused rendered review is separate."
+}

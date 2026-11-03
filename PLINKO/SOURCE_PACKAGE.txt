@@ -1,0 +1,27 @@
+Peg Foundry 0.5.0 source checkpoint
+23 October 2026 UTC
+
+HISTORICAL CHECKPOINT: the package metadata, source hashes and Fresh Test instructions below describe the archived v0.5 source. Current source uses one canonical save and Settings → Reset progress with confirmation. See README.md; Fresh Test Profile and Return to Main are no longer current controls.
+
+This supersedes v0.4 for recommended use; old artifacts remain preserved. No signing key, cache, user save, generated telemetry or binary is included.
+
+Android package org.pegfoundry.prototype, versionCode5. Same signer as RECENT REBUILT v0.3, not the lost original signer. Physical update remains untested. Use Setup → Fresh Test Profile to test the opening without deleting your Main progress.
+
+scripts/tone_bank.gd SHA256 0eabc16e9ebf89d77e915ebc64ad44b030dd76003a4e02466d66267f9c5907c0
+scripts/main.gd SHA256 715a24d8402bfe805f3e931a935e15953011a8c30688ddc1cc23ed1abc179f76
+scripts/run_snapshot.gd SHA256 e3f5fb6ef1a7ce453b7058f81344325f119e8692d09fca2e8b8a8bb8e6088e0c
+scripts/upgrade_map.gd SHA256 79e933fe6edad531ef6b0466bac322e4acab7c8a192b63e0bc6140f3649dbc0b
+data/board_design.json SHA256 a89779e2b1dfb509b1696b4f412ca0b3d7035a302885c2d4b5a7af5068198599
+data/economy.json SHA256 f6fced78912829fca18508b4cd2ec39599971a66f655098c125380d44685e391
+data/licenses/GODOT_COPYRIGHT.txt SHA256 b3330849267d56ddd3d62a513817506606c2195034411fe05859f0140bff9d8a
+data/licenses/GODOT_LICENSE.txt SHA256 b0435e3b3e4e55238f05f4b306f30524a1b2e20147810d436eaa554fa6855c80
+data/art/armored.svg SHA256 0af24d68a400f8c5dc77d3d803c902b53324d2518ef24e166ed23df648f022f5
+data/art/prism.svg SHA256 af62e665f8c16e1d663614ea60bf34bac5f8cd9ce9821223c2258262dfd00e44
+data/art/clock.svg SHA256 e739e446b942239cc57b974da778ea18380460c5a762ec15ca23189f9836f88b
+data/art/clock_flash.svg SHA256 726c8124a8a3bcb650de8271ebe88dcfb89c4790636d0723d27ef23cb831d48a
+data/art/armored_flash.svg SHA256 0cdefa821e93092eb675d906177370e49bdb5460ad8e35423d79ac0933fd69af
+data/art/paper.svg SHA256 5b91ec9e3b14f4a4b8d12eff67914ff190d215887913b7c8607d9d1aad93950e
+data/art/prism_flash.svg SHA256 9df0604966bdd6ec0792367f6fef2ffa9e028c1ef8b39267a06e16ec49a07275
+data/art/tray_dots.svg SHA256 e066095b31aa4ed1e5585563e0da21be10b5300ad2949754fb55be3ae04b11be
+data/art/normal_flash.svg SHA256 7cceff5bd0e7c8ba501f61147b917e95f17ec48f4856521fd6612e3dd8e514e2
+data/art/normal.svg SHA256 64b0ea5991d91d5b89f2651d0306911790dace8626687af118ed47681e493cda

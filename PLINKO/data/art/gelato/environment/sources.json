@@ -1,0 +1,229 @@
+{
+  "area": "Gelato Garden",
+  "assets": [
+    {
+      "family": "environment",
+      "name": "home_counter",
+      "transparent": false,
+      "prompt": "Production game artwork for Sugarfall's Gelato Garden: cohesive softly painted sculpted 2.5D confectionery illustration, rounded handmade forms, warm upper-left light, polished cream ceramic, dusty lavender #B8A2CF, restrained warm copper and golden waffle accents. Premium cozy mobile food game. No black outlines, no photorealistic camera noise, no text, numbers, lettering, logos or watermarks. Full-bleed PORTRAIT 9:16 background layer only for a mobile game home screen. View looking straight down onto a pale warm cream marble ice-cream parlor counter. Extremely subtle cream veins. Broad calm blank center covering central 80 percent width and 90 percent height, very low contrast, for a large board drawn later. Only at the extreme cropped edges: small folded dusty lavender linen corner at upper left, two cut strawberries and a tiny mint leaf at lower right, edge of a copper gelato spoon and a waffle cone at upper right. Props must never invade the broad clear central play area. Do not include tray, UI, pegboard, pegs, cups or dispenser.",
+      "source": "C:\\Users\\Hursh\\.codex\\generated_images\\01a1698f-a59c-7e10-a1df-92fe5d8b1f60\\exec-9f5ec9c5-bd70-43f0-bc4e-ff226f9b70a1.png",
+      "target": "C:\\Users\\Hursh\\Documents\\Plinko\\PLINKO\\data\\art\\gelato\\environment\\home_counter.png",
+      "method": "built-in image_gen.imagegen",
+      "created": "2026-10-24",
+      "pixels_modified": false
+    },
+    {
+      "family": "environment",
+      "name": "play_counter",
+      "transparent": false,
+      "prompt": "Production game artwork for Sugarfall's Gelato Garden: cohesive softly painted sculpted 2.5D confectionery illustration, rounded handmade forms, warm upper-left light, polished cream ceramic, dusty lavender #B8A2CF, restrained warm copper and golden waffle accents. Premium cozy mobile food game. No black outlines, no photorealistic camera noise, no text, numbers, lettering, logos or watermarks. Full-bleed PORTRAIT 9:16 quiet gameplay background layer only. Straight overhead view of warm ivory marble gelato parlor worktop. Barely perceptible cream veining, consistent diffuse warm upper-left lighting. Central 88 percent of width and all height completely clear and low-contrast, for a large board drawn later. A sliver of folded lavender cloth barely enters the extreme left bottom edge, tiny mint leaf and wafer corner partially cropped outside top right edge. No objects in center. No tray, board, pegs, cups, scoop or UI. Very calm pastel cream dominated background.",
+      "source": "C:\\Users\\Hursh\\.codex\\generated_images\\01a1698f-a59c-7e10-a1df-92fe5d8b1f60\\exec-3a3551c9-574b-4669-9989-0dc7d45a87c7.png",
+      "target": "C:\\Users\\Hursh\\Documents\\Plinko\\PLINKO\\data\\art\\gelato\\environment\\play_counter.png",
+      "method": "built-in image_gen.imagegen",
+      "created": "2026-10-24",
+      "pixels_modified": false
+    },
+    {
+      "family": "environment",
+      "name": "upgrade_counter",
+      "transparent": false,
+      "prompt": "Production game artwork for Sugarfall's Gelato Garden: cohesive softly painted sculpted 2.5D confectionery illustration, rounded handmade forms, warm upper-left light, polished cream ceramic, dusty lavender #B8A2CF, restrained warm copper and golden waffle accents. Premium cozy mobile food game. No black outlines, no photorealistic camera noise, no text, numbers, lettering, logos or watermarks. Full-bleed PORTRAIT 9:16 blank environment layer behind a draggable recipe upgrade map. Pale vanilla parchment resting on ice-cream parlor marble, barely visible paper fibers. Large completely empty almost uniform warm cream central 85 percent. Fine dusty lavender linen and slim copper utensil barely visible at extreme left and right corners, soft lavender edge vignette. No paths, lines, cards, tiles, nodes, icons, writing, doodles, foods or objects in central space. Calm low contrast background suitable for legible UI tiles over it.",
+      "source": "C:\\Users\\Hursh\\.codex\\generated_images\\01a1698f-a59c-7e10-a1df-92fe5d8b1f60\\exec-5331e1f2-ed68-4150-897b-93bac2497449.png",
+      "target": "C:\\Users\\Hursh\\Documents\\Plinko\\PLINKO\\data\\art\\gelato\\environment\\upgrade_counter.png",
+      "method": "built-in image_gen.imagegen",
+      "created": "2026-10-24",
+      "pixels_modified": false
+    },
+    {
+      "family": "environment",
+      "name": "journey_backdrop",
+      "transparent": false,
+      "prompt": "Production game artwork for Sugarfall's Gelato Garden: cohesive softly painted sculpted 2.5D confectionery illustration, rounded handmade forms, warm upper-left light, polished cream ceramic, dusty lavender #B8A2CF, restrained warm copper and golden waffle accents. Premium cozy mobile food game. No black outlines, no photorealistic camera noise, no text, numbers, lettering, logos or watermarks. Full-bleed PORTRAIT 9:16 environment backdrop for a winding level map, WITHOUT THE PATH OR LEVEL NODES. Charming gelato garden viewed from gently elevated near-orthographic viewpoint. Pale cream garden terraces and an open pale vanilla central lawn occupy central 65 percent width from bottom to top, continuous blank unobstructed space for a winding path drawn later. Decorations confined to outer 18 percent on either side: rounded lavender bushes, soft green mint hedges, tiny pink strawberry flowers, cream garden walls, little copper rail details, a quiet pastel blue water edge near one bottom corner. Restrained depth and softened details, cream central corridor is very low contrast. No kiosk, building, bridge across center, road, staircase, winding path, stepping stones, level markers, badges, UI, food characters or words.",
+      "source": "C:\\Users\\Hursh\\.codex\\generated_images\\01a1698f-a59c-7e10-a1df-92fe5d8b1f60\\exec-889999d0-f7a1-4fc8-a82b-f22b799d9c1a.png",
+      "target": "C:\\Users\\Hursh\\Documents\\Plinko\\PLINKO\\data\\art\\gelato\\environment\\journey_backdrop.png",
+      "method": "built-in image_gen.imagegen",
+      "created": "2026-10-24",
+      "pixels_modified": false
+    },
+    {
+      "family": "environment",
+      "name": "bakery_landmark",
+      "transparent": true,
+      "prompt": "Production game artwork for Sugarfall's Gelato Garden: cohesive softly painted sculpted 2.5D confectionery illustration, rounded handmade forms, warm upper-left light, polished cream ceramic, dusty lavender #B8A2CF, restrained warm copper and golden waffle accents. Premium cozy mobile food game. No black outlines, no photorealistic camera noise, no text, numbers, lettering, logos or watermarks. One isolated small gelato garden kiosk / ice cream cart landmark, three-quarter front view with mostly readable front. Compact cream ceramic parlor kiosk, curved lavender-and-cream striped awning, warm copper trim and counter, one small golden waffle-cone roof finial with a pink scoop, tiny mint shrub pots tucked against base. Broad rounded toy-like beautiful silhouette, charming premium mobile map landmark. Entire kiosk visible with generous transparent margins, no environment, floor, platform, external shadow, people, sign lettering or text. True transparent background.",
+      "source": "C:\\Users\\Hursh\\.codex\\generated_images\\01a1698f-a59c-7e10-a1df-92fe5d8b1f60\\exec-074b93c4-4a10-4c0a-b467-b28a404c5ee2.png",
+      "target": "C:\\Users\\Hursh\\Documents\\Plinko\\PLINKO\\data\\art\\gelato\\environment\\bakery_landmark.png",
+      "method": "built-in image_gen.imagegen",
+      "created": "2026-10-24",
+      "pixels_modified": false
+    },
+    {
+      "name": "upgrade_arc_v2",
+      "project_path": "PLINKO/data/art/gelato/environment/upgrade_arc_v2.png",
+      "source": "C:/Users/Hursh/.codex/generated_images/01a173c0-7a0e-7573-a977-1595f71b5672/exec-4f775e1e-02d0-40f1-8f00-0a87e7068aa5.png",
+      "prompt_chain": [
+        "gelato-final-prompt.txt"
+      ],
+      "references": [
+        {
+          "path": "PLINKO/data/art/environment/upgrade_arc_v2.png",
+          "role": "edit target; approved geometry and clearance"
+        },
+        {
+          "path": "PLINKO/data/art/gelato/environment/journey_backdrop.png",
+          "role": "production lavender garden palette and planting style reference"
+        }
+      ],
+      "retired_source": "C:/Users/Hursh/.codex/generated_images/01a173c0-7a0e-7573-a977-1595f71b5672/exec-8d4ff513-9363-4838-9d45-68358fbda331.png",
+      "retired_prompt": "gelato-prompt.txt",
+      "method": "built-in image_gen",
+      "prompt_manifest": "concept-art/upgrade-arc-world-v1/sources.json",
+      "pixels_modified": false
+    },
+    {
+      "name": "upgrade_antler_garden_v1",
+      "method": "built-in image_gen.imagegen",
+      "created": "2026-11-02",
+      "source": "C:/Users/Hursh/.codex/generated_images/01a18eec-0873-77c1-9160-dfb0c076a936/exec-18c47bdf-e5fd-4991-8dc5-fb9d5cfa6cef.png",
+      "path": "PLINKO/data/art/gelato/environment/upgrade_antler_garden_v1.png",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "bytes": 2179227,
+      "sha256": "92274e13e0abec7c5f315f4e74e173199cdcb2587ba3e5662def316d00c4e482",
+      "transparent": false,
+      "pixels_modified": false,
+      "prompt_file": "concept-art/gelato-antler-v1/runtime-art-prompt.txt",
+      "prompt": "Create one square runtime background illustration for a hand-painted cozy gelato game upgrade map. Edit the first reference's art style into the exact composition of the second reference's placement guide. Final image is square, ideally 2048 x 2048. This is BACKGROUND ART ONLY. The live game draws all upgrades and connecting paths separately.\n\nRetain the first reference's lovely soft lavender paper, caramel-colored smoothly winding tree bark, pale pistachio leaves, and small strawberry-pink flowers. Paint TWO very tall slender snaking trees, facing inward, within the green reserved corridors in reference 2. Their trunks curl gently in repeated S bends, branching into small upward-growing leaf and blossom clusters. The overall composition must feel elegant and like two growing antlers inside a much larger invisible U. At least five bends/clusters per tree. Keep the trees organic and asymmetric, with tapered woody trunks. No ice cream cones or fruit objects; these are ornamental trees.\n\nEXACT PLACEMENT on the square canvas (coordinates are percentages of the image width and height, measured from top-left):\nLEFT TREE: broad upper tree, including ALL leaves/flowers/shadows, stays inside x=39.5% to 47.5%, y=11% to 57%. Middle winding trunk stays inside x=44.5% to 47.5%, y=56% to 66%. The bare narrow bottom trunk curves toward the center and stays within x=48.4% to 49.5%, y=64.5% to 76.5%. Make the transition from middle to bottom through x=47.5% to 48.5%, y=64.5% to 66% so the pieces visibly connect.\nRIGHT TREE: broad upper tree, including ALL leaves/flowers/shadows, stays inside x=52.5% to 60.5%, y=11% to 57%. Middle winding trunk stays inside x=52.5% to 55.5%, y=56% to 66%. Bare narrow bottom trunk stays within x=50.5% to 51.6%, y=64.5% to 76.5%. Connect middle to lower trunk through x=51.5% to 52.5%, y=64.5% to 66%.\nThe two roots end near y=76.5%, deliberately floating on the lavender paper with no base, planter, mound, detached grass or scattered petals. Upper trees are narrow: each about one tenth of the entire canvas width. Their trunks are slender. Maintain a clean vertical gap between the trees.\n\nOutside these two narrow central tree silhouettes, the ENTIRE rest of the canvas is calm lightly textured lavender paper, edge to edge. Keep top 10%, bottom 23%, left 38%, and right 38% entirely empty lavender. No decorative frame, vignette, gradient or landscape. Even paper color near edges to blend into the game's lavender surround. Keep texture subtle enough that live UI is readable.\n\nABSOLUTELY REMOVE all of the first reference's circular upgrade medallions, ice cream icons, copper paths, START and DUAL SHOT plaques, lock, lettering and ground decoration. DO NOT reproduce ANY part of the second reference's guide: no green rectangles, no tan boxes, no numbers, no links, no labels, no guide header. The second image is ONLY a position constraint. Output just the pair of snaking ornamental trees on the lavender paper. No text anywhere. No UI. No visible routes. No crop or close-up; retain the full square canvas and the specified generous empty margins.\n",
+      "references": [
+        "concept-art/gelato-antler-v1/concept.png",
+        "concept-art/gelato-antler-v1/layout-guide.png"
+      ],
+      "world_rect": [
+        -5000,
+        -8200,
+        10000,
+        10000
+      ],
+      "base_color": "d1acd9",
+      "base_color_method": "Mean RGB of the native image's outermost edge pixels, rounded to integers; image not altered.",
+      "reference_guide_note": "The image-generation placement guide had first heads at (+/-340,-350). After auditing the actual painted root at every zoom, the live layout and regenerated guide move only those heads to (+/-500,-350) to clear both selection borders and enlarged compact markers. All other placements and topology are unchanged.",
+      "scenery_note": "Six guide reserves are authoring targets. The actual generated silhouette extends beyond them and is audited independently against all live node/selection footprints and path corridors.",
+      "clearance_evidence": "verification/gelato-antler-20261102/art-clearance.json"
+    },
+    {
+      "name": "upgrade_winding_garden_v2",
+      "source": "C:/Users/Hursh/.codex/generated_images/01a18eec-0873-77c1-9160-dfb0c076a936/exec-dfe2c851-ab07-4d21-ad35-469ecdc35a46.png",
+      "path": "PLINKO/data/art/gelato/environment/upgrade_winding_garden_v2.png",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "bytes": 1906428,
+      "sha256": "2db540e960051b479fd78d90ae604508bc5a570e013ccd45c5c2abd49a6079b5",
+      "method": "built-in image_gen.imagegen",
+      "pixels_modified": false,
+      "transparent": false,
+      "prompt_file": "concept-art/gelato-tree-v2/runtime-art-edit-02.txt",
+      "prompt": "Use case: precise-object-edit. Edit IMAGE 1, the completed lavender garden background. IMAGE 2 is the exact placement/clearance blueprint only.\nKeep the portrait 2:3 canvas, lavender paper color/texture, all twelve existing illustrated groups, their identities, art style and lighting. Do not add or remove objects. The problem is that the scenery is much too large and in some cases off-center for the live upgrade corridors. Make the existing artwork groups into SMALLER ISLANDS, with much more lavender breathing room around EACH one.\n\nThe main correction is scale: SHRINK the central kiosk to about45% of its current width and height, the central conservatory/pavilion to about45%, the sundae fountain to about40%, and the slender central double-trunk planter to about32%. SHRINK each of the four outer trees to about55\u201360% of current size, each lower bench/trolley group to about52%, and the two little bottom urns to about65%. Maintain proportions and all details. Do NOT scale the whole image/canvas; shrink every separate object group around its own center, then place at the exact centers listed below.\n\nFinal exact object limits measured from the whole canvas top-left (x is percent canvas width, y is percent canvas height). Each COMPLETE artwork group, including every leaf, blossom, pot, base and shadow, must fit under BOTH maximum dimensions. Fit proportionally within them and place its bounding box center here:\ncentral_fountain: center (47.83%, 55.07%); maximum COMPLETE silhouette width 10.17% and height 8.48% of the full canvas.\ncentral_kiosk: center (50.00%, 24.28%); maximum COMPLETE silhouette width 9.33% and height 9.04% of the full canvas.\ncentral_pavilion: center (54.35%, 37.68%); maximum COMPLETE silhouette width 14.41% and height 8.48% of the full canvas.\ncentral_flower_island: center (50.00%, 69.20%); maximum COMPLETE silhouette width 4.41% and height 6.78% of the full canvas.\nleft_upper_garden: center (9.24%, 20.65%); maximum COMPLETE silhouette width 8.48% and height 13.57% of the full canvas.\nright_upper_garden: center (90.76%, 25.00%); maximum COMPLETE silhouette width 8.48% and height 14.70% of the full canvas.\nleft_lower_garden: center (11.14%, 51.81%); maximum COMPLETE silhouette width 7.21% and height 12.43% of the full canvas.\nright_lower_garden: center (88.86%, 54.35%); maximum COMPLETE silhouette width 7.21% and height 13.00% of the full canvas.\nbottom_left_flowers: center (22.28%, 86.59%); maximum COMPLETE silhouette width 12.72% and height 9.04% of the full canvas.\nbottom_right_flowers: center (78.80%, 87.68%); maximum COMPLETE silhouette width 12.72% and height 8.48% of the full canvas.\nentry_left_topiary: center (43.48%, 95.11%); maximum COMPLETE silhouette width 5.09% and height 3.11% of the full canvas.\nentry_right_topiary: center (56.52%, 95.11%); maximum COMPLETE silhouette width 5.09% and height 3.11% of the full canvas.\n\nThe green rectangles in IMAGE 2 are the total permitted art islands. The maximum dimensions above are slightly smaller than the rectangles for padding. The entire rest of the canvas must be only quiet lavender paper. The large translucent lavender boxes and brown links in IMAGE 2 are occupied by game UI and must have NO scenery, NO foliage, NO shadows and NO new details in the final background.\nDo not enlarge any central feature to make it more prominent. The groups MUST visibly become roughly HALF the size seen in IMAGE1 (the slender middle planter even smaller). The many blank curving channels are intentional and essential.\nRemove/paint over the old larger silhouettes completely with matching lavender paper. No leftover shadows or ghost outlines. Do not draw guide rectangles, labels, numbers, paths, upgrade icons or text. Do not crop the canvas. Return the finished full portrait garden background with the scaled-down groups, no annotations.\n",
+      "references": [
+        "concept-art/gelato-tree-v2/candidate-01.png",
+        "concept-art/gelato-tree-v2/layout-guide.png"
+      ],
+      "created": "2026-11-02",
+      "world_rect": [
+        -4600,
+        -12250,
+        9200,
+        13800
+      ],
+      "base_color": "ddbcec",
+      "base_color_method": "Mean RGB of native outermost image pixels (221,188,236); image unchanged.",
+      "prompt_chain": [
+        "concept-art/gelato-tree-v2/runtime-art-prompt.txt",
+        "concept-art/gelato-tree-v2/runtime-art-edit-02.txt"
+      ],
+      "generation_history": [
+        {
+          "name": "candidate-01",
+          "source": "C:/Users/Hursh/.codex/generated_images/01a18eec-0873-77c1-9160-dfb0c076a936/exec-0070b324-749f-4dee-8eb6-20e69d6a1803.png",
+          "path": "concept-art/gelato-tree-v2/candidate-01.png",
+          "dimensions": [
+            1024,
+            1536
+          ],
+          "bytes": 2360378,
+          "sha256": "8e529342dc94b2d8b65db9f3c1db03b289ce1ff05164663cbfd9fa0486ef3f19",
+          "method": "built-in image_gen.imagegen",
+          "pixels_modified": false,
+          "transparent": false,
+          "prompt_file": "concept-art/gelato-tree-v2/runtime-art-prompt.txt",
+          "prompt": "Use case: stylized-concept / production game background illustration.\nCreate one finished PORTRAIT 2:3 background image for Sugarfall's Gelato Garden upgrade map, ideally 1536x2304. Output the entire canvas, no crop. This is runtime BACKGROUND ART; live upgrades will be drawn on top separately.\n\nREFERENCES:\nImage 1 is an EXACT PLACEMENT BLUEPRINT ONLY. Its GREEN islands are the only allowed locations for scenery. Lavender rectangles and brown paths are keepout areas that must become completely empty lavender paper. Do not draw ANY blueprint rectangle, label, number, node, connecting path or header.\nImage 2 is the reference for the lovely softly painted cream/copper gelato architecture, glass garden structures and flowerbeds.\nImage 3 is the reference for caramel-bark winding trees, mint foliage and strawberry-pink blossoms. Do not copy its huge empty square composition; follow the portrait placement in image 1.\n\nArt direction: polished cozy hand-painted 2.5D game illustration, soft modeled forms, cream ceramics, restrained copper, soft pistachio/sage foliage, pink blossoms, lavender flowers. Light from upper left. A continuous very pale lavender textured paper ground across the entire canvas, quiet and uniform to the edges. The background remains cool lavender everywhere outside scenery; no cream ground wash or green lawn spanning the empty corridors.\nThe layout should feel like a richly decorated long vertical gelato garden with small landmarks in its center and winding trees/floral scenery on both outer sides. The game paths themselves bend and wind; DO NOT paint any road, route, vine, line, river or staircase joining the artwork islands. Each island has an organic, softly shadowed silhouette without a visible enclosing box.\n\nExact allowed scenery areas (percentages measured from canvas top-left). Fit each COMPLETE object, every leaf, petal, planter and its shadow WITHIN its specified rectangle with approximately 10% inset on each side. Keep shapes compact inside these limits; absolutely no loose decorations outside them:\ncentral_fountain: x 41.30%\u201354.35%, y 49.64%\u201360.51%: a cream ceramic gelato sundae fountain with three pastel scoops, tiny turquoise water basin, copper accent and flowers, all one compact landscaped vignette.\ncentral_kiosk: x 44.02%\u201355.98%, y 18.48%\u201330.07%: a small cream gelato kiosk with a waffle-colored roof, lavender striped awning and mint plants; no sign or text.\ncentral_pavilion: x 45.11%\u201363.59%, y 32.25%\u201343.12%: a beautiful rounded glass garden conservatory, copper frame, pale mint roof panels and lavender/white flowers, slightly off center exactly as in guide.\ncentral_flower_island: x 47.17%\u201352.83%, y 64.86%\u201373.55%: a very slender curling flowering topiary with pink blossoms and mint leaves in a small cream planter.\nleft_upper_garden: x 3.80%\u201314.67%, y 11.96%\u201329.35%: one tall slender S-bending caramel-bark flowering tree, sage and mint leaves, pink blossoms, small flowers around its base.\nright_upper_garden: x 85.33%\u201396.20%, y 15.58%\u201334.42%: a differently shaped tall slender curling tree with mint foliage, strawberry-pink flowers and tiny cream planters at its base.\nleft_lower_garden: x 6.52%\u201315.76%, y 43.84%\u201359.78%: a slim winding ornamental tree with lavender flowers and a cream flower urn at its base.\nright_lower_garden: x 84.24%\u201393.48%, y 46.01%\u201362.68%: a slim leafy flowering tree and small clipped mint hedge, graceful curving trunk.\nbottom_left_flowers: x 14.13%\u201330.43%, y 80.80%\u201392.39%: a compact cream garden bench with copper details surrounded by pink, white and lavender flowers.\nbottom_right_flowers: x 70.65%\u201386.96%, y 82.25%\u201393.12%: a little cream and copper gelato trolley among soft mint foliage and flowers; no lettering.\nentry_left_topiary: x 40.22%\u201346.74%, y 93.12%\u201397.10%: one small cream urn with a rounded pink-blossom topiary, with the entire urn visible.\nentry_right_topiary: x 53.26%\u201359.78%, y 93.12%\u201397.10%: one small cream urn with a rounded white-blossom and mint topiary, with the entire urn visible.\n\nPreserve the quiet empty channels between ALL green islands exactly as the blueprint indicates. Those open channels will hold the real purchasable upgrades and connecting routes. Each of the twelve scenery vignettes must be present, especially the three central landmarks, all four outer trees, both low outer decorations, and the two small entry urns near the bottom. All objects should share the same rendering style and lighting, feel planted in the same gentle paper garden, and stay within their allowed islands.\nLeave the top strip, outermost margins, and areas around the central bottom starting point completely calm lavender. No border or frame. The bottom entry urns are deliberately small and must not be enlarged or moved toward the center.\nNo text, lettering, logos, UI, buttons, circles, upgrade tiles, badges, locks, arrows, medallions, paths, numbered nodes, outlines from the guide, characters or animals. No literal antlers. No collage panel boundaries. No hard-edged backgrounds behind the islands. Only the finished garden scenery and quiet lavender paper.\n",
+          "references": [
+            "concept-art/gelato-tree-v2/layout-guide.png",
+            "PLINKO/data/art/gelato/environment/upgrade_u_garden_v2.png",
+            "PLINKO/data/art/gelato/environment/upgrade_antler_garden_v1.png"
+          ]
+        },
+        {
+          "name": "candidate-02",
+          "source": "C:/Users/Hursh/.codex/generated_images/01a18eec-0873-77c1-9160-dfb0c076a936/exec-dfe2c851-ab07-4d21-ad35-469ecdc35a46.png",
+          "path": "concept-art/gelato-tree-v2/candidate-02.png",
+          "dimensions": [
+            1024,
+            1536
+          ],
+          "bytes": 1906428,
+          "sha256": "2db540e960051b479fd78d90ae604508bc5a570e013ccd45c5c2abd49a6079b5",
+          "method": "built-in image_gen.imagegen",
+          "pixels_modified": false,
+          "transparent": false,
+          "prompt_file": "concept-art/gelato-tree-v2/runtime-art-edit-02.txt",
+          "prompt": "Use case: precise-object-edit. Edit IMAGE 1, the completed lavender garden background. IMAGE 2 is the exact placement/clearance blueprint only.\nKeep the portrait 2:3 canvas, lavender paper color/texture, all twelve existing illustrated groups, their identities, art style and lighting. Do not add or remove objects. The problem is that the scenery is much too large and in some cases off-center for the live upgrade corridors. Make the existing artwork groups into SMALLER ISLANDS, with much more lavender breathing room around EACH one.\n\nThe main correction is scale: SHRINK the central kiosk to about45% of its current width and height, the central conservatory/pavilion to about45%, the sundae fountain to about40%, and the slender central double-trunk planter to about32%. SHRINK each of the four outer trees to about55\u201360% of current size, each lower bench/trolley group to about52%, and the two little bottom urns to about65%. Maintain proportions and all details. Do NOT scale the whole image/canvas; shrink every separate object group around its own center, then place at the exact centers listed below.\n\nFinal exact object limits measured from the whole canvas top-left (x is percent canvas width, y is percent canvas height). Each COMPLETE artwork group, including every leaf, blossom, pot, base and shadow, must fit under BOTH maximum dimensions. Fit proportionally within them and place its bounding box center here:\ncentral_fountain: center (47.83%, 55.07%); maximum COMPLETE silhouette width 10.17% and height 8.48% of the full canvas.\ncentral_kiosk: center (50.00%, 24.28%); maximum COMPLETE silhouette width 9.33% and height 9.04% of the full canvas.\ncentral_pavilion: center (54.35%, 37.68%); maximum COMPLETE silhouette width 14.41% and height 8.48% of the full canvas.\ncentral_flower_island: center (50.00%, 69.20%); maximum COMPLETE silhouette width 4.41% and height 6.78% of the full canvas.\nleft_upper_garden: center (9.24%, 20.65%); maximum COMPLETE silhouette width 8.48% and height 13.57% of the full canvas.\nright_upper_garden: center (90.76%, 25.00%); maximum COMPLETE silhouette width 8.48% and height 14.70% of the full canvas.\nleft_lower_garden: center (11.14%, 51.81%); maximum COMPLETE silhouette width 7.21% and height 12.43% of the full canvas.\nright_lower_garden: center (88.86%, 54.35%); maximum COMPLETE silhouette width 7.21% and height 13.00% of the full canvas.\nbottom_left_flowers: center (22.28%, 86.59%); maximum COMPLETE silhouette width 12.72% and height 9.04% of the full canvas.\nbottom_right_flowers: center (78.80%, 87.68%); maximum COMPLETE silhouette width 12.72% and height 8.48% of the full canvas.\nentry_left_topiary: center (43.48%, 95.11%); maximum COMPLETE silhouette width 5.09% and height 3.11% of the full canvas.\nentry_right_topiary: center (56.52%, 95.11%); maximum COMPLETE silhouette width 5.09% and height 3.11% of the full canvas.\n\nThe green rectangles in IMAGE 2 are the total permitted art islands. The maximum dimensions above are slightly smaller than the rectangles for padding. The entire rest of the canvas must be only quiet lavender paper. The large translucent lavender boxes and brown links in IMAGE 2 are occupied by game UI and must have NO scenery, NO foliage, NO shadows and NO new details in the final background.\nDo not enlarge any central feature to make it more prominent. The groups MUST visibly become roughly HALF the size seen in IMAGE1 (the slender middle planter even smaller). The many blank curving channels are intentional and essential.\nRemove/paint over the old larger silhouettes completely with matching lavender paper. No leftover shadows or ghost outlines. Do not draw guide rectangles, labels, numbers, paths, upgrade icons or text. Do not crop the canvas. Return the finished full portrait garden background with the scaled-down groups, no annotations.\n",
+          "references": [
+            "concept-art/gelato-tree-v2/candidate-01.png",
+            "concept-art/gelato-tree-v2/layout-guide.png"
+          ]
+        }
+      ],
+      "clearance_evidence": "verification/gelato-tree-20261102/art-clearance.json",
+      "notes": "The first native candidate was too large for live UI corridors. The built-in edit tool reduced individual scenery groups. Final actual silhouettes are audited separately from guide targets. No programmatic resizing, cropping or retouching."
+    },
+    {
+      "name": "upgrade_ceramic_garden_v1",
+      "source": "C:/Users/Hursh/.codex/generated_images/01a18eec-0873-77c1-9160-dfb0c076a936/exec-10b7afc0-e9cc-40ad-b5ea-807007302418.png",
+      "path": "PLINKO/data/art/gelato/environment/upgrade_ceramic_garden_v1.png",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "bytes": 2391084,
+      "sha256": "f1261a1aa3f948095c9f76bad4ef5bba5ab5c1a8a1bd66079a3941c619b4d6e7",
+      "method": "built-in image_gen.imagegen",
+      "pixels_modified": false,
+      "transparent": false,
+      "prompt_file": "concept-art/gelato-ceramic-v1/prompt.txt",
+      "prompt": "Use case: precise-object-edit.\nAsset type: production background illustration for Sugarfall, a portrait mobile game's scrolling Gelato upgrade garden.\nImage 1 is the EDIT TARGET: existing complete garden scenery on a lavender background. Image 2 is a REFERENCE ONLY showing the exact live UI, upgrade routes and overall phone screen; DO NOT copy any UI into the output.\nPrimary request: replace the lavender/purple empty ground in Image 1 with a cohesive pale ceramic-tile garden courtyard that these existing objects stand upon. Keep every existing building, fountain, winding tree, bench, cart and flower urn at its exact current relative position, silhouette size and arrangement. Preserve their illustrated style and colors. Change the ground, not the layout.\nGround design: softly glazed warm ivory and very pale sage/mint square ceramic pavers, seen from above with a restrained diagonal grid, thin low-contrast warm grout, gently irregular handmade edges, soft glaze variation. Tile width approximately 1/28 of the canvas width. A quiet sunlit Italian gelato garden patio, painterly to match the charming existing illustration. Small blush accents in occasional edge tiles only. Ground remains light and visually subordinate to game icons and connection lines. Existing flower groups can have subtle tiny planting beds/shadows immediately beneath their original footprints. No additional large props, no new structures, no trees or vegetation crossing the blank routes.\nComposition: preserve the exact full 2:3 portrait framing and all existing object positions, ideally output native 2048x3072. No camera perspective horizon, vanishing point, or receding tile sizes: uniform surface scale across the entire map. Tile ground fills the whole canvas. The outermost 3 percent softly quietens into a pale warm ivory ground so the game can extend that ground beyond the painting without a hard rectangular seam. Completely replace the purple ground; do not leave a purple border, purple haze or purple gaps.\nConstraints: output only the finished background art, no upgrade nodes, icons, connecting lines, map paths, headings, numbers, buttons, text, UI frames, watermark or extra objects. Keep the central and side scenery small as in Image 1. Do not enlarge, reposition, remove or duplicate existing objects. Avoid busy decorative motifs behind the live upgrade routes.\n",
+      "references": [
+        {
+          "role": "edit target",
+          "path": "PLINKO/data/art/gelato/environment/upgrade_winding_garden_v2.png"
+        },
+        {
+          "role": "full-screen UI reference only",
+          "path": "verification/gelato-tree-20261102/screens/full-antlers-720x1280.png"
+        }
+      ],
+      "created": "2026-11-02",
+      "world_rect": [
+        -4600,
+        -12250,
+        9200,
+        13800
+      ],
+      "base_color": "fef1d8",
+      "base_color_method": "Rounded mean of the four outermost native pixel edges: RGB 254,241,216. Image bytes unchanged.",
+      "notes": "Ground edit to warm ivory and pale mint ceramic courtyard. Existing twelve scenery groups retained by visual comparison. Requested 2048x3072; actual generated native output is 1024x1536 and is used without resizing. No programmatic pixel edits. Prior purple foreground-clearance measurement does not apply to the new floor; focused rendered review is separate."
+    }
+  ]
+}

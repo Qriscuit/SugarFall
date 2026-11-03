@@ -1,0 +1,143 @@
+{
+  "build_date": "2026-10-24",
+  "godot": "4.6.3.stable.official.7d41c59c4",
+  "monetization": "Local test service; no real ad or purchase accounts connected",
+  "changes": [
+    "Clean winding upgrade map: 62 preserved tiers and 81 local dependency routes, with no crossings or overlaps.",
+    "Mixed prerequisite paths, two-ingredient joins, matching selection highlights and retained touch/scroll zoom.",
+    "Twenty-four fixed irregular peg layouts across Bakery and Gelato Garden.",
+    "Power gains taper to 4.55 damage at tier 10; the one-time Gelato entry fee is 40000 Bakery coins.",
+    "Owned upgrades, coins, area progress and permanent purchases remain; old incompatible unfinished checkpoints return Home."
+  ],
+  "source_relevant_regression_checks": 600,
+  "source_regression_suite_count": 8,
+  "rendered_captures": 14,
+  "bounded_pacing_scenarios": 9,
+  "human_pacing_target_established": false,
+  "upgrade_map_geometry": {
+    "nodes": 62,
+    "edges": 81,
+    "crossings": 0,
+    "overlaps": 0,
+    "tile_obstructions": 0,
+    "minimum_tile_gap": 63.95
+  },
+  "board_geometry": {
+    "bakery": {
+      "boards": 12,
+      "minimum_peg_center_spacing_px": 71.021,
+      "fixed_authored_positions": true
+    },
+    "gelato": {
+      "boards": 12,
+      "minimum_peg_center_spacing_px": 71.063,
+      "fixed_authored_positions": true
+    }
+  },
+  "source_sha256": {
+    "res://scripts/area_art.gd": "8abd9f6a5d24a59803d4e28d6579a153b47639689baafe33170e62f45e5a03c7",
+    "res://scripts/area_campaign.gd": "e2b2864c9c9936c76cd199816c6f726ee7cff1e8df168879036891a5ec9ce859",
+    "res://scripts/coin_display.gd": "29fcfa88220832e516a1d1d1e6210893ec083360848bda21caea574c7a26fc23",
+    "res://scripts/environment_art.gd": "10c937af652cd7a199a1262f17ac57a21afae189642a89fb83684d0f030686aa",
+    "res://scripts/food_art.gd": "08492a4c3897226478ce7f35b1cdc9f1fbfc4db95aea6189632f8b8d1ebc1b97",
+    "res://scripts/home_menu.gd": "d90fe172a2876e21d9c3f1404ae6847fcf952d9246ca6406c8341217a0132dcb",
+    "res://scripts/impact_feedback.gd": "b9a0a6267ff7fb48701a4a75dc776ca8013f7619ceac3f2bf37b30aca6b6bb21",
+    "res://scripts/level_map.gd": "d1a127c4d009175e494750960c5cbbf208bc1d5a9831157a5e4cece8fce5b69d",
+    "res://scripts/main.gd": "86aece1572dad30caa4dc926542c5a02edb54da04b2afe447a8cf17f72e944bc",
+    "res://scripts/monetization_service.gd": "c32c959fe6d527ecda6229e46b60ab31d3a629de90fb04ca0388332ed2119921",
+    "res://scripts/monetization_ui.gd": "666283c7228ad97e3460b38f8cf99f6b6e45c565cdf6afdd24122c48599c5dee",
+    "res://scripts/run_snapshot.gd": "b6f49ebe8d05e5ce19acb33bfc37193ff7ba8e720deb32695ee781135918f023",
+    "res://scripts/run_transition.gd": "0632923b9239d3a03fc543a112f55b6afc2a4535a3cd1790f6c4ad393677e8e5",
+    "res://scripts/tone_bank.gd": "0eabc16e9ebf89d77e915ebc64ad44b030dd76003a4e02466d66267f9c5907c0",
+    "res://scripts/ui_art.gd": "d82347f33d6b81b55d3b9f8cec53015afd19b15d95ca389a9181d6b1a6dcf0b5",
+    "res://scripts/upgrade_graph.gd": "86195d9529e937d6d7dcb10d35f8002a342e19bc38def07dc557dffbe27e6c9a",
+    "res://scripts/upgrade_map.gd": "99860e8828e195fbb7c92f561f6df0dcf83efa4817988bbfd1099c6549553b01"
+  },
+  "source_json_sha256": {
+    "res://data/economy.json": "cc5ecacffa7707d1500558cfba3e2e5cd0be8cf2dedee155e6792b9fb74c2125",
+    "res://data/board_design.json": "09de3d027efeaf4747fb003d3b077f1435c40f9845991f80788dca0df6d4e8a3",
+    "res://data/gelato_board_design.json": "85df1caf2a17a26fffb4d8e13b3d84d94f50ebc4d96bdebf65e72f6bf2e0ef5d",
+    "res://data/upgrade_layout.json": "c203d268df0329abcb0a3a215d39ee0f83032f4c3d8bcfbe7df312df9ab96e23"
+  },
+  "product": "Sugarfall",
+  "version": "0.6.1",
+  "platform": "Windows x86_64",
+  "build_type": "release preview",
+  "embedded_pck": true,
+  "code_signed": false,
+  "exe": {
+    "path": "C:\\Users\\Hursh\\Documents\\Plinko\\PLINKO\\builds\\Sugarfall-v0.6.1-Windows-Preview-2026-10-24\\Sugarfall.exe",
+    "bytes": 138880960,
+    "sha256": "05d72f78adada4910565991ed8e5de6a2563c1f33ce0a76bd4691259390efac1",
+    "md5": "e63c1499bb9d630147c547d8b1fc9735",
+    "file_version": "0.6.1.0",
+    "product_version": "0.6.1"
+  },
+  "archive": {
+    "path": "C:\\Users\\Hursh\\Documents\\Plinko\\PLINKO\\builds\\Sugarfall-v0.6.1-Windows-Preview-2026-10-24.zip",
+    "bytes": 69711965,
+    "sha256": "d187a95d96b696075aa8cb16057a05549f3b3c104181d57c481ee91222195639",
+    "md5": "148601dcc41189758b93c4f9fc2e8081"
+  },
+  "verification": {
+    "embedded_pck_checks": 199,
+    "native_release_smoke": [
+      {
+        "name": "native-gameplay-smoke",
+        "passed": true,
+        "exit_code": 0,
+        "log": "C:\\Users\\Hursh\\Documents\\Plinko\\verification\\windows-preview-v061\\native-smoke-final\\native-gameplay-smoke.log",
+        "user_dir": "C:\\Users\\Hursh\\Documents\\Plinko\\verification\\windows-preview-v061\\pck-smoke-final\\appdata\\Godot\\app_userdata\\Peg Foundry",
+        "errors": [],
+        "known_environment_certificate_warning": true
+      },
+      {
+        "name": "native-opengl-home",
+        "passed": true,
+        "exit_code": 0,
+        "log": "C:\\Users\\Hursh\\Documents\\Plinko\\verification\\windows-preview-v061\\native-smoke-final\\native-opengl-home.log",
+        "user_dir": "C:\\Users\\Hursh\\Documents\\Plinko\\verification\\windows-preview-v061\\pck-smoke-final\\appdata\\Godot\\app_userdata\\Peg Foundry",
+        "errors": [],
+        "known_environment_certificate_warning": true
+      }
+    ],
+    "native_smoke_cases": 2,
+    "native_self_test_checks": 16,
+    "pe_header_and_metadata_checks": 5,
+    "archive_checks": 14,
+    "evidence_directory": "../../verification/windows-preview-v061"
+  },
+  "drive": {
+    "id": "12IpNfaeZENgYIkkHhiYUUSvZYzL_pl0A",
+    "title": "Sugarfall-v0.6.1-Windows-Preview-2026-10-24.zip",
+    "mime_type": "application/zip",
+    "size": "69711965",
+    "url": "https://drive.google.com/file/d/12IpNfaeZENgYIkkHhiYUUSvZYzL_pl0A/view?usp=drivesdk",
+    "display_url": "https://drive.google.com/file/d/12IpNfaeZENgYIkkHhiYUUSvZYzL_pl0A/view?usp=drivesdk",
+    "file_or_folder": "file",
+    "created_time": null,
+    "modified_time": "2026-10-24T07:10:46.248Z",
+    "parent_ids": [
+      "1TXLZwTNVlHGTBy7y0CVMMk3zABEKu8X-"
+    ],
+    "drive_id": null,
+    "current_user_can_share": null,
+    "has_augmented_permissions": null,
+    "shared": false,
+    "permissions": [
+      {
+        "type": "user",
+        "role": "owner",
+        "emailAddress": "americlasagna@gmail.com",
+        "domain": null,
+        "displayName": "Americ Lasagna",
+        "allowFileDiscovery": null
+      }
+    ],
+    "source_visibility_status": "permission_metadata_available",
+    "operation": "Replaced previous preview bytes and name in place",
+    "metadata_readback_verified": true,
+    "sharing_changed": false,
+    "remote_checksum_exposed_by_connector": false
+  }
+}

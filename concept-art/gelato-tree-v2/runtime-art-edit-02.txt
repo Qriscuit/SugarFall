@@ -1,0 +1,22 @@
+Use case: precise-object-edit. Edit IMAGE 1, the completed lavender garden background. IMAGE 2 is the exact placement/clearance blueprint only.
+Keep the portrait 2:3 canvas, lavender paper color/texture, all twelve existing illustrated groups, their identities, art style and lighting. Do not add or remove objects. The problem is that the scenery is much too large and in some cases off-center for the live upgrade corridors. Make the existing artwork groups into SMALLER ISLANDS, with much more lavender breathing room around EACH one.
+
+The main correction is scale: SHRINK the central kiosk to about45% of its current width and height, the central conservatory/pavilion to about45%, the sundae fountain to about40%, and the slender central double-trunk planter to about32%. SHRINK each of the four outer trees to about55–60% of current size, each lower bench/trolley group to about52%, and the two little bottom urns to about65%. Maintain proportions and all details. Do NOT scale the whole image/canvas; shrink every separate object group around its own center, then place at the exact centers listed below.
+
+Final exact object limits measured from the whole canvas top-left (x is percent canvas width, y is percent canvas height). Each COMPLETE artwork group, including every leaf, blossom, pot, base and shadow, must fit under BOTH maximum dimensions. Fit proportionally within them and place its bounding box center here:
+central_fountain: center (47.83%, 55.07%); maximum COMPLETE silhouette width 10.17% and height 8.48% of the full canvas.
+central_kiosk: center (50.00%, 24.28%); maximum COMPLETE silhouette width 9.33% and height 9.04% of the full canvas.
+central_pavilion: center (54.35%, 37.68%); maximum COMPLETE silhouette width 14.41% and height 8.48% of the full canvas.
+central_flower_island: center (50.00%, 69.20%); maximum COMPLETE silhouette width 4.41% and height 6.78% of the full canvas.
+left_upper_garden: center (9.24%, 20.65%); maximum COMPLETE silhouette width 8.48% and height 13.57% of the full canvas.
+right_upper_garden: center (90.76%, 25.00%); maximum COMPLETE silhouette width 8.48% and height 14.70% of the full canvas.
+left_lower_garden: center (11.14%, 51.81%); maximum COMPLETE silhouette width 7.21% and height 12.43% of the full canvas.
+right_lower_garden: center (88.86%, 54.35%); maximum COMPLETE silhouette width 7.21% and height 13.00% of the full canvas.
+bottom_left_flowers: center (22.28%, 86.59%); maximum COMPLETE silhouette width 12.72% and height 9.04% of the full canvas.
+bottom_right_flowers: center (78.80%, 87.68%); maximum COMPLETE silhouette width 12.72% and height 8.48% of the full canvas.
+entry_left_topiary: center (43.48%, 95.11%); maximum COMPLETE silhouette width 5.09% and height 3.11% of the full canvas.
+entry_right_topiary: center (56.52%, 95.11%); maximum COMPLETE silhouette width 5.09% and height 3.11% of the full canvas.
+
+The green rectangles in IMAGE 2 are the total permitted art islands. The maximum dimensions above are slightly smaller than the rectangles for padding. The entire rest of the canvas must be only quiet lavender paper. The large translucent lavender boxes and brown links in IMAGE 2 are occupied by game UI and must have NO scenery, NO foliage, NO shadows and NO new details in the final background.
+Do not enlarge any central feature to make it more prominent. The groups MUST visibly become roughly HALF the size seen in IMAGE1 (the slender middle planter even smaller). The many blank curving channels are intentional and essential.
+Remove/paint over the old larger silhouettes completely with matching lavender paper. No leftover shadows or ghost outlines. Do not draw guide rectangles, labels, numbers, paths, upgrade icons or text. Do not crop the canvas. Return the finished full portrait garden background with the scaled-down groups, no annotations.

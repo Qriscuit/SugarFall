@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "date": "2026-11-03",
+  "method": "User-supplied studio logo, copied without pixel edits",
+  "source_path": "C:/Users/Hursh/AppData/Local/Temp/codex-clipboard-2616a0f1-edb9-4a05-9253-dd24e44158eb.png",
+  "runtime_path": "PLINKO/data/art/branding/studio_stamp.png",
+  "native_size": [
+    301,
+    855
+  ],
+  "mode": "RGBA",
+  "sha256": "a7e295efc6232750e58fc230372987b7382da3c102ac445dbf8d7e91cd3a2d53",
+  "generation_prompt": null,
+  "scope": "Studio startup branding; heartbeat size and contrast are runtime presentation effects.",
+  "runtime_effect": "studio_stamp.gdshader uses red-ink chroma to suppress photographed paper at draw time. The source PNG is unchanged. A heartbeat changes ink brightness/contrast and uniform size.",
+  "shader_path": "PLINKO/data/art/branding/studio_stamp.gdshader",
+  "shader_sha256": "abafadff74ad0e1b440c0a3950d8b214e44947c549a282110a180e5da7a43f50",
+  "static_engine_frame": {
+    "path": "PLINKO/data/art/branding/studio_boot.png",
+    "method": "Godot 4.6.3 native GPU render of the supplied logo with the runtime shader at heartbeat=0",
+    "generator": "verification/studio-startup-20261103/render_boot.gd",
+    "dimensions": [
+      720,
+      1280
+    ],
+    "sha256": "90a7b94f9c365c35565ba08b5389c518ef42ae562865844a71e05f647239c23f"
+  }
+}

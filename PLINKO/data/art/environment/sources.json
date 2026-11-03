@@ -1,0 +1,105 @@
+{
+  "method": "built-in image_gen",
+  "assets": [
+    {
+      "name": "home_counter",
+      "source": "C:\\Users\\Hursh\\.codex\\generated_images\\01a1698f-a59c-7e10-a1df-92fe5d8b1f60\\exec-05d64400-3f3d-4254-a18d-fc5a382dc7b1.png",
+      "project_path": "PLINKO/data/art/environment/home_counter.png",
+      "prompt_file": "concept-art/bakery-world-assets-v1/prompts.txt",
+      "prompt_section": "home_counter",
+      "references": [
+        {
+          "path": "concept-art/home-journey-v1/01-home.png",
+          "role": "edit target; material and composition source"
+        }
+      ]
+    },
+    {
+      "name": "play_counter",
+      "source": "C:\\Users\\Hursh\\.codex\\generated_images\\01a1698f-a59c-7e10-a1df-92fe5d8b1f60\\exec-fd7759af-1dee-4605-b77b-aea77188a2ff.png",
+      "project_path": "PLINKO/data/art/environment/play_counter.png",
+      "prompt_file": "concept-art/bakery-world-assets-v1/prompts.txt",
+      "prompt_section": "play_counter",
+      "references": [
+        {
+          "path": "concept-art/home-journey-v1/01-home.png",
+          "role": "edit target; material and composition source"
+        }
+      ]
+    },
+    {
+      "name": "upgrade_counter",
+      "source": "C:\\Users\\Hursh\\.codex\\generated_images\\01a1698f-a59c-7e10-a1df-92fe5d8b1f60\\exec-881ef4e6-dbac-44f5-a9c7-bccdeb02cf7e.png",
+      "project_path": "PLINKO/data/art/environment/upgrade_counter.png",
+      "prompt_file": "concept-art/bakery-world-assets-v1/prompts.txt",
+      "prompt_section": "upgrade_counter",
+      "references": [
+        {
+          "path": "concept-art/home-journey-v1/01-home.png",
+          "role": "edit target; material and composition source"
+        }
+      ]
+    },
+    {
+      "name": "journey_backdrop",
+      "source": "C:\\Users\\Hursh\\.codex\\generated_images\\01a1698f-a59c-7e10-a1df-92fe5d8b1f60\\exec-3fccf4d3-b87a-47fe-9389-37a5e780087b.png",
+      "project_path": "PLINKO/data/art/environment/journey_backdrop.png",
+      "prompt_file": "concept-art/bakery-world-assets-v1/prompts.txt",
+      "prompt_section": "journey_backdrop",
+      "references": [
+        {
+          "path": "concept-art/home-journey-v1/02-level-map.png",
+          "role": "edit target; material and composition source"
+        }
+      ]
+    },
+    {
+      "name": "bakery_landmark",
+      "source": "C:\\Users\\Hursh\\.codex\\generated_images\\01a1698f-a59c-7e10-a1df-92fe5d8b1f60\\exec-1b016d1d-0baa-49ed-9e18-4bdf8cb9a0d2.png",
+      "project_path": "PLINKO/data/art/environment/bakery_landmark.png",
+      "prompt_file": "concept-art/bakery-world-assets-v1/prompts.txt",
+      "prompt_section": "bakery_landmark",
+      "references": [
+        {
+          "path": "concept-art/home-journey-v1/02-level-map.png",
+          "role": "edit target; material and composition source"
+        }
+      ]
+    },
+    {
+      "name": "upgrade_arc_v2",
+      "project_path": "PLINKO/data/art/environment/upgrade_arc_v2.png",
+      "source": "C:/Users/Hursh/.codex/generated_images/01a173c0-7a0e-7573-a977-1595f71b5672/exec-d600c253-f664-4a43-9ec9-371305ec911c.png",
+      "prompt_chain": [
+        "prompts.txt",
+        "clearance-revision-prompt.txt",
+        "inner-courtyard-prompt.txt"
+      ],
+      "references": [
+        {
+          "path": "concept-art/upgrade-arc-world-v1/arc-composition-guide.png",
+          "role": "exact map-space geometry guide, initial edit target"
+        },
+        {
+          "path": "PLINKO/data/art/environment/bakery_landmark.png",
+          "role": "production materials, color and lighting style reference"
+        },
+        {
+          "path": "PLINKO/data/art/environment/journey_backdrop.png",
+          "role": "production background material reference"
+        },
+        {
+          "path": "verification/arc-art-v1/renders/bakery-whole-arc.png",
+          "role": "live tile placement clearance reference for revision"
+        }
+      ],
+      "intermediate_sources": [
+        "C:/Users/Hursh/.codex/generated_images/01a173c0-7a0e-7573-a977-1595f71b5672/exec-aedca3f5-8465-4b3f-a554-56d161e00824.png",
+        "C:/Users/Hursh/.codex/generated_images/01a173c0-7a0e-7573-a977-1595f71b5672/exec-c4fcdce1-501c-461f-8147-8aeac1fe6c8c.png"
+      ],
+      "method": "built-in image_gen",
+      "prompt_manifest": "concept-art/upgrade-arc-world-v1/sources.json",
+      "pixels_modified": false
+    }
+  ]
+}

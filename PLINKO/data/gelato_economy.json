@@ -1,0 +1,14 @@
+{
+  "trajectory_revision": 2,
+  "launcher_speed": 260.0,
+  "gravity": 400.0,
+  "combat_reward_revision": 1,
+  "upgrade_cost_growth": 1.65,
+  "core_cost_growth": 1.6,
+  "twin_launcher_cost": 3000,
+  "twin_unlock_level": 8,
+  "twin_unlock_power": 6,
+  "twin_fire_rate_multiplier": 0.65,
+  "power_rebuild_cost_multiplier": 2.0,
+  "power_rebuild_gain_multiplier": 1.35
+}

@@ -1,0 +1,179 @@
+{
+  "method": "Positioning, sizing and ordering existing linked image layers; no raster pixel edits",
+  "composition_reference": "PLINKO/data/art/environment/upgrade_arc_v2.png",
+  "assets": [
+    {
+      "id": "bakery_house",
+      "path": "PLINKO/data/art/arc_props/bakery_house.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "sha256": "33e51213ec305071977b31ec81617c5bd1e69fa2c881486000f853d5b9e72c7d",
+      "pixel_edits": false
+    },
+    {
+      "id": "bakery_mill",
+      "path": "PLINKO/data/art/arc_props/bakery_mill.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "sha256": "5fb8ee1f4f004baa009fd65b6c6b53a66614bc5ce497e48612c2609d1f46b35f",
+      "pixel_edits": false
+    },
+    {
+      "id": "greenhouse",
+      "path": "PLINKO/data/art/arc_props/greenhouse.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "sha256": "81568c789fcb056797326f3d270c6e08a96ece854cfe67fe7f1f955c8deb3782",
+      "pixel_edits": false
+    },
+    {
+      "id": "gelato_pavilion",
+      "path": "PLINKO/data/art/arc_props/gelato_pavilion.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "sha256": "bde91bd418006517643fffc5e5adaca5ce44d5cbbc52b19f0c16f5dc294221e5",
+      "pixel_edits": false
+    },
+    {
+      "id": "gelato_house",
+      "path": "PLINKO/data/art/arc_props/gelato_house.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "sha256": "b1c1e25e60fd2bc9eeca961612c0a02824a965d02a5ac631465f995121fa2b4f",
+      "pixel_edits": false
+    },
+    {
+      "id": "oak_tree",
+      "path": "PLINKO/data/art/arc_props/oak_tree.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "sha256": "7f836879a8910eca33a42a6200aaf34d0e8b8554bfd86296dcecb2a3dfd1b289",
+      "pixel_edits": false
+    },
+    {
+      "id": "lilac_tree",
+      "path": "PLINKO/data/art/arc_props/lilac_tree.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "sha256": "6437db42ab3d1b47fcc33cd397ffae79e7602d51e228c73c52abbba4604dca32",
+      "pixel_edits": false
+    },
+    {
+      "id": "flower_planter",
+      "path": "PLINKO/data/art/arc_props/flower_planter.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "sha256": "04ce0bef6f2bbd5682eca064f79d10ace66618980bc24d61f43a56df79ebb06e",
+      "pixel_edits": false
+    },
+    {
+      "id": "garden_bench",
+      "path": "PLINKO/data/art/arc_props/garden_bench.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "sha256": "c37c041ce1e979a3dc23c2e2eb79a407e4813724485f77506887b1e3b47e36af",
+      "pixel_edits": false
+    },
+    {
+      "id": "garden_border",
+      "path": "PLINKO/data/art/arc_sections/garden_border.png",
+      "size": [
+        1586,
+        992
+      ],
+      "sha256": "7fbcf14ebbe3659246a00c070f434c2ab5e128adbda26f52fa14bc911c3c01c7",
+      "pixel_edits": false
+    },
+    {
+      "id": "herb_garden",
+      "path": "PLINKO/data/art/arc_sections/herb_garden.png",
+      "size": [
+        1484,
+        1060
+      ],
+      "sha256": "977395e2f558e9338040e1f4d8c618f4ca8faf377e375cc97a7cc53c928f96bc",
+      "pixel_edits": false
+    },
+    {
+      "id": "courtyard_steps",
+      "path": "PLINKO/data/art/arc_sections/courtyard_steps.png",
+      "size": [
+        1774,
+        887
+      ],
+      "sha256": "a26e0f5d334e1da25833d90116b95b362dadbe994cd00f8bd5bfb8a24608f3e0",
+      "pixel_edits": false
+    }
+  ],
+  "placements": 132,
+  "skipped_occupied_pockets": [
+    [
+      "bakery",
+      "14 garden link 334",
+      "garden tree"
+    ],
+    [
+      "bakery",
+      "19 courtyard accents",
+      "flowers 198"
+    ],
+    [
+      "bakery",
+      "19 courtyard accents",
+      "flowers 226"
+    ],
+    [
+      "bakery",
+      "19 courtyard accents",
+      "flowers 282"
+    ],
+    [
+      "bakery",
+      "19 courtyard accents",
+      "flowers 310"
+    ],
+    [
+      "gelato",
+      "14 garden link 334",
+      "garden tree"
+    ],
+    [
+      "gelato",
+      "19 courtyard accents",
+      "flowers 198"
+    ],
+    [
+      "gelato",
+      "19 courtyard accents",
+      "flowers 226"
+    ],
+    [
+      "gelato",
+      "19 courtyard accents",
+      "flowers 282"
+    ],
+    [
+      "gelato",
+      "19 courtyard accents",
+      "flowers 310"
+    ]
+  ]
+}

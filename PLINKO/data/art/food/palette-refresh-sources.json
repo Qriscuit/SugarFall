@@ -1,0 +1,27 @@
+{
+  "method": "built-in image_gen.imagegen; one precise-object edit per asset; original output pixels preserved",
+  "record": "concept-art/palette-refresh-v1/sources.json",
+  "assets": [
+    {
+      "id": "bakery-tray",
+      "source": "C:/Users/Hursh/.codex/generated_images/01a173c0-7a0e-7573-a977-1595f71b5672/exec-eafc9924-f6f5-4a94-ae76-2e376c3e4adb.png",
+      "destination": "PLINKO/data/art/food/tray.png",
+      "reference": "C:/Users/Hursh/Documents/Plinko/PLINKO/data/art/food/tray.png",
+      "prompt": "bakery-tray-prompt.txt",
+      "transparent_background": true,
+      "sha256": "de2d403c1675720940ec3de131295737e7466a6b4d3f7eb5dac515f393762278",
+      "reference_backup": "references/bakery-tray/input.png",
+      "size": [
+        1086,
+        1448
+      ],
+      "mode": "RGBA",
+      "source_bounds": [
+        0.01289134438305709,
+        0.026933701657458564,
+        0.9871086556169429,
+        0.9730662983425414
+      ]
+    }
+  ]
+}

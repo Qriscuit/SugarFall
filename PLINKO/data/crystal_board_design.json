@@ -1,0 +1,1201 @@
+{
+  "schema_version": 1,
+  "area_id": "crystal",
+  "chapter": "Crystal Candyworks",
+  "status": "Authored straight-shot banks and gaps; provisional tuning requires device playtesting.",
+  "base_timer_seconds": 10,
+  "boards": [
+    {
+      "level": 1,
+      "name": "First Refraction",
+      "family": "crystal_lanes",
+      "trait_brief": "Aim through the wide center lane, then bank toward the outside crystals.",
+      "peg_count": 9,
+      "base_hp": 6,
+      "armored_count": 0,
+      "armored_hp_multiplier": 1.8,
+      "clock_peg_count": 0,
+      "recommended_module": null,
+      "positions": [
+        [
+          250,
+          390
+        ],
+        [
+          470,
+          390
+        ],
+        [
+          190,
+          500
+        ],
+        [
+          360,
+          500
+        ],
+        [
+          530,
+          500
+        ],
+        [
+          250,
+          630
+        ],
+        [
+          360,
+          630
+        ],
+        [
+          470,
+          630
+        ],
+        [
+          360,
+          760
+        ]
+      ],
+      "strength_tier": "bronze"
+    },
+    {
+      "level": 2,
+      "name": "Mirror Wings",
+      "family": "crystal_banks",
+      "trait_brief": "Side clusters reward a clean wall bank before the center group.",
+      "peg_count": 11,
+      "base_hp": 6,
+      "armored_count": 0,
+      "armored_hp_multiplier": 1.8,
+      "clock_peg_count": 2,
+      "recommended_module": null,
+      "positions": [
+        [
+          100,
+          380
+        ],
+        [
+          210,
+          380
+        ],
+        [
+          510,
+          380
+        ],
+        [
+          620,
+          380
+        ],
+        [
+          100,
+          510
+        ],
+        [
+          270,
+          510
+        ],
+        [
+          450,
+          510
+        ],
+        [
+          620,
+          510
+        ],
+        [
+          210,
+          650
+        ],
+        [
+          360,
+          650
+        ],
+        [
+          510,
+          650
+        ]
+      ],
+      "strength_tier": "bronze"
+    },
+    {
+      "level": 3,
+      "name": "Split Gate",
+      "family": "crystal_gate",
+      "trait_brief": "Two gate openings give different lines into the lower crystals.",
+      "peg_count": 14,
+      "base_hp": 6,
+      "armored_count": 0,
+      "armored_hp_multiplier": 1.8,
+      "clock_peg_count": 2,
+      "recommended_module": "ricochet",
+      "positions": [
+        [
+          150,
+          370
+        ],
+        [
+          250,
+          370
+        ],
+        [
+          470,
+          370
+        ],
+        [
+          570,
+          370
+        ],
+        [
+          210,
+          490
+        ],
+        [
+          310,
+          490
+        ],
+        [
+          410,
+          490
+        ],
+        [
+          510,
+          490
+        ],
+        [
+          150,
+          620
+        ],
+        [
+          250,
+          620
+        ],
+        [
+          470,
+          620
+        ],
+        [
+          570,
+          620
+        ],
+        [
+          300,
+          750
+        ],
+        [
+          420,
+          750
+        ]
+      ],
+      "strength_tier": "bronze"
+    },
+    {
+      "level": 4,
+      "name": "Silver Shelves",
+      "family": "crystal_shelves",
+      "trait_brief": "Staggered shelves leave alternating entry angles.",
+      "peg_count": 16,
+      "base_hp": 12,
+      "armored_count": 1,
+      "armored_hp_multiplier": 1.8,
+      "clock_peg_count": 2,
+      "recommended_module": "ricochet",
+      "positions": [
+        [
+          130,
+          370
+        ],
+        [
+          245,
+          370
+        ],
+        [
+          475,
+          370
+        ],
+        [
+          590,
+          370
+        ],
+        [
+          190,
+          490
+        ],
+        [
+          305,
+          490
+        ],
+        [
+          415,
+          490
+        ],
+        [
+          530,
+          490
+        ],
+        [
+          130,
+          610
+        ],
+        [
+          245,
+          610
+        ],
+        [
+          475,
+          610
+        ],
+        [
+          590,
+          610
+        ],
+        [
+          190,
+          740
+        ],
+        [
+          305,
+          740
+        ],
+        [
+          415,
+          740
+        ],
+        [
+          530,
+          740
+        ]
+      ],
+      "strength_tier": "silver"
+    },
+    {
+      "level": 5,
+      "name": "Banking Hall",
+      "family": "crystal_hall",
+      "trait_brief": "The center opens into side walls of crystals and a lower crossbar.",
+      "peg_count": 19,
+      "base_hp": 12,
+      "armored_count": 1,
+      "armored_hp_multiplier": 1.8,
+      "clock_peg_count": 2,
+      "recommended_module": "ricochet",
+      "positions": [
+        [
+          100,
+          360
+        ],
+        [
+          200,
+          360
+        ],
+        [
+          520,
+          360
+        ],
+        [
+          620,
+          360
+        ],
+        [
+          100,
+          475
+        ],
+        [
+          275,
+          475
+        ],
+        [
+          445,
+          475
+        ],
+        [
+          620,
+          475
+        ],
+        [
+          100,
+          590
+        ],
+        [
+          200,
+          590
+        ],
+        [
+          520,
+          590
+        ],
+        [
+          620,
+          590
+        ],
+        [
+          150,
+          710
+        ],
+        [
+          255,
+          710
+        ],
+        [
+          360,
+          710
+        ],
+        [
+          465,
+          710
+        ],
+        [
+          570,
+          710
+        ],
+        [
+          275,
+          820
+        ],
+        [
+          445,
+          820
+        ]
+      ],
+      "strength_tier": "silver"
+    },
+    {
+      "level": 6,
+      "name": "Prism Workshop",
+      "family": "crystal_workshop",
+      "trait_brief": "Use the center channel to reach protected lower groups.",
+      "peg_count": 19,
+      "base_hp": 12,
+      "armored_count": 1,
+      "armored_hp_multiplier": 1.8,
+      "clock_peg_count": 2,
+      "recommended_module": "ricochet",
+      "positions": [
+        [
+          140,
+          360
+        ],
+        [
+          250,
+          360
+        ],
+        [
+          470,
+          360
+        ],
+        [
+          580,
+          360
+        ],
+        [
+          195,
+          470
+        ],
+        [
+          305,
+          470
+        ],
+        [
+          415,
+          470
+        ],
+        [
+          525,
+          470
+        ],
+        [
+          140,
+          580
+        ],
+        [
+          250,
+          580
+        ],
+        [
+          470,
+          580
+        ],
+        [
+          580,
+          580
+        ],
+        [
+          195,
+          690
+        ],
+        [
+          305,
+          690
+        ],
+        [
+          415,
+          690
+        ],
+        [
+          525,
+          690
+        ],
+        [
+          250,
+          800
+        ],
+        [
+          360,
+          800
+        ],
+        [
+          470,
+          800
+        ]
+      ],
+      "strength_tier": "silver"
+    },
+    {
+      "level": 7,
+      "name": "Gold Galleries",
+      "family": "crystal_galleries",
+      "trait_brief": "Offset gold galleries reward longer angled ricochets.",
+      "peg_count": 22,
+      "base_hp": 18,
+      "armored_count": 2,
+      "armored_hp_multiplier": 1.8,
+      "clock_peg_count": 2,
+      "recommended_module": "splitter",
+      "positions": [
+        [
+          110,
+          355
+        ],
+        [
+          220,
+          355
+        ],
+        [
+          500,
+          355
+        ],
+        [
+          610,
+          355
+        ],
+        [
+          165,
+          465
+        ],
+        [
+          275,
+          465
+        ],
+        [
+          445,
+          465
+        ],
+        [
+          555,
+          465
+        ],
+        [
+          110,
+          575
+        ],
+        [
+          220,
+          575
+        ],
+        [
+          360,
+          575
+        ],
+        [
+          500,
+          575
+        ],
+        [
+          610,
+          575
+        ],
+        [
+          165,
+          685
+        ],
+        [
+          275,
+          685
+        ],
+        [
+          445,
+          685
+        ],
+        [
+          555,
+          685
+        ],
+        [
+          110,
+          795
+        ],
+        [
+          220,
+          795
+        ],
+        [
+          360,
+          795
+        ],
+        [
+          500,
+          795
+        ],
+        [
+          610,
+          795
+        ]
+      ],
+      "strength_tier": "gold"
+    },
+    {
+      "level": 8,
+      "name": "Faceted Crown",
+      "family": "crystal_crown",
+      "trait_brief": "Break the crown through either shoulder and aim into the lower fan.",
+      "peg_count": 24,
+      "base_hp": 18,
+      "armored_count": 2,
+      "armored_hp_multiplier": 1.8,
+      "clock_peg_count": 2,
+      "recommended_module": "splitter",
+      "positions": [
+        [
+          250,
+          350
+        ],
+        [
+          360,
+          350
+        ],
+        [
+          470,
+          350
+        ],
+        [
+          140,
+          455
+        ],
+        [
+          250,
+          455
+        ],
+        [
+          470,
+          455
+        ],
+        [
+          580,
+          455
+        ],
+        [
+          90,
+          560
+        ],
+        [
+          200,
+          560
+        ],
+        [
+          310,
+          560
+        ],
+        [
+          410,
+          560
+        ],
+        [
+          520,
+          560
+        ],
+        [
+          630,
+          560
+        ],
+        [
+          140,
+          665
+        ],
+        [
+          250,
+          665
+        ],
+        [
+          360,
+          665
+        ],
+        [
+          470,
+          665
+        ],
+        [
+          580,
+          665
+        ],
+        [
+          90,
+          770
+        ],
+        [
+          200,
+          770
+        ],
+        [
+          310,
+          770
+        ],
+        [
+          410,
+          770
+        ],
+        [
+          520,
+          770
+        ],
+        [
+          630,
+          770
+        ]
+      ],
+      "strength_tier": "gold"
+    },
+    {
+      "level": 9,
+      "name": "Glass Foundry",
+      "family": "crystal_foundry",
+      "trait_brief": "Three staggered columns offer deliberate bank-shot choices.",
+      "peg_count": 26,
+      "base_hp": 18,
+      "armored_count": 2,
+      "armored_hp_multiplier": 1.8,
+      "clock_peg_count": 2,
+      "recommended_module": "splitter",
+      "positions": [
+        [
+          100,
+          350
+        ],
+        [
+          210,
+          350
+        ],
+        [
+          320,
+          350
+        ],
+        [
+          430,
+          350
+        ],
+        [
+          540,
+          350
+        ],
+        [
+          620,
+          350
+        ],
+        [
+          155,
+          460
+        ],
+        [
+          265,
+          460
+        ],
+        [
+          455,
+          460
+        ],
+        [
+          565,
+          460
+        ],
+        [
+          100,
+          570
+        ],
+        [
+          210,
+          570
+        ],
+        [
+          320,
+          570
+        ],
+        [
+          430,
+          570
+        ],
+        [
+          540,
+          570
+        ],
+        [
+          620,
+          570
+        ],
+        [
+          155,
+          680
+        ],
+        [
+          265,
+          680
+        ],
+        [
+          455,
+          680
+        ],
+        [
+          565,
+          680
+        ],
+        [
+          100,
+          790
+        ],
+        [
+          210,
+          790
+        ],
+        [
+          320,
+          790
+        ],
+        [
+          430,
+          790
+        ],
+        [
+          540,
+          790
+        ],
+        [
+          620,
+          790
+        ]
+      ],
+      "strength_tier": "gold"
+    },
+    {
+      "level": 10,
+      "name": "Diamond Arcade",
+      "family": "crystal_arcade",
+      "trait_brief": "Dense arcade bays retain vertical and diagonal escape gaps.",
+      "peg_count": 29,
+      "base_hp": 24,
+      "armored_count": 3,
+      "armored_hp_multiplier": 1.8,
+      "clock_peg_count": 2,
+      "recommended_module": "splitter",
+      "positions": [
+        [
+          100,
+          350
+        ],
+        [
+          205,
+          350
+        ],
+        [
+          310,
+          350
+        ],
+        [
+          410,
+          350
+        ],
+        [
+          515,
+          350
+        ],
+        [
+          620,
+          350
+        ],
+        [
+          150,
+          455
+        ],
+        [
+          255,
+          455
+        ],
+        [
+          465,
+          455
+        ],
+        [
+          570,
+          455
+        ],
+        [
+          100,
+          560
+        ],
+        [
+          205,
+          560
+        ],
+        [
+          310,
+          560
+        ],
+        [
+          410,
+          560
+        ],
+        [
+          515,
+          560
+        ],
+        [
+          620,
+          560
+        ],
+        [
+          150,
+          665
+        ],
+        [
+          255,
+          665
+        ],
+        [
+          360,
+          665
+        ],
+        [
+          465,
+          665
+        ],
+        [
+          570,
+          665
+        ],
+        [
+          100,
+          770
+        ],
+        [
+          205,
+          770
+        ],
+        [
+          310,
+          770
+        ],
+        [
+          410,
+          770
+        ],
+        [
+          515,
+          770
+        ],
+        [
+          620,
+          770
+        ],
+        [
+          255,
+          875
+        ],
+        [
+          465,
+          875
+        ]
+      ],
+      "strength_tier": "diamond"
+    },
+    {
+      "level": 11,
+      "name": "Crystal Loom",
+      "family": "crystal_loom",
+      "trait_brief": "Weave straight shots through alternating narrow lanes.",
+      "peg_count": 31,
+      "base_hp": 24,
+      "armored_count": 3,
+      "armored_hp_multiplier": 1.8,
+      "clock_peg_count": 2,
+      "recommended_module": "splitter",
+      "positions": [
+        [
+          100,
+          350
+        ],
+        [
+          205,
+          350
+        ],
+        [
+          310,
+          350
+        ],
+        [
+          410,
+          350
+        ],
+        [
+          515,
+          350
+        ],
+        [
+          620,
+          350
+        ],
+        [
+          150,
+          455
+        ],
+        [
+          255,
+          455
+        ],
+        [
+          360,
+          455
+        ],
+        [
+          465,
+          455
+        ],
+        [
+          570,
+          455
+        ],
+        [
+          100,
+          560
+        ],
+        [
+          205,
+          560
+        ],
+        [
+          310,
+          560
+        ],
+        [
+          410,
+          560
+        ],
+        [
+          515,
+          560
+        ],
+        [
+          620,
+          560
+        ],
+        [
+          150,
+          665
+        ],
+        [
+          255,
+          665
+        ],
+        [
+          360,
+          665
+        ],
+        [
+          465,
+          665
+        ],
+        [
+          570,
+          665
+        ],
+        [
+          100,
+          770
+        ],
+        [
+          205,
+          770
+        ],
+        [
+          310,
+          770
+        ],
+        [
+          410,
+          770
+        ],
+        [
+          515,
+          770
+        ],
+        [
+          620,
+          770
+        ],
+        [
+          205,
+          875
+        ],
+        [
+          360,
+          875
+        ],
+        [
+          515,
+          875
+        ]
+      ],
+      "strength_tier": "diamond"
+    },
+    {
+      "level": 12,
+      "name": "Candyworks Heart",
+      "family": "crystal_heart",
+      "trait_brief": "The final layered crystal chamber rewards sustained banks and both prism offers.",
+      "peg_count": 33,
+      "base_hp": 24,
+      "armored_count": 3,
+      "armored_hp_multiplier": 1.8,
+      "clock_peg_count": 2,
+      "recommended_module": "splitter",
+      "positions": [
+        [
+          100,
+          350
+        ],
+        [
+          205,
+          350
+        ],
+        [
+          310,
+          350
+        ],
+        [
+          410,
+          350
+        ],
+        [
+          515,
+          350
+        ],
+        [
+          620,
+          350
+        ],
+        [
+          150,
+          455
+        ],
+        [
+          255,
+          455
+        ],
+        [
+          360,
+          455
+        ],
+        [
+          465,
+          455
+        ],
+        [
+          570,
+          455
+        ],
+        [
+          100,
+          560
+        ],
+        [
+          205,
+          560
+        ],
+        [
+          310,
+          560
+        ],
+        [
+          410,
+          560
+        ],
+        [
+          515,
+          560
+        ],
+        [
+          620,
+          560
+        ],
+        [
+          150,
+          665
+        ],
+        [
+          255,
+          665
+        ],
+        [
+          360,
+          665
+        ],
+        [
+          465,
+          665
+        ],
+        [
+          570,
+          665
+        ],
+        [
+          100,
+          770
+        ],
+        [
+          205,
+          770
+        ],
+        [
+          310,
+          770
+        ],
+        [
+          410,
+          770
+        ],
+        [
+          515,
+          770
+        ],
+        [
+          620,
+          770
+        ],
+        [
+          150,
+          875
+        ],
+        [
+          255,
+          875
+        ],
+        [
+          360,
+          875
+        ],
+        [
+          465,
+          875
+        ],
+        [
+          570,
+          875
+        ]
+      ],
+      "strength_tier": "diamond"
+    }
+  ]
+}

@@ -1,0 +1,132 @@
+{
+  "schema": 1,
+  "method": "built-in image_gen.imagegen; separate transparent props, original PNG pixels preserved; assembled as native game layers",
+  "assets": [
+    {
+      "id": "bakery_house",
+      "source": "C:/Users/Hursh/.codex/generated_images/01a173c0-7a0e-7573-a977-1595f71b5672/exec-1de4a0b2-02ff-4c50-a234-719436cce7db.png",
+      "destination": "PLINKO/data/art/arc_props/bakery_house.png",
+      "prompt": "bakery_house-prompt.txt",
+      "transparent_background": true,
+      "sha256": "33e51213ec305071977b31ec81617c5bd1e69fa2c881486000f853d5b9e72c7d",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "transparent_fraction": 0.3739
+    },
+    {
+      "id": "bakery_mill",
+      "source": "C:/Users/Hursh/.codex/generated_images/01a173c0-7a0e-7573-a977-1595f71b5672/exec-92eb2cce-ff71-48d5-b22e-54f915b95b74.png",
+      "destination": "PLINKO/data/art/arc_props/bakery_mill.png",
+      "prompt": "bakery_mill-prompt.txt",
+      "transparent_background": true,
+      "sha256": "5fb8ee1f4f004baa009fd65b6c6b53a66614bc5ce497e48612c2609d1f46b35f",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "transparent_fraction": 0.4871
+    },
+    {
+      "id": "greenhouse",
+      "source": "C:/Users/Hursh/.codex/generated_images/01a173c0-7a0e-7573-a977-1595f71b5672/exec-2c436c3b-0bd2-45bd-bb84-1b1b43d216f3.png",
+      "destination": "PLINKO/data/art/arc_props/greenhouse.png",
+      "prompt": "greenhouse-prompt.txt",
+      "transparent_background": true,
+      "sha256": "81568c789fcb056797326f3d270c6e08a96ece854cfe67fe7f1f955c8deb3782",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "transparent_fraction": 0.3941
+    },
+    {
+      "id": "gelato_pavilion",
+      "source": "C:/Users/Hursh/.codex/generated_images/01a173c0-7a0e-7573-a977-1595f71b5672/exec-a5510003-5aca-4ff1-97a3-6d46919a85cc.png",
+      "destination": "PLINKO/data/art/arc_props/gelato_pavilion.png",
+      "prompt": "gelato_pavilion-prompt.txt",
+      "transparent_background": true,
+      "sha256": "bde91bd418006517643fffc5e5adaca5ce44d5cbbc52b19f0c16f5dc294221e5",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "transparent_fraction": 0.4466
+    },
+    {
+      "id": "gelato_house",
+      "source": "C:/Users/Hursh/.codex/generated_images/01a173c0-7a0e-7573-a977-1595f71b5672/exec-b2d07170-7366-4922-b1bb-f7680370732a.png",
+      "destination": "PLINKO/data/art/arc_props/gelato_house.png",
+      "prompt": "gelato_house-prompt.txt",
+      "transparent_background": true,
+      "sha256": "b1c1e25e60fd2bc9eeca961612c0a02824a965d02a5ac631465f995121fa2b4f",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "transparent_fraction": 0.4344
+    },
+    {
+      "id": "oak_tree",
+      "source": "C:/Users/Hursh/.codex/generated_images/01a173c0-7a0e-7573-a977-1595f71b5672/exec-d77ed146-95fe-42fa-8457-fc4bc67308e8.png",
+      "destination": "PLINKO/data/art/arc_props/oak_tree.png",
+      "prompt": "oak_tree-prompt.txt",
+      "transparent_background": true,
+      "sha256": "7f836879a8910eca33a42a6200aaf34d0e8b8554bfd86296dcecb2a3dfd1b289",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "transparent_fraction": 0.4718
+    },
+    {
+      "id": "lilac_tree",
+      "source": "C:/Users/Hursh/.codex/generated_images/01a173c0-7a0e-7573-a977-1595f71b5672/exec-fde4cd55-3c25-410e-8316-f09bcf9c6817.png",
+      "destination": "PLINKO/data/art/arc_props/lilac_tree.png",
+      "prompt": "lilac_tree-prompt.txt",
+      "transparent_background": true,
+      "sha256": "6437db42ab3d1b47fcc33cd397ffae79e7602d51e228c73c52abbba4604dca32",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "transparent_fraction": 0.5552
+    },
+    {
+      "id": "flower_planter",
+      "source": "C:/Users/Hursh/.codex/generated_images/01a173c0-7a0e-7573-a977-1595f71b5672/exec-3632d49e-bbe3-4895-92dc-52769ce95992.png",
+      "destination": "PLINKO/data/art/arc_props/flower_planter.png",
+      "prompt": "flower_planter-prompt.txt",
+      "transparent_background": true,
+      "sha256": "04ce0bef6f2bbd5682eca064f79d10ace66618980bc24d61f43a56df79ebb06e",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "transparent_fraction": 0.4655
+    },
+    {
+      "id": "garden_bench",
+      "source": "C:/Users/Hursh/.codex/generated_images/01a173c0-7a0e-7573-a977-1595f71b5672/exec-398ec0a6-c3ab-4caa-a532-90bd3f6fdafe.png",
+      "destination": "PLINKO/data/art/arc_props/garden_bench.png",
+      "prompt": "garden_bench-prompt.txt",
+      "transparent_background": true,
+      "sha256": "c37c041ce1e979a3dc23c2e2eb79a407e4813724485f77506887b1e3b47e36af",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "transparent_fraction": 0.6762
+    }
+  ]
+}

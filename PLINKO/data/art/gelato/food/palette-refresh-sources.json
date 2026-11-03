@@ -1,0 +1,27 @@
+{
+  "method": "built-in image_gen.imagegen; one precise-object edit per asset; original output pixels preserved",
+  "record": "concept-art/palette-refresh-v1/sources.json",
+  "assets": [
+    {
+      "id": "gelato-tray",
+      "source": "C:/Users/Hursh/.codex/generated_images/01a173c0-7a0e-7573-a977-1595f71b5672/exec-f463ba9e-283a-4e1c-8d3f-5a620cb327f0.png",
+      "destination": "PLINKO/data/art/gelato/food/tray.png",
+      "reference": "C:/Users/Hursh/Documents/Plinko/PLINKO/data/art/gelato/food/tray.png",
+      "prompt": "gelato-tray-prompt.txt",
+      "transparent_background": true,
+      "sha256": "695f994f585fcf6119bf42816a24afa1bc64f8e3a3958d111f3739e3d134dfc2",
+      "reference_backup": "references/gelato-tray/input.png",
+      "size": [
+        1049,
+        1500
+      ],
+      "mode": "RGBA",
+      "source_bounds": [
+        0.09532888465204957,
+        0.056666666666666664,
+        0.8102955195424214,
+        0.878
+      ]
+    }
+  ]
+}

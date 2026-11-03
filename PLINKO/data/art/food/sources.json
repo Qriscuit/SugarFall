@@ -1,0 +1,115 @@
+{
+  "scope": "Cookie damage states added 2026-10-23. Existing intact food asset provenance remains in README.txt.",
+  "generation_method": "Built-in image_gen imagegen; pixels preserved; Godot importer makes256px mipmapped runtime textures.",
+  "alignment": "Each damage stage reuses the intact family normalized crop, retaining transparent missing areas rather than tightly recropping.",
+  "assets": [
+    {
+      "name": "cookie_normal_damage_1",
+      "stage": 1,
+      "kind": "normal",
+      "source_path": "C:/Users/Hursh/.codex/generated_images/01a1698f-a59c-7e10-a1df-92fe5d8b1f60/exec-24474016-6175-4158-bdb1-aadbfa46f986.png",
+      "project_path": "data/art/food/cookie_normal_damage_1.png",
+      "edit_target": "data/art/food/cookie_normal.png",
+      "prompt": "Use case: precise-object-edit. Asset type: one production damage-state PNG sprite for the normal cookie peg in Sugarfall. The attached PNG is the exact edit target, NOT a loose style reference. Change only physical damage. DAMAGE STAGE 1 of 3: a visibly chipped cookie after its first hit. Remove two modest angular chunks from the upper-right rim, exposing warm rough baked crumb, and add one broad short fissure extending inward from that chipped edge through icing. Missing chunks are transparent voids, not shaded intact cake. Leave about 85–90% of the cookie intact. Damage must read immediately at only 49 pixels wide: use broad 2–3-pixel-at-final-size dark fissure, not hairline texture. Preserve the cookie identity, toppings, circular center, original outer diameter, exact canvas position, camera angle, material palette, upper-left light, and original transparent safety margins. Especially retain the cream icing petals and caramel center. Do NOT zoom or recenter after removing pieces. No floating debris beyond the original silhouette. One isolated cookie only, square PNG, genuine alpha background and genuine alpha in removed chunks. No text, numbers, rings, progress bars, frame, sheet, floor, shadow, background, checkerboard or other objects."
+    },
+    {
+      "name": "cookie_armored_damage_1",
+      "stage": 1,
+      "kind": "armored",
+      "source_path": "C:/Users/Hursh/.codex/generated_images/01a1698f-a59c-7e10-a1df-92fe5d8b1f60/exec-99cf1367-6ef4-4b9e-9069-43b84996d6e1.png",
+      "project_path": "data/art/food/cookie_armored_damage_1.png",
+      "edit_target": "data/art/food/cookie_armored.png",
+      "prompt": "Use case: precise-object-edit. Asset type: one production damage-state PNG sprite for the armored cookie peg in Sugarfall. The attached PNG is the exact edit target, NOT a loose style reference. Change only physical damage. DAMAGE STAGE 1 of 3: a visibly chipped cookie after its first hit. Remove two modest angular chunks from the upper-right rim, exposing warm rough baked crumb, and add one broad short fissure extending inward from that chipped edge through icing. Missing chunks are transparent voids, not shaded intact cake. Leave about 85–90% of the cookie intact. Damage must read immediately at only 49 pixels wide: use broad 2–3-pixel-at-final-size dark fissure, not hairline texture. Preserve the cookie identity, toppings, circular center, original outer diameter, exact canvas position, camera angle, material palette, upper-left light, and original transparent safety margins. Especially retain the chocolate-covered petal armor. Do NOT zoom or recenter after removing pieces. No floating debris beyond the original silhouette. One isolated cookie only, square PNG, genuine alpha background and genuine alpha in removed chunks. No text, numbers, rings, progress bars, frame, sheet, floor, shadow, background, checkerboard or other objects."
+    },
+    {
+      "name": "cookie_prism_damage_1",
+      "stage": 1,
+      "kind": "prism",
+      "source_path": "C:/Users/Hursh/.codex/generated_images/01a1698f-a59c-7e10-a1df-92fe5d8b1f60/exec-292fd3b0-5530-4094-8b97-23730f100c20.png",
+      "project_path": "data/art/food/cookie_prism_damage_1.png",
+      "edit_target": "data/art/food/cookie_prism.png",
+      "prompt": "Use case: precise-object-edit. Asset type: one production damage-state PNG sprite for the prism cookie peg in Sugarfall. The attached PNG is the exact edit target, NOT a loose style reference. Change only physical damage. DAMAGE STAGE 1 of 3: a visibly chipped cookie after its first hit. Remove two modest angular chunks from the upper-right rim, exposing warm rough baked crumb, and add one broad short fissure extending inward from that chipped edge through icing. Missing chunks are transparent voids, not shaded intact cake. Leave about 85–90% of the cookie intact. Damage must read immediately at only 49 pixels wide: use broad 2–3-pixel-at-final-size dark fissure, not hairline texture. Preserve the cookie identity, toppings, circular center, original outer diameter, exact canvas position, camera angle, material palette, upper-left light, and original transparent safety margins. Especially retain the pale pistachio icing and honey gems. Do NOT zoom or recenter after removing pieces. No floating debris beyond the original silhouette. One isolated cookie only, square PNG, genuine alpha background and genuine alpha in removed chunks. No text, numbers, rings, progress bars, frame, sheet, floor, shadow, background, checkerboard or other objects."
+    },
+    {
+      "name": "cookie_clock_damage_1",
+      "stage": 1,
+      "kind": "clock",
+      "source_path": "C:/Users/Hursh/.codex/generated_images/01a1698f-a59c-7e10-a1df-92fe5d8b1f60/exec-7d0c53de-f3d0-4c27-83a3-b788e82a7591.png",
+      "project_path": "data/art/food/cookie_clock_damage_1.png",
+      "edit_target": "data/art/food/cookie_clock.png",
+      "prompt": "Use case: precise-object-edit. Asset type: one production damage-state PNG sprite for the clock cookie peg in Sugarfall. The attached PNG is the exact edit target, NOT a loose style reference. Change only physical damage. DAMAGE STAGE 1 of 3: a visibly chipped cookie after its first hit. Remove two modest angular chunks from the upper-right rim, exposing warm rough baked crumb, and add one broad short fissure extending inward from that chipped edge through icing. Missing chunks are transparent voids, not shaded intact cake. Leave about 85–90% of the cookie intact. Damage must read immediately at only 49 pixels wide: use broad 2–3-pixel-at-final-size dark fissure, not hairline texture. Preserve the cookie identity, toppings, circular center, original outer diameter, exact canvas position, camera angle, material palette, upper-left light, and original transparent safety margins. Especially retain the chocolate clock hands and center. Do NOT zoom or recenter after removing pieces. No floating debris beyond the original silhouette. One isolated cookie only, square PNG, genuine alpha background and genuine alpha in removed chunks. No text, numbers, rings, progress bars, frame, sheet, floor, shadow, background, checkerboard or other objects."
+    },
+    {
+      "name": "cookie_normal_damage_2",
+      "stage": 2,
+      "kind": "normal",
+      "source_path": "C:/Users/Hursh/.codex/generated_images/01a1698f-a59c-7e10-a1df-92fe5d8b1f60/exec-3699e975-8622-482b-93fa-22c01614b661.png",
+      "project_path": "data/art/food/cookie_normal_damage_2.png",
+      "edit_target": "data/art/food/cookie_normal_damage_1.png",
+      "prompt": "Use case: precise-object-edit. Asset type: ONE normal cookie damage-state sprite for Sugarfall, stage 2 of 3. Attached image is the exact stage1 cookie edit target. Increase physical crumbling: enlarge the missing upper-right wedge until roughly one quarter of the original cookie is gone, with an unmistakable jagged transparent cutout reaching toward the center. Add a second broad deep crack toward the lower-left rim, so surviving baked cookie is divided into 2–3 still-touching large sections. The intact remainder should occupy about 70% of original circular area. Missing chunks and deep open gaps use true transparent alpha. Keep its center and original cookie footprint fixed; do not enlarge or recenter the remainder. Keep the same canvas proportions, original silhouette size, perspective, palette, toppings on surviving pieces, upper-left lighting and warm baked interior. Retain the cream icing petals and caramel center on remaining portions. Main requirement: damage clearly reads at just49px wide, with bold missing silhouette chunks and wide cracks rather than fine texture. One isolated asset only; no detached specks beyond original footprint, no explosion, no rings/bars, no text/numbers, no background/floor/shadow, no fake checkerboard. Genuine transparent PNG. Preserve center/scale of reference exactly."
+    },
+    {
+      "name": "cookie_armored_damage_2",
+      "stage": 2,
+      "kind": "armored",
+      "source_path": "C:/Users/Hursh/.codex/generated_images/01a1698f-a59c-7e10-a1df-92fe5d8b1f60/exec-dff05e43-1b7b-4df9-b7f3-382c456f144e.png",
+      "project_path": "data/art/food/cookie_armored_damage_2.png",
+      "edit_target": "data/art/food/cookie_armored_damage_1.png",
+      "prompt": "Use case: precise-object-edit. Asset type: ONE armored cookie damage-state sprite for Sugarfall, stage 2 of 3. Attached image is the exact stage1 cookie edit target. Increase physical crumbling: enlarge the missing upper-right wedge until roughly one quarter of the original cookie is gone, with an unmistakable jagged transparent cutout reaching toward the center. Add a second broad deep crack toward the lower-left rim, so surviving baked cookie is divided into 2–3 still-touching large sections. The intact remainder should occupy about 70% of original circular area. Missing chunks and deep open gaps use true transparent alpha. Keep its center and original cookie footprint fixed; do not enlarge or recenter the remainder. Keep the same canvas proportions, original silhouette size, perspective, palette, toppings on surviving pieces, upper-left lighting and warm baked interior. Clearly fracture the chocolate armor plates, exposing broad pale golden crumb edges. Main requirement: damage clearly reads at just49px wide, with bold missing silhouette chunks and wide cracks rather than fine texture. One isolated asset only; no detached specks beyond original footprint, no explosion, no rings/bars, no text/numbers, no background/floor/shadow, no fake checkerboard. Genuine transparent PNG. Preserve center/scale of reference exactly."
+    },
+    {
+      "name": "cookie_prism_damage_2",
+      "stage": 2,
+      "kind": "prism",
+      "source_path": "C:/Users/Hursh/.codex/generated_images/01a1698f-a59c-7e10-a1df-92fe5d8b1f60/exec-35753734-2d86-4c21-bece-17c88f489e21.png",
+      "project_path": "data/art/food/cookie_prism_damage_2.png",
+      "edit_target": "data/art/food/cookie_prism_damage_1.png",
+      "prompt": "Use case: precise-object-edit. Asset type: ONE prism cookie damage-state sprite for Sugarfall, stage 2 of 3. Attached image is the exact stage1 cookie edit target. Increase physical crumbling: enlarge the missing upper-right wedge until roughly one quarter of the original cookie is gone, with an unmistakable jagged transparent cutout reaching toward the center. Add a second broad deep crack toward the lower-left rim, so surviving baked cookie is divided into 2–3 still-touching large sections. The intact remainder should occupy about 70% of original circular area. Missing chunks and deep open gaps use true transparent alpha. Keep its center and original cookie footprint fixed; do not enlarge or recenter the remainder. Keep the same canvas proportions, original silhouette size, perspective, palette, toppings on surviving pieces, upper-left lighting and warm baked interior. Retain the recognizable pale pistachio glaze and a couple of honey gems. Main requirement: damage clearly reads at just49px wide, with bold missing silhouette chunks and wide cracks rather than fine texture. One isolated asset only; no detached specks beyond original footprint, no explosion, no rings/bars, no text/numbers, no background/floor/shadow, no fake checkerboard. Genuine transparent PNG. Preserve center/scale of reference exactly."
+    },
+    {
+      "name": "cookie_clock_damage_2",
+      "stage": 2,
+      "kind": "clock",
+      "source_path": "C:/Users/Hursh/.codex/generated_images/01a1698f-a59c-7e10-a1df-92fe5d8b1f60/exec-d4e32e89-2918-4a9d-8e41-1bec46d9ecb9.png",
+      "project_path": "data/art/food/cookie_clock_damage_2.png",
+      "edit_target": "data/art/food/cookie_clock_damage_1.png",
+      "prompt": "Use case: precise-object-edit. Asset type: ONE clock cookie damage-state sprite for Sugarfall, stage 2 of 3. Attached image is the exact stage1 cookie edit target. Increase physical crumbling: enlarge the missing upper-right wedge until roughly one quarter of the original cookie is gone, with an unmistakable jagged transparent cutout reaching toward the center. Add a second broad deep crack toward the lower-left rim, so surviving baked cookie is divided into 2–3 still-touching large sections. The intact remainder should occupy about 70% of original circular area. Missing chunks and deep open gaps use true transparent alpha. Keep its center and original cookie footprint fixed; do not enlarge or recenter the remainder. Keep the same canvas proportions, original silhouette size, perspective, palette, toppings on surviving pieces, upper-left lighting and warm baked interior. Keep most of the chocolate hands so it is still a clock cookie. Main requirement: damage clearly reads at just49px wide, with bold missing silhouette chunks and wide cracks rather than fine texture. One isolated asset only; no detached specks beyond original footprint, no explosion, no rings/bars, no text/numbers, no background/floor/shadow, no fake checkerboard. Genuine transparent PNG. Preserve center/scale of reference exactly."
+    },
+    {
+      "name": "cookie_normal_damage_3",
+      "stage": 3,
+      "kind": "normal",
+      "source_path": "C:/Users/Hursh/.codex/generated_images/01a1698f-a59c-7e10-a1df-92fe5d8b1f60/exec-e7e4afd2-4add-4ff1-a8f7-70607cbe7eba.png",
+      "project_path": "data/art/food/cookie_normal_damage_3.png",
+      "edit_target": "data/art/food/cookie_normal_damage_2.png",
+      "prompt": "Use case: precise-object-edit. Asset type: ONE normal cookie peg sprite, final damage stage 3 of 3, nearly crumbled. Attached image is the exact stage2 edit target. Remove MORE cookie without restoring ANY missing area. Keep the upper-right quadrant absent; enlarge its jagged missing wedge beyond the center, and break the lower-left deep fissure all the way through with a clearly transparent 3-pixel-at49px-wide gap. Only about40–45% of the original full cookie remains as three large irregular near-touching broken pieces, each with chunky crumb edges. Do not scatter outward: surviving pieces remain exactly where they were on the original full cookie canvas. Emphasize a big absent silhouette, fractured icing, and wide transparent gap, clearly distinct from previous stage at49px wide. Remaining pieces retain recognizable cream icing petal fragments and part of the caramel center. Preserve reference canvas dimensions, original center and radius, positions, view, light direction, materials and colors exactly. Do NOT zoom, enlarge or recenter the shrinking cookie. No tiny flying flecks or crumbs outside original footprint; no explosion, no ring, meter, text/numbers, floor, backdrop, checkerboard or cast shadow. One isolated sprite, genuine alpha PNG with transparent absent portions and transparent cracks."
+    },
+    {
+      "name": "cookie_armored_damage_3",
+      "stage": 3,
+      "kind": "armored",
+      "source_path": "C:/Users/Hursh/.codex/generated_images/01a1698f-a59c-7e10-a1df-92fe5d8b1f60/exec-bb913ab5-718d-47bb-a64b-b709ed30cb35.png",
+      "project_path": "data/art/food/cookie_armored_damage_3.png",
+      "edit_target": "data/art/food/cookie_armored_damage_2.png",
+      "prompt": "Use case: precise-object-edit. Asset type: ONE armored cookie peg sprite, final damage stage 3 of 3, nearly crumbled. Attached image is the exact stage2 edit target. Remove MORE cookie without restoring ANY missing area. Keep the upper-right quadrant absent; enlarge its jagged missing wedge beyond the center, and break the lower-left deep fissure all the way through with a clearly transparent 3-pixel-at49px-wide gap. Only about40–45% of the original full cookie remains as three large irregular near-touching broken pieces, each with chunky crumb edges. Do not scatter outward: surviving pieces remain exactly where they were on the original full cookie canvas. Emphasize a big absent silhouette, fractured icing, and wide transparent gap, clearly distinct from previous stage at49px wide. Remaining pieces retain their dark chocolate armor and exposed pale-gold crumb. Preserve reference canvas dimensions, original center and radius, positions, view, light direction, materials and colors exactly. Do NOT zoom, enlarge or recenter the shrinking cookie. No tiny flying flecks or crumbs outside original footprint; no explosion, no ring, meter, text/numbers, floor, backdrop, checkerboard or cast shadow. One isolated sprite, genuine alpha PNG with transparent absent portions and transparent cracks."
+    },
+    {
+      "name": "cookie_prism_damage_3",
+      "stage": 3,
+      "kind": "prism",
+      "source_path": "C:/Users/Hursh/.codex/generated_images/01a1698f-a59c-7e10-a1df-92fe5d8b1f60/exec-3f8158d0-a742-471e-81aa-7a7515ec9d34.png",
+      "project_path": "data/art/food/cookie_prism_damage_3.png",
+      "edit_target": "data/art/food/cookie_prism_damage_2.png",
+      "prompt": "Use case: precise-object-edit. Asset type: ONE prism cookie peg sprite, final damage stage 3 of 3, nearly crumbled. Attached image is the exact stage2 edit target. Remove MORE cookie without restoring ANY missing area. Keep the upper-right quadrant absent; enlarge its jagged missing wedge beyond the center, and break the lower-left deep fissure all the way through with a clearly transparent 3-pixel-at49px-wide gap. Only about40–45% of the original full cookie remains as three large irregular near-touching broken pieces, each with chunky crumb edges. Do not scatter outward: surviving pieces remain exactly where they were on the original full cookie canvas. Emphasize a big absent silhouette, fractured icing, and wide transparent gap, clearly distinct from previous stage at49px wide. Remaining pieces retain pale pistachio glaze and at least one partial golden honey jewel. Preserve reference canvas dimensions, original center and radius, positions, view, light direction, materials and colors exactly. Do NOT zoom, enlarge or recenter the shrinking cookie. No tiny flying flecks or crumbs outside original footprint; no explosion, no ring, meter, text/numbers, floor, backdrop, checkerboard or cast shadow. One isolated sprite, genuine alpha PNG with transparent absent portions and transparent cracks."
+    },
+    {
+      "name": "cookie_clock_damage_3",
+      "stage": 3,
+      "kind": "clock",
+      "source_path": "C:/Users/Hursh/.codex/generated_images/01a1698f-a59c-7e10-a1df-92fe5d8b1f60/exec-1a6e19cd-38bb-4501-8c18-344792de173c.png",
+      "project_path": "data/art/food/cookie_clock_damage_3.png",
+      "edit_target": "data/art/food/cookie_clock_damage_2.png",
+      "prompt": "Use case: precise-object-edit. Asset type: ONE clock cookie peg sprite, final damage stage 3 of 3, nearly crumbled. Attached image is the exact stage2 edit target. Remove MORE cookie without restoring ANY missing area. Keep the upper-right quadrant absent; enlarge its jagged missing wedge beyond the center, and break the lower-left deep fissure all the way through with a clearly transparent 3-pixel-at49px-wide gap. Only about40–45% of the original full cookie remains as three large irregular near-touching broken pieces, each with chunky crumb edges. Do not scatter outward: surviving pieces remain exactly where they were on the original full cookie canvas. Emphasize a big absent silhouette, fractured icing, and wide transparent gap, clearly distinct from previous stage at49px wide. Retain the chocolate pivot and a broken section of the clock hands on a remaining piece. Preserve reference canvas dimensions, original center and radius, positions, view, light direction, materials and colors exactly. Do NOT zoom, enlarge or recenter the shrinking cookie. No tiny flying flecks or crumbs outside original footprint; no explosion, no ring, meter, text/numbers, floor, backdrop, checkerboard or cast shadow. One isolated sprite, genuine alpha PNG with transparent absent portions and transparent cracks."
+    }
+  ]
+}

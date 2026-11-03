@@ -1,0 +1,14 @@
+{
+  "date": "2026-10-25",
+  "asset": "Mabel, original tutorial host",
+  "generator": "built-in image_gen",
+  "transparent_background": true,
+  "prompt_file": "host-prompt.txt",
+  "source_file": "C:/Users/Hursh/.codex/generated_images/01a1757f-f186-7f33-a689-acdcf573cb70/exec-20fbe2fa-0707-4d1a-aff5-649d62c38197.png",
+  "production_file": "../../PLINKO/data/art/host/mabel_welcome.png",
+  "reference_images_supplied": [],
+  "observed_local_style_reference": "../../PLINKO/data/art/food/donut.png",
+  "art_direction": "../../PLINKO/docs/ART_DIRECTION.md",
+  "pixel_processing": "None; source PNG copied byte-for-byte. Alpha and natural aspect ratio preserved.",
+  "notes": "Original character inspired by the general welcoming mentor role in casual cooking games. Speech bubble and all text are rendered live by the game; none are baked into this image."
+}

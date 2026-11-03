@@ -1,0 +1,97 @@
+{
+  "build_date": "2026-10-24",
+  "godot": "4.6.3.stable.official.7d41c59c4",
+  "monetization": "Local test service; no real ad or purchase accounts connected",
+  "changes": [
+    "Gelato Garden with 33 new generated assets and twelve authored boards.",
+    "One-time 400000 Bakery coin entry; separate area wallets/upgrades; permanent purchases preserved.",
+    "Version 3 area profiles with retained legacy saves and area-bound checkpoints/results."
+  ],
+  "source_regression_checks": 965,
+  "art_ui_checks": 714,
+  "rendered_captures": 48,
+  "source_sha256": {
+    "res://scripts/area_art.gd": "8abd9f6a5d24a59803d4e28d6579a153b47639689baafe33170e62f45e5a03c7",
+    "res://scripts/area_campaign.gd": "e2b2864c9c9936c76cd199816c6f726ee7cff1e8df168879036891a5ec9ce859",
+    "res://scripts/coin_display.gd": "29fcfa88220832e516a1d1d1e6210893ec083360848bda21caea574c7a26fc23",
+    "res://scripts/environment_art.gd": "10c937af652cd7a199a1262f17ac57a21afae189642a89fb83684d0f030686aa",
+    "res://scripts/food_art.gd": "08492a4c3897226478ce7f35b1cdc9f1fbfc4db95aea6189632f8b8d1ebc1b97",
+    "res://scripts/home_menu.gd": "d90fe172a2876e21d9c3f1404ae6847fcf952d9246ca6406c8341217a0132dcb",
+    "res://scripts/impact_feedback.gd": "b9a0a6267ff7fb48701a4a75dc776ca8013f7619ceac3f2bf37b30aca6b6bb21",
+    "res://scripts/level_map.gd": "d1a127c4d009175e494750960c5cbbf208bc1d5a9831157a5e4cece8fce5b69d",
+    "res://scripts/main.gd": "baeb361e65b1a299021fe0580d95b0f156c0252a2ff92709c4fb642541260bd6",
+    "res://scripts/monetization_service.gd": "c32c959fe6d527ecda6229e46b60ab31d3a629de90fb04ca0388332ed2119921",
+    "res://scripts/monetization_ui.gd": "666283c7228ad97e3460b38f8cf99f6b6e45c565cdf6afdd24122c48599c5dee",
+    "res://scripts/run_snapshot.gd": "b6f49ebe8d05e5ce19acb33bfc37193ff7ba8e720deb32695ee781135918f023",
+    "res://scripts/run_transition.gd": "0632923b9239d3a03fc543a112f55b6afc2a4535a3cd1790f6c4ad393677e8e5",
+    "res://scripts/tone_bank.gd": "0eabc16e9ebf89d77e915ebc64ad44b030dd76003a4e02466d66267f9c5907c0",
+    "res://scripts/ui_art.gd": "d82347f33d6b81b55d3b9f8cec53015afd19b15d95ca389a9181d6b1a6dcf0b5",
+    "res://scripts/upgrade_map.gd": "6251c04ac781f4bae2fb75146cb4a59878e2fb1ef491fe180f2f2f48cdc783e4"
+  },
+  "app_name": "Sugarfall",
+  "file_name": "Sugarfall-v0.6.0-Android-Preview-2026-10-24.apk",
+  "local_path": "builds\\Sugarfall-v0.6.0-Android-Preview-2026-10-24.apk",
+  "size_bytes": 62153569,
+  "sha256": "9cb2dadf075bd0bb314b244a35b7ffdd9cdb3634b6d497b341488328671b1263",
+  "md5": "0375b730c3902addbd7181f911d28b47",
+  "package": "org.pegfoundry.prototype.preview",
+  "version_name": "0.6.0-preview",
+  "version_code": 10,
+  "export_preset": "Android Preview",
+  "export_mode": "debug",
+  "java": "21.0.12",
+  "android_build_tools": "36.1.0",
+  "minimum_sdk": 24,
+  "target_sdk": 36,
+  "architectures": [
+    "arm64-v8a"
+  ],
+  "requested_android_permissions": [],
+  "signing_certificate_sha256": "926f0d0c634978f4d84727a272068bacd3bb157277a9a8b18810e7c60aef70bc",
+  "update_compatibility": "Same preview package and development signing identity, with increasing version code. Install over prior preview; legacy saves migrate to v3 and are retained.",
+  "verification": {
+    "payload_checks_passed": 248,
+    "android_metadata_checks_passed": 16,
+    "signature_v2": true,
+    "signature_v3": true,
+    "zip_alignment_16_kib": true,
+    "runtime_art_textures_checked": 79,
+    "runtime_scripts_byte_identical_to_tested_windows": 16,
+    "physical_android_device_tested": false,
+    "android_emulator_tested": false,
+    "evidence_directory": "../../verification/android-preview-v060"
+  },
+  "drive": {
+    "id": "1GF1zo3lt0VR5voajNPGjoP1FYuPe0FYz",
+    "title": "Sugarfall-v0.6.0-Android-Preview-2026-10-24.apk",
+    "mime_type": "application/vnd.android.package-archive",
+    "size": "62153569",
+    "url": "https://drive.google.com/file/d/1GF1zo3lt0VR5voajNPGjoP1FYuPe0FYz/view?usp=drivesdk",
+    "display_url": "https://drive.google.com/file/d/1GF1zo3lt0VR5voajNPGjoP1FYuPe0FYz/view?usp=drivesdk",
+    "file_or_folder": "file",
+    "created_time": null,
+    "modified_time": "2026-10-24T05:42:54.134Z",
+    "parent_ids": [
+      "1TXLZwTNVlHGTBy7y0CVMMk3zABEKu8X-"
+    ],
+    "drive_id": null,
+    "current_user_can_share": null,
+    "has_augmented_permissions": null,
+    "shared": false,
+    "permissions": [
+      {
+        "type": "user",
+        "role": "owner",
+        "emailAddress": null,
+        "domain": null,
+        "displayName": null,
+        "allowFileDiscovery": null
+      }
+    ],
+    "source_visibility_status": "permission_metadata_available",
+    "operation": "Replaced previous preview bytes and name in place",
+    "metadata_readback_verified": true,
+    "sharing_changed": false,
+    "remote_checksum_exposed_by_connector": false
+  }
+}

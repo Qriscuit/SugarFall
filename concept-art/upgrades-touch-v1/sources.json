@@ -1,0 +1,21 @@
+{
+  "date": "2026-10-23",
+  "method": "built-in image_gen",
+  "status": "concept-only",
+  "references": [
+    "verification/monetization-test-v1/previews/shop-expanding-450x800.png",
+    "verification/monetization-test-v1/previews/gameplay-early-450x800.png"
+  ],
+  "outputs": [
+    {
+      "file": "01-pastry-platter.png",
+      "source": "C:/Users/Hursh/.codex/generated_images/01a1698f-a59c-7e10-a1df-92fe5d8b1f60/exec-6f5d0ecb-4b66-4e13-a8c5-a6870f0192ea.png"
+    },
+    {
+      "file": "02-recipe-trails.png",
+      "source": "C:/Users/Hursh/.codex/generated_images/01a1698f-a59c-7e10-a1df-92fe5d8b1f60/exec-bdbdb54b-bf6b-47bc-b57d-0bcb8b4b6572.png"
+    }
+  ],
+  "prompts": "prompts.txt",
+  "brief": "design-brief.txt"
+}

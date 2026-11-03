@@ -1,0 +1,11 @@
+# Gelato ceramic garden courtyard
+
+This background replaces the purple ground beneath Gelato's existing winding upgrade map with a softly glazed ivory and pale mint ceramic courtyard. The existing twelve scenery groups keep their composition: central kiosk, glass pavilion, sundae fountain and slender planter, four outer trees, bench, cart and two entry urns. Live upgrades, paths, cards and controls remain separate game UI.
+
+The [native image](../../PLINKO/data/art/gelato/environment/upgrade_ceramic_garden_v1.png) is a 1024×1536 built-in ImageGen edit. It is copied unchanged into the project; no resizing, cropping, pixel retouching or texture stitching was applied. [The exact prompt](prompt.txt) and [source record](sources.json) identify the edit target and full-screen UI reference. The higher resolution requested in the prompt was not returned; the actual native dimensions are recorded here.
+
+World bounds remain `[-4600,-12250,9200,13800]`. The outer fade blends into `#fef1d8`, matching the mean native edge color, so exposed ground at the map boundary is warm ivory. Bakery and the other Gelato screens retain their existing art. Upgrade layout, purchase behavior, prices and saved progress are unchanged.
+
+The previous [purple composition](../gelato-tree-v2/README.md) and [v0.6.13 APK](../../PLINKO/docs/ANDROID_SUGARFALL_v0.6.13.json) remain historical records. Its color-based foreground audit is not reused for this tile floor. Current [focused screen review](../../verification/gelato-ceramic-20261102/validation.json) passed 177 checks across 20 captures at 720×1280 and 450×800 with zero real player-profile access. The finite tiled world fades into plain ivory at the edges; the tile texture softens when magnified. These are inspected design characteristics, not seamless infinite paving or pixel-sharp sprites. See the [whole map](../../verification/gelato-ceramic-20261102/candidate-01/screens/full-map-720x1280.png) and [opening screen](../../verification/gelato-ceramic-20261102/candidate-01/screens/opening-450x800.png).
+
+The image is included in the shared Android v0.6.14 preview. The previous Drive APK was replaced in place; [verified delivery](../../PLINKO/docs/ANDROID_SUGARFALL_v0.6.14.json) and [download notes](../../PLINKO/BUILD_LINKS.txt) record the package. Phone contrast, touch feel and pacing remain user tests.

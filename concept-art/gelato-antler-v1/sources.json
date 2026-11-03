@@ -1,0 +1,54 @@
+{
+  "assets": [
+    {
+      "name": "gelato_antler_concept_v1",
+      "method": "built-in image_gen.imagegen",
+      "created": "2026-11-02",
+      "source": "C:/Users/Hursh/.codex/generated_images/01a18eec-0873-77c1-9160-dfb0c076a936/exec-60236413-df2f-4b32-a626-b90b063d0d51.png",
+      "path": "concept-art/gelato-antler-v1/concept.png",
+      "dimensions": [
+        1145,
+        1374
+      ],
+      "bytes": 2709577,
+      "sha256": "543d86d49a653ba81487ba3191d542da772d3b98751857a50e046f1708cfdc38",
+      "transparent": false,
+      "pixels_modified": false,
+      "prompt_file": "concept-art/gelato-antler-v1/concept-prompt.txt",
+      "prompt": "Use case: stylized-concept.\nAsset type: full-map concept art for Sugarfall's Gelato Garden upgrade page, portrait composition, not a phone screenshot.\nCreate a polished whimsical hand-painted 2.5D game-art concept on softly textured lavender ground. The upgrade routes form a very large branching U that strangely resembles a pair of deer antlers, without depicting any deer or animal head. A cream-and-copper starting medallion sits on the central axis in the lower-middle of the composition. Directly below it is a separate connected medallion showing two gelato dispensers and a small lock. Its short label is exactly \"DUAL SHOT\" with the compact requirement \"TRAY 8 + POWER 6\". The starting medallion has the short label \"START\". No other text.\nFrom the central start, left and right paths curl outward and climb upward along both sides. These are long organic branching routes, not a symmetrical ladder or two straight lines. At intervals of two or three upgrade medallions they fork into long rising tines of four to six medallions. Some of these tines fork again, and a path that first seems like a small side branch bends upward to become an upper continuation. Use equal line weight and equal medallions on both choices so the real continuing route is not visually privileged. Every branch generally grows upward, like unusual elongated antlers. Keep paths noncrossing and medallions separate, with ample spacing.\nInside the open U, place two very tall, slim, winding ornamental garden trees. Their pale caramel-brown trunks snake upward, with mint/pistachio foliage and restrained strawberry-pink blossom tufts. They rise along the inside of the left and right arms, between the upgrade routes, and never hide the medallions. Keep generous quiet negative space around every upgrade, with the tree trunks visible as long S-curves. The route medallions use simple tiny food/upgrade pictograms in cream, mint and copper. The trees and routes together should read as an elegant antler-shaped silhouette, still clearly a cozy gelato garden.\nView the entire composition from a slightly elevated near-top-down game-map view. Soft warm light, painted ceramic and copper details, delicate foliage, clean game-readable silhouettes. No buildings dominating the center, no large text panels, no phone bezel, no decorative outer frame, no animal skull, no literal antler trophy. Show the whole branching map with all tips in frame. This is a concept only; actual interactive nodes will be placed separately in the game.\n",
+      "references": []
+    },
+    {
+      "name": "upgrade_antler_garden_v1",
+      "method": "built-in image_gen.imagegen",
+      "created": "2026-11-02",
+      "source": "C:/Users/Hursh/.codex/generated_images/01a18eec-0873-77c1-9160-dfb0c076a936/exec-18c47bdf-e5fd-4991-8dc5-fb9d5cfa6cef.png",
+      "path": "PLINKO/data/art/gelato/environment/upgrade_antler_garden_v1.png",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "bytes": 2179227,
+      "sha256": "92274e13e0abec7c5f315f4e74e173199cdcb2587ba3e5662def316d00c4e482",
+      "transparent": false,
+      "pixels_modified": false,
+      "prompt_file": "concept-art/gelato-antler-v1/runtime-art-prompt.txt",
+      "prompt": "Create one square runtime background illustration for a hand-painted cozy gelato game upgrade map. Edit the first reference's art style into the exact composition of the second reference's placement guide. Final image is square, ideally 2048 x 2048. This is BACKGROUND ART ONLY. The live game draws all upgrades and connecting paths separately.\n\nRetain the first reference's lovely soft lavender paper, caramel-colored smoothly winding tree bark, pale pistachio leaves, and small strawberry-pink flowers. Paint TWO very tall slender snaking trees, facing inward, within the green reserved corridors in reference 2. Their trunks curl gently in repeated S bends, branching into small upward-growing leaf and blossom clusters. The overall composition must feel elegant and like two growing antlers inside a much larger invisible U. At least five bends/clusters per tree. Keep the trees organic and asymmetric, with tapered woody trunks. No ice cream cones or fruit objects; these are ornamental trees.\n\nEXACT PLACEMENT on the square canvas (coordinates are percentages of the image width and height, measured from top-left):\nLEFT TREE: broad upper tree, including ALL leaves/flowers/shadows, stays inside x=39.5% to 47.5%, y=11% to 57%. Middle winding trunk stays inside x=44.5% to 47.5%, y=56% to 66%. The bare narrow bottom trunk curves toward the center and stays within x=48.4% to 49.5%, y=64.5% to 76.5%. Make the transition from middle to bottom through x=47.5% to 48.5%, y=64.5% to 66% so the pieces visibly connect.\nRIGHT TREE: broad upper tree, including ALL leaves/flowers/shadows, stays inside x=52.5% to 60.5%, y=11% to 57%. Middle winding trunk stays inside x=52.5% to 55.5%, y=56% to 66%. Bare narrow bottom trunk stays within x=50.5% to 51.6%, y=64.5% to 76.5%. Connect middle to lower trunk through x=51.5% to 52.5%, y=64.5% to 66%.\nThe two roots end near y=76.5%, deliberately floating on the lavender paper with no base, planter, mound, detached grass or scattered petals. Upper trees are narrow: each about one tenth of the entire canvas width. Their trunks are slender. Maintain a clean vertical gap between the trees.\n\nOutside these two narrow central tree silhouettes, the ENTIRE rest of the canvas is calm lightly textured lavender paper, edge to edge. Keep top 10%, bottom 23%, left 38%, and right 38% entirely empty lavender. No decorative frame, vignette, gradient or landscape. Even paper color near edges to blend into the game's lavender surround. Keep texture subtle enough that live UI is readable.\n\nABSOLUTELY REMOVE all of the first reference's circular upgrade medallions, ice cream icons, copper paths, START and DUAL SHOT plaques, lock, lettering and ground decoration. DO NOT reproduce ANY part of the second reference's guide: no green rectangles, no tan boxes, no numbers, no links, no labels, no guide header. The second image is ONLY a position constraint. Output just the pair of snaking ornamental trees on the lavender paper. No text anywhere. No UI. No visible routes. No crop or close-up; retain the full square canvas and the specified generous empty margins.\n",
+      "references": [
+        "concept-art/gelato-antler-v1/concept.png",
+        "concept-art/gelato-antler-v1/layout-guide.png"
+      ],
+      "world_rect": [
+        -5000,
+        -8200,
+        10000,
+        10000
+      ],
+      "base_color": "d1acd9",
+      "base_color_method": "Mean RGB of the native image's outermost edge pixels, rounded to integers; image not altered.",
+      "reference_guide_note": "The image-generation placement guide had first heads at (+/-340,-350). After auditing the actual painted root at every zoom, the live layout and regenerated guide move only those heads to (+/-500,-350) to clear both selection borders and enlarged compact markers. All other placements and topology are unchanged.",
+      "scenery_note": "Six guide reserves are authoring targets. The actual generated silhouette extends beyond them and is audited independently against all live node/selection footprints and path corridors.",
+      "clearance_evidence": "verification/gelato-antler-20261102/art-clearance.json"
+    }
+  ]
+}

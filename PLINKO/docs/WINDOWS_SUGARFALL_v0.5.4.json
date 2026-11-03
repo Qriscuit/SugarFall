@@ -1,0 +1,209 @@
+{
+  "product": "Sugarfall",
+  "version": "0.5.4",
+  "build_date": "2026-10-23",
+  "platform": "Windows x86_64",
+  "build_type": "release preview",
+  "embedded_pck": true,
+  "code_signed": false,
+  "godot": "4.6.3.stable.official.7d41c59c4",
+  "exe": {
+    "path": "C:\\Users\\Hursh\\Documents\\Plinko\\PLINKO\\builds\\Sugarfall-v0.5.4-Windows-Preview-2026-10-23\\Sugarfall.exe",
+    "bytes": 126693024,
+    "sha256": "cec8af4895e0d785f2f1b48f801db0b81b46684e3b3cbf70e761fcabe7ed5ecf",
+    "file_version": "0.5.4.0",
+    "product_version": "0.5.4",
+    "product_name": "Sugarfall",
+    "file_description": "Sugarfall"
+  },
+  "archive": {
+    "path": "C:\\Users\\Hursh\\Documents\\Plinko\\PLINKO\\builds\\Sugarfall-v0.5.4-Windows-Preview-2026-10-23.zip",
+    "bytes": 59053880,
+    "sha256": "987ef1521ecc086710c4727ba095bfee6f3ac3db73643a5ba7b49fad588c610b",
+    "md5": "c9b5ccdc65eb60eb7c585bb333465ec3"
+  },
+  "verification": {
+    "exact_embedded_pck_behavior_checks": 87,
+    "exact_embedded_pck_failures": 0,
+    "pck_report": "verification/windows-preview-v054/pck-smoke-final/report.json",
+    "native_release_smoke": [
+      {
+        "name": "native-gameplay-smoke",
+        "passed": true,
+        "exit_code": 0,
+        "log": "C:\\Users\\Hursh\\Documents\\Plinko\\verification\\windows-preview-v054\\native-smoke-final\\native-gameplay-smoke.log",
+        "user_dir": "C:\\Users\\Hursh\\Documents\\Plinko\\verification\\windows-preview-v054\\pck-smoke-final\\appdata\\Godot\\app_userdata\\Peg Foundry",
+        "errors": [],
+        "known_environment_certificate_warning": true
+      },
+      {
+        "name": "native-opengl-home",
+        "passed": true,
+        "exit_code": 0,
+        "log": "C:\\Users\\Hursh\\Documents\\Plinko\\verification\\windows-preview-v054\\native-smoke-final\\native-opengl-home.log",
+        "user_dir": "C:\\Users\\Hursh\\Documents\\Plinko\\verification\\windows-preview-v054\\pck-smoke-final\\appdata\\Godot\\app_userdata\\Peg Foundry",
+        "errors": [],
+        "known_environment_certificate_warning": true
+      }
+    ],
+    "notes": [
+      "The matching Godot editor executes the external detailed harness against the exported executable's exact embedded PCK. Official release templates disable external --script overrides.",
+      "The actual release executable separately completed its built-in gameplay smoke and bounded hidden OpenGL startup. Release self-test assertions are compiled out; its completion proves execution while the 87 explicit detailed checks provide assertions.",
+      "Native renderer: OpenGL 3.3 compatibility on Intel Iris Xe.",
+      "The sandbox reports a root certificate store warning. No script or missing-resource errors were observed.",
+      "Initial unsupported external --script invocation is retained under smoke-final as diagnostic evidence, not counted as a successful check."
+    ],
+    "archive_inspection": {
+      "passed": 6,
+      "failed": 0,
+      "checks": {
+        "windows_pe_header": true,
+        "x64_machine": true,
+        "embedded_pck_footer": true,
+        "zip_crc_valid": true,
+        "exact_zip_contents": true,
+        "archived_exe_matches_verified_exe": true
+      },
+      "entries": [
+        {
+          "name": "README.txt",
+          "bytes": 744,
+          "compressed_bytes": 483
+        },
+        {
+          "name": "Sugarfall.exe",
+          "bytes": 126693024,
+          "compressed_bytes": 59018526
+        },
+        {
+          "name": "LICENSES/Fraunces-OFL.txt",
+          "bytes": 4391,
+          "compressed_bytes": 1958
+        },
+        {
+          "name": "LICENSES/GODOT_COPYRIGHT.txt",
+          "bytes": 99790,
+          "compressed_bytes": 29534
+        },
+        {
+          "name": "LICENSES/GODOT_LICENSE.txt",
+          "bytes": 1149,
+          "compressed_bytes": 692
+        },
+        {
+          "name": "LICENSES/Nunito-OFL.txt",
+          "bytes": 4385,
+          "compressed_bytes": 1959
+        }
+      ]
+    },
+    "source_regression": {
+      "suites": 11,
+      "checks_passed": 839,
+      "cookie_checks_passed": 92,
+      "renderer_checks_passed": 182,
+      "renderer_captures": 30,
+      "renderer_sizes": [
+        "720x1280",
+        "450x800"
+      ],
+      "evidence": "verification/sugarfall-v054/README.txt"
+    }
+  },
+  "source_sha256": [
+    {
+      "path": "C:\\Users\\Hursh\\Documents\\Plinko\\PLINKO\\project.godot",
+      "sha256": "d2d9da57cd49dce76983ebd76b3003546e955879ee2efba8c568efbac22d5aa2"
+    },
+    {
+      "path": "C:\\Users\\Hursh\\Documents\\Plinko\\PLINKO\\data\\economy.json",
+      "sha256": "85493905b7e4b95119df1c92bc44f4c287e0e36f00fbf682c1f4786139a7909f"
+    },
+    {
+      "path": "C:\\Users\\Hursh\\Documents\\Plinko\\PLINKO\\data\\board_design.json",
+      "sha256": "a89779e2b1dfb509b1696b4f412ca0b3d7035a302885c2d4b5a7af5068198599"
+    },
+    {
+      "path": "C:\\Users\\Hursh\\Documents\\Plinko\\PLINKO\\export_presets.cfg",
+      "sha256": "39b73f73b0fe86749e5de1185ba663e81f5f612fc6fc446adb2e71a8da89205d"
+    },
+    {
+      "path": "C:\\Users\\Hursh\\Documents\\Plinko\\PLINKO\\scripts\\coin_display.gd",
+      "sha256": "29fcfa88220832e516a1d1d1e6210893ec083360848bda21caea574c7a26fc23"
+    },
+    {
+      "path": "C:\\Users\\Hursh\\Documents\\Plinko\\PLINKO\\scripts\\environment_art.gd",
+      "sha256": "539fd8aa2d9b2e7c48d251daf0d14ac0fe4bcd3e0a26422f1ed9425185ab4f5b"
+    },
+    {
+      "path": "C:\\Users\\Hursh\\Documents\\Plinko\\PLINKO\\scripts\\food_art.gd",
+      "sha256": "8ce0d4c39823b76b42c4aa60d2d9c959c637d03fd1646025acf5425a0d85c827"
+    },
+    {
+      "path": "C:\\Users\\Hursh\\Documents\\Plinko\\PLINKO\\scripts\\home_menu.gd",
+      "sha256": "993cb08e138fab48abd9b2c37810a54e0f3d47bb1416459657514a30d3dfe36c"
+    },
+    {
+      "path": "C:\\Users\\Hursh\\Documents\\Plinko\\PLINKO\\scripts\\impact_feedback.gd",
+      "sha256": "b9a0a6267ff7fb48701a4a75dc776ca8013f7619ceac3f2bf37b30aca6b6bb21"
+    },
+    {
+      "path": "C:\\Users\\Hursh\\Documents\\Plinko\\PLINKO\\scripts\\level_map.gd",
+      "sha256": "0930c32666c575beadd7a874c117cbad88502a3a175e63df04a714b62155d778"
+    },
+    {
+      "path": "C:\\Users\\Hursh\\Documents\\Plinko\\PLINKO\\scripts\\main.gd",
+      "sha256": "419a1f57afaf4bb13faae555fb585a063c05c2a9d68d9633a58dba6b25e0714d"
+    },
+    {
+      "path": "C:\\Users\\Hursh\\Documents\\Plinko\\PLINKO\\scripts\\monetization_service.gd",
+      "sha256": "c32c959fe6d527ecda6229e46b60ab31d3a629de90fb04ca0388332ed2119921"
+    },
+    {
+      "path": "C:\\Users\\Hursh\\Documents\\Plinko\\PLINKO\\scripts\\monetization_ui.gd",
+      "sha256": "666283c7228ad97e3460b38f8cf99f6b6e45c565cdf6afdd24122c48599c5dee"
+    },
+    {
+      "path": "C:\\Users\\Hursh\\Documents\\Plinko\\PLINKO\\scripts\\run_snapshot.gd",
+      "sha256": "614ebd232233b802ea3abf7830bd50c63996ac2307d597553c6d5b8d6e539d0a"
+    },
+    {
+      "path": "C:\\Users\\Hursh\\Documents\\Plinko\\PLINKO\\scripts\\run_transition.gd",
+      "sha256": "0632923b9239d3a03fc543a112f55b6afc2a4535a3cd1790f6c4ad393677e8e5"
+    },
+    {
+      "path": "C:\\Users\\Hursh\\Documents\\Plinko\\PLINKO\\scripts\\tone_bank.gd",
+      "sha256": "0eabc16e9ebf89d77e915ebc64ad44b030dd76003a4e02466d66267f9c5907c0"
+    },
+    {
+      "path": "C:\\Users\\Hursh\\Documents\\Plinko\\PLINKO\\scripts\\ui_art.gd",
+      "sha256": "a8222f5fbce7a3d2f4836592976f81ca2c15324cfbd37e8bad4e22b13f512df5"
+    },
+    {
+      "path": "C:\\Users\\Hursh\\Documents\\Plinko\\PLINKO\\scripts\\upgrade_map.gd",
+      "sha256": "6251c04ac781f4bae2fb75146cb4a59878e2fb1ef491fe180f2f2f48cdc783e4"
+    }
+  ],
+  "monetization": "Local test service; no real ad or purchase accounts connected",
+  "drive": {
+    "operation": "New Windows preview uploaded alongside existing Android preview",
+    "account": "americlasagna@gmail.com",
+    "folder_name": "Peg Foundry",
+    "folder_id": "1TXLZwTNVlHGTBy7y0CVMMk3zABEKu8X-",
+    "folder_url": "https://drive.google.com/drive/folders/1TXLZwTNVlHGTBy7y0CVMMk3zABEKu8X-",
+    "file_id": "12IpNfaeZENgYIkkHhiYUUSvZYzL_pl0A",
+    "url": "https://drive.google.com/file/d/12IpNfaeZENgYIkkHhiYUUSvZYzL_pl0A/view?usp=drivesdk",
+    "metadata_readback_verified": true,
+    "verified_size_bytes": 59053880,
+    "verified_parent_folder": true,
+    "shared": false,
+    "sharing_changed": false,
+    "remote_checksum_exposed_by_connector": false
+  },
+  "changes": [
+    "Higher initial upgrade costs and steeper later tiers",
+    "Visible 400000-coin next-area requirement; no charge or reset until content exists",
+    "Final cookie stops drops; remaining food and last bucket bounce settle before results",
+    "Schema 2 saves the final-food drain; exact previous price-only content migration preserves active runs"
+  ]
+}

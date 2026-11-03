@@ -1,0 +1,113 @@
+FOOD GAME ASSETS V1
+Generated with built-in image_gen; reference: concept-art/food-theme-v1/01-gameplay-kitchen.png
+
+FILE: donut.png
+TRANSPARENT: true
+Use case: precise-object-edit / game asset extraction.
+Input image is a STYLE AND MATERIAL REFERENCE, not a requested finished screen. Create exactly ONE standalone reusable game sprite on a genuinely transparent background, no checkerboard, no floor, no UI, no text, no numbers, no border, no other props. Extract and carefully repaint the requested object from this food-game style, preserving premium hand-painted 2.5D sculpted materials, light from upper-left, restrained highlights, warm inviting palette. It will be rendered small in a 2D Godot game, so make a bold simple silhouette, clean crisp alpha edges, readable shapes, no tiny excessive details. Center the object, fully visible, filling about 85% of the canvas with clean transparent margin. Do not include an external cast shadow; shading inside the object is fine. Prefer a square canvas unless specified below.
+Object: ONE round strawberry-pink frosted ring donut with golden baked dough and a small number of colorful sprinkles. Face almost directly toward the viewer, circular with a large clearly visible central hole about one third of outside diameter. The hole is genuinely transparent. Modest volume and glossy icing, not a tilted oval. No bite. This is the normal bouncing projectile.
+
+---
+
+FILE: pomegranate.png
+TRANSPARENT: true
+Use case: precise-object-edit / game asset extraction.
+Input image is a STYLE AND MATERIAL REFERENCE, not a requested finished screen. Create exactly ONE standalone reusable game sprite on a genuinely transparent background, no checkerboard, no floor, no UI, no text, no numbers, no border, no other props. Extract and carefully repaint the requested object from this food-game style, preserving premium hand-painted 2.5D sculpted materials, light from upper-left, restrained highlights, warm inviting palette. It will be rendered small in a 2D Godot game, so make a bold simple silhouette, clean crisp alpha edges, readable shapes, no tiny excessive details. Center the object, fully visible, filling about 85% of the canvas with clean transparent margin. Do not include an external cast shadow; shading inside the object is fine. Prefer a square canvas unless specified below.
+Object: ONE whole round ruby-red pomegranate projectile with a short tiny crown at the top, richly shaded smooth red skin, a small stylized cutaway wedge revealing three visible jewel-like arils while keeping the main body a round ball. Most of the silhouette remains circular; no leaves, no floating seeds, no burst. This is a splitter ball that must be recognizable at 25px diameter. The crown is short enough to keep a compact silhouette.
+
+---
+
+FILE: pumpkin.png
+TRANSPARENT: true
+Use case: precise-object-edit / game asset extraction.
+Input image is a STYLE AND MATERIAL REFERENCE, not a requested finished screen. Create exactly ONE standalone reusable game sprite on a genuinely transparent background, no checkerboard, no floor, no UI, no text, no numbers, no border, no other props. Extract and carefully repaint the requested object from this food-game style, preserving premium hand-painted 2.5D sculpted materials, light from upper-left, restrained highlights, warm inviting palette. It will be rendered small in a 2D Godot game, so make a bold simple silhouette, clean crisp alpha edges, readable shapes, no tiny excessive details. Center the object, fully visible, filling about 85% of the canvas with clean transparent margin. Do not include an external cast shadow; shading inside the object is fine. Prefer a square canvas unless specified below.
+Object: ONE small squat round orange pumpkin with 6 broad well-defined lobes and a short green-brown curled stem. Viewed face-on/slightly from above, circular ball silhouette, glossy warm orange flesh, subtle material texture, no face, no foliage, no roots. It is the heavy impact projectile, with readable mass and roundness.
+
+---
+
+FILE: seed.png
+TRANSPARENT: true
+Use case: precise-object-edit / game asset extraction.
+Input image is a STYLE AND MATERIAL REFERENCE, not a requested finished screen. Create exactly ONE standalone reusable game sprite on a genuinely transparent background, no checkerboard, no floor, no UI, no text, no numbers, no border, no other props. Extract and carefully repaint the requested object from this food-game style, preserving premium hand-painted 2.5D sculpted materials, light from upper-left, restrained highlights, warm inviting palette. It will be rendered small in a 2D Godot game, so make a bold simple silhouette, clean crisp alpha edges, readable shapes, no tiny excessive details. Center the object, fully visible, filling about 85% of the canvas with clean transparent margin. Do not include an external cast shadow; shading inside the object is fine. Prefer a square canvas unless specified below.
+Object: exactly ONE plump ruby-red pomegranate aril, a rounded teardrop gemstone of fruit flesh, translucent red with a single bright upper-left highlight, compact chunky silhouette. No pomegranate shell, no multiple seeds. It is a tiny bouncing fragment; make the shape bold enough to read at 12px.
+
+---
+
+FILE: ricochet.png
+TRANSPARENT: true
+Use case: precise-object-edit / game asset extraction.
+Input image is a STYLE AND MATERIAL REFERENCE, not a requested finished screen. Create exactly ONE standalone reusable game sprite on a genuinely transparent background, no checkerboard, no floor, no UI, no text, no numbers, no border, no other props. Extract and carefully repaint the requested object from this food-game style, preserving premium hand-painted 2.5D sculpted materials, light from upper-left, restrained highlights, warm inviting palette. It will be rendered small in a 2D Godot game, so make a bold simple silhouette, clean crisp alpha edges, readable shapes, no tiny excessive details. Center the object, fully visible, filling about 85% of the canvas with clean transparent margin. Do not include an external cast shadow; shading inside the object is fine. Prefer a square canvas unless specified below.
+Object: ONE circular orange citrus slice projectile seen face-on. Golden-orange peel ring around 8 clear juicy radial flesh segments, a pale central point, warm amber-orange translucency with a bright edge. The outer silhouette is a perfect circle. No extra fruit, no leaves, no plate. Distinct from a pink donut and red pomegranate.
+
+---
+
+FILE: cookie_normal.png
+TRANSPARENT: true
+Use case: precise-object-edit / game asset extraction.
+Input image is a STYLE AND MATERIAL REFERENCE, not a requested finished screen. Create exactly ONE standalone reusable game sprite on a genuinely transparent background, no checkerboard, no floor, no UI, no text, no numbers, no border, no other props. Extract and carefully repaint the requested object from this food-game style, preserving premium hand-painted 2.5D sculpted materials, light from upper-left, restrained highlights, warm inviting palette. It will be rendered small in a 2D Godot game, so make a bold simple silhouette, clean crisp alpha edges, readable shapes, no tiny excessive details. Center the object, fully visible, filling about 85% of the canvas with clean transparent margin. Do not include an external cast shadow; shading inside the object is fine. Prefer a square canvas unless specified below.
+Object: ONE round thick golden butter-cookie peg, viewed almost straight-on from slightly above. Scalloped baked biscuit edge, a cream-white icing rosette divided into six broad petal-like icing wedges, a tiny toasted dot in the center. Bold round outline, soft small surface cracks, appetizing shadows between icing wedges. No external shadow. The game draws a separate health ring around it; no ring or text is included in the image.
+
+---
+
+FILE: cookie_armored.png
+TRANSPARENT: true
+Use case: precise-object-edit / game asset extraction.
+Input image is a STYLE AND MATERIAL REFERENCE, not a requested finished screen. Create exactly ONE standalone reusable game sprite on a genuinely transparent background, no checkerboard, no floor, no UI, no text, no numbers, no border, no other props. Extract and carefully repaint the requested object from this food-game style, preserving premium hand-painted 2.5D sculpted materials, light from upper-left, restrained highlights, warm inviting palette. It will be rendered small in a 2D Godot game, so make a bold simple silhouette, clean crisp alpha edges, readable shapes, no tiny excessive details. Center the object, fully visible, filling about 85% of the canvas with clean transparent margin. Do not include an external cast shadow; shading inside the object is fine. Prefer a square canvas unless specified below.
+Object: ONE round thick armored-cookie peg, circular scalloped golden biscuit rim surrounding a thick dark-chocolate coated face with six wide radial chocolate facets. Small coarse golden nut crumbs in the chocolate, restrained so the dark chocolate shield-like mass reads at 48px. This is a harder target, visually darker/heavier than a cream-iced cookie. No metal, no shield emblem, no text, no separate outline ring.
+
+---
+
+FILE: cookie_prism.png
+TRANSPARENT: true
+Use case: precise-object-edit / game asset extraction.
+Input image is a STYLE AND MATERIAL REFERENCE, not a requested finished screen. Create exactly ONE standalone reusable game sprite on a genuinely transparent background, no checkerboard, no floor, no UI, no text, no numbers, no border, no other props. Extract and carefully repaint the requested object from this food-game style, preserving premium hand-painted 2.5D sculpted materials, light from upper-left, restrained highlights, warm inviting palette. It will be rendered small in a 2D Godot game, so make a bold simple silhouette, clean crisp alpha edges, readable shapes, no tiny excessive details. Center the object, fully visible, filling about 85% of the canvas with clean transparent margin. Do not include an external cast shadow; shading inside the object is fine. Prefer a square canvas unless specified below.
+Object: ONE round thick special reward-cookie peg: pale pistachio-green glossy icing atop golden scalloped biscuit, three prominent small amber honey gems and sparse chopped pistachio decoration. Circular face, readable green and gold color identity at 48px, appetizing hand-painted volume. No floating particles, no text, no external ring.
+
+---
+
+FILE: cookie_clock.png
+TRANSPARENT: true
+Use case: precise-object-edit / game asset extraction.
+Input image is a STYLE AND MATERIAL REFERENCE, not a requested finished screen. Create exactly ONE standalone reusable game sprite on a genuinely transparent background, no checkerboard, no floor, no UI, no text, no numbers, no border, no other props. Extract and carefully repaint the requested object from this food-game style, preserving premium hand-painted 2.5D sculpted materials, light from upper-left, restrained highlights, warm inviting palette. It will be rendered small in a 2D Godot game, so make a bold simple silhouette, clean crisp alpha edges, readable shapes, no tiny excessive details. Center the object, fully visible, filling about 85% of the canvas with clean transparent margin. Do not include an external cast shadow; shading inside the object is fine. Prefer a square canvas unless specified below.
+Object: ONE round thick clock-cookie peg: scalloped golden biscuit with smooth mint-tinted cream icing and two dark cocoa icing hands making an unmistakable simple clock at about ten past ten. Only four tiny chocolate hour dots, no numerals or letters. Round shape, clear high-contrast clock symbol readable at 48px. No external ring.
+
+---
+
+FILE: cup_cream.png
+TRANSPARENT: true
+Use case: precise-object-edit / game asset extraction.
+Input image is a STYLE AND MATERIAL REFERENCE, not a requested finished screen. Create exactly ONE standalone reusable game sprite on a genuinely transparent background, no checkerboard, no floor, no UI, no text, no numbers, no border, no other props. Extract and carefully repaint the requested object from this food-game style, preserving premium hand-painted 2.5D sculpted materials, light from upper-left, restrained highlights, warm inviting palette. It will be rendered small in a 2D Godot game, so make a bold simple silhouette, clean crisp alpha edges, readable shapes, no tiny excessive details. Center the object, fully visible, filling about 85% of the canvas with clean transparent margin. Do not include an external cast shadow; shading inside the object is fine. Prefer a square canvas unless specified below.
+Object: ONE empty squat ceramic catch cup from the reference gameplay, cream glaze with a mint lower accent and small warm copper foot. No handle. FRONT VIEW with a clearly visible elliptical open top, dark recessed cream interior, a thick highlighted lip, gently tapered body with enough blank smooth surface for the game to place a multiplier. Cup body about as tall as wide; mouth centered near y20% of its occupied height. Full cup only, separated on transparency. No label, no writing, no number, no coins, no board. Keep rim in the same perspective as the reference five cups.
+Production geometry requirement: use a moderately TALL cup, body height about1.5 times the rim width, with the open mouth within the top15% of total object height. Portrait-shaped object centered on square transparent canvas. Keep the upper opening fairly shallow in perspective, while the long smooth glazed front has ample space for an overlay number. This overrides any earlier squat proportions.
+
+---
+
+FILE: cup_gold.png
+TRANSPARENT: true
+Use case: precise-object-edit / game asset extraction.
+Input image is a STYLE AND MATERIAL REFERENCE, not a requested finished screen. Create exactly ONE standalone reusable game sprite on a genuinely transparent background, no checkerboard, no floor, no UI, no text, no numbers, no border, no other props. Extract and carefully repaint the requested object from this food-game style, preserving premium hand-painted 2.5D sculpted materials, light from upper-left, restrained highlights, warm inviting palette. It will be rendered small in a 2D Godot game, so make a bold simple silhouette, clean crisp alpha edges, readable shapes, no tiny excessive details. Center the object, fully visible, filling about 85% of the canvas with clean transparent margin. Do not include an external cast shadow; shading inside the object is fine. Prefer a square canvas unless specified below.
+Object: ONE empty squat gold catch cup, same no-handle ceramic-cup silhouette as the reference center reward cup, warm polished gold metal, an elliptical open top with dark golden recessed interior, thick highlighted rim and small copper/gold foot. Front view slightly from above, gently tapered body about as tall as wide; mouth centered near y20% of its occupied height. Smooth blank front for a multiplier drawn by the game. Metallic but warm not mirrorlike, no glow spilling outside, no coins, no number, no writing.
+Production geometry requirement: use a moderately TALL cup, body height about1.5 times the rim width, with the open mouth within the top15% of total object height. Portrait-shaped object centered on square transparent canvas. Keep the upper opening fairly shallow in perspective, while the long smooth glazed front has ample space for an overlay number. This overrides any earlier squat proportions.
+
+---
+
+FILE: tray.png
+TRANSPARENT: true
+Use case: precise-object-edit / game asset extraction.
+Input image is a STYLE AND MATERIAL REFERENCE, not a requested finished screen. Create exactly ONE standalone reusable game sprite on a genuinely transparent background, no checkerboard, no floor, no UI, no text, no numbers, no border, no other props. Extract and carefully repaint the requested object from this food-game style, preserving premium hand-painted 2.5D sculpted materials, light from upper-left, restrained highlights, warm inviting palette. It will be rendered small in a 2D Godot game, so make a bold simple silhouette, clean crisp alpha edges, readable shapes, no tiny excessive details. Center the object, fully visible, filling about 85% of the canvas with clean transparent margin. Do not include an external cast shadow; shading inside the object is fine. Prefer a square canvas unless specified below.
+Object: the EMPTY mint-enamel baking-tray game board ONLY, portrait rectangle width:height about 3:4. Straight-on overhead/very slight front perspective. Four rounded corners, thick muted mint enamel rim with polished copper corner fittings, pale low-contrast lightly textured parchment covering the entire interior. Clean and softly worn, charming miniature craftsmanship. No food, no pegs, no cups, no hopper, no aiming marks, no interface, no surrounding table or cloth. Interior should be quiet ivory with very subtle paper grain so tiny food projectiles stay visible. Outer silhouette includes the entire rectangular tray with about4% transparent margin on each edge. The tray center must be opaque parchment; only outside its silhouette is transparent. Perfectly centered and symmetric enough for a playable 2D board.
+
+---
+
+FILE: hopper.png
+TRANSPARENT: true
+Use case: precise-object-edit / game asset extraction.
+Input image is a STYLE AND MATERIAL REFERENCE, not a requested finished screen. Create exactly ONE standalone reusable game sprite on a genuinely transparent background, no checkerboard, no floor, no UI, no text, no numbers, no border, no other props. Extract and carefully repaint the requested object from this food-game style, preserving premium hand-painted 2.5D sculpted materials, light from upper-left, restrained highlights, warm inviting palette. It will be rendered small in a 2D Godot game, so make a bold simple silhouette, clean crisp alpha edges, readable shapes, no tiny excessive details. Center the object, fully visible, filling about 85% of the canvas with clean transparent margin. Do not include an external cast shadow; shading inside the object is fine. Prefer a square canvas unless specified below.
+Object: ONE compact mint-enamel donut hopper/dispenser with copper spout, like the dispenser at top of the reference. Front view slightly from above, a short broad hopper with three visible miniature pink frosted donuts nestled inside, ending in a downward-facing short round copper mouth at bottom center. Width about1.3 times height. No stand, no tray, no tabletop, no UI. Clear dark opening where food exits, bright rim, rounded toy-machine feel. It moves horizontally at the top of the playfield, so keep the shape compact and without long parts.
+
+---
+
+FILE: countertop.png
+TRANSPARENT: false
+Use case: precise-object-edit / environment texture.
+Input image is only a style/material reference. Create a reusable portrait 9:16 BACKGROUND IMAGE for this food-themed game. No tray, no food, no cups, no utensils, no interface, no text, no shadows of missing objects. An overhead view of a warmly lit honey-colored wooden kitchen counter, broad quiet boards with very restrained grain. A small folded corner of cream-and-muted-mint gingham cloth enters at the bottom-left edge only, occupying less than10% of canvas. Keep center and upper area visually calm and slightly darker than pale parchment so a separate bright tray will stand out. Warm handmade game illustration, painterly 2.5D realism consistent with reference, light from upper left, subtle vignette, no photoreal clutter. Opaque background, full bleed. The empty counter alone is the complete asset.

@@ -1,0 +1,38 @@
+{
+  "area": "Gelato Garden",
+  "assets": [
+    {
+      "family": "ui",
+      "name": "panel",
+      "transparent": true,
+      "prompt": "Production game artwork for Sugarfall's Gelato Garden: cohesive softly painted sculpted 2.5D confectionery illustration, rounded handmade forms, warm upper-left light, polished cream ceramic, dusty lavender #B8A2CF, restrained warm copper and golden waffle accents. Premium cozy mobile food game. No black outlines, no photorealistic camera noise, no text, numbers, lettering, logos or watermarks. One isolated BLANK rounded rectangular cream ceramic UI panel, landscape proportion width 1.4 times height. Soft ivory flat empty central 85 percent, slim dusty lavender raised enamel border and restrained copper outer lip. Corners rounded, front-facing orthographic. Very clean straight edges with center expanses suitable for nine-slice resizing. No symbols, food, ornamental corners, badges, slots, text or external shadow. Center must remain plain. Entire panel visible with transparent margin.",
+      "source": "C:\\Users\\Hursh\\.codex\\generated_images\\01a1698f-a59c-7e10-a1df-92fe5d8b1f60\\exec-f31c61b9-d317-4a07-8135-e85ab2ad2143.png",
+      "target": "C:\\Users\\Hursh\\Documents\\Plinko\\PLINKO\\data\\art\\gelato\\ui\\panel.png",
+      "method": "built-in image_gen.imagegen",
+      "created": "2026-10-24",
+      "pixels_modified": false
+    },
+    {
+      "family": "ui",
+      "name": "level_selector",
+      "transparent": true,
+      "prompt": "Production game artwork for Sugarfall's Gelato Garden: cohesive softly painted sculpted 2.5D confectionery illustration, rounded handmade forms, warm upper-left light, polished cream ceramic, dusty lavender #B8A2CF, restrained warm copper and golden waffle accents. Premium cozy mobile food game. No black outlines, no photorealistic camera noise, no text, numbers, lettering, logos or watermarks. One isolated BLANK wide horizontal cream ceramic navigation plaque, width about SIX times height. Front-facing orthographic, rounded capsule corners. Slim lavender enamel rim and subtle copper outer lip, broad clean warm ivory empty center occupying 85 percent. Designed as stretchable mobile game UI button. No words, icons, dividers, arrows, numbers, decorative food or external shadow. Entire plaque visible with transparent margin.",
+      "source": "C:\\Users\\Hursh\\.codex\\generated_images\\01a1698f-a59c-7e10-a1df-92fe5d8b1f60\\exec-bef5ea49-d286-4229-a58a-26fa683a5eb2.png",
+      "target": "C:\\Users\\Hursh\\Documents\\Plinko\\PLINKO\\data\\art\\gelato\\ui\\level_selector.png",
+      "method": "built-in image_gen.imagegen",
+      "created": "2026-10-24",
+      "pixels_modified": false
+    },
+    {
+      "family": "ui",
+      "name": "level_badge_muted",
+      "transparent": true,
+      "prompt": "Production game artwork for Sugarfall's Gelato Garden: cohesive softly painted sculpted 2.5D confectionery illustration, rounded handmade forms, warm upper-left light, polished cream ceramic, dusty lavender #B8A2CF, restrained warm copper and golden waffle accents. Premium cozy mobile food game. No black outlines, no photorealistic camera noise, no text, numbers, lettering, logos or watermarks. One isolated circular level-map medallion, front-facing orthographic. Very broad plain muted dusty lilac ceramic face, soft raised ivory rim with a subtle scalloped golden wafer outer edge. Quiet desaturated inactive appearance. Small upper-left highlight. Compact round silhouette. Absolutely no numbers, lock, icon, writing, ribbon, tabs or external shadow. Plain central face for a number or lock added by game code. True transparent generous margin.",
+      "source": "C:\\Users\\Hursh\\.codex\\generated_images\\01a1698f-a59c-7e10-a1df-92fe5d8b1f60\\exec-7464ae2e-f73b-4c89-9cc2-c714afd3f155.png",
+      "target": "C:\\Users\\Hursh\\Documents\\Plinko\\PLINKO\\data\\art\\gelato\\ui\\level_badge_muted.png",
+      "method": "built-in image_gen.imagegen",
+      "created": "2026-10-24",
+      "pixels_modified": false
+    }
+  ]
+}

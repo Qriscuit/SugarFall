@@ -1,0 +1,15 @@
+{
+  "asset": "data/audio/studio_warm_hum.wav",
+  "method": "Original deterministic additive synthesis; no sampled or third-party game audio.",
+  "generator": "tools/generate_studio_hum.py",
+  "sample_rate": 44100,
+  "channels": 2,
+  "sample_width_bits": 16,
+  "frames": 39690,
+  "duration_seconds": 0.9,
+  "peak_dbfs": -6.020599913279624,
+  "rms_dbfs": -20.24428222136654,
+  "quiet_tail_seconds": 0.25,
+  "clipped_samples": 0,
+  "sha256": "5e341dc297486fffc00828a3c7d0f0fc95b2fa23dd0ab73a03cc445e29da0e1f"
+}

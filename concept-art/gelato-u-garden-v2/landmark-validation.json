@@ -1,0 +1,54 @@
+{
+  "passed": true,
+  "checks": 375,
+  "failed": 0,
+  "tile_selection_keepout": 280,
+  "link_keepout_radius": 30,
+  "actual_landmark_regions": [
+    {
+      "name": "Mint workshop and berry gelateria",
+      "pixel_rect": [
+        430,
+        138,
+        390,
+        255
+      ],
+      "world_rect": [
+        -1633.8118,
+        -8505.502,
+        3234.4497,
+        2114.8325
+      ]
+    },
+    {
+      "name": "Glass conservatory garden",
+      "pixel_rect": [
+        450,
+        340,
+        350,
+        305
+      ],
+      "world_rect": [
+        -1467.9426,
+        -6830.223,
+        2902.7114,
+        2529.5056
+      ]
+    },
+    {
+      "name": "Gelato fountain and planting",
+      "pixel_rect": [
+        462,
+        561,
+        320,
+        194
+      ],
+      "world_rect": [
+        -1368.421,
+        -4997.3687,
+        2653.9075,
+        1608.9314
+      ]
+    }
+  ]
+}

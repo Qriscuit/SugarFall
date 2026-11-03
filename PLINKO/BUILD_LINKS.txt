@@ -1,0 +1,56 @@
+CURRENT PRIVATE PREVIEWS - SUGARFALL - 3 November 2026
+
+ANDROID v0.7.4 - UPDATED 3 NOVEMBER 2026
+APK (88,969,934 bytes):
+https://drive.google.com/file/d/1GF1zo3lt0VR5voajNPGjoP1FYuPe0FYz/view?usp=drivesdk
+Sugarfall 0.7.4-preview, version code 29. ARM64, Android 7 or newer.
+Install over the existing Sugarfall preview to retain package-private app data.
+The preview package and signing identity match v0.7.3.
+
+This update fills tall portrait screens with themed scenery, fits the Tray
+HUD inside its panel and centers multipliers on each cup's painted face.
+Home Play uses the restored tray zoom/morph. Results open over the darkened,
+frozen board. Neither uses cream; ordinary menu navigation and the studio
+heartbeat startup keep their cream transitions. Reduced Motion skips movement.
+The studio's original image, Home symbols and Settings plaque remain intact.
+Damage numbers retain their outline without a beige rectangular backing.
+Board layouts, physics, prices, HP, cadence and economy values are unchanged.
+
+Crystal Candyworks adds twelve trays: three areas and 36 trays in total.
+Its top-center spout fires stronger, slower candy in straight lines with no
+gravity. Tap the floating x2 Prism once during its four-second window to
+duplicate live candy. Second Prism unlocks at tray 6 AND Power 4 for 900 coins.
+Crystal has its own wallet/upgrades and a three-spire upgrade map. Normal entry
+costs 1,500 Gelato coins after clearing Gelato tray 12.
+Seven native ImageGen assets provide the aqua sugar-glass and copper theme.
+
+Home menu -> Settings -> Developer settings offers all three areas.
+Infinite money enables test purchases without spending the area's real wallet.
+Profiles now write version 5; valid older area progress is preserved.
+Screen-polish validation passed 1,877 checks, including 111 HUD/cup checks,
+250 isolated-profile checks and 416 renderer checks across 71 captures.
+The prior studio validation remains historical: 1,371 software plus six native
+asset checks. Current APK: 500 payload and 16 Android metadata checks.
+Drive replacement: 8 metadata checks. Phone acceptance remains open.
+The earlier six legal campaigns completed all three areas using earned money,
+actual entry fees and upgrade purchases: 9,044 legality assertions passed.
+See docs/AREA_PROGRESSION_BALANCE.md for measurements and remaining flags.
+APK verification: docs/ANDROID_SUGARFALL_v0.7.4.json.
+Physical Android contrast, touch, performance and purchase pacing remain open.
+SHA-256: 1a319430bd1ccc352ecee7af5635ce03a522c847086148ee31967242084e09d3
+
+WINDOWS v0.6.1 - PREVIOUS BUILD, 24 OCTOBER 2026
+ZIP (69,711,965 bytes):
+https://drive.google.com/file/d/12IpNfaeZENgYIkkHhiYUUSvZYzL_pl0A/view?usp=drivesdk
+Extract the ZIP, then open Sugarfall.exe. Portable Windows x64 release.
+This Windows download was not rebuilt for the latest source changes.
+Manifest: docs/WINDOWS_SUGARFALL_v0.6.1.json
+
+The Android Drive file was replaced in place in the existing private Peg
+Foundry folder. Its file ID, link, parent folder and private permissions were
+read back and verified after upload. Windows was left unchanged.
+Folder: https://drive.google.com/drive/folders/1TXLZwTNVlHGTBy7y0CVMMk3zABEKu8X-
+
+Existing owned upgrades, coins, vouchers, area progress and permanent purchases
+are retained. Ads and purchases remain a local simulator. Older local builds
+and their historical manifests remain available.

@@ -1,0 +1,22 @@
+{
+  "combat_reward_revision": 1,
+  "peg_damage_coin_budget": 6,
+  "armored_damage_coin_budget": 9,
+  "impact_damage_multiplier": 4.0,
+  "impact_armored_multiplier": 6.0,
+  "peg_base": 2,
+  "peg_level_step": 0.25,
+  "combo_credit_cap": 0,
+  "clear_base": 40,
+  "clear_per_level": 5,
+  "peg_level_offset": 1,
+  "productive_bins_only": false,
+  "min_rebound_speed": 160.0,
+  "core_step": 0.5,
+  "core_tier_gains": [0.5, 0.5, 0.5, 0.35, 0.35, 0.35, 0.25, 0.25, 0.25, 0.25],
+  "core_cost_growth": 1.85,
+  "upgrade_cost_scale": 1.25,
+  "upgrade_cost_growth": 1.75,
+  "area_unlock_cost": 1000,
+  "clock_base_cost": 15
+}

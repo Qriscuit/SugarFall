@@ -1,0 +1,81 @@
+{
+  "method": "built-in image_gen.imagegen; one precise-object edit per asset; original output pixels preserved",
+  "record": "concept-art/palette-refresh-v1/sources.json",
+  "assets": [
+    {
+      "id": "gelato-arc",
+      "source": "C:/Users/Hursh/.codex/generated_images/01a173c0-7a0e-7573-a977-1595f71b5672/exec-3bf544b3-dbf7-4e23-8d6d-9e114324e3e4.png",
+      "destination": "PLINKO/data/art/gelato/environment/upgrade_arc_v3.png",
+      "reference": "C:/Users/Hursh/Documents/Plinko/PLINKO/data/art/gelato/environment/upgrade_arc_v2.png",
+      "prompt": "gelato-arc-prompt.txt",
+      "transparent_background": false,
+      "sha256": "0cb4c4ebed8a8c981aa5f3f202625b8f8023ed1242fa3da8743466cffbd3282c",
+      "reference_backup": "references/gelato-arc/input.png",
+      "size": [
+        1659,
+        948
+      ],
+      "mode": "RGB"
+    },
+    {
+      "id": "gelato-home",
+      "source": "C:/Users/Hursh/.codex/generated_images/01a173c0-7a0e-7573-a977-1595f71b5672/exec-c98409b7-441b-4010-9923-a4b2127d7c59.png",
+      "destination": "PLINKO/data/art/gelato/environment/home_counter.png",
+      "reference": "C:/Users/Hursh/Documents/Plinko/PLINKO/data/art/gelato/environment/home_counter.png",
+      "prompt": "gelato-home-prompt.txt",
+      "transparent_background": false,
+      "sha256": "2f25083dde149be3d6408158ad8f8330bbb73e8963ca3177423c3d1e88c63572",
+      "reference_backup": "references/gelato-home/input.png",
+      "size": [
+        941,
+        1672
+      ],
+      "mode": "RGB"
+    },
+    {
+      "id": "gelato-play",
+      "source": "C:/Users/Hursh/.codex/generated_images/01a173c0-7a0e-7573-a977-1595f71b5672/exec-ab22190f-9db5-44fe-9162-aec82ac7e22a.png",
+      "destination": "PLINKO/data/art/gelato/environment/play_counter.png",
+      "reference": "C:/Users/Hursh/Documents/Plinko/PLINKO/data/art/gelato/environment/play_counter.png",
+      "prompt": "gelato-play-prompt.txt",
+      "transparent_background": false,
+      "sha256": "5eeccedf29be382bf8fffd96bda2842522b7e5c2c10d2590faeafba23028b8bb",
+      "reference_backup": "references/gelato-play/input.png",
+      "size": [
+        941,
+        1672
+      ],
+      "mode": "RGB"
+    },
+    {
+      "id": "gelato-journey",
+      "source": "C:/Users/Hursh/.codex/generated_images/01a173c0-7a0e-7573-a977-1595f71b5672/exec-821ecb82-894c-47a1-9f3b-52186ced656d.png",
+      "destination": "PLINKO/data/art/gelato/environment/journey_backdrop.png",
+      "reference": "C:/Users/Hursh/Documents/Plinko/PLINKO/data/art/gelato/environment/journey_backdrop.png",
+      "prompt": "gelato-journey-prompt.txt",
+      "transparent_background": false,
+      "sha256": "f5c44a40ca7295fe923e0cb712ab0ae5f9b86d3eaf67c46b8d5b1d4f26846d64",
+      "reference_backup": "references/gelato-journey/input.png",
+      "size": [
+        941,
+        1672
+      ],
+      "mode": "RGB"
+    },
+    {
+      "id": "gelato-upgrade",
+      "source": "C:/Users/Hursh/.codex/generated_images/01a173c0-7a0e-7573-a977-1595f71b5672/exec-af455b8e-81c3-4b49-947c-393549c26236.png",
+      "destination": "PLINKO/data/art/gelato/environment/upgrade_counter.png",
+      "reference": "C:/Users/Hursh/Documents/Plinko/PLINKO/data/art/gelato/environment/upgrade_counter.png",
+      "prompt": "gelato-upgrade-prompt.txt",
+      "transparent_background": false,
+      "sha256": "b4f925b3c0b55e9aab6761b3cb86ba78083dfe0b2c701e13d99a05b7e4f817cc",
+      "reference_backup": "references/gelato-upgrade/input.png",
+      "size": [
+        941,
+        1672
+      ],
+      "mode": "RGB"
+    }
+  ]
+}
