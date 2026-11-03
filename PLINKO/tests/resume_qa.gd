@@ -271,12 +271,12 @@ func motion_abandon():
 	check(x.reduced_motion,"Reduced-motion preference persists")
 	x.free(); a.free(); b.free()
 	g.start_shift(); g.mode="paused"
-	g.handle_press(Vector2(300,940))
+	g.handle_press(g.pause_menu_layout().actions.end_shift.get_center())
 	check(g.mode=="abandon_confirm","Ending shift requires deliberate confirmation")
 	g._process(.26)
 	g.handle_press(Vector2(300,820))
 	check(g.mode=="paused" and not g.shift_claimed,"Abandon cancel preserves paused run")
-	g._process(.26); g.handle_press(Vector2(300,940)); g._process(.26); g.handle_press(Vector2(300,690))
+	g._process(.26); g.handle_press(g.pause_menu_layout().actions.end_shift.get_center()); g._process(.26); g.handle_press(Vector2(300,690))
 	check(g.mode=="result" and not g.level_won,"Confirmed abandon ends run without level win")
 
 func edge_states():

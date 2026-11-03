@@ -1,6 +1,6 @@
 # Sugarfall — default area checklist
 
-Template version 4 · 3 November 2026
+Template version 5 · 3 November 2026
 
 An **area** is a themed campaign with its own mechanic, boards, upgrades, economy and saved progress. A **tray** is one playable board inside an area. The current default is **12 trays per area**.
 
@@ -65,7 +65,7 @@ Current examples: Bakery uses a movable gravity dropper; Gelato uses calculated 
 | T01 | Establish theme references, material/light rules, palette and recognizable food/equipment silhouettes. | No | No | No | |
 | T02 | Plan full portrait compositions for gameplay, Home, the tray journey and upgrade map before placing detailed scenery. | No | No | No | |
 | T03 | Reserve clear space around live pegs, upgrade nodes, paths, prices, cards and touch targets; check pan/zoom edges. | No | No | No | |
-| T04 | Keep short functional copy, legible type and snug padding inside artwork. Render labels, prices and timers as live UI. | No | No | No | |
+| T04 | Use functional titles/actions and short state labels. Keep explanations only when they affect a decision; remove decorative or repeated prose. Group related controls with legible type and comfortable padding inside artwork. Keep labels, prices and timers live. | No | No | No | |
 
 ## 3. Individual art inventory
 

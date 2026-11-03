@@ -16,6 +16,7 @@ class PreviewGame extends "res://scripts/main.gd":
 	var capture_name = ""
 	var shop_draws = 0
 	var journey_draws = 0
+	var test_input_enabled = false
 
 	func _ready():
 		# Never call the production _ready: it reads the player's chosen profile.
@@ -29,7 +30,8 @@ class PreviewGame extends "res://scripts/main.gd":
 
 	func _process(_delta): pass
 	func _physics_process(_delta): pass
-	func _input(_event): pass
+	func _input(event):
+		if test_input_enabled: super._input(event)
 	func _notification(_what): pass
 	func save_game(): persistence_attempts += 1
 	func load_game(): persistence_attempts += 1

@@ -1,0 +1,337 @@
+{
+  "godot": "4.6.3.stable.official.7d41c59c4",
+  "app_name": "Sugarfall",
+  "package": "org.pegfoundry.prototype.preview",
+  "export_preset": "Android Preview",
+  "export_mode": "debug",
+  "minimum_sdk": 24,
+  "target_sdk": 36,
+  "architectures": [
+    "arm64-v8a"
+  ],
+  "requested_android_permissions": [],
+  "signing_certificate_sha256": "926f0d0c634978f4d84727a272068bacd3bb157277a9a8b18810e7c60aef70bc",
+  "monetization": "Local test service; no real ad or purchase accounts connected",
+  "build_date": "2026-11-03",
+  "file_name": "Sugarfall-v0.7.5-Android-Preview-2026-11-03.apk",
+  "local_path": "builds/Sugarfall-v0.7.5-Android-Preview-2026-11-03.apk",
+  "size_bytes": 89281899,
+  "sha256": "ed46a5cede73f8574aa2a6234385807b54de100a8b11c65fd8eecc98fd236b0c",
+  "md5": "592cb6435675e71b33fbedde7574a220",
+  "version_name": "0.7.5-preview",
+  "version_code": 31,
+  "status": "Delivered Pause/Settings cleanup preview; source, desktop renderer, APK checks and Drive metadata readback passed. Physical Android acceptance remains open.",
+  "changes": [
+    "Pause and Settings remove decorative flavour text and use clearer headings and spacing. The layouts keep functional controls and confirmations readable.",
+    "Pause now fades its sharp menu over softened, darkened frozen gameplay. Resume fades the menu first, then removes the blur before gameplay clocks advance. Reduced Motion uses the settled presentation immediately.",
+    "The warm studio spotlight, grounded heartbeat stamp and quiet hum are included in this preview for the first time. Saved Sound and Reduced Motion preferences, background handling and restored-run startup are retained.",
+    "The source includes public-build capability safeguards, while this debug preview retains Developer settings, Infinite money and local commerce testing. No real ad or purchase provider is connected.",
+    "All ten gameplay JSON files and all three gameplay fingerprints remain byte-identical to v0.7.4. Prices, peg strength tiers, authored maps and gameplay rules are unchanged."
+  ],
+  "update_compatibility": "Same preview Android package and debug signing identity as v0.7.4, with version code increased from 29 to 31. Intended for install-over updates retaining the existing profile; actual phone install-over retention is not yet verified. Profile envelope 5 and area checkpoint schemas remain unchanged. The separate public 0.8.0-rc1 package and both local release artifacts are preserved.",
+  "source_sha256": {
+    "res://scripts/area_art.gd": "833c583682df69d83172ca88cebdb669b45e663e40e8059e241df88d5190d4c8",
+    "res://scripts/area_campaign.gd": "5cc491a00df4180e460a334b93ec204b2bb608e5188a3fbec0b7aa4e4017d172",
+    "res://scripts/coin_display.gd": "29fcfa88220832e516a1d1d1e6210893ec083360848bda21caea574c7a26fc23",
+    "res://scripts/coin_feedback.gd": "77355e8533d1f8840b539a53155c3beacd3140a4a6fc0b2b0795ae5460cb1cfb",
+    "res://scripts/combat_balance.gd": "9ad489b7b8f3960a401adc30829d94776845f58060a58f878460479d5b2568e7",
+    "res://scripts/countdown_feedback.gd": "44ded78cf9ef83874485fc632a0e53b5ff6af2f6aa10bd30ad511d542e2f0883",
+    "res://scripts/crystal_launcher.gd": "78375118890fdc0aa654fae2607e2cdb49294192739ddabbac42dc3369480853",
+    "res://scripts/crystal_upgrade_graph.gd": "d8715e6941f1df477e90e2c017392861ae9b4c3924afebf7009d26f994596671",
+    "res://scripts/developer_area_ui.gd": "9720214c2fdd09fdc510003b0e25a7e9a79218f25da53a9bd5b5632dd5d96c93",
+    "res://scripts/environment_art.gd": "38745078b12953911de5c8aab75b6648dc0d53d44f018f020b53b1b1bb8770b2",
+    "res://scripts/first_run_guide.gd": "b1fc6ff4606b3cd164511d1906e40fc32264567e51353c91a95deec82b95fedf",
+    "res://scripts/food_art.gd": "d8ac12a56e6b6c35c97cac94229a218ac909f1887bf0e5ac6f0aaa3a9cc6bb7e",
+    "res://scripts/gelato_launcher.gd": "3ef818ac89c084741ac5076d33dcf4847b08079349cc5992d11d622b51032932",
+    "res://scripts/gelato_upgrade_graph.gd": "e9815d6ea340596e03b6a2646aec8a48d9a9dcf8dee183c9088e121f622586fd",
+    "res://scripts/home_menu.gd": "78eb34ed19c12c8d88eab735709f3b69affe6b39ee3e689c00bffe2a50ff6a57",
+    "res://scripts/impact_feedback.gd": "f3e41246e7492a7daa7eab26d9f851d0c903c38f89997a59404eba0594932ca8",
+    "res://scripts/level_map.gd": "aab3869d9aa25b88d884b373e5e97cdca195d4992344f9ea6a6a77238fdb3d40",
+    "res://scripts/main.gd": "2e985eb25257fbcd3a09eb45189ba9e21d05a4a410d95b3018ab0842ef7dacba",
+    "res://scripts/monetization_service.gd": "7a1763b27f796ab29c1187e418ffe6ac0491c4333e196b33a80fdb9b989ad5d8",
+    "res://scripts/monetization_ui.gd": "6156dc1b45a8a87db8efd6595ae90f3eba9137802d77bb4384acbf7c7ef2e9c6",
+    "res://scripts/page_transition.gd": "9f2244879f276ceca92cd672103e9fc64bdc1d0ac5624c18ac50479820f08e60",
+    "res://scripts/pause_transition.gd": "c58f991597e24d2617805c648ca20a97a9c72916f57e6ba6513a875142d5b0c2",
+    "res://scripts/progress_reset_ui.gd": "63f1f271a0de9a6c003814004dd1dea1ebbcf75a4e234a4bc984327413fafe80",
+    "res://scripts/result_comparison_ui.gd": "4ebaed65dbe076b6b2e5bf535393e8529ca3c39bfa623d68ac5abf52f43e2752",
+    "res://scripts/run_history.gd": "f2da83d6d0c8179f58e61ccc7745d7ecb0980c27593a8a71aae89448fd939b30",
+    "res://scripts/run_snapshot.gd": "903cbb595a6f5df297a3fb8815041007ffe76f35655710e91dd73ef786166f56",
+    "res://scripts/run_transition.gd": "6b80a5f6344ed34f26cdffbc3c5780f8cf607995a74ae05ae8a70d056984a043",
+    "res://scripts/speech_bubble.gd": "a7fa2f48b72ff1c02a2617148a1c421c3bc55fe0e8dccc286441e43e2767969c",
+    "res://scripts/startup.gd": "300a431a7d0e5fac9a51e6c0471bcc813b780477a148f71761c9a7390fd40d4f",
+    "res://scripts/tone_bank.gd": "0eabc16e9ebf89d77e915ebc64ad44b030dd76003a4e02466d66267f9c5907c0",
+    "res://scripts/ui_art.gd": "a3de442459a2408b91a201c80636d73949be74939590a8b9123eba0e1399db65",
+    "res://scripts/upgrade_arc_art.gd": "4cefc77bef1b62f39b502f9ac8b1edadfd29f8fad05ccb280f10ef1a28a35ab1",
+    "res://scripts/upgrade_graph.gd": "3845bed72ffeefb5d747434e8b7dda326993762654b55d796e68d4e437777729",
+    "res://scripts/upgrade_map.gd": "a0401ed89490088a930f126e2b060f5a4c09dbe5daa7d0b526f02b8cc4a25837"
+  },
+  "source_json_sha256": {
+    "res://data/board_design.json": "7f924784be57d5cc15f96199467f8a884feb0bd8d5df19ed07f7eebe55aa2a14",
+    "res://data/crystal_board_design.json": "b9ce87470fd3e393ab4789c5b8d682a84bfe6911fce411af1cc516de7cba4e6e",
+    "res://data/crystal_economy.json": "fa590359c4687c76ee14ce2149d6fba42a2a302100fe439f69ee301bfca90791",
+    "res://data/crystal_upgrade_layout.json": "e87e5f38d6c49d921b53d87f94a17b8df3d189a825c0f9e48d923c9f9f16aa31",
+    "res://data/economy.json": "9910256c6a6832d11248012bd60cafeef3e9017bb731bbf23dcf2503c0b27a8a",
+    "res://data/gelato_board_design.json": "0f64d5ebd62f786b1c157a75d599f47d00543e749e4240afe38d0131cfb05add",
+    "res://data/gelato_economy.json": "e98aa6365989a68cb618d15a5325bc1d8713767d04a693d2760b94fcf2efe352",
+    "res://data/gelato_upgrade_layout.json": "9948870ef138871c4966cea60820c341766af962018a773fe28da5c28bade666",
+    "res://data/upgrade_arc_art.json": "3abc28874c39d56d26fc1bff26e079319f646a3511459f2df61f2108539df85f",
+    "res://data/upgrade_layout.json": "e675a7104b1d0dc4bcb81633144c144a9a70ca7fa11cac066c83906e36da0983"
+  },
+  "source_shader_sha256": {
+    "res://data/art/branding/studio_spotlight.gdshader": "51800566a4e4521a2b3c823174749c28ec1f3c1f72a304644dd88857808eb184",
+    "res://data/art/branding/studio_stamp.gdshader": "b044f3505fa013ffa257cae6a027ffa06788e008baae32856e7eaa3d53841b33",
+    "res://data/art/transitions/pause_blur.gdshader": "69f9373617d38e80d4d5d5a23bcc829a8f4cad3e22bbbcd4792b0d8ea60f1f70"
+  },
+  "source_audio_sha256": {
+    "res://data/audio/studio_warm_hum.wav": "5e341dc297486fffc00828a3c7d0f0fc95b2fa23dd0ab73a03cc445e29da0e1f"
+  },
+  "source_export_preset_sha256": "db4dc2fc77b59f8123bc103e8dda643c7d6110e71e922ee250fe682ae9457339",
+  "source_project_sha256": "6f9c64e6e7c12f4e06bf774e1963a581f46e5829863b997993463f4ffcb14461",
+  "source_main_scene_sha256": "e1199368c62dfc7dd6f17fcf54ad6f4f39278c5f729c89670eb28f7aef284b17",
+  "source_startup_scene_sha256": "bd52d9d5a059a18ea3f1878c95dd4ed9e258b330aef19d97bb59614e7f063e4f",
+  "verification": {
+    "payload_checks_passed": 517,
+    "payload_checks_total": 517,
+    "android_metadata_checks_passed": 16,
+    "android_metadata_checks_total": 16,
+    "signature_v2": true,
+    "signature_v3": true,
+    "zip_alignment_16_kib": true,
+    "zip_entries": 437,
+    "runtime_scripts": 34,
+    "all44_runtime_inputs_match_final_renderer": true,
+    "all9_startup_inputs_match_final_renderer": true,
+    "source_inputs_unchanged_across_export": true,
+    "source_scope": {
+      "changed_previous_runtime_files": [
+        "res://scripts/main.gd",
+        "res://scripts/monetization_service.gd",
+        "res://scripts/monetization_ui.gd",
+        "res://scripts/page_transition.gd",
+        "res://scripts/progress_reset_ui.gd",
+        "res://scripts/result_comparison_ui.gd",
+        "res://scripts/startup.gd"
+      ],
+      "added_runtime_files": [
+        "res://scripts/pause_transition.gd"
+      ]
+    },
+    "checkpoint_compatibility": {
+      "fingerprints": {
+        "bakery": {
+          "previous": "cf5e777d9b76e7ee53247c49b4a795fa086d2eeb58fb017307f9f8004ca23936",
+          "current": "cf5e777d9b76e7ee53247c49b4a795fa086d2eeb58fb017307f9f8004ca23936"
+        },
+        "gelato": {
+          "previous": "0ed640180e172a175bce0d5ad81a97196d6f8d72ff031b099f2f254afe512f67",
+          "current": "0ed640180e172a175bce0d5ad81a97196d6f8d72ff031b099f2f254afe512f67"
+        },
+        "crystal": {
+          "previous": "61dd81c0b0088fbc84f2b042e0afffdd72b251f541464ac2612772113b913d19",
+          "current": "61dd81c0b0088fbc84f2b042e0afffdd72b251f541464ac2612772113b913d19"
+        }
+      },
+      "bakery_metadata_only_compatibility": true,
+      "gelato_fingerprint_unchanged": true,
+      "checkpoint_schema_by_area": {
+        "bakery": 4,
+        "gelato": 4,
+        "crystal": 5
+      },
+      "profile_envelope_version": 5,
+      "profile_read_versions": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "gelato_shop_revision": 1,
+      "gelato_launcher_rules_revision": 2,
+      "combat_trial_rules_revision": 1
+    },
+    "all_area_fingerprints_unchanged_from_v074": true,
+    "all_ten_gameplay_json_files_byte_exact_to_v074": true,
+    "startup_inputs": [
+      {
+        "path": "project.godot",
+        "sha256": "6f9c64e6e7c12f4e06bf774e1963a581f46e5829863b997993463f4ffcb14461",
+        "bytes": 1577
+      },
+      {
+        "path": "main.tscn",
+        "sha256": "e1199368c62dfc7dd6f17fcf54ad6f4f39278c5f729c89670eb28f7aef284b17",
+        "bytes": 164
+      },
+      {
+        "path": "startup.tscn",
+        "sha256": "bd52d9d5a059a18ea3f1878c95dd4ed9e258b330aef19d97bb59614e7f063e4f",
+        "bytes": 2236
+      },
+      {
+        "path": "data/art/branding/studio_stamp.png",
+        "sha256": "a7e295efc6232750e58fc230372987b7382da3c102ac445dbf8d7e91cd3a2d53",
+        "bytes": 603982
+      },
+      {
+        "path": "data/art/branding/studio_boot.png",
+        "sha256": "3e84e91f493a050ec9f1a0601470f8eee2d763e2e3723fa7f74a224f7191256c",
+        "bytes": 225411
+      },
+      {
+        "path": "data/art/branding/studio_stamp.gdshader",
+        "sha256": "b044f3505fa013ffa257cae6a027ffa06788e008baae32856e7eaa3d53841b33",
+        "bytes": 930
+      },
+      {
+        "path": "data/art/branding/studio_spotlight.gdshader",
+        "sha256": "51800566a4e4521a2b3c823174749c28ec1f3c1f72a304644dd88857808eb184",
+        "bytes": 682
+      },
+      {
+        "path": "data/art/transitions/pause_blur.gdshader",
+        "sha256": "69f9373617d38e80d4d5d5a23bcc829a8f4cad3e22bbbcd4792b0d8ea60f1f70",
+        "bytes": 586
+      },
+      {
+        "path": "data/audio/studio_warm_hum.wav",
+        "sha256": "5e341dc297486fffc00828a3c7d0f0fc95b2fa23dd0ab73a03cc445e29da0e1f",
+        "bytes": 158804
+      }
+    ],
+    "raw_boot_png_byte_exact": true,
+    "original_stamp_pixels_unchanged": true,
+    "studio_and_pause_shaders_packaged_byte_exact": true,
+    "studio_hum_imported_stream_byte_exact": true,
+    "studio_and_main_scene_remaps_checked": true,
+    "preview_does_not_have_sugarfall_public_feature": true,
+    "debug_native_libraries_match_official_template": true,
+    "previous_apk_preserved_and_hash_verified": true,
+    "previous_manifest_preserved_and_hash_verified": true,
+    "public_rc_preserved": {
+      "manifest": "PLINKO/docs/ANDROID_SUGARFALL_v0.8.0-rc1.json",
+      "manifest_sha256": "490129b6c663db008b1864356fec0657808a76e532eff6a43da44f714f89bb65",
+      "artifacts": [
+        {
+          "path": "PLINKO/builds/Sugarfall-v0.8.0-rc1-Android-2026-11-03.apk",
+          "sha256": "f1e0ba502e2fbfc755479b44c6801660a53653d0bcdf3067b64e00ff103c122c"
+        },
+        {
+          "path": "PLINKO/builds/Sugarfall-v0.8.0-rc1-Android-2026-11-03.aab",
+          "sha256": "f37bc66695ae39402dc6330349f732f1713977e7da3df954237c8f09450ed48b"
+        }
+      ]
+    },
+    "software_visual_checks_passed": 1516,
+    "software_visual_failed": 0,
+    "software_validation_summary": {
+      "date": "2026-11-03",
+      "stage": "Menu copy and composition integrated; desktop rendering, touch routing and affected regressions verified; phone acceptance pending",
+      "passed": 1516,
+      "failed": 0,
+      "suites": {
+        "page_routes": 161,
+        "pause_fade": 98,
+        "home_entry": 58,
+        "crystal_menu_trial_flow": 10,
+        "resume": 122,
+        "public_policy_preview": 60,
+        "reset_progress": 63,
+        "preview_commerce": 81,
+        "developer_ui": 59,
+        "gpu_menu": 423,
+        "gpu_pause": 381
+      },
+      "captures": 81,
+      "sizes": [
+        "450x800",
+        "450x1000"
+      ],
+      "areas": [
+        "bakery",
+        "gelato",
+        "crystal"
+      ],
+      "source_parity": [
+        {
+          "run": "functional-02",
+          "runtime_and_art_inputs": 211,
+          "copied_test_inputs": 4,
+          "evidence": "verification/menu-cleanup-20261103/functional-02/final-source-parity.json"
+        },
+        {
+          "run": "regression-02",
+          "runtime_and_art_inputs": 211,
+          "copied_test_inputs": 1,
+          "evidence": "verification/menu-cleanup-20261103/regression-02/final-source-parity.json"
+        },
+        {
+          "run": "regression-03",
+          "runtime_and_art_inputs": 211,
+          "copied_test_inputs": 2,
+          "evidence": "verification/menu-cleanup-20261103/regression-03/final-source-parity.json"
+        },
+        {
+          "run": "regression-04",
+          "runtime_and_art_inputs": 211,
+          "copied_test_inputs": 2,
+          "evidence": "verification/menu-cleanup-20261103/regression-04/final-source-parity.json"
+        }
+      ],
+      "visual_source_inputs": 215,
+      "main_sha256": "2e985eb25257fbcd3a09eb45189ba9e21d05a4a410d95b3018ab0842ef7dacba",
+      "renderer_manifests": [
+        "verification/menu-cleanup-20261103/gpu-menu-03/source-manifest.json",
+        "verification/menu-cleanup-20261103/gpu-pause-01/source-manifest.json"
+      ],
+      "visual_evidence": "verification/menu-cleanup-20261103/visual-review.json",
+      "capability_coverage": "GPU public/preview flags exercise real Settings layout and input branches. Public-policy runs in the editor with disabled commerce; this change does not claim a new native public-export verification.",
+      "preserved_behavior": [
+        "Pause fades with slight blur and no cream",
+        "Resume hides the menu before clearing blur",
+        "Reduced Motion has no animated delay",
+        "Restored runs stay paused without redundant welcome toast",
+        "Home entry and result routes retain existing behavior",
+        "Essential reset and end-shift consequences stay visible",
+        "All save fixtures use verified isolated directories"
+      ],
+      "known_environment_message": "Only the exact Windows root-certificate-store startup warning is exempted in these offline tests; other engine, parser, shader and assertion errors fail.",
+      "superseded_attempts": {
+        "gpu-menu-01": "New touch fixture froze the completion-frame input guard. Adding a clean presentation update before deliberate taps fixed the fixture; runtime unchanged.",
+        "gpu-menu-02": "Editor import timed out under concurrent imports. Later runs reused a successfully imported exact asset cache and passed.",
+        "functional-01": "Passed before a behavior-equivalent layout-condition simplification. Repeated on exact final source as functional-02.",
+        "regression-01": "Two legacy Resume suite taps used old End-shift coordinates; shared layout targets fixed the fixture.",
+        "regression-02 public-policy": "Legacy absent-commerce coordinate was reassigned to Back. Corrected to assert no commerce target or simulator access; legitimate Back remains allowed.",
+        "regression-03 preview-commerce": "Legacy Settings Back rectangle prevented the scripted return home. Replaced it with the shared layout rectangle; repeated only affected remaining suites."
+      },
+      "phone_verified": false,
+      "apk_and_drive_delivery": "Tracked separately in the release build and delivery records; this file certifies desktop source validation only"
+    },
+    "physical_android_device_tested": false,
+    "android_emulator_tested": false,
+    "human_difficulty_validated": false,
+    "evidence_directory": "../../verification/android-preview-v075",
+    "source_validation_file": "../../verification/menu-cleanup-20261103/validation.json",
+    "renderer_evidence_file": "../../verification/menu-cleanup-20261103/gpu-menu-03/source-manifest.json",
+    "limits": [
+      "Phone installation and install-over-save retention",
+      "Physical pause blur performance, touch comfort, startup audio and background/resume",
+      "Existing human campaign pacing"
+    ],
+    "scope": "Current focused tests and desktop renderer are recorded separately from static APK checks. The APK was not executed on Android. Historical validation is not added again to the current check count.",
+    "portable_validation_file": "MENU_CLEANUP_VALIDATION.json"
+  },
+  "distribution": {
+    "local_apk_ready": true,
+    "drive_uploaded": true,
+    "previous_drive_build_changed": true,
+    "drive_file_id": "1GF1zo3lt0VR5voajNPGjoP1FYuPe0FYz",
+    "drive_folder_id": "1TXLZwTNVlHGTBy7y0CVMMk3zABEKu8X-",
+    "drive_url": "https://drive.google.com/file/d/1GF1zo3lt0VR5voajNPGjoP1FYuPe0FYz/view?usp=drivesdk",
+    "drive_modified_time": "2026-11-03T21:04:19.626Z",
+    "metadata_checks_passed": 8,
+    "sharing_unchanged": true,
+    "readback_evidence": "../../verification/android-upload-v075/verification.json",
+    "remote_checksum_verified": false
+  }
+}

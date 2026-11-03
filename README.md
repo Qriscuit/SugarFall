@@ -4,6 +4,8 @@ A portrait arcade game built in Godot, with three themed areas: Bakery, Gelato G
 
 Open **`PLINKO/project.godot` in Godot 4.6.3**. The entry scene is `startup.tscn`; it loads the game behind the studio heartbeat and cream reveal. Keyboard/mouse desktop controls support development; Android phone acceptance remains part of the release checklist.
 
+The current private test download is **v0.7.5-preview (code 31)**, with concise menus, the Pause fade/blur and warm studio startup/audio. See [the verified APK record](PLINKO/docs/ANDROID_SUGARFALL_v0.7.5.json) and [download links](PLINKO/BUILD_LINKS.txt). The separate public v0.8.0-rc1 APK/AAB remain unchanged; phone acceptance is still open.
+
 ## Production records
 
 - [Area template](AREA_CHECKLIST.md): use this before building another area.

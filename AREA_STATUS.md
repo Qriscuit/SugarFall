@@ -1,8 +1,8 @@
 # Sugarfall — current area status
 
-Updated 3 November 2026 · Source CHG-034 after local v0.8.0-rc1 · Drive v0.7.4-preview unchanged
+Updated 3 November 2026 · Delivered v0.7.5-preview / code 31 · CHG-035
 
-All seven earlier software, design-documentation and targeted verification actions remain complete and integrated. The existing private Drive file holds the v0.7.4 preview. The local v0.8.0-rc1 candidate predates the latest pause source revision recorded below. The remaining two area actions are human progression and physical-phone acceptance; the user will test the APK.
+All seven earlier software, design-documentation and targeted verification actions remain complete and integrated. The existing private Drive file now holds v0.7.5-preview, including concise menus, pause fade/blur and warm studio startup/audio. The local v0.8.0-rc1 candidate predates the pause/menu source revisions and was not rebuilt. The remaining two area actions are human progression and physical-phone acceptance; the user will test the APK.
 
 Counts include test activities as well as production content. Verified means the recorded scope passed; it does not imply a phone playtest. Intentional omissions remain N/A.
 
@@ -12,7 +12,7 @@ Counts include test activities as well as production content. Verified means the
 | Gelato Garden | 79 | 79 | 75 | 2 | [Checklist](PLINKO/docs/areas/gelato_checklist.md) |
 | Crystal Candyworks | 79 | 79 | 74 | 2 | [Checklist](PLINKO/docs/areas/crystal_checklist.md) |
 
-## Current menu polish
+## Menu polish — v0.7.2 milestone
 
 Centered menu symbols, a fitted Settings heading plaque, outlined damage numbers without beige backing, and a shared illustrated white-cream page wave now pass source/desktop verification in all three areas. One native wave is deliberately shared without area accents. CHG-028/AF-007 remains the historical backing decision; CHG-029 records the user-requested reversal.
 
@@ -32,7 +32,7 @@ v0.7.3 packaging and replacement of the same private Drive file are verified. Th
 
 See [Startup design and provenance](PLINKO/docs/STUDIO_STARTUP.md) and [Phone protocol D14](PLINKO/docs/AREA_PLAYTEST.md).
 
-## Current screen and run flow
+## Screen and run flow — v0.7.4 milestone
 
 Tall-screen backgrounds fill the physical viewport while the logical board fits uniformly inside the safe area. Tray HUD and six cup-face multipliers fit in all areas. Home Play restores the tray/peg morph and equipment entrances; just-finished results are modal over the darkened frozen board. Final evidence passes 1,877 assertions: 879 regressions, 163 page/result, 58 startup, 250 isolated-profile, 111 HUD/cup and 416 GPU checks across 71 captures/five aspect ratios plus synthetic notch insets. Reopened pending results retain earnings/history but use an empty themed tray because peg/ball poses are not saved.
 
@@ -50,21 +50,31 @@ See [current startup design and provenance](PLINKO/docs/STUDIO_STARTUP.md). The 
 
 ## Public release candidate
 
-Signed local APK and Google Play AAB artifacts are prepared as **v0.8.0-rc1 (code 30)** for `com.qriscuit.sugarfall`. This package installs separately from the preview and does not automatically import its save. The existing private Drive download remains v0.7.4-preview; the candidate has not been published to Play.
+Signed local APK and Google Play AAB artifacts are prepared as **v0.8.0-rc1 (code 30)** for `com.qriscuit.sugarfall`. This package installs separately from the preview and does not automatically import its save. At this candidate milestone, the private Drive download was v0.7.4-preview. The candidate has not been published to Play; the newer preview delivery is recorded below.
 
-Public builds hide and reject simulated commerce, fake entitlements, developer controls and diagnostics. Preview builds retain their test tools. The current source changes pass 1,520 focused assertions: 738 warm-startup, 656 preview regressions and 126 public-policy checks, including an actual nondebug Windows export. Native-asset and toolchain checks are recorded separately. The signed APK passes 508 payload plus 16 Android metadata checks; the signed AAB passes 30 checks. Phone acceptance, real ads/billing, Play setup, an off-device signing backup and clean-machine rebuild verification remain open.
+Public builds hide and reject simulated commerce, fake entitlements, developer controls and diagnostics. Preview builds retain their test tools. That release-candidate source passed 1,520 focused assertions: 738 warm-startup, 656 preview regressions and 126 public-policy checks, including an actual nondebug Windows export. Native-asset and toolchain checks are recorded separately. The signed APK passes 508 payload plus 16 Android metadata checks; the signed AAB passes 30 checks. Phone acceptance, real ads/billing, Play setup, an off-device signing backup and clean-machine rebuild verification remain open.
 
 See [the candidate record](PLINKO/docs/ANDROID_SUGARFALL_v0.8.0-rc1.md) and [signing and recovery](PLINKO/docs/RELEASE_SIGNING.md). AF-008/009 remain Ready to test, and no physical result has been added to the area checklists.
 
 Source, art, tests and production records are backed up in [Qriscuit/SugarFall](https://github.com/Qriscuit/SugarFall). Tag `v0.8.0-rc1` records the 881-file baseline at commit `1bf3632`; a fresh remote recovery clone passed 13 integrity/completeness checks. See [source-control evidence](PLINKO/docs/SOURCE_CONTROL.md). CHG-032/033 record this revision; SF-007 and SF-042 are Done. Signing-key recovery, Play setup and physical acceptance remain separate open work.
 
-## Current pause presentation
+## Pause presentation — CHG-034 source milestone
 
 CHG-034 replaces cream on play/pause/abandon routes with a sharp menu fading over a gently blurred and shaded frozen board. Resume fades the menu out first, then clears the background treatment before gameplay continues. The blur fills normal and tall viewports. Reduced Motion settles immediately. Ordinary menu and studio-to-restored-pause cream routes, Home tray morph and result windows retain their intended behavior.
 
-Current source verification passes 1,184 checks: 161 page routes, 98 pause behavior, 58 Home entrance, 489 related regressions and 378 GPU assertions across 57 captures in all three areas at 450×800 and 450×1000. Functional/regression copies match 48 runtime inputs each; GPU parity covers 214 inputs. All ten gameplay JSON files remain unchanged. See [transition behavior](PLINKO/docs/MENU_TRANSITIONS.md) and [verification](PLINKO/docs/PAUSE_FADE_VALIDATION.json).
+Source verification at this milestone passed 1,184 checks: 161 page routes, 98 pause behavior, 58 Home entrance, 489 related regressions and 378 GPU assertions across 57 captures in all three areas at 450×800 and 450×1000. Functional/regression copies matched 48 runtime inputs each; GPU parity covered 214 inputs. All ten gameplay JSON files remained unchanged. See [transition behavior](PLINKO/docs/MENU_TRANSITIONS.md) and [verification](PLINKO/docs/PAUSE_FADE_VALIDATION.json).
 
-Template version 4 refines F11 without adding requirements; all 83-per-area/249 states and SF/AF statuses remain. Phone D17 is Pending. This revision is source-only: no new APK, AAB or Drive replacement was requested or produced. The existing v0.8.0-rc1 artifacts and v0.7.4 Drive preview do not include it.
+Template version 4 refines F11 without adding requirements; all 83-per-area/249 states and SF/AF statuses remain. Phone D17 is Pending. At this source-only milestone, no new APK, AAB or Drive replacement was requested or produced. The then-existing v0.8.0-rc1 artifacts and v0.7.4 Drive preview did not include it. CHG-035 below records the subsequent v0.7.5 preview delivery; the public candidate artifacts remain unchanged.
+
+## Current concise-menu preview
+
+Pause has one Paused title and a compact control panel. Settings has one title and a centered, capability-driven layout with no gaps from hidden options. Help uses How to play and Trials uses Trials. Decorative slogans, repeated headings, time-card flavor text and the redundant restored-run toast are removed; mechanics and consequential reset/end-shift instructions remain. The shared pause fade/blur and warm spotlight/heartbeat/hum are included in v0.7.5-preview (code 31).
+
+1,516 checks pass with zero failures: 712 functional/regression and 804 GPU assertions, with 81 captures across all three areas at 450×800 and 450×1000. Final runtime/art parity covers 211 inputs. 517 APK payload checks and 16 Android metadata/signing/alignment checks pass. Eight Drive metadata checks pass after replacement in the same private file, with its ID, folder, owner permissions and 89,281,899-byte size verified; no remote checksum was returned. The preview keeps its existing package and development certificate; intended install-over compatibility is verified in metadata, while physical save retention remains Pending.
+
+Template version 5 refines T04 without new requirement IDs. All 83-per-area/249 requirement states, 65 SF statuses and nine AF statuses remain unchanged. D07/D13 cover menu readability and composition, D14 covers warm startup/audio and D17 covers pause feel; all 17 physical checks remain Pending. CHG-034 history stays intact, and the public v0.8.0-rc1 APK/AAB were not rebuilt.
+
+See [current menu validation](PLINKO/docs/MENU_CLEANUP_VALIDATION.json), [v0.7.5 delivery record](PLINKO/docs/ANDROID_SUGARFALL_v0.7.5.json) and [download](PLINKO/BUILD_LINKS.txt).
 
 ## Fix queue
 
@@ -86,7 +96,7 @@ Use the workbook’s **Area checklist** and **Area fixes** tabs. Keep Built, Int
 
 - [Phone and human playtest protocol](PLINKO/docs/AREA_PLAYTEST.md)
 - [Measured legal progression and flagged trays](PLINKO/docs/AREA_PROGRESSION_BALANCE.md)
-- [Verified APK record](PLINKO/docs/ANDROID_SUGARFALL_v0.7.4.json)
+- [Verified APK record](PLINKO/docs/ANDROID_SUGARFALL_v0.7.5.json)
 - [Download details](PLINKO/BUILD_LINKS.txt)
 - [Editable launch workbook](outputs/launch-tracker-01a18eec/Sugarfall%20Launch%20Tracker.xlsx)
 

@@ -1,6 +1,14 @@
 # Export and rebuild notes
 
-## Current Android preview v0.7.4 (3 November 2026)
+## Current Android preview v0.7.5 (3 November 2026)
+
+The existing private Drive APK is now **v0.7.5-preview, code 31**, with the existing preview package and development certificate. Pause has one Paused title and a compact control panel. Settings has one title and a centered, capability-driven layout with no gaps from hidden options. Help uses How to play and Trials uses Trials. Decorative slogans, repeated headings, time-card flavor text and the redundant restored-run toast are removed; mechanics and consequential reset/end-shift instructions remain. It also packages the previously source-only [pause fade/blur](MENU_TRANSITIONS.md) and the [warm studio spotlight, heartbeat and hum](STUDIO_STARTUP.md). Home morph, results and cream routes retain their intended behavior. Balance data and save formats are unchanged.
+
+[Current source and desktop validation](MENU_CLEANUP_VALIDATION.json) passes 1,516 checks with zero failures: 712 functional/regression and 804 GPU assertions, with 81 captures across all three areas at 450×800 and 450×1000. Final runtime/art parity covers 211 inputs. [The APK record](ANDROID_SUGARFALL_v0.7.5.json) and [release note](ANDROID_SUGARFALL_v0.7.5.md) record 517 passing payload checks and 16 passing Android metadata/signing/alignment checks. The artifact is **89,281,899 bytes**, SHA-256 `ed46a5cede73f8574aa2a6234385807b54de100a8b11c65fd8eecc98fd236b0c`. [Drive readback](../../verification/android-upload-v075/verification.json) passes eight metadata checks after replacement in the same private file, with its ID, folder, owner permissions and 89,281,899-byte size verified. No remote checksum was returned. [BUILD_LINKS.txt](../BUILD_LINKS.txt) retains the same private download URL; Windows stays v0.6.1.
+
+All physical installation, retained saves, menu readability/touch, startup audio and pause feel remain Pending. The separate public v0.8.0-rc1 APK/AAB were not rebuilt. Prior release sections below are historical.
+
+## Previous Android preview v0.7.4 (3 November 2026)
 
 The existing private Drive APK is now **v0.7.4-preview, code 29**, retaining the v0.7.3 preview package and signing identity. [Portrait layout](SCREEN_LAYOUT.md) now paints themed scenery across taller displays, fits the Tray status inside its HUD panel and centers all six cup labels on their painted faces. Home Play uses the restored short tray zoom/morph; results appear over a darkened frozen board. Neither action uses a cream wipe. [Ordinary menu navigation](MENU_TRANSITIONS.md) and the [studio heartbeat startup](STUDIO_STARTUP.md) retain their cream transitions, with Reduced Motion skipping movement. Board geometry, collision/reward rules, economy values and save formats are unchanged.
 

@@ -1,0 +1,83 @@
+{
+  "date": "2026-11-03",
+  "stage": "Menu copy and composition integrated; desktop rendering, touch routing and affected regressions verified; phone acceptance pending",
+  "passed": 1516,
+  "failed": 0,
+  "suites": {
+    "page_routes": 161,
+    "pause_fade": 98,
+    "home_entry": 58,
+    "crystal_menu_trial_flow": 10,
+    "resume": 122,
+    "public_policy_preview": 60,
+    "reset_progress": 63,
+    "preview_commerce": 81,
+    "developer_ui": 59,
+    "gpu_menu": 423,
+    "gpu_pause": 381
+  },
+  "captures": 81,
+  "sizes": [
+    "450x800",
+    "450x1000"
+  ],
+  "areas": [
+    "bakery",
+    "gelato",
+    "crystal"
+  ],
+  "source_parity": [
+    {
+      "run": "functional-02",
+      "runtime_and_art_inputs": 211,
+      "copied_test_inputs": 4,
+      "evidence": "verification/menu-cleanup-20261103/functional-02/final-source-parity.json"
+    },
+    {
+      "run": "regression-02",
+      "runtime_and_art_inputs": 211,
+      "copied_test_inputs": 1,
+      "evidence": "verification/menu-cleanup-20261103/regression-02/final-source-parity.json"
+    },
+    {
+      "run": "regression-03",
+      "runtime_and_art_inputs": 211,
+      "copied_test_inputs": 2,
+      "evidence": "verification/menu-cleanup-20261103/regression-03/final-source-parity.json"
+    },
+    {
+      "run": "regression-04",
+      "runtime_and_art_inputs": 211,
+      "copied_test_inputs": 2,
+      "evidence": "verification/menu-cleanup-20261103/regression-04/final-source-parity.json"
+    }
+  ],
+  "visual_source_inputs": 215,
+  "main_sha256": "2e985eb25257fbcd3a09eb45189ba9e21d05a4a410d95b3018ab0842ef7dacba",
+  "renderer_manifests": [
+    "verification/menu-cleanup-20261103/gpu-menu-03/source-manifest.json",
+    "verification/menu-cleanup-20261103/gpu-pause-01/source-manifest.json"
+  ],
+  "visual_evidence": "verification/menu-cleanup-20261103/visual-review.json",
+  "capability_coverage": "GPU public/preview flags exercise real Settings layout and input branches. Public-policy runs in the editor with disabled commerce; this change does not claim a new native public-export verification.",
+  "preserved_behavior": [
+    "Pause fades with slight blur and no cream",
+    "Resume hides the menu before clearing blur",
+    "Reduced Motion has no animated delay",
+    "Restored runs stay paused without redundant welcome toast",
+    "Home entry and result routes retain existing behavior",
+    "Essential reset and end-shift consequences stay visible",
+    "All save fixtures use verified isolated directories"
+  ],
+  "known_environment_message": "Only the exact Windows root-certificate-store startup warning is exempted in these offline tests; other engine, parser, shader and assertion errors fail.",
+  "superseded_attempts": {
+    "gpu-menu-01": "New touch fixture froze the completion-frame input guard. Adding a clean presentation update before deliberate taps fixed the fixture; runtime unchanged.",
+    "gpu-menu-02": "Editor import timed out under concurrent imports. Later runs reused a successfully imported exact asset cache and passed.",
+    "functional-01": "Passed before a behavior-equivalent layout-condition simplification. Repeated on exact final source as functional-02.",
+    "regression-01": "Two legacy Resume suite taps used old End-shift coordinates; shared layout targets fixed the fixture.",
+    "regression-02 public-policy": "Legacy absent-commerce coordinate was reassigned to Back. Corrected to assert no commerce target or simulator access; legitimate Back remains allowed.",
+    "regression-03 preview-commerce": "Legacy Settings Back rectangle prevented the scripted return home. Replaced it with the shared layout rectangle; repeated only affected remaining suites."
+  },
+  "phone_verified": false,
+  "apk_and_drive_delivery": "Tracked separately in the release build and delivery records; this file certifies desktop source validation only"
+}

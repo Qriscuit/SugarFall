@@ -1513,8 +1513,9 @@ func _restore_active_run_impl(snapshot):
 	mode="paused"
 	resumed_run=true
 	checkpoint_clock=5.0
-	note="Interrupted trial restored." if trial_active else "Interrupted run restored. Timer stayed stopped."
-	note_time=5
+	# The paused overlay already explains the restored state.
+	note=""
+	note_time=0
 	return true
 
 func safe_number(value, fallback=0):
@@ -1791,16 +1792,17 @@ func _handle_press_impl(p):
 				mode = "paused"
 				if not testing: save_game()
 		"paused":
-			if inside(p,Rect2(80,600,560,96)): mode = "play"
-			elif inside(p,Rect2(80,700,560,96)):
+			var actions = pause_menu_layout().actions
+			if inside(p,actions.resume): mode = "play"
+			elif inside(p,actions.sound):
 				sound_on = not sound_on
 				if not testing: save_game()
-			elif inside(p,Rect2(80,800,560,96)):
+			elif inside(p,actions.motion):
 				reduced_motion=not reduced_motion
 				if reduced_motion: particles=[]; floats=[]; pulse_flash=0
 				impact_feedback.reset()
 				if not testing: save_game()
-			elif inside(p,Rect2(80,900,560,96)): mode="abandon_confirm"
+			elif inside(p,actions.end_shift): mode="abandon_confirm"
 		"abandon_confirm":
 			if inside(p,Rect2(80,650,560,96)):
 				# The win is already earned; finish catching its food before results.
@@ -1839,20 +1841,21 @@ func _handle_press_impl(p):
 		"boards":
 			level_map.press(p)
 		"support":
-			if inside(p,Rect2(48,230,624,96)):
+			var actions = settings_menu_layout().actions
+			if inside(p,actions.sound):
 				sound_on=not sound_on
 				if not testing: save_game()
-			elif inside(p,Rect2(48,350,624,96)):
+			elif inside(p,actions.motion):
 				reduced_motion=not reduced_motion
 				impact_feedback.reset()
 				if not testing: save_game()
-			elif inside(p,Rect2(48,520,624,96)): request_progress_reset()
-			elif inside(p,Rect2(48,662,624,72)) and developer_tools_available(): open_developer_areas()
-			elif inside(p,Rect2(48,760,624,96)) and developer_tools_available(): diagnostics_on=not diagnostics_on
-			elif inside(p,Rect2(48,920,624,96)) and test_commerce_available():
+			elif inside(p,actions.reset): request_progress_reset()
+			elif actions.has("developer") and inside(p,actions.developer): open_developer_areas()
+			elif actions.has("performance") and inside(p,actions.performance): diagnostics_on=not diagnostics_on
+			elif actions.has("commerce") and inside(p,actions.commerce):
 				mode="monetization"
 				commerce_message="Local simulation. No money is charged."
-			elif inside(p,Rect2(48,1080,624,96)): mode="home"
+			elif inside(p,actions.back): mode="home"
 		"guide":
 			if inside(p,Rect2(48,1030,624,82)) and area_id=="bakery": first_run_guide.replay()
 			elif inside(p,Rect2(48,1132,624,82)): mode = "home"
@@ -2177,16 +2180,21 @@ func draw_game_hud(hud_offset: Vector2 = Vector2.ZERO):
 		draw_string(font,label.baseline,row.text,HORIZONTAL_ALIGNMENT_LEFT,-1,label.font_size,row.color)
 	draw_set_transform(Vector2.ZERO)
 
+func pause_menu_layout() -> Dictionary:
+	# Drawing and touch targets share the same compact composition.
+	return {"panel":Rect2(60,332,600,580),"title_y":411,
+		"actions":{"resume":Rect2(92,456,536,88),"sound":Rect2(92,560,536,88),
+		"motion":Rect2(92,664,536,88),"end_shift":Rect2(92,784,536,88)}}
+
 func draw_pause(painter: CanvasItem = null):
 	var canvas = painter if painter != null else self
-	ui_panel(Rect2(48,288,624,758),canvas)
-	ui_art.draw(canvas,"timer",Rect2(314,328,92,92))
-	heading_centered("Welcome back" if resumed_run else "A little breather",477,42,WHITE,canvas)
-	centered("Your timer is paused.",525,24,MUTED,canvas)
-	button(Rect2(80,600,560,96),"Resume",true,"",canvas)
-	button(Rect2(80,700,560,96),"Sound  ·  " + ("On" if sound_on else "Off"),false,"",canvas)
-	button(Rect2(80,800,560,96),"Reduced motion  ·  " + ("On" if reduced_motion else "Off"),false,"",canvas)
-	button(Rect2(80,900,560,96),"End shift…",false,"",canvas)
+	var layout = pause_menu_layout()
+	ui_panel(layout.panel,canvas)
+	heading_centered("Paused",layout.title_y,42,WHITE,canvas)
+	button(layout.actions.resume,"Resume",true,"",canvas)
+	button(layout.actions.sound,"Sound  ·  " + ("On" if sound_on else "Off"),false,"",canvas)
+	button(layout.actions.motion,"Reduced motion  ·  " + ("On" if reduced_motion else "Off"),false,"",canvas)
+	button(layout.actions.end_shift,"End shift…",false,"",canvas)
 
 func draw_abandon_confirm(painter: CanvasItem = null):
 	var canvas = painter if painter != null else self
@@ -2223,13 +2231,13 @@ func draw_bonus_confirm():
 	button(Rect2(60,740,600,96),"Cancel",false)
 
 func draw_guide():
-	heading("A recipe for a good run",Vector2(48,112),42)
-	text_at("Aim. Bounce. Crumble.",Vector2(50,170),26,TEAL)
+	ui_panel(Rect2(48,42,624,136))
+	heading_centered("How to play",128,42)
 	var sections=[
 		["donut","Aim the drops","Drag to move the dispenser.","Food falls automatically."],
 		["cookie_normal","Crumble cookies","Bronze, Silver, Gold, then Diamond.","Stronger cookies at trays 4, 7 and 10."],
 		["cup_cream","Grow your cups","Each catch makes that cup worth more.","Split pieces earn a smaller share."],
-		["cookie_clock","A little extra time","Clock cookies and pickups add time.","Keep the shift going a little longer."],
+		["cookie_clock","Extra time","Clock cookies and pickups add time.",""],
 		["pomegranate","Mix in specials","Equipped specials drop by chance.","Free unlocks on trays 2, 5 and 8."]]
 	if area_id=="gelato":
 		sections[0]=["donut","Aim the curved drop","Drag to aim along the dotted curve.","Each launcher shows its own falling path."]
@@ -2246,28 +2254,36 @@ func draw_guide():
 		ui_panel(Rect2(48,y,624,145))
 		food_art.draw_centered(self,sections[i][0],Vector2(105,y+71),Vector2(67,77))
 		heading(sections[i][1],Vector2(164,y+45),28)
-		fitted_text(sections[i][2],Rect2(164,y+57,474,32),22,MUTED)
-		fitted_text(sections[i][3],Rect2(164,y+91,474,30),21,MUTED)
+		fitted_text(sections[i][2],Rect2(164,y+(72 if sections[i][3].is_empty() else 57),474,32),22,MUTED)
+		if not sections[i][3].is_empty(): fitted_text(sections[i][3],Rect2(164,y+91,474,30),21,MUTED)
 	if area_id=="bakery": button(Rect2(48,1030,624,82),"Learn with Mabel",true)
 	button(Rect2(48,1132,624,82),"Got it")
 
+func settings_menu_layout() -> Dictionary:
+	var order: Array[String] = ["sound","motion"]
+	if developer_tools_available(): order.append_array(["developer","performance"])
+	if test_commerce_available(): order.append("commerce")
+	order.append_array(["reset","back"])
+	var actions = {}
+	var y = 112.0
+	for key in order:
+		if key=="reset" or key==order[2]: y+=16
+		actions[key] = Rect2(80,y,560,88)
+		y+=104
+	var height = y+16
+	var top = (HEIGHT-height)*.5
+	for key in order: actions[key].position.y+=top
+	return {"panel":Rect2(48,top,624,height),"title_y":top+76,"actions":actions,"order":order}
+
 func draw_support():
-	ui_panel(Rect2(48,42,624,160))
-	var title = "Make yourself at home"
-	var title_size = 38
-	while title_size>28 and display_font.get_string_size(title,HORIZONTAL_ALIGNMENT_LEFT,-1,title_size).x>560:
-		title_size-=1
-	heading_centered(title,111,title_size)
-	fitted_text("Settings",Rect2(80,139,560,32),26,TEAL,true)
-	button(Rect2(48,230,624,96),"Sound  ·  "+("On" if sound_on else "Off"))
-	button(Rect2(48,350,624,96),"Reduced motion  ·  "+("On" if reduced_motion else "Off"))
-	button(Rect2(48,520,624,96),"Reset progress")
-	centered("Start over from tray 1, with Mabel's introduction.",642 if developer_tools_available() else 670,22,MUTED)
-	if developer_tools_available(): button(Rect2(48,662,624,72),"Developer settings")
-	if developer_tools_available(): button(Rect2(48,760,624,96),"Performance display  ·  "+("On" if diagnostics_on else "Off"))
-	centered("Local only. No data leaves this device.",895,20,MUTED)
-	if test_commerce_available(): button(Rect2(48,920,624,96),"Ads & purchases · test")
-	button(Rect2(48,1080,624,96),"Back",true)
+	var layout = settings_menu_layout()
+	var labels = {"sound":"Sound  ·  "+("On" if sound_on else "Off"),
+		"motion":"Reduced motion  ·  "+("On" if reduced_motion else "Off"),
+		"developer":"Developer settings","performance":"Performance display  ·  "+("On" if diagnostics_on else "Off"),
+		"commerce":"Ads & purchases · test","reset":"Reset progress","back":"Back"}
+	ui_panel(layout.panel)
+	heading_centered("Settings",layout.title_y,42)
+	for key in layout.order: button(layout.actions[key],labels[key],key=="back")
 
 func board_peg_count(index):
 	if index>=1 and index<=board_data.size(): return int(board_data[index-1].get("peg_count",24+mini(22,(index-1)*2)))
@@ -2303,9 +2319,9 @@ func draw_loadout():
 	button(Rect2(48,1080,624,96),"Start trial" if trial_active else "Back to upgrades",true)
 
 func draw_trials():
-	heading("The tasting room",Vector2(48,110),46)
-	text_at("Three trials. Try a new recipe.",Vector2(48,167),26,TEAL)
-	text_at("Free replay · no credits spent or earned",Vector2(48,211),22,MUTED)
+	ui_panel(Rect2(48,42,624,174))
+	heading_centered("Trials",118,42)
+	centered("Free replay · no credits spent or earned",176,22,MUTED)
 	for i in range(3):
 		var board=[4,8,12][i]
 		var r=Rect2(48,260+i*220,624,180)

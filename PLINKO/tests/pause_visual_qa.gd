@@ -120,7 +120,8 @@ func run():
 			check(corners_treated(clear,paused),area+" backdrop treats all physical corners and dims the overall scene including expanded portrait margins")
 			game.pause_transition.blur_amount = 0
 			var control = await frame(game,output,area+"-sharp-control")
-			var label_delta = patch_delta(paused,control,pixel_rect(game,Rect2(260,628,200,40),paused))
+			var resume_center: Vector2 = game.pause_menu_layout().actions.resume.get_center()
+			var label_delta = patch_delta(paused,control,pixel_rect(game,Rect2(resume_center-Vector2(100,20),Vector2(200,40)),paused))
 			check(label_delta<=1.01/255.0,area+" Resume label/button stays sharp when background blur changes (max delta "+str(label_delta)+")")
 			var hud = pixel_rect(game,Rect2(24,28,650,100),paused)
 			var blurred_detail = detail_energy(paused,hud)
@@ -149,6 +150,7 @@ func run():
 				check(game.restore_active_run(saved),area+" valid active run restores for pause rendering")
 				game.page_transition.enabled = true
 				check(game.mode=="paused" and game.resumed_run and not game.pause_transition.active,area+" restore opens an already settled pause")
+				check(game.note.is_empty() and game.note_time==0,area+" restored run needs no redundant welcome toast")
 				await frame(game,output,area+"-restored")
 				stage_pause(game,area,true)
 				game.mode = "paused"

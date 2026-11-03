@@ -1,6 +1,5 @@
 extends SceneTree
 ## UI and actual area transactions. All profile reads/writes are intercepted.
-const SETTINGS_RECT = Rect2(48,662,624,72)
 var passed = 0
 var failures: Array[String] = []
 var g
@@ -120,9 +119,11 @@ func entry_and_copy_checks():
 	fresh()
 	g.mode = "support"
 	g.draw_support()
-	check(button_named("Developer settings").get("rect")==SETTINGS_RECT,"Debug Settings draws the developer settings entry in its reserved gap")
-	check(not SETTINGS_RECT.intersects(Rect2(48,520,624,96)) and not SETTINGS_RECT.intersects(Rect2(48,760,624,96)),"Developer entry does not overlap Reset or Performance controls")
-	g.handle_press(SETTINGS_RECT.get_center())
+	var settings_actions = g.settings_menu_layout().actions
+	var settings_rect: Rect2 = settings_actions.developer
+	check(button_named("Developer settings").get("rect")==settings_rect,"Debug Settings draws the developer entry at its shared input rectangle")
+	check(not settings_rect.intersects(settings_actions.reset) and not settings_rect.intersects(settings_actions.performance),"Developer entry does not overlap Reset or Performance controls")
+	g.handle_press(settings_rect.get_center())
 	check(g.mode=="developer_areas" and g.navigation_delay>0 and g.writes==0,"Settings entry opens area selection with a navigation guard and no write")
 	touch(ui.area_button_rect("gelato").get_center(),false)
 	check(g.area_id=="bakery" and g.writes==0,"Opener release cannot activate an area")
@@ -144,8 +145,8 @@ func entry_and_copy_checks():
 	g.mode = "support"
 	g.draw_support()
 	check(button_named("Developer settings").is_empty(),"Settings hides the entry when developer tools are unavailable")
-	g.handle_press(SETTINGS_RECT.get_center())
-	check(g.mode=="support" and not g.open_developer_areas(),"Hidden developer entry cannot be activated by coordinates or API")
+	g.handle_press(settings_rect.get_center())
+	check(g.mode!="developer_areas" and not g.settings_menu_layout().actions.has("developer") and not g.open_developer_areas(),"Public layout omits the developer target and rejects direct entry")
 	g.mode = "developer_areas"
 	g.drawn_buttons.clear()
 	ui.draw()

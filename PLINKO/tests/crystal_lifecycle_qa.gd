@@ -257,7 +257,7 @@ func menu_input_flow():
 	check(g.mode == "play" and g.trial_active, "Trial loadout Play touch starts the Crystal run")
 	tap_after_wait(g,Vector2(632,70))
 	check(g.mode == "paused", "Gameplay Pause touch enters pause without collecting a Prism")
-	tap_after_wait(g,Vector2(360,948))
+	tap_after_wait(g,g.pause_menu_layout().actions.end_shift.get_center())
 	check(g.mode == "abandon_confirm", "Pause End Run touch requires the existing confirmation screen")
 	tap_after_wait(g,Vector2(360,698))
 	check(g.mode == "result" and g.trial_active, "Confirmed Trial exit reaches its result through actual input routing")

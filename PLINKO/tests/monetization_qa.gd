@@ -315,7 +315,7 @@ func check_ui_routes():
 	var g = fixture()
 	var ui = g.monetization_ui
 	g.mode = "support"
-	tap(g, Rect2(48,920,624,96))
+	tap(g, g.settings_menu_layout().actions.commerce)
 	check(g.mode == "monetization", "Settings button opens the monetization test shop")
 	tap(g, ui.TOOLKIT)
 	check(g.mode == "test_purchase" and g.monetization.pending.get("context") == "baker_toolkit", "Toolkit product button opens its fake checkout")
@@ -337,7 +337,7 @@ func check_ui_routes():
 	check(g.monetization.attempts == 3 and g.monetization.active_seconds == 120 and g.monetization.pending.is_empty(), "Stage Next Ad Break button prepares both gates without displaying an ad")
 	tap(g, ui.TOOLS_BACK)
 	tap(g, ui.SHOP_BACK)
-	tap(g, Rect2(48,1080,624,96))
+	tap(g, g.settings_menu_layout().actions.back)
 	tap(g, g.home_menu.PLAY_RECT)
 	check(g.mode == "play" and g.monetization.pending.is_empty(), "Returning home and pressing Play never displays the staged ad")
 	var launch_remaining: float = g.remaining

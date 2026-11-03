@@ -67,7 +67,7 @@ func routes_and_payouts():
 			g.mode = hidden
 			check(g.mode == "support",area+" rejects entry into "+hidden)
 		g.handle_press(Vector2(360,968))
-		check(g.mode == "support" and g.monetization.pending.is_empty(),area+" former Settings commerce hitbox is inert")
+		check(g.mode != "monetization" and not g.settings_menu_layout().actions.has("commerce") and g.monetization.pending.is_empty(),area+" no commerce target remains; its old position cannot enter the simulator")
 		g.draw_support()
 		check(not "Ads & purchases · test" in g.labels,area+" Settings omits fake commerce")
 		g.labels.clear(); ResultUI._draw_bonus(g)
@@ -91,8 +91,8 @@ func routes_and_payouts():
 		if not Service.preview_tools_allowed():
 			g.mode = "support"; g.navigation_delay = 0; g.labels.clear(); g.draw_support()
 			check(not g.developer_tools_available() and not g.open_developer_areas() and not g.set_developer_money(true),area+" actual public build rejects developer areas and free purchases")
-			g.handle_press(Vector2(360,808))
-			check(not g.diagnostics_on and not g.labels.any(func(label): return label.begins_with("Performance display") or label == "Developer settings"),area+" actual public Settings hides diagnostic and developer controls")
+			var actions = g.settings_menu_layout().actions
+			check(not actions.has("performance") and not actions.has("developer") and not g.diagnostics_on and not g.labels.any(func(label): return label.begins_with("Performance display") or label == "Developer settings"),area+" actual public Settings exposes no diagnostic or developer input targets")
 		g.free()
 
 func saved_preview_migration():

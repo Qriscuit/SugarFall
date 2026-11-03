@@ -1,6 +1,6 @@
 # Shared menu and gameplay transitions
 
-3 November 2026 · Pause fade/blur is built, integrated and verified in source/desktop checks. Earlier menu/result verification is retained below. Physical-phone acceptance remains open. This design record does not itself announce an APK delivery.
+3 November 2026 · Functional menu copy and compact control groups refine the shared pause/settings presentation. Earlier menu/result verification is retained below. Physical-phone acceptance remains open. The verified v0.7.5 preview delivery is recorded below.
 
 The menu polish uses one upward-moving white-cream wave across Bakery, Gelato Garden and Crystal Candyworks. The shared motif connects the three dessert areas while keeping their individual background art intact after each change. No area-specific repaint is required.
 
@@ -32,7 +32,7 @@ Pause and abandon confirmation share the backdrop. Moving between them swaps the
 
 The blur covers the full physical viewport, including the space outside the logical board on tall screens. It uses the live frozen game image beneath a separate sharp menu layer; no new bitmap is required. Reduced Motion settles the menu/backdrop immediately and removes them immediately on Resume. Repeated input is held during the fade, and background/close handling settles presentation through the existing pause/save lifecycle. Presentation progress is not stored in a player save.
 
-This source revision is verified separately from the signed v0.8.0-rc1 artifacts. It is not included in those already-built packages. Phone acceptance is [D17](AREA_PLAYTEST.md).
+The v0.7.5 preview now packages this pause behavior with the menu cleanup. CHG-034 remains its earlier source-only milestone. The already-built public v0.8.0-rc1 APK/AAB predate these changes and were not rebuilt. Phone acceptance is [D17](AREA_PLAYTEST.md).
 
 ## Result windows
 
@@ -43,14 +43,18 @@ Just-finished results retain the exact in-memory board and equipment state. Pend
 ## Related interface preferences
 
 - Home **Play** and **Upgrades** use the existing runtime play triangle and three-node upgrade mark beside their centered labels. Button bounds and touch targets stay unchanged.
-- Settings places its two-line heading on a readable cream plaque above its existing controls.
+- Pause uses one **Paused** title and a compact panel. Its drawn controls and input bounds share the same layout, above the gently blurred board.
+- Settings uses one **Settings** title and a compact centered panel. Rows follow available capabilities, so hidden public-build options do not leave empty gaps.
+- Help uses **How to play** and Trials uses **Trials**. Decorative slogans, repeated headings, time-card flavor text and the redundant restored-run toast are removed. Mechanics, costs, reward conditions and reset/end-shift consequences remain explained where they affect a decision.
 - Floating damage numbers use their existing light outline, color, lifetime and motion, without the beige rectangular backing. The earlier v0.7.1 backing is historical and superseded by the user's preference.
 
-These choices are part of [the current art direction](ART_DIRECTION.md). They reuse existing icon/panel materials and add no balance rules.
+These choices are part of [the current art direction](ART_DIRECTION.md) and template T04. Functional titles/actions and short state labels carry the information; scenery carries the theme. Related controls are grouped with comfortable padding. These changes reuse existing icon/panel materials and add no balance rules. The former two-line Settings plaque described in the v0.7.2 evidence below is historical.
 
 ## Verification and remaining acceptance
 
-The current pause revision passes [1,184 checks with zero failures](PAUSE_FADE_VALIDATION.json): 161 page-route, 98 pause-behavior, 58 Home-entrance, 489 related regression and 378 GPU assertions. The 57 actual desktop captures cover Bakery, Gelato and Crystal at 450×800 and 450×1000; the GPU copy matches 214 source inputs. The cream midpoint fully covers the sharp paused menu during a restored-run startup and ordinary Home → Settings navigation. These source/desktop results do not claim a new Android package or phone acceptance.
+The current concise-menu revision passes [1,516 checks with zero failures](MENU_CLEANUP_VALIDATION.json): 712 functional/regression and 804 GPU assertions, with 81 captures across all three areas at 450×800 and 450×1000. Final runtime/art parity covers 211 inputs. The [v0.7.5 APK record](ANDROID_SUGARFALL_v0.7.5.json) records 517 passing payload checks and 16 passing Android metadata/signing/alignment checks. Eight Drive metadata checks pass after replacement in the same private file, with its ID, folder, owner permissions and 89,281,899-byte size verified; no remote checksum was returned. The preview includes the warm studio hum and CHG-034 pause sequence. Software/package/delivery checks remain separate from physical-phone acceptance.
+
+The earlier CHG-034 pause revision passed [1,184 checks with zero failures](PAUSE_FADE_VALIDATION.json): 161 page-route, 98 pause-behavior, 58 Home-entrance, 489 related regression and 378 GPU assertions. The 57 actual desktop captures cover Bakery, Gelato and Crystal at 450×800 and 450×1000; the GPU copy matches 214 source inputs. The cream midpoint fully covers the sharp paused menu during a restored-run startup and ordinary Home → Settings navigation. At that source-only stage, no new Android package was produced. These results do not claim phone acceptance.
 
 The earlier screen/result revision passed [163 focused assertions](../../verification/screen-polish-20261103/page-qa-final/page-transition.log), covering all three areas, the restored Home morph, timeout/clear/early results, frozen board/RNG/visual time, claim-once, reward/automatic-ad modal chains, Trial wallet restoration and startup revealing a pending result. [Nine related regression suites](../../verification/screen-polish-20261103/regression-final/summary.json) added 879 passing assertions across mobile/safe-area input, resume, navigation, entrance, onboarding, final-ball settlement, result history and monetization. Those fixtures used in-memory or verified isolated profiles. Multi-aspect renderer review is recorded separately under `verification/screen-polish-20261103`. That historical routing evidence predates the current pause fade and does not claim physical Android execution.
 
@@ -62,4 +66,4 @@ Manual review inspected Gelato's 450×800 Home, Settings, damage and 25%/75% wav
 
 [Historical v0.7.2 validation](../../verification/menu-polish-20261103/validation.json) passed **1,143 checks with zero failures**: 715 related regressions, 90 focused page-transition checks, 331 renderer assertions and 7 native-art checks. The [90-check page suite](../../verification/menu-polish-20261103/page-qa-03/page-transition.log) covers immediate mode writes, chained transactions, coverage geometry, canceled input, all-area run/clock/RNG preservation, the completion-frame guard, Reduced Motion, save/load and background/close behavior. The v0.7.2 runtime hashes match that page suite and renderer capture set. These fixtures use isolated or in-memory saves; they are not human sessions.
 
-Physical-phone smoothness, readability and touch comfort remain a user playtest. On a build containing this source revision, follow D13 for ordinary cream navigation, D14 for startup, D16 for the Home entrance and results, and D17 for the pause fade/blur sequence. Verify that the timer and wallet do not jump because of presentation and that the destination becomes usable after it settles.
+Physical-phone smoothness, readability and touch comfort remain a user playtest. On the delivered v0.7.5 preview, follow D07 for menu copy/composition, D13 for ordinary cream navigation, D14 for startup, D16 for the Home entrance and results, and D17 for the pause fade/blur sequence. Verify that the timer and wallet do not jump because of presentation and that the destination becomes usable after it settles.

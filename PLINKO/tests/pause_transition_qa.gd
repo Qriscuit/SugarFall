@@ -32,7 +32,7 @@ func pause_by_button(game):
 
 func resume_by_button(game):
 	game.navigation_delay = 0
-	game.handle_press(Vector2(360,648))
+	game.handle_press(game.pause_menu_layout().actions.resume.get_center())
 
 func check_frozen(game, before: Dictionary, label: String):
 	game.step(.13)
@@ -92,7 +92,8 @@ func repeated_input():
 	var escape = InputEventKey.new(); escape.pressed = true; escape.keycode = KEY_ESCAPE
 	for stage in ["opening","closing"]:
 		game.navigation_delay = 0
-		for point in [Vector2(360,648),Vector2(360,748),Vector2(360,848),Vector2(360,948),Vector2(630,70)]:
+		var actions = game.pause_menu_layout().actions
+		for point in [actions.resume.get_center(),actions.sound.get_center(),actions.motion.get_center(),actions.end_shift.get_center(),Vector2(630,70)]:
 			game.handle_press(point)
 			touch(game,point,true); touch(game,point,false)
 		game.go_back(); game._input(escape); game._notification(Node.NOTIFICATION_WM_GO_BACK_REQUEST)
@@ -137,13 +138,13 @@ func confirmation_and_other_routes():
 	var game = live()
 	pause_by_button(game); settle(game)
 	var before = frozen_state(game)
-	game.handle_press(Vector2(360,948))
+	game.handle_press(game.pause_menu_layout().actions.end_shift.get_center())
 	check(game.mode == "abandon_confirm" and not game.page_transition.active and not game.pause_transition.active and game.pause_transition.menu_alpha == 1.0 and game.pause_transition.blur_amount == 1.0,"End-shift confirmation replaces the pause panel over the same blurred board without cream")
 	game._process(.3)
 	check_frozen(game,before,"Confirmation keeps the board frozen")
 	game.navigation_delay = 0; game.go_back()
 	check(game.mode == "paused" and not game.page_transition.active and not game.pause_transition.active and game.pause_transition.blur_amount == 1.0,"Back from confirmation keeps a settled pause and its blur")
-	game.navigation_delay = 0; game.handle_press(Vector2(360,948))
+	game.navigation_delay = 0; game.handle_press(game.pause_menu_layout().actions.end_shift.get_center())
 	game.navigation_delay = 0; game.handle_press(Vector2(360,698))
 	check(game.mode == "result" and not game.page_transition.active and not game.pause_transition.active and is_zero_approx(game.pause_transition.menu_alpha) and is_zero_approx(game.pause_transition.blur_amount),"Finish-and-collect opens the result window with no residual pause blur or cream")
 	game.mode = "support"
