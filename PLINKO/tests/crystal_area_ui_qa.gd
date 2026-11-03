@@ -95,17 +95,17 @@ func board_and_shop_checks():
 	var map=g.upgrade_map;map.reset_view_state();map.update(0)
 	check(g.upgrade_graph().nodes().size()==62 and map._positions.size()==63 and map.visible_nodes()==[Vector2i(0,1),map.TWIN_NODE],"Crystal has its own 62-slot map plus the visible locked Second Prism")
 	check(map.node_rect(8,1,false).position.y>map.node_rect(0,1,false).end.y and map.node_rect(8,1,false).end.y<map.TWIN_CARD_RECT.position.y,"Second Prism sits below the starter and clears its purchase card")
-	check(map.state_for(8,1)=="locked" and map._twin_gate_text()=="Requires tray 6 + Power 4","Second Prism clearly states both progression gates")
+	check(map.state_for(8,1)=="locked" and map._twin_gate_text()=="Requires tray 8 + Power 4","Second Prism clearly states both progression gates")
 	g.bank=1000;map.selected=0;map.tier=1;map.press(map.buy_rect().get_center());map.update(map.CAMERA_DURATION)
 	check(g.levels[0]==1 and map.visible_nodes().size()==5,"Buying Crystal's starter reveals three independent paths alongside Second Prism")
 	var framed=true
 	for route in g.upgrade_graph().routes(): framed=framed and map.focus_area().encloses(map.node_rect(route[0].x,route[0].y,false))
 	check(framed,"The opening camera frames all three Crystal choices")
-	g.highest_unlocked=6;g.levels[1]=3;g.bank=900
-	check(map.state_for(8,1)=="locked","Tray six alone cannot bypass the Power requirement")
-	g.levels[1]=4;g.highest_unlocked=5
+	g.highest_unlocked=8;g.levels[1]=3;g.bank=900
+	check(map.state_for(8,1)=="locked","Tray eight alone cannot bypass the Power requirement")
+	g.levels[1]=4;g.highest_unlocked=7
 	check(map.state_for(8,1)=="locked","Power four alone cannot bypass the tray requirement")
-	g.highest_unlocked=6;g.bank=899
+	g.highest_unlocked=8;g.bank=899
 	check(map.state_for(8,1)=="unaffordable","Second Prism is red when its eligible wallet is one coin short")
 	g.bank=900
 	check(map.state_for(8,1)=="affordable" and map.SURFACE[map.state_for(8,1)]=="upgrade_tile_green","Second Prism turns green when its 900-coin price is affordable")

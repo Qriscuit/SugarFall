@@ -1,0 +1,459 @@
+{
+  "date": "2026-11-03",
+  "engine": "Godot 4.6.3",
+  "scope": "Area signature abilities, offer UI, earned/early-access persistence and current run compatibility. Counts are separated by evidence scope; no sum of historical or repeated runs.",
+  "software_status": "Focused final-source behavior/save checks and actual GPU composition checks pass.",
+  "final_source": {
+    "matches_workspace": true,
+    "before_after_hashes_match": true,
+    "manifest": "verification/area-ability-20261103/entitlement-final-01/source-hashes.json",
+    "files": [
+      {
+        "path": "scripts/area_ability_access.gd",
+        "sha256": "c09d982b508adea00e365153382398a6e3b651c520c5bcac34888244005452b3"
+      },
+      {
+        "path": "scripts/area_ability_ui.gd",
+        "sha256": "23666904dbdad5de12c83167deb966c317988a6da0358251170d6c85b5759624"
+      },
+      {
+        "path": "scripts/area_art.gd",
+        "sha256": "833c583682df69d83172ca88cebdb669b45e663e40e8059e241df88d5190d4c8"
+      },
+      {
+        "path": "scripts/area_campaign.gd",
+        "sha256": "65d6817c839bd12474d95b73d0f1c1f0c90e5ec7f78f6b0705eb157351c942a3"
+      },
+      {
+        "path": "scripts/area_play_billing.gd",
+        "sha256": "528183cb6ff145b56ca5483b752ffe24ecee4691f407bb6e005b8f08c5cdbc99"
+      },
+      {
+        "path": "scripts/bakery_ability.gd",
+        "sha256": "5b90240a6d3746cbe432eee90c09cc5177d486cbe4064c7304909b7a810d3af4"
+      },
+      {
+        "path": "scripts/coin_display.gd",
+        "sha256": "29fcfa88220832e516a1d1d1e6210893ec083360848bda21caea574c7a26fc23"
+      },
+      {
+        "path": "scripts/coin_feedback.gd",
+        "sha256": "77355e8533d1f8840b539a53155c3beacd3140a4a6fc0b2b0795ae5460cb1cfb"
+      },
+      {
+        "path": "scripts/combat_balance.gd",
+        "sha256": "9ad489b7b8f3960a401adc30829d94776845f58060a58f878460479d5b2568e7"
+      },
+      {
+        "path": "scripts/countdown_feedback.gd",
+        "sha256": "44ded78cf9ef83874485fc632a0e53b5ff6af2f6aa10bd30ad511d542e2f0883"
+      },
+      {
+        "path": "scripts/crystal_launcher.gd",
+        "sha256": "ce108f7cb37cb10112d4871937b3f43408835fcbd7fb7a2b861a6a7df7f445b9"
+      },
+      {
+        "path": "scripts/crystal_upgrade_graph.gd",
+        "sha256": "d8715e6941f1df477e90e2c017392861ae9b4c3924afebf7009d26f994596671"
+      },
+      {
+        "path": "scripts/developer_area_ui.gd",
+        "sha256": "9720214c2fdd09fdc510003b0e25a7e9a79218f25da53a9bd5b5632dd5d96c93"
+      },
+      {
+        "path": "scripts/environment_art.gd",
+        "sha256": "38745078b12953911de5c8aab75b6648dc0d53d44f018f020b53b1b1bb8770b2"
+      },
+      {
+        "path": "scripts/first_run_guide.gd",
+        "sha256": "b1fc6ff4606b3cd164511d1906e40fc32264567e51353c91a95deec82b95fedf"
+      },
+      {
+        "path": "scripts/flow_rules.gd",
+        "sha256": "98cc6d3ec935d021c11a47c4ccb4f4c819bca108af10afb17d5e442ca7812688"
+      },
+      {
+        "path": "scripts/food_art.gd",
+        "sha256": "d8ac12a56e6b6c35c97cac94229a218ac909f1887bf0e5ac6f0aaa3a9cc6bb7e"
+      },
+      {
+        "path": "scripts/gelato_launcher.gd",
+        "sha256": "c789a86e4e0407ee5c39bcd8f0ea110c3706d6380da8a46142055d11155ef7d5"
+      },
+      {
+        "path": "scripts/gelato_upgrade_graph.gd",
+        "sha256": "e9815d6ea340596e03b6a2646aec8a48d9a9dcf8dee183c9088e121f622586fd"
+      },
+      {
+        "path": "scripts/home_menu.gd",
+        "sha256": "1e2b375cd5d707cb18796ddac1a14c7d0135f6276d77c7fb15685f2c96bbb1b0"
+      },
+      {
+        "path": "scripts/impact_feedback.gd",
+        "sha256": "f3e41246e7492a7daa7eab26d9f851d0c903c38f89997a59404eba0594932ca8"
+      },
+      {
+        "path": "scripts/level_map.gd",
+        "sha256": "aab3869d9aa25b88d884b373e5e97cdca195d4992344f9ea6a6a77238fdb3d40"
+      },
+      {
+        "path": "scripts/main.gd",
+        "sha256": "62f15768db23cddc234fee336db1d9b4eb1ec02f0b8a835bbafa46d646e877f1"
+      },
+      {
+        "path": "scripts/monetization_service.gd",
+        "sha256": "7a1763b27f796ab29c1187e418ffe6ac0491c4333e196b33a80fdb9b989ad5d8"
+      },
+      {
+        "path": "scripts/monetization_ui.gd",
+        "sha256": "6156dc1b45a8a87db8efd6595ae90f3eba9137802d77bb4384acbf7c7ef2e9c6"
+      },
+      {
+        "path": "scripts/page_transition.gd",
+        "sha256": "9f2244879f276ceca92cd672103e9fc64bdc1d0ac5624c18ac50479820f08e60"
+      },
+      {
+        "path": "scripts/pause_transition.gd",
+        "sha256": "c58f991597e24d2617805c648ca20a97a9c72916f57e6ba6513a875142d5b0c2"
+      },
+      {
+        "path": "scripts/progress_reset_ui.gd",
+        "sha256": "75608c0fa638b08ba4cdf15029fee9574437d23da1615c2f7e68fbb20d4175be"
+      },
+      {
+        "path": "scripts/result_comparison_ui.gd",
+        "sha256": "4ebaed65dbe076b6b2e5bf535393e8529ca3c39bfa623d68ac5abf52f43e2752"
+      },
+      {
+        "path": "scripts/run_history.gd",
+        "sha256": "f2da83d6d0c8179f58e61ccc7745d7ecb0980c27593a8a71aae89448fd939b30"
+      },
+      {
+        "path": "scripts/run_snapshot.gd",
+        "sha256": "d095eb6650619bf059e926c9bbd1c873d766ed92e333493c465d5686c530f875"
+      },
+      {
+        "path": "scripts/run_transition.gd",
+        "sha256": "6b80a5f6344ed34f26cdffbc3c5780f8cf607995a74ae05ae8a70d056984a043"
+      },
+      {
+        "path": "scripts/speech_bubble.gd",
+        "sha256": "a7fa2f48b72ff1c02a2617148a1c421c3bc55fe0e8dccc286441e43e2767969c"
+      },
+      {
+        "path": "scripts/startup.gd",
+        "sha256": "18b5b4893adc797d92bc30059430146982427dedd1348ac6603165157caff1f5"
+      },
+      {
+        "path": "scripts/tone_bank.gd",
+        "sha256": "0eabc16e9ebf89d77e915ebc64ad44b030dd76003a4e02466d66267f9c5907c0"
+      },
+      {
+        "path": "scripts/ui_art.gd",
+        "sha256": "12cf2661b153fb7701fba3028786deb14daf200462eaa23d00fbfe50bf2c5485"
+      },
+      {
+        "path": "scripts/upgrade_arc_art.gd",
+        "sha256": "4cefc77bef1b62f39b502f9ac8b1edadfd29f8fad05ccb280f10ef1a28a35ab1"
+      },
+      {
+        "path": "scripts/upgrade_graph.gd",
+        "sha256": "3845bed72ffeefb5d747434e8b7dda326993762654b55d796e68d4e437777729"
+      },
+      {
+        "path": "scripts/upgrade_map.gd",
+        "sha256": "94202f77b10cb02f073861d96a4eb0482a3a46a0733fb0e93e3cc539e1572235"
+      },
+      {
+        "path": "tests/area_ability_integration_qa.gd",
+        "sha256": "3f7ab0635d7b1589259806dec3372fe7ac85b0a17fa8eb055c679093db3bdb6b"
+      },
+      {
+        "path": "tests/area_ability_entitlement_save_qa.gd",
+        "sha256": "18c54f3a50dba2c86c5c398e8843d1d5434b6d77acadd5f6f3eee5cb356cec2b"
+      },
+      {
+        "path": "tests/bakery_ability_qa.gd",
+        "sha256": "8ae3bbbf0841e7381aabc172168e493f6bc165aa34c4121a410d56ac55b5b780"
+      },
+      {
+        "path": "tests/bakery_ability_save_qa.gd",
+        "sha256": "c6f7789b4011433207c282a3908ab29e2234b37b74b2c7d73261016b58c6d4bc"
+      },
+      {
+        "path": "tests/crystal_save_qa.gd",
+        "sha256": "04f3efb07ed7ad29de33499e539e94eb054a59192419ab7f2ad4c576b40f55a2"
+      }
+    ]
+  },
+  "final_source_suites": [
+    {
+      "log": "verification/area-ability-20261103/entitlement-final-01/area_ability_integration_qa.log",
+      "scope": "Real input cancellation/debounce, earned/preview transactions, independent areas, Trial isolation, restore feedback, public entitlement boundaries and activation-history preservation",
+      "name": "area_ability_integration_qa",
+      "passed": 125,
+      "failed": 0
+    },
+    {
+      "log": "verification/area-ability-20261103/entitlement-final-01/area_ability_entitlement_save_qa.log",
+      "scope": "Actual isolated disk: preview-to-public and revoked store access reject old paid runs; new ordinary runs resume exactly; later restore does not reset rebuilt Power twice",
+      "name": "area_ability_entitlement_save_qa",
+      "passed": 20,
+      "failed": 0
+    },
+    {
+      "log": "verification/area-ability-20261103/entitlement-final-01/bakery_ability_qa.log",
+      "scope": "Jam charge, nearest-two splash, shared budget, spent flags, entitlement source and strict schema validation",
+      "name": "bakery_ability_qa",
+      "passed": 36,
+      "failed": 0
+    },
+    {
+      "log": "verification/area-ability-20261103/entitlement-final-01/bakery_ability_save_qa.log",
+      "scope": "Actual isolated disk purchase rollback, earned provenance, exact charged/spent checkpoint and deterministic continuation",
+      "name": "bakery_ability_save_qa",
+      "passed": 12,
+      "failed": 0
+    },
+    {
+      "log": "verification/area-ability-20261103/entitlement-final-01/crystal_save_qa.log",
+      "scope": "Actual Crystal campaign and schema5 disk regression, cloned-ball state and deterministic continuation",
+      "name": "crystal_save_qa",
+      "passed": 21,
+      "failed": 0
+    }
+  ],
+  "final_source_assertions": 214,
+  "renderer": {
+    "passed": 155,
+    "failed": 0,
+    "captures": 30,
+    "renderer": "Intel(R) Iris(R) Xe Graphics",
+    "sizes": [
+      "450x800",
+      "450x1000"
+    ],
+    "areas": [
+      "bakery",
+      "gelato",
+      "crystal"
+    ],
+    "source_manifest": "verification/area-ability-20261103/ability-gpu-04/source-manifest.json",
+    "source_manifest_sha256": "d6df2727f05b3c81cc1e7a32bbb80b422ffed939ae2fe7b75d5344d68160c592",
+    "before_after_hashes_match": true,
+    "matches_final_workspace": true,
+    "summary": "verification/area-ability-20261103/ability-gpu-04/screens/preview-summary.json",
+    "profile_io": 0,
+    "checked": "Home offers, locked/eligible special nodes, purchase terms and explicit test confirmation; charge/native Jam ball/splash; text safe insets and non-overlapping controls.",
+    "reviewed_examples": [
+      "bakery-ability-locked-450x800.png",
+      "gelato-ability-locked-450x800.png",
+      "gelato-ability-confirm-450x800.png",
+      "crystal-ability-confirm-450x800.png",
+      "bakery-ability-node-450x800.png",
+      "bakery-jam-filled-450x800.png",
+      "bakery-jam-burst-450x800.png",
+      "bakery-ability-locked-450x1000.png",
+      "crystal-ability-locked-450x1000.png"
+    ]
+  },
+  "regression_snapshots": [
+    {
+      "failed": 0,
+      "run": "integrated-final-01",
+      "source_manifest": "verification/area-ability-20261103/integrated-final-01/source-hashes.json",
+      "subsequently_changed_files": [
+        "scripts/area_ability_ui.gd",
+        "scripts/main.gd",
+        "scripts/run_snapshot.gd",
+        "tests/area_ability_integration_qa.gd",
+        "tests/crystal_physics_qa.gd",
+        "tests/v04_map_qa.gd"
+      ],
+      "log": "verification/area-ability-20261103/integrated-final-01/crystal_area_ui_qa.log",
+      "name": "crystal_area_ui_qa",
+      "passed": 35,
+      "scope": "Regression snapshot before the final access-loss save fix. Final restore changes are covered by the current-source focused suites; these are not counted as an exact final-source rerun."
+    },
+    {
+      "failed": 0,
+      "run": "integrated-final-02",
+      "source_manifest": "verification/area-ability-20261103/integrated-final-02/source-hashes.json",
+      "subsequently_changed_files": [
+        "scripts/area_ability_ui.gd",
+        "scripts/main.gd",
+        "scripts/run_snapshot.gd",
+        "tests/v04_map_qa.gd"
+      ],
+      "log": "verification/area-ability-20261103/integrated-final-02/crystal_physics_qa.log",
+      "name": "crystal_physics_qa",
+      "passed": 75,
+      "scope": "Regression snapshot before the final access-loss save fix. Final restore changes are covered by the current-source focused suites; these are not counted as an exact final-source rerun."
+    },
+    {
+      "failed": 0,
+      "run": "integrated-final-02",
+      "source_manifest": "verification/area-ability-20261103/integrated-final-02/source-hashes.json",
+      "subsequently_changed_files": [
+        "scripts/area_ability_ui.gd",
+        "scripts/main.gd",
+        "scripts/run_snapshot.gd",
+        "tests/v04_map_qa.gd"
+      ],
+      "log": "verification/area-ability-20261103/integrated-final-02/upgrade_layout_qa.log",
+      "name": "upgrade_layout_qa",
+      "passed": 32,
+      "scope": "Regression snapshot before the final access-loss save fix. Final restore changes are covered by the current-source focused suites; these are not counted as an exact final-source rerun."
+    },
+    {
+      "failed": 0,
+      "run": "integrated-final-03",
+      "source_manifest": "verification/area-ability-20261103/integrated-final-03/source-hashes.json",
+      "subsequently_changed_files": [
+        "scripts/area_ability_ui.gd",
+        "scripts/main.gd",
+        "scripts/run_snapshot.gd",
+        "tests/area_ability_integration_qa.gd"
+      ],
+      "log": "verification/area-ability-20261103/integrated-final-03/v04_map_qa.log",
+      "name": "v04_map_qa",
+      "passed": 284,
+      "scope": "Regression snapshot before the final access-loss save fix. Final restore changes are covered by the current-source focused suites; these are not counted as an exact final-source rerun."
+    },
+    {
+      "failed": 0,
+      "run": "save-regressions-final-02",
+      "source_manifest": "verification/area-ability-20261103/save-regressions-final-02/source-hashes.json",
+      "subsequently_changed_files": [
+        "scripts/main.gd",
+        "scripts/run_snapshot.gd"
+      ],
+      "log": "verification/area-ability-20261103/save-regressions-final-02/resume_qa.log",
+      "name": "resume_qa",
+      "passed": 122,
+      "scope": "Regression snapshot before the final access-loss save fix. Final restore changes are covered by the current-source focused suites; these are not counted as an exact final-source rerun."
+    },
+    {
+      "failed": 0,
+      "run": "save-regressions-final-02",
+      "source_manifest": "verification/area-ability-20261103/save-regressions-final-02/source-hashes.json",
+      "subsequently_changed_files": [
+        "scripts/main.gd",
+        "scripts/run_snapshot.gd"
+      ],
+      "log": "verification/area-ability-20261103/save-regressions-final-02/gelato_launcher_save_qa.log",
+      "name": "gelato_launcher_save_qa",
+      "passed": 176,
+      "scope": "Regression snapshot before the final access-loss save fix. Final restore changes are covered by the current-source focused suites; these are not counted as an exact final-source rerun."
+    }
+  ],
+  "component_evidence": {
+    "access_contracts": {
+      "manifest": "verification/area-purchases-20261103/validation.json",
+      "failed": 0,
+      "scope": "In-memory area access and optional billing adapter contracts; fake client/backend, no network or real store transaction",
+      "files": [
+        {
+          "path": "scripts/area_ability_access.gd",
+          "sha256": "c09d982b508adea00e365153382398a6e3b651c520c5bcac34888244005452b3"
+        },
+        {
+          "path": "scripts/area_play_billing.gd",
+          "sha256": "528183cb6ff145b56ca5483b752ffe24ecee4691f407bb6e005b8f08c5cdbc99"
+        },
+        {
+          "path": "scripts/monetization_service.gd",
+          "sha256": "7a1763b27f796ab29c1187e418ffe6ac0491c4333e196b33a80fdb9b989ad5d8"
+        },
+        {
+          "path": "tests/area_ability_access_qa.gd",
+          "sha256": "7698dd8c0411a2e51a1b6a93994d4f0d2fb9c58bf19ba14d5f09a03b092666a7"
+        }
+      ],
+      "log": "verification/area-purchases-20261103/access-final.log",
+      "passed": 74,
+      "matches_current_component_files": true
+    },
+    "flow_helper": {
+      "manifest": "verification/flow-rules-20261103/validation.json",
+      "failed": 0,
+      "scope": "Pure run-rule contracts and budget accounting; not actual player progression",
+      "files": [
+        {
+          "path": "scripts/flow_rules.gd",
+          "sha256": "98cc6d3ec935d021c11a47c4ccb4f4c819bca108af10afb17d5e442ca7812688"
+        },
+        {
+          "path": "scripts/combat_balance.gd",
+          "sha256": "9ad489b7b8f3960a401adc30829d94776845f58060a58f878460479d5b2568e7"
+        },
+        {
+          "path": "tests/flow_rules_qa.gd",
+          "sha256": "0411bd214936c97fb0a2a0b1315eeff67324bc7817444a951356504afa07e952"
+        }
+      ],
+      "log": "verification/flow-rules-20261103/flow-rules-final.log",
+      "passed": 131,
+      "matches_current_component_files": true
+    },
+    "flow_integration": {
+      "suites": [
+        {
+          "name": "flow_rules_save_qa",
+          "passed": 128,
+          "failed": 0,
+          "log": "flow_rules_save_qa-final.log"
+        },
+        {
+          "name": "combat_balance_qa",
+          "passed": 364,
+          "failed": 0,
+          "log": "combat_balance_qa-final.log"
+        },
+        {
+          "name": "bakery_durability_qa",
+          "passed": 266,
+          "failed": 0,
+          "log": "bakery_durability_qa-final.log"
+        }
+      ],
+      "manifest": "verification/flow-rules-20261103/integrated-01/validation.json",
+      "scope": "Earlier integrated runtime snapshot; balance/helper/test files remain unchanged. Final later changes affect purchase UI and entitlement-aware save restoration, verified by the final-source suites. Not a full final-source parity claim.",
+      "subsequently_changed_files": [
+        "scripts/main.gd",
+        "scripts/run_snapshot.gd",
+        "scripts/area_ability_ui.gd"
+      ]
+    },
+    "menu_frames": {
+      "captures": 24,
+      "manifest": "PLINKO/docs/AREA_MENU_ART_VALIDATION.json",
+      "scope": "Separate earlier Settings/Pause artwork snapshot, not added to ability renderer totals.",
+      "passed": 423,
+      "failed": 0
+    }
+  },
+  "fixture_updates": [
+    "Crystal earned gate moved from tray6 to tray8; ability fixtures activate before run start because the run pins its effective ability.",
+    "Bakery map now has63 nodes including Jam Burst. Entry framing is explicitly checked; legacy gesture tests use a documented canonical camera instead of assuming the old entry transform.",
+    "Synthetic integer-earnings resume fixture now attaches the captured current run rules instead of placing new physics in an implicit legacy envelope."
+  ],
+  "production_fix": "Checkpoints serialize effective Twin physics independently of historical paid activation. Non-Trial restoration preserves the campaign activation/reset history, so unavailable access cannot poison fresh ordinary checkpoints or reset Power again on later restore.",
+  "isolation": "Actual OS user directory verified under disposable APPDATA before each direct-project run. Disk suites use explicit isolated save paths; in-memory/UI fixtures intercept profile IO. No player save was read or written.",
+  "environment_note": "Only the exact known offline Windows root-certificate-store startup warning is permitted by runners; script errors and other engine errors fail the run.",
+  "physics_and_rewards": {
+    "reference": "PLINKO/docs/AREA_FLOW_RULES.md",
+    "rules_revision": 2,
+    "full_campaign_attainability_verified": false,
+    "limits": "Fixed-build automated probes are bounded observations, not human or natural-wallet progression validation. Crystal late-tray pacing remains open."
+  },
+  "phone_verified": false,
+  "actual_play_billing_verified": false,
+  "apk_built_for_this_change": false,
+  "remaining": [
+    "Physical Android feel/readability and lifecycle verification",
+    "Install/configure real Play billing products and authenticated verification/acknowledgement backend",
+    "Real internal-track purchase, cancellation, pending, restore, refund and offline tests",
+    "Natural-wallet campaign progression and Crystal late-tray pacing validation"
+  ]
+}

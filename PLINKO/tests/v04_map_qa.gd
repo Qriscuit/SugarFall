@@ -69,6 +69,11 @@ func fresh(wallet: float = 100000.0, started: bool = false):
 	if started: g.levels[0] = 1
 	g.reduced_motion = false
 	m.reset_view_state()
+	# Entry now frames the visible Jam Burst node. These legacy gesture/camera
+	# checks deliberately start from their canonical zero-pan camera; entry
+	# framing itself is covered separately below and in the GPU ability audit.
+	m.pan=Vector2.ZERO
+	m.zoom=m.INITIAL_ZOOM
 	m.update(0.0)
 
 func buy_point() -> Vector2:
@@ -86,11 +91,23 @@ func same_nodes(a: Array, b: Array) -> bool:
 		if not b.has(node): return false
 	return true
 
+func entry_checks():
+	fresh()
+	m.reset_view_state()
+	var entry_pan: Vector2=m.pan
+	var entry_zoom: float=m.zoom
+	m.twin_selected=true
+	var safe=m.focus_area().grow(-23)
+	check(safe.encloses(m.node_rect(0,1,false)) and safe.encloses(m.node_rect(m.TWIN_NODE.x,m.TWIN_NODE.y,false)),"Bakery entry frames Feed and Jam Burst clear of the special ability card")
+	check(entry_zoom>=m.MIN_ZOOM and entry_zoom<=m.INITIAL_ZOOM,"Entry framing remains within readable camera limits")
+	m.reset_view_state()
+	check(m.pan==entry_pan and m.zoom==entry_zoom,"Repeated entry resets use the same stable camera")
+
 func progression_checks():
 	fresh()
-	check(m.visible_nodes()==[Vector2i(0,1)],"Fresh map reveals only the starter upgrade")
+	check(m.visible_nodes()==[Vector2i(0,1),m.TWIN_NODE],"Fresh map reveals the starter and locked Jam Burst")
 	check(m.point(0,1)==m.center(),"First Feed upgrade occupies the recipe center")
-	check(not m.node_visible(-1,1) and not m.node_visible(8,1) and not m.node_visible(0,0) and not m.node_visible(0,g.MAX_LEVELS[0]+1),"Invalid branch and tier indices cannot be visible")
+	check(not m.node_visible(-1,1) and not m.node_visible(9,1) and not m.node_visible(0,0) and not m.node_visible(0,g.MAX_LEVELS[0]+1),"Invalid branch and tier indices cannot be visible")
 	check(m.state_for(0,1)=="affordable" and m.state_for(1,1)=="hidden" and m.state_for(0,2)=="hidden","Future recipes stay hidden before Feed 1")
 	var starter_rect: Rect2 = m.node_rect(0,1,false)
 	var first_choice_rect: Rect2 = m.node_rect(2,1,false)
@@ -100,7 +117,7 @@ func progression_checks():
 	check(m.selected==-1 and not m.has_selection(),"Refreshing clears a selection that is no longer visible")
 	m.selected=1; m.tier=1; tap(buy_point())
 	check(g.levels[1]==0 and g.bank==100000,"Locked selection cannot spend the wallet")
-	m.selected=8; m.tier=1; m.press(buy_point())
+	m.selected=9; m.tier=1; m.press(buy_point())
 	check(g.bank==100000,"Invalid forged branch cannot access or spend the wallet")
 	m.selected=0; m.tier=0; m.press(buy_point())
 	check(g.bank==100000,"Invalid forged tier cannot spend the wallet")
@@ -119,7 +136,7 @@ func progression_checks():
 	for node in Graph.nodes():
 		if m.state_for(node.x,node.y)=="affordable": available.append(node)
 	check(same_nodes(available,[Vector2i(2,1),Vector2i(7,1),Vector2i(6,1)]),"Feed 1 opens exactly three routes: Bounce, Time and Gold")
-	check(same_nodes(m.visible_nodes(),[Vector2i(0,1),Vector2i(2,1),Vector2i(7,1),Vector2i(6,1)]),"Starter purchase reveals exactly the three first choices alongside the owned starter")
+	check(same_nodes(m.visible_nodes(),[Vector2i(0,1),Vector2i(2,1),Vector2i(7,1),Vector2i(6,1),m.TWIN_NODE]),"Starter purchase reveals three first choices beside the starter and Jam Burst")
 	check(m.state_for(0,2)=="hidden" and m.state_for(1,1)=="hidden","Upgrades beyond the next choice remain hidden on every route")
 	check(m.node_rect(0,1,false)==starter_rect and m.node_rect(2,1,false)==first_choice_rect,"Discovery preserves authored icon positions and sizes")
 	check(m.selected==0 and m.tier==1 and m.state_for(0,1)=="owned","Starter stays selected so the player chooses among its three new routes")
@@ -157,7 +174,7 @@ func progression_checks():
 	fresh(100000,true)
 	m.selected=2; m.tier=1; tap(buy_point())
 	check(m.state_for(1,1)=="affordable" and m.feedback[Vector2i(1,1)].kind=="reveal","Buying Bounce reveals Power without a second parent")
-	check(same_nodes(m.visible_nodes(),[Vector2i(0,1),Vector2i(2,1),Vector2i(1,1),Vector2i(7,1),Vector2i(6,1)]) and m.state_for(5,1)=="hidden","One route advances by one choice while the other two frontiers remain unchanged")
+	check(same_nodes(m.visible_nodes(),[Vector2i(0,1),Vector2i(2,1),Vector2i(1,1),Vector2i(7,1),Vector2i(6,1),m.TWIN_NODE]) and m.state_for(5,1)=="hidden","One route advances by one choice while the other two frontiers remain unchanged")
 	g.navigation_delay=0; m.selected=1; m.tier=1; bank=g.bank; cost=g.upgrade_cost(1); tap(buy_point())
 	check(g.levels[1]==1 and g.bank==bank-cost and m.state_for(5,1)=="affordable","Buying Power opens the next mixed upgrade on its route")
 	check(m.selected==5 and m.tier==1,"A route purchase immediately selects the new Impact upgrade")
@@ -194,9 +211,9 @@ func progression_checks():
 	check(first_recipe,"Every first-tier recipe can be brought clear of overlays and selected using phone-length swipes")
 	g.levels.fill(0)
 	m.update(0)
-	check(m.visible_nodes()==[Vector2i(0,1)] and m.state_for(1,1)=="hidden" and m.selected==-1,"Reset progression hides later routes and clears their stale selection")
+	check(m.visible_nodes()==[Vector2i(0,1),m.TWIN_NODE] and m.state_for(1,1)=="hidden" and m.selected==-1,"Reset hides later routes and clears stale selection, keeping Jam Burst visible")
 	fresh(0,true)
-	check(m.visible_nodes().size()==4 and m.state_for(2,1)=="unaffordable" and m.state_for(7,1)=="unaffordable" and m.state_for(6,1)=="unaffordable","An empty wallet still shows the next upgrade on all three routes")
+	check(m.visible_nodes().size()==5 and m.state_for(2,1)=="unaffordable" and m.state_for(7,1)=="unaffordable" and m.state_for(6,1)=="unaffordable","An empty wallet still shows the next upgrade on all three routes and Jam Burst")
 
 func gesture_checks():
 	fresh()
@@ -540,8 +557,11 @@ func purchase_camera_checks():
 	g.mode="shop"; m.update(.1)
 	check(not m._camera_active and m.pan==stopped,"Leaving and reopening the map never resumes an old purchase glide")
 	start_camera_purchase()
-	m.reset_view_state(); m.update(m.CAMERA_DURATION)
-	check(not m._camera_active and m.pan==Vector2.ZERO and m.zoom==m.INITIAL_ZOOM,"Resetting the view cancels its pending camera target")
+	m.reset_view_state()
+	var entry_pan: Vector2=m.pan
+	var entry_zoom: float=m.zoom
+	m.update(m.CAMERA_DURATION)
+	check(not m._camera_active and m.pan==entry_pan and m.zoom==entry_zoom,"Resetting the view cancels its pending camera target and holds the framed entry")
 
 	fresh(100000,true)
 	g.reduced_motion=true
@@ -742,6 +762,7 @@ func _initialize():
 	g.testing=true
 	g.sound_on=false
 	m=g.upgrade_map
+	entry_checks()
 	progression_checks()
 	gesture_checks()
 	fullscreen_overlay_checks()

@@ -1,5 +1,7 @@
 # Export and rebuild notes
 
+**Source after v0.7.5 — CHG-036:** Area frames, Jam Burst, shared earned/early signature access and Flow-2 rules are not in the already-delivered preview or public v0.8.0-rc1 artifacts. No new APK/Drive delivery is claimed. The next requested build must verify the new scripts/assets and revised save/ownership behavior. Real Play billing is unfinished; current preview/provider-contract tests do not establish a paid transaction.
+
 ## Current Android preview v0.7.5 (3 November 2026)
 
 The existing private Drive APK is now **v0.7.5-preview, code 31**, with the existing preview package and development certificate. Pause has one Paused title and a compact control panel. Settings has one title and a centered, capability-driven layout with no gaps from hidden options. Help uses How to play and Trials uses Trials. Decorative slogans, repeated headings, time-card flavor text and the redundant restored-run toast are removed; mechanics and consequential reset/end-shift instructions remain. It also packages the previously source-only [pause fade/blur](MENU_TRANSITIONS.md) and the [warm studio spotlight, heartbeat and hum](STUDIO_STARTUP.md). Home morph, results and cream routes retain their intended behavior. Balance data and save formats are unchanged.

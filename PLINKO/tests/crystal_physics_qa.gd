@@ -20,7 +20,7 @@ func check(value: bool, label: String):
 	else: failures.append(label)
 	print("PASS: " if value else "FAIL: ",label)
 
-func fixture():
+func fixture(second_prism: bool=false):
 	var game=Fixture.new()
 	game.testing=true
 	game.sound_on=false
@@ -28,6 +28,7 @@ func fixture():
 	game.first_run_guide.active=false
 	game.set_active_area("crystal")
 	game.highest_unlocked=12
+	game.crystal_second_prism=second_prism
 	game.start_shift()
 	game.spawn_clock=100
 	game.pickup_clock=100
@@ -109,7 +110,7 @@ func press_only_input():
 	g.free()
 
 func clones_and_offers():
-	var g=fixture()
+	var g=fixture(true)
 	g.pegs=[]
 	for kind in ["normal","ricochet","splitter","impact","shard"]:
 		var ball=shot(g,Vector2(300,500),Vector2.DOWN,kind)
@@ -160,7 +161,7 @@ func clones_and_offers():
 	g.free()
 
 func snapshots_and_purchase():
-	var g=fixture()
+	var g=fixture(true)
 	g.spawn_clock=.7; g.crystal_second_prism=true
 	shot(g,Vector2(360,500),Vector2.DOWN,"impact")
 	g.balls[0].used=true; g.balls[0].life=2.0
@@ -196,7 +197,7 @@ func snapshots_and_purchase():
 	g.clear_draining=true; g.level_won=true; g.crystal_launcher.begin_clear_drain()
 	var drain=Snapshot.capture(g)
 	check(Snapshot.validate_and_decode(drain,g).ok,"Crystal clear drain preserves valid ball and opportunity state")
-	g.mode="shop"; g.shift_claimed=true; g.crystal_second_prism=false; g.highest_unlocked=6; g.levels[1]=4; g.bank=1000
+	g.mode="shop"; g.shift_claimed=true; g.crystal_second_prism=false; g.highest_unlocked=8; g.levels[1]=4; g.bank=1000
 	g.testing=false; g.fail_write=true; g.note="before"; g.note_time=2
 	check(not g.crystal_launcher.buy() and g.writes==1 and g.bank==1000 and not g.crystal_second_prism and g.note=="before" and g.note_time==2,"Failed Second Prism save rolls back wallet, ownership and presentation")
 	g.fail_write=false

@@ -1,5 +1,9 @@
 CURRENT PRIVATE PREVIEWS - SUGARFALL - 3 November 2026
 
+CURRENT SOURCE NOTE: CHG-036 area frames, signature abilities and Flow2
+are not included in this download. No newer APK was built for that task.
+Real Play billing remains unfinished; preview test unlocks charge no money.
+
 ANDROID v0.7.5 - UPDATED 3 NOVEMBER 2026
 APK (89,281,899 bytes):
 https://drive.google.com/file/d/1GF1zo3lt0VR5voajNPGjoP1FYuPe0FYz/view?usp=drivesdk

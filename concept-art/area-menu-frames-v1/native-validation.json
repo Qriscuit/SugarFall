@@ -1,0 +1,103 @@
+{
+  "passed": 16,
+  "failed": 0,
+  "checks": "Each of four assets: unchanged native bytes, RGBA, true transparent and opaque pixels, readable authored content bounds. No pixel editing performed.",
+  "assets": [
+    {
+      "area": "bakery",
+      "path": "PLINKO/data/art/menus/bakery_frame.png",
+      "sha256": "aac9de16828e35035560d577069b8a8772a3fd28d57d4262f2fc8e40c29e0b04",
+      "bytes": 2176078,
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "transparent_pixels": 222888,
+      "opaque_pixels": 1394,
+      "content_bounds_alpha128": [
+        22,
+        23,
+        1235,
+        1213
+      ],
+      "native_unchanged": true
+    },
+    {
+      "area": "gelato",
+      "path": "PLINKO/data/art/menus/gelato_frame.png",
+      "sha256": "1235599c74e46c7c3902a4241e1048881e9dc8017a6d23bd363617d8e2b34806",
+      "bytes": 1736964,
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "transparent_pixels": 302488,
+      "opaque_pixels": 152,
+      "content_bounds_alpha128": [
+        31,
+        23,
+        1228,
+        1202
+      ],
+      "native_unchanged": true
+    },
+    {
+      "area": "crystal",
+      "path": "PLINKO/data/art/menus/crystal_frame.png",
+      "sha256": "85f247cc1248b6506f1aecbffd7c4f35fe39516e87248ef77a7286851184c074",
+      "bytes": 1658513,
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "transparent_pixels": 262310,
+      "opaque_pixels": 1039,
+      "content_bounds_alpha128": [
+        27,
+        11,
+        1208,
+        1213
+      ],
+      "native_unchanged": true
+    },
+    {
+      "area": "jam",
+      "path": "PLINKO/data/art/bakery_ability/jam_donut.png",
+      "sha256": "7954fbd00dbb6564da4b5b6655b3a38f2c950e674fdc22f637a524fef32ccc02",
+      "bytes": 1808695,
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "transparent_pixels": 643495,
+      "opaque_pixels": 797,
+      "content_bounds_alpha128": [
+        83,
+        99,
+        1161,
+        1178
+      ],
+      "native_unchanged": true
+    }
+  ]
+}

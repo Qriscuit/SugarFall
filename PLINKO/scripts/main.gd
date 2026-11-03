@@ -8,6 +8,8 @@ const CrystalUpgradeGraph = preload("res://scripts/crystal_upgrade_graph.gd")
 const MonetizationService = preload("res://scripts/monetization_service.gd")
 const CoinDisplay = preload("res://scripts/coin_display.gd")
 const CombatBalance = preload("res://scripts/combat_balance.gd")
+const FlowRules = preload("res://scripts/flow_rules.gd")
+var run_rules_revision = FlowRules.CURRENT_REVISION
 signal peg_damaged(position: Vector2, actual_damage: float, impact_first_hit: bool)
 const WIDTH = 720.0
 const HEIGHT = 1280.0
@@ -55,6 +57,14 @@ const MAX_LEVELS = [10,10,6,6,6,6,8,10]
 var tuning = {"core_step":0.5,"core_tier_gains":[0.5,0.5,0.5,0.35,0.35,0.35,0.25,0.25,0.25,0.25],"core_cost_growth":1.85,"upgrade_cost_scale":1.25,"upgrade_cost_growth":1.75,"area_unlock_cost":1000,"clock_base_cost":40,"peg_base":4,"peg_level_step":1.0,"peg_level_offset":0,"combo_credit_cap":5,"clear_base":100,"clear_per_level":25,"productive_bins_only":false,"min_rebound_speed":0.0,"combat_reward_revision":1,"peg_damage_coin_budget":6,"armored_damage_coin_budget":9,"impact_damage_multiplier":4.0,"impact_armored_multiplier":6.0}
 var levels: Array = [0,0,0,0,0,0,0,0]
 var twin_launchers = false
+var bakery_jam_burst = false
+var bakery_run: Dictionary = {}
+var ability_unlock_source = "earned"
+var bakery_ability
+var ability_access = preload("res://scripts/area_ability_access.gd").new()
+var ability_ui
+var run_ability_active = false
+var run_ability_pinned = false
 var crystal_second_prism = false
 var crystal_run: Dictionary = {}
 var power_reset_tier = 0
@@ -193,6 +203,8 @@ func _init():
 	pause_transition=preload("res://scripts/pause_transition.gd").new(self)
 	gelato_launcher=preload("res://scripts/gelato_launcher.gd").new(self)
 	crystal_launcher=preload("res://scripts/crystal_launcher.gd").new(self)
+	bakery_ability=preload("res://scripts/bakery_ability.gd").new(self)
+	ability_ui=preload("res://scripts/area_ability_ui.gd").new(self)
 	monetization_ui=preload("res://scripts/monetization_ui.gd").new(self)
 	first_run_guide=preload("res://scripts/first_run_guide.gd").new(self)
 	progress_reset_ui=preload("res://scripts/progress_reset_ui.gd").new(self)
@@ -225,6 +237,7 @@ func _ready():
 	if not testing:
 		load_game()
 	profile_initialization_complete = true
+	ability_ui.setup_store()
 	for kind in ["normal","prism","clock","armored"]:
 		for suffix in ["","_flash"]: peg_textures[kind+suffix]=load("res://data/art/"+kind+suffix+".svg")
 	texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS
@@ -303,7 +316,8 @@ func go_back():
 		if previous=="home": home_menu.reset()
 
 func _go_back_impl():
-	if mode=="developer_areas":
+	if mode=="ability_offer": ability_ui.close()
+	elif mode=="developer_areas":
 		developer_area_ui.cancel_gestures()
 		mode="support"
 	elif mode=="reset_confirm": cancel_progress_reset()
@@ -329,6 +343,7 @@ func _notification(what):
 	# A nested focus/close event while startup restores a profile must never
 	# persist the temporary default campaign over that profile.
 	if not profile_initialization_complete: return
+	if what==NOTIFICATION_APPLICATION_RESUMED and not testing: ability_access.restore()
 	if what==NOTIFICATION_WM_GO_BACK_REQUEST:
 		if startup_blocked: return
 		if page_transition.is_blocking() or pause_transition.is_blocking(): return
@@ -355,6 +370,7 @@ func _notification(what):
 		first_run_guide.cancel_gestures()
 		progress_reset_ui.cancel_gestures()
 		developer_area_ui.cancel_gestures()
+		ability_ui.cancel_gestures()
 		if upgrade_map!=null: upgrade_map.cancel_gestures()
 		if home_menu!=null: home_menu.cancel_gestures()
 		if level_map!=null: level_map.cancel_gestures()
@@ -366,7 +382,7 @@ func _notification(what):
 		page_transition.enabled = pages_enabled
 
 func cancel_page_gestures():
-	for controller in [first_run_guide,progress_reset_ui,developer_area_ui,upgrade_map,home_menu,level_map]:
+	for controller in [first_run_guide,progress_reset_ui,developer_area_ui,ability_ui,upgrade_map,home_menu,level_map]:
 		if controller != null: controller.cancel_gestures()
 
 var diagnostics_on=false
@@ -433,6 +449,11 @@ func _physics_process(delta):
 
 func start_shift(from_home: bool = false):
 	if startup_blocked or page_transition.is_blocking() or pause_transition.is_blocking() or (from_home and run_transition.active): return
+	run_ability_pinned=false
+	if not trial_active: ability_ui.restore_activation()
+	run_ability_active=ability_ui.owned()
+	run_ability_pinned=true
+	run_rules_revision=FlowRules.CURRENT_REVISION
 	run_transition.finish()
 	impact_feedback.reset()
 	reward_earned=false
@@ -477,6 +498,7 @@ func start_shift(from_home: bool = false):
 	special_stats = {"normal":0,"ricochet":0,"splitter":0,"impact":0,"shard":0,"pulse":0}
 	type_drops = {"normal":0,"ricochet":0,"splitter":0,"impact":0,"shard":0}
 	crystal_launcher.reset_run()
+	bakery_ability.reset_run()
 	build_wave()
 	result_peg_total=pegs.size()
 	if from_home and not page_transition.active: run_transition.begin()
@@ -501,11 +523,12 @@ func board_peg_position(i: int, spec: Dictionary) -> Vector2:
 		return Vector2(float(positions[i][0]),float(positions[i][1]))
 	return peg_position(i,str(spec.get("family","broadstagger")))
 
-func normal_peg_hp(level: int = -1, for_trial: bool = false) -> float:
+func normal_peg_hp(level: int = -1, for_trial: bool = false, revision: int = -1) -> float:
 	var board = current_level if level < 0 else level
 	var spec: Dictionary = board_data[board-1] if board>=1 and board<=board_data.size() else {}
 	var campaign_hp = float(spec.get("base_hp",6.0))
-	return float(spec.get("trial_base_hp",campaign_hp)) if for_trial else campaign_hp
+	var base=float(spec.get("trial_base_hp",campaign_hp)) if for_trial else campaign_hp
+	return FlowRules.normal_hp(base,board,for_trial,run_rules_revision if revision<0 else revision)
 
 func peg_strength_tier(level: int = -1, for_trial: bool = false) -> String:
 	# Material is authored with HP, not inferred from an armored peg's doubled HP.
@@ -553,6 +576,7 @@ func step(dt):
 			finish_shift()
 			return
 	impact_feedback.advance(dt)
+	bakery_ability.advance(dt)
 	catch_settle_remaining = maxf(0,catch_settle_remaining-dt)
 	wave_flash = maxf(0, wave_flash - dt)
 	combo_timer -= dt
@@ -637,6 +661,7 @@ func step(dt):
 					var was_alive = peg.hp > 0
 					ball.productive = true
 					damage_peg(peg, dmg, impact_first_hit)
+					if area_id=="bakery": bakery_ability.on_hit(ball,peg)
 					if was_alive and peg.hp <= 0:
 						special_stats[ball.kind] = special_stats.get(ball.kind,0) + 1
 					ball.cool = .08
@@ -692,7 +717,7 @@ func begin_clear_drain():
 	if clear_draining or not board_is_clear(): return
 	clear_draining = true
 	if not level_won:
-		shift_coins = round_credits(shift_coins + int(tuning.clear_base + wave * tuning.clear_per_level))
+		shift_coins = round_credits(shift_coins + FlowRules.clear_reward(int(tuning.clear_base + wave * tuning.clear_per_level),wave,trial_active,run_rules_revision))
 	level_won = true
 	pickups.clear()
 	if area_id=="crystal": crystal_launcher.begin_clear_drain()
@@ -722,6 +747,7 @@ func spawn_ball(pos, kind, velocity = Vector2(0, 85), jitter: bool = true):
 	balls.append({"p":pos, "v":launch_velocity, "kind":kind, "r":ball_radius(kind), "used":false, "productive":false, "cool":0.0, "life":0.0, "dead":false})
 	total_spawned += 1
 	type_drops[kind] = type_drops.get(kind,0) + 1
+	if area_id=="bakery": bakery_ability.on_launch(balls[-1])
 
 func ball_radius(kind):
 	return 6.0 if kind=="shard" else (11.25 if kind=="impact" else 9.0)
@@ -769,7 +795,8 @@ func damage_peg(peg, damage, impact_first_hit: bool = false) -> Dictionary:
 	event.damage=before_hp-peg.hp
 	if event.damage<=0.0: return event
 	impact_feedback.hit_peg(peg.p)
-	event.coins=CombatBalance.damage_coins(float(peg.max),before_hp,peg.hp,CombatBalance.damage_budget(peg.kind,tuning))
+	var damage_budget=FlowRules.damage_budget(CombatBalance.damage_budget(peg.kind,tuning),wave,trial_active,run_rules_revision)
+	event.coins=CombatBalance.damage_coins(float(peg.max),before_hp,peg.hp,damage_budget)
 	shift_coins = round_credits(shift_coins+event.coins)
 	peg_damaged.emit(peg.p,event.damage,impact_first_hit)
 	peg.flash = .12
@@ -784,6 +811,7 @@ func damage_peg(peg, damage, impact_first_hit: bool = false) -> Dictionary:
 			add_time(.5)
 		if peg.kind == "prism":
 			reward *= 3
+		reward=FlowRules.break_reward(reward,wave,trial_active,run_rules_revision)
 		shift_coins = round_credits(shift_coins + reward)
 		event.coins+=reward
 		add_float(peg.p, "+%d" % reward, TEAL)
@@ -1009,17 +1037,25 @@ func upgrade_cost(i):
 	var base = tuning.clock_base_cost if i == 7 else BASE_COSTS[i]
 	var growth = tuning.core_cost_growth if i == 1 else tuning.upgrade_cost_growth
 	# Keep the first purchase close; later tiers are deliberate savings goals.
-	var rebuild=float(tuning.get("power_rebuild_cost_multiplier",2.0)) if area_id=="gelato" and twin_launchers and i==1 else 1.0
+	var rebuild=float(tuning.get("power_rebuild_cost_multiplier",2.0)) if area_id=="gelato" and gelato_launcher.is_twin() and i==1 else 1.0
 	return maxi(1, ceili(base * tuning.upgrade_cost_scale * pow(growth,levels[i]) * rebuild))
 
 func buy_twin_launchers() -> bool:
 	return gelato_launcher.buy()
 
+func ability_early_access(id: String) -> bool:
+	return ability_access.has_early_access(id)
+
+func ability_grant_active(flag: bool) -> bool:
+	if run_ability_pinned and mode in ["play","paused","abandon_confirm"] and not shift_claimed:
+		return flag and run_ability_active
+	return flag and (ability_unlock_source=="earned" or ability_early_access(area_id))
+
 func power_damage(tier: int = -1) -> float:
 	var count = clampi(levels[1] if tier<0 else tier,0,MAX_LEVELS[1])
 	var gains = tuning.get("core_tier_gains",[])
 	var damage = float(tuning.get("base_power_damage",2.0)) if area_id=="crystal" else 1.0
-	var rebuild=float(tuning.get("power_rebuild_gain_multiplier",1.35)) if area_id=="gelato" and twin_launchers and not trial_active else 1.0
+	var rebuild=float(tuning.get("power_rebuild_gain_multiplier",1.35)) if area_id=="gelato" and gelato_launcher.is_twin() and not trial_active else 1.0
 	for index in range(count):
 		damage += (float(gains[index]) if index<gains.size() else float(tuning.core_step))*rebuild
 	return damage
@@ -1147,6 +1183,7 @@ func begin_trial(board):
 	trial_active=true
 	twin_launchers=false
 	crystal_second_prism=false
+	bakery_jam_burst=false; bakery_run={}; ability_unlock_source="earned"
 	power_reset_tier=0
 	levels=RunSnapshot.TRIAL_LEVELS.duplicate()
 	current_level=board
@@ -1311,6 +1348,7 @@ func commit_area_change(id: String, records: Dictionary, ledger: Array) -> bool:
 	return true
 
 func clear_area_transients():
+	run_ability_pinned=false
 	run_transition.finish()
 	developer_area_ui.cancel_gestures()
 	impact_feedback.reset()
@@ -1321,6 +1359,7 @@ func clear_area_transients():
 	result_peg_total=0; run_elapsed=0; queued_special=""; force_special=""
 	pegs=[]; balls=[]; pickups=[]; particles=[]; floats=[]; buckets=[]
 	crystal_launcher.reset_run()
+	bakery_ability.reset_run()
 	mode="home"; return_mode="home"; result_input_delay=.25; navigation_delay=.25
 	upgrade_map.reset_view_state()
 	home_menu.reset()
@@ -1329,7 +1368,7 @@ func clear_area_transients():
 
 func campaign_profile():
 	if area_id=="gelato" and not trial_active: ensure_gelato_shop_state()
-	return {"bank":round_credits(bank),"levels":levels.duplicate(),"twin_launchers":twin_launchers,"crystal_second_prism":crystal_second_prism,"power_reset_tier":power_reset_tier,"gelato_shop_revision":gelato_shop_revision,"gelato_owned_nodes":gelato_owned_nodes.duplicate(true),"gelato_reset_power_nodes":gelato_reset_power_nodes.duplicate(true),"best_wave":best_wave,"total_shifts":total_shifts,"current_level":current_level,"force_special":force_special,"equipped":equipped.duplicate(),"highest_unlocked":highest_unlocked,"chapter_complete":chapter_complete,"module_vouchers":module_vouchers,"module_milestones":module_milestones.duplicate()}
+	return {"bank":round_credits(bank),"levels":levels.duplicate(),"twin_launchers":twin_launchers,"bakery_jam_burst":bakery_jam_burst,"ability_unlock_source":ability_unlock_source,"crystal_second_prism":crystal_second_prism,"power_reset_tier":power_reset_tier,"gelato_shop_revision":gelato_shop_revision,"gelato_owned_nodes":gelato_owned_nodes.duplicate(true),"gelato_reset_power_nodes":gelato_reset_power_nodes.duplicate(true),"best_wave":best_wave,"total_shifts":total_shifts,"current_level":current_level,"force_special":force_special,"equipped":equipped.duplicate(),"highest_unlocked":highest_unlocked,"chapter_complete":chapter_complete,"module_vouchers":module_vouchers,"module_milestones":module_milestones.duplicate()}
 
 func pending_result_data():
 	return {"area_id":run_area_id,"peg_total":result_peg_total if result_peg_total>0 else board_peg_count(wave),"coins":round_credits(shift_coins),"won":level_won,"wave":wave,"destroyed":destroyed,"combo":max_combo,"stats":special_stats,"drops":type_drops,"run_id":run_id,"trial":trial_active,"run_elapsed":run_elapsed,"equipped":equipped.duplicate(),"reward_earned":test_commerce_available() and reward_earned}
@@ -1344,7 +1383,7 @@ func run_comparison() -> Dictionary:
 	return result_history.comparison(run_area_id,result_run_record())
 
 func profile_envelope(records: Dictionary, active_id: String, ledger: Array) -> Dictionary:
-	return {"version":PROFILE_VERSION,"balance_revision":4,"active_area_id":active_id,"areas":records,"area_entries":ledger,"total_shifts":trial_snapshot.get("total_shifts",total_shifts) if trial_active else total_shifts,"sound":sound_on,"reduced_motion":reduced_motion,"run_serial":run_serial,"last_claimed_run_id":last_claimed_run_id,"monetization_test":monetization.export_state(),"onboarding":first_run_guide.export_state(),"run_history":result_history.export_state()}
+	return {"version":PROFILE_VERSION,"balance_revision":4,"active_area_id":active_id,"areas":records,"area_entries":ledger,"total_shifts":trial_snapshot.get("total_shifts",total_shifts) if trial_active else total_shifts,"sound":sound_on,"reduced_motion":reduced_motion,"run_serial":run_serial,"last_claimed_run_id":last_claimed_run_id,"monetization_test":monetization.export_state(),"area_ability_preview":ability_access.export_state(),"onboarding":first_run_guide.export_state(),"run_history":result_history.export_state()}
 
 func save_game():
 	if profile_load_blocked: return false
@@ -1366,6 +1405,7 @@ func save_game():
 			# A background checkpoint must never open a fullscreen ad.
 			return finish_shift(false)
 		data["active_run"]=RunSnapshot.capture(self)
+		data["active_run_rules"]=run_rules_revision
 	if not write_profile_file(data): return false
 	area_records=records
 	return true
@@ -1408,7 +1448,7 @@ func reset_progress() -> bool:
 		"version":PROFILE_VERSION,"balance_revision":4,"active_area_id":"bakery",
 		"areas":{"bakery":AreaCampaign.default_record()},"area_entries":[],
 		"total_shifts":0,"sound":sound_on,"reduced_motion":reduced_motion,
-		"run_serial":0,"last_claimed_run_id":"","monetization_test":clean_store.export_state(),
+		"run_serial":0,"last_claimed_run_id":"","monetization_test":clean_store.export_state(),"area_ability_preview":ability_access.export_state(),
 		"run_history":{"version":1,"areas":{}},
 		"onboarding":{"version":first_run_guide.VERSION,"completed":false,"active":true,
 			"step":"welcome","earned_seen":false,"time_pickup_seen":false,"upgraded_this_intro":false}
@@ -1448,6 +1488,7 @@ func reset_profile_runtime():
 	levels=[0,0,0,0,0,0,0,0]
 	twin_launchers=false; power_reset_tier=0
 	crystal_second_prism=false
+	bakery_jam_burst=false; bakery_run={}; ability_unlock_source="earned"
 	crystal_launcher.reset_run()
 	gelato_shop_revision=AreaCampaign.GELATO_SHOP_REVISION
 	gelato_owned_nodes=[]; gelato_reset_power_nodes=[]
@@ -1490,6 +1531,7 @@ func restore_active_run(snapshot):
 
 func _restore_active_run_impl(snapshot):
 	run_transition.finish()
+	run_ability_pinned=false
 	var checked=RunSnapshot.validate_and_decode(snapshot,self)
 	if not checked.ok:
 		reject_snapshot(checked.reason)
@@ -1501,6 +1543,9 @@ func _restore_active_run_impl(snapshot):
 	var campaign=campaign_profile()
 	run_area_id=area_id
 	for key in state:
+		# Run ability flags describe active physics. Keep the campaign's prior
+		# activation and one-time Power reset history if access is unavailable.
+		if not state.trial_active and key in ["twin_launchers","power_reset_tier","crystal_second_prism"]: continue
 		if key not in ["rng_seed","rng_state"]: set(key,state[key])
 	if trial_active: trial_snapshot=campaign
 	else: trial_snapshot={}
@@ -1510,6 +1555,8 @@ func _restore_active_run_impl(snapshot):
 	if clear_draining and catch_settle_remaining>0 and settling_bucket>=0:
 		impact_feedback.bucket_times[settling_bucket]=catch_settle_remaining
 	particles=[]; floats=[]; pulse_flash=0; wave_flash=0
+	run_ability_active=ability_ui.owned()
+	run_ability_pinned=true
 	mode="paused"
 	resumed_run=true
 	checkpoint_clock=5.0
@@ -1620,6 +1667,8 @@ func _load_game_impl():
 	snapshot_rejection=""
 	monetization.reset_test_state()
 	monetization.import_state(data.get("monetization_test",{}))
+	ability_access.reset_preview_store()
+	ability_access.import_state(data.get("area_ability_preview",{}))
 	reward_earned=false
 	commerce_profile=""
 	run_serial=maxi(0,safe_number(data.get("run_serial",0)))
@@ -1633,6 +1682,8 @@ func _load_game_impl():
 			if (value is float or value is int) and is_finite(float(value)) and value>0 and value<=120: trial_records[key]=float(value)
 	bank = safe_credits(data.get("bank",0))
 	twin_launchers=area_id=="gelato" and data.get("twin_launchers",false)==true
+	bakery_jam_burst=area_id=="bakery" and data.get("bakery_jam_burst",false)==true
+	ability_unlock_source=str(data.get("ability_unlock_source","earned"))
 	crystal_second_prism=area_id=="crystal" and data.get("crystal_second_prism",false)==true
 	crystal_launcher.reset_run()
 	power_reset_tier=clampi(safe_number(data.get("power_reset_tier",0)),0,10) if twin_launchers else 0
@@ -1685,6 +1736,7 @@ func _load_game_impl():
 			trial_active=true
 			twin_launchers=false
 			crystal_second_prism=false
+			bakery_jam_burst=false; bakery_run={}; ability_unlock_source="earned"
 			power_reset_tier=0
 			levels=RunSnapshot.TRIAL_LEVELS.duplicate()
 			current_level=trial_board
@@ -1711,6 +1763,11 @@ func _load_game_impl():
 		result_input_delay=.5
 		shift_claimed=false
 	elif data.has("active_run"):
+		var saved_rules=data.get("active_run_rules",FlowRules.LEGACY_REVISION)
+		if not FlowRules.valid_revision(saved_rules):
+			reject_snapshot("Run rules are unsupported. Workshop progress kept.")
+			return
+		run_rules_revision=int(saved_rules)
 		restore_active_run(data.active_run)
 	if mode=="result" and not trial_active:
 		result_history.record_run(run_area_id,result_run_record())
@@ -1722,6 +1779,7 @@ func _load_game_impl():
 func _input(event):
 	if startup_blocked: return
 	if page_transition.is_blocking() or pause_transition.is_blocking(): return
+	if mode=="ability_offer" and ability_ui.handle_input(event): return
 	if mode=="developer_areas" and developer_area_ui.handle_input(event): return
 	if mode=="reset_confirm" and progress_reset_ui.handle_input(event): return
 	if first_run_guide.handle_input(event): return
@@ -1785,6 +1843,7 @@ func _handle_press_impl(p):
 		queue_redraw()
 		return
 	match mode:
+		"ability_offer": ability_ui.press(p)
 		"home":
 			home_menu.press(p)
 		"play":
@@ -1997,6 +2056,7 @@ func draw_frame():
 		environment_art.draw_cover(self,"home_counter" if mode=="home" else "upgrade_counter",bounds)
 	match mode:
 		"home": draw_home()
+		"ability_offer": ability_ui.draw()
 		"play", "paused", "abandon_confirm":
 			if run_transition.active: run_transition.draw()
 			else: draw_game()
@@ -2080,9 +2140,10 @@ func draw_game():
 		if ball.kind in ["normal","ricochet","shard"] and not reduced_motion: angle=ball.life*1.9
 		draw_board_transform(ball.p,angle)
 		var diameter = ball.r*2.55
-		if not food_art.draw_centered(self,food_art.ball_name(ball.kind),Vector2.ZERO,Vector2(diameter,diameter)):
+		if not bakery_ability.draw_ball(self,ball) and not food_art.draw_centered(self,food_art.ball_name(ball.kind),Vector2.ZERO,Vector2(diameter,diameter)):
 			draw_circle(Vector2.ZERO,ball.r,color)
 		draw_board_transform()
+	bakery_ability.draw_effects(self)
 	draw_buckets()
 	for p in particles:
 		draw_circle(p.p,2.6,Color(Color("bd8753"),minf(1,p.life*2)))
@@ -2090,6 +2151,7 @@ func draw_game():
 		text_at(f.text,f.p,20,Color(f.c,minf(1,f.life*2)))
 	impact_feedback.draw_damage(self,number_font,reduced_motion)
 	draw_dispenser()
+	if area_id=="bakery": bakery_ability.draw_charge(self,Vector2(aim_x,235))
 	draw_set_transform(Vector2.ZERO)
 	draw_game_hud()
 
@@ -2189,7 +2251,7 @@ func pause_menu_layout() -> Dictionary:
 func draw_pause(painter: CanvasItem = null):
 	var canvas = painter if painter != null else self
 	var layout = pause_menu_layout()
-	ui_panel(layout.panel,canvas)
+	if not ui_art.menu_frame(canvas,layout.panel): ui_panel(layout.panel,canvas)
 	heading_centered("Paused",layout.title_y,42,WHITE,canvas)
 	button(layout.actions.resume,"Resume",true,"",canvas)
 	button(layout.actions.sound,"Sound  ·  " + ("On" if sound_on else "Off"),false,"",canvas)
@@ -2239,6 +2301,8 @@ func draw_guide():
 		["cup_cream","Grow your cups","Each catch makes that cup worth more.","Split pieces earn a smaller share."],
 		["cookie_clock","Extra time","Clock cookies and pickups add time.",""],
 		["pomegranate","Mix in specials","Equipped specials drop by chance.","Free unlocks on trays 2, 5 and 8."]]
+	if area_id=="bakery":
+		sections[4]=["donut","Jam Burst","Every fifth doughnut splashes nearby pegs.","Earn from tray 8, or unlock early."]
 	if area_id=="gelato":
 		sections[0]=["donut","Aim the curved drop","Drag to aim along the dotted curve.","Each launcher shows its own falling path."]
 		sections[1]=["cookie_normal","Crumble wafers","Bronze, Silver, Gold, then Diamond.","Stronger wafers at trays 4, 7 and 10."]
@@ -2248,7 +2312,7 @@ func draw_guide():
 		sections[0]=["donut","Line up the shot","Drag to turn the spout.","Candy flies straight and ricochets."]
 		sections[1]=["cookie_normal","Crack sugar crystals","Bronze, Silver, Gold, then Diamond.","Stronger crystals at trays 4, 7 and 10."]
 		sections[3]=["multiply_pickup","Catch the Prism","Tap within four seconds to double","the balls already on the board."]
-		sections[4]=["multiply_pickup","Second Prism","Unlock another chance each run.","Find its node below the upgrade entry."]
+		sections[4]=["multiply_pickup","Second Prism","Unlock another chance each run.","Earn from tray 8, or unlock early."]
 	for i in range(5):
 		var y=222+i*160
 		ui_panel(Rect2(48,y,624,145))
@@ -2281,7 +2345,7 @@ func draw_support():
 		"motion":"Reduced motion  ·  "+("On" if reduced_motion else "Off"),
 		"developer":"Developer settings","performance":"Performance display  ·  "+("On" if diagnostics_on else "Off"),
 		"commerce":"Ads & purchases · test","reset":"Reset progress","back":"Back"}
-	ui_panel(layout.panel)
+	if not ui_art.menu_frame(self,layout.panel): ui_panel(layout.panel)
 	heading_centered("Settings",layout.title_y,42)
 	for key in layout.order: button(layout.actions[key],labels[key],key=="back")
 

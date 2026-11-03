@@ -176,6 +176,9 @@ func fractional_rewards_resume():
 	# Released checkpoints used integer earnings. They remain valid under the
 	# wider numeric representation even when the wallet now contains cents.
 	saved.active_run=a.RunSnapshot.capture(a)
+	# This synthetic checkpoint uses today's physics even though its earnings
+	# use the older integer representation. Keep its matching rules envelope.
+	saved.active_run_rules=a.run_rules_revision
 	saved.erase("pending_result")
 	saved.active_run.shift_coins=17
 	write_disk(saved)

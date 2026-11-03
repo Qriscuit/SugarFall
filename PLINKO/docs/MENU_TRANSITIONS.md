@@ -40,6 +40,8 @@ Campaign and Trial results are centered cream windows over darkened, frozen game
 
 Just-finished results retain the exact in-memory board and equipment state. Pending-result saves contain reward/history metadata but no board pose, so reopening one after a restart shows the area's empty tray, cups and dispenser beneath the window. It does not invent surviving pegs, change a payout or extend the save schema. Claim-once behavior and Trial campaign restoration remain unchanged.
 
+Current CHG-036 source uses [native area frames](AREA_MENU_ART.md) for Settings, Pause and ability offers. Live controls and existing route-specific transition rules remain. The verified v0.7.5 delivery below predates those frames and abilities.
+
 ## Related interface preferences
 
 - Home **Play** and **Upgrades** use the existing runtime play triangle and three-node upgrade mark beside their centered labels. Button bounds and touch targets stay unchanged.

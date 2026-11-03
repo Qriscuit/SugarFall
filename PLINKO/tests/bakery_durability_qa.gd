@@ -2,6 +2,7 @@ extends SceneTree
 ## Campaign durability contracts, using packaged data and in-memory save writes.
 ## No fixture loads, resets or writes a player's profile.
 const Snapshot = preload("res://scripts/run_snapshot.gd")
+const Rules = preload("res://scripts/flow_rules.gd")
 const PREVIOUS_BAKERY_FINGERPRINT = "8ea5737038153f21aabf79e092109a9559ffcd5c5cf682d1d0ca4d3f5fa0b21b"
 const FLAT_BAKERY_FINGERPRINT = "475381e6848aa2724ef4d3356f9081bcc3d54710dc99410d1bb5a6e2cbdb1e6d"
 const PRE_LAUNCHER_GELATO_FINGERPRINT = "ba3aef12301ec366a8d95bede61073f1aaa2325d31c8a8fa165708085bf0d772"
@@ -66,10 +67,11 @@ func campaign_curve_and_checkpoints():
 		previous_hp = base_hp
 		check(game.peg_strength_tier()==TIER_IDS[band] and game.peg_strength_tier(tray)==TIER_IDS[band],"Selected and explicit material lookup match tray %d" % tray)
 		check(game.peg_strength_tier(tray,true).is_empty(),"Fixed Trial presentation does not claim campaign material on tray %d" % tray)
-		check(is_equal_approx(game.normal_peg_hp(),base_hp) and is_equal_approx(game.normal_peg_hp(tray),base_hp),"Selected and explicit HP lookup match Bakery tray %d" % tray)
+		var current_hp=Rules.normal_hp(base_hp,tray,false,game.run_rules_revision)
+		check(is_equal_approx(game.normal_peg_hp(),current_hp) and is_equal_approx(game.normal_peg_hp(tray),current_hp),"Selected and explicit HP lookup match Bakery tray %d" % tray)
 		var health_matches = true
 		for peg in game.pegs:
-			var expected = base_hp*(float(spec.armored_hp_multiplier) if peg.kind=="armored" else 1.0)
+			var expected = current_hp*(float(spec.armored_hp_multiplier) if peg.kind=="armored" else 1.0)
 			health_matches = health_matches and is_equal_approx(peg.max,expected) and is_equal_approx(peg.hp,expected)
 		check(health_matches,"Bakery tray %d applies normal HP and its authored armor factor" % tray)
 		var first_pegs = game.pegs.duplicate(true)
@@ -113,11 +115,12 @@ func damage_reward_accounting():
 		var peg = ordinary_peg(game)
 		var hp = float(peg.max)
 		game.damage_peg(peg,1.0)
-		check(game.shift_coins==floorf(6.0/hp) and peg.hp==hp-1.0,"Tray %d nonlethal damage earns its cumulative share of the fixed coin budget" % tray)
+		var budget=Rules.damage_budget(6,tray,false,game.run_rules_revision)
+		check(game.shift_coins==floorf(float(budget)/hp) and peg.hp==hp-1.0,"Tray %d nonlethal damage earns its cumulative share of the fixed coin budget" % tray)
 		game.damage_peg(peg,9999.0)
 		var break_reward = int(game.tuning.peg_base+floor((tray-game.tuning.peg_level_offset)*game.tuning.peg_level_step))+mini(1,int(game.tuning.combo_credit_cap))
-		var expected = 6+break_reward
-		check(is_equal_approx(game.shift_coins,expected),"Tray %d overkill cannot exceed the six-coin damage budget plus one break payout" % tray)
+		var expected = budget+Rules.break_reward(break_reward,tray,false,game.run_rules_revision)
+		check(is_equal_approx(game.shift_coins,expected),"Tray %d overkill cannot exceed its pinned damage budget plus one break payout" % tray)
 		var paid = game.shift_coins
 		game.damage_peg(peg,9999.0)
 		check(game.shift_coins==paid and game.destroyed==1,"Tray %d dead peg cannot pay damage or break rewards twice" % tray)
@@ -129,7 +132,7 @@ func gelato_and_area_switches():
 	for tray in range(1,13):
 		game.current_level = tray
 		game.start_shift()
-		var hp = float(GELATO_HP[tray-1])
+		var hp = Rules.normal_hp(float(GELATO_HP[tray-1]),tray,false,game.run_rules_revision)
 		check(game.normal_peg_hp()==hp and ordinary_peg(game).max==hp,"Gelato tray %d uses its authored strength band" % tray)
 		check(game.peg_strength_tier()==TIER_IDS[floori((tray-1)/3.0)],"Gelato tray %d shows its matching material" % tray)
 		var snapshot = Snapshot.capture(game)
@@ -146,8 +149,8 @@ func gelato_and_area_switches():
 	var bakery_hp = game.normal_peg_hp()
 	check(bakery_hp>8 and game.upgrade_preview(1)=="Hit pegs harder","Bakery tray 12 retains durability and plain Power copy after switching areas")
 	check(game.upgrade_map._effect_text(1,1)=="Hit pegs harder","Live Bakery Power card remains functional after switching areas")
-	check(game.switch_area("gelato") and game.normal_peg_hp()==24.0 and game.bank==100.25,"Returning to Gelato preserves its HP and wallet")
-	check(ceili(24.0/game.power_damage(0))==24 and ceili(24.0/game.power_damage(1))==16,"Gelato tray 12 retains its actual Power damage behavior")
+	check(game.switch_area("gelato") and is_equal_approx(game.normal_peg_hp(),Rules.normal_hp(24.0,12,false)) and game.bank==100.25,"Returning to Gelato preserves its HP and wallet")
+	check(ceili(game.normal_peg_hp()/game.power_damage(0))==28 and ceili(game.normal_peg_hp()/game.power_damage(1))==19,"Gelato tray 12 applies its current HP with unchanged ordinary Power damage")
 	check(game.upgrade_map._effect_text(1,1)=="Hit pegs harder","Live Gelato Power card stays simple after switching back")
 	check(game.memory_writes==2,"Owned-area transactions were committed only to fixture memory")
 	close_fixture(game)

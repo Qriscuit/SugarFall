@@ -48,6 +48,7 @@ func target_at(p: Vector2) -> String:
 		if TRIALS_RECT.has_point(p): return "trials"
 		return "dismiss"
 	if LEVEL_RECT.has_point(p): return "levels"
+	if g.ability_ui.home_visible() and g.ability_ui.HOME_RECT.has_point(p): return "ability"
 	# The preview tray and Play button share one guarded tap action.
 	if PLAY_RECT.has_point(p) or TRAY_RECT.has_point(p): return "play"
 	if UPGRADES_RECT.has_point(p): return "upgrades"
@@ -98,6 +99,7 @@ func press(p: Vector2):
 			g.mode = "boards"
 		"play": reset(); g.start_shift(true)
 		"upgrades": reset(); g.mode = "shop"; g.return_mode = "home"
+		"ability": reset(); g.ability_ui.open("home")
 	g.queue_redraw()
 
 func draw():
@@ -112,6 +114,7 @@ func draw_controls(departure: float = 0.0):
 	_draw_menu_button()
 	_draw_wallet()
 	g.draw_set_transform(Vector2(0,330.0*departure))
+	g.ability_ui.draw_home_offer()
 	_draw_action_button(PLAY_RECT,"Play","play",true)
 	_draw_action_button(UPGRADES_RECT,"Upgrades","upgrade")
 	g.draw_set_transform(Vector2.ZERO)
@@ -150,7 +153,7 @@ func _draw_level_selector():
 	if not tier_label.is_empty(): baseline -= 12.0
 	g.heading(label,Vector2(135,baseline),size)
 	if not tier_label.is_empty():
-		g.fitted_text("%s · normal pegs: %d HP" % [tier_label,g.normal_peg_hp()],Rect2(135,86,365,24),20,g.MUTED)
+		g.fitted_text("%s · normal pegs: %d HP" % [tier_label,ceili(g.normal_peg_hp(-1,false,g.FlowRules.CURRENT_REVISION))],Rect2(135,86,365,24),20,g.MUTED)
 	g.draw_polyline(PackedVector2Array([Vector2(540,67),Vector2(553,82),Vector2(540,97)]),COPPER,4.5,true)
 
 func _draw_menu_button():
@@ -201,7 +204,7 @@ func preview_layout() -> Array:
 func _draw_preview():
 	if not g.food_art.draw_tray(g,TRAY_RECT): g.ui_panel(TRAY_RECT)
 	var tier: String = g.peg_strength_tier()
-	var hp: float = g.normal_peg_hp()
+	var hp: float = g.normal_peg_hp(-1,false,g.FlowRules.CURRENT_REVISION)
 	for peg in preview_layout():
 		g.food_art.draw_cookie(g,peg.kind,hp,hp,peg.p,Vector2.ONE*49.0*peg.scale,tier)
 

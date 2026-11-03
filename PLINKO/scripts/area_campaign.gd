@@ -10,7 +10,7 @@ const ENTRY_COSTS = {"gelato":1000, "crystal":1500}
 const SHOP_FIELDS = ["gelato_shop_revision", "gelato_owned_nodes", "gelato_reset_power_nodes"]
 const GELATO_SHOP_REVISION = 1
 const GelatoGraph = preload("res://scripts/gelato_upgrade_graph.gd")
-const LOCAL_FIELDS = ["bank", "levels", "best_wave", "current_level", "highest_unlocked", "chapter_complete", "module_vouchers", "module_milestones", "equipped", "trial_records", "twin_launchers", "power_reset_tier", "gelato_shop_revision", "gelato_owned_nodes", "gelato_reset_power_nodes", "crystal_second_prism"]
+const LOCAL_FIELDS = ["bank", "levels", "best_wave", "current_level", "highest_unlocked", "chapter_complete", "module_vouchers", "module_milestones", "equipped", "trial_records", "twin_launchers", "power_reset_tier", "gelato_shop_revision", "gelato_owned_nodes", "gelato_reset_power_nodes", "crystal_second_prism", "bakery_jam_burst", "ability_unlock_source"]
 # Revision 2 uses gravity-solved aim, exact free flight and no launcher jitter.
 const LAUNCHER_RULES_REVISION = 2
 # Power-scaled Impact changes practice completion times in both areas.
@@ -19,7 +19,7 @@ const CAPS = [10,10,6,6,6,6,8,10]
 const MODULES = ["ricochet", "splitter", "impact"]
 
 static func default_record() -> Dictionary:
-	return {"bank":0.0,"levels":[0,0,0,0,0,0,0,0],"best_wave":1,"current_level":1,"highest_unlocked":1,"chapter_complete":false,"module_vouchers":0,"module_milestones":[],"equipped":[],"trial_records":{},"twin_launchers":false,"power_reset_tier":0,"gelato_shop_revision":GELATO_SHOP_REVISION,"gelato_owned_nodes":[],"gelato_reset_power_nodes":[],"crystal_second_prism":false,"launcher_rules_revision":LAUNCHER_RULES_REVISION,"combat_rules_revision":COMBAT_RULES_REVISION}
+	return {"bank":0.0,"levels":[0,0,0,0,0,0,0,0],"best_wave":1,"current_level":1,"highest_unlocked":1,"chapter_complete":false,"module_vouchers":0,"module_milestones":[],"equipped":[],"trial_records":{},"twin_launchers":false,"power_reset_tier":0,"gelato_shop_revision":GELATO_SHOP_REVISION,"gelato_owned_nodes":[],"gelato_reset_power_nodes":[],"crystal_second_prism":false,"bakery_jam_burst":false,"ability_unlock_source":"earned","launcher_rules_revision":LAUNCHER_RULES_REVISION,"combat_rules_revision":COMBAT_RULES_REVISION}
 
 static func predecessor(id: String) -> String:
 	return PREDECESSORS.get(id,"")
@@ -51,11 +51,14 @@ static func apply_local(game, record: Dictionary):
 static func valid_record(record, area_id: String = "bakery") -> bool:
 	if not record is Dictionary: return false
 	for key in LOCAL_FIELDS:
-		if key not in ["twin_launchers","power_reset_tier","crystal_second_prism"] and key not in SHOP_FIELDS and not record.has(key): return false
+		if key not in ["twin_launchers","power_reset_tier","crystal_second_prism","bakery_jam_burst","ability_unlock_source"] and key not in SHOP_FIELDS and not record.has(key): return false
 	# Missing ownership is a pre-launcher save, never an implicit purchase.
 	if not record.get("twin_launchers",false) is bool: return false
 	if not record.get("crystal_second_prism",false) is bool: return false
 	if area_id!="crystal" and record.get("crystal_second_prism",false): return false
+	if not record.get("bakery_jam_burst",false) is bool: return false
+	if area_id!="bakery" and record.get("bakery_jam_burst",false): return false
+	if not record.get("ability_unlock_source","earned") is String or record.get("ability_unlock_source","earned") not in ["earned","preview","store"]: return false
 	if not integer(record.get("power_reset_tier",0),0,CAPS[1]): return false
 	if not record.get("twin_launchers",false) and record.get("power_reset_tier",0)!=0: return false
 	if not number(record.bank,0,100000000) or absf(record.bank*100-roundf(record.bank*100))>.00001: return false
@@ -93,6 +96,8 @@ static func normalized(record: Dictionary, area_id: String = "bakery") -> Dictio
 	var result = record.duplicate(true)
 	result.twin_launchers = record.get("twin_launchers",false)
 	result.crystal_second_prism = record.get("crystal_second_prism",false)
+	result.bakery_jam_burst = record.get("bakery_jam_burst",false)
+	result.ability_unlock_source = record.get("ability_unlock_source","earned")
 	result.power_reset_tier = int(record.get("power_reset_tier",0))
 	# Changed combat/aim rules invalidate practice times, never campaign progress
 	# or an already earned pending result.

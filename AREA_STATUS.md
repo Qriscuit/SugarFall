@@ -1,16 +1,16 @@
 # Sugarfall — current area status
 
-Updated 3 November 2026 · Delivered v0.7.5-preview / code 31 · CHG-035
+Updated 3 November 2026 · CHG-036 source after v0.7.5-preview · public billing unfinished
 
-All seven earlier software, design-documentation and targeted verification actions remain complete and integrated. The existing private Drive file now holds v0.7.5-preview, including concise menus, pause fade/blur and warm studio startup/audio. The local v0.8.0-rc1 candidate predates the pause/menu source revisions and was not rebuilt. The remaining two area actions are human progression and physical-phone acceptance; the user will test the APK.
+All seven earlier AF software, design-documentation and targeted verification actions remain complete and integrated. The existing private Drive file still holds v0.7.5-preview. CHG-036 area frames, signature abilities and Flow-2 rules are verified in source and are not in that APK. The local v0.8.0-rc1 candidate predates the pause/menu source revisions and was not rebuilt. The AF queue retains human progression and physical-phone acceptance; current requirements also keep real billing, Flow-2 legal progression and a new export open. The user will perform the phone tests.
 
 Counts include test activities as well as production content. Verified means the recorded scope passed; it does not imply a phone playtest. Intentional omissions remain N/A.
 
 | Area | Built Yes | Integrated Yes | Verified Yes | N/A | Detailed record |
 |---|---:|---:|---:|---:|---|
-| Bakery | 76 | 76 | 74 | 5 | [Checklist](PLINKO/docs/areas/bakery_checklist.md) |
-| Gelato Garden | 79 | 79 | 75 | 2 | [Checklist](PLINKO/docs/areas/gelato_checklist.md) |
-| Crystal Candyworks | 79 | 79 | 74 | 2 | [Checklist](PLINKO/docs/areas/crystal_checklist.md) |
+| Bakery | 80 | 80 | 75 | 2 | [Checklist](PLINKO/docs/areas/bakery_checklist.md) |
+| Gelato Garden | 80 | 80 | 72 | 2 | [Checklist](PLINKO/docs/areas/gelato_checklist.md) |
+| Crystal Candyworks | 80 | 80 | 72 | 2 | [Checklist](PLINKO/docs/areas/crystal_checklist.md) |
 
 ## Menu polish — v0.7.2 milestone
 
@@ -66,7 +66,7 @@ Source verification at this milestone passed 1,184 checks: 161 page routes, 98 p
 
 Template version 4 refines F11 without adding requirements; all 83-per-area/249 states and SF/AF statuses remain. Phone D17 is Pending. At this source-only milestone, no new APK, AAB or Drive replacement was requested or produced. The then-existing v0.8.0-rc1 artifacts and v0.7.4 Drive preview did not include it. CHG-035 below records the subsequent v0.7.5 preview delivery; the public candidate artifacts remain unchanged.
 
-## Current concise-menu preview
+## Concise-menu preview — v0.7.5 delivery
 
 Pause has one Paused title and a compact control panel. Settings has one title and a centered, capability-driven layout with no gaps from hidden options. Help uses How to play and Trials uses Trials. Decorative slogans, repeated headings, time-card flavor text and the redundant restored-run toast are removed; mechanics and consequential reset/end-shift instructions remain. The shared pause fade/blur and warm spotlight/heartbeat/hum are included in v0.7.5-preview (code 31).
 
@@ -75,6 +75,16 @@ Pause has one Paused title and a compact control panel. Settings has one title a
 Template version 5 refines T04 without new requirement IDs. All 83-per-area/249 requirement states, 65 SF statuses and nine AF statuses remain unchanged. D07/D13 cover menu readability and composition, D14 covers warm startup/audio and D17 covers pause feel; all 17 physical checks remain Pending. CHG-034 history stays intact, and the public v0.8.0-rc1 APK/AAB were not rebuilt.
 
 See [current menu validation](PLINKO/docs/MENU_CLEANUP_VALIDATION.json), [v0.7.5 delivery record](PLINKO/docs/ANDROID_SUGARFALL_v0.7.5.json) and [download](PLINKO/BUILD_LINKS.txt).
+
+## Current signature abilities and area frames
+
+Each area has a required earned tray-8 signature ability and an optional permanent early route from tray 1, at a US$2.99 design price per area. Bakery adds Jam Burst; Gelato retains Dual Shot and its Power reset; Crystal Second Prism moves to tray 8 while preserving existing owners. Three native menu frames distinguish Settings/Pause and the ability offer.
+
+Final source passes 214 behavior/save checks and 155 GPU assertions across 30 captures at 450×800/450×1000, with zero failures and exact source parity. Access (74), Flow (131 unit/128 disk), combat (364), durability (266) and menu-art (423/24 captures) evidence is separately scoped; no historical totals are combined. [Validation](PLINKO/docs/AREA_SIGNATURE_VALIDATION.json) covers source behavior and desktop rendering. Flow 2 changes late HP/reward budgets independently and pins existing runs to legacy rules; bounded fixed-build probes do not establish fresh-wallet or human pacing. Real Play products/plugin/backend, live purchases and restore remain unfinished. SF-039/040/041 are In progress.
+
+Template v6 adds U07/U08: **85 requirements per area / 255 total**. U07 is source-verified; U08 stays No/No/No for the complete real-payment path. Bakery A06/F06/U02 supersede their earlier intentional omissions. B04/B06/Q04 current verification is reopened for Flow-2 legal progression, and I09 remains unverified for a new Android package. Prior evidence and all 35 earlier change entries are retained. AF-008/009 remain Ready to test; all phone results stay Pending. No new APK or Drive replacement is claimed.
+
+See [signature design](PLINKO/docs/AREA_SIGNATURE_ABILITIES.md), [purchase scope](PLINKO/docs/AREA_ABILITY_PURCHASES.md), [flow rules](PLINKO/docs/AREA_FLOW_RULES.md) and [menu art](PLINKO/docs/AREA_MENU_ART.md).
 
 ## Fix queue
 
@@ -87,7 +97,7 @@ See [current menu validation](PLINKO/docs/MENU_CLEANUP_VALIDATION.json), [v0.7.5
 | AF-005 | Complete targeted Crystal lifecycle checks | Done | Sixty-eight Crystal lifecycle checks pass: legal 63-position traversal, failed writes, actual disk entry/Trial/result restoration, reward conservation, histories, milestones and actual touch/menu guards. No lifecycle runtime defect found. |
 | AF-006 | Check crowded Bakery and Gelato physics | Done | 108 fixed-60Hz stress checks pass: 610 px/s contacts, cooldowns, population limits, expiry, clumped rendering schedules and an 83-ball final-split drain. No production physics defect found; no physics change needed. |
 | AF-007 | Finish current Gelato and Crystal visual coverage | Done | Completed 58 current GPU captures with 287 passing assertions at both sizes. Reviewed missing menus, live effects, Reduced Motion, result states and deep Crystal cards/edges. Added a cream backing so rebounding balls cannot obscure damage numbers. |
-| AF-008 | Measure legal progression through all three areas | Ready to test | Six linked campaigns across two legal shopping policies and three seeds passed 9,044 assertions and cleared all 18 sampled area campaigns. Wall builds, earnings, purchases, fees, Twin rebuild and Second Prism are measured. Five unique tray/seed pacing flags remain for human review; no numeric tuning changed from this limited policy sample. |
+| AF-008 | Measure legal progression through all three areas | Ready to test | Six linked campaigns across two legal shopping policies and three seeds passed 9,044 assertions and cleared all 18 sampled area campaigns. Wall builds, earnings, purchases, fees, Twin rebuild and Second Prism are measured. Five unique tray/seed pacing flags remain historical. CHG-036 Flow-2 rules and signature gates now require fresh legal-campaign/human revalidation; bounded probes do not replace it. |
 | AF-009 | Run the physical-phone acceptance pass | Ready to test | Physical test protocol and verified v0.7.1 APK prepared. ADB found no attached device; the user chose to test the APK themselves. Actual phone installation, input feel, listening, performance and install-over retention remain unverified. |
 
 ## Continue one finding at a time

@@ -14,25 +14,32 @@ func _init(game):
 	g=game
 
 func owned() -> bool:
-	return g.area_id=="crystal" and g.crystal_second_prism and not g.trial_active
+	return g.area_id=="crystal" and g.ability_grant_active(g.crystal_second_prism) and not g.trial_active
 
 func unlocked() -> bool:
-	return g.area_id=="crystal" and not g.trial_active and not owned() and g.highest_unlocked>=int(g.tuning.get("crystal_second_prism_unlock_level",6)) and g.levels[1]>=int(g.tuning.get("crystal_second_prism_unlock_power",4))
+	return g.area_id=="crystal" and not g.trial_active and not owned() and g.highest_unlocked>=maxi(8,int(g.tuning.get("crystal_second_prism_unlock_level",8))) and g.levels[1]>=int(g.tuning.get("crystal_second_prism_unlock_power",4))
 
 func cost() -> int:
 	return maxi(1,int(g.tuning.get("crystal_second_prism_cost",900)))
 
 func buy() -> bool:
-	if not unlocked() or g.profile_load_blocked or g.mode!="shop" or g.run_transition.active or not g.can_afford(cost()): return false
+	if not unlocked() or g.profile_load_blocked or g.mode not in ["shop","ability_offer"] or g.run_transition.active or not g.can_afford(cost()): return false
 	if not g.shift_claimed and not g.run_id.is_empty(): return false
-	var before={"bank":g.bank,"crystal_second_prism":g.crystal_second_prism,"note":g.note,"note_time":g.note_time}
+	var before={"bank":g.bank,"crystal_second_prism":g.crystal_second_prism,"ability_unlock_source":g.ability_unlock_source,"note":g.note,"note_time":g.note_time}
 	if not g.spend_coins(cost()): return false
 	g.crystal_second_prism=true
+	g.ability_unlock_source="earned"
 	g.note="A second Prism can appear each run"
 	g.note_time=4.0
 	if not g.testing and not g.save_game():
 		for key in before: g.set(key,before[key])
 		return false
+	return true
+
+func activate(source: String) -> bool:
+	if g.area_id!="crystal" or g.trial_active or source not in ["preview","store"] or not g.ability_early_access("crystal"): return false
+	g.crystal_second_prism=true
+	g.ability_unlock_source=source
 	return true
 
 func speed() -> float:
@@ -239,7 +246,7 @@ func capture_extra() -> Dictionary:
 static func validate_extra(snapshot: Dictionary, state: Dictionary, game) -> Dictionary:
 	if not snapshot.get("crystal_second_prism") is bool: return {"ok":false}
 	var second=bool(snapshot.crystal_second_prism)
-	if second!=(bool(game.crystal_second_prism) and not state.trial_active): return {"ok":false}
+	if second!=(game.ability_grant_active(bool(game.crystal_second_prism)) and not state.trial_active): return {"ok":false}
 	var value=snapshot.get("crystal_run")
 	if not value is Dictionary or value.size()!=RUN_KEYS.size(): return {"ok":false}
 	for key in RUN_KEYS:

@@ -9,7 +9,7 @@ func _init(game):
 	g=game
 
 func is_twin() -> bool:
-	return g.area_id=="gelato" and g.twin_launchers and not g.trial_active
+	return g.area_id=="gelato" and g.ability_grant_active(g.twin_launchers) and not g.trial_active
 
 func origins() -> Array:
 	return TWIN_ORIGINS.duplicate() if is_twin() else [SINGLE_ORIGIN]
@@ -107,10 +107,10 @@ func cost() -> int:
 	return int(g.tuning.get("twin_launcher_cost",3000))
 
 func unlocked() -> bool:
-	return g.area_id=="gelato" and not g.trial_active and not g.twin_launchers and g.highest_unlocked>=int(g.tuning.get("twin_unlock_level",8)) and g.levels[1]>=int(g.tuning.get("twin_unlock_power",6))
+	return g.area_id=="gelato" and not g.trial_active and not is_twin() and g.highest_unlocked>=int(g.tuning.get("twin_unlock_level",8)) and g.levels[1]>=int(g.tuning.get("twin_unlock_power",6))
 
 func buy() -> bool:
-	if g.mode!="shop" or g.run_transition.active or not unlocked(): return false
+	if g.mode not in ["shop","ability_offer"] or g.run_transition.active or not unlocked(): return false
 	if not g.run_id.is_empty() and not g.shift_claimed: return false
 	if g.profile_load_blocked or not g.ensure_gelato_shop_state(): return false
 	if not g.can_afford(cost()):
@@ -124,14 +124,10 @@ func buy() -> bool:
 	var previous_reset=g.gelato_reset_power_nodes.duplicate(true)
 	var previous_note=g.note
 	var previous_note_time=g.note_time
+	var previous_twin=g.twin_launchers
+	var previous_source=g.ability_unlock_source
 	g.spend_coins(cost())
-	g.power_reset_tier=previous_power
-	for node in previous_owned:
-		if int(node[0])==1:
-			g.gelato_owned_nodes.erase(node)
-			g.gelato_reset_power_nodes.append(node.duplicate())
-	g.levels[1]=0
-	g.twin_launchers=true
+	_apply_transformation("earned")
 	# Commit the purchase and Power reset together. Failure restores the build.
 	if not g.testing and not g.save_game():
 		g.bank=previous_bank
@@ -139,13 +135,31 @@ func buy() -> bool:
 		g.power_reset_tier=previous_reset_tier
 		g.gelato_owned_nodes=previous_owned
 		g.gelato_reset_power_nodes=previous_reset
-		g.twin_launchers=false
+		g.twin_launchers=previous_twin
+		g.ability_unlock_source=previous_source
 		g.note=previous_note
 		g.note_time=previous_note_time
 		return false
 	g.tone(720,.08)
 	g.note="Twin launchers ready. Rebuild Power for both."
 	g.note_time=4
+	return true
+
+func _apply_transformation(source: String):
+	# A restored purchase or re-earned entitlement never resets Power twice.
+	if not g.twin_launchers:
+		g.power_reset_tier=g.levels[1]
+		for node in g.gelato_owned_nodes.duplicate(true):
+			if int(node[0])==1:
+				g.gelato_owned_nodes.erase(node)
+				g.gelato_reset_power_nodes.append(node.duplicate())
+		g.levels[1]=0
+	g.twin_launchers=true
+	g.ability_unlock_source=source
+
+func activate(source: String) -> bool:
+	if g.area_id!="gelato" or g.trial_active or source not in ["preview","store"] or not g.ability_early_access("gelato") or not g.ensure_gelato_shop_state(): return false
+	_apply_transformation(source)
 	return true
 
 func guide_color(origin: Vector2, alpha: float = 1.0) -> Color:

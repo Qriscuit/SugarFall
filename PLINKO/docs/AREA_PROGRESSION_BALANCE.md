@@ -1,5 +1,7 @@
 # Legal area progression and balance
 
+**Historical Flow-1 baseline.** CHG-036 adds Jam Burst, moves Second Prism to tray 8 and changes late HP/rewards under [Flow rules 2](AREA_FLOW_RULES.md). The six linked campaigns and 9,044 assertions below are preserved as earlier evidence; they do not verify current fresh-wallet progression. Current bounded probes are recorded in the Flow-2 report. AF-008 remains Ready to test.
+
 AF-008 · 3 November 2026 · synthetic normal-wallet measurement complete; phone pacing and teaching acceptance remain open.
 
 No HP, coin reward, price, cadence or physics values were changed by this pass. Six linked campaigns use current production code, actual earned balances and the actual purchase graph. Each campaign starts Bakery with zero money and upgrades, clears it, pays 1,000 from Bakery to enter Gelato with a fresh local wallet, then pays 1,500 from Gelato to enter Crystal with another fresh local wallet.

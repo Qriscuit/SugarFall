@@ -77,7 +77,7 @@ func draw():
 	g.draw_line(Vector2(80,385),Vector2(640,385),Color("c8d8c6"),2.0,true)
 	g.fitted_text("Coins, upgrades, completed trays, areas",Rect2(80,417,560,36),26,g.WHITE,true)
 	g.fitted_text("and trial records will be cleared.",Rect2(80,453,560,36),26,g.WHITE,true)
-	if g.test_commerce_available(): g.fitted_text("Test purchases and bonuses are cleared.",Rect2(80,505,560,36),25,g.MUTED,true)
+	g.fitted_text("Purchased area abilities can be restored.",Rect2(80,505,560,36),24,g.MUTED,true)
 	g.fitted_text("Start again at Bakery, tray 1, with Mabel.",Rect2(80,568,560,36),26,g.WHITE,true)
 	g.fitted_text("Sound and motion settings stay the same.",Rect2(80,614,560,36),25,g.MUTED,true)
 	g.fitted_text("This cannot be undone.",Rect2(80,687,560,38),27,DESTRUCTIVE_INK,true)

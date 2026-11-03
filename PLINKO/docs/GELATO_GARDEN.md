@@ -55,11 +55,13 @@ A fixed nozzle at `(360,267)` solves a downward gravity trajectory toward the fi
 
 Dual Shot is the optional map node below Feed 1. It costs **3,000 Gelato coins** and requires **tray 8 unlocked AND six active Power upgrades**. Buying it resets only Power and retains exact previously purchased Power nodes for rebuilding. Each launcher fires at 65% of the single-launcher rate. Rebuilt Power costs twice as much before rounding and gains 35% more per tier. Other upgrades, equipment, map discovery and remaining coins stay intact. The two winding main routes and six terminal branches use a fixed family shuffle; owning a node grants only that exact slot and the next aggregate tier of its family.
 
+The same Dual Shot ability also has a planned US$2.99 permanent early route from tray 1. The preview test flow is implemented; real public billing remains unfinished. See [signature access](AREA_SIGNATURE_ABILITIES.md). These CHG-036 changes and [Flow rules 2](AREA_FLOW_RULES.md) are current source, not the delivered v0.7.5 APK.
+
 ## Twelve authored trays
 
 The layouts are explicit coordinates in [gelato_board_design.json](../data/gelato_board_design.json). Home previews use those same coordinates and role assignment as the live board. These are new arrangements rather than copies of Bakery's layout families.
 
-| Tray | Layout | Pegs | Base HP | Chocolate armor | Clock wafers |
+| Tray | Layout | Pegs | New-run HP | Chocolate armor | Clock wafers |
 | --- | --- | ---: | ---: | ---: | ---: |
 | 1 | First Fan | 8 | 6 | 0 | 0 |
 | 2 | Sundae Fork | 10 | 6 | 0 | 2 |
@@ -68,17 +70,17 @@ The layouts are explicit coordinates in [gelato_board_design.json](../data/gelat
 | 5 | Open Chevron | 18 | 12 | 0 | 2 |
 | 6 | Sprinkle Sweeps | 20 | 12 | 0 | 2 |
 | 7 | Twin Fans | 24 | 18 | 0 | 3 |
-| 8 | Broken Arches | 26 | 18 | 0 | 3 |
-| 9 | Zigzag Lanes | 28 | 18 | 0 | 3 |
-| 10 | Chocolate Lattice | 30 | 24 | 2 | 3 |
-| 11 | Stepped Crown | 32 | 24 | 3 | 3 |
-| 12 | Grand Cascade | 36 | 24 | 4 | 3 |
+| 8 | Broken Arches | 26 | 20.7 | 0 | 3 |
+| 9 | Zigzag Lanes | 28 | 20.7 | 0 | 3 |
+| 10 | Chocolate Lattice | 30 | 27.6 | 2 | 3 |
+| 11 | Stepped Crown | 32 | 27.6 | 3 | 3 |
+| 12 | Grand Cascade | 36 | 27.6 | 4 | 3 |
 
-Ordinary, clock and prism wafers use Bronze/Silver/Gold/Diamond HP bands of 6/12/18/24 across trays 1–3/4–6/7–9/10–12. Late armor has twice the listed base HP. The existing bonus-role assignment begins at tray 3; armor and clock roles take precedence. Current centers span x=100–620 and y=350–835, with at least 73 logical pixels between neighboring centers.
+The Bronze/Silver/Gold/Diamond boundaries remain at trays 1/4/7/10. Current Flow-2 new-run HP is 6 on trays 1–3, 12 on 4–6, 18 on 7, 20.7 on 8–9 and 27.6 on 10–12. Legacy active runs retain their pinned values. Late armor has twice the listed base HP. The existing bonus-role assignment begins at tray 3; armor and clock roles take precedence. Current centers span x=100–620 and y=350–835, with at least 73 logical pixels between neighboring centers.
 
 Area-selected food sprites retain the normal, Splitter, Impact, Ricochet and shard roles and existing collision footprints. Wafers replace cookie pegs and sundae cups replace collection buckets. Existing peg damage stages, hit feedback, cup bounce, whole-number coin display and seamless Home-to-run entry remain in use. The art inventory records reused assets and native Gelato originals separately.
 
-The damage payout is a fixed six-coin budget per ordinary/clock/prism wafer, or nine for armor, independent of HP and the number of hits. Separate break, cup and clear rewards remain. Gelato overrides upgrade price growth to 1.65, Power growth to 1.60, and the Twin/rebuild rules; it does not reuse Bakery's upgrade price curve. See [the current reward contract](ECONOMY_REBALANCE.md).
+The damage payout is a fixed six-coin budget per ordinary/clock/prism wafer, or nine for armor, before tray 8. Flow 2 uses 8/11 from tray 8 and independently scales completed break/clear rewards once with whole-coin rounding. Budgets remain independent of HP and the number of hits. Separate break, cup and clear rewards remain. Gelato overrides upgrade price growth to 1.65, Power growth to 1.60, and the Twin/rebuild rules; it does not reuse Bakery's upgrade price curve. See [the current reward contract](ECONOMY_REBALANCE.md).
 
 ## Saves and interrupted play
 

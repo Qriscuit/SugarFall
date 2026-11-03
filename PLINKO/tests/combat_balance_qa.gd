@@ -1,6 +1,7 @@
 extends SceneTree
 ## Live damage/collision and restart accounting. Fixtures never access profiles.
 const Balance=preload("res://scripts/combat_balance.gd")
+const Rules=preload("res://scripts/flow_rules.gd")
 const Snapshot=preload("res://scripts/run_snapshot.gd")
 const OLD_HASHES={"bakery":"afc02ea91b0441cd02e934efe3d325875c847e9f644c4c60ceed1f86a12743c8","gelato":"5a0bd00a920e20cc8aca0255b477147de84e305c50cfcfcb9ba40013fbca4870"}
 var passed=0
@@ -39,9 +40,10 @@ func budgets():
 					game.current_level=tray; game.start_shift()
 					var peg=ordinary(game); peg.kind=kind
 					if kind=="armored": peg.hp*=2; peg.max*=2
-					var budget=9 if kind=="armored" else 6
+					var budget=Rules.damage_budget(9 if kind=="armored" else 6,tray,false,game.run_rules_revision)
 					var break_reward=2+floori(float(tray-1)/4.0)
 					if kind=="prism": break_reward*=3
+					break_reward=Rules.break_reward(break_reward,tray,false,game.run_rules_revision)
 					var count=0
 					while peg.hp>0 and count<1000:
 						game.damage_peg(peg,hit_size); count+=1
@@ -49,10 +51,12 @@ func budgets():
 					var paid=float(game.shift_coins); game.damage_peg(peg,9999)
 					check(game.shift_coins==paid and peg.hp==0.0,"No duplicate or overkill earnings: %s tray%d %s hit%.3f" % [area,tray,kind,hit_size])
 		game.current_level=10; game.start_shift()
-		var peg=ordinary(game); game.damage_peg(peg,3.9)
-		check(game.shift_coins==0 and is_equal_approx(peg.hp,20.1),"Diamond waits for one sixth of its HP: "+area)
+		var peg=ordinary(game)
+		var boundary=float(peg.max)/Rules.damage_budget(6,10,false,game.run_rules_revision)
+		game.damage_peg(peg,boundary-.1)
+		check(game.shift_coins==0 and is_equal_approx(peg.hp,peg.max-boundary+.1),"Diamond waits for its current budget's first HP boundary: "+area)
 		game.damage_peg(peg,.1)
-		check(game.shift_coins==1 and is_equal_approx(peg.hp,20.0),"Fractional boundary pays exactly one coin: "+area)
+		check(game.shift_coins==1 and is_equal_approx(peg.hp,peg.max-boundary),"Fractional boundary pays exactly one coin: "+area)
 		check(game.profile_reads==0,"No profile reads: "+area); game.free()
 
 func collide(game,ball,peg):
@@ -86,6 +90,9 @@ func impact_and_feedback():
 		check(peg.hp==before and feedback.size()==1,"Invalid attacks cannot heal, pay or emit feedback")
 		if area=="gelato":
 			game.twin_launchers=true; game.power_reset_tier=6; game.levels[1]=0
+			game.ability_unlock_source="earned"
+			# Effective ability access is deliberately pinned at run start.
+			game.start_shift()
 			check(Balance.hit_damage(game.power_damage(),"impact",false,"normal",game.tuning)==4.0 and Balance.hit_damage(game.power_damage(),"impact",false,"armored",game.tuning)==6.0,"Twin reset also resets Impact strength")
 			game.levels[1]=1
 			check(is_equal_approx(Balance.hit_damage(game.power_damage(),"impact",false,"armored",game.tuning),10.05),"Rebuilt Power scales Impact from 1.675 damage")
@@ -99,7 +106,8 @@ func checkpoint_accounting():
 		var snapshot=Snapshot.capture(game); var restored=fixture(area); restored.current_level=10
 		check(restored.restore_active_run(snapshot),"Partial reward restores without a new ledger: "+area)
 		game.damage_peg(peg,9999); restored.damage_peg(restored.pegs[index],9999)
-		check(game.shift_coins==10 and restored.shift_coins==10,"Resuming between boundaries cannot gain or lose coins: "+area)
+		var expected=Rules.damage_budget(6,10,false,game.run_rules_revision)+Rules.break_reward(4,10,false,game.run_rules_revision)
+		check(game.shift_coins==expected and restored.shift_coins==expected,"Resuming between boundaries cannot gain or lose coins: "+area)
 		var old=snapshot.duplicate(true); old.fingerprint=OLD_HASHES[area]
 		var wallet=restored.bank; var levels=restored.levels.duplicate()
 		check(not restored.restore_active_run(old) and restored.mode=="home" and restored.bank==wallet and restored.levels==levels,"Old rules reject checkpoint while retaining campaign: "+area)

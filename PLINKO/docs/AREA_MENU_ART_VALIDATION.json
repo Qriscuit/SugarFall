@@ -1,0 +1,48 @@
+{
+  "date": "2026-11-03",
+  "scope": "Area menu art composition snapshot. Full ability/monetization source is still evolving and is verified separately. No phone acceptance or APK delivery claimed.",
+  "passed": 423,
+  "failed": 0,
+  "captures": 24,
+  "areas": [
+    "bakery",
+    "gelato",
+    "crystal"
+  ],
+  "sizes": [
+    "450x800",
+    "450x1000"
+  ],
+  "source_manifest": "verification/area-menu-art-20261103/area-art-gpu-02/source-manifest.json",
+  "renderer_summary": "verification/area-menu-art-20261103/area-art-gpu-02/screens/preview-summary.json",
+  "ui_art_sha256": "12cf2661b153fb7701fba3028786deb14daf200462eaa23d00fbfe50bf2c5485",
+  "reviewed": [
+    "bakery-settings-preview-450x800.png",
+    "bakery-pause-clean-450x1000.png",
+    "gelato-settings-preview-450x800.png",
+    "gelato-pause-clean-450x1000.png",
+    "crystal-settings-public-450x800.png",
+    "crystal-settings-preview-450x1000.png"
+  ],
+  "observations": [
+    "Three different area materials/scenery are visible at phone scale.",
+    "Single Settings/Paused titles and live button labels remain readable.",
+    "Corner ornaments stay outside control rectangles and do not cover labels.",
+    "All production touch routes in the shared menu harness pass.",
+    "Pause controls remain sharp above the frozen blurred board.",
+    "Public and preview Settings heights both preserve margins."
+  ],
+  "native_validation": "concept-art/area-menu-frames-v1/native-validation.json",
+  "import_settings": {
+    "frames": {
+      "size_limit": 1024,
+      "mipmaps": true
+    },
+    "jam_sprite": {
+      "size_limit": 256,
+      "mipmaps": true
+    },
+    "native_pngs_unchanged": true
+  },
+  "phone_verified": false
+}

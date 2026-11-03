@@ -16,6 +16,10 @@ Use this record for AF-008 (human progression/teaching) and AF-009 (physical pho
 
 Use the normal preview update flow to retain progress. Do not reset the player's only save for a fresh-progression experiment; use a separate test device/profile or a deliberate, user-chosen reset. Developer area switching retains each area's independent records. Infinite money is useful for effect inspection; turn it off for progression measurements.
 
+## CHG-036 source follow-up
+
+The current Drive v0.7.5 APK predates the area frames, Jam Burst, tray-8 Second Prism gate and Flow-2 rules. On the next build containing these changes, extend D02/D06 to earned gates, exact charges, failed/duplicate purchases and retained ownership; D03 to every-fifth Jam charge/spent state; D05 to both Prism opportunities; D07/D17 to each themed frame and offer. Check old active-run continuation and new-run HP/rewards separately. Compare normal-wallet earned progression against any explicitly labeled preview early access. A preview test purchase charges no money and cannot verify real Play payment/restore. Public billing acceptance remains U08, outside the current simulated flow. All existing device checks remain Pending.
+
 ## Device checks
 
 Working performance targets: a 60 FPS gameplay target on the recorded device, no sustained slowdown during normal play, no input freeze or crash, and no steadily growing memory use across repeated runs. Record frame timing and the device's supported refresh rate; desktop timings do not satisfy these targets. Log any sustained drop below 50 FPS or hitch over 250 ms as a finding to investigate.

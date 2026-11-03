@@ -172,6 +172,8 @@ static func warmup_paths() -> Array[String]:
 		for name in EnvironmentArt.NAMES: unique[EnvironmentArt.AREA_ROOTS[area]+name+".png"] = true
 	for name in UIArt.NAMES: unique[UIArt.ROOT+name+".png"] = true
 	for name in UIArt.GELATO_OVERRIDES: unique[UIArt.GELATO_ROOT+name+".png"] = true
+	for area in ["bakery","gelato","crystal"]: unique[UIArt.MENU_ROOT+area+"_frame.png"] = true
+	unique["res://data/art/bakery_ability/jam_donut.png"] = true
 	for path in [FoodArt.CRYSTAL_ROOT+"regions.json",EnvironmentArt.CRYSTAL_ROOT+"regions.json"]:
 		var regions = JSON.parse_string(FileAccess.get_file_as_string(path))
 		if regions is Dictionary:

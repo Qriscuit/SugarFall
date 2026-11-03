@@ -5,13 +5,19 @@ const NAMES = ["panel", "button_mint", "button_cream", "timer", "coin", "node", 
 const AreaArt = preload("res://scripts/area_art.gd")
 const GELATO_ROOT = "res://data/art/gelato/ui/"
 const GELATO_OVERRIDES = ["panel","level_selector","level_badge_muted"]
+const MENU_ROOT = "res://data/art/menus/"
 var textures: Dictionary = {}
 var regions: Dictionary = {}
 var area_id = "bakery"
 var _sets: Dictionary = {}
+var _menu_frames: Dictionary = {}
 
 func load_assets():
 	_sets.clear()
+	_menu_frames.clear()
+	for id in ["bakery","gelato","crystal"]:
+		var path = MENU_ROOT+id+"_frame.png"
+		if ResourceLoader.exists(path): _menu_frames[id] = load(path) as Texture2D
 	_load_set("bakery")
 	_load_set("gelato")
 	_load_set("crystal")
@@ -52,6 +58,24 @@ func draw(canvas: CanvasItem, name: String, target: Rect2, tint: Color = Color.W
 	var factor = minf(target.size.x/source.size.x,target.size.y/source.size.y)
 	var size = source.size*factor
 	canvas.draw_texture_rect_region(textures[name],Rect2(target.position+(target.size-size)*.5,size),source,tint)
+	return true
+
+func menu_frame(canvas: CanvasItem, content: Rect2) -> bool:
+	# Dedicated menu artwork: never change the shared HUD, cards or buttons.
+	# Corner ornaments keep a uniform scale; only quiet spans stretch.
+	var texture = _menu_frames.get(area_id) as Texture2D
+	if texture == null: return false
+	var target = content.grow(32.0)
+	var size = texture.get_size()
+	var cut = minf(size.x,size.y)*.26
+	var edge = minf(100.0,minf(target.size.x,target.size.y)*.25)
+	var sx = [0.0,cut,size.x-cut,size.x]
+	var sy = [0.0,cut,size.y-cut,size.y]
+	var dx = [target.position.x,target.position.x+edge,target.end.x-edge,target.end.x]
+	var dy = [target.position.y,target.position.y+edge,target.end.y-edge,target.end.y]
+	for row in range(3):
+		for col in range(3):
+			canvas.draw_texture_rect_region(texture,Rect2(dx[col],dy[row],dx[col+1]-dx[col],dy[row+1]-dy[row]),Rect2(sx[col],sy[row],sx[col+1]-sx[col],sy[row+1]-sy[row]))
 	return true
 
 func surface(canvas: CanvasItem, name: String, target: Rect2) -> bool:

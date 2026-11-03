@@ -1,19 +1,22 @@
 # Bakery durability progression
 
-Revised 2 November 2026 to use four material bands at the user's request. This replaces the gradual per-tray curve from the first balance pass. HP stays constant for three trays, then jumps at trays 4, 7 and 10.
+Revised 2 November 2026 to use four material bands at the user's request. This replaces the gradual per-tray curve from the first balance pass. Those historical base HP values jump at trays 4, 7 and 10. Current Flow-2 runs also scale HP from tray 8, within the existing material bands.
 
-3 November 2026 follow-up: [twelve tray-specific lessons](BAKERY_TRAY_LESSONS.md) now describe the existing authored geometry and observed arrival builds. Only tray 2–12 brief text changed; geometry and balance are unchanged. [The current legal progression report](AREA_PROGRESSION_BALANCE.md) supersedes the historical campaign timings below for current wallet/shop pacing: Bakery clears in 63–73 attempts across three sampled seeds. Human pacing remains open.
+3 November 2026 follow-up: [twelve tray-specific lessons](BAKERY_TRAY_LESSONS.md) now describe the existing authored geometry and observed arrival builds. Only tray 2–12 brief text changed; geometry and balance are unchanged. [The historical Flow-1 legal progression report](AREA_PROGRESSION_BALANCE.md) records that earlier wallet/shop pacing: Bakery clears in 63–73 attempts across three sampled seeds. Human pacing remains open.
 
 | Trays | Material | Ordinary, clock and prism HP | Armored HP | Ordinary hits at maximum Power |
 | --- | --- | ---: | ---: | ---: |
 | 1–3 | Bronze | 6 | — | 2 |
 | 4–6 | Silver | 12 | — | 3 |
-| 7–9 | Gold | 18 | — | 4 |
-| 10–12 | Diamond | 24 | 48 | 6 |
+| 7 | Gold | 18 | — | 4 |
+| 8–9 | Gold | 20.7 | — | 5 |
+| 10–12 | Diamond | 27.6 | 55.2 | 7 |
 
 Hits use maximum Bakery Power (4.55 damage) without special-ball effects. Bakery layouts, peg counts, armor counts, upgrade prices, Power growth and timers are unchanged. These are three authored difficulty jumps between four strength bands; retries at each jump depend on aiming, upgrades and loadout. Gelato now has its own [launcher and economy revision](GELATO_LAUNCHER.md).
 
 The same material tint appears in Home previews, the entry transition and gameplay. Material names appear on Home and in the gameplay HUD; Home also shows normal-peg HP. Existing special-peg decorations and transparent damage chunks remain visible. Damage states use each peg's remaining HP fraction. Bakery Help explains the four materials and the three jump points. The live Power card and older Power preview use the selected tray's actual normal-peg HP.
+
+Current source adds [Jam Burst](AREA_SIGNATURE_ABILITIES.md): tray 8, Power 4 and 1,200 coins, or the separately tracked early-access route. [Flow rules 2](AREA_FLOW_RULES.md) scales late coin budgets independently of HP and keeps legacy active-run values pinned. The new revision does not change the gameplay JSON/fingerprint. Current legal progression and phone pacing need revalidation.
 
 ## Trials and compatibility
 
@@ -23,7 +26,7 @@ The revised Bakery data produces a new interrupted-run fingerprint. Unfinished r
 
 The 3 November tray-brief revision adds a separate, exact metadata-only old/new hash pair. It preserves interrupted runs from the immediately preceding Bakery content, since only explanatory strings changed. A 34-check regression verifies identical decoded and restored active state; the broad 122-check resume suite also passes. This does not accept the old flat/gradual durability builds or any future content hash.
 
-## Measurements and follow-up
+## Historical measurements and follow-up
 
 All eight sampled campaigns completed with the selected bands in 64–87 attempts: balanced purchasing 64–66, Power-biased 66–87, cheapest-first 70–72, and slower aiming with balanced purchasing 66–69. Earlier paired balanced runs took 33–35 attempts with flat six-HP pegs and 55–58 with the gradual curve. These are automated engineering measurements, not human session-length or enjoyment targets.
 

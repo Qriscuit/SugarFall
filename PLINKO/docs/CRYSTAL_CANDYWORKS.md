@@ -1,6 +1,6 @@
 # Crystal Candyworks
 
-Implemented and delivered in the **Android v0.7.0 preview on 3 November 2026**. The [verified APK record](ANDROID_SUGARFALL_v0.7.0.json) and [download links](../BUILD_LINKS.txt) identify the package now in the existing private Drive folder. Windows remains v0.6.1. These are initial tuning values; physical Android playtesting remains open.
+Implemented and delivered in the **Android v0.7.0 preview on 3 November 2026**. The [verified APK record](ANDROID_SUGARFALL_v0.7.0.json) and [download links](../BUILD_LINKS.txt) identify that historical initial delivery; BUILD_LINKS identifies the current preview. Windows remains v0.6.1. These are initial tuning values; physical Android playtesting remains open.
 
 ## Area identity and control
 
@@ -12,7 +12,7 @@ Crystal Candyworks uses a rotating spout at the top center of the board. The pla
 | Flight | Gravity-driven drops | Calculated gravity-driven arcs | Constant-speed straight travel and rebounds, no gravity |
 | Base Power | 1 damage | 1 damage | 2 damage |
 | Upgrade map | Original sequential family paths | Winding mixed tree with exact node ownership | Three faceted spires using sequential family prerequisites |
-| Area-specific purchase | None | Dual Shot: two launchers and a Power reset | Second Prism: a second opportunity to duplicate live candy |
+| Area-specific purchase | Jam Burst: periodic first-hit splash | Dual Shot: two launchers and a Power reset | Second Prism: a second opportunity to duplicate live candy |
 | Paid first entry | Starting area | Clear Bakery tray 12, pay 1,000 Bakery coins | Clear Gelato tray 12, pay 1,500 Gelato coins |
 
 Crystal's initial launch speed is 360 logical pixels per second. The base firing interval is 1.15 seconds. Feed divides that interval by `1 + Feed × 0.055`, with a minimum of 0.74 seconds. These settings deliberately start slower and stronger than the earlier areas, but their pacing remains provisional until played on a phone.
@@ -32,11 +32,11 @@ Boards use gaps, shelves, crowns and side banks for straight shots. Peg centers 
 | 5 | Banking Hall | 19 | 12 | 1 |
 | 6 | Prism Workshop | 19 | 12 | 1 |
 | 7 | Gold Galleries | 22 | 18 | 2 |
-| 8 | Faceted Crown | 24 | 18 | 2 |
-| 9 | Glass Foundry | 26 | 18 | 2 |
-| 10 | Diamond Arcade | 29 | 24 | 3 |
-| 11 | Crystal Loom | 31 | 24 | 3 |
-| 12 | Candyworks Heart | 33 | 24 | 3 |
+| 8 | Faceted Crown | 24 | 20.7 | 2 |
+| 9 | Glass Foundry | 26 | 20.7 | 2 |
+| 10 | Diamond Arcade | 29 | 27.6 | 3 |
+| 11 | Crystal Loom | 31 | 27.6 | 3 |
+| 12 | Candyworks Heart | 33 | 27.6 | 3 |
 
 The four material bands are Bronze, Silver, Gold and Diamond. Armor uses 1.8 times the tray's ordinary HP. Tray 1 has no clock pegs; the remaining trays have two. The initial run timer is ten seconds before Time upgrades and earned extensions.
 
@@ -44,11 +44,13 @@ HP and rewards are configured independently. Ordinary, clock and prism pegs each
 
 Crystal also keeps the separate break reward `2 + floor((tray − 1) × 0.2)` and tray-clear reward `45 + tray × 5`. Only productive candy earns cup income. These are separate reward components, so the damage budget alone is not a tray's total payout. Power and other upgrade price growth are configured in `data/crystal_economy.json`; Bakery and Gelato retain their existing board and economy files.
 
+From tray 8, current [Flow-2 rules](AREA_FLOW_RULES.md) scale ordinary/armored damage budgets to 10/15 coins and independently scale completed break/clear rewards by 1.25 with one whole-coin rounding. The formulas above are base values; legacy active runs and Trials retain their original values. Current source, not the delivered v0.7.5 APK, includes this revision.
+
 ## Prisms and the shop
 
 The base run has one possible floating **×2 Prism** offer, scheduled at three seconds. It appears only when live candy is available, with a 1.5-second grace window for that condition. The offer remains tappable for four seconds. **One tap** duplicates the live candy; it does not require four taps. A clone retains its original's age, spent special effects and damage cooldown, so collecting a Prism does not rearm Impact or Splitter. The total live-object cap still applies.
 
-**Second Prism** is the separate map node below the central Feed starter. It is visible while locked, requires both tray 6 unlocked and Power 4, and costs 900 Crystal coins. Buying it allows another offer at 7.5 seconds, subject to the same live-candy and expiry rules. It preserves existing upgrades and Power. An expired or missed offer is not rerolled. The second offer is an opportunity, not a guarantee of two successful collections.
+**Second Prism** is the separate map node below the central Feed starter. It is visible while locked, requires both tray 8 unlocked and Power 4, and costs 900 Crystal coins. Existing owners retain it despite the former tray-6 gate. The same ability has a planned $2.99 permanent early-access route from tray 1; preview purchase is implemented, real billing remains incomplete. Buying it allows another offer at 7.5 seconds, subject to the same live-candy and expiry rules. It preserves existing upgrades and Power. An expired or missed offer is not rerolled. The second offer is an opportunity, not a guarantee of two successful collections.
 
 The Crystal map has the same 62 ordinary upgrade identities and legal sequential prerequisites as Bakery, in a new portrait composition with three rising faceted routes. The special purchase makes 63 displayed positions. Buying Feed 1 reveals the three route heads. Eligible affordable nodes are green, including when Infinite money is enabled. Owned nodes remain inspectable, and selecting a node does not buy it.
 

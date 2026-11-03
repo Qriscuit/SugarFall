@@ -1,5 +1,7 @@
 # Sugarfall
 
+Current source CHG-036 adds [area frames and signature abilities](PLINKO/docs/AREA_SIGNATURE_ABILITIES.md). The delivered v0.7.5 preview predates this work. Real billing, the next requested package, current legal progression and phone acceptance remain open; see [area status](AREA_STATUS.md).
+
 A portrait arcade game built in Godot, with three themed areas: Bakery, Gelato Garden and Crystal Candyworks. Each area has its own twelve trays, upgrade map, economy, art and ball mechanics.
 
 Open **`PLINKO/project.godot` in Godot 4.6.3**. The entry scene is `startup.tscn`; it loads the game behind the studio heartbeat and cream reveal. Keyboard/mouse desktop controls support development; Android phone acceptance remains part of the release checklist.

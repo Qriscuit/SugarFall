@@ -112,7 +112,7 @@ func _build_positions():
 		_paths[key] = path
 	# Dual Shot is an optional purchase, not a ninth saved family. Its visible
 	# root connection is separate from its Tray 8 + Power 6 purchase requirements.
-	if _layout_area in ["gelato","crystal"]:
+	if _layout_area in ["bakery","gelato","crystal"]:
 		_positions[TWIN_NODE] = _positions[TWIN_PARENT]+Vector2(0,440)
 		for entry in layout.get("special_nodes",[]):
 			if Vector2i(int(entry.id[0]),int(entry.id[1])) == TWIN_NODE:
@@ -149,7 +149,7 @@ func _entry_nodes() -> Array[Vector2i]:
 	return nodes
 
 func _frame_entry():
-	if g.area_id not in ["gelato","crystal"]: return
+	if g.area_id not in ["bakery","gelato","crystal"]: return
 	# Reserve the taller Dual Shot card even before selection so inspecting the
 	# visible locked node never hides it behind the newly opened panel.
 	var focus = Rect2(24,145,672,669).grow(-24)
@@ -206,19 +206,19 @@ func node_visible(i: int, n: int) -> bool:
 	return g.shop_node_visible(i,n)
 
 func twin_control_visible() -> bool:
-	return g.area_id in ["gelato","crystal"] and not g.trial_active
+	return g.area_id in ["bakery","gelato","crystal"] and not g.trial_active
 
 func special_owned() -> bool:
-	return g.crystal_launcher.owned() if g.area_id=="crystal" else g.twin_launchers
+	return g.ability_ui.owned()
 
 func special_unlocked() -> bool:
-	return g.crystal_launcher.unlocked() if g.area_id=="crystal" else g.gelato_launcher.unlocked()
+	return g.ability_ui.unlocked()
 
 func special_cost() -> int:
-	return g.crystal_launcher.cost() if g.area_id=="crystal" else g.gelato_launcher.cost()
+	return g.ability_ui.cost()
 
 func special_buy() -> bool:
-	return g.crystal_launcher.buy() if g.area_id=="crystal" else g.buy_twin_launchers()
+	return g.ability_ui.controller().buy()
 
 func node_prerequisites(node: Vector2i) -> Array[Vector2i]:
 	if node==TWIN_NODE: return [TWIN_PARENT]
@@ -665,6 +665,9 @@ func select_at(p):
 func press(p):
 	if not _input_allowed() or not touch_points.is_empty() or not overlay_touches.is_empty(): return
 	if twin_selected and twin_control_visible():
+		if buy_rect().has_point(p) and not special_owned() and not special_unlocked():
+			g.ability_ui.open("shop")
+			return
 		if buy_rect().has_point(p) and special_buy():
 			g.note = ""
 			g.note_time = 0
@@ -760,15 +763,17 @@ func draw():
 	g.button(PLAY_RECT,"Play",true)
 
 func _twin_effect_lines() -> Array[String]:
+	if g.area_id=="bakery": return g.ability_ui.effects()
 	if g.area_id=="crystal": return ["Two prisms can appear each run.","Tap a prism to double live balls."]
 	return ["Two slower launchers. Power starts over.","Power costs more and grows stronger."]
 
 func _twin_gate_text() -> String:
+	if g.area_id=="bakery": return "Owned · Jam Burst" if special_owned() else g.ability_ui.gate_text()
 	if g.area_id=="crystal":
 		if special_owned(): return "Owned · Two prisms per run"
 		if special_unlocked(): return "Another chance to double your balls"
-		return "Requires tray %d + Power %d" % [int(g.tuning.get("crystal_second_prism_unlock_level",6)),int(g.tuning.get("crystal_second_prism_unlock_power",4))]
-	if g.twin_launchers: return "Owned · Power upgrades both"
+		return "Requires tray %d + Power %d" % [maxi(8,int(g.tuning.get("crystal_second_prism_unlock_level",8))),int(g.tuning.get("crystal_second_prism_unlock_power",4))]
+	if special_owned(): return "Owned · Power upgrades both"
 	if g.gelato_launcher.unlocked(): return "Both launchers follow your aim"
 	return "Requires tray %d + Power %d" % [int(g.tuning.get("twin_unlock_level",8)),int(g.tuning.get("twin_unlock_power",6))]
 
@@ -776,12 +781,12 @@ func _draw_twin_card():
 	g.draw_set_transform(card_offset(),0,Vector2.ONE)
 	g.ui_panel(TWIN_CARD_RECT)
 	_draw_twin_icon(g,Rect2(68,866,64,64),Color.WHITE)
-	_card_label("Second Prism" if g.area_id=="crystal" else "Dual Shot",TWIN_TITLE_RECT,27,g.WHITE)
+	_card_label(g.ability_ui.title(),TWIN_TITLE_RECT,27,g.WHITE)
 	_card_label(_twin_gate_text(),TWIN_STATUS_RECT,21,g.MUTED)
 	if special_owned():
 		_purchase_button(TWIN_BUY_RECT,"Owned",false)
 	elif not special_unlocked():
-		_purchase_button(TWIN_BUY_RECT,"Locked",false)
+		_purchase_button(TWIN_BUY_RECT,"Unlock options",false)
 	else:
 		_purchase_button(TWIN_BUY_RECT,"Buy · %s" % g.credits_text(special_cost()),g.can_afford(special_cost()))
 	var lines = _twin_effect_lines()
@@ -809,6 +814,9 @@ func _purchase_button(rect: Rect2, label: String, enabled: bool):
 	_card_label(label,rect.grow(-24),26,g.WHITE,true)
 
 func _draw_twin_icon(canvas: CanvasItem, rect: Rect2, tint: Color):
+	if g.area_id=="bakery":
+		g.bakery_ability.draw_icon(canvas,rect,tint)
+		return
 	if g.area_id=="crystal":
 		g.food_art.draw(canvas,"multiply_pickup",rect,tint)
 		return

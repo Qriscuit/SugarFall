@@ -1,6 +1,6 @@
 # Sugarfall — default area checklist
 
-Template version 5 · 3 November 2026
+Template version 6 · 3 November 2026
 
 An **area** is a themed campaign with its own mechanic, boards, upgrades, economy and saved progress. A **tray** is one playable board inside an area. The current default is **12 trays per area**.
 
@@ -35,7 +35,8 @@ Shared assets still need integration and verification in the new area. Artwork a
 | Theme, materials, palette, silhouettes and references | TBD |
 | Tray count | 12 by default; document and integrate any change |
 | Starting shot strength, speed, cadence and run duration | TBD |
-| Area-specific upgrade or transformation | TBD; record if deliberately omitted |
+| Required signature ability and earned tray-8 route | TBD; distinct effect, Power/coin gates, tradeoffs and art; cannot be omitted |
+| Permanent early purchase from tray 1 | US$2.99 design price per area; same ability, localized store price and verified restore; public billing must be integrated |
 | Normal entry requirement, fee and paying area's wallet | TBD |
 | First-entry defaults / what persists on revisit | TBD |
 | What is new, what is shared, what is deliberately excluded | TBD |
@@ -160,8 +161,10 @@ Fill one row per tray. `Implemented` covers the authored board; `Verified` needs
 | U04 | Make locked, revealed, affordable, unaffordable, owned and rebuilding states clear. Eligible affordable purchases are green, including after resets. | No | No | No | |
 | U05 | Integrate selection cards, live prices, purchase feedback, pan/zoom and comfortable touch targets without art/node/path overlap. | No | No | No | |
 | U06 | Verify legal purchase paths, caps, reset/rebuy behavior, no duplicate grants and save-failure rollback. Existing owners keep earned upgrades. | No | No | No | |
+| U07 | Build a distinctive permanent signature ability that changes the area's ball, launcher or map flow. Provide the earned route from tray 8 with explicit Power/coin gates, art, feedback, tradeoffs and saved ownership. Preserve existing owners. This core requirement cannot be omitted. | No | No | No | |
+| U08 | Offer the same ability as an optional permanent early unlock from tray 1 at a US$2.99 design price per area. Integrate localized real-store pricing, verified purchase/restore, idempotent ownership and save-failure handling; test on Play. Preview simulation does not complete this requirement. | No | No | No | |
 
-The map may use a different shape, node count or ownership model from existing areas. Document it and integrate the corresponding purchase, save and reveal rules; the current 62-node family structure is a reference, not a required future design.
+The map may use a different shape, node count or ownership model from existing areas. Document it and integrate the corresponding purchase, save and reveal rules; the current 62-node family structure is a reference, not a required future design. U07 and U08 are required production work for every area. The player may choose earned progression or the optional paid shortcut; a preview test purchase is recorded separately from real public billing.
 
 ## 7. Full-game integration and saves
 

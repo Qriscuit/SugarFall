@@ -1,10 +1,14 @@
 extends RefCounted
-## Schema 5 is Crystal-only and persists Prism opportunities. Existing areas
-## keep their schema4 payload. Legacy schemas1/2 belong to Bakery.
-const SCHEMA = 5
+## Schema 6 saves active Bakery Jam Burst charge and spent balls. Unowned Bakery
+## and Gelato keep schema4; Crystal keeps its schema5 Prism state.
+const SCHEMA = 6
+const CRYSTAL_SCHEMA = 5
+const BAKERY_SCHEMA = 6
 const LEGACY_AREA_SCHEMA = 4
 const CRYSTAL_FIELDS = ["crystal_second_prism","crystal_run"]
+const BAKERY_FIELDS = ["bakery_run"]
 const CrystalLauncher = preload("res://scripts/crystal_launcher.gd")
+const BakeryAbility = preload("res://scripts/bakery_ability.gd")
 const DRAIN_FIELDS = ["clear_draining", "catch_settle_remaining", "settling_bucket"]
 ## v0.5.4 changes shop prices and the unopened-area requirement only. This exact
 ## content pair has identical board bytes and in-run physics/payout parameters.
@@ -93,16 +97,25 @@ static func capture(game) -> Dictionary:
 	var fingerprint = content_fingerprint(game.area_id)
 	if fingerprint.is_empty():
 		return {}
+	var schema = CRYSTAL_SCHEMA if game.area_id=="crystal" else LEGACY_AREA_SCHEMA
+	if game.area_id=="bakery" and game.bakery_run.get("enabled",false): schema=BAKERY_SCHEMA
 	var snapshot = {
-		"schema": SCHEMA if game.area_id=="crystal" else LEGACY_AREA_SCHEMA, "area_id": game.area_id, "fingerprint": fingerprint, "run_id": identity,
+		"schema": schema, "area_id": game.area_id, "fingerprint": fingerprint, "run_id": identity,
 		# Godot exposes these uint64 RNG values as signed int64 Variants. Never
 		# send them through JSON numbers, whose double conversion loses bits.
 		"rng_seed": str(game.rng.seed), "rng_state": str(game.rng.state)
 	}
 	for key in STATE_FIELDS:
 		snapshot[key] = _encode(game.get(key))
+	# Campaign activation history can outlive a verified store entitlement.
+	# The checkpoint records the physics of this run, not that history.
+	snapshot.twin_launchers=game.gelato_launcher.is_twin()
+	snapshot.power_reset_tier=game.power_reset_tier if snapshot.twin_launchers else 0
 	if game.area_id=="crystal":
 		var extra: Dictionary=game.crystal_launcher.capture_extra()
+		for key in extra: snapshot[key]=_encode(extra[key])
+	elif schema==BAKERY_SCHEMA:
+		var extra: Dictionary=game.bakery_ability.capture_extra()
 		for key in extra: snapshot[key]=_encode(extra[key])
 	return snapshot
 
@@ -119,10 +132,13 @@ static func validate_and_decode(snapshot, game) -> Dictionary:
 	var root_keys = STATE_FIELDS + ["schema", "area_id", "fingerprint", "run_id", "rng_seed", "rng_state"]
 	if not snapshot.has("schema") or not _integer(snapshot.schema, 1, SCHEMA):
 		return _failure("Unsupported checkpoint schema")
-	if snapshot.schema==SCHEMA:
+	if snapshot.schema==CRYSTAL_SCHEMA:
 		if snapshot.get("area_id")!="crystal": return _failure("Crystal checkpoint schema belongs to Crystal")
 		root_keys+=CRYSTAL_FIELDS
 	elif snapshot.get("area_id")=="crystal": return _failure("Crystal checkpoint requires its own run state")
+	if snapshot.schema==BAKERY_SCHEMA:
+		if snapshot.get("area_id")!="bakery": return _failure("Jam Burst checkpoint belongs to Bakery")
+		root_keys+=BAKERY_FIELDS
 	if snapshot.schema < 4:
 		var legacy_keys = root_keys.duplicate()
 		if snapshot.schema < 3: legacy_keys.erase("area_id")
@@ -206,14 +222,22 @@ static func validate_and_decode(snapshot, game) -> Dictionary:
 			return _failure("Invalid upgrade level")
 		state.levels.append(int(snapshot.levels[i]))
 	state.trial_active = snapshot.trial_active
+	if state.twin_launchers and not state.trial_active and not game.ability_grant_active(game.twin_launchers):
+		return _failure("Twin launcher access is not verified")
 	if game.area_id=="crystal":
 		var crystal=CrystalLauncher.validate_extra(snapshot,state,game)
 		if not crystal.ok: return _failure("Invalid Crystal run state")
 		for key in CRYSTAL_FIELDS: state[key]=crystal[key]
+	elif game.area_id=="bakery":
+		state.bakery_run={"enabled":false,"normal_launches":0}
+		if snapshot.schema==BAKERY_SCHEMA:
+			var bakery=BakeryAbility.validate_extra(snapshot,state,game)
+			if not bakery.ok: return _failure("Invalid Jam Burst run state")
+			state.bakery_run=bakery.bakery_run
 	if state.trial_active:
 		if state.wave not in [4, 8, 12] or state.levels != TRIAL_LEVELS or state.twin_launchers or state.power_reset_tier!=0 or game.highest_unlocked < 4:
 			return _failure("Invalid trial configuration")
-	elif state.current_level != game.current_level or state.levels != game.levels or state.twin_launchers != game.twin_launchers or state.power_reset_tier != game.power_reset_tier or state.current_level > game.highest_unlocked:
+	elif state.current_level != game.current_level or state.levels != game.levels or state.twin_launchers != game.gelato_launcher.is_twin() or state.power_reset_tier != (game.power_reset_tier if game.gelato_launcher.is_twin() else 0) or state.current_level > game.highest_unlocked:
 		return _failure("Checkpoint does not match campaign progress")
 	var slot_limit = 2 if state.trial_active or game.highest_unlocked >= 4 else 1
 	if not snapshot.equipped is Array or snapshot.equipped.size() > slot_limit:
@@ -255,6 +279,8 @@ static func validate_and_decode(snapshot, game) -> Dictionary:
 			state[key][kind] = int(snapshot[key][kind])
 	if _sum_values(state.special_stats) != state.destroyed or _sum_values(state.type_drops) != state.total_spawned:
 		return _failure("Checkpoint counters are inconsistent")
+	if snapshot.schema==BAKERY_SCHEMA and state.bakery_run.normal_launches!=state.type_drops.normal:
+		return _failure("Jam Burst charge does not match normal launches")
 	if state.combo > state.max_combo or state.max_combo > state.destroyed:
 		return _failure("Checkpoint combo is inconsistent")
 	var total_time = game.BASE_SECONDS + state.levels[7] * game.CLOCK_STEP + state.time_bonus
@@ -269,8 +295,9 @@ static func validate_and_decode(snapshot, game) -> Dictionary:
 	if snapshot.pegs.size() != expected_count:
 		return _failure("Checkpoint peg count does not match its board")
 	var family = str(spec.get("family", "broadstagger"))
-	var base_hp = float(spec.get("base_hp", 1.0 + (state.wave - 1) * 0.12))
-	if state.trial_active: base_hp = float(spec.get("trial_base_hp",base_hp))
+	# The profile loader pins the run's rules before decoding, preserving old
+	# active boards while newly started runs use the current difficulty wall.
+	var base_hp = game.normal_peg_hp(state.wave,state.trial_active)
 	var clock_count = int(spec.get("clock_peg_count", 0 if state.wave == 1 else 2))
 	var armor_count = int(spec.get("armored_count", 1 if state.wave >= 10 else 0))
 	state.pegs = []
@@ -306,7 +333,9 @@ static func validate_and_decode(snapshot, game) -> Dictionary:
 		return _failure("Invalid ball count")
 	state.balls = []
 	for ball in snapshot.balls:
-		if not _keys_match(ball, ["p", "v", "kind", "r", "used", "productive", "cool", "life", "dead"]):
+		var ball_keys = ["p", "v", "kind", "r", "used", "productive", "cool", "life", "dead"]
+		if snapshot.schema==BAKERY_SCHEMA and ball is Dictionary and ball.has("jam"): ball_keys.append("jam")
+		if not _keys_match(ball, ball_keys):
 			return _failure("Invalid ball fields")
 		if not _vector(ball.p, -100.0, 1500.0) or not _vector(ball.v, -10000.0, 10000.0):
 			return _failure("Invalid ball position or velocity")
@@ -314,6 +343,8 @@ static func validate_and_decode(snapshot, game) -> Dictionary:
 			return _failure("Crystal ball speed does not match its straight-flight rules")
 		if not ball.kind is String or ball.kind not in BALL_KINDS:
 			return _failure("Invalid ball kind")
+		if ball.has("jam") and (not ball.jam is bool or ball.kind!="normal"):
+			return _failure("Invalid jam-filled ball")
 		var current_radius=game.ball_radius(ball.kind)
 		var legacy_pumpkin=ball.kind=="impact" and _number(ball.r,9.0,9.0)
 		if not _number(ball.r, 6.0, 11.25) or (float(ball.r)!=current_radius and not legacy_pumpkin):
@@ -329,6 +360,7 @@ static func validate_and_decode(snapshot, game) -> Dictionary:
 		# legacy impact has already hit a peg and must not regain its crush.
 		var special_used=ball.used or (legacy_pumpkin and ball.productive)
 		state.balls.append({"p": Vector2(float(ball.p[0]), float(ball.p[1])), "v": Vector2(float(ball.v[0]), float(ball.v[1])), "kind": ball.kind, "r": current_radius, "used": special_used, "productive": ball.productive, "cool": float(ball.cool), "life": float(ball.life), "dead": ball.dead})
+		if ball.has("jam"): state.balls[-1].jam=ball.jam
 	if state.clear_draining and state.balls.is_empty() and state.catch_settle_remaining <= 0:
 		return _failure("A completed drain must be stored as a result")
 	if not snapshot.pickups is Array or snapshot.pickups.size() > MAX_PICKUPS:

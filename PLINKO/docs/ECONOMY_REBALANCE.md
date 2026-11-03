@@ -1,5 +1,7 @@
 # Coin budgets, Impact and Gelato entry
 
+**Current-source follow-up, CHG-036:** [Flow rules 2](AREA_FLOW_RULES.md) retains independent HP/coin budgets but scales new campaign HP by 1.15 and damage/break/clear amounts by 1.25 from tray 8, rounded once. Legacy active runs and Trials keep their pinned values. The baseline numbers and legal-campaign evidence below are historical; current progression remains open.
+
 Implemented tuning pass, 2 November 2026. Covers SF-011, SF-012 and SF-015, plus the requested hit and money feedback. These are tested starting values for phone playtesting, not a claim that the final release economy is calibrated.
 
 3 November follow-up: [legal progression across all three areas](AREA_PROGRESSION_BALANCE.md) now measures the current shuffled Gelato graph and Crystal Second Prism with earned wallets, paid entry and paid Dual Shot rebuilding. All six linked campaigns clear under two bounded shopping policies; no coin, price, HP or cadence values changed. The historical two-area experiments below remain evidence for this original implementation, not the latest three-area pacing acceptance. Human sessions and flagged trays still need review.

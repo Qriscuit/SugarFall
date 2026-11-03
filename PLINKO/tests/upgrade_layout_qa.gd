@@ -147,15 +147,18 @@ func inspect_arc(positions: Dictionary, tile_size: Vector2) -> Dictionary:
 func inspect_layout(game):
 	var map=game.upgrade_map
 	var nodes=Graph.nodes()
+	var all_nodes=nodes.duplicate()
+	all_nodes.append(map.TWIN_NODE)
 	var positions: Dictionary=map._positions
 	var paths: Dictionary=map._paths
 	var expected={}
 	for child in nodes:
 		for parent in Graph.prerequisites(child.x,child.y):
 			expected[Vector4i(parent.x,parent.y,child.x,child.y)]=true
-	var complete=positions.size()==62 and positions.size()==nodes.size()
-	for node in nodes: complete=complete and positions.has(node)
-	check(complete,"Every original recipe has exactly one production-map position")
+	expected[Vector4i(map.TWIN_PARENT.x,map.TWIN_PARENT.y,map.TWIN_NODE.x,map.TWIN_NODE.y)]=true
+	var complete=positions.size()==63 and positions.size()==all_nodes.size()
+	for node in all_nodes: complete=complete and positions.has(node)
+	check(complete,"All62 original recipes and Jam Burst have exactly one production-map position")
 	if not complete: return
 	var exact=paths.size()==expected.size()
 	for key in expected: exact=exact and paths.has(key)
@@ -165,7 +168,7 @@ func inspect_layout(game):
 	var attached=true
 	var nonsingular=true
 	var straight=true
-	for node in nodes: finite=finite and positions[node].is_finite()
+	for node in all_nodes: finite=finite and positions[node].is_finite()
 	for edge in paths:
 		var path: PackedVector2Array=paths[edge]
 		straight=straight and path.size()==2
@@ -178,13 +181,15 @@ func inspect_layout(game):
 		attached=attached and Rect2(source-map.TILE_SIZE*.5,map.TILE_SIZE).grow(EPS).has_point(path[0]) and Rect2(destination-map.TILE_SIZE*.5,map.TILE_SIZE).grow(EPS).has_point(path[-1])
 		for i in range(path.size()-1): nonsingular=nonsingular and path[i].distance_to(path[i+1])>EPS
 	check(finite,"All positions and rendered path points are finite")
-	check(straight and paths.size()==61,"Every prerequisite is rendered as one of 61 straight two-point connections")
+	check(straight and paths.size()==62,"All61 recipe prerequisites plus the Jam Burst branch are straight connections")
 	check(nonsingular,"Every route has at least two distinct points and no zero-length segments")
 	check(attached,"Every rendered route attaches to its own source and destination tile")
 	if not finite or not nonsingular: return
-	var arc_report=inspect_arc(positions,map.TILE_SIZE)
+	var recipe_positions=positions.duplicate()
+	recipe_positions.erase(map.TWIN_NODE)
+	var arc_report=inspect_arc(recipe_positions,map.TILE_SIZE)
 	var layout_bounds=Rect2(positions[nodes[0]],Vector2.ZERO)
-	for node in nodes: layout_bounds=layout_bounds.expand(positions[node])
+	for node in all_nodes: layout_bounds=layout_bounds.expand(positions[node])
 	var overview_size=(layout_bounds.size+map.TILE_SIZE)*map.MIN_ZOOM
 	check(overview_size.x<=map.FOCUS_AREA.size.x and overview_size.y<=map.FOCUS_AREA.size.y,"The entire map including tile edges fits the usable viewport at minimum zoom")
 	var first_choices_fit=true
@@ -195,19 +200,19 @@ func inspect_layout(game):
 	check(first_choices_fit,"All three first revealed choices fit the usable viewport at the default camera")
 	var crowded=[]
 	var minimum_gap=INF
-	for i in range(nodes.size()):
-		for j in range(i+1,nodes.size()):
-			var delta: Vector2=(positions[nodes[i]]-positions[nodes[j]]).abs()-map.TILE_SIZE
+	for i in range(all_nodes.size()):
+		for j in range(i+1,all_nodes.size()):
+			var delta: Vector2=(positions[all_nodes[i]]-positions[all_nodes[j]]).abs()-map.TILE_SIZE
 			var gap=maxf(delta.x,delta.y)
 			minimum_gap=minf(minimum_gap,gap)
-			if gap<MIN_TILE_GAP-EPS: crowded.append([nodes[i],nodes[j],gap])
-	check(crowded.is_empty(),"All 62 tiles retain at least 36 logical pixels of axis clearance")
+			if gap<MIN_TILE_GAP-EPS: crowded.append([all_nodes[i],all_nodes[j],gap])
+	check(crowded.is_empty(),"All63 tiles retain at least36 logical pixels of axis clearance")
 	note_examples("crowded tiles",crowded)
 	var obstructions=[]
 	var self_crossings=[]
 	for edge in paths:
 		var path: PackedVector2Array=paths[edge]
-		for node in nodes:
+		for node in all_nodes:
 			if node==Vector2i(edge.x,edge.y) or node==Vector2i(edge.z,edge.w): continue
 			var tile=Rect2(positions[node]-map.TILE_SIZE*.5,map.TILE_SIZE).grow(4)
 			for i in range(path.size()-1):
@@ -232,7 +237,7 @@ func inspect_layout(game):
 			if paths_cross(paths[a],paths[b],shared_nodes(a,b),positions,map.TILE_SIZE): crossing.append([a,b])
 	check(crossing.is_empty(),"No two routes intersect or overlap outside their legitimate shared tile")
 	note_examples("crossing routes",crossing)
-	report={"nodes":nodes.size(),"edges":paths.size(),"minimum_axis_tile_gap":minimum_gap,"crowded_pairs":crowded.size(),"obstructed_routes":obstructions.size(),"self_crossings":self_crossings.size(),"crossing_edge_pairs":crossing.size()}
+	report={"nodes":all_nodes.size(),"edges":paths.size(),"minimum_axis_tile_gap":minimum_gap,"crowded_pairs":crowded.size(),"obstructed_routes":obstructions.size(),"self_crossings":self_crossings.size(),"crossing_edge_pairs":crossing.size()}
 	report.merge(arc_report)
 	var before=var_to_bytes([positions,paths])
 	game.mode="shop"
@@ -245,7 +250,7 @@ func inspect_layout(game):
 	for z in [map.MIN_ZOOM,1.0,map.MAX_ZOOM]:
 		map.zoom=z
 		map.pan=Vector2(137,-93)
-		for node in nodes:
+		for node in all_nodes:
 			transformed=transformed and map.point(node.x,node.y).is_equal_approx(map.center()+positions[node]*z)
 	check(transformed,"Tile positions use the same pan and zoom transform as their rendered routes")
 
