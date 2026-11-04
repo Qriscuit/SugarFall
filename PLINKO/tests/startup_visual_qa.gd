@@ -49,6 +49,7 @@ func run():
 			await snap(viewport,game,output,"studio-heart-"+str(roundi(moment*100)),resolution)
 			var frame=viewport.get_texture().get_image()
 			if moment==1.08: check(same_pixels(resting,frame),"Heartbeat settles back to the exact subdued image")
+			if moment==.78: check(same_pixels(resting,frame),"The former second-pulse peak stays at the exact resting image")
 			if moment==.28: check(not same_pixels(resting,frame) and studio.stamp.scale.x>1.05,"Heartbeat visibly brightens and grows the stamp")
 			if moment==.28: check(studio.stamp.get_global_transform()*studio.stamp.pivot_offset==bottom_anchor,"Rendered pulse stays anchored at the mark's bottom center")
 			if moment==2.88: check(studio.stamp.scale.x>1.05,"Heartbeat repeats while real loading is pending")

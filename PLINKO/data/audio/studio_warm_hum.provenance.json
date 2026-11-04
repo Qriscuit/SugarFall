@@ -8,17 +8,14 @@
   "frames": 57330,
   "duration_seconds": 1.3,
   "peak_dbfs": -6.020599913279624,
-  "rms_dbfs": -19.627285127440782,
+  "rms_dbfs": -20.31305408413363,
   "timing": {
-    "first_rise_start": 0.06,
-    "first_peak": 0.28,
-    "first_release_end": 0.63,
-    "second_rise_start": 0.65,
-    "second_peak": 0.78,
-    "second_release_end": 1.04,
-    "second_strength": 0.5
+    "rise_start": 0.06,
+    "peak": 0.28,
+    "release_end": 0.63,
+    "swells_per_cycle": 1
   },
-  "quiet_tail_seconds": 0.26,
+  "quiet_tail_seconds": 0.67,
   "clipped_samples": 0,
-  "sha256": "f90b3b557fd9cf96610943d1ef263dc9a704d445650cae6ba535b897197461ce"
+  "sha256": "e6340a151a0b5a994eeb76e86d346cb5184bfc5f7635c26c09defef376c73440"
 }

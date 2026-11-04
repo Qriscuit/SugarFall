@@ -1,4 +1,4 @@
-"""Read the actual PCM asset and check slower-pulse timing and audio headroom."""
+"""Read the actual PCM asset and check single-swell timing and audio headroom."""
 import argparse
 import array
 import hashlib
@@ -46,10 +46,12 @@ def main():
     first = rms(.28)
     second = rms(.78)
     check(all(value == 0 for value in section(0, .06)), 'The loop starts with exactly silent samples')
-    check(all(value == 0 for value in section(1.04, 1.30)), 'The last 260 ms are exactly silent for a clean handoff')
-    check(.42 < second/first < .58, 'The second note is about half the first in the actual PCM')
+    check(all(value == 0 for value in section(.63, 1.30)), 'The last 670 ms are exactly silent for a clean handoff')
+    check(second == 0, 'The former second-note interval has exactly zero PCM energy')
     check(.4 < rms(.17)/first < .65, 'The first note rises gradually through its midpoint')
     check(.4 < rms(.455)/first < .65, 'The first note releases gradually through its midpoint')
+    check(rms(.10) < rms(.17) < first and first > rms(.455) > rms(.60),
+          'Actual PCM energy has one gradual rise and release at the authored sample windows')
     peak = max(abs(value)/32768 for value in pcm)
     check(.499 < peak < .501 and all(abs(value) < 32767 for value in pcm), 'Half-scale source peak leaves headroom with no clipping')
     largest_step = max(abs(pcm[index+channels]-pcm[index])/32768 for index in range(len(pcm)-channels))

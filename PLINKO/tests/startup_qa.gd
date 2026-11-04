@@ -72,7 +72,7 @@ func queue_fixture(g, paths: Array[String]):
 
 func heartbeat_and_native_layout():
 	check(Startup.heartbeat_at(0) == 0 and Startup.heartbeat_at(.03) == 0 and Startup.heartbeat_at(1.10) == 0,"Native engine still and quiet runtime heartbeat use exactly zero pulse")
-	check(Startup.heartbeat_at(.28) == 1.0 and is_equal_approx(Startup.heartbeat_at(.78),.50),"Heartbeat has one rounded strong beat and a gentler second pulse")
+	check(Startup.heartbeat_at(.28) == 1.0 and Startup.heartbeat_at(.78)==0,"Heartbeat has one rounded peak and no smaller second pulse")
 	check(is_equal_approx(Startup.heartbeat_at(.28),Startup.heartbeat_at(1.58)),"Heartbeat repeats every 1.3 seconds")
 	check(is_equal_approx(Startup.heartbeat_at(.17),.5) and is_equal_approx(Startup.heartbeat_at(.455),.5),"Primary beat takes 220 ms to rise and 350 ms to release instead of snapping in or out")
 	check(Startup.heartbeat_at(NAN)==0 and Startup.heartbeat_at(INF)==0 and Startup.heartbeat_at(-1)==0,"Invalid timing never injects nonfinite pulse values into shaders")
@@ -84,6 +84,24 @@ func heartbeat_and_native_layout():
 		continuous = continuous and absf(Startup.heartbeat_at(tick*.001+.001)-Startup.heartbeat_at(tick*.001))<.007
 	check(bounded,"All sampled heartbeat strengths stay within shader bounds")
 	check(continuous,"Rise, release and cycle seams have a bounded smooth pulse slope")
+	var monotonic_rise=true
+	var monotonic_release=true
+	var quiet_tail=true
+	var positive_regions=0
+	var previous=0.0
+	for tick in range(3901):
+		var time=tick*.001
+		var value=Startup.heartbeat_at(time)
+		var phase=fposmod(time,Startup.BEAT_SECONDS)
+		if value>0 and previous==0: positive_regions+=1
+		if phase>.061 and phase<=.28: monotonic_rise=monotonic_rise and value>=previous
+		if phase>.281 and phase<=.63: monotonic_release=monotonic_release and value<=previous
+		if phase>=.63 and phase<1.30: quiet_tail=quiet_tail and value==0
+		previous=value
+	check(monotonic_rise,"Every sampled active rise increases monotonically over three cycles")
+	check(monotonic_release,"Every sampled release decreases monotonically over three cycles")
+	check(quiet_tail,"The entire former second-pulse interval stays exactly at rest")
+	check(positive_regions==3,"Three full cycles contain exactly three grow/shrink intervals")
 	var g = fixture()
 	check(g.preference_reads == 0 and g.status == "preview" and g.requests.is_empty(),"Opted-in scene fixture bypasses preference discovery and automatic loading")
 	check(g.stamp.texture.get_size() == Vector2(301,855),"Production scene retains the supplied native stamp dimensions")
@@ -116,6 +134,8 @@ func warm_hum_contract():
 	check(g.hum.stream_paused and is_equal_approx(g.heartbeat_elapsed,.28),"Background pauses the hum and heartbeat together")
 	g._notification(Node.NOTIFICATION_APPLICATION_RESUMED); g._process(10)
 	check(not g.hum.stream_paused and g.hum.playing and g.hum_start_count==1 and is_equal_approx(g.heartbeat_elapsed,.28),"Resume realigns the same voice without spending background time")
+	g.heartbeat_elapsed = .78; g._update_hum_volume()
+	check(g.hum.volume_db<=-60,"The removed second visual pulse has no corresponding runtime audio swell")
 	g.heartbeat_elapsed = 1.10; g._update_hum_volume()
 	check(g.hum.volume_db<=-60,"Each heartbeat has a silent release before the cream handoff")
 	g.heartbeat_elapsed = 2.61; g._update_hum_volume()

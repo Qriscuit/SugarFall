@@ -7,10 +7,6 @@ const BEAT_SECONDS = 1.3
 const FIRST_RISE_START = .06
 const FIRST_PEAK = .28
 const FIRST_RELEASE_END = .63
-const SECOND_RISE_START = .65
-const SECOND_PEAK = .78
-const SECOND_RELEASE_END = 1.04
-const SECOND_STRENGTH = .50
 const HUM_VOLUME_DB = -7.0
 const MAX_PENDING = 3
 const FoodArt = preload("res://scripts/food_art.gd")
@@ -114,11 +110,9 @@ func _read_startup_preferences() -> Dictionary:
 static func heartbeat_at(seconds: float) -> float:
 	if not is_finite(seconds): return 0.0
 	var phase = fposmod(maxf(0.0,seconds),BEAT_SECONDS)
-	# Slow, rounded rise and release; a gentler second pulse feels alive without
-	# snapping the scale or spotlight. Exact quiet intervals permit clean reveals.
+	# One slow, rounded grow/shrink per cycle. The quiet tail permits clean reveals.
 	var first=smoothstep(FIRST_RISE_START,FIRST_PEAK,phase)*(1.0-smoothstep(FIRST_PEAK,FIRST_RELEASE_END,phase))
-	var second=smoothstep(SECOND_RISE_START,SECOND_PEAK,phase)*(1.0-smoothstep(SECOND_PEAK,SECOND_RELEASE_END,phase))
-	return first+SECOND_STRENGTH*second
+	return first
 
 func _render_heartbeat():
 	var beat = 0.0 if reduced_motion or status == "error" else heartbeat_at(heartbeat_elapsed)
@@ -145,7 +139,7 @@ func _update_hum_volume():
 	if hum == null: return
 	var phase = fposmod(heartbeat_elapsed,BEAT_SECONDS)
 	# Every cycle ends in silence, so the settled-frame reveal has no cut thump.
-	var gain = smoothstep(FIRST_RISE_START,FIRST_RISE_START+.06,phase)*(1.0-smoothstep(SECOND_RELEASE_END-.08,SECOND_RELEASE_END,phase))
+	var gain = smoothstep(FIRST_RISE_START,FIRST_RISE_START+.06,phase)*(1.0-smoothstep(FIRST_RELEASE_END-.08,FIRST_RELEASE_END,phase))
 	hum.volume_db = HUM_VOLUME_DB+linear_to_db(maxf(.001,gain))
 
 func _pause_hum():

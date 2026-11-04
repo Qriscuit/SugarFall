@@ -1,0 +1,588 @@
+{
+  "date": "2026-11-03",
+  "change": "Remove the smaller second studio pulse and matching hum swell; preserve primary timing, art and loader behavior.",
+  "engine": "Godot 4.6.3",
+  "timing": {
+    "cycle_seconds": 1.3,
+    "rise_start_seconds": 0.06,
+    "peak_seconds": 0.28,
+    "release_end_seconds": 0.63,
+    "quiet_tail_seconds": 0.67,
+    "active_intervals_per_cycle": 1,
+    "minimum_foreground_seconds": 2.6,
+    "maximum_scale": 1.055,
+    "anchor": "bottom center"
+  },
+  "results": [
+    {
+      "scope": "controller",
+      "passed": 83,
+      "failed": 0
+    },
+    {
+      "scope": "mixer",
+      "passed": 7,
+      "failed": 0
+    },
+    {
+      "scope": "native_pcm_and_art",
+      "passed": 13,
+      "failed": 0
+    }
+  ],
+  "runtime_and_mixer_passed": 90,
+  "native_asset_passed_separately": 13,
+  "failed": 0,
+  "curve_coverage": [
+    "One active interval per cycle across three complete cycles sampled at1ms",
+    "Monotonic active rise and release",
+    "Former second-peak interval exactly at rest",
+    "Finite bounded strengths, smooth slope and repeating1.30s cycle",
+    "Retained centered native aspect, bottom-center anchor and5.5% peak",
+    "Reduced Motion remains static"
+  ],
+  "lifecycle_coverage": [
+    "Preference-before-sound gate and saved mute",
+    "Single private looping voice",
+    "Background pause and phase-aligned resume",
+    "Loading failure and Retry",
+    "True resource-readiness queue and bounded concurrent requests",
+    "2.60s minimum, mid-pulse readiness waits for quiet frame, one handoff",
+    "Startup input and simulation hold; all-area checkpoint state remains unchanged"
+  ],
+  "audio": {
+    "source": {
+      "asset": "data/audio/studio_warm_hum.wav",
+      "method": "Original deterministic additive synthesis; no sampled or third-party game audio.",
+      "generator": "tools/generate_studio_hum.py",
+      "sample_rate": 44100,
+      "channels": 2,
+      "sample_width_bits": 16,
+      "frames": 57330,
+      "duration_seconds": 1.3,
+      "peak_dbfs": -6.020599913279624,
+      "rms_dbfs": -20.31305408413363,
+      "timing": {
+        "rise_start": 0.06,
+        "peak": 0.28,
+        "release_end": 0.63,
+        "swells_per_cycle": 1
+      },
+      "quiet_tail_seconds": 0.67,
+      "clipped_samples": 0,
+      "sha256": "e6340a151a0b5a994eeb76e86d346cb5184bfc5f7635c26c09defef376c73440"
+    },
+    "mixer": {
+      "captured_frames": 114688,
+      "failed": 0,
+      "failures": [],
+      "mix_rate": 44100.0,
+      "passed": 7,
+      "peak": 0.223280444741249,
+      "physical_listening": false
+    },
+    "native_pcm": {
+      "passed": 13,
+      "failed": 0,
+      "checks": [
+        {
+          "passed": true,
+          "label": "Native asset is stereo 16-bit 44.1 kHz PCM"
+        },
+        {
+          "passed": true,
+          "label": "One audio loop is exactly 1.30 seconds"
+        },
+        {
+          "passed": true,
+          "label": "Audio loop and two-cycle presentation hold use matching runtime timing"
+        },
+        {
+          "passed": true,
+          "label": "The loop starts with exactly silent samples"
+        },
+        {
+          "passed": true,
+          "label": "The last 670 ms are exactly silent for a clean handoff"
+        },
+        {
+          "passed": true,
+          "label": "The former second-note interval has exactly zero PCM energy"
+        },
+        {
+          "passed": true,
+          "label": "The first note rises gradually through its midpoint"
+        },
+        {
+          "passed": true,
+          "label": "The first note releases gradually through its midpoint"
+        },
+        {
+          "passed": true,
+          "label": "Actual PCM energy has one gradual rise and release at the authored sample windows"
+        },
+        {
+          "passed": true,
+          "label": "Half-scale source peak leaves headroom with no clipping"
+        },
+        {
+          "passed": true,
+          "label": "PCM has no abrupt sample discontinuity or click-sized jump"
+        },
+        {
+          "passed": true,
+          "label": "Provenance identifies the generated PCM byte-for-byte"
+        },
+        {
+          "passed": true,
+          "label": "The user-supplied native logo remains byte-for-byte unchanged"
+        }
+      ],
+      "duration_seconds": 1.3,
+      "peak": 0.5,
+      "second_to_first_rms": 0.0,
+      "maximum_sample_step": 0.02618408203125,
+      "physical_listening": false,
+      "provenance": "data/audio/studio_warm_hum.provenance.json"
+    },
+    "imported_cache_sha256": "62edf979d0b4ff3f419de37fd51bcdd70bfce89b89a4f1460bcfe2604ceebc09"
+  },
+  "source_parity": {
+    "before_after_hashes_match": true,
+    "matches_workspace_at_finalization": true,
+    "input_count": 86,
+    "files": [
+      {
+        "path": "data/art/branding/sources.json",
+        "sha256": "9ec1e1e6654ff58e88c2a21cf50d8e1ddbd1bba3b1d4f849da1543fbef6f033b"
+      },
+      {
+        "path": "data/art/branding/studio_boot.png",
+        "sha256": "3e84e91f493a050ec9f1a0601470f8eee2d763e2e3723fa7f74a224f7191256c"
+      },
+      {
+        "path": "data/art/branding/studio_spotlight.gdshader",
+        "sha256": "51800566a4e4521a2b3c823174749c28ec1f3c1f72a304644dd88857808eb184"
+      },
+      {
+        "path": "data/art/branding/studio_stamp.gdshader",
+        "sha256": "b044f3505fa013ffa257cae6a027ffa06788e008baae32856e7eaa3d53841b33"
+      },
+      {
+        "path": "data/art/branding/studio_stamp.png",
+        "sha256": "a7e295efc6232750e58fc230372987b7382da3c102ac445dbf8d7e91cd3a2d53"
+      },
+      {
+        "path": "data/art/crystal/environment/regions.json",
+        "sha256": "3fe2cf77ca7a606c31a54ed89317a119bfbc6493983c060209a6ca81c7994581"
+      },
+      {
+        "path": "data/art/crystal/food/regions.json",
+        "sha256": "b4233d00b77f959d7b1e1029b5a383876fcd1323825f4fb13423a75d93e3d14a"
+      },
+      {
+        "path": "data/art/crystal/sources.json",
+        "sha256": "38e23862818931a54c5c3958e4abdf26809aa226d207b55892227586586eb57c"
+      },
+      {
+        "path": "data/art/environment/palette-refresh-sources.json",
+        "sha256": "e55176205c99bac498465ab9f37bffddb90294bf90c2d5150945337745d844d6"
+      },
+      {
+        "path": "data/art/environment/regions.json",
+        "sha256": "a192e38a74fe9ce83b3f19ce3c9794fb703a94f8e3b920d6e24f2ab120588671"
+      },
+      {
+        "path": "data/art/environment/sources.json",
+        "sha256": "b2e9e1bce5a322f7484904b53107d498ee9fc6619f05f4d45ac33c3e043611ff"
+      },
+      {
+        "path": "data/art/food/palette-refresh-sources.json",
+        "sha256": "3e5b07b28ae19680c549c53918682616f3b8b0cddc24dd16a05e8ef6b417491f"
+      },
+      {
+        "path": "data/art/food/regions.json",
+        "sha256": "e7e38946dca95ab8d11a07df445067b8e3d7f756bf1beccda0b63cf6c417edf9"
+      },
+      {
+        "path": "data/art/food/sources.json",
+        "sha256": "c5160904c639ffe182099e55786359a786cf76680ee49a97b1087e25a55123ca"
+      },
+      {
+        "path": "data/art/gelato/environment/palette-refresh-sources.json",
+        "sha256": "af01f7317d487ac6ae8009b00c067dd20b077fd5881d6a1eb6831d92627a6563"
+      },
+      {
+        "path": "data/art/gelato/environment/regions.json",
+        "sha256": "a088409178687492fc24e19cc7a0c90445a29d4dd93c8c903fd582924b99ddef"
+      },
+      {
+        "path": "data/art/gelato/environment/sources.json",
+        "sha256": "08aaede8627c66c3259f73dd5c1690800c9ec486c85d4f5eefb79fd3bcab8ac7"
+      },
+      {
+        "path": "data/art/gelato/food/palette-refresh-sources.json",
+        "sha256": "6c8fe75901f57a69af5b5391bd4ca883d952f509990b1b5686bf5a26d3f515d6"
+      },
+      {
+        "path": "data/art/gelato/food/regions.json",
+        "sha256": "33f3fffc2367758caf208e73984c799935d13828febd5bbde13e8a7156fb315a"
+      },
+      {
+        "path": "data/art/gelato/food/sources.json",
+        "sha256": "a6a6fae9e16a785939e2718b3cad806790354a358c187ccfae81f4c1c54abc7c"
+      },
+      {
+        "path": "data/art/gelato/ui/regions.json",
+        "sha256": "0df55d0d862a6b1dbcb6f07c3f527a9ac59912388b0f7b2881f79dcbc957138b"
+      },
+      {
+        "path": "data/art/gelato/ui/sources.json",
+        "sha256": "964b568afe61f097f44c84af55612d5e521bd3d95189a6e0ced6ff698da6e231"
+      },
+      {
+        "path": "data/art/ui/regions.json",
+        "sha256": "d37585077c0984a7ca30cf7d0185f1db42b1e400328b4743fda2510368b6434d"
+      },
+      {
+        "path": "data/art/ui/sources.json",
+        "sha256": "3677647e19c70b535e3542be66c31deb7736ea886e624eb5b11e272e716f6d69"
+      },
+      {
+        "path": "data/audio/studio_warm_hum.provenance.json",
+        "sha256": "8b8aacd4ab163468da3c84fec79f9a0f61429f26c4ca18a8a0eef2161ed98d57"
+      },
+      {
+        "path": "data/audio/studio_warm_hum.wav",
+        "sha256": "e6340a151a0b5a994eeb76e86d346cb5184bfc5f7635c26c09defef376c73440"
+      },
+      {
+        "path": "data/audio/studio_warm_hum.wav.import",
+        "sha256": "98783e5aadd966cd3dd5c96416fb04de67e5c5e35621bef68ccaee1cbb59cc71"
+      },
+      {
+        "path": "data/board_design.json",
+        "sha256": "7f924784be57d5cc15f96199467f8a884feb0bd8d5df19ed07f7eebe55aa2a14"
+      },
+      {
+        "path": "data/crystal_board_design.json",
+        "sha256": "b9ce87470fd3e393ab4789c5b8d682a84bfe6911fce411af1cc516de7cba4e6e"
+      },
+      {
+        "path": "data/crystal_economy.json",
+        "sha256": "fa590359c4687c76ee14ce2149d6fba42a2a302100fe439f69ee301bfca90791"
+      },
+      {
+        "path": "data/crystal_upgrade_layout.json",
+        "sha256": "e87e5f38d6c49d921b53d87f94a17b8df3d189a825c0f9e48d923c9f9f16aa31"
+      },
+      {
+        "path": "data/economy.json",
+        "sha256": "9910256c6a6832d11248012bd60cafeef3e9017bb731bbf23dcf2503c0b27a8a"
+      },
+      {
+        "path": "data/gelato_board_design.json",
+        "sha256": "0f64d5ebd62f786b1c157a75d599f47d00543e749e4240afe38d0131cfb05add"
+      },
+      {
+        "path": "data/gelato_economy.json",
+        "sha256": "e98aa6365989a68cb618d15a5325bc1d8713767d04a693d2760b94fcf2efe352"
+      },
+      {
+        "path": "data/gelato_upgrade_layout.json",
+        "sha256": "9948870ef138871c4966cea60820c341766af962018a773fe28da5c28bade666"
+      },
+      {
+        "path": "data/upgrade_arc_art.json",
+        "sha256": "3abc28874c39d56d26fc1bff26e079319f646a3511459f2df61f2108539df85f"
+      },
+      {
+        "path": "data/upgrade_layout.json",
+        "sha256": "6397704584fd20178fde7a15f4341dcac3576e8bc9eecf4919e26091bb32058e"
+      },
+      {
+        "path": "main.tscn",
+        "sha256": "e1199368c62dfc7dd6f17fcf54ad6f4f39278c5f729c89670eb28f7aef284b17"
+      },
+      {
+        "path": "project.godot",
+        "sha256": "6f9c64e6e7c12f4e06bf774e1963a581f46e5829863b997993463f4ffcb14461"
+      },
+      {
+        "path": "scripts/area_ability_access.gd",
+        "sha256": "c09d982b508adea00e365153382398a6e3b651c520c5bcac34888244005452b3"
+      },
+      {
+        "path": "scripts/area_ability_ui.gd",
+        "sha256": "a414791f2c29694a5f77fab81a2541ac597e1380b0b27c1350697d854e00acae"
+      },
+      {
+        "path": "scripts/area_art.gd",
+        "sha256": "833c583682df69d83172ca88cebdb669b45e663e40e8059e241df88d5190d4c8"
+      },
+      {
+        "path": "scripts/area_campaign.gd",
+        "sha256": "18665c9c53a26b09b6d1693595ac225160bca2629029387bdab5b386c860991c"
+      },
+      {
+        "path": "scripts/area_play_billing.gd",
+        "sha256": "528183cb6ff145b56ca5483b752ffe24ecee4691f407bb6e005b8f08c5cdbc99"
+      },
+      {
+        "path": "scripts/audio_catalog.gd",
+        "sha256": "db3f396833060fb8eb039c913699736c9037967264637a2ac1ff2b9a66405caf"
+      },
+      {
+        "path": "scripts/bakery_ability.gd",
+        "sha256": "212ce336e92050095a9c0c88911d2a2d6f047b30e3258ec3fb916a3a35fc5c7b"
+      },
+      {
+        "path": "scripts/coin_display.gd",
+        "sha256": "29fcfa88220832e516a1d1d1e6210893ec083360848bda21caea574c7a26fc23"
+      },
+      {
+        "path": "scripts/coin_feedback.gd",
+        "sha256": "77355e8533d1f8840b539a53155c3beacd3140a4a6fc0b2b0795ae5460cb1cfb"
+      },
+      {
+        "path": "scripts/combat_balance.gd",
+        "sha256": "9ad489b7b8f3960a401adc30829d94776845f58060a58f878460479d5b2568e7"
+      },
+      {
+        "path": "scripts/countdown_feedback.gd",
+        "sha256": "44ded78cf9ef83874485fc632a0e53b5ff6af2f6aa10bd30ad511d542e2f0883"
+      },
+      {
+        "path": "scripts/crystal_launcher.gd",
+        "sha256": "af0b77e2a0b08ecd4760d27a82f55b41fb26ff57103d57c57da292733ec20a58"
+      },
+      {
+        "path": "scripts/crystal_upgrade_graph.gd",
+        "sha256": "d8715e6941f1df477e90e2c017392861ae9b4c3924afebf7009d26f994596671"
+      },
+      {
+        "path": "scripts/developer_area_ui.gd",
+        "sha256": "9720214c2fdd09fdc510003b0e25a7e9a79218f25da53a9bd5b5632dd5d96c93"
+      },
+      {
+        "path": "scripts/environment_art.gd",
+        "sha256": "38745078b12953911de5c8aab75b6648dc0d53d44f018f020b53b1b1bb8770b2"
+      },
+      {
+        "path": "scripts/first_run_guide.gd",
+        "sha256": "ca6795dfc258334d369b16591f5ec0704692141dce3bb0720256a588c68b5399"
+      },
+      {
+        "path": "scripts/flow_rules.gd",
+        "sha256": "98cc6d3ec935d021c11a47c4ccb4f4c819bca108af10afb17d5e442ca7812688"
+      },
+      {
+        "path": "scripts/food_art.gd",
+        "sha256": "d8ac12a56e6b6c35c97cac94229a218ac909f1887bf0e5ac6f0aaa3a9cc6bb7e"
+      },
+      {
+        "path": "scripts/game_audio.gd",
+        "sha256": "661f0f82a3b488541603e88d2e8204d5914f57ef63f1f68fb2a385e88d6dc952"
+      },
+      {
+        "path": "scripts/gelato_launcher.gd",
+        "sha256": "d735ac2812dbc6889bb3fad67649626e3a53352ffb6017831acc9bc83870ca19"
+      },
+      {
+        "path": "scripts/gelato_upgrade_graph.gd",
+        "sha256": "e9815d6ea340596e03b6a2646aec8a48d9a9dcf8dee183c9088e121f622586fd"
+      },
+      {
+        "path": "scripts/home_menu.gd",
+        "sha256": "1f2782cf38bbb8f81ace849b754c6119d11d6f34c7a94674a392dedca5efc5eb"
+      },
+      {
+        "path": "scripts/impact_feedback.gd",
+        "sha256": "f3e41246e7492a7daa7eab26d9f851d0c903c38f89997a59404eba0594932ca8"
+      },
+      {
+        "path": "scripts/level_map.gd",
+        "sha256": "32fea91d9db63b288532de5c4a3a258fa36270aa051020ef6ef15bb5bf476250"
+      },
+      {
+        "path": "scripts/main.gd",
+        "sha256": "174375a28df2d2dbaa47b9ad5d6b66c8c66e3998057eef60bcee1fcd8bf73374"
+      },
+      {
+        "path": "scripts/monetization_service.gd",
+        "sha256": "7a1763b27f796ab29c1187e418ffe6ac0491c4333e196b33a80fdb9b989ad5d8"
+      },
+      {
+        "path": "scripts/monetization_ui.gd",
+        "sha256": "6156dc1b45a8a87db8efd6595ae90f3eba9137802d77bb4384acbf7c7ef2e9c6"
+      },
+      {
+        "path": "scripts/page_transition.gd",
+        "sha256": "9f2244879f276ceca92cd672103e9fc64bdc1d0ac5624c18ac50479820f08e60"
+      },
+      {
+        "path": "scripts/pause_transition.gd",
+        "sha256": "c58f991597e24d2617805c648ca20a97a9c72916f57e6ba6513a875142d5b0c2"
+      },
+      {
+        "path": "scripts/progress_reset_ui.gd",
+        "sha256": "75608c0fa638b08ba4cdf15029fee9574437d23da1615c2f7e68fbb20d4175be"
+      },
+      {
+        "path": "scripts/result_comparison_ui.gd",
+        "sha256": "4ebaed65dbe076b6b2e5bf535393e8529ca3c39bfa623d68ac5abf52f43e2752"
+      },
+      {
+        "path": "scripts/run_history.gd",
+        "sha256": "f2da83d6d0c8179f58e61ccc7745d7ecb0980c27593a8a71aae89448fd939b30"
+      },
+      {
+        "path": "scripts/run_snapshot.gd",
+        "sha256": "7b36ca5fa358a686fc0e195e752a00c31f707b2e8d11fd8cd798edc58f84918c"
+      },
+      {
+        "path": "scripts/run_transition.gd",
+        "sha256": "6b80a5f6344ed34f26cdffbc3c5780f8cf607995a74ae05ae8a70d056984a043"
+      },
+      {
+        "path": "scripts/speech_bubble.gd",
+        "sha256": "a7fa2f48b72ff1c02a2617148a1c421c3bc55fe0e8dccc286441e43e2767969c"
+      },
+      {
+        "path": "scripts/startup.gd",
+        "sha256": "fb91a8fa83336721188f62e981a79d0d0785c44b6c084d2dd3433ed1f9ed3eac"
+      },
+      {
+        "path": "scripts/tone_bank.gd",
+        "sha256": "0eabc16e9ebf89d77e915ebc64ad44b030dd76003a4e02466d66267f9c5907c0"
+      },
+      {
+        "path": "scripts/ui_art.gd",
+        "sha256": "12cf2661b153fb7701fba3028786deb14daf200462eaa23d00fbfe50bf2c5485"
+      },
+      {
+        "path": "scripts/upgrade_arc_art.gd",
+        "sha256": "4cefc77bef1b62f39b502f9ac8b1edadfd29f8fad05ccb280f10ef1a28a35ab1"
+      },
+      {
+        "path": "scripts/upgrade_graph.gd",
+        "sha256": "3845bed72ffeefb5d747434e8b7dda326993762654b55d796e68d4e437777729"
+      },
+      {
+        "path": "scripts/upgrade_map.gd",
+        "sha256": "06dcac8d6cf2f32ecb96a25bd3d11605c3d3d53bf546e2c993758c73246986a3"
+      },
+      {
+        "path": "startup.tscn",
+        "sha256": "bd52d9d5a059a18ea3f1878c95dd4ed9e258b330aef19d97bb59614e7f063e4f"
+      },
+      {
+        "path": "tests/startup_audio_qa.gd",
+        "sha256": "e49a26b6b65214fe6c2cbe897b6a5c1fc38a2d1ea99717f753c232702c9e91fe"
+      },
+      {
+        "path": "tests/startup_qa.gd",
+        "sha256": "b7643235dfb824259b16eb96e5208f735e7f4f863f3c9f7b5ddf1f4f5dc26187"
+      },
+      {
+        "path": "tests/startup_visual_qa.gd",
+        "sha256": "a039168538a8895f4f994189c46bba48b9654280711795307b14794e5b6cf8d0"
+      },
+      {
+        "path": "tests/studio_hum_asset_qa.py",
+        "sha256": "d2d0ee84e629b2f5251b15866fbddb41e7571c6678841ad4ca988b25415713b1"
+      },
+      {
+        "path": "tools/generate_studio_hum.py",
+        "sha256": "1eb903e7f0c5d813fd945504682fec6e5d5d68a3fffe5655ef1e00f3be832c34"
+      }
+    ]
+  },
+  "isolation": {
+    "actual_user_directory": "C:/Users/Hursh/Documents/Plinko/verification/single-pulse-20261103/checks-01/appdata/Godot/app_userdata/Peg Foundry",
+    "verified_disposable_directory": true,
+    "player_profile_used": false
+  },
+  "evidence": [
+    {
+      "path": "verification/single-pulse-20261103/checks-01/controller.log",
+      "sha256": "73ea2ead8b5d2961924826e9fb595e466f0319f48fcb2d7691b8e47ad34d15ac"
+    },
+    {
+      "path": "verification/single-pulse-20261103/checks-01/mixer.log",
+      "sha256": "f27d990c6af40ecf44bea007fb11b4565c2d9bb0c0d5c0455803a47686965ad7"
+    },
+    {
+      "path": "verification/single-pulse-20261103/checks-01/native-asset.log",
+      "sha256": "26f126eece43ca60465d5c853e813902b3d409755d6edb1319dfabdb0737cee8"
+    },
+    {
+      "path": "verification/single-pulse-20261103/checks-01/native-asset.json",
+      "sha256": "fa090eaf840bfb39c90c970036e0715a05b68e17da366ec39bd799c3e3c72cc4"
+    },
+    {
+      "path": "verification/single-pulse-20261103/checks-01/audio-results.json",
+      "sha256": "4a29e073236d072623697f16e88bdda168fcc6a6ceb54902b783cb34bf52e403"
+    },
+    {
+      "path": "verification/single-pulse-20261103/checks-01/isolation.log",
+      "sha256": "899597b80fe1228f9b68e95bf78341babc1adfa9acd653c76c8b1bdce23418b4"
+    },
+    {
+      "path": "verification/single-pulse-20261103/checks-01/audio-import.log",
+      "sha256": "47c629b98665627e79797888d39c333f866a0038cd28efa462f2ad53ccef7a84"
+    },
+    {
+      "path": "verification/single-pulse-20261103/checks-01/validation.json",
+      "sha256": "e89a7b3ad63908bc0dd17236b1177755ac5842edc230b9b508c8a7092cd5b6a0"
+    },
+    {
+      "path": "verification/single-pulse-20261103/checks-01/source-hashes.json",
+      "sha256": "a604040a0312c1173dbd5e330af6f522672d0ebc33eeeba138984d01541e5a14"
+    },
+    {
+      "path": "verification/single-pulse-20261103/checks-01/studio-mixer.wav",
+      "sha256": "7db3b39079e273f277a1827533ae6c487c7f733ddeafcd33718e994fa99cd24d"
+    }
+  ],
+  "historical_evidence": [
+    "SLOW_STUDIO_VALIDATION.json describes the earlier double-pulse revision and is not added to these counts.",
+    "The full13-case real-profile matrix was not rerun for removal of the second visual/audio lobe."
+  ],
+  "scope_limits": {
+    "physical_phone_testing": false,
+    "physical_speaker_listening": false,
+    "full_gameplay_regression": false,
+    "full_profile_matrix_rerun": false,
+    "gpu_gif_review": "Captured and reviewed separately by the root task; not included in the controller/mixer totals."
+  },
+  "delivery": {
+    "apk_built": false,
+    "drive_uploaded": false,
+    "github_pushed": false,
+    "user_request": "Working GIF review before any server push overrides the standing automatic preview-upload preference.",
+    "latest_delivered_preview": "0.7.8-preview / code34 retains the earlier double pulse."
+  },
+  "gif_preview": {
+    "file": "outputs/studio-single-pulse-20261103/Sugarfall-single-pulse-intro.gif",
+    "sha256": "25c18f6af5d7bda9ebfe327ba49e4faea687fc1ebbb1697f43e5745e93a86aa8",
+    "bytes": 4932254,
+    "duration_ms": 4400,
+    "size": [
+      450,
+      800
+    ],
+    "rendered_frames": 110,
+    "encoded_frames": 47,
+    "passed": 69,
+    "failed": 0,
+    "profile_io": 0,
+    "source_hashes_match": true,
+    "source_hashes": "verification/single-pulse-20261103/gif-01/source-hashes.json",
+    "evidence": "verification/single-pulse-20261103/gif-01/gif-validation.json",
+    "scope": "Actual Godot startup and cream/Home renderer at authored timestamps; staged in-memory ready destination, not a measured cold-load recording. GIF is silent.",
+    "status": "Local review candidate; user requested GIF before any server push.",
+    "uploaded": false,
+    "current_drive_version": "v0.7.8-preview"
+  }
+}

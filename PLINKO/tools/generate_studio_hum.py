@@ -13,10 +13,6 @@ DURATION = 1.3
 FIRST_RISE_START = .06
 FIRST_PEAK = .28
 FIRST_RELEASE_END = .63
-SECOND_RISE_START = .65
-SECOND_PEAK = .78
-SECOND_RELEASE_END = 1.04
-SECOND_STRENGTH = .50
 COUNT = round(RATE * DURATION)
 DEST = ROOT / 'data/audio/studio_warm_hum.wav'
 
@@ -31,16 +27,13 @@ frames = []
 # Generation fails if timing changes on only one side of the asset contract.
 startup = (ROOT / 'scripts/startup.gd').read_text(encoding='utf-8')
 for name, value in {'BEAT_SECONDS':DURATION, 'FIRST_RISE_START':FIRST_RISE_START,
-                    'FIRST_PEAK':FIRST_PEAK, 'FIRST_RELEASE_END':FIRST_RELEASE_END,
-                    'SECOND_RISE_START':SECOND_RISE_START, 'SECOND_PEAK':SECOND_PEAK,
-                    'SECOND_RELEASE_END':SECOND_RELEASE_END, 'SECOND_STRENGTH':SECOND_STRENGTH}.items():
+                    'FIRST_PEAK':FIRST_PEAK, 'FIRST_RELEASE_END':FIRST_RELEASE_END}.items():
     match = re.search(r'^const '+name+r' = ([.\d]+)$', startup, re.MULTILINE)
     assert match and float(match[1]) == value, f'Runtime timing differs: {name}'
 for i in range(COUNT):
     t = i/RATE
     first = smooth(FIRST_RISE_START,FIRST_PEAK,t)*(1-smooth(FIRST_PEAK,FIRST_RELEASE_END,t))
-    second = smooth(SECOND_RISE_START,SECOND_PEAK,t)*(1-smooth(SECOND_PEAK,SECOND_RELEASE_END,t))
-    envelope = first+SECOND_STRENGTH*second
+    envelope = first
     channels = []
     for channel in range(2):
         # A gentle fifth and octave, soft breath harmonics and a tiny upward
@@ -64,7 +57,7 @@ for frame in frames:
         pcm.extend(struct.pack('<h', sample))
         sum_sq += (sample/32768)**2
 assert all(byte == 0 for byte in pcm[:round(FIRST_RISE_START*RATE)*4])
-assert all(byte == 0 for byte in pcm[round(SECOND_RELEASE_END*RATE)*4:])
+assert all(byte == 0 for byte in pcm[round(FIRST_RELEASE_END*RATE)*4:])
 DEST.parent.mkdir(parents=True,exist_ok=True)
 with wave.open(str(DEST),'wb') as out:
     out.setnchannels(2)
@@ -78,11 +71,9 @@ report = {
     'sample_rate':RATE,'channels':2,'sample_width_bits':16,
     'frames':COUNT,'duration_seconds':DURATION,
     'peak_dbfs':20*math.log10(.5),'rms_dbfs':20*math.log10(math.sqrt(sum_sq/(COUNT*2))),
-    'timing':{'first_rise_start':FIRST_RISE_START,'first_peak':FIRST_PEAK,
-              'first_release_end':FIRST_RELEASE_END,'second_rise_start':SECOND_RISE_START,
-              'second_peak':SECOND_PEAK,'second_release_end':SECOND_RELEASE_END,
-              'second_strength':SECOND_STRENGTH},
-    'quiet_tail_seconds':DURATION-SECOND_RELEASE_END,'clipped_samples':0,
+    'timing':{'rise_start':FIRST_RISE_START,'peak':FIRST_PEAK,
+              'release_end':FIRST_RELEASE_END,'swells_per_cycle':1},
+    'quiet_tail_seconds':DURATION-FIRST_RELEASE_END,'clipped_samples':0,
     'sha256':hashlib.sha256(DEST.read_bytes()).hexdigest()
 }
 (DEST.parent/'studio_warm_hum.provenance.json').write_text(json.dumps(report,indent=2)+'\n',encoding='utf-8')
