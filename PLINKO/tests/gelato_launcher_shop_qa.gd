@@ -80,7 +80,7 @@ func twin_point() -> Vector2:
 
 func gating_checks():
 	fresh("bakery")
-	check(not m.twin_control_visible() and not m.node_visible(8,1),"Bakery has no Twin map node")
+	check(m.twin_control_visible() and m.node_visible(8,1) and g.ability_ui.title()=="Jam Burst" and m.special_cost()==g.bakery_ability.cost(),"Bakery's shared signature node offers Jam Burst at its area price")
 	check(m.focus_area()==m.FOCUS_AREA and not g.buy_twin_launchers(),"Bakery framing and purchases ignore Twin launchers")
 	fresh()
 	check(m.twin_control_visible() and m.node_visible(8,1) and m.node_prerequisites(m.TWIN_NODE)==[Vector2i(0,1)],"Gelato displays Dual Shot beneath the starter independently of its Power purchase gate")
@@ -111,7 +111,7 @@ func gating_checks():
 	fresh()
 	g.highest_unlocked = 7
 	select_twins()
-	check(m.twin_selected and m.has_selection() and m._twin_gate_text().contains("Requires"),"Locked Twin selection still explains its requirements")
+	check(m.twin_selected and m.has_selection() and m._twin_gate_text()=="Tray 8 · Power 6","Locked Twin selection still explains its requirements")
 	tap(m.buy_rect().get_center())
 	check(not g.twin_launchers and g.bank==10000.0,"Locked card never spends credits")
 
@@ -190,7 +190,7 @@ func purchase_checks():
 		check(g.levels[1]==1 and g.bank==bank,"Tapping the owned rebuild card cannot buy it twice")
 		check(g.power_damage(1)>1.0 and g.power_damage(1)==1.0+float(g.tuning.core_tier_gains[0])*g.tuning.power_rebuild_gain_multiplier,"First rebuilt effect uses the stronger aggregate Power1 gain regardless of slot ordinal")
 		select_twins(); tap(m.buy_rect().get_center())
-		check(m.twin_selected and m._twin_gate_text().begins_with("Owned") and g.bank==bank and g.levels[1]==1,"Owned launcher card remains inspectable and cannot charge or reset again")
+		check(m.twin_selected and m.special_owned() and m._twin_gate_text().is_empty() and g.bank==bank and g.levels[1]==1,"Owned launcher card remains inspectable without a repeated status and cannot charge or reset again")
 	fresh()
 	var dependency: Vector2i = g.upgrade_graph().prerequisites(1,2)[0]
 	g.levels[dependency.x] = dependency.y-1
@@ -225,7 +225,7 @@ func presentation_checks():
 	g.twin_launchers = false
 	g.tuning.twin_unlock_level = 8
 	g.tuning.twin_unlock_power = 6
-	check(m._twin_gate_text()=="Requires tray 8 + Power 6","Gate copy follows configured tray and Power requirements")
+	check(m._twin_gate_text()=="Tray 8 · Power 6","Gate copy follows configured tray and Power requirements")
 	g.twin_launchers = true
 	g.power_reset_tier = 10
 	g.trial_active = true

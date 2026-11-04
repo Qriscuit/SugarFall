@@ -9,7 +9,7 @@ func twin_node_checks():
 	check(parent_tier==6 and game.upgrade_graph().nodes().size()==62 and map._positions.size()==63 and map.node_visible(8,1),"Dual Shot is visible from the start without adding a saved upgrade family")
 	check(map.node_prerequisites(twin)==[Vector2i(0,1)] and map._positions[twin]==Vector2(0,440),"Dual Shot connects directly beneath the central starter")
 	tap(game,map.point(8,1),71)
-	check(map.twin_selected and map.selected_node()==twin and map._twin_gate_text().contains("tray 8") and map._twin_gate_text().contains("Power 6"),"The initial locked Dual Shot card clearly explains both purchase requirements")
+	check(map.twin_selected and map.selected_node()==twin and map._twin_gate_text()=="Tray 8 · Power 6","The initial locked Dual Shot card clearly explains both purchase requirements")
 	var fresh_bank: float = game.bank
 	tap(game,map.buy_rect().get_center(),71)
 	check(not game.twin_launchers and game.bank==fresh_bank and game.levels==[0,0,0,0,0,0,0,0],"Inspecting and pressing the initial locked card does not spend or grant upgrades")
@@ -74,7 +74,7 @@ func twin_node_checks():
 	for node in map.visible_nodes(): overview = overview and map.focus_area().encloses(map.node_rect(node.x,node.y,false))
 	check(overview,"The full-map overview includes all 62 upgrades and the optional Twin node")
 	game.set_active_area("bakery"); game.mode="shop"; map.update(0)
-	check(not map.node_visible(8,1) and map._positions.size()==62,"Bakery retains its original 62-node map without Twin")
+	check(map.node_visible(8,1) and game.ability_ui.title()=="Jam Burst" and game.upgrade_graph().nodes().size()==62 and map._positions.size()==64 and map._positions.has(map.MORE_JAM_NODE),"Bakery retains 62 ordinary upgrades plus its own Jam Burst and More Jam nodes")
 	game.set_active_area("gelato"); game.mode="shop"; map.update(0)
 	check([var_to_bytes(map._positions),var_to_bytes(map._paths)]==geometry and map.node_visible(8,1),"Returning to Gelato restores the exact Twin branch and owned appearance")
 	game.twin_launchers = false; game.levels = game.MAX_LEVELS.duplicate(); game.levels[1] = parent_tier-1; game.bank = 1000000

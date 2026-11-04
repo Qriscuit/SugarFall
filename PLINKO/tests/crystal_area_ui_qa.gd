@@ -95,7 +95,7 @@ func board_and_shop_checks():
 	var map=g.upgrade_map;map.reset_view_state();map.update(0)
 	check(g.upgrade_graph().nodes().size()==62 and map._positions.size()==63 and map.visible_nodes()==[Vector2i(0,1),map.TWIN_NODE],"Crystal has its own 62-slot map plus the visible locked Second Prism")
 	check(map.node_rect(8,1,false).position.y>map.node_rect(0,1,false).end.y and map.node_rect(8,1,false).end.y<map.TWIN_CARD_RECT.position.y,"Second Prism sits below the starter and clears its purchase card")
-	check(map.state_for(8,1)=="locked" and map._twin_gate_text()=="Requires tray 8 + Power 4","Second Prism clearly states both progression gates")
+	check(map.state_for(8,1)=="locked" and map._twin_gate_text()=="Tray 8 · Power 4","Second Prism clearly states both progression gates")
 	g.bank=1000;map.selected=0;map.tier=1;map.press(map.buy_rect().get_center());map.update(map.CAMERA_DURATION)
 	check(g.levels[0]==1 and map.visible_nodes().size()==5,"Buying Crystal's starter reveals three independent paths alongside Second Prism")
 	var framed=true

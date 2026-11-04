@@ -8,15 +8,18 @@ const WALLET_RECT = Rect2(156,28,528,84)
 const TWIN_NODE = Vector2i(8,1)
 const MORE_JAM_NODE = Vector2i(8,2)
 const TWIN_PARENT = Vector2i(0,1)
-const TWIN_CARD_RECT = Rect2(36,838,648,240)
-const TWIN_BUY_RECT = Rect2(438,864,214,86)
+const TWIN_CARD_RECT = Rect2(36,768,648,310)
+const TWIN_BUY_RECT = Rect2(438,794,214,86)
+const TWIN_PAID_RECT = Rect2(438,892,214,86)
+const TWIN_FOCUS_AREA = Rect2(24,145,672,599)
 const CARD_RECT = Rect2(36,908,648,170)
 const BUY_RECT = Rect2(438,932,214,86)
 const CARD_TITLE_RECT = Rect2(148,932,268,40)
 const CARD_STATUS_RECT = Rect2(148,978,268,28)
 const CARD_EFFECT_RECT = Rect2(68,1026,584,28)
-const TWIN_TITLE_RECT = Rect2(148,864,268,40)
-const TWIN_STATUS_RECT = Rect2(68,956,584,28)
+const TWIN_TITLE_RECT = Rect2(148,794,268,40)
+const TWIN_STATUS_RECT = Rect2(148,840,268,64)
+const TWIN_MESSAGE_RECT = Rect2(68,934,348,38)
 const TWIN_EFFECT_RECTS = [Rect2(68,990,584,28),Rect2(68,1024,584,28)]
 const TREATS_RECT = Rect2(48,1090,220,96)
 const PLAY_RECT = Rect2(286,1090,386,96)
@@ -157,7 +160,7 @@ func _frame_entry():
 	if g.area_id not in ["bakery","gelato","crystal"]: return
 	# Reserve the taller Dual Shot card even before selection so inspecting the
 	# visible locked node never hides it behind the newly opened panel.
-	var focus = Rect2(24,145,672,669).grow(-24)
+	var focus = TWIN_FOCUS_AREA.grow(-24)
 	var nodes = _entry_nodes()
 	var bounds = _reveal_bounds(nodes,zoom)
 	var scale_to_fit = minf(1.0,minf(focus.size.x/bounds.size.x,focus.size.y/bounds.size.y))
@@ -239,6 +242,7 @@ func special_cost() -> int:
 	return g.ability_ui.cost()
 
 func special_buy() -> bool:
+	if g.ability_ui.purchase_pending() or g.ability_ui.can_restore(): return false
 	return g.ability_ui.controller().buy()
 
 func node_prerequisites(node: Vector2i) -> Array[Vector2i]:
@@ -409,7 +413,7 @@ func _frame_new_upgrades(before: Array[Vector2i]):
 	_frame_nodes(revealed)
 
 func focus_area() -> Rect2:
-	return Rect2(24,145,672,669) if twin_selected and twin_control_visible() else FOCUS_AREA
+	return TWIN_FOCUS_AREA if twin_selected and twin_control_visible() else FOCUS_AREA
 
 func _frame_nodes(revealed: Array[Vector2i]):
 	if revealed.is_empty(): return
@@ -505,6 +509,9 @@ func buy_rect() -> Rect2:
 	var rect = TWIN_BUY_RECT if twin_selected and twin_control_visible() else BUY_RECT
 	return Rect2(rect.position+card_offset(),rect.size)
 
+func paid_rect() -> Rect2:
+	return Rect2(TWIN_PAID_RECT.position+card_offset(),TWIN_PAID_RECT.size)
+
 func overlay_at(p: Vector2) -> bool:
 	if MENU_RECT.has_point(p) or WALLET_RECT.has_point(p): return true
 	if TREATS_RECT.has_point(p) or PLAY_RECT.has_point(p): return true
@@ -519,6 +526,9 @@ func _action_at(p: Vector2) -> String:
 	if MENU_RECT.has_point(p): return "menu"
 	if TREATS_RECT.has_point(p): return "treats"
 	if PLAY_RECT.has_point(p): return "play"
+	if twin_selected and twin_control_visible() and not special_owned():
+		if paid_rect().has_point(p): return "cancel" if g.ability_ui.card_confirming() else "paid"
+		if buy_rect().has_point(p): return "confirm" if g.ability_ui.card_confirming() else "buy"
 	if has_selection() and buy_rect().has_point(p): return "buy"
 	return ""
 
@@ -691,6 +701,7 @@ func select_at(p):
 	for node in nodes:
 		var rect = node_rect(node.x,node.y)
 		if rect.has_point(p):
+			if node!=TWIN_NODE: g.ability_ui.cancel_card_purchase()
 			g.feedback("ui_tap")
 			twin_selected = node==TWIN_NODE
 			selected = -1 if twin_selected else node.x
@@ -713,8 +724,21 @@ func press(p):
 		_request_redraw()
 		return
 	if twin_selected and twin_control_visible():
-		if buy_rect().has_point(p) and not special_owned() and not special_unlocked():
-			g.ability_ui.open("shop")
+		if special_owned(): return
+		if g.ability_ui.card_confirming():
+			if paid_rect().has_point(p):
+				g.ability_ui.cancel_card_purchase()
+				g.feedback("ui_back")
+				g.navigation_delay=.25
+			elif buy_rect().has_point(p):
+				g.ability_ui.press_action("confirm")
+			_sync_states()
+			_request_redraw()
+			return
+		if paid_rect().has_point(p):
+			g.ability_ui.buy_from_card()
+			_sync_states()
+			_request_redraw()
 			return
 		var requested = buy_rect().has_point(p)
 		var purchased = special_buy() if requested else false
@@ -843,27 +867,30 @@ func _twin_effect_lines() -> Array[String]:
 	return ["Two slower launchers. Power starts over.","Power costs more and grows stronger."]
 
 func _twin_gate_text() -> String:
-	if g.area_id=="bakery": return "Owned · Jam Burst" if special_owned() else g.ability_ui.gate_text()
-	if g.area_id=="crystal":
-		if special_owned(): return "Owned · Two prisms per run"
-		if special_unlocked(): return "Another chance to double your balls"
-		return "Requires tray %d + Power %d" % [maxi(8,int(g.tuning.get("crystal_second_prism_unlock_level",8))),int(g.tuning.get("crystal_second_prism_unlock_power",4))]
-	if special_owned(): return "Owned · Power upgrades both"
-	if g.gelato_launcher.unlocked(): return "Both launchers follow your aim"
-	return "Requires tray %d + Power %d" % [int(g.tuning.get("twin_unlock_level",8)),int(g.tuning.get("twin_unlock_power",6))]
+	return "" if special_owned() else g.ability_ui.gate_text()
 
 func _draw_twin_card():
 	g.draw_set_transform(card_offset(),0,Vector2.ONE)
 	g.ui_panel(TWIN_CARD_RECT)
-	_draw_twin_icon(g,Rect2(68,866,64,64),Color.WHITE)
+	_draw_twin_icon(g,Rect2(68,796,64,64),Color.WHITE)
 	_card_label(g.ability_ui.title(),TWIN_TITLE_RECT,27,g.WHITE)
-	_card_label(_twin_gate_text(),TWIN_STATUS_RECT,21,g.MUTED)
+	var offer=g.ability_access.offer(g.area_id,special_owned())
+	if g.ability_ui.card_confirming():
+		_card_label("Test purchase",Rect2(148,840,268,28),21,g.MUTED)
+		_card_label("No charge",Rect2(148,874,268,28),21,g.MUTED)
+	else:
+		_card_label(_twin_gate_text(),TWIN_STATUS_RECT,21,g.MUTED)
 	if special_owned():
 		_purchase_button(TWIN_BUY_RECT,"Owned",false)
-	elif not special_unlocked():
-		_purchase_button(TWIN_BUY_RECT,"Unlock options",false)
+	elif g.ability_ui.card_confirming():
+		_purchase_button(TWIN_BUY_RECT,"Confirm test",true)
+		_purchase_button(TWIN_PAID_RECT,"Cancel",false)
 	else:
-		_purchase_button(TWIN_BUY_RECT,"Buy · %s" % g.credits_text(special_cost()),g.can_afford(special_cost()))
+		_purchase_button(TWIN_BUY_RECT,"Buy %s" % g.credits_text(special_cost()),special_unlocked() and g.can_afford(special_cost()) and not offer.pending and not g.ability_ui.can_restore())
+		var paid_label="Restore" if g.ability_ui.can_restore() else ("Pending" if offer.pending else "Buy "+offer.price_label)
+		_purchase_button(TWIN_PAID_RECT,paid_label,(offer.available or g.ability_ui.can_restore()) and not offer.pending)
+	if not g.ability_ui.message.is_empty() and not special_owned():
+		_card_label(g.ability_ui.message,TWIN_MESSAGE_RECT,19,g.MUTED)
 	var lines = _twin_effect_lines()
 	for line in range(lines.size()):
 		_card_label(lines[line],TWIN_EFFECT_RECTS[line],21,g.MUTED)

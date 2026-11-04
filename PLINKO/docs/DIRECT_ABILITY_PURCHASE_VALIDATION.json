@@ -1,0 +1,1386 @@
+{
+  "date": "2026-11-03",
+  "change": "Direct coin and localized paid actions stacked in the signature upgrade card; remove the Home offer and unlock-options detour.",
+  "engine": "Godot4.6.3",
+  "components": [
+    {
+      "suite": "area_ability_integration_qa",
+      "passed": 192,
+      "failed": 0,
+      "exit_code": 0,
+      "scope": "headless behavior regression",
+      "log": "verification/direct-ability-purchase-20261103/integration-02/integration.log",
+      "log_sha256": "84839cf9892c1cdd513b96bcb83208d947b086561678caea116613b5220e3d9e",
+      "source_manifest": "verification/direct-ability-purchase-20261103/integration-02/source-hashes.json",
+      "source_manifest_sha256": "ec89fa087b83ca472d11718c08bdc11a286d472c6de23766280b4e4256cc2f9e",
+      "relevant_source_inputs": 253,
+      "all_relevant_inputs_match_current": true,
+      "parity_scope": "Runtime/art/data plus this executed fixture and its fixture bases. Other suites recorded in the broad raw manifest were not inputs to this component."
+    },
+    {
+      "suite": "area_ability_visual_qa",
+      "passed": 431,
+      "failed": 0,
+      "exit_code": 0,
+      "scope": "actual GPU renderer",
+      "log": "verification/direct-ability-purchase-20261103/visual-02/visual.log",
+      "log_sha256": "beff7745c951706c48ad1322f4774ed038d557608115c8dd999cf2d787b4dda8",
+      "source_manifest": "verification/direct-ability-purchase-20261103/visual-02/source-hashes.json",
+      "source_manifest_sha256": "ec89fa087b83ca472d11718c08bdc11a286d472c6de23766280b4e4256cc2f9e",
+      "relevant_source_inputs": 255,
+      "all_relevant_inputs_match_current": true,
+      "parity_scope": "Runtime/art/data plus this executed fixture and its fixture bases. Other suites recorded in the broad raw manifest were not inputs to this component."
+    },
+    {
+      "suite": "crystal_area_ui_qa",
+      "passed": 35,
+      "failed": 0,
+      "exit_code": 0,
+      "scope": "headless behavior regression",
+      "log": "verification/direct-ability-purchase-20261103/regressions-01/crystal_area_ui_qa.log",
+      "log_sha256": "625e343c7aaed7e1e298a09a295a335ae5781f834be6acce7263c1d6e66bea81",
+      "source_manifest": "verification/direct-ability-purchase-20261103/regressions-01/source-hashes.json",
+      "source_manifest_sha256": "d134b8936537b7a54f1ff60eddc07def36857359f1a95207fb6be7c6dc77605b",
+      "relevant_source_inputs": 253,
+      "all_relevant_inputs_match_current": true,
+      "parity_scope": "Runtime/art/data plus this executed fixture and its fixture bases. Other suites recorded in the broad raw manifest were not inputs to this component."
+    },
+    {
+      "suite": "gelato_launcher_shop_qa",
+      "passed": 105,
+      "failed": 0,
+      "exit_code": 0,
+      "scope": "headless behavior regression",
+      "log": "verification/direct-ability-purchase-20261103/regressions-02/gelato_launcher_shop_qa.log",
+      "log_sha256": "6fbf8abe0c5dd28353fffcf1f7e7a4fd40516b189a870f8b3937d708836d40f5",
+      "source_manifest": "verification/direct-ability-purchase-20261103/regressions-02/source-hashes.json",
+      "source_manifest_sha256": "a7dab7ac0f762048bdd7823faba019408fd5bacf8722d78a4ca8c4902df3d24a",
+      "relevant_source_inputs": 253,
+      "all_relevant_inputs_match_current": true,
+      "parity_scope": "Runtime/art/data plus this executed fixture and its fixture bases. Other suites recorded in the broad raw manifest were not inputs to this component."
+    },
+    {
+      "suite": "gelato_twin_node_qa",
+      "passed": 81,
+      "failed": 0,
+      "exit_code": 0,
+      "scope": "headless behavior regression",
+      "log": "verification/direct-ability-purchase-20261103/regressions-03/gelato_twin_node_qa.log",
+      "log_sha256": "5260c46ff961cd731f150c48b55df7dfa337b8cd77e41387d9da8f9700a52a97",
+      "source_manifest": "verification/direct-ability-purchase-20261103/regressions-03/source-hashes.json",
+      "source_manifest_sha256": "3344fbeed266f2c8436f72f7b2f839753244a5d8b2802a2e84107d7ec42d53b4",
+      "relevant_source_inputs": 253,
+      "all_relevant_inputs_match_current": true,
+      "parity_scope": "Runtime/art/data plus this executed fixture and its fixture bases. Other suites recorded in the broad raw manifest were not inputs to this component."
+    }
+  ],
+  "passed_total": 844,
+  "failed_total": 0,
+  "behavior_scope": [
+    "Actual touch selection of each area signature node",
+    "Direct coin purchase with tray/Power/affordability gates and exact costs",
+    "No page change for coin or inline test confirmation",
+    "Paid preview confirms at tray1 without spending coins; explicit no-charge state",
+    "Cancel, drag, multitouch, cross-button release, background and debounce guards",
+    "Bouncing card hit targets and focus clearance",
+    "Back, shop exit and ordinary-node selection cancel preview requests",
+    "Coin/paid save rollback and retry; area wallets and ownership stay independent",
+    "Live provider fixture with localized price, pending duplicate/coin-spend prevention, verified callback and duplicate callback",
+    "Same one-time Gelato Power reset for coin/preview/provider paths",
+    "Receipt restore after reset, unavailable public store, Trial suppression and public rejection of preview entitlements/checkpoints"
+  ],
+  "render_scope": {
+    "renderer": "Intel(R) Iris(R) Xe Graphics",
+    "captures": 38,
+    "sizes": [
+      [
+        450,
+        800
+      ],
+      [
+        450,
+        1000
+      ]
+    ],
+    "states": [
+      "Each area Home, locked, eligible, inline confirmation and owned",
+      "Gelato localized price and live-pending card",
+      "Bakery retained-receipt Restore card",
+      "Crystal unavailable-store message"
+    ],
+    "assertions": [
+      "No Home ability offer or Unlock options label",
+      "Both purchase controls inside same card, nonoverlapping and vertically stacked",
+      "Coin and provider price labels shown directly",
+      "Owned action hides paid repurchase",
+      "Card text fits allocated rectangles, effect/tradeoff copy retained",
+      "Camera focus remains above taller card",
+      "Rendering leaves campaign/RNG state unchanged"
+    ],
+    "summary_path": "verification/direct-ability-purchase-20261103/visual-02/preview-summary.json",
+    "summary_sha256": "fe4a89ca67ace86582623c313c13f87ea330542a2d3c80dd59badec0a23a145d",
+    "frames": [
+      {
+        "path": "verification/direct-ability-purchase-20261103/visual-02/bakery-ability-home-450x800.png",
+        "sha256": "2a115f781a4047524c57a0d20648f9273ccd8c7b0fbb8dab51d2aee59b5c2efc"
+      },
+      {
+        "path": "verification/direct-ability-purchase-20261103/visual-02/bakery-ability-locked-450x800.png",
+        "sha256": "4fbb3ce1f22d64b0cf0b927f74ce6bebcb4ef9affd46caae2ba54b48594e2a6f"
+      },
+      {
+        "path": "verification/direct-ability-purchase-20261103/visual-02/bakery-ability-confirm-450x800.png",
+        "sha256": "c295ac61f8310e5a8e06407c2186bfdc96e06de1d10461ce4e442483b751d51a"
+      },
+      {
+        "path": "verification/direct-ability-purchase-20261103/visual-02/bakery-ability-eligible-450x800.png",
+        "sha256": "a333b294e2cbda6c547c212700654f4042da34d3fdf68d9b5763de0a55e3aa6c"
+      },
+      {
+        "path": "verification/direct-ability-purchase-20261103/visual-02/bakery-ability-owned-450x800.png",
+        "sha256": "375115c4c34002597b751d883a8403a49f3a3d37fa93d979231d1b0f34781938"
+      },
+      {
+        "path": "verification/direct-ability-purchase-20261103/visual-02/gelato-ability-home-450x800.png",
+        "sha256": "382e7f63b2c83b436b65b3a99b41de1f3676f4dd5bb2b9b3bfbd9740d5cabf5f"
+      },
+      {
+        "path": "verification/direct-ability-purchase-20261103/visual-02/gelato-ability-locked-450x800.png",
+        "sha256": "2885ddd1488323953b3940729b6ce9d2200465917476b6bad9c7635bfd394341"
+      },
+      {
+        "path": "verification/direct-ability-purchase-20261103/visual-02/gelato-ability-confirm-450x800.png",
+        "sha256": "07292bd3b9ec9659cd1d623286ac1a726117766b57ab92066f4b39e32373168b"
+      },
+      {
+        "path": "verification/direct-ability-purchase-20261103/visual-02/gelato-ability-eligible-450x800.png",
+        "sha256": "0227b05fba78666bfc974a21986785bd220fee525f0ce3dace13249c4dc2803b"
+      },
+      {
+        "path": "verification/direct-ability-purchase-20261103/visual-02/gelato-ability-owned-450x800.png",
+        "sha256": "224c8c9103387444f0c01109d6040878a1053e2e9e9ea829f1d583bc61d9f9e4"
+      },
+      {
+        "path": "verification/direct-ability-purchase-20261103/visual-02/crystal-ability-home-450x800.png",
+        "sha256": "908982511d9517d4f002cdd99140e38681a69d1332825d8a94fd94567f5e959d"
+      },
+      {
+        "path": "verification/direct-ability-purchase-20261103/visual-02/crystal-ability-locked-450x800.png",
+        "sha256": "cb39e9e6b1dfa6afff85c4353cca5be9f73f596d5632e9ab72ba1d0ccb46fe12"
+      },
+      {
+        "path": "verification/direct-ability-purchase-20261103/visual-02/crystal-ability-confirm-450x800.png",
+        "sha256": "cc2b7524af70f248e2e43f6661858dacfc8045ca44bf0625f1565a676c614db4"
+      },
+      {
+        "path": "verification/direct-ability-purchase-20261103/visual-02/crystal-ability-eligible-450x800.png",
+        "sha256": "ec0502a5a2cd8c51421d7b9924e491b80d311b55b2b8c607e0151b5440d9aaa2"
+      },
+      {
+        "path": "verification/direct-ability-purchase-20261103/visual-02/crystal-ability-owned-450x800.png",
+        "sha256": "e269a8c84e0b928260a392d9bb874995d0e7ad844298a6e3ec1298a075cc77d4"
+      },
+      {
+        "path": "verification/direct-ability-purchase-20261103/visual-02/gelato-ability-localized-450x800.png",
+        "sha256": "41eba9c233201b7420251f01583ee703213a1113f81461a9923b51592971fe6c"
+      },
+      {
+        "path": "verification/direct-ability-purchase-20261103/visual-02/gelato-ability-pending-450x800.png",
+        "sha256": "f5b0a4de7f630ce1a42e8dcfe890d024751cb5d05b9aa71308b833b279e5b9be"
+      },
+      {
+        "path": "verification/direct-ability-purchase-20261103/visual-02/bakery-ability-restore-450x800.png",
+        "sha256": "121c0775b48030c4befc50d1d166d4a9a19648a3fe9fcdae2453d66bd7377b3c"
+      },
+      {
+        "path": "verification/direct-ability-purchase-20261103/visual-02/crystal-ability-unavailable-450x800.png",
+        "sha256": "1c9526ff2612b7f29966ffdf5632b97eea788b96d5653aa20c323ed75fa69bae"
+      },
+      {
+        "path": "verification/direct-ability-purchase-20261103/visual-02/bakery-ability-home-450x1000.png",
+        "sha256": "04a5cfe0e443d590a3d2fed313acdbc8a779d94745cf963882d99470154f50d1"
+      },
+      {
+        "path": "verification/direct-ability-purchase-20261103/visual-02/bakery-ability-locked-450x1000.png",
+        "sha256": "2cfd77ee30313876b8c20290c24c6d8ba3af54687efd6891315001b3b0de1436"
+      },
+      {
+        "path": "verification/direct-ability-purchase-20261103/visual-02/bakery-ability-confirm-450x1000.png",
+        "sha256": "f8528b6ecb292e1b739c85438fbf4e10b1984a4fb6c244580b9f7b83bef25218"
+      },
+      {
+        "path": "verification/direct-ability-purchase-20261103/visual-02/bakery-ability-eligible-450x1000.png",
+        "sha256": "41951e6908c9abc5bc23fc8f1aa2a62554c3954f299db025e9e48b8456fd2fc2"
+      },
+      {
+        "path": "verification/direct-ability-purchase-20261103/visual-02/bakery-ability-owned-450x1000.png",
+        "sha256": "76d770c676f69def92754e06c27fafcf83adc0469d731bdc8cf8ef97faf5b9bc"
+      },
+      {
+        "path": "verification/direct-ability-purchase-20261103/visual-02/gelato-ability-home-450x1000.png",
+        "sha256": "1c2ecfc46ca00ac7e08db72d2c58e0f55327b2309e2d56bb9009d1fac277c849"
+      },
+      {
+        "path": "verification/direct-ability-purchase-20261103/visual-02/gelato-ability-locked-450x1000.png",
+        "sha256": "5c3a936b7bc097f0b67c8b512571a88d72b5d9d2d15c3b27e88a88620c529eb3"
+      },
+      {
+        "path": "verification/direct-ability-purchase-20261103/visual-02/gelato-ability-confirm-450x1000.png",
+        "sha256": "107a6330a933b6ac172a87d48797d240056000c884ef7fdc03f9f1da2a99df6e"
+      },
+      {
+        "path": "verification/direct-ability-purchase-20261103/visual-02/gelato-ability-eligible-450x1000.png",
+        "sha256": "fb1943547047f659eab2981ad1578554e34167992bad1e6715e41582007e20e8"
+      },
+      {
+        "path": "verification/direct-ability-purchase-20261103/visual-02/gelato-ability-owned-450x1000.png",
+        "sha256": "7f37b04df1108b4469935095ef261761de1a14f741a32c232fbe8cdfabe43431"
+      },
+      {
+        "path": "verification/direct-ability-purchase-20261103/visual-02/crystal-ability-home-450x1000.png",
+        "sha256": "eeb89bba466e00cec90a449c5956eb661a22b8337be8f8a2df23cb421fb64a84"
+      },
+      {
+        "path": "verification/direct-ability-purchase-20261103/visual-02/crystal-ability-locked-450x1000.png",
+        "sha256": "bd33ed3728a40c3b6798c815c2a06533e28cead4d05a2707ab7fefa40568f1f3"
+      },
+      {
+        "path": "verification/direct-ability-purchase-20261103/visual-02/crystal-ability-confirm-450x1000.png",
+        "sha256": "3fdcae0ea89524213a48c158ce0b096da8d473c5daf19e88c8652a68fa071251"
+      },
+      {
+        "path": "verification/direct-ability-purchase-20261103/visual-02/crystal-ability-eligible-450x1000.png",
+        "sha256": "f26343cbb6d49de07257d2093ad9a84c6cfbca5390c1213c07aaaabab98b0a1d"
+      },
+      {
+        "path": "verification/direct-ability-purchase-20261103/visual-02/crystal-ability-owned-450x1000.png",
+        "sha256": "73e96e28a44aa7aa40c18cbc4c0121631be762b9cac9ef4babad9db2f8470d2f"
+      },
+      {
+        "path": "verification/direct-ability-purchase-20261103/visual-02/gelato-ability-localized-450x1000.png",
+        "sha256": "85c89ec4e6d891f38760dfa8c39a954b38e3439cacc001f7a50470aea46ce357"
+      },
+      {
+        "path": "verification/direct-ability-purchase-20261103/visual-02/gelato-ability-pending-450x1000.png",
+        "sha256": "b83003cc9ee03fca0918316ea7028b0e1e181209397f28ca9bcf2922c470b46f"
+      },
+      {
+        "path": "verification/direct-ability-purchase-20261103/visual-02/bakery-ability-restore-450x1000.png",
+        "sha256": "8dac5cd04c7f9dcdf075cbdc6b4d9505e7122e001f23ff88acf62c7a1f823af4"
+      },
+      {
+        "path": "verification/direct-ability-purchase-20261103/visual-02/crystal-ability-unavailable-450x1000.png",
+        "sha256": "3bf8ae42774cfeec3afd8eeca94f2993c30c231186b19e4e3a07a668684ebfaa"
+      }
+    ]
+  },
+  "visual_review": [
+    {
+      "path": "verification/direct-ability-purchase-20261103/visual-02/gelato-ability-eligible-450x800.png",
+      "sha256": "0227b05fba78666bfc974a21986785bd220fee525f0ce3dace13249c4dc2803b",
+      "reviewer": "root",
+      "approved": true,
+      "pixel_identical_to_reviewed_first_capture": true
+    },
+    {
+      "path": "verification/direct-ability-purchase-20261103/visual-02/gelato-ability-confirm-450x800.png",
+      "sha256": "07292bd3b9ec9659cd1d623286ac1a726117766b57ab92066f4b39e32373168b",
+      "reviewer": "root",
+      "approved": true,
+      "pixel_identical_to_reviewed_first_capture": true
+    },
+    {
+      "path": "verification/direct-ability-purchase-20261103/visual-02/bakery-ability-home-450x800.png",
+      "sha256": "2a115f781a4047524c57a0d20648f9273ccd8c7b0fbb8dab51d2aee59b5c2efc",
+      "reviewer": "root",
+      "approved": true,
+      "pixel_identical_to_reviewed_first_capture": true
+    },
+    {
+      "path": "verification/direct-ability-purchase-20261103/visual-02/bakery-ability-locked-450x800.png",
+      "sha256": "4fbb3ce1f22d64b0cf0b927f74ce6bebcb4ef9affd46caae2ba54b48594e2a6f",
+      "reviewer": "root",
+      "approved": true,
+      "pixel_identical_to_reviewed_first_capture": true
+    },
+    {
+      "path": "verification/direct-ability-purchase-20261103/visual-02/crystal-ability-owned-450x1000.png",
+      "sha256": "73e96e28a44aa7aa40c18cbc4c0121631be762b9cac9ef4babad9db2f8470d2f",
+      "reviewer": "root",
+      "approved": true,
+      "pixel_identical_to_reviewed_first_capture": true
+    }
+  ],
+  "source_parity": {
+    "all_relevant_inputs_match_current": true,
+    "input_count": 259,
+    "files": [
+      {
+        "path": "data/art/arc_props/bakery_house.png",
+        "sha256": "33e51213ec305071977b31ec81617c5bd1e69fa2c881486000f853d5b9e72c7d"
+      },
+      {
+        "path": "data/art/arc_props/bakery_mill.png",
+        "sha256": "5fb8ee1f4f004baa009fd65b6c6b53a66614bc5ce497e48612c2609d1f46b35f"
+      },
+      {
+        "path": "data/art/arc_props/flower_planter.png",
+        "sha256": "04ce0bef6f2bbd5682eca064f79d10ace66618980bc24d61f43a56df79ebb06e"
+      },
+      {
+        "path": "data/art/arc_props/garden_bench.png",
+        "sha256": "c37c041ce1e979a3dc23c2e2eb79a407e4813724485f77506887b1e3b47e36af"
+      },
+      {
+        "path": "data/art/arc_props/gelato_house.png",
+        "sha256": "b1c1e25e60fd2bc9eeca961612c0a02824a965d02a5ac631465f995121fa2b4f"
+      },
+      {
+        "path": "data/art/arc_props/gelato_pavilion.png",
+        "sha256": "bde91bd418006517643fffc5e5adaca5ce44d5cbbc52b19f0c16f5dc294221e5"
+      },
+      {
+        "path": "data/art/arc_props/greenhouse.png",
+        "sha256": "81568c789fcb056797326f3d270c6e08a96ece854cfe67fe7f1f955c8deb3782"
+      },
+      {
+        "path": "data/art/arc_props/lilac_tree.png",
+        "sha256": "6437db42ab3d1b47fcc33cd397ffae79e7602d51e228c73c52abbba4604dca32"
+      },
+      {
+        "path": "data/art/arc_props/oak_tree.png",
+        "sha256": "7f836879a8910eca33a42a6200aaf34d0e8b8554bfd86296dcecb2a3dfd1b289"
+      },
+      {
+        "path": "data/art/arc_sections/courtyard_steps.png",
+        "sha256": "a26e0f5d334e1da25833d90116b95b362dadbe994cd00f8bd5bfb8a24608f3e0"
+      },
+      {
+        "path": "data/art/arc_sections/garden_border.png",
+        "sha256": "7fbcf14ebbe3659246a00c070f434c2ab5e128adbda26f52fa14bc911c3c01c7"
+      },
+      {
+        "path": "data/art/arc_sections/herb_garden.png",
+        "sha256": "977395e2f558e9338040e1f4d8c618f4ca8faf377e375cc97a7cc53c928f96bc"
+      },
+      {
+        "path": "data/art/arc_sections/v3/planting_225.png",
+        "sha256": "f3e2e2d941002e41d3b3f1652cd7475c565a6ba584632338d860af5b927494a3"
+      },
+      {
+        "path": "data/art/arc_sections/v3/planting_255.png",
+        "sha256": "63337527f6b3a0456ba2cf300395cc8d3bff3fc427886435c2bc76ea87c3a84b"
+      },
+      {
+        "path": "data/art/arc_sections/v3/planting_285.png",
+        "sha256": "f8628a9078ff567209f06569ee34ddf91d7799498b9a1cc8862ee3b1a23f0f2e"
+      },
+      {
+        "path": "data/art/arc_sections/v3/planting_315.png",
+        "sha256": "ab68e90cc64540ba1da311134cfa9cba8bcbb57819050ffa1f5fc0c96fa6f760"
+      },
+      {
+        "path": "data/art/armored.svg",
+        "sha256": "0af24d68a400f8c5dc77d3d803c902b53324d2518ef24e166ed23df648f022f5"
+      },
+      {
+        "path": "data/art/armored_flash.svg",
+        "sha256": "0cdefa821e93092eb675d906177370e49bdb5460ad8e35423d79ac0933fd69af"
+      },
+      {
+        "path": "data/art/bakery_ability/jam_donut.png",
+        "sha256": "7954fbd00dbb6564da4b5b6655b3a38f2c950e674fdc22f637a524fef32ccc02"
+      },
+      {
+        "path": "data/art/branding/sources.json",
+        "sha256": "9ec1e1e6654ff58e88c2a21cf50d8e1ddbd1bba3b1d4f849da1543fbef6f033b"
+      },
+      {
+        "path": "data/art/branding/studio_boot.png",
+        "sha256": "3e84e91f493a050ec9f1a0601470f8eee2d763e2e3723fa7f74a224f7191256c"
+      },
+      {
+        "path": "data/art/branding/studio_spotlight.gdshader",
+        "sha256": "51800566a4e4521a2b3c823174749c28ec1f3c1f72a304644dd88857808eb184"
+      },
+      {
+        "path": "data/art/branding/studio_stamp.gdshader",
+        "sha256": "b044f3505fa013ffa257cae6a027ffa06788e008baae32856e7eaa3d53841b33"
+      },
+      {
+        "path": "data/art/branding/studio_stamp.png",
+        "sha256": "a7e295efc6232750e58fc230372987b7382da3c102ac445dbf8d7e91cd3a2d53"
+      },
+      {
+        "path": "data/art/branding/sugarfall_adaptive_background.svg",
+        "sha256": "0f54feb7b48b541107203ece28f1c71bc4996df4474f63ec516f4817cc4ca38d"
+      },
+      {
+        "path": "data/art/branding/sugarfall_adaptive_foreground.png",
+        "sha256": "e1a10f4c406929db3f07c2f3cd1121803bfd6c757f98660bacd308e998002f1c"
+      },
+      {
+        "path": "data/art/branding/sugarfall_icon.png",
+        "sha256": "5d72f03a9bad61663dcb6f7d5f752a6a6d38af6dfa5cbeeb0cfaa89ab7de6cc8"
+      },
+      {
+        "path": "data/art/clock.svg",
+        "sha256": "e739e446b942239cc57b974da778ea18380460c5a762ec15ca23189f9836f88b"
+      },
+      {
+        "path": "data/art/clock_flash.svg",
+        "sha256": "726c8124a8a3bcb650de8271ebe88dcfb89c4790636d0723d27ef23cb831d48a"
+      },
+      {
+        "path": "data/art/crystal/environment/candyworks_room.png",
+        "sha256": "9b151f84f6b11a7210a991cf91f3ebdb80568c1e695e7928c048d84c8d9d104f"
+      },
+      {
+        "path": "data/art/crystal/environment/journey_backdrop.png",
+        "sha256": "cfb5ddcc8cf43b003e9fba8405bd4c19b736e7de47e5287b0392587441ffacda"
+      },
+      {
+        "path": "data/art/crystal/environment/regions.json",
+        "sha256": "3fe2cf77ca7a606c31a54ed89317a119bfbc6493983c060209a6ca81c7994581"
+      },
+      {
+        "path": "data/art/crystal/environment/upgrade_courtyard.png",
+        "sha256": "3c74d02ccb8d4a74b035e8c98773510eef9938268e076d65e52e3bc757ac4678"
+      },
+      {
+        "path": "data/art/crystal/food/balls_atlas.png",
+        "sha256": "e28bb783b08f822274b98bf79544f406f1352d27bf95f34240a8e11c4ff285f1"
+      },
+      {
+        "path": "data/art/crystal/food/equipment_atlas.png",
+        "sha256": "d32877f88749bc78a816a0d7aa0e1f22b6b0540be481a82b98db565f613b9cac"
+      },
+      {
+        "path": "data/art/crystal/food/pegs_atlas.png",
+        "sha256": "b500c4bed35edf382bb4f6a862994641f5e80fe39443e4d448429b244d3404da"
+      },
+      {
+        "path": "data/art/crystal/food/regions.json",
+        "sha256": "b4233d00b77f959d7b1e1029b5a383876fcd1323825f4fb13423a75d93e3d14a"
+      },
+      {
+        "path": "data/art/crystal/food/tray.png",
+        "sha256": "895d831a4b32c8a4047fec2d3e287ef868252161066060fe4b4fc7cfea967596"
+      },
+      {
+        "path": "data/art/crystal/sources.json",
+        "sha256": "38e23862818931a54c5c3958e4abdf26809aa226d207b55892227586586eb57c"
+      },
+      {
+        "path": "data/art/environment/bakery_landmark.png",
+        "sha256": "ed5fd06a6965c5022b13189fa675b8aef1ffd1d181414e90fbd06d4b8d5ecc4e"
+      },
+      {
+        "path": "data/art/environment/home_counter.png",
+        "sha256": "4a3f732222b7ad7062afa4a6ac1081b0d12b2353c284668e48d8ddc2f2061133"
+      },
+      {
+        "path": "data/art/environment/journey_backdrop.png",
+        "sha256": "ac14bdd534fa3da7527f95b3a4c3eff265a1bb683d7b944591ccf2e5aa7a16db"
+      },
+      {
+        "path": "data/art/environment/palette-refresh-sources.json",
+        "sha256": "e55176205c99bac498465ab9f37bffddb90294bf90c2d5150945337745d844d6"
+      },
+      {
+        "path": "data/art/environment/play_counter.png",
+        "sha256": "87f28f8b57d856aa4dffa205314e568461e9aa2824fcdeb55ebebe29c70aa297"
+      },
+      {
+        "path": "data/art/environment/regions.json",
+        "sha256": "a192e38a74fe9ce83b3f19ce3c9794fb703a94f8e3b920d6e24f2ab120588671"
+      },
+      {
+        "path": "data/art/environment/sources.json",
+        "sha256": "b2e9e1bce5a322f7484904b53107d498ee9fc6619f05f4d45ac33c3e043611ff"
+      },
+      {
+        "path": "data/art/environment/upgrade_arc_illustrated_v4.png",
+        "sha256": "6a7bd0f6e63c6d68fefa99c5bca4daf2c0bd706078e654e92271a9ffdc8b4856"
+      },
+      {
+        "path": "data/art/environment/upgrade_arc_v1.png",
+        "sha256": "ef2f79979162648c29de0a950f5208986b250b80fc8c148094cb00a1ce8ad988"
+      },
+      {
+        "path": "data/art/environment/upgrade_arc_v2.png",
+        "sha256": "22e272a7064c3fa0d4b5b05f85eca61a81ac5c804f685659d235bcbbd3374386"
+      },
+      {
+        "path": "data/art/environment/upgrade_arc_v3.png",
+        "sha256": "89636b8812abd37635c93976478a52396f839ed387fef4f1a46d11e195650267"
+      },
+      {
+        "path": "data/art/environment/upgrade_counter.png",
+        "sha256": "224057efc3903dad5305b032e16a4f0f54f7eb07b2a1a4369feb30ecc534bbfc"
+      },
+      {
+        "path": "data/art/food/cookie_armored.png",
+        "sha256": "9a0fe0752428678763997d8f6da93f440ec219051176d4bb79fa73bdef58edb9"
+      },
+      {
+        "path": "data/art/food/cookie_armored_damage_1.png",
+        "sha256": "ecf0563ea024a3e4ede4fe65927cd2b5ca58ca0279ae7a70095f6c181ed5d41d"
+      },
+      {
+        "path": "data/art/food/cookie_armored_damage_2.png",
+        "sha256": "e7312d7cfe2fdeb266042b78bafd4284a10c026c335eb644bfdc8d0859804dd2"
+      },
+      {
+        "path": "data/art/food/cookie_armored_damage_3.png",
+        "sha256": "a902e4961ba13373c3ad90bbc89870619c6acf0e13995e9a69bb652a9629c5f3"
+      },
+      {
+        "path": "data/art/food/cookie_clock.png",
+        "sha256": "b41480b58b0b2d44e542390568098894ad58b26774d917218671c5ff8b5e288a"
+      },
+      {
+        "path": "data/art/food/cookie_clock_damage_1.png",
+        "sha256": "59e3744ba0dd79e1a5979ae5f814451352ce502738d3550d27511e2219597ef9"
+      },
+      {
+        "path": "data/art/food/cookie_clock_damage_2.png",
+        "sha256": "d2911cd7141d5f1975ee0397af82ad9261ea79b1055fedbf2b05736f093763c3"
+      },
+      {
+        "path": "data/art/food/cookie_clock_damage_3.png",
+        "sha256": "9192c332fc32d3471e0c72edcd6b33c24d4e18816af0787da354be5361a1385a"
+      },
+      {
+        "path": "data/art/food/cookie_normal.png",
+        "sha256": "c6e6d4de1e94d2ac1a3e02dda204ba98520413ae4ce0384ef8fc4d1cf36d355c"
+      },
+      {
+        "path": "data/art/food/cookie_normal_damage_1.png",
+        "sha256": "66bf0dfb8032f6745882d453b3aea4962837a4896f264eb3954cc1783646e410"
+      },
+      {
+        "path": "data/art/food/cookie_normal_damage_2.png",
+        "sha256": "335dc4f813f970877cae2167952c55e219421e8d454394a67ef3a3f8fb7894df"
+      },
+      {
+        "path": "data/art/food/cookie_normal_damage_3.png",
+        "sha256": "e116b6e306c39ab35342b871d1957a3284167aed65d9d51828e09d98409b45b1"
+      },
+      {
+        "path": "data/art/food/cookie_prism.png",
+        "sha256": "342b95fe8213699f2c8519aad00a258b7ea3a6c008bec5a9656c37c0fb6a6534"
+      },
+      {
+        "path": "data/art/food/cookie_prism_damage_1.png",
+        "sha256": "33909176732378a9f80b2a362d114e9cb514f3bc5c5872e2dbbdf1e59e94f996"
+      },
+      {
+        "path": "data/art/food/cookie_prism_damage_2.png",
+        "sha256": "d4d9319419804de344bb8af8bb08ea29f72dfd7db2b60452da4fd10f077db213"
+      },
+      {
+        "path": "data/art/food/cookie_prism_damage_3.png",
+        "sha256": "811a71cba28e1c9ee9fc3ccee075e293b94a1e96ff6201d41ad01877432b0665"
+      },
+      {
+        "path": "data/art/food/countertop.png",
+        "sha256": "87f28f8b57d856aa4dffa205314e568461e9aa2824fcdeb55ebebe29c70aa297"
+      },
+      {
+        "path": "data/art/food/cup_cream.png",
+        "sha256": "56ef42016618ba743bcdffb6dd84148a2dcbf810b979ea2972a9b90fd6c61e40"
+      },
+      {
+        "path": "data/art/food/cup_gold.png",
+        "sha256": "52252575b962297602aacc9549d2813fb19bcc5562c522e40d86b6558c88d355"
+      },
+      {
+        "path": "data/art/food/donut.png",
+        "sha256": "4383859bec96e6085f1a5a675a8e11db0b44163429d63b57d1fb77d2f376938a"
+      },
+      {
+        "path": "data/art/food/hopper.png",
+        "sha256": "f9257943f1758be992ae337a85e8d7215d1610d70e69d3c8c4be3026f28874d1"
+      },
+      {
+        "path": "data/art/food/palette-refresh-sources.json",
+        "sha256": "3e5b07b28ae19680c549c53918682616f3b8b0cddc24dd16a05e8ef6b417491f"
+      },
+      {
+        "path": "data/art/food/pomegranate.png",
+        "sha256": "5ee5b9ebb8b189ade7d06eb5bfdecfdc6cedc3c8e02ac1e11ac5c159cccdf73c"
+      },
+      {
+        "path": "data/art/food/pumpkin.png",
+        "sha256": "061594906b15c6dd2569063bd7b22ff845ed7567cc126657fe0394bcd8cb45f4"
+      },
+      {
+        "path": "data/art/food/regions.json",
+        "sha256": "e7e38946dca95ab8d11a07df445067b8e3d7f756bf1beccda0b63cf6c417edf9"
+      },
+      {
+        "path": "data/art/food/ricochet.png",
+        "sha256": "05e38aee2a1b6de791815351f0f429ebdd6c574408da126c85acfc4855dcdd94"
+      },
+      {
+        "path": "data/art/food/seed.png",
+        "sha256": "ea6e967477cbfdfe06ff42f3c898aa40376419430a143c38323c2cc9a6c75285"
+      },
+      {
+        "path": "data/art/food/sources.json",
+        "sha256": "c5160904c639ffe182099e55786359a786cf76680ee49a97b1087e25a55123ca"
+      },
+      {
+        "path": "data/art/food/tray.png",
+        "sha256": "de2d403c1675720940ec3de131295737e7466a6b4d3f7eb5dac515f393762278"
+      },
+      {
+        "path": "data/art/gelato/environment/bakery_landmark.png",
+        "sha256": "c9d147e44fdf8ddec11d6a611f3d7a1d383bbc7d63b01769bd3903da2bc7e38d"
+      },
+      {
+        "path": "data/art/gelato/environment/home_counter.png",
+        "sha256": "2f25083dde149be3d6408158ad8f8330bbb73e8963ca3177423c3d1e88c63572"
+      },
+      {
+        "path": "data/art/gelato/environment/journey_backdrop.png",
+        "sha256": "f5c44a40ca7295fe923e0cb712ab0ae5f9b86d3eaf67c46b8d5b1d4f26846d64"
+      },
+      {
+        "path": "data/art/gelato/environment/palette-refresh-sources.json",
+        "sha256": "af01f7317d487ac6ae8009b00c067dd20b077fd5881d6a1eb6831d92627a6563"
+      },
+      {
+        "path": "data/art/gelato/environment/play_counter.png",
+        "sha256": "5eeccedf29be382bf8fffd96bda2842522b7e5c2c10d2590faeafba23028b8bb"
+      },
+      {
+        "path": "data/art/gelato/environment/regions.json",
+        "sha256": "a088409178687492fc24e19cc7a0c90445a29d4dd93c8c903fd582924b99ddef"
+      },
+      {
+        "path": "data/art/gelato/environment/sources.json",
+        "sha256": "08aaede8627c66c3259f73dd5c1690800c9ec486c85d4f5eefb79fd3bcab8ac7"
+      },
+      {
+        "path": "data/art/gelato/environment/upgrade_antler_garden_v1.png",
+        "sha256": "92274e13e0abec7c5f315f4e74e173199cdcb2587ba3e5662def316d00c4e482"
+      },
+      {
+        "path": "data/art/gelato/environment/upgrade_arc_illustrated_v4.png",
+        "sha256": "ccf99f549256a82b53d09e4bfbbb225a8a1e1146b1b8926b9af9a8e3711709b1"
+      },
+      {
+        "path": "data/art/gelato/environment/upgrade_arc_v1.png",
+        "sha256": "64373a739b6452e9e74b8524ddb8c1a19e510d13623a0078be438660ed24b62e"
+      },
+      {
+        "path": "data/art/gelato/environment/upgrade_arc_v2.png",
+        "sha256": "c16a45077fc3d2fe5f5dea3bea3cd62bded0294d61b57802e557b179c7604559"
+      },
+      {
+        "path": "data/art/gelato/environment/upgrade_arc_v3.png",
+        "sha256": "0cb4c4ebed8a8c981aa5f3f202625b8f8023ed1242fa3da8743466cffbd3282c"
+      },
+      {
+        "path": "data/art/gelato/environment/upgrade_ceramic_garden_v1.png",
+        "sha256": "f1261a1aa3f948095c9f76bad4ef5bba5ab5c1a8a1bd66079a3941c619b4d6e7"
+      },
+      {
+        "path": "data/art/gelato/environment/upgrade_counter.png",
+        "sha256": "b4f925b3c0b55e9aab6761b3cb86ba78083dfe0b2c701e13d99a05b7e4f817cc"
+      },
+      {
+        "path": "data/art/gelato/environment/upgrade_u_garden_v1.png",
+        "sha256": "b51e4dda70bd548259b949ad0d9aacfd7ff285391b05f988afdec9a18de7362c"
+      },
+      {
+        "path": "data/art/gelato/environment/upgrade_u_garden_v2.png",
+        "sha256": "d326f036d45ee3cd1987f472831263ccb04f85bd26aa3ddc607e8e568a8e1490"
+      },
+      {
+        "path": "data/art/gelato/environment/upgrade_winding_garden_v2.png",
+        "sha256": "2db540e960051b479fd78d90ae604508bc5a570e013ccd45c5c2abd49a6079b5"
+      },
+      {
+        "path": "data/art/gelato/food/cookie_armored.png",
+        "sha256": "eb3ac5546e6029dc3498bbe3606248d85fab2e76dd424457d6eff5f8669a7832"
+      },
+      {
+        "path": "data/art/gelato/food/cookie_armored_damage_1.png",
+        "sha256": "c23bfac448a5b28de003f5e39a83992985f6582e34e1f0b4bd69a14e5fd49f09"
+      },
+      {
+        "path": "data/art/gelato/food/cookie_armored_damage_2.png",
+        "sha256": "5481056f3c6a8d3f53d1f8f04b7064d253805d470c6bcc5cb682c571ae2e8e0a"
+      },
+      {
+        "path": "data/art/gelato/food/cookie_armored_damage_3.png",
+        "sha256": "9cd5ea72d4f9a255c716a90d53a7d36e91a239c17b3307df9cba5a46c733b1ac"
+      },
+      {
+        "path": "data/art/gelato/food/cookie_clock.png",
+        "sha256": "8ba64a3f73bfb7ddf89ed640ad49cdc7981e26e11850cdcaf38ba4aebf6a777e"
+      },
+      {
+        "path": "data/art/gelato/food/cookie_clock_damage_1.png",
+        "sha256": "28b876f5a5795d8bf3a301d5125b1974e21d4200cc69f668214a7e9585835b8c"
+      },
+      {
+        "path": "data/art/gelato/food/cookie_clock_damage_2.png",
+        "sha256": "cbf6cda3e6a21b3154451befdee2e0e3a399c8ce50479accd5b0ce8a121fc169"
+      },
+      {
+        "path": "data/art/gelato/food/cookie_clock_damage_3.png",
+        "sha256": "986d775b8bf237f38f5d69a43f9de3c6d27cb5f0c1a05bd8725f878a25007e18"
+      },
+      {
+        "path": "data/art/gelato/food/cookie_normal.png",
+        "sha256": "3ef9f85e9c6b1c00e8441f336118888eb1d01992e89d673c2fd1c561fd42da34"
+      },
+      {
+        "path": "data/art/gelato/food/cookie_normal_damage_1.png",
+        "sha256": "9936c9a547d32e78299d6c1219921b350c462130b4678468d2fe1357c781e616"
+      },
+      {
+        "path": "data/art/gelato/food/cookie_normal_damage_2.png",
+        "sha256": "e50ba401668d104aca7365013d046e33e90cbba7c221570956f6d3e72cbd3f62"
+      },
+      {
+        "path": "data/art/gelato/food/cookie_normal_damage_3.png",
+        "sha256": "06a56f6de2122aeb37786562c65dcd6cec1456dc5887ed67c2ccf3d25fdcf37b"
+      },
+      {
+        "path": "data/art/gelato/food/cookie_prism.png",
+        "sha256": "7a4515f88cb9a1ec7eb324f1c2a3386d517670a6cfc76067ded4e0276a66f65e"
+      },
+      {
+        "path": "data/art/gelato/food/cookie_prism_damage_1.png",
+        "sha256": "61703bf051572bd719dc6cb00ee34120f6e552cda4b7716c50c5172e908e464f"
+      },
+      {
+        "path": "data/art/gelato/food/cookie_prism_damage_2.png",
+        "sha256": "d9c07fa5b49b17e30e7f9c10586de99b53b27b392225e253fe5571d601b8f431"
+      },
+      {
+        "path": "data/art/gelato/food/cookie_prism_damage_3.png",
+        "sha256": "0bc409e9c70f6b73e2e6a611300201aa18564da2d2731b645ec0f5a2b51d2bc8"
+      },
+      {
+        "path": "data/art/gelato/food/countertop.png",
+        "sha256": "5eeccedf29be382bf8fffd96bda2842522b7e5c2c10d2590faeafba23028b8bb"
+      },
+      {
+        "path": "data/art/gelato/food/cup_cream.png",
+        "sha256": "97c2eb0125e8b1a5c51dfe7d377a0883906c6d503d4d5644a3ea34ebec2f09f0"
+      },
+      {
+        "path": "data/art/gelato/food/cup_gold.png",
+        "sha256": "0c1a962b8ad27abaea59c361cd77fe5b9fb2e26093d59b7a99996840c9488fc0"
+      },
+      {
+        "path": "data/art/gelato/food/donut.png",
+        "sha256": "dc265e558b8e7453a85b1387426e2fa6489006e55f309516e6c9f7ff155c03dc"
+      },
+      {
+        "path": "data/art/gelato/food/hopper.png",
+        "sha256": "7c2b0c2bb3ff7e2122fea91893138f94b1683b376a8367f54c755b9a2869a1c4"
+      },
+      {
+        "path": "data/art/gelato/food/palette-refresh-sources.json",
+        "sha256": "6c8fe75901f57a69af5b5391bd4ca883d952f509990b1b5686bf5a26d3f515d6"
+      },
+      {
+        "path": "data/art/gelato/food/pomegranate.png",
+        "sha256": "d6f544ee307733a837c5725d64535270800cfd16d11531abba4fcaf06cacd9db"
+      },
+      {
+        "path": "data/art/gelato/food/pumpkin.png",
+        "sha256": "a9e25e08daa4c0e21f8a1f0f11a4cb47315d6f80533f3a3f34a87c97ea978d19"
+      },
+      {
+        "path": "data/art/gelato/food/regions.json",
+        "sha256": "33f3fffc2367758caf208e73984c799935d13828febd5bbde13e8a7156fb315a"
+      },
+      {
+        "path": "data/art/gelato/food/ricochet.png",
+        "sha256": "587972a2ff8659c9e6491f6db62689d72aa5292e74bc823e0f2fc0c3561e6b5c"
+      },
+      {
+        "path": "data/art/gelato/food/seed.png",
+        "sha256": "e80a647f980000c5d1de50fcae069ef8929d8e7792e7b95bec6a3a7d82fa09eb"
+      },
+      {
+        "path": "data/art/gelato/food/sources.json",
+        "sha256": "a6a6fae9e16a785939e2718b3cad806790354a358c187ccfae81f4c1c54abc7c"
+      },
+      {
+        "path": "data/art/gelato/food/tray.png",
+        "sha256": "695f994f585fcf6119bf42816a24afa1bc64f8e3a3958d111f3739e3d134dfc2"
+      },
+      {
+        "path": "data/art/gelato/ui/level_badge_muted.png",
+        "sha256": "4314ff23e1f138f9e609f00ecd798971b75b90e71b8fb9c27112393b183f0c17"
+      },
+      {
+        "path": "data/art/gelato/ui/level_selector.png",
+        "sha256": "01c839e48cee91e83ccd6a893194243f0ddf154c34e3cfaf5fbba3d2026d7360"
+      },
+      {
+        "path": "data/art/gelato/ui/panel.png",
+        "sha256": "8cfd990f4a634369675f087ae5520cf514be39d567d2fe4ed5b8ae6a8debac32"
+      },
+      {
+        "path": "data/art/gelato/ui/regions.json",
+        "sha256": "0df55d0d862a6b1dbcb6f07c3f527a9ac59912388b0f7b2881f79dcbc957138b"
+      },
+      {
+        "path": "data/art/gelato/ui/sources.json",
+        "sha256": "964b568afe61f097f44c84af55612d5e521bd3d95189a6e0ced6ff698da6e231"
+      },
+      {
+        "path": "data/art/host/mabel_welcome.png",
+        "sha256": "a4de046c95b82fec4d4171049eec0e15e5c633df77f940f677894424fdbe5cbd"
+      },
+      {
+        "path": "data/art/menus/bakery_frame.png",
+        "sha256": "aac9de16828e35035560d577069b8a8772a3fd28d57d4262f2fc8e40c29e0b04"
+      },
+      {
+        "path": "data/art/menus/crystal_frame.png",
+        "sha256": "85f247cc1248b6506f1aecbffd7c4f35fe39516e87248ef77a7286851184c074"
+      },
+      {
+        "path": "data/art/menus/gelato_frame.png",
+        "sha256": "1235599c74e46c7c3902a4241e1048881e9dc8017a6d23bd363617d8e2b34806"
+      },
+      {
+        "path": "data/art/normal.svg",
+        "sha256": "64b0ea5991d91d5b89f2651d0306911790dace8626687af118ed47681e493cda"
+      },
+      {
+        "path": "data/art/normal_flash.svg",
+        "sha256": "7cceff5bd0e7c8ba501f61147b917e95f17ec48f4856521fd6612e3dd8e514e2"
+      },
+      {
+        "path": "data/art/paper.svg",
+        "sha256": "5b91ec9e3b14f4a4b8d12eff67914ff190d215887913b7c8607d9d1aad93950e"
+      },
+      {
+        "path": "data/art/prism.svg",
+        "sha256": "af62e665f8c16e1d663614ea60bf34bac5f8cd9ce9821223c2258262dfd00e44"
+      },
+      {
+        "path": "data/art/prism_flash.svg",
+        "sha256": "9df0604966bdd6ec0792367f6fef2ffa9e028c1ef8b39267a06e16ec49a07275"
+      },
+      {
+        "path": "data/art/results/bakery_backdrop_v1.png",
+        "sha256": "ad90b836c7e9adbc37c27df15222bba67159cd65cb5cb520872efb3a4cea9175"
+      },
+      {
+        "path": "data/art/results/coin_dish_v1.png",
+        "sha256": "b79e67b3fc5e51d1aa79814189694b84f98a780fda3e41dbb88b28ce9e63526d"
+      },
+      {
+        "path": "data/art/results/gelato_backdrop_v1.png",
+        "sha256": "a75f3db8c128dd60646a5c52802b3c9cf5c684c59f886c14114067109a6cb94c"
+      },
+      {
+        "path": "data/art/transitions/cream_wave.png",
+        "sha256": "46c7f133bbf7cfe3e08f3e457734487139a08cbb50a2ef59e244c8a3449be93d"
+      },
+      {
+        "path": "data/art/transitions/pause_blur.gdshader",
+        "sha256": "69f9373617d38e80d4d5d5a23bcc829a8f4cad3e22bbbcd4792b0d8ea60f1f70"
+      },
+      {
+        "path": "data/art/tray_dots.svg",
+        "sha256": "e066095b31aa4ed1e5585563e0da21be10b5300ad2949754fb55be3ae04b11be"
+      },
+      {
+        "path": "data/art/ui/button_cream.png",
+        "sha256": "16bc62f14bd898586ff7e3a48ebb86274b50c10ccf3138d180276f6d16376142"
+      },
+      {
+        "path": "data/art/ui/button_mint.png",
+        "sha256": "f91be056e6c61e7083fc001ec73991243095aff98edd07296f11eac84c8de80e"
+      },
+      {
+        "path": "data/art/ui/coin.png",
+        "sha256": "ebd1dbd53a9bc2f1cbfa0722cead9cd26fe0adc5d3dcc59653b5c72c5daad82b"
+      },
+      {
+        "path": "data/art/ui/level_badge_cream.png",
+        "sha256": "6befdd760c7238d86ae2fb7a3f563b9d2006a7f84e897e5d0fa6e370984d8dad"
+      },
+      {
+        "path": "data/art/ui/level_badge_mint.png",
+        "sha256": "f8762c3b56e8aab161dfa964608adcfee2fe18a4a473f2501d1b8855c9420f20"
+      },
+      {
+        "path": "data/art/ui/level_badge_muted.png",
+        "sha256": "911d24712c40f6a3ff3f0951b47c5542976f2c9f88d69de0300d8b2cde4f9e6d"
+      },
+      {
+        "path": "data/art/ui/level_selector.png",
+        "sha256": "04d0be4a88b210d4bf64ae1f7aeb971e0f11a67461b6f320dece08a279d59e0c"
+      },
+      {
+        "path": "data/art/ui/node.png",
+        "sha256": "33861a8837a117b33e179b74fd551cf2ca2944150e9f5d526f45debd0ed3bacb"
+      },
+      {
+        "path": "data/art/ui/panel.png",
+        "sha256": "1e589d5202a1db23463d9e246da24f682ccdbdab19147220ec79502bece739d2"
+      },
+      {
+        "path": "data/art/ui/regions.json",
+        "sha256": "d37585077c0984a7ca30cf7d0185f1db42b1e400328b4743fda2510368b6434d"
+      },
+      {
+        "path": "data/art/ui/sources.json",
+        "sha256": "3677647e19c70b535e3542be66c31deb7736ea886e624eb5b11e272e716f6d69"
+      },
+      {
+        "path": "data/art/ui/timer.png",
+        "sha256": "2b3a37acb0bf565a330699b0becda5933b64d09135926fb6973a3f2581ea8570"
+      },
+      {
+        "path": "data/art/ui/upgrade_parchment.png",
+        "sha256": "cd3efa37ae9490a8278a02d48e26431400a0e63932b88a5682301879754a6f8f"
+      },
+      {
+        "path": "data/art/ui/upgrade_tile_cream.png",
+        "sha256": "1ee5cae3d9671cd6009fff59095379a809348442f3f674e65a534b9c19f45312"
+      },
+      {
+        "path": "data/art/ui/upgrade_tile_green.png",
+        "sha256": "af444cd3721ea883b77288f78a6407b72e74dbc77b93f31f397c40bf0bf83dab"
+      },
+      {
+        "path": "data/art/ui/upgrade_tile_red.png",
+        "sha256": "0b15e270da1f4f26769ca46d3ee9b794b4ef8d608cfb68311c7544812b29fa85"
+      },
+      {
+        "path": "data/audio/feedback/ability_purchase.wav",
+        "sha256": "5481c4daef27315746a33f8414cfd1fedffcd60e94cce73ecf64051a1d3dea2e"
+      },
+      {
+        "path": "data/audio/feedback/bakery_cup_catch.wav",
+        "sha256": "92389f6aa4f3991c009b37a8bb51723ede3b0508a39576368f2117d1e5617e41"
+      },
+      {
+        "path": "data/audio/feedback/bakery_launch.wav",
+        "sha256": "2df0f360fcf12ec0a3df72d8c2e270fa63bfd188e8bb68182fae3e98154cfb07"
+      },
+      {
+        "path": "data/audio/feedback/bakery_peg_break.wav",
+        "sha256": "fcec8dcb58993c1822b094c8bdc4bd112a70d4366e1ce6507cc1cc54e4bf4b90"
+      },
+      {
+        "path": "data/audio/feedback/bakery_peg_hit.wav",
+        "sha256": "f13a0d09bbd384a298c24ae78b712132353c1ccce5197d44e2a469782622f818"
+      },
+      {
+        "path": "data/audio/feedback/collect.wav",
+        "sha256": "a5452575f58a9a8e0adb1a86e48c3a3ba16842364c498cc34723fe1b083e4389"
+      },
+      {
+        "path": "data/audio/feedback/countdown.wav",
+        "sha256": "4894b683102e0eb5a652f448623f17e312eeb825d37cd262552143c3be6b77ff"
+      },
+      {
+        "path": "data/audio/feedback/crystal_cup_catch.wav",
+        "sha256": "305415d5435535a7e898157a88a9eba3f48a3b4c4c73d40486e6da428355d11e"
+      },
+      {
+        "path": "data/audio/feedback/crystal_launch.wav",
+        "sha256": "4cbed1cf86c53b6a6e6a6c43a9393c31c09d12469be91f2deac05733db772fc7"
+      },
+      {
+        "path": "data/audio/feedback/crystal_peg_break.wav",
+        "sha256": "e187f7bf0f874e6d9d11e6655bec064aa2cd9c867d178cfc00cb1e43f80aaf0a"
+      },
+      {
+        "path": "data/audio/feedback/crystal_peg_hit.wav",
+        "sha256": "49c94993b6d938d2c3740ef8a950deab084cf8395f18cd62261e99b345e8cf8a"
+      },
+      {
+        "path": "data/audio/feedback/gelato_cup_catch.wav",
+        "sha256": "bb293fc8fb15828b3b0a898fa8f8f3aa46187efeff5eac21c68df0dad9125047"
+      },
+      {
+        "path": "data/audio/feedback/gelato_launch.wav",
+        "sha256": "464b1795e0c5ca578b8292e631fe3fe866d27eba8430c92c67ba9d2cebf47aac"
+      },
+      {
+        "path": "data/audio/feedback/gelato_peg_break.wav",
+        "sha256": "0fd83cb03d735b6e1910c49140bd868d4abd051db2a236d6171af996cafab36a"
+      },
+      {
+        "path": "data/audio/feedback/gelato_peg_hit.wav",
+        "sha256": "9ce5d153cba0e7a41b13f149996b33328272a93374ea5d2db617941b9bb86c7e"
+      },
+      {
+        "path": "data/audio/feedback/jam_splash.wav",
+        "sha256": "aa168ca603fd4f8bb903cd5b971c456762376b34875197c602d1e15f643be373"
+      },
+      {
+        "path": "data/audio/feedback/pause.wav",
+        "sha256": "2d63a4159e78c1747d4d97338a5aca621fe0b0b1955e80c947233935924f9904"
+      },
+      {
+        "path": "data/audio/feedback/pickup_appear.wav",
+        "sha256": "32b3a9624e093164d3afa62d833d87745e40acf484db33c17c421e702e630f06"
+      },
+      {
+        "path": "data/audio/feedback/prism.wav",
+        "sha256": "8374f5868cc618cd029b8578139ee9e3317501923ff2963c4e094402a9c099bd"
+      },
+      {
+        "path": "data/audio/feedback/resume.wav",
+        "sha256": "771aae3c7b04b1ab4a7b8645235c1b51b8795e64cdee88bf8757f84e8e842fb5"
+      },
+      {
+        "path": "data/audio/feedback/run_start.wav",
+        "sha256": "d1625eea49fb66a30506c6f88262b848594f76401be2e4fe3543b715a2790468"
+      },
+      {
+        "path": "data/audio/feedback/special_impact.wav",
+        "sha256": "ff14354a5114aa1df1e1068da18418f62256342e9b55303a8a42b29adb85a840"
+      },
+      {
+        "path": "data/audio/feedback/special_ricochet.wav",
+        "sha256": "2e42da533e820a63c45378bcc0530fe82aa21f220e3f65ac1231fcdeb408cb62"
+      },
+      {
+        "path": "data/audio/feedback/special_split.wav",
+        "sha256": "ec53acd2f37d7c9c6271d89f342a2aab944a6d7a173f79d73b9d26b6438fcec7"
+      },
+      {
+        "path": "data/audio/feedback/time_pickup.wav",
+        "sha256": "4768bfb1c3e741186540aa1ea56da508dbc972a7363a08042f9c2d6bbbcff194"
+      },
+      {
+        "path": "data/audio/feedback/tray_loss.wav",
+        "sha256": "e1ba046c41587498a9fc982529ebe515803215712a1df461fde99479695725b1"
+      },
+      {
+        "path": "data/audio/feedback/tray_win.wav",
+        "sha256": "5f306c5dafdc4bb2f96868737ae078bdbe7712195c0c4642dbd286cc92a3fcfa"
+      },
+      {
+        "path": "data/audio/feedback/twin_transform.wav",
+        "sha256": "cf31330810f4d2e21c37797f324f2a7e640439ba3b0f362e3a49a4f4e1d215f3"
+      },
+      {
+        "path": "data/audio/feedback/ui_back.wav",
+        "sha256": "0436f86ff10be82be62b03d217e390cf3ddc1aa09641d0783a59f21b6ff8b106"
+      },
+      {
+        "path": "data/audio/feedback/ui_confirm.wav",
+        "sha256": "19a4ee54381b8202a2dfb83544d1d514a925c02ccc71cbe92949f9ea9eb0aaa9"
+      },
+      {
+        "path": "data/audio/feedback/ui_error.wav",
+        "sha256": "b83c045324065bc89b4407a8c80fe7c370117e024a728986a0aa729b321d1015"
+      },
+      {
+        "path": "data/audio/feedback/ui_tap.wav",
+        "sha256": "0a754bc8edb2482e114d6ee7267d8ecc73613ff84ae50aeeb044abc2329927a5"
+      },
+      {
+        "path": "data/audio/feedback/upgrade.wav",
+        "sha256": "674b1dda2d5ee1efd4a739d8eb30cc76916f8559998636da2ae894af42a63b34"
+      },
+      {
+        "path": "data/audio/studio_warm_hum.provenance.json",
+        "sha256": "8b8aacd4ab163468da3c84fec79f9a0f61429f26c4ca18a8a0eef2161ed98d57"
+      },
+      {
+        "path": "data/audio/studio_warm_hum.wav",
+        "sha256": "e6340a151a0b5a994eeb76e86d346cb5184bfc5f7635c26c09defef376c73440"
+      },
+      {
+        "path": "data/board_design.json",
+        "sha256": "7f924784be57d5cc15f96199467f8a884feb0bd8d5df19ed07f7eebe55aa2a14"
+      },
+      {
+        "path": "data/crystal_board_design.json",
+        "sha256": "b9ce87470fd3e393ab4789c5b8d682a84bfe6911fce411af1cc516de7cba4e6e"
+      },
+      {
+        "path": "data/crystal_economy.json",
+        "sha256": "fa590359c4687c76ee14ce2149d6fba42a2a302100fe439f69ee301bfca90791"
+      },
+      {
+        "path": "data/crystal_upgrade_layout.json",
+        "sha256": "e87e5f38d6c49d921b53d87f94a17b8df3d189a825c0f9e48d923c9f9f16aa31"
+      },
+      {
+        "path": "data/economy.json",
+        "sha256": "9910256c6a6832d11248012bd60cafeef3e9017bb731bbf23dcf2503c0b27a8a"
+      },
+      {
+        "path": "data/fonts/Fraunces-Variable.ttf",
+        "sha256": "177ff6c0f14e5550a3c624247cd1189611d4eb65d000b14944c63d967958abbb"
+      },
+      {
+        "path": "data/fonts/Nunito-Variable.ttf",
+        "sha256": "bb55a5ca5c2042335b3991af27c4d0705d0ef41cac6164ac737fd8f2a1e85207"
+      },
+      {
+        "path": "data/gelato_board_design.json",
+        "sha256": "0f64d5ebd62f786b1c157a75d599f47d00543e749e4240afe38d0131cfb05add"
+      },
+      {
+        "path": "data/gelato_economy.json",
+        "sha256": "e98aa6365989a68cb618d15a5325bc1d8713767d04a693d2760b94fcf2efe352"
+      },
+      {
+        "path": "data/gelato_upgrade_layout.json",
+        "sha256": "9948870ef138871c4966cea60820c341766af962018a773fe28da5c28bade666"
+      },
+      {
+        "path": "data/upgrade_arc_art.json",
+        "sha256": "3abc28874c39d56d26fc1bff26e079319f646a3511459f2df61f2108539df85f"
+      },
+      {
+        "path": "data/upgrade_layout.json",
+        "sha256": "6397704584fd20178fde7a15f4341dcac3576e8bc9eecf4919e26091bb32058e"
+      },
+      {
+        "path": "main.tscn",
+        "sha256": "e1199368c62dfc7dd6f17fcf54ad6f4f39278c5f729c89670eb28f7aef284b17"
+      },
+      {
+        "path": "project.godot",
+        "sha256": "6f9c64e6e7c12f4e06bf774e1963a581f46e5829863b997993463f4ffcb14461"
+      },
+      {
+        "path": "scripts/area_ability_access.gd",
+        "sha256": "c09d982b508adea00e365153382398a6e3b651c520c5bcac34888244005452b3"
+      },
+      {
+        "path": "scripts/area_ability_ui.gd",
+        "sha256": "310eebb288e95725ae0b65594d97a1185512d5173307923deb3e644a1301972e"
+      },
+      {
+        "path": "scripts/area_art.gd",
+        "sha256": "833c583682df69d83172ca88cebdb669b45e663e40e8059e241df88d5190d4c8"
+      },
+      {
+        "path": "scripts/area_campaign.gd",
+        "sha256": "18665c9c53a26b09b6d1693595ac225160bca2629029387bdab5b386c860991c"
+      },
+      {
+        "path": "scripts/area_play_billing.gd",
+        "sha256": "528183cb6ff145b56ca5483b752ffe24ecee4691f407bb6e005b8f08c5cdbc99"
+      },
+      {
+        "path": "scripts/audio_catalog.gd",
+        "sha256": "db3f396833060fb8eb039c913699736c9037967264637a2ac1ff2b9a66405caf"
+      },
+      {
+        "path": "scripts/bakery_ability.gd",
+        "sha256": "212ce336e92050095a9c0c88911d2a2d6f047b30e3258ec3fb916a3a35fc5c7b"
+      },
+      {
+        "path": "scripts/coin_display.gd",
+        "sha256": "29fcfa88220832e516a1d1d1e6210893ec083360848bda21caea574c7a26fc23"
+      },
+      {
+        "path": "scripts/coin_feedback.gd",
+        "sha256": "77355e8533d1f8840b539a53155c3beacd3140a4a6fc0b2b0795ae5460cb1cfb"
+      },
+      {
+        "path": "scripts/combat_balance.gd",
+        "sha256": "9ad489b7b8f3960a401adc30829d94776845f58060a58f878460479d5b2568e7"
+      },
+      {
+        "path": "scripts/countdown_feedback.gd",
+        "sha256": "44ded78cf9ef83874485fc632a0e53b5ff6af2f6aa10bd30ad511d542e2f0883"
+      },
+      {
+        "path": "scripts/crystal_launcher.gd",
+        "sha256": "af0b77e2a0b08ecd4760d27a82f55b41fb26ff57103d57c57da292733ec20a58"
+      },
+      {
+        "path": "scripts/crystal_upgrade_graph.gd",
+        "sha256": "d8715e6941f1df477e90e2c017392861ae9b4c3924afebf7009d26f994596671"
+      },
+      {
+        "path": "scripts/developer_area_ui.gd",
+        "sha256": "9720214c2fdd09fdc510003b0e25a7e9a79218f25da53a9bd5b5632dd5d96c93"
+      },
+      {
+        "path": "scripts/environment_art.gd",
+        "sha256": "38745078b12953911de5c8aab75b6648dc0d53d44f018f020b53b1b1bb8770b2"
+      },
+      {
+        "path": "scripts/first_run_guide.gd",
+        "sha256": "ca6795dfc258334d369b16591f5ec0704692141dce3bb0720256a588c68b5399"
+      },
+      {
+        "path": "scripts/flow_rules.gd",
+        "sha256": "98cc6d3ec935d021c11a47c4ccb4f4c819bca108af10afb17d5e442ca7812688"
+      },
+      {
+        "path": "scripts/food_art.gd",
+        "sha256": "d8ac12a56e6b6c35c97cac94229a218ac909f1887bf0e5ac6f0aaa3a9cc6bb7e"
+      },
+      {
+        "path": "scripts/game_audio.gd",
+        "sha256": "661f0f82a3b488541603e88d2e8204d5914f57ef63f1f68fb2a385e88d6dc952"
+      },
+      {
+        "path": "scripts/gelato_launcher.gd",
+        "sha256": "d735ac2812dbc6889bb3fad67649626e3a53352ffb6017831acc9bc83870ca19"
+      },
+      {
+        "path": "scripts/gelato_upgrade_graph.gd",
+        "sha256": "e9815d6ea340596e03b6a2646aec8a48d9a9dcf8dee183c9088e121f622586fd"
+      },
+      {
+        "path": "scripts/home_menu.gd",
+        "sha256": "b25508fd6388b8c73ec9884322816d6dc17c887655d101d85dbc83380d0f998a"
+      },
+      {
+        "path": "scripts/impact_feedback.gd",
+        "sha256": "f3e41246e7492a7daa7eab26d9f851d0c903c38f89997a59404eba0594932ca8"
+      },
+      {
+        "path": "scripts/level_map.gd",
+        "sha256": "32fea91d9db63b288532de5c4a3a258fa36270aa051020ef6ef15bb5bf476250"
+      },
+      {
+        "path": "scripts/main.gd",
+        "sha256": "bf744034870f5deb876eb79040d25ac013344e26c67c112902c21a7b900a7089"
+      },
+      {
+        "path": "scripts/monetization_service.gd",
+        "sha256": "7a1763b27f796ab29c1187e418ffe6ac0491c4333e196b33a80fdb9b989ad5d8"
+      },
+      {
+        "path": "scripts/monetization_ui.gd",
+        "sha256": "6156dc1b45a8a87db8efd6595ae90f3eba9137802d77bb4384acbf7c7ef2e9c6"
+      },
+      {
+        "path": "scripts/page_transition.gd",
+        "sha256": "9f2244879f276ceca92cd672103e9fc64bdc1d0ac5624c18ac50479820f08e60"
+      },
+      {
+        "path": "scripts/pause_transition.gd",
+        "sha256": "c58f991597e24d2617805c648ca20a97a9c72916f57e6ba6513a875142d5b0c2"
+      },
+      {
+        "path": "scripts/progress_reset_ui.gd",
+        "sha256": "75608c0fa638b08ba4cdf15029fee9574437d23da1615c2f7e68fbb20d4175be"
+      },
+      {
+        "path": "scripts/result_comparison_ui.gd",
+        "sha256": "4ebaed65dbe076b6b2e5bf535393e8529ca3c39bfa623d68ac5abf52f43e2752"
+      },
+      {
+        "path": "scripts/run_history.gd",
+        "sha256": "f2da83d6d0c8179f58e61ccc7745d7ecb0980c27593a8a71aae89448fd939b30"
+      },
+      {
+        "path": "scripts/run_snapshot.gd",
+        "sha256": "7b36ca5fa358a686fc0e195e752a00c31f707b2e8d11fd8cd798edc58f84918c"
+      },
+      {
+        "path": "scripts/run_transition.gd",
+        "sha256": "6b80a5f6344ed34f26cdffbc3c5780f8cf607995a74ae05ae8a70d056984a043"
+      },
+      {
+        "path": "scripts/speech_bubble.gd",
+        "sha256": "a7fa2f48b72ff1c02a2617148a1c421c3bc55fe0e8dccc286441e43e2767969c"
+      },
+      {
+        "path": "scripts/startup.gd",
+        "sha256": "fb91a8fa83336721188f62e981a79d0d0785c44b6c084d2dd3433ed1f9ed3eac"
+      },
+      {
+        "path": "scripts/tone_bank.gd",
+        "sha256": "0eabc16e9ebf89d77e915ebc64ad44b030dd76003a4e02466d66267f9c5907c0"
+      },
+      {
+        "path": "scripts/ui_art.gd",
+        "sha256": "12cf2661b153fb7701fba3028786deb14daf200462eaa23d00fbfe50bf2c5485"
+      },
+      {
+        "path": "scripts/upgrade_arc_art.gd",
+        "sha256": "4cefc77bef1b62f39b502f9ac8b1edadfd29f8fad05ccb280f10ef1a28a35ab1"
+      },
+      {
+        "path": "scripts/upgrade_graph.gd",
+        "sha256": "3845bed72ffeefb5d747434e8b7dda326993762654b55d796e68d4e437777729"
+      },
+      {
+        "path": "scripts/upgrade_map.gd",
+        "sha256": "e0cd7c5952c75782a75334691cdb7347c3362dfd6720f058f73190d5baf920ca"
+      },
+      {
+        "path": "tests/area_ability_integration_qa.gd",
+        "sha256": "57a594b963a37aa3eaf32bbbe7f6e0aa6961e3b4ba8165ad55a4a550eb10dc38"
+      },
+      {
+        "path": "tests/area_ability_visual_qa.gd",
+        "sha256": "a81157a0881bdcc9cb1029921dee786714cce35b35533dbfc59b8e74548aa6c6"
+      },
+      {
+        "path": "tests/area_completion_visual_qa.gd",
+        "sha256": "978646e24511fdb0202a0fa0f8d6a4b994a9608173ea8116058cc790f8615c21"
+      },
+      {
+        "path": "tests/crystal_area_ui_qa.gd",
+        "sha256": "c452c1c229d432aafb8e32703b5ce0d8b75986dca39801f4569416ea6309833f"
+      },
+      {
+        "path": "tests/gelato_launcher_shop_qa.gd",
+        "sha256": "0aa4aaceec1c91c07c5cf13c02d6b9d076f63b216019adb32aaae02ca936844d"
+      },
+      {
+        "path": "tests/gelato_twin_node_qa.gd",
+        "sha256": "3fc48689dd98e3560fe74ea81b521ab08469807f01dec9ce62dbb43985618b12"
+      },
+      {
+        "path": "tests/ui_art_preview.gd",
+        "sha256": "95441eb190a55d5a57d31388a8116712d1b6a04e6aadd8c4559cbc4661091bee"
+      }
+    ]
+  },
+  "isolation": {
+    "all_engine_runs_verified_disposable_APPDATA": true,
+    "renderer_profile_accesses": 0,
+    "integration_profile_writes": "Intercepted in memory, including deliberate save-failure cases; no player profile opened."
+  },
+  "superseded_attempts": [
+    {
+      "path": "verification/direct-ability-purchase-20261103/integration-01",
+      "reason": "188/1: fixture failed to settle the existing0.25s area result delay before map-node tap. Corrected helper; added explicit delay blocking assertion. Superseded by192/0."
+    },
+    {
+      "path": "verification/direct-ability-purchase-20261103/visual-01",
+      "reason": "431/0 render assertions and38 captures, but runner rejected a nonzero process status after completion. No unexpected log errors; numeric exit was not recorded. One repeat with explicit exit recording passed431/0, exit0, unchanged sources. First-run counts are not added."
+    },
+    {
+      "path": "verification/direct-ability-purchase-20261103/regressions-01/gelato_launcher_shop_qa.log",
+      "reason": "104/1 from a historical assertion that Bakery has no shared signature node. Corrected to test Bakery Jam Burst identity and price; Gelato isolation checks retained. Superseded by105/0."
+    },
+    {
+      "path": "verification/direct-ability-purchase-20261103/regressions-02/gelato_twin_node_qa.log",
+      "reason": "Historical Bakery position-count assertion omitted Jam Burst and More Jam. Corrected to62 ordinary plus2 signature/milestone nodes, with adjacent geometry checks retained. Only this affected suite was repeated."
+    }
+  ],
+  "limits": {
+    "phone_verified": false,
+    "real_Google_Play_purchase_verified": false,
+    "natural_wallet_campaign_verified": false,
+    "full_repository_suite_rerun": false,
+    "note": "Desktop behavior/render evidence only. Provider integration uses a deterministic fixture; preview purchases do not charge money."
+  }
+}

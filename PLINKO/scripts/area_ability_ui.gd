@@ -1,6 +1,5 @@
 extends RefCounted
 ## One explicit offer per area. Earned progression and store access stay separate.
-const HOME_RECT = Rect2(64,858,592,88)
 const EARN_RECT = Rect2(80,538,560,88)
 const EARLY_RECT = Rect2(80,654,560,88)
 const RESTORE_RECT = Rect2(80,812,560,72)
@@ -66,11 +65,31 @@ func effects() -> Array[String]:
 	return ["Two Prisms can appear each run.","Tap a Prism to double the balls in play."]
 
 func gate_text() -> String:
-	var power = 6 if g.area_id=="gelato" else 4
-	return "Tray 8 · Power %d" % power
+	var prefix="bakery_jam" if g.area_id=="bakery" else ("twin" if g.area_id=="gelato" else "crystal_second_prism")
+	var tray=int(g.tuning.get(prefix+"_unlock_level",8))
+	if g.area_id=="crystal": tray=maxi(8,tray)
+	var power=int(g.tuning.get(prefix+"_unlock_power",6 if g.area_id=="gelato" else 4))
+	return "Tray %d · Power %d" % [tray,power]
 
-func home_visible() -> bool:
-	return not g.trial_active and not owned()
+func card_confirming() -> bool:
+	return stage=="confirm" and g.ability_access.pending.get("area","")==g.area_id
+
+func purchase_pending() -> bool:
+	return g.ability_access.offer(g.area_id,owned()).pending
+
+func can_restore() -> bool:
+	if owned(): return false
+	return g.ability_early_access(g.area_id) or g.ability_access.export_state().get("preview_receipts",{}).get(g.area_id,false)
+
+func cancel_card_purchase():
+	g.ability_access.cancel_pending_preview()
+	stage="details"; message=""
+
+func buy_from_card():
+	if g.mode!="shop" or g.trial_active or owned() or g.profile_load_blocked or g.startup_blocked: return
+	if not g.run_id.is_empty() and not g.shift_claimed: return
+	if purchase_pending(): return
+	press_action("restore" if can_restore() else "early")
 
 func open(from_page: String):
 	if g.trial_active or (not g.run_id.is_empty() and not g.shift_claimed): return
@@ -138,7 +157,10 @@ func persist_restore() -> bool:
 	return g.testing or g.save_game()
 
 func press(p: Vector2):
-	match action_at(p):
+	press_action(action_at(p))
+
+func press_action(requested_action: String):
+	match requested_action:
 		"back": close()
 		"cancel":
 			g.ability_access.cancel_pending_preview(); stage="details"; message=""
@@ -196,15 +218,6 @@ func draw_icon(canvas: CanvasItem, rect: Rect2, tint: Color = Color.WHITE):
 		var size=Vector2(rect.size.x*.56,rect.size.y*.9)
 		g.food_art.draw(canvas,"hopper",Rect2(rect.position+Vector2(0,rect.size.y*.08),size),tint)
 		g.food_art.draw(canvas,"hopper",Rect2(rect.position+Vector2(rect.size.x*.44,0),size),tint)
-
-func draw_home_offer():
-	if not home_visible(): return
-	g.button(HOME_RECT,"")
-	draw_icon(g,Rect2(HOME_RECT.position+Vector2(18,13),Vector2(60,60)))
-	var offer=g.ability_access.offer(g.area_id,owned())
-	var restored=g.ability_early_access(g.area_id)
-	g.fitted_text(title()+" · "+("Restore" if restored else offer.price_label),Rect2(154,868,474,35),26,g.WHITE,true)
-	g.fitted_text("Purchased" if restored else "Earn from tray 8",Rect2(154,904,474,27),19,g.MUTED,true)
 
 func draw():
 	if not g.ui_art.menu_frame(g,PANEL_RECT): g.ui_panel(PANEL_RECT)

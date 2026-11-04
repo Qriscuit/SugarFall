@@ -111,6 +111,7 @@ var mode = "home":
 	set(value):
 		if value == mode: return
 		if value in ["monetization","monetization_tools","test_ad","test_purchase","bonus_confirm"] and monetization != null and not test_commerce_available(): return
+		if mode=="shop" and value!="shop" and ability_ui!=null: ability_ui.cancel_card_purchase()
 		if page_transition != null: page_transition.begin(mode,value)
 		if pause_transition != null: pause_transition.begin(mode,value)
 		var previous = mode
@@ -350,7 +351,13 @@ func go_back():
 		if previous=="home": home_menu.reset()
 
 func _go_back_impl():
-	if mode=="ability_offer": ability_ui.close()
+	if mode=="shop" and ability_ui.card_confirming():
+		ability_ui.cancel_card_purchase()
+		upgrade_map.cancel_gestures()
+		navigation_delay=.25
+		feedback("ui_back")
+		queue_redraw()
+	elif mode=="ability_offer": ability_ui.close()
 	elif mode=="developer_areas":
 		developer_area_ui.cancel_gestures()
 		mode="support"

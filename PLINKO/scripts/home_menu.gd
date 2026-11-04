@@ -49,7 +49,6 @@ func target_at(p: Vector2) -> String:
 		if TRIALS_RECT.has_point(p): return "trials"
 		return "dismiss"
 	if LEVEL_RECT.has_point(p): return "levels"
-	if g.ability_ui.home_visible() and g.ability_ui.HOME_RECT.has_point(p): return "ability"
 	# The preview tray and Play button share one guarded tap action.
 	if PLAY_RECT.has_point(p) or TRAY_RECT.has_point(p): return "play"
 	if UPGRADES_RECT.has_point(p): return "upgrades"
@@ -104,7 +103,6 @@ func press(p: Vector2):
 			g.mode = "boards"
 		"play": reset(); g.start_shift(true)
 		"upgrades": reset(); g.mode = "shop"; g.return_mode = "home"
-		"ability": reset(); g.ability_ui.open("home")
 	g.queue_redraw()
 
 func draw():
@@ -119,7 +117,6 @@ func draw_controls(departure: float = 0.0):
 	_draw_menu_button()
 	_draw_wallet()
 	g.draw_set_transform(Vector2(0,330.0*departure))
-	g.ability_ui.draw_home_offer()
 	_draw_action_button(PLAY_RECT,"Play","play",true)
 	_draw_action_button(UPGRADES_RECT,"Upgrades","upgrade")
 	g.draw_set_transform(Vector2.ZERO)
