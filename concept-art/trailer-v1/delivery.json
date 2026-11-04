@@ -1,0 +1,33 @@
+{
+  "date": "2026-11-04",
+  "status": "Private trailer V1 review delivered; not publicly published",
+  "file_id": "1olcdBUARwr1_XZ5S-3P9O1_UPAUd02nn",
+  "name": "Sugarfall-Trailer-V1-Review-2026-11-04.mp4",
+  "url": "https://drive.google.com/file/d/1olcdBUARwr1_XZ5S-3P9O1_UPAUd02nn/view?usp=drivesdk",
+  "bytes": 10060724,
+  "modified_time": "2026-11-04T21:04:08.250Z",
+  "folder_id": "1TXLZwTNVlHGTBy7y0CVMMk3zABEKu8X-",
+  "permissions": "Owner-only; no sharing changes",
+  "drive_metadata_verified": true,
+  "remote_checksum_verified": false,
+  "local_sha256": "4d655d21c88b6e9ce2a025a2bff084494c1f8746ce3ed0b90068a82c7fe7417b",
+  "local_file": "../../outputs/trailer-v1-20261104/Sugarfall-Trailer-V1-Review.mp4",
+  "duration_seconds": 30,
+  "dimensions": [
+    1080,
+    1920
+  ],
+  "fps": 60,
+  "video_codec": "H264",
+  "audio_codec": "AAC stereo 48kHz",
+  "mabel": "Editable SVG paper-cut foreground over continuing recorded gameplay",
+  "source_recording": "Supplied Symphony 6 cut, HALIDONMUSIC/2025 metadata; publication permission unresolved",
+  "music_speed": 1,
+  "music_source_range": [
+    0,
+    30
+  ],
+  "public_upload": false,
+  "android_build_changed": false,
+  "phone_acceptance": false
+}

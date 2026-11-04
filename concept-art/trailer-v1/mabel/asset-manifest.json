@@ -1,0 +1,132 @@
+{
+  "passed": true,
+  "date": "2026-11-04",
+  "vector_svg_files": 8,
+  "embedded_rasters": 0,
+  "external_svg_resources": 0,
+  "transparent_pngs": 8,
+  "all_art_within_canvas": true,
+  "artwork": "Original authored vector paths/shapes/gradients",
+  "assets": [
+    {
+      "svg": "doughnut-prop.svg",
+      "png": "doughnut-prop.png",
+      "width": 140,
+      "height": 110,
+      "alpha_bounds": [
+        11,
+        16,
+        138,
+        92
+      ],
+      "vector_elements": 79,
+      "svg_sha256": "5c4a33ab9cdd87d7aaae24e2a30b732b1be36b232df896e4e1f628c2c35b835c",
+      "png_sha256": "db2d46acb45100481b11669a6e5c33a010aa36263ab253dd4cc97ab47d2ae5ff"
+    },
+    {
+      "svg": "mabel-balance-step.svg",
+      "png": "mabel-balance-step.png",
+      "width": 600,
+      "height": 1000,
+      "alpha_bounds": [
+        99,
+        53,
+        584,
+        982
+      ],
+      "vector_elements": 208,
+      "svg_sha256": "74676c6e1d597b3eb6bcc94265529dffce3e6e2b3662853e35c5713492abb0d5",
+      "png_sha256": "e2865cbd5638746aee4a498dfa39b238b7e14c0384b107f1e3ecdee620a04277"
+    },
+    {
+      "svg": "mabel-balance.svg",
+      "png": "mabel-balance.png",
+      "width": 600,
+      "height": 1000,
+      "alpha_bounds": [
+        99,
+        53,
+        584,
+        976
+      ],
+      "vector_elements": 208,
+      "svg_sha256": "6f198418bd089beb9ed066b0168bd9d2c856612e85ed915217f2291e3667deb6",
+      "png_sha256": "05d86afdc63cedf5b8d6448d40a5e9ec417e07b4d859aec7b5df41b951fba5d5"
+    },
+    {
+      "svg": "mabel-catch-two.svg",
+      "png": "mabel-catch-two.png",
+      "width": 600,
+      "height": 1000,
+      "alpha_bounds": [
+        102,
+        46,
+        587,
+        977
+      ],
+      "vector_elements": 206,
+      "svg_sha256": "77debfbf7b77c9ebed8e26f1fe4403d389191dbdd7ce76f40782c91dd5164f38",
+      "png_sha256": "3a8f7aad8d002dff1d66edcb89c22be1b9bf736fb58199325c55f37f3a0e4a28"
+    },
+    {
+      "svg": "mabel-catch.svg",
+      "png": "mabel-catch.png",
+      "width": 600,
+      "height": 1000,
+      "alpha_bounds": [
+        102,
+        46,
+        587,
+        977
+      ],
+      "vector_elements": 204,
+      "svg_sha256": "ac7cfdd3e088981486860ccce16a940591a86cbfce4369634ee1f6fc1b054b89",
+      "png_sha256": "a5e1e87d2db6187610de6356792c245406d4859859c26e7a8381c20fa166841e"
+    },
+    {
+      "svg": "mabel-present.svg",
+      "png": "mabel-present.png",
+      "width": 600,
+      "height": 1000,
+      "alpha_bounds": [
+        102,
+        46,
+        587,
+        977
+      ],
+      "vector_elements": 202,
+      "svg_sha256": "3a92d2642fdd06c2a6845a4d3f5452e5b2eb79f9f3ba5610f54f44266a8c214a",
+      "png_sha256": "4c9952e6f9916efb1966e26f70ec7074c601adabaa66eb450c874cf106c895f1"
+    },
+    {
+      "svg": "mabel-puppet.svg",
+      "png": "mabel-puppet.png",
+      "width": 600,
+      "height": 1000,
+      "alpha_bounds": [
+        102,
+        46,
+        587,
+        977
+      ],
+      "vector_elements": 204,
+      "svg_sha256": "ea6b56fc8784742c5b762c65bda5c1f981df7b99eeb0ff94a8de9bf3cafa556a",
+      "png_sha256": "8d64927f82c13814425e1247590375d96f02804b429b7c4eda0c7c3939769650"
+    },
+    {
+      "svg": "mabel-settle.svg",
+      "png": "mabel-settle.png",
+      "width": 600,
+      "height": 1000,
+      "alpha_bounds": [
+        97,
+        45,
+        588,
+        977
+      ],
+      "vector_elements": 208,
+      "svg_sha256": "499f74c12a59ecfcd85a6e34e44b18c469e41fd184f6b12771ca3370025e7003",
+      "png_sha256": "6decd531b9a4a8f6d9589ae50790ac8191f5dbeacb643cd982c48eaf260d463a"
+    }
+  ]
+}

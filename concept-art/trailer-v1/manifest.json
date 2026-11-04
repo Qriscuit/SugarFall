@@ -1,0 +1,100 @@
+{
+  "date": "2026-11-04",
+  "status": "Trailer V1 private review delivered",
+  "video": {
+    "passed": true,
+    "file": "outputs/trailer-v1-20261104/Sugarfall-Trailer-V1-Review.mp4",
+    "bytes": 10060724,
+    "sha256": "4d655d21c88b6e9ce2a025a2bff084494c1f8746ce3ed0b90068a82c7fe7417b",
+    "duration_seconds": 30.0,
+    "dimensions": [
+      1080,
+      1920
+    ],
+    "fps": 60,
+    "frames": 1800,
+    "video_codec": "H264",
+    "pixel_format": "yuv420p",
+    "audio_codec": "AAC",
+    "audio_rate": 48000,
+    "audio_channels": 2,
+    "full_decode_errors": 0,
+    "review_frame_times": [
+      0,
+      0.8,
+      3.66,
+      5.42,
+      8.5,
+      12.8,
+      16.8,
+      18.4,
+      19.95,
+      21.5,
+      26.6,
+      28.5
+    ],
+    "phone_review": false
+  },
+  "delivery": "delivery.json",
+  "gameplay": {
+    "source": "Fresh current-workspace public nondebug Windows renderer",
+    "raw_clips": 8,
+    "raw_frames": 2292,
+    "raw_seconds": 38.2,
+    "source_revision": "a20a812e10032d658a58168888b9c9a7b8d1ccf7",
+    "frozen_source_files": 491,
+    "source_parity": true,
+    "profile_io": 0,
+    "physics_and_drawing_changed": false,
+    "staged_progress_and_wallets": true,
+    "android_device_capture": false
+  },
+  "mabel": {
+    "format": "Authored editable SVG paths/shapes/gradients; transparent PNG derivatives",
+    "svg_count": 8,
+    "asset_manifest": "mabel/asset-manifest.json",
+    "overlay_ranges": [
+      [
+        17.55,
+        20.616667
+      ],
+      [
+        27.233333,
+        30
+      ]
+    ],
+    "action": "Enter, catch three paper doughnuts, balance and shuffle; return beside title",
+    "pose_updates_per_second": 12,
+    "promotional_overlay": true
+  },
+  "music": {
+    "source": "AudioContent/Symphony 6 - beethoven cut - Sugarfall.wav",
+    "source_sha256": "3d654f3a5fefd2d1d7216730c499991235c1fc06e27502b4653c648a76319e11",
+    "source_unchanged": true,
+    "range": [
+      0,
+      30
+    ],
+    "speed": 1,
+    "permission": "Publication permission unresolved; supplied performance is used for private review"
+  },
+  "audio_verification": {
+    "passed": true,
+    "comparison": "Decoded final AAC vs current capture-synced WAV",
+    "matched_samples_per_channel": 1440000,
+    "correlation": 0.9994957,
+    "decoded_peak": 0.7813314,
+    "decoded_rms_dbfs": -20.255,
+    "decoded_samples_at_or_above_one": 0,
+    "note": "AAC is lossy; correlation verifies the current mixed source, not byte parity or subjective audio acceptance."
+  },
+  "visual_verification": "../../outputs/trailer-v1-20261104/qa/cut02/targeted-visual-validation.json",
+  "edit_decisions": "../../outputs/trailer-v1-20261104/edit-decision-list.json",
+  "source_evidence": "../../outputs/trailer-v1-20261104/gameplay/source-evidence.json",
+  "production_brief": "../../PLINKO/docs/store/TRAILER_V1.md",
+  "review": "review.html",
+  "game_runtime_changed": false,
+  "apk_rebuilt": false,
+  "publicly_published": false,
+  "phone_acceptance": false
+}

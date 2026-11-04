@@ -1,5 +1,7 @@
 # Sugarfall — music-linked trailer storyboard
 
+V1 follow-up, 4 November 2026: the user changed Mabel's insert to a foreground SVG cutout over continuing game footage. The recorded and delivered [Trailer V1](TRAILER_V1.md) implements that direction. The timed proposal below is retained as design history; its separate paper-set insert is superseded.
+
 Prepared 4 November 2026. This is the production plan for a **30-second portrait Google Play trailer**. The [interactive review](../../../concept-art/trailer-storyboard-v1/preview.html) links the supplied music to reference frames, candidate cuts and sound cues. [storyboard.json](../../../concept-art/trailer-storyboard-v1/storyboard.json) is the timing source. No trailer footage or finished Mabel animation has been recorded by this planning work.
 
 The opening shows an already-falling doughnut and a readable peg hit. Match cuts change the treats, pegs and board around the moving ball. Longer holds show aiming and an upgrade's result. Mabel enters once for a brief balancing joke, then returns beside the final title. Her presence in the store icon and banner already introduces the character; the opening can concentrate on play.

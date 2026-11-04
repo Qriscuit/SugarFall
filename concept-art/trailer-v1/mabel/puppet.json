@@ -1,0 +1,61 @@
+{
+  "view_box": [
+    0,
+    0,
+    600,
+    1000
+  ],
+  "transparent": true,
+  "feet_baseline": 956,
+  "ground_anchor": [
+    280,
+    945
+  ],
+  "artwork": "Original authored SVG paths, shapes, gradients and internal vector reuse; no embedded raster",
+  "poses": [
+    "mabel-catch.svg",
+    "mabel-catch-two.svg",
+    "mabel-balance.svg",
+    "mabel-balance-step.svg",
+    "mabel-settle.svg",
+    "mabel-present.svg",
+    "mabel-puppet.svg"
+  ],
+  "props": [
+    "doughnut-prop.svg"
+  ],
+  "groups": [
+    "mabel",
+    "upper-body",
+    "head",
+    "hair-back",
+    "hair-front",
+    "face-expression",
+    "eyes",
+    "freckles",
+    "dress-skirt",
+    "dress-bodice",
+    "apron-body",
+    "waist-tie",
+    "left-arm",
+    "right-arm",
+    "left-leg",
+    "right-leg",
+    "serving-tray",
+    "hands",
+    "doughnut-1",
+    "doughnut-2",
+    "doughnut-3"
+  ],
+  "suggested_overlay": {
+    "frame": [
+      1080,
+      1920
+    ],
+    "x": 580,
+    "y": 1090,
+    "height": 800,
+    "pose_rate": 12
+  },
+  "intended_use": "Promotional foreground cutout over real recorded gameplay; not an in-game character feature"
+}

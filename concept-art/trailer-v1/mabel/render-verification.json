@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "engine": "Microsoft Edge / Chromium",
+  "transparent_puppet_pngs": 7,
+  "width": 600,
+  "height": 1000,
+  "prop_png": [
+    140,
+    110
+  ],
+  "console_errors": []
+}
