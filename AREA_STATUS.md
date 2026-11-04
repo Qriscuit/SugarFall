@@ -1,8 +1,8 @@
 # Sugarfall — current area status
 
-Updated 3 November 2026 · v0.7.9-preview/code 35 delivered · CHG-042
+Updated 3 November 2026 · v0.7.10-preview/code 36 delivered · CHG-043
 
-The current Drive APK is v0.7.9-preview with the user-approved single-pulse intro/hum and the earlier More Jam upgrade. All three I09 checks are verified for this exact package. GIF approval does not resolve phone installation, listening/feel or the Bakery tray-10 finding. Full device acceptance, current legal progression and real billing remain open; public v0.8.0-rc1 artifacts are unchanged.
+The current Drive APK is v0.7.10-preview with stacked coin/early-access actions on signature upgrade cards and no Home ability purchase offer. All area counts and SF/AF statuses are unchanged. Real billing is still unconnected; phone readability/touch, the Bakery tray-10 finding and current legal progression remain open. The single-pulse intro and More Jam remain included; public v0.8.0-rc1 artifacts are unchanged.
 
 Counts include test activities as well as production content. Verified means the recorded scope passed; it does not imply a phone playtest. Intentional omissions remain N/A.
 
@@ -124,11 +124,21 @@ CHG-041 is a local GIF candidate awaiting user review. It removes the smaller se
 
 Only three I09 verification flags reopen for current source. All 65 SF and nine AF statuses, 40 earlier change entries and physical-phone findings remain unchanged. The GIF awaits user review and does not establish phone acceptance.
 
-## Current v0.7.9 preview delivery — CHG-042
+## v0.7.9 preview delivery — CHG-042 historical milestone
 
 CHG-042 delivers v0.7.9-preview/code 35 after the user approved the single-pulse GIF. Each 1.30-second cycle now has one grow/brighten/shrink and one matching hum swell; the smaller second beat is removed. The 2.60-second minimum and existing warm art/loader behavior remain. 874 payload checks and 16 Android metadata/signature/alignment checks pass. The APK is 93,039,010 bytes; SHA-256 `f55cfcf37c3512cc2566b3e4dd3f956db07973a69d89790c52c60cc47138236d`. All 8 Drive readback checks pass; the existing private file ID, folder, owner permissions and URL are retained. No remote checksum comparison is claimed. Phone installation, audio/feel and the Bakery tray-10/More Jam retest remain open. Current legal progression and real billing are unfinished; public v0.8.0-rc1 artifacts are unchanged.
 
 CHG-041 remains the exact local-preview history; the user subsequently approved it and requested this delivery. Only the three I09 verification flags close. All 65 SF and nine AF statuses remain unchanged, along with the Bakery difficulty finding and all 17 pending phone checks. See [the exact build](PLINKO/docs/ANDROID_SUGARFALL_v0.7.9.json) and [download](PLINKO/BUILD_LINKS.txt).
+
+## Current ability-card preview — CHG-043
+
+Each selected signature upgrade card has two stacked actions: Buy with the coin cost above Buy with the localized store price (preview $2.99). Two short effect lines and the tray/Power gate remain on the card. Home has no ability purchase artwork or touch target, and there is no separate options page. Coin purchases use the existing earned gates and costs. In preview, the early-access action stays on the card and changes to Confirm test and Cancel under explicit Test purchase / No charge labels. Back, leaving the map or selecting away cancels confirmation. Available public purchases request the provider directly; missing or unverified providers cannot grant access. Owned abilities cannot be bought again, pending requests are guarded, and Restore uses the lower action when receipt restoration is needed. No real billing integration is completed by this UI change.
+
+844 source/desktop assertions pass with zero failures: 192 integration, 431 GPU, 35 Crystal UI, 105 Gelato shop and 81 Twin-node checks. The renderer covers 38 captures at 450x800 and 450x1000; 259 relevant source/art/data/fixture hashes match. Direct actions, gates, inline confirmation, provider-fixture pending/restore/rollback and Home cleanup are exercised. No real Play transaction or phone acceptance is claimed.
+
+CHG-043 delivers v0.7.10-preview/code 36 with direct stacked coin and early-access purchase actions on signature upgrade cards. Home no longer promotes an ability purchase. 1048 payload checks and 16 Android metadata/signature/alignment checks pass. The APK is 93,043,106 bytes; SHA-256 `8673036be460e691f5c2bf6108c171f9a1e904cb9c729e10fde522ca6ef0105c`. All 8 Drive readback checks pass; the existing private file ID, folder, owner permissions and URL are retained. No remote checksum comparison is claimed. Phone touch/readability, the Bakery tray-10 retest, current legal progression and real billing remain open. The earlier public v0.8.0-rc1 artifacts are unchanged.
+
+All 255 requirement states, 65 SF statuses, nine AF statuses and 42 prior change entries remain. U08 stays No/No/No; all 17 phone checks remain Pending. See [purchase design](PLINKO/docs/AREA_ABILITY_PURCHASES.md), [UI validation](PLINKO/docs/DIRECT_ABILITY_PURCHASE_VALIDATION.json) and [the exact build](PLINKO/docs/ANDROID_SUGARFALL_v0.7.10.json).
 
 ## Fix queue
 
@@ -142,7 +152,7 @@ CHG-041 remains the exact local-preview history; the user subsequently approved 
 | AF-006 | Check crowded Bakery and Gelato physics | Done | 108 fixed-60Hz stress checks pass: 610 px/s contacts, cooldowns, population limits, expiry, clumped rendering schedules and an 83-ball final-split drain. No production physics defect found; no physics change needed. |
 | AF-007 | Finish current Gelato and Crystal visual coverage | Done | Completed 58 current GPU captures with 287 passing assertions at both sizes. Reviewed missing menus, live effects, Reduced Motion, result states and deep Crystal cards/edges. Added a cream backing so rebounding balls cannot obscure damage numbers. |
 | AF-008 | Measure legal progression through all three areas | Ready to test | Six linked campaigns across two legal shopping policies and three seeds passed 9,044 assertions and cleared all 18 sampled area campaigns. Wall builds, earnings, purchases, fees, Twin rebuild and Second Prism are measured. Five unique tray/seed pacing flags remain historical. CHG-036 Flow-2 rules and signature gates now require fresh legal-campaign/human revalidation; bounded probes do not replace it. CHG-040 records the user’s Bakery tray-10 difficulty finding and bounded More Jam probes; the specific phone retry and natural-wallet pacing remain open. |
-| AF-009 | Run the physical-phone acceptance pass | Ready to test | Verified v0.7.9 is delivered with the approved single-pulse intro and More Jam. GIF approval adds no phone result. The Bakery tray-10 finding and full installation, save, listening, input and performance protocol remain open; D01–D17 stay Pending. |
+| AF-009 | Run the physical-phone acceptance pass | Ready to test | Verified v0.7.10 is delivered for stacked ability-card action and Home-cleanup testing. All physical input, readability, save, audio and performance checks remain open, as does the Bakery tray-10 finding. D01–D17 stay Pending; real billing is not tested. |
 
 ## Continue one finding at a time
 
@@ -150,7 +160,7 @@ Use the workbook’s **Area checklist** and **Area fixes** tabs. Keep Built, Int
 
 - [Phone and human playtest protocol](PLINKO/docs/AREA_PLAYTEST.md)
 - [Measured legal progression and flagged trays](PLINKO/docs/AREA_PROGRESSION_BALANCE.md)
-- [Verified APK record](PLINKO/docs/ANDROID_SUGARFALL_v0.7.9.json)
+- [Verified APK record](PLINKO/docs/ANDROID_SUGARFALL_v0.7.10.json)
 - [Download details](PLINKO/BUILD_LINKS.txt)
 - [Editable launch workbook](outputs/launch-tracker-01a18eec/Sugarfall%20Launch%20Tracker.xlsx)
 

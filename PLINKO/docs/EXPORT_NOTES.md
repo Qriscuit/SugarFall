@@ -1,6 +1,10 @@
 # Export and rebuild notes
 
-## Current Android preview v0.7.9
+## Current Android preview v0.7.10
+
+CHG-043 delivers v0.7.10-preview/code 36 with direct stacked coin and early-access purchase actions on signature upgrade cards. Home no longer promotes an ability purchase. 1048 payload checks and 16 Android metadata/signature/alignment checks pass. The APK is 93,043,106 bytes; SHA-256 `8673036be460e691f5c2bf6108c171f9a1e904cb9c729e10fde522ca6ef0105c`. All 8 Drive readback checks pass; the existing private file ID, folder, owner permissions and URL are retained. No remote checksum comparison is claimed. Phone touch/readability, the Bakery tray-10 retest, current legal progression and real billing remain open. The earlier public v0.8.0-rc1 artifacts are unchanged. 844 source/desktop assertions pass with zero failures: 192 integration, 431 GPU, 35 Crystal UI, 105 Gelato shop and 81 Twin-node checks. The renderer covers 38 captures at 450x800 and 450x1000; 259 relevant source/art/data/fixture hashes match. Direct actions, gates, inline confirmation, provider-fixture pending/restore/rollback and Home cleanup are exercised. No real Play transaction or phone acceptance is claimed. [Manifest](ANDROID_SUGARFALL_v0.7.10.json).
+
+## Previous Android preview v0.7.9
 
 CHG-042 delivers v0.7.9-preview/code 35 after the user approved the single-pulse GIF. Each 1.30-second cycle now has one grow/brighten/shrink and one matching hum swell; the smaller second beat is removed. The 2.60-second minimum and existing warm art/loader behavior remain. 874 payload checks and 16 Android metadata/signature/alignment checks pass. The APK is 93,039,010 bytes; SHA-256 `f55cfcf37c3512cc2566b3e4dd3f956db07973a69d89790c52c60cc47138236d`. All 8 Drive readback checks pass; the existing private file ID, folder, owner permissions and URL are retained. No remote checksum comparison is claimed. Phone installation, audio/feel and the Bakery tray-10/More Jam retest remain open. Current legal progression and real billing are unfinished; public v0.8.0-rc1 artifacts are unchanged. [Manifest](ANDROID_SUGARFALL_v0.7.9.json). CHG-041 was preview-only until user approval; that scope remains historical.
 

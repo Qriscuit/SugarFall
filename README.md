@@ -1,6 +1,6 @@
 # Sugarfall
 
-CHG-042 delivers the [user-approved single-pulse intro](PLINKO/docs/STUDIO_STARTUP.md) in [v0.7.9-preview](PLINKO/docs/ANDROID_SUGARFALL_v0.7.9.json). The APK is verified and replaces the same private Drive file; phone acceptance and the Bakery tray-10 retest remain open.
+CHG-043 delivers [v0.7.10-preview](PLINKO/docs/ANDROID_SUGARFALL_v0.7.10.json) with direct coin/early-access actions on ability upgrade cards and no Home ability purchase offer. Phone acceptance, real billing and the Bakery tray-10 retest remain open.
 
 CHG-040 delivers [v0.7.8-preview](PLINKO/docs/ANDROID_SUGARFALL_v0.7.8.json) with [More Jam](PLINKO/docs/BAKERY_MORE_JAM.md), a free late Bakery upgrade addressing the reported tray-10 difficulty. The phone retest and [remaining Google Play work](PLINKO/docs/GOOGLE_PLAY_READINESS.md) stay open.
 
@@ -10,7 +10,7 @@ A portrait arcade game built in Godot, with three themed areas: Bakery, Gelato G
 
 Open **`PLINKO/project.godot` in Godot 4.6.3**. The entry scene is `startup.tscn`; it loads the game behind the studio heartbeat and cream reveal. Keyboard/mouse desktop controls support development; Android phone acceptance remains part of the release checklist.
 
-The current private test download is **v0.7.9-preview (code 35)**, with the single-pulse intro/hum, More Jam and existing action audio/area/menu work. See [the verified APK record](PLINKO/docs/ANDROID_SUGARFALL_v0.7.9.json) and [download links](PLINKO/BUILD_LINKS.txt). The separate public v0.8.0-rc1 APK/AAB remain unchanged; phone acceptance is still open.
+The current private test download is **v0.7.10-preview (code 36)**, with the direct ability-card choices, single-pulse intro/hum and More Jam. See [the verified APK record](PLINKO/docs/ANDROID_SUGARFALL_v0.7.10.json) and [download links](PLINKO/BUILD_LINKS.txt). The separate public v0.8.0-rc1 APK/AAB remain unchanged; phone acceptance is still open.
 
 ## Production records
 

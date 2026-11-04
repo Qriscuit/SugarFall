@@ -26,7 +26,7 @@ An [original procedural hum](../data/audio/studio_warm_hum.wav) follows the same
 
 ## Area menu frames and signature art — 3 November 2026
 
-Settings, Pause and ability offers use the new native [area frames](AREA_MENU_ART.md): Bakery copper/parchment, Gelato ceramic/garden and Crystal sugar glass/copper. Shared buttons and live concise copy remain. Bakery Jam Burst adds its own jam-filled doughnut sprite, charge indicators and first-hit splash feedback. Preserve the native PNGs and provenance. U07 requires distinct signature gameplay/art for every area; U08 tracks the separate permanent early-purchase implementation.
+Settings and Pause use the native [area frames](AREA_MENU_ART.md): Bakery copper/parchment, Gelato ceramic/garden and Crystal sugar glass/copper. CHG-043 keeps signature purchase choices and preview confirmation on the existing upgrade card; Home has no signature purchase offer or separate options page. Shared buttons and live concise copy remain. Bakery Jam Burst adds its own jam-filled doughnut sprite, charge indicators and first-hit splash feedback. Preserve the native PNGs and provenance. U07 requires distinct signature gameplay/art for every area; U08 tracks the separate permanent early-purchase implementation.
 
 ## Concise menu copy and composition — 3 November 2026
 

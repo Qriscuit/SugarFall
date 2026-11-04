@@ -10,7 +10,7 @@ Each area has one permanent ability that changes its play pattern. The player ca
 | Gelato Garden | Dual Shot | Tray 8 unlocked, Power 6, 3,000 Gelato coins | Two gravity launchers follow the same finger target along separate trajectories; Power resets and is rebuilt |
 | Crystal Candyworks | Second Prism | Tray 8 unlocked, Power 4, 900 Crystal coins | A second timed opportunity to duplicate live candy in a run |
 
-The Home offer and special upgrade node expose the same choice. Locked earned routes explain their prerequisites; owning the ability suppresses a duplicate purchase. Early access belongs only to its area and does not unlock an unvisited campaign or pay the campaign's entry fee. Trials retain their fixed loadouts and authored rules.
+Each selected signature upgrade card has two stacked actions: Buy with the coin cost above Buy with the localized store price (preview $2.99). Two short effect lines and the tray/Power gate remain on the card. Home has no ability purchase artwork or touch target, and there is no separate options page. Locked earned routes retain their Power/tray/coin requirements; owning the ability suppresses duplicate purchase. Early access belongs only to its area and does not unlock an unvisited campaign or pay its entry fee. Trials retain their fixed loadouts and authored rules. See [purchase behavior](AREA_ABILITY_PURCHASES.md).
 
 ## Jam Burst
 
@@ -41,3 +41,7 @@ Campaign activation history is distinct from the physics of a newly started run.
 ## Acceptance scope
 
 Current source verification is recorded in [area status](../../AREA_STATUS.md). Real Play products, plugin installation, backend verification/acknowledgement, public purchase/restore testing, phone feel and fresh legal progression remain separate requirements. [The v0.7.6 preview](ANDROID_SUGARFALL_v0.7.6.json) first delivered CHG-036; [current v0.7.8](ANDROID_SUGARFALL_v0.7.8.json) includes the More Jam enhancement. Package/delivery checks do not establish phone or real billing acceptance.
+
+## CHG-043 card actions
+
+844 source/desktop assertions pass with zero failures: 192 integration, 431 GPU, 35 Crystal UI, 105 Gelato shop and 81 Twin-node checks. The renderer covers 38 captures at 450x800 and 450x1000; 259 relevant source/art/data/fixture hashes match. Direct actions, gates, inline confirmation, provider-fixture pending/restore/rollback and Home cleanup are exercised. No real Play transaction or phone acceptance is claimed. The verified [v0.7.10 preview](ANDROID_SUGARFALL_v0.7.10.json) delivers this UI revision. Prices, ability effects, progression gates and ownership rules retain their earlier design. More Jam keeps its separate free claim. No real Play payment or phone acceptance is established.

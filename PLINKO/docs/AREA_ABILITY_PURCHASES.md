@@ -12,6 +12,14 @@ Each area has one permanent signature ability. The gameplay route opens from tra
 
 These are independent non-consumable one-time products, not subscriptions or repeat purchases. The design USD price is a preview label. A connected store must show the price returned by Google Play in the player's currency. The adapter selects only the configured permanent base option; rentals or unrelated discounted offers cannot supply its displayed price.
 
+## Direct upgrade-card actions — CHG-043
+
+Each selected signature upgrade card has two stacked actions: Buy with the coin cost above Buy with the localized store price (preview $2.99). Two short effect lines and the tray/Power gate remain on the card. Home has no ability purchase artwork or touch target, and there is no separate options page.
+
+Coin purchases use the existing earned gates and costs. In preview, the early-access action stays on the card and changes to Confirm test and Cancel under explicit Test purchase / No charge labels. Back, leaving the map or selecting away cancels confirmation. Available public purchases request the provider directly; missing or unverified providers cannot grant access. Owned abilities cannot be bought again, pending requests are guarded, and Restore uses the lower action when receipt restoration is needed. No real billing integration is completed by this UI change.
+
+844 source/desktop assertions pass with zero failures: 192 integration, 431 GPU, 35 Crystal UI, 105 Gelato shop and 81 Twin-node checks. The renderer covers 38 captures at 450x800 and 450x1000; 259 relevant source/art/data/fixture hashes match. Direct actions, gates, inline confirmation, provider-fixture pending/restore/rollback and Home cleanup are exercised. No real Play transaction or phone acceptance is claimed. The [v0.7.10 preview](ANDROID_SUGARFALL_v0.7.10.json) packages this revision. U08 remains unfinished: changing the purchase entry point does not connect Play products, install the plugin/backend or establish real store transactions.
+
 ## Ownership and gameplay integration
 
 [`area_ability_access.gd`](../scripts/area_ability_access.gd) owns early access only. Earned ownership and the actual ability transformation belong to area progression. `has_early_access(area)` does not modify the earned flag. `offer(area, earned)` reports title, product ID, price, owned/earned, available, preview, pending and error fields. An earned or already-owned ability cannot be purchased again. Buying one area does not unlock another.

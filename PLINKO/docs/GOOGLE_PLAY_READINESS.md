@@ -2,7 +2,7 @@
 
 Official requirements checked 3 November 2026 · SF-032 · CHG-038.
 
-Sugarfall has three playable 12-tray areas and a delivered private Android preview, [v0.7.9](ANDROID_SUGARFALL_v0.7.9.json). It is not ready for public release. The signed public [v0.8.0-rc1](ANDROID_SUGARFALL_v0.8.0-rc1.md) is an earlier local candidate, not a Play upload. CHG-042 delivers the approved single-pulse intro/hum and retains More Jam. The Bakery tray-10 retest and full phone acceptance remain open.
+Sugarfall has three playable 12-tray areas and a delivered private Android preview, [v0.7.10](ANDROID_SUGARFALL_v0.7.10.json). It is not ready for public release. The signed public [v0.8.0-rc1](ANDROID_SUGARFALL_v0.8.0-rc1.md) is an earlier local candidate, not a Play upload. CHG-043 delivers direct ability-card purchase choices and removes the Home ability offer. Real payments remain unconnected; the Bakery tray-10 retest and full phone acceptance remain open.
 
 The existing [launch tracker](../../outputs/launch-tracker-01a18eec/Sugarfall%20Launch%20Tracker.xlsx) already covers the required work. SF-032 records this dated requirements audit, not certification of the game or account. Recheck the linked rules and the app's actual Console tasks before submission.
 
@@ -35,4 +35,4 @@ The existing [launch tracker](../../outputs/launch-tracker-01a18eec/Sugarfall%20
 
 The next owner setup record needs account type/creation date, intended countries/audience, public support contact, and the remaining ads decision. Those choices do not block current audio work or preparing the release materials. Do not send private account documents or signing secrets into the tracker.
 
-The [phone protocol](AREA_PLAYTEST.md) retains D01–D17 as Pending until actual results arrive. Start with v0.7.9 install-over/save retention and the reported Bakery tray-10/More Jam retest, area controls/signature effects, late Crystal pacing and background/resume. Use v0.7.9 for action-audio and the approved single-pulse checks D09/D14. Real billing, current legal progression and phone acceptance remain separate from source checks and package delivery.
+The [phone protocol](AREA_PLAYTEST.md) retains D01–D17 as Pending until actual results arrive. Start with v0.7.10 install-over/save retention and direct ability-card actions and the reported Bakery tray-10/More Jam retest, area controls/signature effects, late Crystal pacing and background/resume. Use v0.7.10 for action-audio and the approved single-pulse checks D09/D14. Real billing, current legal progression and phone acceptance remain separate from source checks and package delivery.

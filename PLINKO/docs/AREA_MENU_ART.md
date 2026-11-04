@@ -23,3 +23,7 @@ All three are native 1254×1254 RGBA images generated with the built-in ImageGen
 ## Acceptance
 
 Native-byte, alpha and authored-bound inspection is complete. The [art composition validation](AREA_MENU_ART_VALIDATION.json) records 423 passing menu/render/touch assertions and 24 real-engine captures across all three areas at 450×800 and 450×1000. Sampled Pause and public/preview Settings images retain readable titles, comfortable control margins and unobscured themed corners. This is an art-only snapshot while the ability implementation evolves; full final-feature source parity is verified separately. Physical-phone contrast, edge comfort and memory behavior remain part of the user playtest.
+
+## CHG-043 card integration
+
+Signature purchase choices and no-charge preview confirmation now stay on the existing upgrade card. Home has no ability purchase offer and the separate options page is no longer used. Settings/Pause retain these native area frames; the earlier standalone-offer frame use is historical. No PNG or generated art is changed for this UI revision. See [purchase behavior](AREA_ABILITY_PURCHASES.md).

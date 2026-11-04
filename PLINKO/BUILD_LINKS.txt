@@ -1,27 +1,26 @@
 CURRENT PRIVATE PREVIEWS - SUGARFALL - 3 November 2026
 
-ANDROID v0.7.9 - UPDATED 3 NOVEMBER 2026
-APK (93,039,010 bytes):
+ANDROID v0.7.10 - UPDATED 3 NOVEMBER 2026
+APK (93,043,106 bytes):
 https://drive.google.com/file/d/1GF1zo3lt0VR5voajNPGjoP1FYuPe0FYz/view?usp=drivesdk
-Sugarfall 0.7.9-preview, version code 35. ARM64, Android 7 or newer.
-Same preview package/certificate as v0.7.8; install over the existing preview
+Sugarfall 0.7.10-preview, version code 36. ARM64, Android 7 or newer.
+Same preview package/certificate as v0.7.9; install over the existing preview
 to retain its data. Physical installation/save retention remains unverified.
 
-The approved studio intro now has one grow/brighten/shrink and matching hum
-per 1.30-second cycle, with no smaller second beat. The 2.60-second minimum,
-warm artwork, lower-center anchor, real loading and Reduced Motion remain.
-The user approved the local GIF before requesting this build and delivery.
+Signature upgrade cards show stacked coin and early-access purchase actions.
+The Home ability purchase offer is removed. Earned gates, prices, ability
+effects and ownership rules remain. Preview purchases explicitly charge no
+money; real Play billing is not connected.
 
-More Jam, all three areas, themed menus, signature abilities, action sounds
-and developer settings remain. The Bakery tray-10 phone retest is still open.
-Real Play billing is not connected.
+The approved single-pulse intro/hum, More Jam, three areas, action sounds and
+developer settings remain. The Bakery tray-10 phone retest is still open.
 
-874 payload checks and 16 Android metadata/signature/alignment checks pass. The APK is 93,039,010 bytes; SHA-256 f55cfcf37c3512cc2566b3e4dd3f956db07973a69d89790c52c60cc47138236d.
+1048 payload checks and 16 Android metadata/signature/alignment checks pass. The APK is 93,043,106 bytes; SHA-256 8673036be460e691f5c2bf6108c171f9a1e904cb9c729e10fde522ca6ef0105c.
 All 8 Drive readback checks pass; the existing private file ID, folder, owner permissions and URL are retained. No remote checksum comparison is claimed.
-Manifest: docs/ANDROID_SUGARFALL_v0.7.9.json.
-Source controller/mixer, native PCM/art and GIF evidence retain their own scopes.
-GIF approval is not phone acceptance. Listening/feel, current normal-wallet
-progression and real billing remain open. Public v0.8.0-rc1 is unchanged.
+Manifest: docs/ANDROID_SUGARFALL_v0.7.10.json.
+Source/UI evidence is separately scoped in DIRECT_ABILITY_PURCHASE_VALIDATION.json.
+Phone touch/readability, listening, current normal-wallet progression and
+real billing remain open. Public v0.8.0-rc1 is unchanged.
 
 WINDOWS v0.6.1 - PREVIOUS BUILD, 24 OCTOBER 2026
 ZIP (69,711,965 bytes):
