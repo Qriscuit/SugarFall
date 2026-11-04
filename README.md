@@ -1,5 +1,7 @@
 # Sugarfall
 
+CHG-044 prepares the reusable signed-release environment and delivers separate public **v0.8.0-rc2/code 37** APK and AAB files for Internal testing preparation. The existing preview download is unchanged. The owner reports creating the Play app; Console enrollment, upload, production readiness and off-device key backup are unverified. [Candidate and downloads](PLINKO/docs/ANDROID_SUGARFALL_v0.8.0-rc2.md) · [Build commands](PLINKO/docs/ANDROID_RELEASE_BUILD.md).
+
 CHG-043 delivers [v0.7.10-preview](PLINKO/docs/ANDROID_SUGARFALL_v0.7.10.json) with direct coin/early-access actions on ability upgrade cards and no Home ability purchase offer. Phone acceptance, real billing and the Bakery tray-10 retest remain open.
 
 CHG-040 delivers [v0.7.8-preview](PLINKO/docs/ANDROID_SUGARFALL_v0.7.8.json) with [More Jam](PLINKO/docs/BAKERY_MORE_JAM.md), a free late Bakery upgrade addressing the reported tray-10 difficulty. The phone retest and [remaining Google Play work](PLINKO/docs/GOOGLE_PLAY_READINESS.md) stay open.
@@ -10,11 +12,11 @@ A portrait arcade game built in Godot, with three themed areas: Bakery, Gelato G
 
 Open **`PLINKO/project.godot` in Godot 4.6.3**. The entry scene is `startup.tscn`; it loads the game behind the studio heartbeat and cream reveal. Keyboard/mouse desktop controls support development; Android phone acceptance remains part of the release checklist.
 
-The current private test download is **v0.7.10-preview (code 36)**, with the direct ability-card choices, single-pulse intro/hum and More Jam. See [the verified APK record](PLINKO/docs/ANDROID_SUGARFALL_v0.7.10.json) and [download links](PLINKO/BUILD_LINKS.txt). The separate public v0.8.0-rc1 APK/AAB remain unchanged; phone acceptance is still open.
+The current private test download is **v0.7.10-preview (code 36)**, with the direct ability-card choices, single-pulse intro/hum and More Jam. See [the verified APK record](PLINKO/docs/ANDROID_SUGARFALL_v0.7.10.json) and [download links](PLINKO/BUILD_LINKS.txt). The separate current public candidate is v0.8.0-rc2; phone acceptance is still open.
 
 ## Production records
 
-- [Google Play release queue](PLINKO/docs/GOOGLE_PLAY_READINESS.md): official requirements checked 3 November 2026 and the remaining work.
+- [Google Play release queue](PLINKO/docs/GOOGLE_PLAY_READINESS.md): the dated requirements audit, 4 November signing/upload handoff and remaining work.
 - [Area template](AREA_CHECKLIST.md): use this before building another area.
 - [Area status](AREA_STATUS.md): built, integrated and verified are separate states.
 - [Launch tracker](outputs/launch-tracker-01a18eec/Sugarfall%20Launch%20Tracker.xlsx): outstanding fixes and change history.

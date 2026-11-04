@@ -1,8 +1,10 @@
 # Sugarfall — current area status
 
-Updated 3 November 2026 · v0.7.10-preview/code 36 delivered · CHG-043
+Updated 4 November 2026 · v0.7.10-preview/code 36 retained · public v0.8.0-rc2/code 37 delivered · CHG-044
 
-The current Drive APK is v0.7.10-preview with stacked coin/early-access actions on signature upgrade cards and no Home ability purchase offer. All area counts and SF/AF statuses are unchanged. Real billing is still unconnected; phone readability/touch, the Bakery tray-10 finding and current legal progression remain open. The single-pulse intro and More Jam remain included; public v0.8.0-rc1 artifacts are unchanged.
+The existing preview APK retains the direct ability-card actions, single-pulse intro, action sounds and More Jam. CHG-044 prepares the reusable signed-release environment and delivers separate public **v0.8.0-rc2/code 37** APK and AAB files for Internal testing preparation. The existing preview download is unchanged. The owner reports creating the Play app; Console enrollment, upload, production readiness and off-device key backup are unverified.
+
+344 exact-artifact checks pass: 41 compiled scripts, 10 game-data JSON files and 418 indexed project payloads are verified. APK/AAB payloads agree, with sparse-directory order checked semantically. 186 policy checks pass (85 preview and 101 actual nondebug); 11 verifier tests and five build-helper tests are separate. Drive readbacks verify separate APK, AAB and public-certificate files in the existing owner-only folder; the v0.7.10 preview is unchanged. No remote checksum was returned. All 255 area requirements and nine AF records retain their existing values. Real billing, physical acceptance, the reported Bakery tray-10 difficulty and current legal progression remain open. [Candidate record](PLINKO/docs/ANDROID_SUGARFALL_v0.8.0-rc2.md) · [Release queue](PLINKO/docs/GOOGLE_PLAY_READINESS.md).
 
 Counts include test activities as well as production content. Verified means the recorded scope passed; it does not imply a phone playtest. Intentional omissions remain N/A.
 
@@ -48,7 +50,7 @@ This revision passes 738 focused checks: 74 controller, 295 actual disk-profile 
 
 See [current startup design and provenance](PLINKO/docs/STUDIO_STARTUP.md). The area counts and all 249 requirement states remain unchanged.
 
-## Public release candidate
+## Public release candidate — v0.8.0-rc1 milestone
 
 Signed local APK and Google Play AAB artifacts are prepared as **v0.8.0-rc1 (code 30)** for `com.qriscuit.sugarfall`. This package installs separately from the preview and does not automatically import its save. At this candidate milestone, the private Drive download was v0.7.4-preview. The candidate has not been published to Play; the newer preview delivery is recorded below.
 

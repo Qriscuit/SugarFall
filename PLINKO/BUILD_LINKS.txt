@@ -1,3 +1,28 @@
+PUBLIC INTERNAL-TEST CANDIDATE - 4 NOVEMBER 2026
+
+SUGARFALL v0.8.0-rc2, version code 37, package com.qriscuit.sugarfall
+AAB for Play Console Internal testing (90,575,945 bytes):
+https://drive.google.com/file/d/1ZFWvhGOnHPLn1qIYkcuRpBhcP3KG846D/view?usp=drivesdk
+SHA-256: 29c32d25400ce42168ced55eac0909a15e2dc4433e3f94b48d7c388e425f6831
+
+Signed APK for direct installation (91,340,723 bytes):
+https://drive.google.com/file/d/1AU5B4wDwQT4RcKqrs_KG_u02B3X4NRDt/view?usp=drivesdk
+SHA-256: afee2a0e1687a7051d9925bf636e06903b24f4250771ce2627fa643a31505a37
+
+These are separate release files in the existing private folder; the preview
+file below is unchanged. Public installs use a separate app/data sandbox and
+do not import preview progress automatically. Real billing is not connected.
+Public signing certificate PEM (1,798 bytes):
+https://drive.google.com/file/d/1F5oMiwFqKW_bKoJwew-4HyH_ryLSF7PM/view?usp=drivesdk
+Local signing certificate SHA-256 (not an artifact hash):
+e31ab7654afed05f9acd5fb6b59846d990198b8005d8fafd01e070c1dbc4dc29
+
+344 exact-artifact checks pass: 41 compiled scripts, 10 game-data JSON files and 418 indexed project payloads are verified. APK/AAB payloads agree, with sparse-directory order checked semantically. 186 policy checks pass (85 preview and 101 actual nondebug); 11 verifier tests and five build-helper tests are separate. Drive readbacks verify separate APK, AAB and public-certificate files in the existing owner-only folder; the v0.7.10 preview is unchanged. No remote checksum was returned.
+Manifest: docs/ANDROID_SUGARFALL_v0.8.0-rc2.json.
+Build/setup: docs/ANDROID_RELEASE_BUILD.md.
+Owner reports the Play app exists; enrollment, package registration, upload,
+review, phone acceptance and off-device signing backup are not verified.
+
 CURRENT PRIVATE PREVIEWS - SUGARFALL - 3 November 2026
 
 ANDROID v0.7.10 - UPDATED 3 NOVEMBER 2026
@@ -20,7 +45,7 @@ All 8 Drive readback checks pass; the existing private file ID, folder, owner pe
 Manifest: docs/ANDROID_SUGARFALL_v0.7.10.json.
 Source/UI evidence is separately scoped in DIRECT_ABILITY_PURCHASE_VALIDATION.json.
 Phone touch/readability, listening, current normal-wallet progression and
-real billing remain open. Public v0.8.0-rc1 is unchanged.
+real billing remain open. Earlier public v0.8.0-rc1 remains archived.
 
 WINDOWS v0.6.1 - PREVIOUS BUILD, 24 OCTOBER 2026
 ZIP (69,711,965 bytes):

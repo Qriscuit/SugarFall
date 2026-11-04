@@ -1,0 +1,219 @@
+{
+  "build_date": "2026-11-04",
+  "app_name": "Sugarfall",
+  "version_name": "0.8.0-rc2",
+  "version_code": 37,
+  "package": "com.qriscuit.sugarfall",
+  "status": "Signed Internal testing candidate delivered privately on Drive; no Play upload or production acceptance",
+  "production_ready": false,
+  "export_mode": "release (nondebug); unsigned Godot exports followed by existing protected-key signing",
+  "custom_features": [
+    "sugarfall_public"
+  ],
+  "minimum_sdk": 24,
+  "target_sdk": 36,
+  "architectures": [
+    "arm64-v8a"
+  ],
+  "requested_android_permissions": [],
+  "signing_certificate_sha256": "e31ab7654afed05f9acd5fb6b59846d990198b8005d8fafd01e070c1dbc4dc29",
+  "file_name": "Sugarfall-v0.8.0-rc2-Android.apk",
+  "local_path": "builds/android-release/0.8.0-rc2-code37-attempt03/Sugarfall-v0.8.0-rc2-Android.apk",
+  "size_bytes": 91340723,
+  "sha256": "afee2a0e1687a7051d9925bf636e06903b24f4250771ce2627fa643a31505a37",
+  "bundle": {
+    "file_name": "Sugarfall-v0.8.0-rc2-Android.aab",
+    "local_path": "builds/android-release/0.8.0-rc2-code37-attempt03/Sugarfall-v0.8.0-rc2-Android.aab",
+    "size_bytes": 90575945,
+    "sha256": "29c32d25400ce42168ced55eac0909a15e2dc4433e3f94b48d7c388e425f6831",
+    "signing_certificate_sha256": "e31ab7654afed05f9acd5fb6b59846d990198b8005d8fafd01e070c1dbc4dc29",
+    "game_asset_delivery": "Godot install-time asset pack; 418 indexed project payloads, complete logical sparse-index parity and exact actual payload-byte parity"
+  },
+  "source": {
+    "build_revision": "ca8472c8070044641b6ac710428e726a42fe6ece",
+    "runtime_unchanged_since": "a4f578da9bf76abf3f0708059be2600a6130530e",
+    "frozen_inputs": 486,
+    "source_manifest_sha256": "4c5f57ebe034a91c366590ed0fcaeb6e81a7bb493f1cf3323ee275e3d9b262c4",
+    "manifest": "PLINKO/builds/android-release/0.8.0-rc2-code37-attempt03/source-sha256.json"
+  },
+  "changes": [
+    "Reusable installed-tool preflight, dependency-cache setup, unsigned export, protected-key signing and exact-artifact verification commands. The existing signing key and public package are retained.",
+    "Current three-area runtime, direct ability-card purchase choices, single-pulse studio intro, action audio and More Jam are packaged without new gameplay changes.",
+    "Public feature hides and rejects developer controls and simulated commerce; missing real billing never grants a fake entitlement. All three signature abilities remain earnable through gameplay.",
+    "Public payload excludes authoring provenance/inventory JSON, tests, tools, documents and private signing material."
+  ],
+  "toolchain": {
+    "godot": "4.6.3.stable.official.7d41c59c4",
+    "java": "21.0.12",
+    "gradle": "8.11.1",
+    "android_gradle_plugin": "8.6.1",
+    "kotlin": "2.1.21",
+    "android_platform": 36,
+    "build_tools": "36.1.0",
+    "ndk": "29.0.14206865",
+    "new_sdk_licenses_accepted": false,
+    "owner_offline_setup_passed": true,
+    "entrypoints": [
+      "tools/Setup-AndroidRelease.ps1",
+      "tools/Build-AndroidRelease.ps1"
+    ],
+    "procedure": "docs/ANDROID_RELEASE_BUILD.md"
+  },
+  "verification": {
+    "artifact_checks_passed": 344,
+    "artifact_checks_total": 344,
+    "artifact_checks_failed": 0,
+    "public_policy_checks": {
+      "preview": 85,
+      "actual_nondebug_windows": 101,
+      "total": 186,
+      "failed": 0
+    },
+    "verifier_regression_tests_separate": 11,
+    "helper_tests_separate": 5,
+    "runtime_scripts": 41,
+    "current_top_level_game_data_files": 10,
+    "import_descriptors_checked": 148,
+    "indexed_project_payloads": 418,
+    "source_inputs_unchanged_across_export": true,
+    "signature_v2": true,
+    "signature_v3": true,
+    "aab_jar_signature_verified": true,
+    "bundletool_validated": true,
+    "apk_zipalign_verified": true,
+    "elf_16_kib_static_verified": true,
+    "native_library_count": 2,
+    "native_runtime_16_kib_device_verified": false,
+    "sparse_pack_parity": {
+      "format": "Godot4.6.3 sparse-PCK v3",
+      "entry_count": 418,
+      "raw_directory_bytes_match": false,
+      "logical_records_match": true,
+      "all_actual_payload_bytes_match": true,
+      "apk_index_sha256": "6c052df6a0177d6b09aec89f905cd83b126a5d1933939057d74cc39826843571",
+      "aab_index_sha256": "8fc812a3f641d123169c8e6a0822d49018dd0e5129247d9c2a487c87be6585e0",
+      "canonical_records_sha256": "94a2ab8b2412c2810c8645a52e1b7056db70c7a0eea2ca969a86fa7dec2088f3",
+      "format_sources": [
+        "https://github.com/godotengine/godot/blob/4.6.3-stable/core/io/file_access_pack.cpp",
+        "https://github.com/godotengine/godot/blob/4.6.3-stable/editor/export/editor_export_platform.cpp",
+        "https://github.com/godotengine/godot/blob/4.6.3-stable/platform/android/export/export_plugin.cpp"
+      ],
+      "note": "Directory record order may differ; headers and each unique path/offset/size/MD5/flags must agree, and every indexed external payload is verified in each artifact. Android launcher _cl_ is outside the project index but remains covered by exact cross-artifact byte parity."
+    },
+    "compiled_script_scope": "Compiled inventory/remaps and frozen source inputs checked; no decompilation claim.",
+    "phone_verified": false,
+    "play_uploaded": false,
+    "real_billing_verified": false,
+    "clean_machine_build_verified": false,
+    "bit_identical_rebuild_verified": false,
+    "evidence": [
+      "docs/PUBLIC_RELEASE_RC2_ARTIFACT_VALIDATION.json",
+      "docs/PUBLIC_RELEASE_RC2_POLICY_VALIDATION.json",
+      "builds/android-release/0.8.0-rc2-code37-attempt03/verification/validation.json",
+      "builds/android-release/0.8.0-rc2-code37-attempt03/preflight.json",
+      "builds/android-release/0.8.0-rc2-code37-attempt03/unsigned-export.json"
+    ]
+  },
+  "previous_runtime_evidence": {
+    "record": "docs/DIRECT_ABILITY_PURCHASE_VALIDATION.json",
+    "assertions": 844,
+    "note": "Historical same-runtime UI/integration/GPU scope; not rerun or added to this release count."
+  },
+  "game_data_sha256": {
+    "data/board_design.json": "7f924784be57d5cc15f96199467f8a884feb0bd8d5df19ed07f7eebe55aa2a14",
+    "data/crystal_board_design.json": "b9ce87470fd3e393ab4789c5b8d682a84bfe6911fce411af1cc516de7cba4e6e",
+    "data/crystal_economy.json": "fa590359c4687c76ee14ce2149d6fba42a2a302100fe439f69ee301bfca90791",
+    "data/crystal_upgrade_layout.json": "e87e5f38d6c49d921b53d87f94a17b8df3d189a825c0f9e48d923c9f9f16aa31",
+    "data/economy.json": "9910256c6a6832d11248012bd60cafeef3e9017bb731bbf23dcf2503c0b27a8a",
+    "data/gelato_board_design.json": "0f64d5ebd62f786b1c157a75d599f47d00543e749e4240afe38d0131cfb05add",
+    "data/gelato_economy.json": "e98aa6365989a68cb618d15a5325bc1d8713767d04a693d2760b94fcf2efe352",
+    "data/gelato_upgrade_layout.json": "9948870ef138871c4966cea60820c341766af962018a773fe28da5c28bade666",
+    "data/upgrade_arc_art.json": "3abc28874c39d56d26fc1bff26e079319f646a3511459f2df61f2108539df85f",
+    "data/upgrade_layout.json": "6397704584fd20178fde7a15f4341dcac3576e8bc9eecf4919e26091bb32058e"
+  },
+  "signing_recovery": {
+    "existing_key_reused": true,
+    "certificate_preflight": "verification/release-environment-20261104/signing-preflight.json",
+    "public_der": "builds/android-release/0.8.0-rc2-code37-attempt03/sugarfall-release-certificate.der",
+    "public_pem": "builds/android-release/0.8.0-rc2-code37-attempt03/sugarfall-release-certificate.pem",
+    "private_key_copied": false,
+    "off_device_backup_confirmed": false,
+    "play_app_creation": "Owner reported on 2026-11-04; not independently observed",
+    "package_registration_verified": false,
+    "play_app_signing_enrollment_verified": false,
+    "registration_challenge_supplied": false,
+    "public_certificate_download": "https://drive.google.com/file/d/1F5oMiwFqKW_bKoJwew-4HyH_ryLSF7PM/view?usp=drivesdk"
+  },
+  "preview": {
+    "version_name": "0.7.10-preview",
+    "version_code": 36,
+    "package": "org.pegfoundry.prototype.preview",
+    "record": "docs/ANDROID_SUGARFALL_v0.7.10.json",
+    "drive_file_id": "1GF1zo3lt0VR5voajNPGjoP1FYuPe0FYz",
+    "unchanged": true
+  },
+  "update_compatibility": "Public package installs separately from preview with no automatic cross-app progress import. Supplied compatible-profile policy tests retain earned progress and reject simulated entitlements; physical installation/migration remains unverified.",
+  "monetization": {
+    "real_provider_connected": false,
+    "preview_simulation_retained": true,
+    "public_simulation_rejected": true
+  },
+  "distribution": {
+    "status": "Drive delivered and metadata readback verified",
+    "folder_id": "1TXLZwTNVlHGTBy7y0CVMMk3zABEKu8X-",
+    "apk": {
+      "file_id": "1AU5B4wDwQT4RcKqrs_KG_u02B3X4NRDt",
+      "name": "Sugarfall-v0.8.0-rc2-Android-Release-2026-11-04.apk",
+      "url": "https://drive.google.com/file/d/1AU5B4wDwQT4RcKqrs_KG_u02B3X4NRDt/view?usp=drivesdk",
+      "bytes": 91340723,
+      "modified_time": "2026-11-04T06:09:35.244Z",
+      "folder_id": "1TXLZwTNVlHGTBy7y0CVMMk3zABEKu8X-",
+      "permissions": "owner only; unchanged sharing",
+      "metadata_readback_verified": true,
+      "remote_checksum_returned": false,
+      "sha256": "afee2a0e1687a7051d9925bf636e06903b24f4250771ce2627fa643a31505a37"
+    },
+    "aab": {
+      "file_id": "1ZFWvhGOnHPLn1qIYkcuRpBhcP3KG846D",
+      "name": "Sugarfall-v0.8.0-rc2-Android-Release-2026-11-04.aab",
+      "url": "https://drive.google.com/file/d/1ZFWvhGOnHPLn1qIYkcuRpBhcP3KG846D/view?usp=drivesdk",
+      "bytes": 90575945,
+      "modified_time": "2026-11-04T06:08:38.080Z",
+      "folder_id": "1TXLZwTNVlHGTBy7y0CVMMk3zABEKu8X-",
+      "permissions": "owner only; unchanged sharing",
+      "metadata_readback_verified": true,
+      "remote_checksum_returned": false,
+      "sha256": "29c32d25400ce42168ced55eac0909a15e2dc4433e3f94b48d7c388e425f6831"
+    },
+    "public_certificate": {
+      "file_id": "1F5oMiwFqKW_bKoJwew-4HyH_ryLSF7PM",
+      "name": "Sugarfall-release-public-certificate.pem",
+      "url": "https://drive.google.com/file/d/1F5oMiwFqKW_bKoJwew-4HyH_ryLSF7PM/view?usp=drivesdk",
+      "bytes": 1798,
+      "modified_time": "2026-11-04T06:09:57.465Z",
+      "folder_id": "1TXLZwTNVlHGTBy7y0CVMMk3zABEKu8X-",
+      "permissions": "owner only; unchanged sharing",
+      "metadata_readback_verified": true,
+      "remote_checksum_returned": false
+    },
+    "preview_unchanged": true,
+    "remote_checksum_comparison": false,
+    "play_uploaded": false,
+    "evidence": [
+      "verification/release-environment-20261104/drive-apk-delivery.json",
+      "verification/release-environment-20261104/drive-aab-delivery.json",
+      "verification/release-environment-20261104/drive-certificate-delivery.json",
+      "verification/release-environment-20261104/drive-preview_before.json",
+      "verification/release-environment-20261104/drive-preview_after.json",
+      "verification/release-environment-20261104/delivery-validation.json"
+    ]
+  },
+  "remaining": [
+    "Owner off-device signing backup and Console certificate roles/enrollment",
+    "Actual Play Internal testing upload and applicable account/testing tasks",
+    "Real billing plugin, products, verification backend and Android purchase/restore tests",
+    "Phone install/update, listening, interruptions and 16 KB runtime acceptance",
+    "Reported Bakery tray-10 difficulty and current legal progression acceptance",
+    "Store/privacy/app-content preparation and production release approval"
+  ]
+}
