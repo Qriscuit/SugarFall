@@ -2,6 +2,7 @@ extends Node
 ## Runs in both the editor and a real nondebug export, under a probed save root.
 const Service = preload("res://scripts/monetization_service.gd")
 const ResultUI = preload("res://scripts/result_comparison_ui.gd")
+const AbilityAccess = preload("res://scripts/area_ability_access.gd")
 const SAVE = "user://public_release_qa.json"
 var passed = 0
 var failures: Array[String] = []
@@ -28,6 +29,7 @@ func fixture(area: String = "bakery", public_mode: bool = true):
 	g.SAVE_FILE = SAVE; g.testing = true; g.sound_on = false
 	g.set_active_area(area)
 	g.monetization = Service.new(not public_mode)
+	g.ability_access = AbilityAccess.new(not public_mode)
 	g.current_level = 4; g.highest_unlocked = 12; g.bank = 1234.5
 	g.levels = [2,2,1,1,1,1,2,2]; g.equipped = ["splitter","impact"]
 	g.first_run_guide.completed = true; g.first_run_guide.active = false
@@ -120,11 +122,55 @@ func saved_preview_migration():
 	check(data.get("monetization_test",{}).is_empty() and not data.has("pending_result"),"Public checkpoint keeps no simulated entitlements or claimed result")
 	g.free()
 
+func signature_purchase_policy():
+	for area in ["bakery","gelato","crystal"]:
+		var g=fixture(area)
+		g.mode="shop";g.current_level=1;g.highest_unlocked=1;g.bank=5000
+		g.levels.fill(0);g.shift_claimed=true;g.run_id=""
+		if area=="gelato": g.gelato_shop_revision=0;g.ensure_gelato_shop_state()
+		g.upgrade_map.reset_view_state();g.upgrade_map.twin_selected=true
+		var map=g.upgrade_map
+		check(map.twin_control_visible() and map.special_cost()>0,area+" public map retains its earned signature upgrade")
+		check(map.card_rect().encloses(map.buy_rect()) and map.card_rect().encloses(map.paid_rect()) and map.paid_rect().position.y>map.buy_rect().end.y,area+" public card retains separate stacked coin and store targets")
+		check(g.home_menu.target_at(Vector2(360,902))!="ability",area+" public Home has no area-purchase detour")
+		var before=g.AreaCampaign.capture_local(g)
+		map.press(map.paid_rect().get_center())
+		check(g.mode=="shop" and not g.ability_ui.owned() and g.ability_access.pending.is_empty() and not g.ability_ui.card_confirming() and g.AreaCampaign.capture_local(g)==before,area+" unavailable public billing never starts a fake confirmation or grants access")
+		check(g.ability_ui.message=="Store unavailable",area+" public card reports its unconfigured provider honestly")
+		g.navigation_delay=0;map.press(map.buy_rect().get_center())
+		check(not g.ability_ui.owned() and g.bank==5000,area+" public coin purchase retains tray and Power requirements")
+		g.highest_unlocked=8;g.levels[1]=6 if area=="gelato" else 4
+		if area=="gelato": g.gelato_shop_revision=0;g.ensure_gelato_shop_state()
+		g.navigation_delay=0;var cost=g.ability_ui.cost()
+		map.press(map.buy_rect().get_center())
+		check(g.mode=="shop" and g.ability_ui.owned() and g.ability_unlock_source=="earned" and g.bank==5000-cost,area+" public gameplay can buy the signature upgrade with earned coins")
+		if area=="gelato": check(g.levels[1]==0 and g.power_reset_tier==6,"Public earned Dual Shot preserves its one-time Power reset")
+		var earned=g.AreaCampaign.capture_local(g)
+		map.twin_selected=true;map.selected=-1;g.navigation_delay=0
+		map.press(map.paid_rect().get_center());map.press(map.buy_rect().get_center())
+		check(g.AreaCampaign.capture_local(g)==earned and g.ability_access.pending.is_empty(),area+" owned public signature cannot be charged or reset twice")
+		g.free()
+	if not Service.preview_tools_allowed():
+		var access=AbilityAccess.new(true)
+		var fake={"version":1,"namespace":"area_ability_preview","serial":4,"preview_owned":{"bakery":true,"gelato":true,"crystal":true},"preview_receipts":{"bakery":true,"gelato":true,"crystal":true}}
+		check(not access.preview_enabled() and not access.import_state(fake) and access.export_state().is_empty(),"Actual public constructor rejects all simulated area receipts even with explicit opt-in")
+		for area in ["bakery","gelato","crystal"]:
+			check(not access.has_early_access(area) and access.request_preview(area).is_empty() and access.request_purchase(area).is_empty(),area+" actual public access cannot synthesize a purchase")
+			var g=fixture(area);g.ability_unlock_source="preview"
+			if area=="bakery": g.bakery_jam_burst=true
+			elif area=="gelato": g.twin_launchers=true
+			else: g.crystal_second_prism=true
+			check(not g.ability_ui.owned(),area+" saved preview activation flag alone never grants public ownership")
+			g.ability_unlock_source="earned"
+			check(g.ability_ui.owned(),area+" legitimate earned activation remains valid without a store")
+			g.free()
+
 func _ready():
 	var release_expected = "--expect-release" in OS.get_cmdline_user_args()
 	check(not OS.is_debug_build() and OS.has_feature("sugarfall_public") if release_expected else OS.is_debug_build(),"Harness runs with its declared native build profile")
 	service_gate()
 	routes_and_payouts()
 	saved_preview_migration()
+	signature_purchase_policy()
 	print("PUBLIC_RELEASE_QA_RESULT passed=%d failed=%d debug=%s public=%s" % [passed,failures.size(),OS.is_debug_build(),OS.has_feature("sugarfall_public")])
 	get_tree().quit(0 if failures.is_empty() else 1)

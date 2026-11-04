@@ -1,0 +1,11 @@
+// Resolve only the standard release shell and its official plugin dependencies.
+gradle.projectsEvaluated {
+    rootProject.tasks.register('warmSugarfallReleaseDependencies') {
+        doLast {
+            ['standardReleaseRuntimeClasspath', 'standardReleaseCompileClasspath'].each { name ->
+                def files = rootProject.configurations.getByName(name).resolve()
+                println("SUGARFALL_RESOLVED ${name}: ${files.size()} files")
+            }
+        }
+    }
+}
