@@ -1,6 +1,10 @@
 # Export and rebuild notes
 
-## Current Android preview v0.7.8
+## Current Android preview v0.7.9
+
+CHG-042 delivers v0.7.9-preview/code 35 after the user approved the single-pulse GIF. Each 1.30-second cycle now has one grow/brighten/shrink and one matching hum swell; the smaller second beat is removed. The 2.60-second minimum and existing warm art/loader behavior remain. 874 payload checks and 16 Android metadata/signature/alignment checks pass. The APK is 93,039,010 bytes; SHA-256 `f55cfcf37c3512cc2566b3e4dd3f956db07973a69d89790c52c60cc47138236d`. All 8 Drive readback checks pass; the existing private file ID, folder, owner permissions and URL are retained. No remote checksum comparison is claimed. Phone installation, audio/feel and the Bakery tray-10/More Jam retest remain open. Current legal progression and real billing are unfinished; public v0.8.0-rc1 artifacts are unchanged. [Manifest](ANDROID_SUGARFALL_v0.7.9.json). CHG-041 was preview-only until user approval; that scope remains historical.
+
+## Previous Android preview v0.7.8
 
 CHG-040 delivers v0.7.8-preview/code 34 with More Jam, a free late Bakery upgrade that charges a Jam doughnut every fourth normal drop instead of every fifth. 786 payload checks and 16 Android metadata/signature/alignment checks pass. The APK is 93,051,298 bytes; SHA-256 `9bb0f427a1bb47ac916ec01b5ea73b50d590026f8cfa51f0c37905f602035998`. All 8 Drive readback checks pass; the existing private file ID, folder, owner permissions and URL are retained. No remote checksum comparison is claimed. The specific Bakery tray-10 phone finding awaits retest; full device/audio acceptance, normal-wallet progression and real billing remain open. Public v0.8.0-rc1 artifacts are unchanged. [Manifest](ANDROID_SUGARFALL_v0.7.8.json). Earlier release/source notes below remain milestone history.
 
