@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>Sugarfall — Mabel storefront review</title>
+<style>
+:root { --paper:#f8f5ed; --card:#fffdf8; --ink:#294338; --muted:#64766c; --line:#d7e0d6; --mint:#e7efe4; --copper:#95623e; }
+* { box-sizing:border-box; }
+body { margin:0; background:var(--paper); color:var(--ink); font:16px/1.65 "Segoe UI",Arial,sans-serif; }
+a { color:#2d654c; text-underline-offset:4px; }
+a:focus-visible { outline:3px solid var(--copper); outline-offset:5px; border-radius:3px; }
+.shell { width:min(1160px,calc(100% - 64px)); margin:auto; }
+.review-bar { display:flex; align-items:center; justify-content:space-between; gap:20px; padding:23px 0; border-bottom:1px solid var(--line); }
+.review-title { font-size:15px; font-weight:650; }
+.status { color:var(--muted); font-size:13px; }
+.identity { display:flex; align-items:center; gap:28px; padding:36px 0 31px; }
+.icon { display:block; width:112px; height:112px; border-radius:23px; box-shadow:0 5px 18px #24413712; }
+h1 { font:600 clamp(36px,5vw,52px)/1.05 Georgia,"Times New Roman",serif; letter-spacing:-.025em; margin:0 0 13px; }
+.locale { margin:0 0 9px; color:var(--muted); font-size:12px; letter-spacing:.04em; }
+.short { margin:0; max-width:670px; font-size:18px; line-height:1.5; }
+.art { margin:0; padding:9px; border:1px solid var(--line); border-radius:16px; background:var(--card); }
+.art a { display:block; }
+.art img { display:block; width:100%; height:auto; border-radius:8px; }
+.art figcaption { color:var(--muted); font-size:12px; padding:10px 7px 2px; }
+.section-head { display:flex; align-items:baseline; justify-content:space-between; gap:24px; margin:33px 0 15px; }
+h2 { margin:0; font-size:21px; line-height:1.35; letter-spacing:-.015em; font-weight:650; }
+.section-head p { margin:0; color:var(--muted); font-size:13px; }
+.design-note { margin:12px 0 0; color:var(--muted); font-size:14px; max-width:900px; }
+.copy-wrap { display:grid; grid-template-columns:minmax(0,1fr) 260px; gap:50px; border-top:1px solid var(--line); padding:32px 0 35px; margin-top:32px; }
+.description h2 { margin-bottom:17px; }
+.description p { margin:0 0 17px; max-width:740px; }
+.description p:last-child { margin-bottom:0; }
+.exports { align-self:start; padding:23px; border-radius:14px; background:var(--mint); }
+.exports h2 { font-size:16px; margin-bottom:9px; }
+.exports p { color:var(--muted); font-size:13px; line-height:1.5; margin:0 0 17px; }
+.file { display:block; padding:11px 0; border-top:1px solid #c9d8c7; font-size:14px; text-decoration:none; }
+.file span { display:block; color:var(--muted); font-size:12px; }
+.file:hover { text-decoration:underline; }
+.notes { border-top:1px solid var(--line); padding:24px 0; display:grid; grid-template-columns:1fr 1fr; gap:36px; }
+.notes h2 { font-size:16px; margin-bottom:7px; }
+.notes p { color:var(--muted); font-size:14px; margin:0; }
+footer { border-top:1px solid var(--line); color:var(--muted); font-size:12px; padding:20px 0 30px; }
+footer p { margin:0; max-width:920px; }
+@media (max-width:760px) {
+ .shell { width:calc(100% - 32px); }
+ .review-bar { flex-direction:column; align-items:flex-start; gap:3px; padding:18px 0; }
+ .identity { align-items:flex-start; gap:18px; padding:27px 0; }
+ .icon { width:80px; height:80px; border-radius:17px; }
+ h1 { font-size:38px; margin-bottom:10px; }
+ .locale { font-size:10px; }
+ .short { font-size:16px; }
+ .section-head { display:block; margin-top:28px; }
+ .section-head p { margin-top:6px; }
+ .copy-wrap { grid-template-columns:1fr; gap:25px; padding-top:27px; }
+ .notes { grid-template-columns:1fr; gap:22px; }
+}
+@media (max-width:400px) { .identity { gap:13px; } .icon { width:68px; height:68px; } h1 { font-size:34px; } }
+@media print { .shell { width:100%; } .copy-wrap { grid-template-columns:1fr; } .exports { display:none; } figure { break-inside:avoid; } }
+</style>
+</head>
+<body>
+<main class="shell">
+<header class="review-bar">
+<div class="review-title">Sugarfall · Mabel storefront review</div>
+<div class="status">Draft · 4 November 2026 · Google Play</div>
+</header>
+<section class="identity" aria-labelledby="game-title">
+<a href="exports/google-play-icon-512.png" target="_blank" rel="noopener" aria-label="Open the full-size Mabel app icon">
+<img class="icon" src="exports/google-play-icon-512.png" alt="Mabel, Sugarfall's baker mascot, in the proposed app icon." width="512" height="512">
+</a>
+<div>
+<p class="locale">ENGLISH (UNITED STATES)</p>
+<h1 id="game-title">Sugarfall</h1>
+<p class="short">Bounce treats, break pegs and earn upgrades in a sweet physics-based adventure.</p>
+</div>
+</section>
+<figure class="art">
+<a href="exports/google-play-feature-1024x500.png" target="_blank" rel="noopener" aria-label="Open the full-size Sugarfall feature graphic">
+<img src="exports/google-play-feature-1024x500.png" alt="Sugarfall promotional artwork featuring Mabel and bouncing treats." width="1024" height="500">
+</a>
+<figcaption>Google Play feature graphic · 1024 × 500 · Promotional illustration</figcaption>
+</figure>
+<section aria-labelledby="turnaround-title">
+<div class="section-head">
+<h2 id="turnaround-title">Mabel character turnaround</h2>
+<p>Select the sheet to inspect the full-size design.</p>
+</div>
+<figure class="art">
+<a href="source/mabel-turnaround.png" target="_blank" rel="noopener" aria-label="Open Mabel's full-size character turnaround">
+<img src="source/mabel-turnaround.png" alt="Mabel's proposed full-body character design shown from multiple directions.">
+</a>
+<figcaption>Character reference · Existing face and outfit retained · Full-body extension proposed</figcaption>
+</figure>
+<p class="design-note">Mabel is Sugarfall's mascot. Her current game role introduces the bakery and teaches the first play-and-upgrade loop. The longer skirt and shoes complete the previously unseen lower body for this design sheet.</p>
+</section>
+<div class="copy-wrap">
+<section class="description" aria-labelledby="description-title">
+<h2 id="description-title">Store description</h2>
+<p>Step into Mabel's unusual bakery, where doughnuts bounce through cookies and your next upgrade could turn a near miss into a cleared tray. Mabel helps you get started before you explore gelato gardens and glowing candy workshops.</p>
+<p>Drag your finger to position your dispenser or aim your launcher. Use gravity, angles and rebounds to reach awkward pegs, then clear the tray before time runs out. A small change in aim can send your next shot somewhere very different.</p>
+<p>Choose your route through branching upgrade maps. Buy stronger shots, faster drops or more time, and adjust your approach as the pegs get tougher. Save for a special ability or buy the improvement that could help right now.</p>
+<p>Splash nearby pegs with jam, unlock twin launchers or tap a Prism to multiply the candy already in play. Each area gives you a different way to aim, break pegs and put your upgrades to work.</p>
+<p>Fill the collection cups to grow their payouts and earn a bonus for clearing a tray. Didn't finish? Collect your coins, improve your equipment and try again.</p>
+<p>Each area has its own upgrades and saved progress. Start with a few bouncing doughnuts and work toward a board full of treats, splashes and ricochets.</p>
+</section>
+<aside class="exports" aria-labelledby="exports-title">
+<h2 id="exports-title">Listing files</h2>
+<p>Exact text fields and artwork for review before Play Console entry.</p>
+<a class="file" href="exports/title.txt" target="_blank" rel="noopener">App name<span>9 / 30 characters</span></a>
+<a class="file" href="exports/short-description.txt" target="_blank" rel="noopener">Short description<span>79 / 80 characters</span></a>
+<a class="file" href="exports/full-description.txt" target="_blank" rel="noopener">Full description<span>1,194 / 4,000 characters</span></a>
+<a class="file" href="exports/google-play-icon-512.png" target="_blank" rel="noopener">Store icon<span>512 × 512 PNG</span></a>
+<a class="file" href="exports/google-play-feature-1024x500.png" target="_blank" rel="noopener">Feature graphic<span>1024 × 500 PNG</span></a>
+<a class="file" href="prompts.json" target="_blank" rel="noopener">Artwork prompts<span>Generation record</span></a>
+<a class="file" href="manifest.json" target="_blank" rel="noopener">Asset manifest<span>Formats and file hashes</span></a>
+</aside>
+</div>
+<section class="notes" aria-label="Production notes">
+<div>
+<h2>Later feature copy</h2>
+<p><a href="planned-copy.md" target="_blank" rel="noopener">Daily challenges and more Mabel appearances</a> remain proposals. Their paragraphs are excluded from the listing text.</p>
+</div>
+<div>
+<h2>Earlier screenshots</h2>
+<p>The <a href="https://drive.google.com/file/d/14SdcC4t36EbDhBYN0bOPlaDvlobTzO-p/view" target="_blank" rel="noopener">earlier storefront package</a> contains dated RC2 desktop captures. Later interface changes require fresh Android comparison and affected screenshot replacements before submission.</p>
+</div>
+</section>
+<footer><p>New mascot artwork and revised copy are store drafts. This page records no Play Console submission, Android launcher replacement or phone acceptance. Extract the whole review folder to preserve local image and text links.</p></footer>
+</main>
+</body>
+</html>

@@ -1,7 +1,7 @@
 {
   "language": "en-US",
   "date": "2026-11-04",
-  "status": "Prepared draft; not submitted to Play Console",
+  "status": "Revised mascot-led draft; not submitted to Play Console",
   "reference_build": {
     "version_name": "0.8.0-rc2",
     "version_code": 37,
@@ -10,14 +10,14 @@
   },
   "listing": {
     "app_name": "Sugarfall",
-    "short_description": "Break pegs with doughnuts, ice cream and candy. Earn coins and buy upgrades.",
-    "full_description": "Aim your dispenser, break the pegs and collect coins in Sugarfall. Clear each tray before the timer runs out, then spend what you earn on upgrades for your next attempt.\n\nPlay through 36 trays in three areas, each with its own controls, upgrade map and saved progress.\n\nIn Bakery, move the dispenser across the board to drop doughnuts onto cookie pegs. Unlock Jam Burst to hit nearby pegs with a jam splash.\n\nIn Gelato Garden, move your finger to aim along a curved, dotted preview. Work through a winding upgrade tree, then unlock Dual Shot for two launchers. Dual Shot resets Power, which you can upgrade again.\n\nIn Crystal Candyworks, fire candy in straight lines and bounce it off walls and pegs. Tap a floating ×2 Prism before it disappears to duplicate candy already in play. The Second Prism upgrade adds another opportunity during a run.\n\nUse earned coins to increase Power, fire more often and extend your run time. Bronze, Silver, Gold and Diamond pegs become tougher as you advance.\n\nEach area keeps its own coins and upgrades. Replay completed trays or return to an earlier area with its saved progress. Complete Bakery or Gelato Garden and spend earned coins to unlock the next area."
+    "short_description": "Bounce treats, break pegs and earn upgrades in a sweet physics-based adventure.",
+    "full_description": "Step into Mabel's unusual bakery, where doughnuts bounce through cookies and your next upgrade could turn a near miss into a cleared tray. Mabel helps you get started before you explore gelato gardens and glowing candy workshops.\n\nDrag your finger to position your dispenser or aim your launcher. Use gravity, angles and rebounds to reach awkward pegs, then clear the tray before time runs out. A small change in aim can send your next shot somewhere very different.\n\nChoose your route through branching upgrade maps. Buy stronger shots, faster drops or more time, and adjust your approach as the pegs get tougher. Save for a special ability or buy the improvement that could help right now.\n\nSplash nearby pegs with jam, unlock twin launchers or tap a Prism to multiply the candy already in play. Each area gives you a different way to aim, break pegs and put your upgrades to work.\n\nFill the collection cups to grow their payouts and earn a bonus for clearing a tray. Didn't finish? Collect your coins, improve your equipment and try again.\n\nEach area has its own upgrades and saved progress. Start with a few bouncing doughnuts and work toward a board full of treats, splashes and ricochets."
   },
   "counts": {
     "app_name": 9,
-    "short_description": 76,
-    "full_description": 1196,
-    "full_description_words": 206
+    "short_description": 79,
+    "full_description": 1194,
+    "full_description_words": 205
   },
   "limits": {
     "app_name": 30,
@@ -110,7 +110,21 @@
     "Multiplayer or leaderboards",
     "Guaranteed completion time or easy/relaxing difficulty",
     "A fourth area or future content",
-    "Rankings, awards, testimonials or price promotions"
+    "Rankings, awards, testimonials or price promotions",
+    "Daily challenges, daily rewards or calendar events",
+    "Mabel as an ongoing companion throughout all areas"
   ],
-  "submission_note": "Reconfirm the text against the exact final Play build and actual billing/ad declarations. This draft does not complete store submission or phone acceptance."
+  "submission_note": "Reconfirm the text against the exact final Play build and actual billing/ad declarations. This draft does not complete store submission or phone acceptance.",
+  "editorial": {
+    "mascot": "Mabel",
+    "mascot_scope": "Chosen brand mascot; current game presence is Bakery onboarding and guide replay.",
+    "content_counts": "Do not state a fixed number of areas, levels or trays in listing fields.",
+    "reference_build_note": "Feature evidence uses RC2; later preview interface changes require final Android screenshot comparison.",
+    "text_exports": "../../../concept-art/storefront-v2/exports"
+  },
+  "proposed_copy_not_for_listing": {
+    "status": "Concept only; do not publish before the features are built and verified.",
+    "daily_challenges": "Take on a new challenge each day, try a different setup and earn coins for completing its goal. Beat an optional harder objective for a bigger reward to spend on your next upgrade.",
+    "mabel_continuing_presence": "Mabel returns as you discover new areas, with a welcome, a quick tip and a celebration when you clear a difficult tray. From your first doughnut to your latest upgrade, there's a familiar face along the way."
+  }
 }

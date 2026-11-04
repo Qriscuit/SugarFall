@@ -1,0 +1,68 @@
+{
+  "date": "2026-11-04",
+  "revision": "Mabel storefront v2",
+  "mascot": "Mabel",
+  "status": "Store draft and character reference; no Play Console submission",
+  "reference_build": "0.8.0-rc2 / code37 feature evidence; later preview UI changes require screenshot refresh",
+  "runtime_changed": false,
+  "apk_rebuilt": false,
+  "android_launcher_replaced": false,
+  "feature_tool": "built-in image_gen",
+  "prompts": "prompts.json",
+  "assets": [
+    {
+      "file": "exports/google-play-icon-512.png",
+      "role": "Mabel store icon",
+      "width": 512,
+      "height": 512,
+      "bit_depth": 8,
+      "png_color_type": 6,
+      "bytes": 460103,
+      "sha256": "9b60f7f22c848e6f3f1ed2525b2e7f5d792070057293b538f5e0271cb207ca27"
+    },
+    {
+      "file": "exports/google-play-feature-1024x500.png",
+      "role": "Mabel promotional feature graphic",
+      "width": 1024,
+      "height": 500,
+      "bit_depth": 8,
+      "png_color_type": 2,
+      "bytes": 823056,
+      "sha256": "dfcfa0885b38ab3a07078baa6c376798778de9887ec70fe0b986a894a210ca8a"
+    },
+    {
+      "file": "source/mabel-turnaround.png",
+      "role": "four-view Mabel character design reference",
+      "width": 1536,
+      "height": 1024,
+      "bit_depth": 8,
+      "png_color_type": 2,
+      "bytes": 1873341,
+      "sha256": "ce7ca36893d24edbe0c17d1e3e8b0b382a20dcc6a59717679699ffc936031a26"
+    }
+  ],
+  "copy_counts": {
+    "app_name": 9,
+    "short_description": 79,
+    "full_description": 1194,
+    "full_description_words": 205
+  },
+  "proposed_only_copy": "planned-copy.md",
+  "character_identity_reference": "../../PLINKO/data/art/host/mabel_welcome.png",
+  "lower_body": "Full-body design extension: below-knee mint skirt and brown low shoes",
+  "technical_export": "Godot aspect-preserving Lanczos resampling; banner 1795x876 -> 1025x500 -> center trim 1024x500; icon square resized to 512x512",
+  "visual_review": {
+    "character_identity": true,
+    "title_spelling": true,
+    "turnaround_views": true,
+    "apron_tie_continuity": true,
+    "exported_icon": true,
+    "exported_banner": true,
+    "adaptive_launcher_integration": false
+  },
+  "alt_text": {
+    "icon": "Mabel, a freckled baker with a chestnut bun and mint dress, holds a pink-frosted doughnut.",
+    "feature": "Mabel presents a peg board with bouncing doughnuts, ice cream and candy beneath the Sugarfall title."
+  },
+  "authoritative_spec": "https://support.google.com/googleplay/android-developer/answer/9866151?hl=en"
+}

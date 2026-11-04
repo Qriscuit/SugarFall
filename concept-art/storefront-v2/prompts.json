@@ -1,0 +1,45 @@
+{
+  "date": "2026-11-04",
+  "tool": "built-in image_gen",
+  "intent": "Mabel selected as Sugarfall mascot; store icon, feature graphic and character turnaround. No fixed content counts in listing copy.",
+  "reference_images": [
+    {
+      "path": "../../PLINKO/data/art/host/mabel_welcome.png",
+      "role": "Canonical existing Mabel face, upper-body costume and painted style"
+    },
+    {
+      "path": "../storefront-v1/exports/google-play-feature-1024x500.png",
+      "role": "Existing title/food/ceramic promotional style"
+    }
+  ],
+  "prompts": {
+    "turnaround": "Use case: stylized-concept. Asset type: production character turnaround sheet for Mabel, Sugarfall's mascot. Input image 1 is the EXISTING in-game Mabel identity reference, not an edit target: preserve this exact adult woman's warm freckled face, brown eyes, chestnut swept hair in a large loose curled bun with two face-framing curls, soft fuller adult proportions, mint-green collared puff-sleeve dress, ivory canvas apron with copper buttons, small embroidered strawberry at upper left chest, tied apron sash and two large lower apron pockets. Create a clean wide landscape model sheet with FOUR evenly spaced, fully visible full-body views in one horizontal row: FRONT, LEFT PROFILE, BACK, FRONT THREE-QUARTER. Consistent orthographic camera, exact same scale, same feet baseline and top of bun height. Neutral relaxed stance with arms a little away from body; no food props, no presentation gesture. Extend the unseen lower body conservatively to below-knee mint skirt, ivory apron ending slightly above hem, sturdy simple dark warm-brown low-heeled bakery shoes; no added jewelry, hat, scarf or tools. Side view is a TRUE 90 degree profile facing left; back is a TRUE 180 degree rear view with apron straps and tied waist bow naturally constructed, no face visible. Show same hair mass, body proportions and outfit construction in every view. Softly painted 2.5D mobile game illustration matching reference, readable natural materials, restrained fabric texture, broad warm upper-left light, NO black outline, NO photorealism. Uniform pale warm grey/cream studio background, very faint foot contact shadows only. Wide margins; do not crop hair or shoes. Sparse tasteful small dark-brown labels under views only, exact text: FRONT, LEFT PROFILE, BACK, THREE-QUARTER. Small top heading 'Mabel' optional. No commentary, no dimensions, no extra heads or accessory swatches. This is a character design reference, not an advertisement.",
+    "icon": "Use case: ads-marketing. Asset type: finished square mobile app store icon for Sugarfall featuring Mabel as mascot. Input image 1 is the EXISTING in-game Mabel identity reference, not an edit target. Preserve the SAME recognizable adult woman: warm freckled cheeks, big brown eyes, swept chestnut hair in loose curled bun, mint-green collared puff-sleeve dress, cream apron with copper fastening. Create a fresh polished icon composition: large joyful confident smiling Mabel face and shoulders, friendly slight three-quarter turn toward viewer. Bun and face form a simple instantly readable silhouette and fit inside the central 78% of the full square. Her face is the main subject, about 50% of image width, eyes readable at 48 pixels. Add ONE large strawberry-pink frosted ring doughnut in the lower foreground, tilted, with a few chunky sprinkles, held naturally by Mabel with only a little hand visible. Doughnut unmistakable but secondary, does not cover mouth or face; don't add other props. Keep enough chest apron to communicate baker, little embroidered strawberry if visible. Full-bleed calm mint-to-aqua softly lit background, simple warm light behind bun, no border, NO rounded-square corners, NO frame or badge, no outside shadow, no lettering or words. Essential face and doughnut must survive circular Android adaptive masking with breathing room. Softly painted sculpted 2.5D mobile game finish, warm top-left light, copper/chestnut/ivory/pink/mint established palette. Preserve character identity and age; no new hat, no chef toque, no generic young princess look, no busy bakery scene, no photorealism. Crisp face, clean tiny-size hierarchy, opaque background.",
+    "feature": "Use case: ads-marketing. Asset type: Google Play FEATURE GRAPHIC / wide landscape store banner for Sugarfall, approximately 2.048:1 aspect ratio. Input image 1 is the EXISTING in-game Mabel and governs identity and outfit. Input image 2 is the previous Sugarfall feature graphic and governs food-game style, title treatment and ceramic palette. Input image 3 is the new Mabel app icon and governs face recognition across marketing. Create a NEW finished illustration, with friendly adult Mabel prominently occupying the right third, waist-up, same freckled cheeks, brown eyes, loose swept chestnut bun, mint collared puff-sleeve dress, ivory strawberry apron and copper buttons. She smiles toward viewer, presenting the peg board with one open hand; keep both hands natural and clearly separated from game pieces. Left and bottom two-thirds show an inviting mint glazed ceramic peg tray with copper rim, a large pink-frosted ring doughnut bouncing between round cookie pegs, one pink ice cream scoop above wafer pegs, and one aqua candy ricocheting among amber crystal pegs. The balls/food are materially distinct from pegs and have restrained short cream arc trails with one or two contact sparks; no explosion clutter. Make the board action readable even at small size; retain generous empty air around the wordmark. Text verbatim: 'Sugarfall' (S u g a r f a l l) once, large cream rounded serif lettering with warm copper bevel/shadow similar to previous banner, upper-left/center-left. Entire word safely inset by at least 12% of canvas width on left and 12% height on top; never overlap Mabel's face, food or rim. Balance left wordmark plus food action against Mabel right; no title over character. Pale mint/aqua/lavender ceramic background with a restrained curved copper/cream decorative arch. Soft sculpted painted 2.5D mobile-game render, warm top-left light, polished food textures, warm adult character, match references. Full bleed, OPAQUE background. All essential elements safely inset for small edge trim to exact 1024x500. No subtitle, no extra lettering, no level/tray counts, prices, install button, ratings, badges, real UI, device frame, watermark, additional people, chef hat or floating character heads. This is promotional art, not a gameplay screenshot.",
+    "turnaround_correction": "Use case: precise-object-edit. Edit target: input image 1, the complete Mabel four-view turnaround sheet. Make ONE continuity correction only: on the BACK view (third figure from left), remove the waist bow/knot and its two hanging ribbon tails; replace them with a plain flat continuous ivory apron waist sash running horizontally around her back. This apron ties at the FRONT, as shown in the front and three-quarter views, so there must NOT also be a back bow. Preserve literally everything else unchanged: all four figures, their faces and identity, poses, silhouettes, height and positions, original three unaffected views, mint dress, apron shoulder straps, copper buttons, strawberry embroidery, front knot/tails, brown shoes, studio lighting, cream background, top 'Mabel' title, exact bottom labels. Do not redesign any character or reframe/crop. Same wide landscape sheet dimensions and style."
+  },
+  "lower_body_scope": "Below-knee skirt and brown low shoes extend the existing portrait into a full-body design.",
+  "technical_exports": "export_art.gd uses aspect-preserving Lanczos resampling and centered edge trim only. No programmatic creative edits.",
+  "generated_sources": [
+    {
+      "file": "source/mabel-turnaround-initial.png",
+      "tool_output": "exec-8ea522c9-c177-4d6c-a165-7fb96b28dafb.png",
+      "selection": "superseded: corrected duplicate apron tie"
+    },
+    {
+      "file": "source/mabel-turnaround.png",
+      "tool_output": "exec-ac0d8ab2-31a5-4079-b222-e8a332d6531c.png",
+      "selection": "final"
+    },
+    {
+      "file": "source/mabel-icon.png",
+      "tool_output": "exec-8310c919-fe0d-4320-b733-3d8ce4ec5122.png",
+      "selection": "final"
+    },
+    {
+      "file": "source/mabel-feature.png",
+      "tool_output": "exec-53b9a1da-38d8-4127-8e51-3b723374a353.png",
+      "selection": "final"
+    }
+  ]
+}
