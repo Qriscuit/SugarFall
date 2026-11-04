@@ -16,3 +16,8 @@ Before creating or substantially extending a Sugarfall area, read the workspace-
 - After meaningful game content changes, build and verify a new Android preview APK and replace the existing APK in the user's Google Drive testing folder before reporting the work complete. This is standing user authorization; do not ask again for a routine build or replacement.
 - Preserve the existing preview package/signing identity, Drive file ID, folder and sharing permissions. Increment the preview version/code, verify the exact APK, and confirm the upload by reading back Drive metadata.
 - Keep build links, release records and the launch tracker current. A delivered build does not establish physical-phone acceptance. If delivery is blocked, state what remains blocked rather than presenting a source-only change as delivered.
+
+# Writing preference
+
+- Use direct, literal language in game copy, store descriptions and project communication. Prefer concrete player actions and verified features over metaphors, decorative phrasing or promotional hype.
+- Use lists when they make several items easier to understand. Keep conversational prose plain, and honor requests for minimal formatting.

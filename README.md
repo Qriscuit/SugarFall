@@ -1,5 +1,7 @@
 # Sugarfall
 
+CHG-045 prepares the [Google Play storefront review](concept-art/storefront-v1/preview.html): feature artwork, the existing icon, six actual game captures and direct listing copy. [Download the review package](https://drive.google.com/file/d/14SdcC4t36EbDhBYN0bOPlaDvlobTzO-p/view) · [Copy and claim evidence](PLINKO/docs/store/STORE_COPY.md) · [Screenshot plan](PLINKO/docs/store/SCREENSHOT_PLAN.md). Final Android comparison and Console entry remain open; the game builds are unchanged.
+
 CHG-044 prepares the reusable signed-release environment and delivers separate public **v0.8.0-rc2/code 37** APK and AAB files for Internal testing preparation. The existing preview download is unchanged. The owner reports creating the Play app; Console enrollment, upload, production readiness and off-device key backup are unverified. [Candidate and downloads](PLINKO/docs/ANDROID_SUGARFALL_v0.8.0-rc2.md) · [Build commands](PLINKO/docs/ANDROID_RELEASE_BUILD.md).
 
 CHG-043 delivers [v0.7.10-preview](PLINKO/docs/ANDROID_SUGARFALL_v0.7.10.json) with direct coin/early-access actions on ability upgrade cards and no Home ability purchase offer. Phone acceptance, real billing and the Bakery tray-10 retest remain open.

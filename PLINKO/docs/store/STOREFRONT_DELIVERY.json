@@ -1,0 +1,20 @@
+{
+  "date": "2026-11-04",
+  "change": "CHG-045",
+  "status": "Prepared for review; no Play submission or phone acceptance",
+  "folder_id": "1TXLZwTNVlHGTBy7y0CVMMk3zABEKu8X-",
+  "file_id": "14SdcC4t36EbDhBYN0bOPlaDvlobTzO-p",
+  "name": "Sugarfall-Google-Play-Storefront-Draft-2026-11-04.zip",
+  "bytes": 13374478,
+  "url": "https://drive.google.com/file/d/14SdcC4t36EbDhBYN0bOPlaDvlobTzO-p/view?usp=drivesdk",
+  "modified_time": "2026-11-04T07:02:31.596Z",
+  "local_sha256": "d71cb39cc3e3b91d0f9417894abbef484fe08f0c2e098ba7e3e25adf7fe6ce17",
+  "drive_metadata_verified": true,
+  "remote_checksum_verified": false,
+  "package_manifest": "../../../concept-art/storefront-v1/manifest.json",
+  "review_page": "../../../concept-art/storefront-v1/preview.html",
+  "generated_art_prompts": "../../../concept-art/storefront-v1/prompts.json",
+  "runtime_modified": false,
+  "apk_rebuilt": false,
+  "play_uploaded": false
+}

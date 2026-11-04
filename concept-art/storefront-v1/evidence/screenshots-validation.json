@@ -1,0 +1,86 @@
+{
+  "passed": true,
+  "captures": [
+    {
+      "file": "01-bakery-gameplay.png",
+      "bytes": 2189296,
+      "sha256": "4278bb83fadcd70b510c1207a23c2eab1dd4f390efb21df0a01c1b9f4533e63f",
+      "width": 1080,
+      "height": 1920,
+      "bit_depth": 8,
+      "png_color_type": 2,
+      "format": "RGB PNG without alpha",
+      "visual_review": "Passed: actual UI legible, gameplay/feature visible, no cut-off fixed controls or added marketing graphics."
+    },
+    {
+      "file": "02-gelato-aim.png",
+      "bytes": 1845309,
+      "sha256": "6883fdc0dc670a765e76f8cdde676db6b52c3e5990113afe55bbc245b9310fed",
+      "width": 1080,
+      "height": 1920,
+      "bit_depth": 8,
+      "png_color_type": 2,
+      "format": "RGB PNG without alpha",
+      "visual_review": "Passed: actual UI legible, gameplay/feature visible, no cut-off fixed controls or added marketing graphics."
+    },
+    {
+      "file": "03-crystal-prism.png",
+      "bytes": 1828221,
+      "sha256": "e28644a361fb3cbce914bfbda0a7dc3de3948b5faf7c2d4db0a3c7f21a015a8e",
+      "width": 1080,
+      "height": 1920,
+      "bit_depth": 8,
+      "png_color_type": 2,
+      "format": "RGB PNG without alpha",
+      "visual_review": "Passed: actual UI legible, gameplay/feature visible, no cut-off fixed controls or added marketing graphics."
+    },
+    {
+      "file": "04-gelato-upgrades.png",
+      "bytes": 2185024,
+      "sha256": "6194bed76110785ef721f4fa4b83339e8699ff90a0ece0e6547f5188a3dd3555",
+      "width": 1080,
+      "height": 1920,
+      "bit_depth": 8,
+      "png_color_type": 2,
+      "format": "RGB PNG without alpha",
+      "visual_review": "Passed: actual UI legible, gameplay/feature visible, no cut-off fixed controls or added marketing graphics."
+    },
+    {
+      "file": "05-bakery-jam.png",
+      "bytes": 2220939,
+      "sha256": "006bab8bf41ee64bee7f2ed37e676f798d4bad038cdb402f93b39ef0655eee52",
+      "width": 1080,
+      "height": 1920,
+      "bit_depth": 8,
+      "png_color_type": 2,
+      "format": "RGB PNG without alpha",
+      "visual_review": "Passed: actual UI legible, gameplay/feature visible, no cut-off fixed controls or added marketing graphics."
+    },
+    {
+      "file": "06-gelato-twins.png",
+      "bytes": 1961550,
+      "sha256": "e01cf063f4eec5acf1315e5d9f6cba55319cdc6ccc951e407b8a00f234193a61",
+      "width": 1080,
+      "height": 1920,
+      "bit_depth": 8,
+      "png_color_type": 2,
+      "format": "RGB PNG without alpha",
+      "visual_review": "Passed: actual UI legible, gameplay/feature visible, no cut-off fixed controls or added marketing graphics."
+    }
+  ],
+  "source_revision": "a5fc5a92356eb6174c67c6267fb95c7a5f3e9c04",
+  "source_inputs": 482,
+  "source_unchanged": true,
+  "staged_campaign_state": true,
+  "nondebug_public_renderer": true,
+  "android_device_capture": false,
+  "phone_acceptance": false,
+  "play_uploaded": false,
+  "no_image_compositing": true,
+  "notes": [
+    "First3 show actual gameplay in3 areas.",
+    "All6 visually inspected.",
+    "Final map wallet748 after22 real coin purchases.",
+    "Review Android presentation before submission."
+  ]
+}

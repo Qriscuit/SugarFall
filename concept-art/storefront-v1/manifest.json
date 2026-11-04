@@ -1,0 +1,146 @@
+{
+  "date": "2026-11-04",
+  "title": "Sugarfall",
+  "reference_build": "0.8.0-rc2 / code37",
+  "runtime_changed": false,
+  "apk_rebuilt": false,
+  "play_submitted": false,
+  "android_screenshots_verified": false,
+  "feature_tool": "built-in image_gen",
+  "selected_source": "source/feature-v2.png",
+  "prompts": "prompts.json",
+  "assets": [
+    {
+      "file": "exports/google-play-feature-1024x500.png",
+      "width": 1024,
+      "height": 500,
+      "bit_depth": 8,
+      "png_color_type": 2,
+      "bytes": 774221,
+      "sha256": "4d204be91c1a1e3e08828cfff687f14d4079056a98ddd690ec25729ec41c8a8d",
+      "role": "generated promotional feature artwork"
+    },
+    {
+      "file": "exports/google-play-icon-512.png",
+      "width": 512,
+      "height": 512,
+      "bit_depth": 8,
+      "png_color_type": 6,
+      "bytes": 356086,
+      "sha256": "eaafe5ca80303675afbbbabd160b8f45d5284fffe230e56b6b72bae04eedc8cb",
+      "role": "existing game icon, store-size export"
+    },
+    {
+      "file": "screenshots/01-bakery-gameplay.png",
+      "width": 1080,
+      "height": 1920,
+      "bit_depth": 8,
+      "png_color_type": 2,
+      "bytes": 2189296,
+      "sha256": "4278bb83fadcd70b510c1207a23c2eab1dd4f390efb21df0a01c1b9f4533e63f",
+      "role": "actual public Windows renderer; Android acceptance pending"
+    },
+    {
+      "file": "screenshots/02-gelato-aim.png",
+      "width": 1080,
+      "height": 1920,
+      "bit_depth": 8,
+      "png_color_type": 2,
+      "bytes": 1845309,
+      "sha256": "6883fdc0dc670a765e76f8cdde676db6b52c3e5990113afe55bbc245b9310fed",
+      "role": "actual public Windows renderer; Android acceptance pending"
+    },
+    {
+      "file": "screenshots/03-crystal-prism.png",
+      "width": 1080,
+      "height": 1920,
+      "bit_depth": 8,
+      "png_color_type": 2,
+      "bytes": 1828221,
+      "sha256": "e28644a361fb3cbce914bfbda0a7dc3de3948b5faf7c2d4db0a3c7f21a015a8e",
+      "role": "actual public Windows renderer; Android acceptance pending"
+    },
+    {
+      "file": "screenshots/04-gelato-upgrades.png",
+      "width": 1080,
+      "height": 1920,
+      "bit_depth": 8,
+      "png_color_type": 2,
+      "bytes": 2185024,
+      "sha256": "6194bed76110785ef721f4fa4b83339e8699ff90a0ece0e6547f5188a3dd3555",
+      "role": "actual public Windows renderer; Android acceptance pending"
+    },
+    {
+      "file": "screenshots/05-bakery-jam.png",
+      "width": 1080,
+      "height": 1920,
+      "bit_depth": 8,
+      "png_color_type": 2,
+      "bytes": 2220939,
+      "sha256": "006bab8bf41ee64bee7f2ed37e676f798d4bad038cdb402f93b39ef0655eee52",
+      "role": "actual public Windows renderer; Android acceptance pending"
+    },
+    {
+      "file": "screenshots/06-gelato-twins.png",
+      "width": 1080,
+      "height": 1920,
+      "bit_depth": 8,
+      "png_color_type": 2,
+      "bytes": 1961550,
+      "sha256": "e01cf063f4eec5acf1315e5d9f6cba55319cdc6ccc951e407b8a00f234193a61",
+      "role": "actual public Windows renderer; Android acceptance pending"
+    }
+  ],
+  "copy_counts": {
+    "app_name": 9,
+    "short_description": 76,
+    "full_description": 1196,
+    "full_description_words": 206
+  },
+  "screenshots": [
+    {
+      "order": "01",
+      "file": "screenshots/01-bakery-gameplay.png",
+      "caption": "Break pegs. Earn coins.",
+      "alt_text": "Bakery gameplay with a doughnut dispenser, cookie pegs and collection cups."
+    },
+    {
+      "order": "02",
+      "file": "screenshots/02-gelato-aim.png",
+      "caption": "Aim along the curve",
+      "alt_text": "Gelato Garden gameplay with a top launcher and a curved dotted aiming preview above wafer pegs."
+    },
+    {
+      "order": "03",
+      "file": "screenshots/03-crystal-prism.png",
+      "caption": "Tap to multiply candy",
+      "alt_text": "Crystal Candyworks gameplay with candy, crystal pegs, collection cups and a floating \u00d72 Prism pickup."
+    },
+    {
+      "order": "04",
+      "file": "screenshots/04-gelato-upgrades.png",
+      "caption": "Choose your upgrades",
+      "alt_text": "Gelato Garden's branching upgrade tree with connected upgrade nodes and garden scenery."
+    },
+    {
+      "order": "05",
+      "file": "screenshots/05-bakery-jam.png",
+      "caption": "Hit nearby pegs with Jam Burst",
+      "alt_text": "Bakery gameplay showing a charged jam doughnut splashing nearby cookie pegs."
+    },
+    {
+      "order": "06",
+      "file": "screenshots/06-gelato-twins.png",
+      "caption": "Two launchers. Rebuild Power.",
+      "alt_text": "Gelato Garden gameplay showing two launchers, two curved aiming previews and wafer pegs."
+    }
+  ],
+  "validation": {
+    "image_formats_pass": true,
+    "exact_copy_fields_pass": true,
+    "html_local_assets_pass": true,
+    "screenshot_copy_hashes_pass": true,
+    "all_eight_images_visually_reviewed": true
+  },
+  "authoritative_spec": "https://support.google.com/googleplay/android-developer/answer/9866151?hl=en"
+}

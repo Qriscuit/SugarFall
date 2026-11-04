@@ -1,0 +1,116 @@
+{
+  "language": "en-US",
+  "date": "2026-11-04",
+  "status": "Prepared draft; not submitted to Play Console",
+  "reference_build": {
+    "version_name": "0.8.0-rc2",
+    "version_code": 37,
+    "package": "com.qriscuit.sugarfall",
+    "runtime_unchanged_since": "a4f578da9bf76abf3f0708059be2600a6130530e"
+  },
+  "listing": {
+    "app_name": "Sugarfall",
+    "short_description": "Break pegs with doughnuts, ice cream and candy. Earn coins and buy upgrades.",
+    "full_description": "Aim your dispenser, break the pegs and collect coins in Sugarfall. Clear each tray before the timer runs out, then spend what you earn on upgrades for your next attempt.\n\nPlay through 36 trays in three areas, each with its own controls, upgrade map and saved progress.\n\nIn Bakery, move the dispenser across the board to drop doughnuts onto cookie pegs. Unlock Jam Burst to hit nearby pegs with a jam splash.\n\nIn Gelato Garden, move your finger to aim along a curved, dotted preview. Work through a winding upgrade tree, then unlock Dual Shot for two launchers. Dual Shot resets Power, which you can upgrade again.\n\nIn Crystal Candyworks, fire candy in straight lines and bounce it off walls and pegs. Tap a floating ×2 Prism before it disappears to duplicate candy already in play. The Second Prism upgrade adds another opportunity during a run.\n\nUse earned coins to increase Power, fire more often and extend your run time. Bronze, Silver, Gold and Diamond pegs become tougher as you advance.\n\nEach area keeps its own coins and upgrades. Replay completed trays or return to an earlier area with its saved progress. Complete Bakery or Gelato Garden and spend earned coins to unlock the next area."
+  },
+  "counts": {
+    "app_name": 9,
+    "short_description": 76,
+    "full_description": 1196,
+    "full_description_words": 206
+  },
+  "limits": {
+    "app_name": 30,
+    "short_description": 80,
+    "full_description": 4000
+  },
+  "screenshot_captions": [
+    {
+      "id": "01",
+      "caption": "Break pegs. Earn coins.",
+      "screen": "Bakery gameplay",
+      "capture": "A normal run with doughnuts, readable cookie pegs, cups and HUD; capture an actual hit.",
+      "alt_text": "Bakery gameplay with a doughnut dispenser, cookie pegs and collection cups.",
+      "characters": 23,
+      "alt_text_characters": 75
+    },
+    {
+      "id": "02",
+      "caption": "Aim along the curve",
+      "screen": "Gelato single-launcher gameplay",
+      "capture": "One spout, a clearly curved dotted preview and ice cream in flight; preview stops at its actual first obstacle.",
+      "alt_text": "Gelato Garden gameplay with a top launcher and a curved dotted aiming preview above wafer pegs.",
+      "characters": 19,
+      "alt_text_characters": 95
+    },
+    {
+      "id": "03",
+      "caption": "Tap to multiply candy",
+      "screen": "Crystal Prism gameplay",
+      "capture": "The real floating ×2 pickup while candy is in play; capture before it expires. An optional adjacent genuine frame may show the result.",
+      "alt_text": "Crystal Candyworks gameplay with candy, crystal pegs, collection cups and a floating ×2 Prism pickup.",
+      "characters": 21,
+      "alt_text_characters": 101
+    },
+    {
+      "id": "04",
+      "caption": "Choose your upgrades",
+      "screen": "Gelato upgrade map",
+      "capture": "The winding tree with connected branches and a truthful earned-wallet state; keep store/test purchase controls out of the composition.",
+      "alt_text": "Gelato Garden's branching upgrade tree with connected upgrade nodes and garden scenery.",
+      "characters": 20,
+      "alt_text_characters": 87
+    },
+    {
+      "id": "05",
+      "caption": "Hit nearby pegs with Jam Burst",
+      "screen": "Bakery Jam Burst gameplay",
+      "capture": "A charged jam doughnut hitting a peg, with the actual splash reaching nearby living pegs; use an earned Jam Burst build.",
+      "alt_text": "Bakery gameplay showing a charged jam doughnut splashing nearby cookie pegs.",
+      "characters": 30,
+      "alt_text_characters": 76
+    },
+    {
+      "id": "06",
+      "caption": "Two launchers. Rebuild Power.",
+      "screen": "Gelato Dual Shot gameplay",
+      "capture": "Both earned launchers and their separate curved previews; use a saved build that legally owns Dual Shot.",
+      "alt_text": "Gelato Garden gameplay showing two launchers, two curved aiming previews and wafer pegs.",
+      "characters": 29,
+      "alt_text_characters": 88
+    }
+  ],
+  "sources": [
+    {
+      "title": "Create and set up your app",
+      "url": "https://support.google.com/googleplay/android-developer/answer/9859152?hl=en",
+      "supports": "30/80/4000 character limits; listing text fields."
+    },
+    {
+      "title": "Metadata",
+      "url": "https://support.google.com/googleplay/android-developer/answer/9898842?hl=en",
+      "supports": "Clear, accurate, relevant copy; no misleading rankings, price badges or keyword stuffing."
+    },
+    {
+      "title": "Best practices for your store listing",
+      "url": "https://support.google.com/googleplay/android-developer/answer/13393723?hl=en",
+      "supports": "Concise factual descriptions; accurate imagery and screenshots; no unsupported claims."
+    },
+    {
+      "title": "Add preview assets to showcase your app",
+      "url": "https://support.google.com/googleplay/android-developer/answer/9866151?hl=en",
+      "supports": "Preview assets and game screenshot content guidance."
+    }
+  ],
+  "excluded_claims": [
+    "Production payments or $2.99 availability",
+    "Ad-free or offline guarantee",
+    "Cloud saves or cross-device sync",
+    "Endless or procedurally generated boards",
+    "Multiplayer or leaderboards",
+    "Guaranteed completion time or easy/relaxing difficulty",
+    "A fourth area or future content",
+    "Rankings, awards, testimonials or price promotions"
+  ],
+  "submission_note": "Reconfirm the text against the exact final Play build and actual billing/ad declarations. This draft does not complete store submission or phone acceptance."
+}

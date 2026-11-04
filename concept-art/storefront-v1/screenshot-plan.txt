@@ -1,0 +1,25 @@
+01  screenshots/01-bakery-gameplay.png
+Caption (optional): Break pegs. Earn coins.
+Alt text: Bakery gameplay with a doughnut dispenser, cookie pegs and collection cups.
+
+02  screenshots/02-gelato-aim.png
+Caption (optional): Aim along the curve
+Alt text: Gelato Garden gameplay with a top launcher and a curved dotted aiming preview above wafer pegs.
+
+03  screenshots/03-crystal-prism.png
+Caption (optional): Tap to multiply candy
+Alt text: Crystal Candyworks gameplay with candy, crystal pegs, collection cups and a floating ×2 Prism pickup.
+
+04  screenshots/04-gelato-upgrades.png
+Caption (optional): Choose your upgrades
+Alt text: Gelato Garden's branching upgrade tree with connected upgrade nodes and garden scenery.
+
+05  screenshots/05-bakery-jam.png
+Caption (optional): Hit nearby pegs with Jam Burst
+Alt text: Bakery gameplay showing a charged jam doughnut splashing nearby cookie pegs.
+
+06  screenshots/06-gelato-twins.png
+Caption (optional): Two launchers. Rebuild Power.
+Alt text: Gelato Garden gameplay showing two launchers, two curved aiming previews and wafer pegs.
+
+Capture status: actual public Windows renderer, staged progression; final Android comparison pending.
