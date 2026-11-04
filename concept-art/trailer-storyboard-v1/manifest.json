@@ -1,0 +1,85 @@
+{
+  "date": "2026-11-04",
+  "status": "Music-linked storyboard and pose concept; final trailer pending",
+  "preview": "preview.html",
+  "storyboard": "storyboard.json",
+  "prompts": "prompts.json",
+  "music_source": "AudioContent/Symphony 6 - beethoven cut - Sugarfall.wav",
+  "music_source_sha256": "3d654f3a5fefd2d1d7216730c499991235c1fc06e27502b4653c648a76319e11",
+  "original_music_unchanged": true,
+  "source_audio_included": false,
+  "source_audio_publication_permission": "Unverified; local private planning reference",
+  "review_duration_seconds": 30,
+  "full_source_seconds": 34.41292517006803,
+  "planned_content": {
+    "gameplay_ui_seconds": 24.59,
+    "promotional_seconds": 5.41,
+    "gameplay_ui_percent": 81.97
+  },
+  "mabel_insert": [
+    17.972,
+    20.619
+  ],
+  "mabel_end_card": [
+    27.237,
+    30
+  ],
+  "artwork_tool": "built-in image_gen",
+  "visual_review": {
+    "mabel_identity": true,
+    "doughnut_counts": true,
+    "pose_action": true,
+    "desktop_page": true,
+    "mobile_page": true
+  },
+  "browser_verification": {
+    "actual_audio_playback": true,
+    "shot_seek_checks": 9,
+    "sfx_sketch_started": true,
+    "pose_board_loaded": true,
+    "console_errors": 0,
+    "horizontal_overflow": false
+  },
+  "files": [
+    {
+      "path": "preview.html",
+      "bytes": 45579,
+      "sha256": "0d38fc52989ce1a1c4000f77836326fc89e315ff8e52e036dbbcf238baff84e6"
+    },
+    {
+      "path": "preview.template.html",
+      "bytes": 21395,
+      "sha256": "0b43ed64c7e11bcd89bef7424496db3fde893f9e265e756e49264c86e4e6b0c7"
+    },
+    {
+      "path": "build_preview.py",
+      "bytes": 646,
+      "sha256": "772369abf79a8f435ef607d94f3f3a5b9f080292ff782ec739cffbc567d5001a"
+    },
+    {
+      "path": "storyboard.json",
+      "bytes": 37515,
+      "sha256": "3131e426875ffbad969dba07f195c9f4ae24576a579ddddaf69256cda6a4f181"
+    },
+    {
+      "path": "README.md",
+      "bytes": 2876,
+      "sha256": "a008a60bce3bc1eb64e5e344022fb6bf86a750edf70d4fff92a10cc745fde01b"
+    },
+    {
+      "path": "prompts.json",
+      "bytes": 3150,
+      "sha256": "e975f508ca2a44e806af02c6ecaccd9c068c5fc8e36747a971585013c1423e40"
+    },
+    {
+      "path": "source/mabel-insert-pose-board.png",
+      "bytes": 2553815,
+      "sha256": "d0ae679628ca9521f3c8882320a1ae0b3a54932efde23f04686fda919ad9fb93"
+    }
+  ],
+  "runtime_changed": false,
+  "apk_rebuilt": false,
+  "trailer_recorded": false,
+  "trailer_published": false,
+  "production_brief": "../../PLINKO/docs/store/TRAILER_STORYBOARD.md"
+}

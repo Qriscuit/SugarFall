@@ -1,0 +1,18 @@
+{
+  "date": "2026-11-04",
+  "tool": "built-in image_gen",
+  "purpose": "Three-panel concept pose board for Mabel's cut-paper trailer insert; production rig and motion are pending",
+  "prompt": "Use case: stylized-concept. Asset type: a three-panel STORYBOARD POSE BOARD for a brief cutout stop-motion insert in Sugarfall's Google Play trailer, not gameplay. Input image1 is Mabel's approved full-body turnaround and governs exact identity, proportions, hair, dress, apron, shoes. Input image2 is her existing in-game portrait and governs face, brown eyes, freckles, warmth and strawberry embroidery. Create a clean wide landscape sheet containing THREE clearly separated equally sized portrait storyboard panels side by side, with a small cream gutter. Use the SAME full-body adult Mabel in each panel at the same scale, feet and hair fully inside panel with ample margin. Her chestnut loose swept bun, face-framing curls, warm freckles, mint collared puff-sleeve dress, ivory strawberry apron/copper fastenings/front waist tie/pockets, below-knee skirt, brown low shoes stay identical. Treat each figure as a beautifully painted paper cutout with narrow ivory cut-paper edge and soft cast paper shadow, natural layered paper flatness, not plastic 3D. Restrained mint backdrop and cream tabletop/floor line common across panels. No extra people or scenery. This should read like stop-motion production art with a warm little physical joke. PANEL LEFT: Mabel stands steady facing three-quarter toward viewer, BOTH hands hold a small horizontal copper-rimmed ivory serving tray at waist height, one pink frosted ring doughnut has just landed on it, her expression confidently pleased. PANEL MIDDLE: THREE pink frosted doughnuts total are now in a small lopsided stack on that same tray, Mabel leans her upper body backward just a little, eyes widened with amused surprise and ONE foot stepping backward; both hands visibly support tray, safe balanced movement, no fear or danger. PANEL RIGHT: she has taken a second small backward step and steadied the SAME stack of THREE doughnuts, tray level again, shoulders relaxing, knowing satisfied smile. Preserve all costume details, doughnut count, tray dimensions, facial identity and camera between panels. No flying additional treats, no huge doughnut, no running away or dropping food. Avoid stiff identical poses: show the small action clearly with weight shifts and hair/apron follow-through. Small labels underneath each panel, exact text: 'CATCH', 'BALANCE', 'SETTLE'. No other words, no speech bubbles, no game UI, no arrows, no clock times, no watermark. Composition must communicate even without sound. This is concept storyboard art; we will build animation separately.",
+  "references": [
+    {
+      "path": "../storefront-v2/source/mabel-turnaround.png",
+      "role": "Approved full-body identity, proportions, outfit and shoes"
+    },
+    {
+      "path": "../../PLINKO/data/art/host/mabel_welcome.png",
+      "role": "Existing in-game face and costume reference"
+    }
+  ],
+  "output": "source/mabel-insert-pose-board.png",
+  "tool_output": "exec-fb31722a-191b-4f13-a3ac-7427ae1b8e12.png"
+}
