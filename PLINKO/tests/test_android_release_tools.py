@@ -2,6 +2,7 @@
 import importlib.util
 import os
 from pathlib import Path
+import tempfile
 import unittest
 from unittest.mock import patch
 
@@ -11,6 +12,27 @@ spec.loader.exec_module(release)
 
 
 class ReleaseBoundaries(unittest.TestCase):
+    def test_long_maven_jar_path_becomes_short_verified_classpath(self):
+        with tempfile.TemporaryDirectory(prefix='release-cache-') as directory:
+            cache = Path(directory)
+            modules = cache/'gradle-user-home/caches/modules-2/files-2.1'
+            parent = modules/('m' * max(1, 250-len(str(modules))-1))
+            jar = parent/'bundletool-1.16.0.jar'
+            native = Path('\\\\?\\' + str(jar.resolve())) if os.name == 'nt' else jar
+            native.parent.mkdir(parents=True)
+            payload = b'original deterministic dependency bytes'
+            native.write_bytes(payload)
+            try:
+                path = release.make_classpath({'cache': str(cache)})
+                entries = path.read_text().splitlines()
+                self.assertEqual(len(entries), 1)
+                self.assertLess(len(entries[0]), 260)
+                self.assertTrue(Path(entries[0]).is_file())
+                self.assertEqual(Path(entries[0]).read_bytes(), payload)
+            finally:
+                # TemporaryDirectory's Windows cleanup cannot see the long file.
+                native.unlink(missing_ok=True)
+
     def test_unsigned_child_environment_excludes_credentials_and_java_injection(self):
         config = dict(cache=str(Path('cache with spaces').resolve()), java_home='jdk', android_sdk='sdk')
         with patch.dict(os.environ, {'GODOT_ANDROID_KEYSTORE_RELEASE_PASSWORD': 'dummy-not-a-secret',

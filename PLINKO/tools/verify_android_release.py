@@ -9,7 +9,7 @@ import base64
 import hashlib
 import json
 import os
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 import re
 import struct
 import subprocess
@@ -17,7 +17,8 @@ import xml.etree.ElementTree as ET
 import zipfile
 
 CERTIFICATE='e31ab7654afed05f9acd5fb6b59846d990198b8005d8fafd01e070c1dbc4dc29'
-FORBIDDEN=re.compile(r'(?i)(?:^|/)(?:tests|tools|verification|docs|related_materials|qa|report|builds|private|\.qa_data|\.git|\.aws)(?:/|$)|\.(?:keystore|jks|pfx|p12|pem|key)$|(?:^|/)(?:\.env(?:\.[^/]*)?|credentials(?:\.[^/]*)?|signing[-.]credentials(?:\.[^/]*)?|signing\.properties)$')
+FORBIDDEN=re.compile(r'(?i)(?:^|/)(?:tests|tools|verification|docs|related_materials|concept-art|qa|report|builds|private|\.qa_data|\.git|\.aws)(?:/|$)|\.(?:keystore|jks|pfx|p12|pem|key)$|(?:^|/)(?:\.env(?:\.[^/]*)?|credentials(?:\.[^/]*)?|signing[-.]credentials(?:\.[^/]*)?|signing\.properties)$')
+AUTHORING_METADATA=re.compile(r'(?i)(?:^|/)data/(?:art/(?:.*/)?(?:sources\.json|README\.txt|palette-refresh-sources\.json)|audio/.*\.provenance\.json)$')
 
 
 def sha(data): return hashlib.sha256(data).hexdigest()
@@ -56,6 +57,61 @@ def xml_manifest(text):
     match=re.search(r'<manifest\b.*</manifest>',text,re.S)
     if not match:raise ValueError('No manifest XML returned by bundletool')
     return ET.fromstring(match[0])
+
+
+def sparse_pack_entries(data):
+    """Parse the pinned Godot4.6.3 standalone sparse-PCK v3 directory.
+
+    Format: godotengine/godot 4.6.3-stable core/io/file_access_pack.cpp
+    PackedSourcePCK::try_open_pack and editor/export/editor_export_platform.cpp
+    _store_header/_encrypt_and_store_directory. Directory order is not semantic;
+    every path, offset, size, MD5 and flag remains part of the comparison.
+    """
+    expected_header=(0x43504447,3,4,6,3,6,0,104)
+    if len(data)<108 or struct.unpack_from('<6I2Q',data,0)!=expected_header:
+        raise ValueError('Expected unencrypted Godot4.6.3 sparse-PCK v3 header')
+    if any(data[40:104]):raise ValueError('Unexpected sparse-PCK reserved header data')
+    count=struct.unpack_from('<I',data,104)[0]
+    if count>(len(data)-108)//44:raise ValueError('Impossible sparse-PCK record count')
+    position=108;entries={}
+    for _ in range(count):
+        if position+4>len(data):raise ValueError('Truncated sparse-PCK path length')
+        length=struct.unpack_from('<I',data,position)[0];position+=4
+        if not length or length%4 or length>4096 or position+length+36>len(data):
+            raise ValueError('Invalid or truncated sparse-PCK record')
+        padded=data[position:position+length];position+=length
+        name=padded.rstrip(b'\0')
+        if len(padded)-len(name)>3 or b'\0' in name:
+            raise ValueError('Invalid sparse-PCK path padding')
+        try:path=name.decode('utf-8')
+        except UnicodeDecodeError as error:raise ValueError('Invalid sparse-PCK UTF8 path') from error
+        pure=PurePosixPath(path)
+        if not path or path!=pure.as_posix() or pure.is_absolute() or '..' in pure.parts or ':' in path or '\\' in path:
+            raise ValueError('Unsafe sparse-PCK path')
+        if path in entries:raise ValueError('Duplicate sparse-PCK path: '+path)
+        offset,size=struct.unpack_from('<2Q',data,position);position+=16
+        digest=data[position:position+16].hex();position+=16
+        flags=struct.unpack_from('<I',data,position)[0];position+=4
+        if offset or flags:raise ValueError('Unsupported sparse-PCK offset or file flags')
+        entries[path]={'offset':offset,'size':size,'md5':digest,'flags':flags}
+    if position!=len(data):raise ValueError('Unexpected sparse-PCK trailing content')
+    return {'header':list(expected_header),'entries':entries}
+
+
+def sparse_payload_errors(index,names,read_payload):
+    """Prove the index covers exactly the external payload and hashes each file."""
+    # Android writes _cl_ after export_project_files; it is platform launcher
+    # metadata, outside the sparse index. It still gets exact cross-artifact
+    # byte comparison below (export_plugin.cpp, assets/_cl_ write).
+    expected=set(index['entries']);actual=set(names)-{'assets.sparsepck','_cl_'}
+    errors=[]
+    if expected!=actual:
+        errors.append({'missing_payload':sorted(expected-actual),'unindexed_payload':sorted(actual-expected)})
+    for path in sorted(expected&actual):
+        data=read_payload(path);entry=index['entries'][path]
+        if len(data)!=entry['size'] or hashlib.md5(data).hexdigest()!=entry['md5']:
+            errors.append({'payload_hash_or_size_mismatch':path})
+    return errors
 
 
 def main():
@@ -148,8 +204,8 @@ def main():
             check(label+' excludes development, private and credential files',not forbidden,forbidden)
             profiles=[name for name in names if re.search(r'(?i)(?:sugarfall|peg_foundry).*(?:save|profile|areas).*\.json$',name)]
             check(label+' excludes player profiles',not profiles,profiles)
-            provenance=[name for name in names if '/data/art/' in name and name.endswith(('/sources.json','/README.txt'))]
-            check(label+' excludes art machine-path provenance and inventory',not provenance and not any(name.endswith('/FILE_INVENTORY.json') for name in names),provenance)
+            provenance=[name for name in names if AUTHORING_METADATA.search(name)]
+            check(label+' excludes art/audio authoring provenance and inventory',not provenance and not any(name.endswith('/FILE_INVENTORY.json') for name in names),provenance)
         entries=set(apk.namelist())
         for relative in sorted(expected_scripts):
             compiled='assets/'+relative[:-3]+'.gdc';remap='assets/'+relative+'.remap'
@@ -197,8 +253,27 @@ def main():
         baseline={'assets/dexopt/baseline.prof','assets/dexopt/baseline.profm'}
         apk_assets={name for name in entries if name.startswith('assets/') and not name.endswith('/')}-baseline
         check('AAB game asset names unique and identical to APK',len(asset_names)==len(asset_map) and set(asset_map)==apk_assets,{'APK':len(apk_assets),'AAB':len(asset_map)})
-        mismatches=[name for name in apk_assets&set(asset_map) if apk.read(name)!=aab.read(asset_map[name])]
-        check('Every AAB game asset byte matches APK',not mismatches,mismatches)
+        sparse_name='assets/assets.sparsepck'
+        apk_index=sparse_pack_entries(apk.read(sparse_name))
+        aab_index=sparse_pack_entries(aab.read(asset_map[sparse_name]))
+        apk_payload={name.removeprefix('assets/'):name for name in apk_assets}
+        aab_payload={name.removeprefix('assets/'):entry for name,entry in asset_map.items()}
+        apk_index_errors=sparse_payload_errors(apk_index,apk_payload,lambda path:apk.read(apk_payload[path]))
+        aab_index_errors=sparse_payload_errors(aab_index,aab_payload,lambda path:aab.read(aab_payload[path]))
+        check('APK sparse index covers and hashes every project payload',not apk_index_errors,apk_index_errors)
+        check('AAB sparse index covers and hashes every project payload',not aab_index_errors,aab_index_errors)
+        check('Godot sparse-pack headers and all logical records match',apk_index==aab_index,{'APK_records':len(apk_index['entries']),'AAB_records':len(aab_index['entries'])})
+        mismatches=[name for name in (apk_assets&set(asset_map))-{sparse_name} if apk.read(name)!=aab.read(asset_map[name])]
+        check('Every actual AAB game payload byte matches APK',not mismatches,mismatches)
+        sparse_proof={'format':'Godot4.6.3 sparse-PCK v3','entry_count':len(apk_index['entries']),
+            'raw_directory_bytes_match':apk.read(sparse_name)==aab.read(asset_map[sparse_name]),
+            'logical_records_match':apk_index==aab_index,'all_actual_payload_bytes_match':not mismatches,
+            'apk_index_sha256':sha(apk.read(sparse_name)),'aab_index_sha256':sha(aab.read(asset_map[sparse_name])),
+            'canonical_records_sha256':sha(json.dumps(apk_index,sort_keys=True,separators=(',',':')).encode()),
+            'format_sources':['https://github.com/godotengine/godot/blob/4.6.3-stable/core/io/file_access_pack.cpp',
+                              'https://github.com/godotengine/godot/blob/4.6.3-stable/editor/export/editor_export_platform.cpp',
+                              'https://github.com/godotengine/godot/blob/4.6.3-stable/platform/android/export/export_plugin.cpp'],
+            'note':'Directory record order may differ; headers and each unique path/offset/size/MD5/flags must agree, and every indexed external payload is verified in each artifact. Android launcher _cl_ is outside the project index but remains covered by exact cross-artifact byte parity.'}
         all_bundle_libs={name for name in bundle_names if '/lib/' in name and name.endswith('.so')}
         bundle_libs={name.removeprefix('base/'):name for name in all_bundle_libs if name.startswith('base/lib/')}
         check('AAB native release libraries match APK exactly',len(all_bundle_libs)==len(bundle_libs) and set(bundle_libs)==libraries and all(aab.read(bundle_libs[name])==apk.read(name) for name in libraries&set(bundle_libs)))
@@ -221,7 +296,7 @@ def main():
     changed=[path for path,digest in frozen.items() if sha((project/path).read_bytes())!=digest]
     check('Export input hashes remain unchanged after verification',not changed,changed)
     for label,path in [('apk',args.apk),('aab',args.aab)]:check(label.upper()+' remains unchanged during verification',sha(path.read_bytes())==original[label]['sha256'])
-    report={'passed':all(item['passed'] for item in checks),'checks_passed':sum(item['passed'] for item in checks),'checks_total':len(checks),'checks':checks,'artifacts':original,'expected_identity':{'package':args.package,'version_code':args.version_code,'version_name':args.version_name,'certificate_sha256':args.certificate},'source_manifest_sha256':sha(args.source_manifest.read_bytes()),'frozen_source_inputs':frozen,'scripts':scripts,'imports':imports,'native_libraries':native,'commands':commands,
+    report={'passed':all(item['passed'] for item in checks),'checks_passed':sum(item['passed'] for item in checks),'checks_total':len(checks),'checks':checks,'artifacts':original,'expected_identity':{'package':args.package,'version_code':args.version_code,'version_name':args.version_name,'certificate_sha256':args.certificate},'source_manifest_sha256':sha(args.source_manifest.read_bytes()),'frozen_source_inputs':frozen,'scripts':scripts,'imports':imports,'native_libraries':native,'sparse_pack_parity':sparse_proof,'commands':commands,
         'scope':'Static signed artifacts and export-input parity. Compiled-script inventory/remaps are checked, not decompiled back to source. No Play upload, phone/emulator execution or real purchase verification.',
         'phone_verified':False,'play_uploaded':False,'real_billing_verified':False}
     (out/'validation.json').write_text(json.dumps(report,indent=2)+'\n',encoding='utf-8')
