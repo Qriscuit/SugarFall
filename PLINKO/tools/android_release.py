@@ -180,8 +180,25 @@ def make_classpath(config):
     cache = Path(config['cache'])
     jars = sorted((cache/'gradle-user-home/caches/modules-2/files-2.1').rglob('*.jar'))
     require(any(p.name == 'bundletool-1.16.0.jar' for p in jars), 'Run Setup-AndroidRelease.ps1 to resolve the pinned bundletool dependency')
+    # Some Maven paths exceed Windows MAX_PATH even in the relocated cache.
+    # Give Java and the strict verifier short immutable content-addressed copies.
+    libraries = cache/'bundletool-libs'
+    libraries.mkdir(exist_ok=True)
+    entries, provenance = [], []
+    for jar in jars:
+        source = Path('\\\\?\\' + str(jar.resolve())) if os.name == 'nt' else jar
+        digest = sha(source)
+        target = libraries/(digest + '.jar')
+        if not target.exists():
+            shutil.copyfile(source, target)
+        require(sha(target) == digest, f'Cached verifier dependency differs: {jar.name}')
+        entries.append(target.resolve().as_posix())
+        provenance.append(dict(source=jar.as_posix(), sha256=digest, cached_path=target.as_posix()))
     path = cache/'bundletool-classpath.txt'
-    path.write_text('\n'.join(p.resolve().as_posix() for p in jars) + '\n', encoding='utf-8')
+    pending = path.with_suffix('.tmp')
+    pending.write_text('\n'.join(dict.fromkeys(entries)) + '\n', encoding='utf-8')
+    pending.replace(path)
+    write_json(cache/'bundletool-libraries.json', provenance)
     return path
 
 
