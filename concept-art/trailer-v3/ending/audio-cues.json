@@ -1,0 +1,21 @@
+{
+  "edit_start": 27.1,
+  "events": [
+    {
+      "relative_time": 0.46,
+      "file": "concept-art/trailer-v1/audio/foley/food_landing.wav",
+      "gain": 0.45,
+      "pan": 0,
+      "label": "Closing biscuit impact",
+      "type": "original_foley"
+    },
+    {
+      "relative_time": 0.76,
+      "file": "PLINKO/data/audio/feedback/ui_tap.wav",
+      "gain": 0.16,
+      "pan": 0,
+      "label": "Play now panel settles",
+      "type": "original_foley"
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "date": "2026-11-04",
+  "status": "Greeting overlay implemented and verified; closing art implementation coordinated separately",
+  "reference_video": "outputs/trailer-v2-20261104/Sugarfall-Trailer-V2-Review.mp4",
+  "reference_sha256": "43e39e4b5a4f6a2586eb3b59082d80b3bb3910415981e99b64c23dea38537195",
+  "fps": 60,
+  "frames": 1800,
+  "seconds": 30,
+  "delivery": "Local video only; no Drive upload",
+  "preserve_gameplay_edl": true,
+  "greeting": {
+    "enter": [14.55, 15.1],
+    "hold": [15.1, 15.95],
+    "hold_seconds": 0.85,
+    "turn_and_step_to_food": [15.95, 16.45],
+    "ready_hold": [16.45, 17.13],
+    "wave_text": null,
+    "gesture": "Face the viewer, raise one hand in a friendly wave, securely hold the plate with the other",
+    "greeting_plate_anchor": [350, 1526],
+    "greeting_source_anchor": [760, 692],
+    "greeting_source_scale": 0.5,
+    "ready_plate_anchor": [460, 1526],
+    "protect_ui_until": 14.4,
+    "continuous_across_gameplay_cut": 16.2,
+    "asset_registration": "Generated greeting head size and plate anchor visually checked against existing painted catch keys",
+    "verified_still_hold_frames": [42, 92],
+    "verified_still_hold_unique_hashes": 1,
+    "verified_v2_byte_parity_v3_frames": [164, 372],
+    "verified_v2_byte_parity_offset": -108
+  },
+  "preserved_catches": [
+    {"id": 1, "item": "Pink Gelato scoop", "source_frame": 225, "edit_time": 17.3666667, "pixel_center": [458.423, 1506.837]},
+    {"id": 7, "item": "Pink Gelato scoop", "source_frame": 294, "edit_time": 18.5166667, "pixel_center": [443.458, 1510.505]},
+    {"id": 15, "item": "Small red fruit", "source_frame": 321, "edit_time": 18.9666667, "pixel_center": [548.514, 1514.147]}
+  ],
+  "preserved_exit": [19.42, 20.35],
+  "ending": {
+    "range": [27.1, 30],
+    "transition": [27.1, 27.45],
+    "complete_card_by": 28.1,
+    "minimum_readable_hold": 1.8,
+    "exact_text": ["Sugarfall", "Play now"],
+    "primary_art": "Doughnut striking biscuits, cream-and-copper title, Mabel in a new welcoming pose, boxed call to action",
+    "secondary_art": "Ice-cream scoop striking waffle; small aqua candy accent only if composition stays clear",
+    "closing_pose": "New Mabel PNG already holds a pink doughnut and pink ice-cream scoop on her plate; free hand presents toward the title and button",
+    "doughnut_continuity": "Closing card is a new illustration with both foods; no invented animated flight from board to plate",
+    "animation": "Layer arrivals and a short impact jolt, then hold the complete composition",
+    "avoid": ["Extra subtitle", "Speech bubble", "Crowded background", "Mabel behind title", "Shrinking the wordmark to fit", "Fake captured Gelato doughnut replacement"]
+  },
+  "new_assets": [
+    {"name": "mabel-hi.png", "background": "transparent", "purpose": "Brief greeting hold before collecting"},
+    {"name": "mabel-closing.png", "background": "transparent", "purpose": "New final welcoming pose already holding a doughnut and an ice-cream scoop"},
+    {"name": "sugarfall-logo.png", "background": "transparent", "purpose": "Reusable cream-and-copper painted wordmark"},
+    {"name": "food-collisions.png", "background": "transparent or separate painted board", "purpose": "Doughnut/biscuit and scoop/waffle impacts in the reference banner's materials"},
+    {"name": "play-now-box.png", "background": "transparent", "purpose": "Painted call-to-action box with exact Play now text"},
+    {"name": "trailer-closing-card.png", "background": "painted", "purpose": "Complete portrait final-frame PNG using the separate assets"}
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "date": "2026-11-04",
+  "tool": "Built-in imagegen",
+  "user_direction": "Banner's cream-and-copper lettering, food colliding with food, painted Mabel greeting and new closing pose, Play now in a box",
+  "saved_banner_reference": "concept-art/trailer-v3/references/banner.png",
+  "assets": [
+    {
+      "name": "sugarfall-wordmark",
+      "transparent": true,
+      "refs": [
+        "C:/Users/Hursh/AppData/Local/Temp/codex-clipboard-db572e96-d34e-4760-bafc-c9aabda40316.png"
+      ],
+      "prompt": "Use case: logo-brand. Asset type: finished transparent PNG wordmark for the Sugarfall game's portrait trailer ending and marketing artwork. The attached image is a STYLE AND LETTERING REFERENCE, not an edit target. Generate ONLY the single word \"Sugarfall\" with precisely that spelling S-u-g-a-r-f-a-l-l, capital S and all remaining letters lowercase, one line. Match the reference's distinctive large, warm, rounded display-serif letterforms, softly sculpted ivory cream faces, thin warm caramel outline, polished copper bevel and shallow caramel/copper dimensional extrusion underneath. Cream surfaces have gentle warm highlights and tiny material variation. Preserve clear counters and beautiful readable kerning, particularly the g, f and both final ls. Premium illustrated dessert-game lettering, hand-painted polished 3D-like art rather than flat digital type. Horizontal logo composition with all letters fully visible and generous transparent safety padding on every edge. Actual transparent background. No character, no food, no board, no frame, no tagline, no shadow rectangle, no additional text or watermark. This must work as a clean standalone PNG logo layer; only a small natural tight contact shadow belonging to the letters is allowed.",
+      "output": "concept-art/trailer-v3/source/sugarfall-wordmark.png"
+    },
+    {
+      "name": "mabel-hello",
+      "transparent": true,
+      "refs": [
+        "C:/Users/Hursh/Documents/Plinko/PLINKO/data/art/host/mabel_welcome.png",
+        "C:/Users/Hursh/Documents/Plinko/concept-art/storefront-v2/source/mabel-turnaround.png"
+      ],
+      "prompt": "Use case: illustration-story. Asset type: one full-body transparent PNG animation key pose of the established Sugarfall mascot Mabel. Reference image 1 defines her exact painted face, age, colors and style; reference image 2 defines her full-body outfit and shoes. Create ONE new greeting pose, not a character sheet. Keep the same warm adult baker with large brown eyes, freckles, chestnut-brown hair in a loose textured bun and the same curl beside her face; mint/sage green collared puff-sleeve dress, ivory apron, small strawberry embroidery at the bib, copper buttons, apron tied in front, two pockets and low brown leather shoes. She has just stopped after running into a scene. She faces the viewer in a relaxed three-quarter pose, smiling and looking directly at us. Her right hand is raised beside her face in a clear friendly hello, palm toward the viewer, five natural fingers comfortably separated; her left arm supports an EMPTY oval ivory plate at waist height. Knees relaxed, weight on one foot; do not make her salute or hold a rigid presentation pose. Full body including both shoes, safe transparent margins, natural painted cutout edges without a white sticker border. Original richly painted storybook/game character rendering, soft warm volumetric light, restrained highlights, matching the references rather than a vector puppet. Truly transparent background; no colored backdrop, text, speech bubble, ground, halo or other person. Plate contains no food, so the later catch sequence can use separate food layers.",
+      "output": "concept-art/trailer-v3/source/mabel-hello.png"
+    },
+    {
+      "name": "mabel-end",
+      "transparent": true,
+      "refs": [
+        "C:/Users/Hursh/Documents/Plinko/PLINKO/data/art/host/mabel_welcome.png",
+        "C:/Users/Hursh/Documents/Plinko/concept-art/storefront-v2/source/mabel-turnaround.png",
+        "C:/Users/Hursh/AppData/Local/Temp/codex-clipboard-db572e96-d34e-4760-bafc-c9aabda40316.png"
+      ],
+      "prompt": "Use case: illustration-story. Asset type: one full-body transparent PNG closing-card mascot pose for Sugarfall. Reference 1 fixes Mabel's painted face, adult age and character identity; reference 2 fixes her exact full-body costume; reference 3 fixes the dessert materials and marketing palette. Create ONE new welcoming closing pose of the same adult baker Mabel, not a sheet. Chestnut loose bun and curl, brown eyes, freckles, mint/sage collared puff-sleeve dress, ivory apron with tiny strawberry bib embroidery, copper fasteners, front waist tie, two apron pockets and low brown leather shoes. Three-quarter view, body gently angled to image right, face and smile toward the viewer. She proudly carries a level oval ivory serving plate with one pink-frosted sprinkle doughnut and one pink strawberry ice-cream scoop, both clearly separated and sitting securely on the plate. Her free hand is open in a small inviting gesture toward image right at waist height, as if presenting the play button beside her. Friendly and confident, relaxed shoulders, natural adult proportions. The plate and food are the focus of her gesture; do not cover her face. Full body with both shoes and ample clear edge margins. Same original warm painted storybook/game style as the face reference, clean natural cutout edges, no vector outline or sticker border. Actual transparent background. No writing, no logos, no button, no scene or other characters. No costume changes, no duplicate hands, no extra fingers.",
+      "output": "concept-art/trailer-v3/source/mabel-end.png"
+    },
+    {
+      "name": "food-collision-board",
+      "transparent": true,
+      "refs": [
+        "C:/Users/Hursh/AppData/Local/Temp/codex-clipboard-db572e96-d34e-4760-bafc-c9aabda40316.png"
+      ],
+      "prompt": "Use case: ads-marketing. Asset type: one isolated transparent PNG food-collision vignette for a Sugarfall trailer end-card. Attached image is the exact material, lighting, game-world and action reference, not an edit target. Generate a compact landscape mint ceramic game tray viewed in the same attractive three-quarter top-down perspective, with a fully visible rounded rectangular polished copper rim. Inside it, a large golden pink-iced sprinkle doughnut is visibly striking a round golden fluted biscuit near left-center, the biscuit sheds a few large readable crumbs and a small warm impact sparkle. At right-center, a pink strawberry ice-cream scoop rebounds against a golden round waffle biscuit with the same small crumb burst. Three or four other intact biscuit pegs sit sparsely in the tray to suggest a physics game, not an overflowing assortment. Two delicate short cream/pink curved motion trails follow the doughnut and scoop paths. Main food large, round and appetizing; two contacts easy to understand at phone size. The doughnut stays a recognizable ring, the icecream scoop is clearly distinct. Same creamy polished hand-painted game-marketing finish, mint glazed ceramic with fine subtle marble veins, golden baked biscuit textures, pink toppings and soft copper gleams as reference. Keep entire tray, trajectories and all crumbs within a generous transparent margin; landscape aspect about3:2. Actual transparent background outside this single tray vignette. No background scene, arches or floor, no text or lettering, no logo, Mabel, button, extra panels, gem balls or coins. No huge starbursts, no debris across the whole picture. The isolated art must layer neatly beneath a separate wordmark and above a separate character.",
+      "output": "concept-art/trailer-v3/source/food-collision-board.png"
+    },
+    {
+      "name": "play-now-button",
+      "transparent": true,
+      "refs": [
+        "C:/Users/Hursh/AppData/Local/Temp/codex-clipboard-db572e96-d34e-4760-bafc-c9aabda40316.png",
+        "C:/Users/Hursh/Documents/Plinko/concept-art/trailer-v3/source/sugarfall-wordmark.png"
+      ],
+      "prompt": "Use case: ads-marketing. Asset type: a single finished transparent PNG call-to-action button for Sugarfall's trailer closing card. Reference image1defines mint ceramic/copper dessert-game art, reference2defines warm cream beveled lettering. Generate one broad rounded rectangular button viewed straight-on, about3.3:1 in shape, with softly glazed deep mint/teal ceramic face, warm polished copper rim and shallow copper dimensional edge underneath, subtle natural warm shadow attached directly to the button. The exact text is \"Play now\" (capital P, all other letters lowercase), one line, very large and centered, perfectly readable, creamy ivory rounded display-serif lettering with subtle caramel bevel. Provide generous inner padding: lettering does not touch or crowd the frame, baseline balanced in the optical middle. Four corners smoothly rounded; simple strong rectangular silhouette, no decorative appendages. Match the reference's warm appetizing painted game art and professional material detail. Actual transparent background, ample transparent margin outside all button edges. Only one button. No other words, no icons, no arrow, no character or food, no surrounding panel, no watermark.",
+      "output": "concept-art/trailer-v3/source/play-now-button.png"
+    }
+  ]
+}
