@@ -1,0 +1,18 @@
+{
+  "date": "2026-11-04",
+  "status": "local_only_user_requested",
+  "file": "outputs/trailer-v2-20261104/Sugarfall-Trailer-V2-Review.mp4",
+  "bytes": 11489931,
+  "local_sha256": "43e39e4b5a4f6a2586eb3b59082d80b3bb3910415981e99b64c23dea38537195",
+  "mime_type": "video/mp4",
+  "destination_folder_id": "1TXLZwTNVlHGTBy7y0CVMMk3zABEKu8X-",
+  "destination_folder_name": "Peg Foundry",
+  "destination_permissions_readback": "Owner-only; no public or link permission present",
+  "sharing_changed": false,
+  "file_uploaded": false,
+  "drive_file_id": null,
+  "drive_url": null,
+  "automatic_review_reason": "Trusted user instructions do not specifically authorize this trailer video payload to this Drive destination; ownership and sharing scope are not established in the planned action.",
+  "user_decision": "Keep this video local",
+  "follow_up": "Do not upload this video. The user chose local delivery after the automatic review rejection. Drive remains unchanged."
+}

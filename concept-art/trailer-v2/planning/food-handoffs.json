@@ -1,0 +1,873 @@
+{
+  "version": 1,
+  "date": "2026-11-04",
+  "source_clip": "06-twin-growth",
+  "fps": 60,
+  "source_trim_frames": [
+    155,
+    420
+  ],
+  "edit_range": [
+    16.2,
+    20.6166667
+  ],
+  "source_to_edit_time_offset": 13.616666666666665,
+  "coordinate_space": "1080x1920 output pixels; board_to_screen(p)*1.5 includes board scale1.05",
+  "sprite_renderer": "FoodArt.draw_centered with original PNG crop region, preserve_aspect=true, white tint; board scale and root1.5 already included in diameter",
+  "canvas_recipe": "translate to target screen center; rotate contact_rotation; drawImage(image,...draw_rect.canvas_drawImage_args). Then move the matched sprite with the plate.",
+  "crop_warning": "Full source PNGs contain faint nontransparent pixels outside their authored source regions. Use source_crop/9-argument drawImage or a crop clip rectangle to reproduce the game exactly; drawing the entire PNG can add a halo.",
+  "catches": [
+    {
+      "id": 1,
+      "kind": "normal",
+      "area": "gelato",
+      "asset": "PLINKO/data/art/gelato/food/donut.png",
+      "asset_role": "pink ice cream scoop",
+      "source_name": "donut",
+      "sha256": "dc265e558b8e7453a85b1387426e2fa6489006e55f309516e6c9f7ff155c03dc",
+      "image_size": [
+        1254,
+        1254
+      ],
+      "alpha_bounds": [
+        0,
+        9,
+        1198,
+        1254
+      ],
+      "source_contact_frame": 225,
+      "source_contact_time": 3.75,
+      "edit_contact_frame": 1042,
+      "edit_contact_time": 17.366667,
+      "contact_center": [
+        458.423,
+        1506.837
+      ],
+      "rendered_diameter_px": 36.14625,
+      "contact_rotation": 10.8623,
+      "contact_rotation_mod_tau": 4.579115,
+      "rotation_formula": "life * 1.9 radians (normal and shard override the other rolling formula)",
+      "rotation_precision": "life in the validated trace is rounded to 0.001sec; angle error below0.002rad, <0.04px at this scale",
+      "draw_rect": {
+        "center": [
+          635.0,
+          625.999998
+        ],
+        "visible_diameter": 1083.999998,
+        "source_crop": [
+          93.000001,
+          90.999996,
+          1083.999998,
+          1070.000003
+        ],
+        "note": "center is the source PNG crop center in native image pixels, NOT screen position. visible_diameter=max(crop width,crop height).",
+        "target_size_px": [
+          36.14625,
+          35.679417
+        ],
+        "canvas_drawImage_args": [
+          93.000001,
+          90.999996,
+          1083.999998,
+          1070.000003,
+          -18.073125,
+          -17.839708,
+          36.14625,
+          35.679417
+        ]
+      },
+      "path": [
+        {
+          "source_frame": 221,
+          "edit_frame": 1038,
+          "edit_time": 17.299997,
+          "present": true,
+          "center": [
+            502.196,
+            1462.499
+          ],
+          "diameter": 36.14625,
+          "rotation": 10.735,
+          "velocity": [
+            -656.589,
+            644.077
+          ]
+        },
+        {
+          "source_frame": 222,
+          "edit_frame": 1039,
+          "edit_time": 17.316667,
+          "present": true,
+          "center": [
+            491.253,
+            1473.321
+          ],
+          "diameter": 36.14625,
+          "rotation": 10.7673,
+          "velocity": [
+            -656.589,
+            654.577
+          ]
+        },
+        {
+          "source_frame": 223,
+          "edit_frame": 1040,
+          "edit_time": 17.333337,
+          "present": true,
+          "center": [
+            480.31,
+            1484.318
+          ],
+          "diameter": 36.14625,
+          "rotation": 10.7977,
+          "velocity": [
+            -656.589,
+            665.077
+          ]
+        },
+        {
+          "source_frame": 224,
+          "edit_frame": 1041,
+          "edit_time": 17.349997,
+          "present": true,
+          "center": [
+            469.367,
+            1495.49
+          ],
+          "diameter": 36.14625,
+          "rotation": 10.83,
+          "velocity": [
+            -656.589,
+            675.577
+          ]
+        },
+        {
+          "source_frame": 225,
+          "edit_frame": 1042,
+          "edit_time": 17.366667,
+          "present": true,
+          "center": [
+            458.423,
+            1506.837
+          ],
+          "diameter": 36.14625,
+          "rotation": 10.8623,
+          "velocity": [
+            -656.589,
+            686.077
+          ]
+        },
+        {
+          "source_frame": 226,
+          "edit_frame": 1043,
+          "edit_time": 17.383337,
+          "present": true,
+          "center": [
+            447.48,
+            1518.359
+          ],
+          "diameter": 36.14625,
+          "rotation": 10.8927,
+          "velocity": [
+            -656.589,
+            696.577
+          ]
+        },
+        {
+          "source_frame": 227,
+          "edit_frame": 1044,
+          "edit_time": 17.399997,
+          "present": true,
+          "center": [
+            436.537,
+            1530.056
+          ],
+          "diameter": 36.14625,
+          "rotation": 10.925,
+          "velocity": [
+            -656.589,
+            707.077
+          ]
+        },
+        {
+          "source_frame": 228,
+          "edit_frame": 1045,
+          "edit_time": 17.416667,
+          "present": true,
+          "center": [
+            425.594,
+            1541.928
+          ],
+          "diameter": 36.14625,
+          "rotation": 10.9573,
+          "velocity": [
+            -656.589,
+            717.577
+          ]
+        },
+        {
+          "source_frame": 229,
+          "edit_frame": 1046,
+          "edit_time": 17.433337,
+          "present": true,
+          "center": [
+            414.651,
+            1553.975
+          ],
+          "diameter": 36.14625,
+          "rotation": 10.9877,
+          "velocity": [
+            -656.589,
+            728.077
+          ]
+        },
+        {
+          "source_frame": 230,
+          "edit_frame": 1047,
+          "edit_time": 17.449997,
+          "present": true,
+          "center": [
+            403.707,
+            1566.198
+          ],
+          "diameter": 36.14625,
+          "rotation": 11.02,
+          "velocity": [
+            -656.589,
+            738.577
+          ]
+        },
+        {
+          "source_frame": 231,
+          "edit_frame": 1048,
+          "edit_time": 17.466667,
+          "present": true,
+          "center": [
+            392.764,
+            1578.595
+          ],
+          "diameter": 36.14625,
+          "rotation": 11.0523,
+          "velocity": [
+            -656.589,
+            749.077
+          ]
+        },
+        {
+          "source_frame": 232,
+          "edit_frame": 1049,
+          "edit_time": 17.483337,
+          "present": true,
+          "center": [
+            381.821,
+            1591.167
+          ],
+          "diameter": 36.14625,
+          "rotation": 11.0827,
+          "velocity": [
+            -656.589,
+            759.577
+          ]
+        },
+        {
+          "source_frame": 233,
+          "edit_frame": 1050,
+          "edit_time": 17.499997,
+          "present": true,
+          "center": [
+            370.878,
+            1603.914
+          ],
+          "diameter": 36.14625,
+          "rotation": 11.115,
+          "velocity": [
+            -656.589,
+            770.077
+          ]
+        },
+        {
+          "source_frame": 234,
+          "edit_frame": 1051,
+          "edit_time": 17.516667,
+          "present": false,
+          "center": null,
+          "diameter": 36.14625,
+          "rotation": null,
+          "velocity": null
+        },
+        {
+          "source_frame": 235,
+          "edit_frame": 1052,
+          "edit_time": 17.533337,
+          "present": false,
+          "center": null,
+          "diameter": 36.14625,
+          "rotation": null,
+          "velocity": null
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "kind": "normal",
+      "area": "gelato",
+      "asset": "PLINKO/data/art/gelato/food/donut.png",
+      "asset_role": "pink ice cream scoop",
+      "source_name": "donut",
+      "sha256": "dc265e558b8e7453a85b1387426e2fa6489006e55f309516e6c9f7ff155c03dc",
+      "image_size": [
+        1254,
+        1254
+      ],
+      "alpha_bounds": [
+        0,
+        9,
+        1198,
+        1254
+      ],
+      "source_contact_frame": 294,
+      "source_contact_time": 4.9,
+      "edit_contact_frame": 1111,
+      "edit_contact_time": 18.516667,
+      "contact_center": [
+        443.458,
+        1510.505
+      ],
+      "rendered_diameter_px": 36.14625,
+      "contact_rotation": 10.4025,
+      "contact_rotation_mod_tau": 4.119315,
+      "rotation_formula": "life * 1.9 radians (normal and shard override the other rolling formula)",
+      "rotation_precision": "life in the validated trace is rounded to 0.001sec; angle error below0.002rad, <0.04px at this scale",
+      "draw_rect": {
+        "center": [
+          635.0,
+          625.999998
+        ],
+        "visible_diameter": 1083.999998,
+        "source_crop": [
+          93.000001,
+          90.999996,
+          1083.999998,
+          1070.000003
+        ],
+        "note": "center is the source PNG crop center in native image pixels, NOT screen position. visible_diameter=max(crop width,crop height).",
+        "target_size_px": [
+          36.14625,
+          35.679417
+        ],
+        "canvas_drawImage_args": [
+          93.000001,
+          90.999996,
+          1083.999998,
+          1070.000003,
+          -18.073125,
+          -17.839708,
+          36.14625,
+          35.679417
+        ]
+      },
+      "path": [
+        {
+          "source_frame": 290,
+          "edit_frame": 1107,
+          "edit_time": 18.449997,
+          "present": true,
+          "center": [
+            450.189,
+            1462.267
+          ],
+          "diameter": 36.14625,
+          "rotation": 10.2752,
+          "velocity": [
+            -100.956,
+            702.58
+          ]
+        },
+        {
+          "source_frame": 291,
+          "edit_frame": 1108,
+          "edit_time": 18.466667,
+          "present": true,
+          "center": [
+            448.506,
+            1474.064
+          ],
+          "diameter": 36.14625,
+          "rotation": 10.3075,
+          "velocity": [
+            -100.956,
+            713.08
+          ]
+        },
+        {
+          "source_frame": 292,
+          "edit_frame": 1109,
+          "edit_time": 18.483337,
+          "present": true,
+          "center": [
+            446.823,
+            1486.036
+          ],
+          "diameter": 36.14625,
+          "rotation": 10.3398,
+          "velocity": [
+            -100.956,
+            723.58
+          ]
+        },
+        {
+          "source_frame": 293,
+          "edit_frame": 1110,
+          "edit_time": 18.499997,
+          "present": true,
+          "center": [
+            445.141,
+            1498.183
+          ],
+          "diameter": 36.14625,
+          "rotation": 10.3702,
+          "velocity": [
+            -100.956,
+            734.08
+          ]
+        },
+        {
+          "source_frame": 294,
+          "edit_frame": 1111,
+          "edit_time": 18.516667,
+          "present": true,
+          "center": [
+            443.458,
+            1510.505
+          ],
+          "diameter": 36.14625,
+          "rotation": 10.4025,
+          "velocity": [
+            -100.956,
+            744.58
+          ]
+        },
+        {
+          "source_frame": 295,
+          "edit_frame": 1112,
+          "edit_time": 18.533337,
+          "present": true,
+          "center": [
+            441.776,
+            1523.003
+          ],
+          "diameter": 36.14625,
+          "rotation": 10.4348,
+          "velocity": [
+            -100.956,
+            755.08
+          ]
+        },
+        {
+          "source_frame": 296,
+          "edit_frame": 1113,
+          "edit_time": 18.549997,
+          "present": true,
+          "center": [
+            440.093,
+            1535.675
+          ],
+          "diameter": 36.14625,
+          "rotation": 10.4652,
+          "velocity": [
+            -100.956,
+            765.58
+          ]
+        },
+        {
+          "source_frame": 297,
+          "edit_frame": 1114,
+          "edit_time": 18.566667,
+          "present": true,
+          "center": [
+            438.411,
+            1548.522
+          ],
+          "diameter": 36.14625,
+          "rotation": 10.4975,
+          "velocity": [
+            -100.956,
+            776.08
+          ]
+        },
+        {
+          "source_frame": 298,
+          "edit_frame": 1115,
+          "edit_time": 18.583337,
+          "present": true,
+          "center": [
+            436.728,
+            1561.544
+          ],
+          "diameter": 36.14625,
+          "rotation": 10.5298,
+          "velocity": [
+            -100.956,
+            786.581
+          ]
+        },
+        {
+          "source_frame": 299,
+          "edit_frame": 1116,
+          "edit_time": 18.599997,
+          "present": true,
+          "center": [
+            435.045,
+            1574.741
+          ],
+          "diameter": 36.14625,
+          "rotation": 10.5602,
+          "velocity": [
+            -100.956,
+            797.081
+          ]
+        },
+        {
+          "source_frame": 300,
+          "edit_frame": 1117,
+          "edit_time": 18.616667,
+          "present": true,
+          "center": [
+            433.363,
+            1588.113
+          ],
+          "diameter": 36.14625,
+          "rotation": 10.5925,
+          "velocity": [
+            -100.956,
+            807.581
+          ]
+        },
+        {
+          "source_frame": 301,
+          "edit_frame": 1118,
+          "edit_time": 18.633337,
+          "present": true,
+          "center": [
+            431.68,
+            1601.661
+          ],
+          "diameter": 36.14625,
+          "rotation": 10.6248,
+          "velocity": [
+            -100.956,
+            818.081
+          ]
+        },
+        {
+          "source_frame": 302,
+          "edit_frame": 1119,
+          "edit_time": 18.649997,
+          "present": false,
+          "center": null,
+          "diameter": 36.14625,
+          "rotation": null,
+          "velocity": null
+        },
+        {
+          "source_frame": 303,
+          "edit_frame": 1120,
+          "edit_time": 18.666667,
+          "present": false,
+          "center": null,
+          "diameter": 36.14625,
+          "rotation": null,
+          "velocity": null
+        },
+        {
+          "source_frame": 304,
+          "edit_frame": 1121,
+          "edit_time": 18.683337,
+          "present": false,
+          "center": null,
+          "diameter": 36.14625,
+          "rotation": null,
+          "velocity": null
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "kind": "shard",
+      "area": "gelato",
+      "asset": "PLINKO/data/art/gelato/food/seed.png",
+      "asset_role": "red strawberry fragment",
+      "source_name": "seed",
+      "sha256": "e80a647f980000c5d1de50fcae069ef8929d8e7792e7b95bec6a3a7d82fa09eb",
+      "image_size": [
+        1254,
+        1254
+      ],
+      "alpha_bounds": [
+        31,
+        19,
+        1214,
+        1190
+      ],
+      "source_contact_frame": 321,
+      "source_contact_time": 5.35,
+      "edit_contact_frame": 1138,
+      "edit_contact_time": 18.966667,
+      "contact_center": [
+        548.514,
+        1514.147
+      ],
+      "rendered_diameter_px": 24.0975,
+      "contact_rotation": 9.3252,
+      "contact_rotation_mod_tau": 3.042015,
+      "rotation_formula": "life * 1.9 radians (normal and shard override the other rolling formula)",
+      "rotation_precision": "life in the validated trace is rounded to 0.001sec; angle error below0.002rad, <0.04px at this scale",
+      "draw_rect": {
+        "center": [
+          627.0,
+          627.0
+        ],
+        "visible_diameter": 609.999999,
+        "source_crop": [
+          342.999999,
+          322.000001,
+          568.000002,
+          609.999999
+        ],
+        "note": "center is the source PNG crop center in native image pixels, NOT screen position. visible_diameter=max(crop width,crop height).",
+        "target_size_px": [
+          22.438328,
+          24.0975
+        ],
+        "canvas_drawImage_args": [
+          342.999999,
+          322.000001,
+          568.000002,
+          609.999999,
+          -11.219164,
+          -12.04875,
+          22.438328,
+          24.0975
+        ]
+      },
+      "path": [
+        {
+          "source_frame": 317,
+          "edit_frame": 1134,
+          "edit_time": 18.899997,
+          "present": true,
+          "center": [
+            551.308,
+            1449.556
+          ],
+          "diameter": 24.097499999999997,
+          "rotation": 9.1998,
+          "velocity": [
+            -41.904,
+            947.865
+          ]
+        },
+        {
+          "source_frame": 318,
+          "edit_frame": 1135,
+          "edit_time": 18.916667,
+          "present": true,
+          "center": [
+            550.609,
+            1465.442
+          ],
+          "diameter": 24.097499999999997,
+          "rotation": 9.2302,
+          "velocity": [
+            -41.904,
+            958.365
+          ]
+        },
+        {
+          "source_frame": 319,
+          "edit_frame": 1136,
+          "edit_time": 18.933337,
+          "present": true,
+          "center": [
+            549.911,
+            1481.502
+          ],
+          "diameter": 24.097499999999997,
+          "rotation": 9.2625,
+          "velocity": [
+            -41.904,
+            968.865
+          ]
+        },
+        {
+          "source_frame": 320,
+          "edit_frame": 1137,
+          "edit_time": 18.949997,
+          "present": true,
+          "center": [
+            549.212,
+            1497.737
+          ],
+          "diameter": 24.097499999999997,
+          "rotation": 9.2948,
+          "velocity": [
+            -41.904,
+            979.365
+          ]
+        },
+        {
+          "source_frame": 321,
+          "edit_frame": 1138,
+          "edit_time": 18.966667,
+          "present": true,
+          "center": [
+            548.514,
+            1514.147
+          ],
+          "diameter": 24.097499999999997,
+          "rotation": 9.3252,
+          "velocity": [
+            -41.904,
+            989.865
+          ]
+        },
+        {
+          "source_frame": 322,
+          "edit_frame": 1139,
+          "edit_time": 18.983337,
+          "present": true,
+          "center": [
+            547.816,
+            1530.733
+          ],
+          "diameter": 24.097499999999997,
+          "rotation": 9.3575,
+          "velocity": [
+            -41.904,
+            1000.365
+          ]
+        },
+        {
+          "source_frame": 323,
+          "edit_frame": 1140,
+          "edit_time": 18.999997,
+          "present": true,
+          "center": [
+            547.117,
+            1547.493
+          ],
+          "diameter": 24.097499999999997,
+          "rotation": 9.3898,
+          "velocity": [
+            -41.904,
+            1010.865
+          ]
+        },
+        {
+          "source_frame": 324,
+          "edit_frame": 1141,
+          "edit_time": 19.016667,
+          "present": true,
+          "center": [
+            546.419,
+            1564.428
+          ],
+          "diameter": 24.097499999999997,
+          "rotation": 9.4202,
+          "velocity": [
+            -41.904,
+            1021.365
+          ]
+        },
+        {
+          "source_frame": 325,
+          "edit_frame": 1142,
+          "edit_time": 19.033337,
+          "present": true,
+          "center": [
+            545.72,
+            1581.539
+          ],
+          "diameter": 24.097499999999997,
+          "rotation": 9.4525,
+          "velocity": [
+            -41.904,
+            1031.865
+          ]
+        },
+        {
+          "source_frame": 326,
+          "edit_frame": 1143,
+          "edit_time": 19.049997,
+          "present": true,
+          "center": [
+            545.022,
+            1598.824
+          ],
+          "diameter": 24.097499999999997,
+          "rotation": 9.4848,
+          "velocity": [
+            -41.904,
+            1042.365
+          ]
+        },
+        {
+          "source_frame": 327,
+          "edit_frame": 1144,
+          "edit_time": 19.066667,
+          "present": false,
+          "center": null,
+          "diameter": 24.097499999999997,
+          "rotation": null,
+          "velocity": null
+        },
+        {
+          "source_frame": 328,
+          "edit_frame": 1145,
+          "edit_time": 19.083337,
+          "present": false,
+          "center": null,
+          "diameter": 24.097499999999997,
+          "rotation": null,
+          "velocity": null
+        },
+        {
+          "source_frame": 329,
+          "edit_frame": 1146,
+          "edit_time": 19.099997,
+          "present": false,
+          "center": null,
+          "diameter": 24.097499999999997,
+          "rotation": null,
+          "velocity": null
+        },
+        {
+          "source_frame": 330,
+          "edit_frame": 1147,
+          "edit_time": 19.116667,
+          "present": false,
+          "center": null,
+          "diameter": 24.097499999999997,
+          "rotation": null,
+          "velocity": null
+        },
+        {
+          "source_frame": 331,
+          "edit_frame": 1148,
+          "edit_time": 19.133337,
+          "present": false,
+          "center": null,
+          "diameter": 24.097499999999997,
+          "rotation": null,
+          "velocity": null
+        }
+      ]
+    }
+  ],
+  "after_handoff": {
+    "preferred": "Let actor plate/hand/apron occlude the recorded original until natural cup collection; carry the matching sprite in foreground.",
+    "inspection": "Check ID1 afterframes225\u2013233, ID7 after294\u2013301, ID15 after321\u2013326 for duplicate/leaking originals.",
+    "clean_pass_fallback": "In an isolated presentation-only replay, keep the full physics array for every fixed step. For draw only, temporarily assign a filtered g.balls array excluding selected IDs at/after contact; await frame_post_draw and read image; restore the identical original array before the next physics step. Production draw code remains inherited. Save as a documented compositing/clean-plate pass, not an untouched capture.",
+    "avoid": "Do not replace positions, velocities, HP, cup rewards or spawn rules. A sampled prior-frame patch can smudge moving numbers or cup effects; exact clean render is safer if apron coverage fails."
+  }
+}

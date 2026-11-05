@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Mabel catch blocking</title>
+<style>html,body{margin:0} .stage{position:relative;width:1080px;height:1920px;overflow:hidden} .game{position:absolute;inset:0;width:1080px;height:1920px}.mabel{position:absolute;width:512px;height:768px;left:150px;top:1176px}</style></head>
+<body><div class="stage"><img class="game" src="raw-catch-1.jpg" alt="Actual first-scoop contact frame"><img class="mabel" src="../mabel-painted/source/03-first-catch.png" alt="Painted Mabel, proposed plate placement"></div>
+<script>
+const setup=[
+ {frame:1,pose:'03-first-catch',x:150,y:1176},
+ {frame:2,pose:'04-moving-catch',x:85,y:1173.5},
+ {frame:3,pose:'05-easy-catch',x:197.5,y:1228.5}
+];
+function render(){
+const index=Math.max(0,Math.min(2,Number(location.hash.slice(1)||1)-1));
+const s=setup[index];document.querySelector('.game').src='raw-catch-'+s.frame+'.jpg';
+const actor=document.querySelector('.mabel');actor.src='../mabel-painted/source/'+s.pose+'.png';actor.style.left=s.x+'px';actor.style.top=s.y+'px';
+}
+window.addEventListener('hashchange',render);render();
+</script></body></html>

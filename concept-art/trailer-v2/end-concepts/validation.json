@@ -1,0 +1,67 @@
+{
+  "passed": true,
+  "date": "2026-11-04",
+  "scope": "End composition stills only; V1 movie untouched",
+  "dimensions": [
+    1080,
+    1920
+  ],
+  "font_source": "PLINKO/data/fonts/Fraunces-Variable.ttf",
+  "font_sha256": "177ff6c0f14e5550a3c624247cd1189611d4eb65d000b14944c63d967958abbb",
+  "axes": {
+    "wght": 650,
+    "SOFT": 70,
+    "opsz": 36,
+    "WONK": 1
+  },
+  "engine": "Microsoft Edge / Chromium",
+  "console_errors": [],
+  "concepts": [
+    {
+      "concept": "catch",
+      "png": "ending-catch.png",
+      "font": {
+        "faces": 1,
+        "loaded": true
+      },
+      "geometry": {
+        "rect": {
+          "x": 0,
+          "y": 465,
+          "width": 1080,
+          "height": 193.1875,
+          "top": 465,
+          "right": 1080,
+          "bottom": 658.1875,
+          "left": 0
+        },
+        "family": "SugarfallFraunces, serif",
+        "axes": "\"SOFT\" 70, \"WONK\" 1, \"opsz\" 36, \"wght\" 650"
+      },
+      "sha256": "031978581e2139c0fa2b86fdb2da3ee8bf72a064a540f71433fa7f02c0cf98bb"
+    },
+    {
+      "concept": "tray",
+      "png": "ending-tray.png",
+      "font": {
+        "faces": 1,
+        "loaded": true
+      },
+      "geometry": {
+        "rect": {
+          "x": 0,
+          "y": 485,
+          "width": 1080,
+          "height": 193.1875,
+          "top": 485,
+          "right": 1080,
+          "bottom": 678.1875,
+          "left": 0
+        },
+        "family": "SugarfallFraunces, serif",
+        "axes": "\"SOFT\" 70, \"WONK\" 1, \"opsz\" 36, \"wght\" 650"
+      },
+      "sha256": "86068e1aca6e25a425886369df78e00ae23eb4d4e6d7569b6ee6c05b1399c0cc"
+    }
+  ]
+}

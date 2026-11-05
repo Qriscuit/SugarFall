@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Mabel painted stop-motion overlay</title>
+<style>html,body{margin:0;background:transparent;overflow:hidden}canvas{display:block;width:1080px;height:1920px}</style></head>
+<body><canvas id="stage" width="1080" height="1920"></canvas><script>
+// Native composition only: source paintings and game food textures stay unchanged.
+const canvas=document.querySelector('canvas'), ctx=canvas.getContext('2d');
+const keys=[
+ {name:'01-run-in',anchor:[750,670]},
+ {name:'02-brake',anchor:[645,705]},
+ {name:'03-first-catch',anchor:[620,700]},
+ {name:'04-moving-catch',anchor:[720,705]},
+ {name:'05-easy-catch',anchor:[695,595]},
+ {name:'06-run-out',anchor:[735,690]}
+];
+const load=src=>new Promise((resolve,reject)=>{const im=new Image();im.onload=()=>resolve(im);im.onerror=()=>reject(Error(src));im.src=src;});
+const clamp=v=>Math.max(0,Math.min(1,v));
+const mix=(a,b,k)=>a+(b-a)*k;
+const ease=v=>{const x=clamp(v);return x*x*(3-2*x)};
+const stepped=t=>Math.floor(t*12+1e-7)/12;
+const CATCH=[17+22/60,18+31/60,18+58/60];
+let food=[];
+window.ready=Promise.all(keys.map(async k=>k.image=await load('source/'+k.name+'.png'))).then(async()=>{
+ const data=await fetch('../planning/food-handoffs.json').then(r=>r.json());
+ food=await Promise.all(data.catches.map(async c=>({...c,image:await load('../../../'+c.asset)})));
+});
+function place(t){
+ const q=stepped(t);
+ let x=460,y=1526,key=2,bob=0;
+ if(t<16.55||t>=20.35)return null;
+ if(t<17.13){key=0;const k=ease((q-16.55)/.55);x=mix(-230,460,k);bob=-9*Math.abs(Math.sin((q-16.55)*Math.PI*7));}
+ else if(t<CATCH[0]){key=1;x=460+4*Math.sin(clamp((t-17.13)/.23)*Math.PI);}
+ else if(t<18.37){key=2;const dt=t-CATCH[0];bob=8*Math.exp(-dt*8)*Math.sin(dt*20);}
+ else if(t<18.82){key=3;x=mix(460,443.458,ease((q-18.37)/.14));const dt=t-CATCH[1];if(dt>=0)bob=6*Math.exp(-dt*12)*Math.sin(dt*24);}
+ else if(t<19.42){key=4;x=mix(443.458,548.514,ease((t-18.82)/(.146667)));const dt=t-CATCH[2];if(dt>=0)bob=3*Math.exp(-dt*14)*Math.sin(dt*25);}
+ else {key=5;const k=clamp((q-19.42)/.85);x=mix(548.514,1530,k*k);bob=-8*Math.abs(Math.sin((q-19.42)*Math.PI*8));}
+ return {x,y:y+bob,key,scale:key===4?.55:.5};
+}
+function drawFood(item,index,t,p){
+ const contact=CATCH[index];if(t<contact)return null;
+ const age=t-contact;
+ // Start at the recorded center/radius, then settle gently onto a separate plate layer.
+ const settle=ease(age/.35), center=[458.423,443.458,548.514][index];
+ const anchorAtCatch=[460,443.458,548.514][index];
+ const offsets=[-55,8,65];
+ const rel=mix(center-anchorAtCatch,offsets[index],settle);
+ const diameter=mix(item.rendered_diameter_px,[46,46,33][index],settle);
+ let x=p.x+rel, y=p.y-diameter*.48+(item.contact_center[1]-(1526-item.rendered_diameter_px*.48))*(1-settle);
+ if(age<.16)y-=Math.sin(age/.16*Math.PI)*4;
+ const draw=item.draw_rect;
+ ctx.save();ctx.translate(x,y);ctx.rotate(item.contact_rotation||0);
+ const ratio=diameter/item.rendered_diameter_px;
+ const args=draw.canvas_drawImage_args.map((v,i)=>i<4?v:v*ratio);
+ ctx.drawImage(item.image,...args);
+ ctx.restore();
+ return {id:item.id,x,y,diameter};
+}
+window.renderFrame=async frame=>{
+ await window.ready;const t=16.2+frame/60;ctx.clearRect(0,0,1080,1920);
+ const p=place(t),carried=[];
+ if(p){const k=keys[p.key];ctx.drawImage(k.image,p.x-k.anchor[0]*p.scale,p.y-k.anchor[1]*p.scale,1024*p.scale,1536*p.scale);
+ // Keep an approaching recorded ball in front of the painted plate until contact.
+ food.forEach((f,i)=>{if(t<CATCH[i]&&t>=CATCH[i]-4/60){const sourceFrame=155+frame;
+ const at=f.path?.find(v=>v.source_frame===sourceFrame);if(at){ctx.save();ctx.globalCompositeOperation='destination-out';ctx.beginPath();ctx.arc(at.center[0],at.center[1],(at.diameter||f.rendered_diameter_px)/2+2,0,Math.PI*2);ctx.fill();ctx.restore();}}});
+ food.forEach((f,i)=>{const result=drawFood(f,i,t,p);if(result)carried.push(result);});}
+ window.frameState={frame,time:t,placement:p,carried};
+ return window.frameState;
+};
+</script></body></html>

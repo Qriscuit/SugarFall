@@ -1,0 +1,146 @@
+{
+  "status": "Planning candidates, not a composited catch",
+  "verified_replay": {
+    "before_balls": 10,
+    "after_balls": 31,
+    "feedback_events_match": true,
+    "profile_io": 0
+  },
+  "source_clip": "06-twin-growth",
+  "source_trim_frames": [
+    155,
+    420
+  ],
+  "source_trim_seconds": [
+    2.5833333333333335,
+    7
+  ],
+  "retained_edit_range": [
+    16.2,
+    20.6166667
+  ],
+  "coordinate_method": "Rendered pixel center = game.board_to_screen(ball.p)*1.5; includes1.05 board transform.",
+  "recommended": [
+    {
+      "label": "First scoop",
+      "id": 1,
+      "source_frame": 225,
+      "source_time": 3.75,
+      "new_edit_time": 17.36667,
+      "kind": "normal",
+      "pixel_center": [
+        458.423,
+        1506.837
+      ],
+      "velocity_px_per_second": [
+        -656.589,
+        686.077
+      ],
+      "last_visible_source_frame": 233,
+      "last_visible_source_time": 3.88333,
+      "last_visible_pixel": [
+        370.878,
+        1603.914
+      ],
+      "seconds_until_natural_disappearance": 0.15,
+      "horizontal_drift_after_contact_px": -87.545,
+      "rendered_diameter_px": 36.14625,
+      "source_screenshot": "catch-1-frame-225.jpg"
+    },
+    {
+      "label": "Second scoop",
+      "id": 7,
+      "source_frame": 294,
+      "source_time": 4.9,
+      "new_edit_time": 18.51667,
+      "kind": "normal",
+      "pixel_center": [
+        443.458,
+        1510.505
+      ],
+      "velocity_px_per_second": [
+        -100.956,
+        744.58
+      ],
+      "last_visible_source_frame": 301,
+      "last_visible_source_time": 5.01667,
+      "last_visible_pixel": [
+        431.68,
+        1601.661
+      ],
+      "seconds_until_natural_disappearance": 0.13334,
+      "horizontal_drift_after_contact_px": -11.778,
+      "rendered_diameter_px": 36.14625,
+      "source_screenshot": "catch-7-frame-294.jpg"
+    },
+    {
+      "label": "Small fruit/shard",
+      "id": 15,
+      "source_frame": 321,
+      "source_time": 5.35,
+      "new_edit_time": 18.96667,
+      "kind": "shard",
+      "pixel_center": [
+        548.514,
+        1514.147
+      ],
+      "velocity_px_per_second": [
+        -41.904,
+        989.865
+      ],
+      "last_visible_source_frame": 326,
+      "last_visible_source_time": 5.43333,
+      "last_visible_pixel": [
+        545.022,
+        1598.824
+      ],
+      "seconds_until_natural_disappearance": 0.1,
+      "horizontal_drift_after_contact_px": -3.492,
+      "rendered_diameter_px": 24.097499999999997,
+      "source_screenshot": "catch-15-frame-321.jpg"
+    }
+  ],
+  "alternative_third": {
+    "label": "Larger third scoop, harder occlusion",
+    "id": 2,
+    "source_frame": 318,
+    "source_time": 5.3,
+    "new_edit_time": 18.91667,
+    "kind": "normal",
+    "pixel_center": [
+      659.746,
+      1507.948
+    ],
+    "velocity_px_per_second": [
+      499.012,
+      577.225
+    ],
+    "last_visible_source_frame": 327,
+    "last_visible_source_time": 5.45,
+    "last_visible_pixel": [
+      734.598,
+      1601.62
+    ],
+    "seconds_until_natural_disappearance": 0.16667,
+    "horizontal_drift_after_contact_px": 74.852,
+    "rendered_diameter_px": 36.14625,
+    "source_screenshot": "catch-2-frame-318.jpg"
+  },
+  "handoff": {
+    "recommendation": "After visual contact, carry an exact matching food sprite on the foreground plate. The recorded source ball continues behind her apron until natural cup collection; preserve underlying game footage.",
+    "constraint": "Requires her opaque apron/dress silhouette to cover the post-contact path. First ball drifts87px left; second~14px left; shard~5px left. Do not assume the pose covers those paths before checking alpha.",
+    "fallback": "If the silhouette cannot conceal a source ball, choose a different source moment or an explicit cut at contact. Avoid letting one visible ball simultaneously remain on plate and fall below it."
+  },
+  "readability": "Two normal scoops are~36px diameter at1080px wide; third shard is~24px. Preview at360px phone width before choosing the shard; it may need a short camera push that preserves honest geometry.",
+  "proposed_plate_surface_y": 1526,
+  "initial_layout_targets": {
+    "tray_top_y": 1500,
+    "first_two_plate_center_x": 460,
+    "third_plate_center_x": 535,
+    "plate_width_px": 220,
+    "approx_character_height_px": 800,
+    "feet_baseline_px": 1880,
+    "note": "Plate anchor and silhouette must be measured from new art; these are layout targets."
+  },
+  "placement_note": "Initial source targets are retained as history. Current motion surface target1526 accounts for the radius below each recorded ball center. V2 uses painted pose registration and carried-food layers; final source-ball clean-pass verification is recorded separately."
+}
