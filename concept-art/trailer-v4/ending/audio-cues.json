@@ -1,0 +1,8 @@
+{
+  "edit_start": 27.1,
+  "events": [
+    {"relative_time": 0.62, "file": "concept-art/trailer-v1/audio/foley/food_landing.wav", "gain": 0.46, "pan": 0, "label": "Closing food tray settles", "type": "original_foley"},
+    {"relative_time": 1.10, "file": "PLINKO/data/audio/feedback/ui_tap.wav", "gain": 0.16, "pan": 0.3, "label": "Play now box settles", "type": "original_foley"}
+  ],
+  "note": "One eased entrance per layer, no repeated bounce or scale pulses. Complete card holds from28.25 to30."
+}

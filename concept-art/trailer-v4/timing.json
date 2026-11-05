@@ -1,0 +1,174 @@
+{
+  "date": "2026-11-04",
+  "version": "V4",
+  "status": "Implemented and verified from corrected V4 master; local review",
+  "fps": 60,
+  "frames": 1800,
+  "seconds": 30,
+  "camera_override": {
+    "clip": "02-gelato-aim",
+    "edit_start_frame": 433,
+    "edit_end_exclusive": 649,
+    "frames": 216,
+    "edit_range": [
+      7.2166666667,
+      10.8166666667
+    ],
+    "source_start_frame": 36,
+    "source_end_exclusive": 252,
+    "zoom_start": 1,
+    "zoom_end": 1.45,
+    "camera_anchor": [
+      288,
+      900
+    ],
+    "crop_x": "max(0,min(iw-iw/zoom,288-540/zoom))",
+    "crop_y": "max(0,min(ih-ih/zoom,900-675/zoom))",
+    "actual_left_peg_pixel_center": [
+      288,
+      800.4
+    ],
+    "contact_source_frames": [
+      184,
+      194
+    ],
+    "contact_edit_times": [
+      9.6833333333,
+      9.85
+    ],
+    "contact_zoom_values": [
+      1.309767442,
+      1.330697674
+    ],
+    "sampled_crop_visual_passed": true,
+    "encoded_crop_verified": true
+  },
+  "replacement_shot": {
+    "replaces_clip": "04-feed-purchase",
+    "edit_start_frame": 649,
+    "edit_end_exclusive": 864,
+    "frames": 215,
+    "edit_range": [
+      10.8166666667,
+      14.4
+    ],
+    "content": "Fresh real Home-to-Upgrades cream transition and populated late-area upgrade map",
+    "capture_status": "Captured270frames, integratedfirst215; isolatedpublicrenderer",
+    "production_cream_seconds": 0.62,
+    "transition_direction": [
+      "home",
+      "upgrades"
+    ],
+    "normal_speed": true,
+    "remove_old_feed_purchase_cues": true,
+    "new_capture_cues_required": false,
+    "clip": "09-upgrades-rich",
+    "source_frames": 270,
+    "ordinary_owned": 56,
+    "ordinary_total": 62,
+    "dual_shot_source": "earned",
+    "internal_transition_direction": [
+      "home",
+      "shop"
+    ],
+    "actual_ui_tap_edit_time": 10.916666666666666
+  },
+  "preserved_ranges": [
+    {
+      "edit_range": [
+        0,
+        7.2166666667
+      ],
+      "content": "Opening and material match cuts"
+    },
+    {
+      "edit_range": [
+        14.4,
+        20.6166666667
+      ],
+      "content": "Exact V3 Mabel greeting, handoffs and exit over the established gameplay"
+    },
+    {
+      "edit_range": [
+        20.6166666667,
+        27.1
+      ],
+      "content": "Prism, Jam, final peg and cup catches"
+    }
+  ],
+  "ending": {
+    "edit_range": [
+      27.1,
+      30
+    ],
+    "frames": 174,
+    "new_background_art": true,
+    "initial_proposal": {
+      "visible_title_to_tray_gap_target_px": [
+        30,
+        60
+      ],
+      "proposed_relative_arrivals": {
+        "background": [
+          0,
+          0.25
+        ],
+        "wordmark": [
+          0.1,
+          0.4
+        ],
+        "tray": [
+          0.25,
+          0.6
+        ],
+        "mabel": [
+          0.45,
+          0.8
+        ],
+        "play_now": [
+          0.7,
+          0.95
+        ]
+      },
+      "full_composition_hold_minimum_seconds": 1.8,
+      "proposed_full_hold": [
+        28.05,
+        30
+      ]
+    },
+    "visible_title_to_tray_gap_px": 10.678615317568472,
+    "background_source": "Existing painted countertop, marble and flowers",
+    "relative_arrivals": {
+      "background": [
+        0,
+        0.24
+      ],
+      "title": [
+        0.12,
+        0.42
+      ],
+      "food": [
+        0.35,
+        0.68
+      ],
+      "mabel": [
+        0.62,
+        0.95
+      ],
+      "cta": [
+        0.9,
+        1.15
+      ]
+    },
+    "stable_full_hold": [
+      28.25,
+      30
+    ],
+    "full_hold_frames": 105,
+    "full_hold_seconds": 1.75
+  },
+  "local_only": true,
+  "game_runtime_changed": false,
+  "apk_required": false,
+  "phone_acceptance": false
+}

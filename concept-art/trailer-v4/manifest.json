@@ -1,0 +1,1324 @@
+{
+  "date": "2026-11-04",
+  "status": "V4 local review rendered and verified",
+  "video": {
+    "passed": true,
+    "file": "outputs/trailer-v4-20261104/Sugarfall-Trailer-V4-Review.mp4",
+    "bytes": 13809414,
+    "sha256": "d52e6ab4e73674a84a138cdf6495995b687d50ecc6ec4659191167acabcd43ce",
+    "dimensions": [
+      1080,
+      1920
+    ],
+    "fps": 60,
+    "frames": 1800,
+    "duration_seconds": 30.0,
+    "video_codec": "H264 High4.2",
+    "pixel_format": "yuv420p",
+    "audio_codec": "AAC",
+    "sample_rate": 48000,
+    "audio_channels": 2,
+    "full_decode_errors": 0,
+    "review_times": [
+      0,
+      3.66,
+      5.42,
+      7.3,
+      9.683333,
+      9.85,
+      10.9,
+      11.08,
+      11.28,
+      11.55,
+      12.9,
+      14.2,
+      15.3,
+      17.366667,
+      18.966667,
+      21.5,
+      26.6,
+      27.2,
+      27.4,
+      27.8,
+      28.1,
+      28.3,
+      29.8,
+      29.983333
+    ],
+    "v3_master_unchanged": true,
+    "mabel_input": "Reuses all373 original V3 foreground PNGs without modification",
+    "greeting_hold": {
+      "passed": true,
+      "reused_from": "outputs/trailer-v3-20261104/mabel",
+      "first_overlay_frame": 42,
+      "end_exclusive": 93,
+      "edit_range": [
+        15.1,
+        15.95
+      ],
+      "frames": 51,
+      "seconds": 0.85,
+      "unique_actor_frame_hashes": 1,
+      "actor_frame_sha256": "13e7f965dd08e903315cdb3159e954d035df667c79f3b05390e44f469f37f681"
+    },
+    "game_cues_outside_replaced_slot_unchanged": true,
+    "preserved_game_cues": 103,
+    "mabel_foley_unchanged": true,
+    "new_upgrade_capture_validation": "gameplay/upgrades-capture-validation.json",
+    "game_runtime_changed": false,
+    "android_capture": false,
+    "phone_acceptance": false
+  },
+  "review": "watch.html",
+  "storyboard": "storyboard.md",
+  "timing": "timing.json",
+  "production_record": "../../PLINKO/docs/store/TRAILER_V4.md",
+  "artwork": "Approved V3 Imagegen PNGs arranged natively with existing painted background artwork",
+  "prompts": "../trailer-v3/prompts.json",
+  "source_art_assets": [
+    {
+      "file": "concept-art/trailer-v3/source/sugarfall-wordmark.png",
+      "dimensions": [
+        2172,
+        724
+      ],
+      "mode": "RGBA",
+      "bytes": 1471479,
+      "sha256": "7ed73cca378777a4dacaace3c838b7ca9d112887a6185534e3177e7c1a234521",
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "file": "concept-art/trailer-v3/source/food-collision-board.png",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "mode": "RGBA",
+      "bytes": 2040353,
+      "sha256": "1613e784fbb5971b1ce77382281e141149cf1f1e82f9f613fb39604046ea7b28",
+      "alpha_extrema": [
+        0,
+        254
+      ]
+    },
+    {
+      "file": "concept-art/trailer-v3/source/mabel-end.png",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "mode": "RGBA",
+      "bytes": 1843449,
+      "sha256": "49b7a11c3d8112ebd83932ce85f486feaee8208d3761e88cb5519566dcbd7bb3",
+      "alpha_extrema": [
+        0,
+        254
+      ]
+    },
+    {
+      "file": "concept-art/trailer-v3/source/mabel-hello.png",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "mode": "RGBA",
+      "bytes": 1729567,
+      "sha256": "88aab80b590401245948421e19d80d4c81d14341bc855f96e3d7d182244d14c2",
+      "alpha_extrema": [
+        0,
+        254
+      ]
+    },
+    {
+      "file": "concept-art/trailer-v3/source/play-now-button.png",
+      "dimensions": [
+        2172,
+        724
+      ],
+      "mode": "RGBA",
+      "bytes": 2272531,
+      "sha256": "3bddce3f95525d8ac8db744189e5634099c140d11adb6816610f240070353125",
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "file": "PLINKO/data/art/food/countertop.png",
+      "dimensions": [
+        941,
+        1672
+      ],
+      "mode": "RGB",
+      "bytes": 2168283,
+      "sha256": "87f28f8b57d856aa4dffa205314e568461e9aa2824fcdeb55ebebe29c70aa297"
+    },
+    {
+      "file": "PLINKO/data/art/gelato/food/countertop.png",
+      "dimensions": [
+        941,
+        1672
+      ],
+      "mode": "RGB",
+      "bytes": 1879041,
+      "sha256": "5eeccedf29be382bf8fffd96bda2842522b7e5c2c10d2590faeafba23028b8bb"
+    },
+    {
+      "file": "PLINKO/data/art/arc_props/flower_planter.png",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "bytes": 1667054,
+      "sha256": "04ce0bef6f2bbd5682eca064f79d10ace66618980bc24d61f43a56df79ebb06e",
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    }
+  ],
+  "left_closeup": {
+    "range": [
+      7.216666666666667,
+      10.816666666666666
+    ],
+    "zoom": [
+      1,
+      1.45
+    ],
+    "anchor": [
+      288,
+      900
+    ],
+    "actual_wafer_center": [
+      288,
+      800.4
+    ],
+    "recorded_contact_edit_times": [
+      9.683333333333334,
+      9.85
+    ],
+    "encoded_visual": {
+      "passed": true,
+      "date": "2026-11-04",
+      "scope": "Agent visual inspection of nine decoded frames from the exact V4 MP4: left-side gameplay zoom, real cream transition, and populated Gelato upgrade map.",
+      "source_file": "outputs/trailer-v4-20261104/Sugarfall-Trailer-V4-Review.mp4",
+      "source_sha256": "d52e6ab4e73674a84a138cdf6495995b687d50ecc6ec4659191167acabcd43ce",
+      "source_bytes": 13809414,
+      "inspection_method": "FFmpeg decoded requested frame times from the exact MP4, then view_image inspected the contact sheet and full-size left-impact, revealed-map and late-map frames.",
+      "reviewed_frames": [
+        581,
+        591,
+        655,
+        667,
+        675,
+        690,
+        726,
+        810,
+        858
+      ],
+      "reviewed_seconds": [
+        9.683333333333334,
+        9.85,
+        10.916666666666666,
+        11.116666666666667,
+        11.25,
+        11.5,
+        12.1,
+        13.5,
+        14.3
+      ],
+      "findings": {
+        "left_zoom": "Left tray rail and left-side wafer contacts are readable; the 9.6833s sample shows an actual contact with damage feedback. The following sample keeps the hit area in view. No clipped HUD text fragment or black bar appears in the close crop.",
+        "cream": "The real Home-to-Upgrades cream wave covers the captured Home screen, reaches its expected opaque white peak, and reveals the upgrade map. The white peak is part of the native transition, not a missing rendered page.",
+        "upgrades": "The illustrated branching Gelato map is populated and stable after reveal. Owned markers, affordable terminal leaves, scenery, wallet and bottom navigation render correctly. The gentle pan stays inside the map composition. No developer page, debug labels or infinite-money control is visible."
+      },
+      "capture_verification": {
+        "report": "outputs/trailer-v4-20261104/gameplay/upgrades-capture-validation.json",
+        "frozen_script_data_files": 491,
+        "production_source_parity": true,
+        "ordinary_owned": 56,
+        "ordinary_total": 62,
+        "earned_dual_shot": true,
+        "profile_io": 0
+      },
+      "supporting_frames": "outputs/trailer-v4-20261104/qa/upgrade-left-final/frames.json",
+      "contact_sheet": "outputs/trailer-v4-20261104/qa/upgrade-left-final/contact-sheet.png",
+      "material_issues": [],
+      "master_modified": false,
+      "physical_phone_review": false,
+      "user_acceptance": false,
+      "subjective_audio_review": false,
+      "supersedes_master_sha256": "d35780621927c05ffa69ede96134d05bedb6168048e8237980d5598947cdc84b",
+      "refresh_reason": "Ending PNG RGB/RGBA storage normalization produced a new MP4; all nine left/cream/map samples were decoded again from this exact new master and visually re-inspected."
+    }
+  },
+  "upgrade_reveal": {
+    "range": [
+      10.816666666666666,
+      14.4
+    ],
+    "source": "gameplay/09-upgrades-rich",
+    "source_frames": 270,
+    "used_frames": 215,
+    "capture": {
+      "passed": true,
+      "source": "Frozen V1 production project; relevant upgrade/UI/transition resources match current workspace",
+      "source_files": 491,
+      "source_parity": true,
+      "binary_sha256": "c067c1ffad84d3dfa1efb91d8921a14c4eb5e47e0cf2f49483ef1d4bebfedf37",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "fps": 60,
+      "frames": 270,
+      "profile_io": 0,
+      "debug": false,
+      "public_feature": true,
+      "staged_legal_campaign": true,
+      "ordinary_owned": 56,
+      "ordinary_total": 62,
+      "dual_shot_source": "earned",
+      "cream_navigation": [
+        "home",
+        "shop"
+      ],
+      "cream_fully_covered_frames": [
+        21,
+        22,
+        23,
+        24,
+        25,
+        26
+      ],
+      "fixture": "concept-art/trailer-v4/capture/upgrades_capture.gd",
+      "player_profiles_untouched": true,
+      "production_source_changed": false,
+      "production_drawing_changed": false,
+      "physics_changed": false
+    },
+    "full_capture_validation": "../../outputs/trailer-v4-20261104/gameplay/upgrades-capture-validation.json",
+    "capture_validation_sha256": "1c00c784d04a12b8a29edf99157f22403acb51ae596aa5e41a9a20b20fadd1e2",
+    "encoded_visual": {
+      "passed": true,
+      "date": "2026-11-04",
+      "scope": "Agent visual inspection of nine decoded frames from the exact V4 MP4: left-side gameplay zoom, real cream transition, and populated Gelato upgrade map.",
+      "source_file": "outputs/trailer-v4-20261104/Sugarfall-Trailer-V4-Review.mp4",
+      "source_sha256": "d52e6ab4e73674a84a138cdf6495995b687d50ecc6ec4659191167acabcd43ce",
+      "source_bytes": 13809414,
+      "inspection_method": "FFmpeg decoded requested frame times from the exact MP4, then view_image inspected the contact sheet and full-size left-impact, revealed-map and late-map frames.",
+      "reviewed_frames": [
+        581,
+        591,
+        655,
+        667,
+        675,
+        690,
+        726,
+        810,
+        858
+      ],
+      "reviewed_seconds": [
+        9.683333333333334,
+        9.85,
+        10.916666666666666,
+        11.116666666666667,
+        11.25,
+        11.5,
+        12.1,
+        13.5,
+        14.3
+      ],
+      "findings": {
+        "left_zoom": "Left tray rail and left-side wafer contacts are readable; the 9.6833s sample shows an actual contact with damage feedback. The following sample keeps the hit area in view. No clipped HUD text fragment or black bar appears in the close crop.",
+        "cream": "The real Home-to-Upgrades cream wave covers the captured Home screen, reaches its expected opaque white peak, and reveals the upgrade map. The white peak is part of the native transition, not a missing rendered page.",
+        "upgrades": "The illustrated branching Gelato map is populated and stable after reveal. Owned markers, affordable terminal leaves, scenery, wallet and bottom navigation render correctly. The gentle pan stays inside the map composition. No developer page, debug labels or infinite-money control is visible."
+      },
+      "capture_verification": {
+        "report": "outputs/trailer-v4-20261104/gameplay/upgrades-capture-validation.json",
+        "frozen_script_data_files": 491,
+        "production_source_parity": true,
+        "ordinary_owned": 56,
+        "ordinary_total": 62,
+        "earned_dual_shot": true,
+        "profile_io": 0
+      },
+      "supporting_frames": "outputs/trailer-v4-20261104/qa/upgrade-left-final/frames.json",
+      "contact_sheet": "outputs/trailer-v4-20261104/qa/upgrade-left-final/contact-sheet.png",
+      "material_issues": [],
+      "master_modified": false,
+      "physical_phone_review": false,
+      "user_acceptance": false,
+      "subjective_audio_review": false,
+      "supersedes_master_sha256": "d35780621927c05ffa69ede96134d05bedb6168048e8237980d5598947cdc84b",
+      "refresh_reason": "Ending PNG RGB/RGBA storage normalization produced a new MP4; all nine left/cream/map samples were decoded again from this exact new master and visually re-inspected."
+    }
+  },
+  "mabel": {
+    "source": "outputs/trailer-v3-20261104/mabel",
+    "frames": 373,
+    "range": [
+      14.4,
+      20.616666666666667
+    ],
+    "all_frames_reused_without_modification": true,
+    "sequence_sha256": "ded95ab3642f98e76d5a2e692bf49a53b9594b9a7ae2bf7d7c2dbf71f60137ab",
+    "greeting_hold": {
+      "passed": true,
+      "reused_from": "outputs/trailer-v3-20261104/mabel",
+      "first_overlay_frame": 42,
+      "end_exclusive": 93,
+      "edit_range": [
+        15.1,
+        15.95
+      ],
+      "frames": 51,
+      "seconds": 0.85,
+      "unique_actor_frame_hashes": 1,
+      "actor_frame_sha256": "13e7f965dd08e903315cdb3159e954d035df667c79f3b05390e44f469f37f681"
+    },
+    "handoff_times": [
+      17.366666666666667,
+      18.516666666666666,
+      18.966666666666665
+    ],
+    "foley_unchanged": true
+  },
+  "ending": {
+    "range": [
+      27.1,
+      30
+    ],
+    "card": "concept-art/trailer-v4/ending/exports/sugarfall-end-card.png",
+    "card_sha256": "119f6cd96cdfb51a6b11db6a015c5448ed83f6f90ed7f9303bd54470629eb5de",
+    "visible_title_to_tray_gap_px": 10.678615317568472,
+    "text": [
+      "Sugarfall",
+      "Play now"
+    ],
+    "layer_arrivals": {
+      "background": [
+        0,
+        0.24
+      ],
+      "title": [
+        0.12,
+        0.42
+      ],
+      "food": [
+        0.35,
+        0.68
+      ],
+      "mabel": [
+        0.62,
+        0.95
+      ],
+      "cta": [
+        0.9,
+        1.15
+      ]
+    },
+    "stable_full_hold": [
+      28.25,
+      30
+    ],
+    "hold_frames": 105,
+    "render": {
+      "passed": true,
+      "date": "2026-11-04",
+      "dimensions": [
+        1080,
+        1920
+      ],
+      "fps": 60,
+      "frames": 174,
+      "seconds": 2.9,
+      "png_mode": "RGBA throughout; native canvas PNG export",
+      "edit_range": [
+        27.1,
+        30
+      ],
+      "pattern": "frame_%05d.png",
+      "generated_png_lettering": true,
+      "first_frame_transparent": true,
+      "final_hold": [
+        1.15,
+        2.9
+      ],
+      "hold_pixel_stable": true,
+      "layer_arrivals": {
+        "background": [
+          0,
+          0.24
+        ],
+        "title": [
+          0.12,
+          0.42
+        ],
+        "food": [
+          0.35,
+          0.68
+        ],
+        "mabel": [
+          0.62,
+          0.95
+        ],
+        "cta": [
+          0.9,
+          1.15
+        ]
+      },
+      "samples": [
+        {
+          "frame": 0,
+          "time": 0,
+          "mode": "portrait",
+          "dimensions": [
+            1080,
+            1920
+          ],
+          "title": [
+            74.40000000000003,
+            103.66080305927343,
+            931.1999999999999,
+            298.67839388145313
+          ],
+          "food": [
+            25.30000000000001,
+            501.41745379876795,
+            989.4,
+            503.16509240246404
+          ],
+          "mabel": [
+            34.82591623036649,
+            975,
+            546.348167539267,
+            890.0000000000001
+          ],
+          "cta": [
+            559.6,
+            1474.9149636803875,
+            460.8,
+            148.17007263922517
+          ],
+          "opacity": {
+            "background": 0,
+            "title": 0,
+            "food": 0,
+            "mabel": 0,
+            "cta": 0
+          },
+          "finalHold": false
+        },
+        {
+          "frame": 12,
+          "time": 0.19999999999999998,
+          "mode": "portrait",
+          "dimensions": [
+            1080,
+            1920
+          ],
+          "title": [
+            65.67893333333336,
+            117.82118807449896,
+            948.6421333333333,
+            304.2728831102613
+          ],
+          "food": [
+            25.30000000000001,
+            501.41745379876795,
+            989.4,
+            503.16509240246404
+          ],
+          "mabel": [
+            34.82591623036649,
+            975,
+            546.348167539267,
+            890.0000000000001
+          ],
+          "cta": [
+            559.6,
+            1474.9149636803875,
+            460.8,
+            148.17007263922517
+          ],
+          "opacity": {
+            "background": 0.9953703703703703,
+            "title": 0.6056296296296295,
+            "food": 0,
+            "mabel": 0,
+            "cta": 0
+          },
+          "finalHold": false
+        },
+        {
+          "frame": 24,
+          "time": 0.39999999999999997,
+          "mode": "portrait",
+          "dimensions": [
+            1080,
+            1920
+          ],
+          "title": [
+            60.00426666666675,
+            127.03513722824164,
+            959.9914666666665,
+            307.91313295092414
+          ],
+          "food": [
+            27.129020229846624,
+            479.7101344532946,
+            1001.3080891560231,
+            509.2210200156914
+          ],
+          "mabel": [
+            34.82591623036649,
+            975,
+            546.348167539267,
+            890.0000000000001
+          ],
+          "cta": [
+            559.6,
+            1474.9149636803875,
+            460.8,
+            148.17007263922517
+          ],
+          "opacity": {
+            "background": 1,
+            "title": 0.9997037037037036,
+            "food": 0.38915324039290955,
+            "mabel": 0,
+            "cta": 0
+          },
+          "finalHold": false
+        },
+        {
+          "frame": 36,
+          "time": 0.6,
+          "mode": "portrait",
+          "dimensions": [
+            1080,
+            1920
+          ],
+          "title": [
+            60,
+            127.04206500956025,
+            960,
+            307.9158699808795
+          ],
+          "food": [
+            29.93303837270777,
+            446.43126947174665,
+            1019.5640370648636,
+            518.5051879118369
+          ],
+          "mabel": [
+            34.82591623036649,
+            975,
+            546.348167539267,
+            890.0000000000001
+          ],
+          "cta": [
+            559.6,
+            1474.9149636803875,
+            460.8,
+            148.17007263922517
+          ],
+          "opacity": {
+            "background": 1,
+            "title": 1,
+            "food": 0.9857528452569775,
+            "mabel": 0,
+            "cta": 0
+          },
+          "finalHold": false
+        },
+        {
+          "frame": 50,
+          "time": 0.8333333333333334,
+          "mode": "portrait",
+          "dimensions": [
+            1080,
+            1920
+          ],
+          "title": [
+            60,
+            127.04206500956025,
+            960,
+            307.9158699808795
+          ],
+          "food": [
+            30,
+            445.6365503080082,
+            1020,
+            518.7268993839836
+          ],
+          "mabel": [
+            74.97004499892134,
+            975,
+            546.348167539267,
+            890.0000000000001
+          ],
+          "cta": [
+            559.6,
+            1474.9149636803875,
+            460.8,
+            148.17007263922517
+          ],
+          "opacity": {
+            "background": 1,
+            "title": 1,
+            "food": 1,
+            "mabel": 0.9558125897274964,
+            "cta": 0
+          },
+          "finalHold": false
+        },
+        {
+          "frame": 60,
+          "time": 1,
+          "mode": "portrait",
+          "dimensions": [
+            1080,
+            1920
+          ],
+          "title": [
+            60,
+            127.04206500956025,
+            960,
+            307.9158699808795
+          ],
+          "food": [
+            30,
+            445.6365503080082,
+            1020,
+            518.7268993839836
+          ],
+          "mabel": [
+            76.82591623036649,
+            975,
+            546.348167539267,
+            890.0000000000001
+          ],
+          "cta": [
+            552.0735999999999,
+            1453.6788524939468,
+            475.8528,
+            153.01029501210655
+          ],
+          "opacity": {
+            "background": 1,
+            "title": 1,
+            "food": 1,
+            "mabel": 1,
+            "cta": 0.7840000000000001
+          },
+          "finalHold": false
+        },
+        {
+          "frame": 69,
+          "time": 1.15,
+          "mode": "portrait",
+          "dimensions": [
+            1080,
+            1920
+          ],
+          "title": [
+            60,
+            127.04206500956025,
+            960,
+            307.9158699808795
+          ],
+          "food": [
+            30,
+            445.6365503080082,
+            1020,
+            518.7268993839836
+          ],
+          "mabel": [
+            76.82591623036649,
+            975,
+            546.348167539267,
+            890.0000000000001
+          ],
+          "cta": [
+            550,
+            1447.8280871670702,
+            480,
+            154.34382566585958
+          ],
+          "opacity": {
+            "background": 1,
+            "title": 1,
+            "food": 1,
+            "mabel": 1,
+            "cta": 1
+          },
+          "finalHold": true
+        },
+        {
+          "frame": 90,
+          "time": 1.5,
+          "mode": "portrait",
+          "dimensions": [
+            1080,
+            1920
+          ],
+          "title": [
+            60,
+            127.04206500956025,
+            960,
+            307.9158699808795
+          ],
+          "food": [
+            30,
+            445.6365503080082,
+            1020,
+            518.7268993839836
+          ],
+          "mabel": [
+            76.82591623036649,
+            975,
+            546.348167539267,
+            890.0000000000001
+          ],
+          "cta": [
+            550,
+            1447.8280871670702,
+            480,
+            154.34382566585958
+          ],
+          "opacity": {
+            "background": 1,
+            "title": 1,
+            "food": 1,
+            "mabel": 1,
+            "cta": 1
+          },
+          "finalHold": true
+        },
+        {
+          "frame": 173,
+          "time": 2.8833333333333333,
+          "mode": "portrait",
+          "dimensions": [
+            1080,
+            1920
+          ],
+          "title": [
+            60,
+            127.04206500956025,
+            960,
+            307.9158699808795
+          ],
+          "food": [
+            30,
+            445.6365503080082,
+            1020,
+            518.7268993839836
+          ],
+          "mabel": [
+            76.82591623036649,
+            975,
+            546.348167539267,
+            890.0000000000001
+          ],
+          "cta": [
+            550,
+            1447.8280871670702,
+            480,
+            154.34382566585958
+          ],
+          "opacity": {
+            "background": 1,
+            "title": 1,
+            "food": 1,
+            "mabel": 1,
+            "cta": 1
+          },
+          "finalHold": true
+        }
+      ],
+      "console_errors": [],
+      "assets": {
+        "title": {
+          "size": [
+            2172,
+            724
+          ],
+          "crop": [
+            40,
+            25,
+            2092,
+            671
+          ]
+        },
+        "mabel": {
+          "size": [
+            1024,
+            1536
+          ],
+          "crop": [
+            39,
+            4,
+            938,
+            1528
+          ]
+        },
+        "food": {
+          "size": [
+            1536,
+            1024
+          ],
+          "crop": [
+            50,
+            149,
+            1461,
+            743
+          ]
+        },
+        "flowers": {
+          "size": [
+            1254,
+            1254
+          ],
+          "crop": [
+            27,
+            137,
+            1201,
+            992
+          ]
+        },
+        "baking": {
+          "size": [
+            941,
+            1672
+          ],
+          "crop": [
+            0,
+            0,
+            941,
+            1672
+          ]
+        },
+        "cta": {
+          "size": [
+            2172,
+            724
+          ],
+          "crop": [
+            49,
+            41,
+            2065,
+            664
+          ]
+        },
+        "marble": {
+          "size": [
+            941,
+            1672
+          ],
+          "crop": [
+            0,
+            0,
+            941,
+            1672
+          ]
+        }
+      }
+    },
+    "layout": {
+      "passed": true,
+      "date": "2026-11-04",
+      "scope": "Native composition of Imagegen artwork; no generated lettering replaced by browser text",
+      "assets": {
+        "title": {
+          "size": [
+            2172,
+            724
+          ],
+          "crop": [
+            40,
+            25,
+            2092,
+            671
+          ]
+        },
+        "food": {
+          "size": [
+            1536,
+            1024
+          ],
+          "crop": [
+            50,
+            149,
+            1461,
+            743
+          ]
+        },
+        "mabel": {
+          "size": [
+            1024,
+            1536
+          ],
+          "crop": [
+            39,
+            4,
+            938,
+            1528
+          ]
+        },
+        "marble": {
+          "size": [
+            941,
+            1672
+          ],
+          "crop": [
+            0,
+            0,
+            941,
+            1672
+          ]
+        },
+        "cta": {
+          "size": [
+            2172,
+            724
+          ],
+          "crop": [
+            49,
+            41,
+            2065,
+            664
+          ]
+        },
+        "flowers": {
+          "size": [
+            1254,
+            1254
+          ],
+          "crop": [
+            27,
+            137,
+            1201,
+            992
+          ]
+        },
+        "baking": {
+          "size": [
+            941,
+            1672
+          ],
+          "crop": [
+            0,
+            0,
+            941,
+            1672
+          ]
+        }
+      },
+      "outputs": [
+        {
+          "file": "concept-art/trailer-v4/ending/exports/sugarfall-end-card.png",
+          "time": 2.9,
+          "mode": "portrait",
+          "dimensions": [
+            1080,
+            1920
+          ],
+          "title": [
+            60,
+            127.04206500956025,
+            960,
+            307.9158699808795
+          ],
+          "food": [
+            30,
+            445.6365503080082,
+            1020,
+            518.7268993839836
+          ],
+          "mabel": [
+            76.82591623036649,
+            975,
+            546.348167539267,
+            890.0000000000001
+          ],
+          "cta": [
+            550,
+            1447.8280871670702,
+            480,
+            154.34382566585958
+          ],
+          "opacity": {
+            "background": 1,
+            "title": 1,
+            "food": 1,
+            "mabel": 1,
+            "cta": 1
+          },
+          "finalHold": true,
+          "sha256": "119f6cd96cdfb51a6b11db6a015c5448ed83f6f90ed7f9303bd54470629eb5de"
+        },
+        {
+          "file": "concept-art/trailer-v4/ending/exports/sugarfall-logo-lockup.png",
+          "time": 2.9,
+          "mode": "lockup",
+          "dimensions": [
+            1920,
+            1080
+          ],
+          "title": [
+            172.33979135618478,
+            70,
+            935.3204172876304,
+            300
+          ],
+          "food": [
+            25.93539703903093,
+            370,
+            1278.1292059219381,
+            650
+          ],
+          "mabel": [
+            1211.380890052356,
+            150,
+            497.23821989528795,
+            810
+          ],
+          "cta": null,
+          "opacity": {
+            "background": 1,
+            "title": 1,
+            "food": 1,
+            "mabel": 1,
+            "cta": 1
+          },
+          "finalHold": true,
+          "sha256": "27e29e0899670ef621b253d4fbef64f70f8af1b8ffae215b72bf0553e867e668"
+        },
+        {
+          "file": "concept-art/trailer-v4/ending/exports/sugarfall-portrait-lockup.png",
+          "time": 2.9,
+          "mode": "portrait-lockup",
+          "dimensions": [
+            1080,
+            1920
+          ],
+          "title": [
+            60,
+            127.04206500956025,
+            960,
+            307.9158699808795
+          ],
+          "food": [
+            30,
+            445.6365503080082,
+            1020,
+            518.7268993839836
+          ],
+          "mabel": [
+            76.82591623036649,
+            975,
+            546.348167539267,
+            890.0000000000001
+          ],
+          "cta": null,
+          "opacity": {
+            "background": 1,
+            "title": 1,
+            "food": 1,
+            "mabel": 1,
+            "cta": 1
+          },
+          "finalHold": true,
+          "sha256": "d0a29d6cc83ca12451dccebcd897a815c3947c04aaf3e2f8dfbeb2169cd1c588"
+        },
+        {
+          "file": "concept-art/trailer-v4/ending/exports/sugarfall-banner.png",
+          "time": 2.9,
+          "mode": "wide",
+          "dimensions": [
+            1920,
+            1080
+          ],
+          "title": [
+            172.33979135618478,
+            70,
+            935.3204172876304,
+            300
+          ],
+          "food": [
+            25.93539703903093,
+            370,
+            1278.1292059219381,
+            650
+          ],
+          "mabel": [
+            1211.380890052356,
+            150,
+            497.23821989528795,
+            810
+          ],
+          "cta": [
+            1510,
+            936.228813559322,
+            350,
+            112.54237288135593
+          ],
+          "opacity": {
+            "background": 1,
+            "title": 1,
+            "food": 1,
+            "mabel": 1,
+            "cta": 1
+          },
+          "finalHold": true,
+          "sha256": "29b2e6f140abcd9ef98377eb8d311674aa243f30831faf7fb7b941641b5cf3e7"
+        }
+      ],
+      "console_errors": []
+    },
+    "motion": {
+      "passed": true,
+      "frames": 174,
+      "fps": 60,
+      "seconds": 2.9,
+      "png_modes": [
+        "RGBA"
+      ],
+      "first_frame_transparent": true,
+      "hold_frames": 105,
+      "hold_range": [
+        1.15,
+        2.9
+      ],
+      "hold_unique_frame_hashes": 1,
+      "final_matches_static_png": true,
+      "final_sha256": "119f6cd96cdfb51a6b11db6a015c5448ed83f6f90ed7f9303bd54470629eb5de"
+    },
+    "encoded_visual": {
+      "passed": true,
+      "date": "2026-11-04",
+      "scope": "Agent visual inspection of exact decoded V4 ending frames; no phone or user acceptance is implied.",
+      "video_file": "outputs/trailer-v4-20261104/Sugarfall-Trailer-V4-Review.mp4",
+      "video_sha256": "d52e6ab4e73674a84a138cdf6495995b687d50ecc6ec4659191167acabcd43ce",
+      "bytes": 13809414,
+      "sample_times": [
+        27.1,
+        27.3,
+        27.6,
+        27.7,
+        27.9,
+        28.0,
+        28.1,
+        28.25,
+        29.8,
+        29.983333
+      ],
+      "supporting_frames": "ending-final/frames.json",
+      "contact_sheet": "ending-final/review.png",
+      "findings": {
+        "sequential_arrivals": true,
+        "mabel_absent_at_27_70": true,
+        "cta_absent_at_28_00": true,
+        "complete_card_at_28_25": true,
+        "card_visible_at_29_80": true,
+        "card_visible_through_last_frame_29_983333": true,
+        "no_result_screen_popback": true,
+        "title_and_tray_close_and_readable": true,
+        "face_and_cta_separate": true,
+        "painted_background_clear": true,
+        "no_black_boxes_or_opacity_regression": true,
+        "no_clipped_lettering_or_character": true
+      },
+      "decoded_hold_comparison": {
+        "mean_rgb_absolute_difference": 0.06244582682847977,
+        "max_channel_difference": 17.0,
+        "note": "Decoded H264 is lossy; stable source images can have small compression differences."
+      },
+      "format_correction": {
+        "initial_master_rejected_sha256": "d35780621927c05ffa69ede96134d05bedb6168048e8237980d5598947cdc84b",
+        "cause": "Mixed RGB/RGBA screenshot pixel formats reset filter timing.",
+        "fix": "Native canvas PNG encoding keeps all174 source frames RGBA without changing artwork or timing.",
+        "source_mode_verified": "RGBA throughout",
+        "failure_evidence": "ending-format-failure/",
+        "source_final_png_sha256": "119f6cd96cdfb51a6b11db6a015c5448ed83f6f90ed7f9303bd54470629eb5de"
+      },
+      "physical_phone_acceptance": false
+    }
+  },
+  "audio": {
+    "passed": true,
+    "comparison": "Decoded final AAC vs current V4 mix",
+    "matched_samples_per_channel": 1440000,
+    "correlation": 0.999484879940142,
+    "peak": 0.7813313603401184,
+    "rms_dbfs": -20.367156112707463,
+    "clipped_samples": 0,
+    "subjective_listening_acceptance": false
+  },
+  "audio_cue_counts": {
+    "game": 104,
+    "foley": 13
+  },
+  "review_page": {
+    "passed": true,
+    "metadata": {
+      "width": 1080,
+      "height": 1920,
+      "duration": 30,
+      "readyState": 4
+    },
+    "console_errors": [],
+    "desktop_overflow": false,
+    "mobile_overflow": false,
+    "missing_links": [],
+    "jump_button_actual_time": 10.862894,
+    "phone_acceptance": false,
+    "video_sha256": "d52e6ab4e73674a84a138cdf6495995b687d50ecc6ec4659191167acabcd43ce"
+  },
+  "visual_review": {
+    "passed": true,
+    "video_sha256": "d52e6ab4e73674a84a138cdf6495995b687d50ecc6ec4659191167acabcd43ce",
+    "bytes": 13809414,
+    "scope": "Agent visual inspection of the corrected exact V4 master; root agent confirmed the24-frame contact sheet and full last-frame PNG",
+    "reviewed_contact_sheet": "contact-sheet.jpg",
+    "full_size_tail_samples": [
+      "frame-22.png",
+      "frame-23.png",
+      "watch-ending.png"
+    ],
+    "tail_sample_times": [
+      29.8,
+      29.983333
+    ],
+    "findings": [
+      "The left-side wafer contacts stay visible with the copper rim and without HUD or launcher fragments.",
+      "The real cream wave fully covers the screen and reveals the populated upgrade map.",
+      "Mabel's greeting and three existing food catches retain their prior presentation.",
+      "The tighter closing composition and sequential fades preserve readable title, food, Mabel and Play now.",
+      "The complete final card persists through the last frame; the underlying game no longer reappears."
+    ],
+    "initial_failure_evidence": "ending-format-failure/validation.json",
+    "physical_phone_acceptance": false,
+    "user_visual_acceptance": false,
+    "subjective_listening_acceptance": false
+  },
+  "edl": "../../outputs/trailer-v4-20261104/edit-decision-list.json",
+  "local_delivery": {
+    "user_choice": "Keep this video local",
+    "drive_uploaded": false,
+    "sharing_changed": false
+  },
+  "source_music_permission": "Private supplied recording reference; publication clearance remains unresolved",
+  "game_runtime_changed": false,
+  "apk_rebuilt": false,
+  "publicly_published": false,
+  "phone_acceptance": false
+}
