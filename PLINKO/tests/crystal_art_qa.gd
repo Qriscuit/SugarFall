@@ -31,7 +31,7 @@ func _initialize():
 		check(food.is_area_ready(area) and environment.is_area_ready(area) and ui.is_area_ready(area),"Complete food, environment and UI sets load for "+area)
 		check(food.set_area(area) and environment.set_area(area) and ui.set_area(area),"Theme switching activates the requested assets: "+area)
 		check(food.textures.size()==(27 if area=="crystal" else 26),"Food set contains every required visual state for "+area)
-		check(environment.textures.size()==5 and ui.textures.size()==14,"Environment and shared UI coverage remain complete for "+area)
+		check(environment.textures.size()==5 and ui.textures.size()==14,"Environment and area-owned UI coverage remain complete for "+area)
 		check(arc.is_ready(area),"Full upgrade illustration loads for "+area)
 		var valid=true
 		for name in food.textures:
@@ -64,7 +64,7 @@ func _initialize():
 	check(environment.textures.bakery_landmark==food.textures.hopper,"The area landmark uses its own UV frame in the native equipment atlas")
 	check(environment.textures.home_counter==environment.textures.play_counter and food.textures.countertop==environment.textures.play_counter,"Home, gameplay and countertop deliberately reuse the complete Crystal room painting")
 	for name in UI.NAMES:
-		check(ui._sets.crystal.textures[name]==ui._sets.bakery.textures[name],"Shared control keeps its established silhouette/state skin: "+name)
+		check(ui._sets.crystal.textures[name]!=ui._sets.bakery.textures[name] and ui.textures[name].resource_path.begins_with(UI.CRYSTAL_ROOT),"Crystal owns its themed control without Bakery fallback: "+name)
 	Results.load_assets(true)
 	check(Results.art_ready() and Results._textures.has("crystal"),"Results screen has its Crystal room backdrop and shared payout dish")
 	check(Results._textures.crystal==environment.textures.play_counter,"Results backdrop points to the same native Crystal room painting")

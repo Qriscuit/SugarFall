@@ -1,10 +1,34 @@
 # Sugarfall art direction
 
-Revision 29 · 3 November 2026 · Art and UI production guide
+Revision 33 · 5 November 2026 · Art and UI production guide
+
+## Current signature-upgrade and feedback revision — 5 November 2026
+
+CHG-049 gives the signature upgrade beneath Feed 1 a warm gold backdrop that grows and shrinks smoothly over a 2.5-second cycle. Animate the backdrop only: keep node artwork, text, camera, purchase cards and tap targets fixed. The backdrop remains visible for locked, unaffordable, available and owned states, with lower opacity once owned. Cap its outer size to clear neighboring nodes. Reduced Motion uses a static highlight; an offscreen node, a closed shop or an inactive application does not keep animating. The backdrop is drawn at runtime and reuses the existing map artwork.
+
+Peg rewards now show only a gold `+amount` with a dark gold outline. Remove the coin symbol and its spacing from these short labels; retain the actual credited amount, break reward merging and stationary Reduced Motion behavior. This supersedes the coin-icon presentation from CHG-048 below. Wallet coin symbols remain part of the existing HUD and menus.
+
+Remove the global notification panel at the bottom of Home and other pages, its input blockers and notification-driven redraws. Existing inline purchase messages remain within their cards. [Current release and evidence](ANDROID_SUGARFALL_v0.7.15.md). Physical-phone feel, readability and input acceptance remain open.
+
+## Previous first-run and coin feedback revision — 5 November 2026
+
+CHG-048 replaces floating peg damage numbers with a gold coin symbol and a positive amount. Show the actual credited coins from that hit, including its break reward; a zero-coin contact has no reward label. Coin and number use gold with a dark gold outline, with no rectangular backing. Rapid rewards on one peg merge. Reduced Motion keeps the labels stationary. This supersedes the older damage-number presentation described in the historical revisions below. The symbol is drawn at runtime and the existing Mabel portrait is reused; no new bitmap art is required.
+
+Mabel uses short instructions about the next player action. Body, name and hint sizes increase from 26/25/20 to 28/27/22 logical pixels. Text appears immediately, and the earnings explanation advances in one tap. The guide teaches aiming at cookies to earn coins and uses four fewer states. [Guide specification](NEW_PLAYER_EXPERIENCE_GDD.md) · [Source and renderer evidence](COIN_ONBOARDING_VALIDATION.json). Physical-phone readability and touch acceptance remain open.
 
 **A little bakery machine made from mint enamel, warm ceramic, copper, and freshly baked food.** Objects feel rounded, useful, and touchable. Rich food colors sit against quiet sage-green surfaces in Bakery, cool lavender surfaces in Gelato Garden, and pale aqua sugar-glass surfaces in Crystal Candyworks. Gelato’s upgrade garden uses a pale ivory-and-mint ceramic courtyard; elsewhere ivory belongs to small readable panels and ceramic details; copper remains a restrained accent. The player should see the food, the next choice, and its value before noticing the interface around them.
 
 This is the visual specification for new art. The observations below describe the inspected gameplay assets; the production and UI rules establish the direction for this UI pass and future additions. A rule in this document is an acceptance target, not a claim that every older screen already follows it.
+
+## Current upgrade layout revision — 4 November 2026
+
+[CHG-047 / AF-011](UPGRADE_LAYOUT.md) aligns Gelato's live button/selector labels with the existing painted faces, shows selected eligible-node coin amounts without an upgrade picture behind them, and compacts signature cards into two columns. Keep title and description directly together on the left with gates/status below; stack coin and early-access actions on the right. Preserve purchase-state colors, live labels, earned gates, input guards and native PNG bytes. 1,750 source/desktop assertions pass with zero failures, including 1,229 GPU assertions across 156 captures at 450x800 and 450x1000. Final frames cover selection, signature cards and general interfaces. Physical touch/readability remains open.
+
+## Current area interface revision — 4 November 2026
+
+[CHG-046 / AF-010](AREA_INTERFACE_ART.md) replaces inherited Bakery control textures with complete independent Gelato and Crystal sets. Gelato uses lavender/mint glazed ceramic; Crystal uses pale-aqua sugar glass with restrained peach/copper details. Keep ivory reading faces quiet and preserve green/red/cream purchase-state meanings, live labels and existing touch bounds. Bakery deliberately retains its mint/parchment/copper set. Existing area menu frames remain.
+
+The white-cream transition has slight Gelato and Crystal accents in separate native assets; Bakery keeps the original neutral wave. Keep opaque coverage, the 0.62-second menu/startup route, Home morph, frozen results, sharp Pause/Resume fade and Reduced Motion behavior. Earlier shared-art statements below describe their dated historical passes. 1,654 source/desktop assertions pass with zero failures, including 786 GPU assertions across 116 captures at 450x800 and 450x1000. The final review covers visual-final-02 and ability-final. Phone acceptance remains open.
 
 ## Current portrait gameplay revision — 3 November 2026
 

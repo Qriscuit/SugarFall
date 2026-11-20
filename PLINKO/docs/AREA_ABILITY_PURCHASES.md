@@ -1,5 +1,13 @@
 # Area ability early unlocks
 
+## Signature-node emphasis — CHG-049
+
+The signature node beneath Feed 1 has a smooth growing and shrinking gold backdrop in Bakery, Gelato Garden and Crystal Candyworks. It stays visible while locked, unaffordable, available or owned; owned uses lower opacity. The 2.5-second cycle changes the backdrop only. The node, price, cards and touch bounds retain their existing geometry. Reduced Motion uses a static highlight, and offscreen/inactive views stop animating. This does not change earned gates, coin costs or early-access purchase behavior. [Current preview and verification](ANDROID_SUGARFALL_v0.7.15.md).
+
+## Compact signature cards — CHG-047
+
+The [v0.7.12 layout](UPGRADE_LAYOUT.md) keeps the title, two effect lines and earned gate/status in the left column, with coin and early-access actions stacked in the right column. The large card picture is removed. Preview confirmation, live localized pricing, pending/restore states, earned rules and ownership guards retain the behavior below. This UI change does not complete real billing or physical-phone acceptance.
+
 3 November 2026 · Local implementation and provider contracts; real Play payments remain unconnected.
 
 Each area has one permanent signature ability. The gameplay route opens from tray 8 with that area's stated Power and coin requirements. An optional early unlock is planned at **US$2.99 per area**, visible from tray 1. Both routes activate the same mechanic and tradeoffs. The purchase does not add a stronger exclusive version or remove the normal progression route.
@@ -40,7 +48,7 @@ The game now binds the provider's change/result signals to the shared offer and 
 
 ## Remaining public-release work
 
-- Create the Play Console app for `com.qriscuit.sugarfall`; create and activate the three products and `early-unlock` purchase options with a US base price of $2.99. Product IDs must match exactly. [Console setup](https://godot-sdk-integrations.github.io/godot-google-play-billing/google_play_console_setup.html).
+- Use the Play Console app for `com.sungati.sugarfall`; create and activate the three products and `early-unlock` purchase options with a US base price of $2.99. Product IDs must match exactly. [Console setup](https://godot-sdk-integrations.github.io/godot-google-play-billing/google_play_console_setup.html).
 - Install and pin the first-party Godot plugin. The checked current Godot 4 release is **3.3.0**, using Billing Library **9.1.0**; it is not bundled in this source revision. Enable the plugin, Gradle export, required network permissions and release signing. [Official releases](https://github.com/godot-sdk-integrations/godot-google-play-billing/releases).
 - Implement and configure the authenticated verification/acknowledgement backend and account/restore policy. Exercise the integrated signal/activation and foreground-restore hooks against the real provider, including save failures and entitlement changes while a run is active.
 - Upload a billing-enabled release build to an internal Play track and configure license testers. Verify actual store pricing, success/cancel/pending, duplicate callbacks, restore/reinstall, offline recovery, refunds and retained earned access on an Android device. Local fake-client tests do not replace this check. [Play testing setup](https://godot-sdk-integrations.github.io/godot-google-play-billing/google_play_console_setup.html).

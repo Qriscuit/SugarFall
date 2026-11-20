@@ -1,8 +1,8 @@
 # Build a signed Android release candidate
 
-The tracked Windows entrypoints prepare the existing toolchain, export unsigned APK/AAB files, sign them with Sugarfall's existing key, and verify the resulting artifacts. They preserve `com.qriscuit.sugarfall`; the private preview uses a separate package and download. The current public presets are `0.8.0-rc2`, version code `37`.
+The tracked Windows entrypoints prepare the existing toolchain, export unsigned APK/AAB files, sign them with Sugarfall's existing key, and verify the resulting artifacts. They build `com.sungati.sugarfall` with the existing Sugarfall release certificate. The private preview uses a separate package, download and AdMob profile. The current public presets are `0.8.0-rc8`, version code `49`.
 
-This procedure produces an Internal testing candidate. It does not enroll Play App Signing, upload to Play Console, prove a clean-machine or byte-identical rebuild, or complete phone and production acceptance. See [the candidate record](ANDROID_SUGARFALL_v0.8.0-rc2.md) and [the remaining release queue](GOOGLE_PLAY_READINESS.md).
+This procedure produces a signed candidate for Internal testing. Play enrollment, submission and phone acceptance are tracked separately. [Latest local candidate](ANDROID_SUGARFALL_v0.8.0-rc8.md) · [Release queue](GOOGLE_PLAY_READINESS.md).
 
 ## Prerequisites
 
@@ -12,6 +12,7 @@ Run from the repository root under the Windows account that owns the existing DP
 - Godot 4.6.3 standard and its matching official Android release/source templates. The default portable editor is under `tools/Godot-4.6.3`; its editor settings must specify the installed Java SDK and Android SDK paths.
 - JDK 21, Android platform 36, build-tools 36.1.0, platform-tools and NDK 29.0.14206865, with the required SDK licenses already accepted by the owner.
 - The existing protected signing directory described in [signing and recovery](RELEASE_SIGNING.md). No replacement key is created by these commands.
+- Sugarfall's own AdMob Android app ID and separate rewarded and interstitial unit IDs in [production_ads.json](../data/production_ads.json). Public preflight rejects missing or demo IDs and embedded test settings. For test devices and account setup, follow the [monetization setup record](monetization/ACCOUNT_SETUP.md).
 
 The official template pins Gradle 8.11.1, Android Gradle Plugin 8.6.1 and Kotlin 2.1.21. Setup verifies the template hash and installed versions; it does not install an SDK or accept license agreements. A first setup may download the pinned Gradle dependencies.
 
@@ -35,7 +36,7 @@ Build, sign and verify into a **new** output directory. This command prepares th
 
 ```powershell
 .\PLINKO\tools\Build-AndroidRelease.ps1 `
-  -OutputDirectory .\PLINKO\builds\android-release\rc2-rebuild-01
+  -OutputDirectory .\PLINKO\builds\android-release\0.8.0-rc8-code49-rebuild01
 ```
 
 The helper refuses to overwrite an existing directory. Omitting `-OutputDirectory` creates a timestamped directory. `-Preflight` performs only the checks; `-UnsignedOnly` stops after unsigned exports and must not be treated as a publishable result. `-SigningDirectory <path>` selects an existing protected key record; it does not create or rotate an identity.
@@ -44,7 +45,7 @@ The helper refuses to overwrite an existing directory. Omitting `-OutputDirector
 
 The public APK/AAB presets must agree on version and package, enable only ARM64, use `sugarfall_public`, and contain no signing secrets. The builder freezes runtime/import inputs, exports both artifacts without credentials, and rejects source drift. It then loads the owner's DPAPI credential only for standalone signing, pins the exported certificate to Sugarfall's recorded SHA-256, aligns the APK for 16 KB pages, signs the APK and AAB, and clears the credential environment in `finally`.
 
-The independent verifier checks the exact signed artifacts, including package/version/SDK/public configuration, certificate and signatures, payload/source parity, bundled data/assets, ZIP and ELF alignment, and AAB structure. Consult the resulting verification report for its actual check counts and limits. A successful local signature is not a Play Console acceptance result.
+The independent verifier checks the exact signed artifacts, including package/version/SDK/public configuration, certificate and signatures, payload/source parity, bundled data/assets, ZIP and ELF alignment, and AAB structure. It checks that both manifests use the packaged production app ID and that both artifacts exclude preview ad configuration. Consult the resulting report for the check counts. Play Console acceptance and phone playback are separate checks.
 
 Each output directory contains the signed APK and AAB, `build-plan.json`, `source-sha256.json`, `preflight.json`, `unsigned-export.json`, build/signing logs and a `verification` directory. It also contains **public** DER/PEM certificate copies, `certificate.json` and `certificate-sha256.txt`. The private keystore and password are not copied into the output. The local cache's `latest-build-plan.json` is only a convenience pointer; the per-build record is the evidence.
 

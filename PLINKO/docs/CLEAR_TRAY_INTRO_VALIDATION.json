@@ -1,0 +1,53 @@
+{
+  "passed": true,
+  "message": "Hits earn coins. Destroy every cookie to clear the tray before time runs out.",
+  "opening": "Hit cookies to earn coins. Tap Play.",
+  "states": 10,
+  "font_sizes": {
+    "body": 28,
+    "name": 27,
+    "hint": 22
+  },
+  "behavioral": {
+    "passed": 192,
+    "failed": 0,
+    "summary": "verification/clear-tray-intro-20261105/guide-final/summary.json"
+  },
+  "gpu": {
+    "captures": 4,
+    "failed": 0,
+    "summary": "verification/clear-tray-intro-20261105/gpu/preview-summary.json",
+    "controls": [
+      "touch",
+      "mouse"
+    ],
+    "sizes": [
+      [
+        450,
+        800
+      ],
+      [
+        720,
+        1280
+      ]
+    ],
+    "inspected": [
+      "touch-earned-450x800.png",
+      "mouse-earned-720x1280.png"
+    ],
+    "result": "Three readable body lines; hint, portrait and bubble fit inside safe canvas; board, earned-total close-up, Pause and Skip remain clear."
+  },
+  "source_sha256": {
+    "PLINKO/scripts/first_run_guide.gd": "174b83b1c3e771022336c8efe049a18053d69610bd598e90d4828b5e7f5a1e6a",
+    "PLINKO/tests/first_run_guide_qa.gd": "fd0385f08d4bfc50e6dcc4ed5bc8160ef0f64e01e29f128d9346134531b17a6f",
+    "PLINKO/tests/first_run_guide_preview.gd": "6a71f3bc85020e33347d0c95995f767c7102ea8178d3ff1b783b07821cc9891f"
+  },
+  "isolated_runtime_sha256": "174b83b1c3e771022336c8efe049a18053d69610bd598e90d4828b5e7f5a1e6a",
+  "isolated_source_matches": true,
+  "scope": "Dialogue copy only in runtime; existing QA word budget permits fourteen words for this explicit objective; existing preview accepts a single-step filter. No new states, mechanics, reward rules, fonts or layout logic.",
+  "warnings": [
+    "Known host root-certificate warning retained in raw behavioral/GPU logs.",
+    "Existing SubViewport positioning warning retained in GPU stderr."
+  ],
+  "phone_verified": false
+}

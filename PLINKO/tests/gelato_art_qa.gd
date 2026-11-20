@@ -100,8 +100,7 @@ func inspect_art(game, area: String):
 			if area=="gelato" and category in ["food","environment"]:
 				check(texture.resource_path.begins_with("res://data/art/gelato/"),"Gelato uses its own art, not Bakery fallback: "+name)
 			if area=="gelato" and category=="ui":
-				var expected = "res://data/art/gelato/ui/" if name in art.GELATO_OVERRIDES else "res://data/art/ui/"
-				check(texture.resource_path.begins_with(expected),"Gelato UI uses the intended override or shared semantic skin: "+name)
+				check(texture.resource_path.begins_with("res://data/art/gelato/ui/"),"Gelato UI uses its complete themed set without Bakery fallback: "+name)
 	for kind in game.food_art.COOKIE_KINDS:
 		var base = "cookie_"+kind
 		if not game.food_art.textures.has(base): continue

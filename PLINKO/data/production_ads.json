@@ -1,0 +1,14 @@
+{
+  "enabled": true,
+  "app_id": "ca-app-pub-1588582401968528~2944205915",
+  "use_test_ads": false,
+  "rewarded_unit_id": "ca-app-pub-1588582401968528/8669078415",
+  "interstitial_unit_id": "ca-app-pub-1588582401968528/9732933988",
+  "muted": false,
+  "max_ad_content_rating": "G",
+  "tag_for_child_directed_treatment": -1,
+  "tag_for_under_age_of_consent": -1,
+  "consent": {
+    "tag_for_under_age_of_consent": false
+  }
+}

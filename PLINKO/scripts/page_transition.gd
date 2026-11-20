@@ -3,6 +3,11 @@ extends RefCounted
 ## visible until an opaque cream body covers it, then reveals the new page.
 const DURATION = .62
 const WAVE_PATH = "res://data/art/transitions/cream_wave.png"
+const WAVE_PATHS = {
+	"bakery":WAVE_PATH,
+	"gelato":"res://data/art/transitions/gelato_cream_wave.png",
+	"crystal":"res://data/art/transitions/crystal_cream_wave.png"
+}
 const WAVE_REGION = Rect2(0,0,1536,768)
 const BODY_JOIN_Y = 520.0
 var g
@@ -16,6 +21,8 @@ var from_mode = ""
 var to_mode = ""
 var snapshot: Texture2D
 var wave_texture: Texture2D
+var wave_area_id = "bakery"
+var _wave_textures: Dictionary = {}
 var settled_this_frame = false
 var canvas: Node2D
 
@@ -27,8 +34,17 @@ func _init(game):
 	g = game
 
 func load_assets():
-	if ResourceLoader.exists(WAVE_PATH): wave_texture = load(WAVE_PATH)
+	_wave_textures.clear()
+	for id in WAVE_PATHS:
+		if ResourceLoader.exists(WAVE_PATHS[id]): _wave_textures[id] = load(WAVE_PATHS[id]) as Texture2D
+	select_wave(g.area_id)
 	attach()
+
+func select_wave(id: String):
+	# Freeze the destination area's artwork for the transition. Missing themed
+	# art uses the bounded white runtime fallback, never another area's painting.
+	wave_area_id = id if WAVE_PATHS.has(id) else "bakery"
+	wave_texture = _wave_textures.get(wave_area_id) as Texture2D
 
 func attach():
 	if not g.is_inside_tree() or is_instance_valid(canvas): return
@@ -44,7 +60,7 @@ func redraw():
 func uses_cream(previous: String, destination: String) -> bool:
 	# Entering a run from its Home tray has a matching board/equipment morph.
 	# End-of-run results and their reward dialogs stay over the frozen board.
-	# Studio still reveals every restored destination with the shared cream wave.
+	# Studio reveals restored destinations with their area's cream wave.
 	if previous == "studio": return true
 	if previous == "home" and destination == "play": return false
 	if previous in ["play","paused","abandon_confirm"] and destination in ["play","paused","abandon_confirm"]: return false
@@ -67,6 +83,7 @@ func begin(previous: String, destination: String):
 		# example Result -> test ad). Retain its original image and animation.
 		to_mode = destination
 		return
+	select_wave(g.area_id)
 	from_mode = previous
 	to_mode = destination
 	snapshot = null

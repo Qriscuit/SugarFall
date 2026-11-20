@@ -1,0 +1,146 @@
+{
+  "passed": true,
+  "failed": 0,
+  "date": "2026-11-05",
+  "change_id": "CHG-049",
+  "audit_fix": "AF-013",
+  "scope": "Signature upgrade backdrop pulse, text-only gold peg earnings and removed bottom notifications/input blockers",
+  "functional_checks": 1030,
+  "gpu_checks": 702,
+  "captures": 84,
+  "resolutions": [
+    "450x800",
+    "450x1000",
+    "720x1280"
+  ],
+  "functional_suites": [
+    {
+      "suite": "crystal-area-ui",
+      "passed": 35,
+      "failed": 0,
+      "log": "verification/upgrade-pulse-20261105/regression/crystal-area-ui.log"
+    },
+    {
+      "suite": "upgrade-graph",
+      "passed": 62,
+      "failed": 0,
+      "log": "verification/upgrade-pulse-20261105/regression/upgrade-graph.log"
+    },
+    {
+      "suite": "upgrade-layout",
+      "passed": 32,
+      "failed": 0,
+      "log": "verification/upgrade-pulse-20261105/regression/upgrade-layout.log"
+    },
+    {
+      "suite": "gelato-twin-node",
+      "passed": 81,
+      "failed": 0,
+      "log": "verification/upgrade-pulse-20261105/regression/gelato-twin-node.log"
+    },
+    {
+      "suite": "first-run-guide",
+      "passed": 192,
+      "failed": 0,
+      "log": "verification/upgrade-pulse-20261105/regression/first-run-guide.log"
+    },
+    {
+      "suite": "gelato-navigation",
+      "passed": 58,
+      "failed": 0,
+      "log": "verification/upgrade-pulse-20261105/regression/gelato-navigation.log"
+    },
+    {
+      "suite": "gelato-launcher-shop",
+      "passed": 105,
+      "failed": 0,
+      "log": "verification/upgrade-pulse-20261105/regression/gelato-launcher-shop.log"
+    },
+    {
+      "suite": "damage-feedback",
+      "passed": 80,
+      "failed": 0,
+      "log": "feedback-focused/damage-feedback-final.log"
+    },
+    {
+      "suite": "coin-feedback",
+      "passed": 80,
+      "failed": 0,
+      "log": "feedback-focused/coin-feedback.log"
+    },
+    {
+      "suite": "navigation",
+      "passed": 89,
+      "failed": 0,
+      "log": "feedback-focused/navigation-final.log"
+    },
+    {
+      "suite": "upgrade-pulse",
+      "passed": 216,
+      "failed": 0
+    }
+  ],
+  "feedback_renderer": {
+    "failed": 0,
+    "log": "feedback-focused/gpu.log",
+    "resolutions": [
+      "720x1280",
+      "450x800"
+    ],
+    "captures": 42,
+    "pages": [
+      "home",
+      "shop",
+      "boards",
+      "guide",
+      "support",
+      "loadout",
+      "trials",
+      "result",
+      "play"
+    ],
+    "renderer": "Intel(R) Iris(R) Xe Graphics",
+    "areas": [
+      "bakery",
+      "gelato",
+      "crystal"
+    ],
+    "summary": "feedback-captures/damage-preview-summary.json",
+    "passed": 253,
+    "global_note_pixel_comparisons": 54,
+    "profile_io": 0
+  },
+  "pulse_renderer": {
+    "passed": 449,
+    "failed": 0,
+    "captures": 42,
+    "summary": "verification/upgrade-pulse-20261105/gpu-final/preview-summary.json"
+  },
+  "pixel_comparisons": {
+    "removed_notifications": 54,
+    "pulse_locality": 12,
+    "failed": 0
+  },
+  "final_source_files": 454,
+  "normal_profile_accesses": 0,
+  "phone_verified": false,
+  "source_parity": "All integration runtime sources match except the pulse draw helper. Removing that helper produces byte-equivalent normalized source. Final pulse checks and GPU captures match the stronger gold draw helper.",
+  "visual_review": [
+    "gpu-final/bakery-locked-peak-450x800.png",
+    "gpu-final/crystal-locked-peak-450x1000.png",
+    "gpu-final/gelato-selected-peak-450x1000.png",
+    "feedback-captures/bakery-hit-450.png",
+    "feedback-captures/bakery-home-no-notification-450.png"
+  ],
+  "historical_attempts": [
+    "pulse-initial-validation.json",
+    "gpu/preview-summary.json",
+    "feedback-focused/damage-feedback-before-upgrade-sync.log"
+  ],
+  "diagnostics": "Only the anchored exact offline root-certificate-store error is exempted. Raw logs are retained; other script/engine errors and failed assertions are fatal.",
+  "remaining": [
+    "Physical-phone animation feel, readability, input, performance and install-over save retention",
+    "Existing Bakery tray-10 and natural-wallet progression",
+    "Real Play billing"
+  ]
+}

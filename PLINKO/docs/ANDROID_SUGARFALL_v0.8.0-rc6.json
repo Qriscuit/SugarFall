@@ -1,0 +1,54 @@
+{
+  "change_id": "CHG-054",
+  "record_date": "2026-11-10",
+  "version_name": "0.8.0-rc6",
+  "version_code": 47,
+  "package": "com.qriscuit.sugarfall",
+  "status": "Signed Play candidate verified locally. Internal testing upload and physical Android acceptance are pending.",
+  "ad_profile": "Sugarfall owner AdMob app and production rewarded and interstitial units",
+  "production_ad_config": "PLINKO/data/production_ads.json",
+  "admob_readiness": "Requires review, limited serving and no store link",
+  "source_verified": true,
+  "package_verified": true,
+  "delivery": "Local signed APK and AAB",
+  "play_uploaded": false,
+  "phone_verified": false,
+  "real_ad_playback_verified": false,
+  "minimum_sdk": 24,
+  "target_sdk": 36,
+  "architectures": [
+    "arm64-v8a"
+  ],
+  "custom_features": [
+    "sugarfall_public"
+  ],
+  "artifact_checks_passed": 665,
+  "artifacts": {
+    "apk": {
+      "local_path": "PLINKO/builds/android-release/0.8.0-rc6-code47-attempt01/Sugarfall-v0.8.0-rc6-Android.apk",
+      "size_bytes": 102318910,
+      "sha256": "d1ce9be77713f63dc64d4e978254d5c587afbeaf55e5a0d37067795336c62f8f",
+      "signing_certificate_sha256": "e31ab7654afed05f9acd5fb6b59846d990198b8005d8fafd01e070c1dbc4dc29"
+    },
+    "aab": {
+      "local_path": "PLINKO/builds/android-release/0.8.0-rc6-code47-attempt01/Sugarfall-v0.8.0-rc6-Android.aab",
+      "size_bytes": 102137972,
+      "sha256": "a2a2372c0dead445b512d2aadcfae445e915d64ecb6c2c139ea58a0452549055",
+      "signing_certificate_sha256": "e31ab7654afed05f9acd5fb6b59846d990198b8005d8fafd01e070c1dbc4dc29"
+    }
+  },
+  "source_manifest": "PLINKO/builds/android-release/0.8.0-rc6-code47-attempt01/source-sha256.json",
+  "verification_evidence": [
+    "PLINKO/builds/android-release/0.8.0-rc6-code47-attempt01/verification/validation.json",
+    "verification/developer-access-final-20261110/validation.json",
+    "verification/watch-ad-label-20261110/visual-final/preview-summary.json",
+    "verification/watch-ad-label-20261110/isolated/native-ad-integration.log",
+    "verification/android-preview-v0720/self-test.log"
+  ],
+  "source_record": "EXPORT_NOTES.md",
+  "icon_proof": "outputs/app-icon-20261110/icon-assets-validation.json",
+  "developer_tools_available": false,
+  "simulated_commerce_available": false,
+  "change_scope": "Developer settings and simulated commerce are available in the Godot editor. Exported builds ignore developer startup flags. The Watch Ad title and status fit inside the results button.",
+  "focused_verification": "The editor and exported-game probes passed all 551 developer-policy checks. All 36 layout captures and 40 ad integration checks passed."
+}

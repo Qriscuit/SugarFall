@@ -34,11 +34,10 @@ var _request_epoch: int = 0
 var _simulation_enabled: bool = false
 
 static func preview_tools_allowed() -> bool:
-	# An explicit public feature also protects diagnostic/debug RC exports.
-	return not OS.has_feature("sugarfall_public") and (OS.is_debug_build() or OS.has_feature("developer"))
+	return OS.has_feature("editor") and not OS.has_feature("sugarfall_public")
 
 func _init(allow_simulation: bool = true):
-	_simulation_enabled = allow_simulation and preview_tools_allowed()
+	_simulation_enabled = allow_simulation and preview_tools_allowed() and not OS.has_feature("android")
 	ads_available = _simulation_enabled
 
 func simulation_enabled() -> bool:

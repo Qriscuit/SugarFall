@@ -1,0 +1,46 @@
+{
+  "provider": "GodotGooglePlayBilling",
+  "version": "3.3.0",
+  "upstream": "https://github.com/godot-sdk-integrations/godot-google-play-billing",
+  "release": "https://github.com/godot-sdk-integrations/godot-google-play-billing/releases/tag/3.3.0",
+  "asset_url": "https://github.com/godot-sdk-integrations/godot-google-play-billing/releases/download/3.3.0/godot-google-play-billing.zip",
+  "asset_sha256": "20d75623d6f337f08d8283c83098b73678d5f575e39247af5a8eb80588b18568",
+  "upstream_asset_digest_verified": true,
+  "billing_library": "9.1.0",
+  "maven_dependency": "com.android.billingclient:billing-ktx:9.1.0",
+  "license": "MIT",
+  "license_path": "addons/GodotGooglePlayBilling/LICENSE",
+  "upstream_files_modified": false,
+  "files": [
+    {
+      "sha256": "4f9c0c7c223e5c3b04493dca4abeecd5ccb3e439711c812438bc604eb95ab149",
+      "bytes": 6728,
+      "path": "BillingClient.gd"
+    },
+    {
+      "sha256": "adeb55dc9b0894975f138f26303a5f9447caa92d74aee0afafb479c06e2648ee",
+      "bytes": 1149,
+      "path": "export_plugin.gd"
+    },
+    {
+      "sha256": "2a4af9d86d0855f90c3d41d4df3599d1920b52d6f95ed1d87bd9e247e0d5dbd5",
+      "bytes": 1082,
+      "path": "LICENSE"
+    },
+    {
+      "sha256": "dd532c3d60afd05f3701ae035b578ff96a0382056ec1bf7282827cf86501565c",
+      "bytes": 175,
+      "path": "plugin.cfg"
+    },
+    {
+      "sha256": "f7f8f3f1c8099e58127332c8c27f353a7eea079e749682d2ebd83d1bd4bd6f3d",
+      "bytes": 19665,
+      "path": "bin/debug/GodotGooglePlayBilling-debug.aar"
+    },
+    {
+      "sha256": "b667b4ae3ecf91d7dea90bebd4ba5a7aef56cfc2cd7de4787aeb51a1927dcef7",
+      "bytes": 18307,
+      "path": "bin/release/GodotGooglePlayBilling-release.aar"
+    }
+  ]
+}

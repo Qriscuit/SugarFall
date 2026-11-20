@@ -1,10 +1,11 @@
 extends RefCounted
-## Reusable bakery UI skins. Normalized source bounds follow import size limits.
+## Each area owns a complete UI skin set. No area borrows Bakery controls.
 const ROOT = "res://data/art/ui/"
 const NAMES = ["panel", "button_mint", "button_cream", "timer", "coin", "node", "upgrade_tile_green", "upgrade_tile_red", "upgrade_tile_cream", "upgrade_parchment", "level_badge_cream", "level_badge_mint", "level_badge_muted", "level_selector"]
 const AreaArt = preload("res://scripts/area_art.gd")
 const GELATO_ROOT = "res://data/art/gelato/ui/"
-const GELATO_OVERRIDES = ["panel","level_selector","level_badge_muted"]
+const CRYSTAL_ROOT = "res://data/art/crystal/ui/"
+const AREA_ROOTS = {"bakery":ROOT,"gelato":GELATO_ROOT,"crystal":CRYSTAL_ROOT}
 const MENU_ROOT = "res://data/art/menus/"
 var textures: Dictionary = {}
 var regions: Dictionary = {}
@@ -24,24 +25,25 @@ func load_assets():
 	if not set_area(area_id): set_area("bakery")
 
 func _load_set(id: String):
-	if id=="bakery":
-		_sets[id] = AreaArt.read_set(ROOT,NAMES)
-		return
-	if not _sets.has("bakery"): _load_set("bakery")
-	var base: Dictionary = _sets.bakery
-	if id=="crystal":
-		# Shared controls retain their established silhouettes and state colors;
-		# Crystal's environment and game pieces carry its new area identity.
-		_sets[id] = {"textures":base.textures.duplicate(),"regions":base.regions.duplicate(),"complete":base.complete}
-		return
-	var overrides = AreaArt.read_set(GELATO_ROOT,GELATO_OVERRIDES)
-	var themed = {"textures":base.textures.duplicate(),"regions":base.regions.duplicate(),"complete":base.complete and overrides.complete}
-	themed.textures.merge(overrides.textures,true)
-	themed.regions.merge(overrides.regions,true)
-	_sets[id] = themed
+	if not AREA_ROOTS.has(id): return
+	_sets[id] = AreaArt.read_set(AREA_ROOTS[id],NAMES,false,id!="bakery")
+
+static func resource_paths() -> Array[String]:
+	# The loader and startup warmup share the same explicit resource roster.
+	var paths: Array[String] = []
+	for name in NAMES: paths.append(ROOT+name+".png")
+	for id in ["gelato","crystal"]:
+		var bounds = JSON.parse_string(FileAccess.get_file_as_string(AREA_ROOTS[id]+"regions.json"))
+		if not bounds is Dictionary: continue
+		for name in NAMES:
+			var entry = bounds.get(name)
+			if not entry is Dictionary: continue
+			var path = str(entry.get("texture",""))
+			if AreaArt.valid_atlas_path(AREA_ROOTS[id],path) and path not in paths: paths.append(path)
+	return paths
 
 func is_area_ready(id: String) -> bool:
-	if id not in ["bakery","gelato","crystal"]: return false
+	if not AREA_ROOTS.has(id): return false
 	if not _sets.has(id): _load_set(id)
 	return _sets[id].complete
 
@@ -52,6 +54,15 @@ func set_area(id: String) -> bool:
 	regions = _sets[id].regions
 	return true
 
+func text_offset(role: String) -> Vector2:
+	# Gelato's painted reading faces sit below the full sprite bounds. Keep
+	# labels and their symbols on those faces without moving the hit rectangles.
+	if area_id=="gelato":
+		if role=="button_mint": return Vector2(0,2)
+		if role=="button_cream": return Vector2(0,4)
+		if role=="level_selector": return Vector2(0,4)
+	return Vector2.ZERO
+
 func draw(canvas: CanvasItem, name: String, target: Rect2, tint: Color = Color.WHITE) -> bool:
 	if not textures.has(name): return false
 	var source: Rect2 = regions[name]
@@ -61,7 +72,7 @@ func draw(canvas: CanvasItem, name: String, target: Rect2, tint: Color = Color.W
 	return true
 
 func menu_frame(canvas: CanvasItem, content: Rect2) -> bool:
-	# Dedicated menu artwork: never change the shared HUD, cards or buttons.
+	# Dedicated menu artwork is separate from the area's HUD, cards and buttons.
 	# Corner ornaments keep a uniform scale; only quiet spans stretch.
 	var texture = _menu_frames.get(area_id) as Texture2D
 	if texture == null: return false
@@ -80,7 +91,7 @@ func menu_frame(canvas: CanvasItem, content: Rect2) -> bool:
 
 func surface(canvas: CanvasItem, name: String, target: Rect2) -> bool:
 	if not textures.has(name): return false
-	# Use the quiet paper interior edge to edge, without the isolated asset's rim.
+	# Use the quiet interior edge to edge, without the isolated asset's rim.
 	var bounds: Rect2 = regions[name]
 	var source = Rect2(bounds.position+bounds.size*.15,bounds.size*.7)
 	var ratio = target.size.x/target.size.y
@@ -91,6 +102,9 @@ func surface(canvas: CanvasItem, name: String, target: Rect2) -> bool:
 
 func skin(canvas: CanvasItem, name: String, target: Rect2, tint: Color = Color.WHITE) -> bool:
 	if not textures.has(name): return false
+	# Crystal's selector has a centered crest above and below its quiet face.
+	# Keep both live Home lines inside that face without changing touch bounds.
+	if area_id=="crystal" and name=="level_selector": target=target.grow_individual(0,14,0,14)
 	var source: Rect2 = regions[name]
 	# Keep ceramic corners round and copper edges thin across cards, chips and buttons.
 	var is_panel = name in ["panel", "upgrade_parchment", "level_selector"]
@@ -98,6 +112,11 @@ func skin(canvas: CanvasItem, name: String, target: Rect2, tint: Color = Color.W
 	var source_y = minf(source.size.x,source.size.y)*(.16 if is_panel else .32)
 	var edge_x = minf(26.0,minf(target.size.x,target.size.y)*.38) if is_panel else minf(target.size.x*.48,target.size.y*.55)
 	var edge_y = edge_x if is_panel else target.size.y*.32
+	if area_id!="bakery" and name=="panel":
+		# Include the entire painted rim/ornaments in the fixed-height slices;
+		# stretching any of that rim would cross live HUD and card headings.
+		source_y=minf(source.size.x,source.size.y)*.28
+		edge_y=minf(20.0,minf(target.size.x,target.size.y)*.24)
 	var sx = [source.position.x,source.position.x+source_x,source.end.x-source_x,source.end.x]
 	var sy = [source.position.y,source.position.y+source_y,source.end.y-source_y,source.end.y]
 	var dx = [target.position.x,target.position.x+edge_x,target.end.x-edge_x,target.end.x]

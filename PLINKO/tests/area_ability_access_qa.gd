@@ -22,6 +22,7 @@ func backend(request: Dictionary) -> Dictionary:
 	if verification_mode=="reject": return {}
 	var response=request.duplicate(true)
 	response.verified=true; response.acknowledged=true; response.purchase_state="purchased"
+	response.revalidate_after_seconds=300;response.verified_at=1700000000000
 	if verification_mode=="wrong_product": response.product_id="unknown"
 	if verification_mode=="wrong_token": response.purchase_token="wrong"
 	if verification_mode=="not_acknowledged": response.acknowledged=false
@@ -32,6 +33,9 @@ func live_contract():
 	var client=FakeClient.new(); root.add_child(client)
 	billing._client=client
 	billing.configure_backend(backend)
+	billing.restore()
+	await billing._on_owned_purchases({"response_code":0,"purchases":[]})
+	var generation = billing._generation
 	var id=Access.CATALOG.bakery.product_id
 	var live_offer={"purchase_option_id":"early-unlock","offer_id":null,"formatted_price":"€3.49","rental_details":null}
 	billing._on_products({"response_code":0,"product_details":[{"product_id":id,"one_time_purchase_offer_details_list":[live_offer]}]})
@@ -43,25 +47,26 @@ func live_contract():
 	billing._on_purchase_updated({"response_code":1})
 	check(not access.has_early_access("bakery") and billing.offer(id).available,"Live cancellation grants nothing and releases request")
 	var data={"package_name":Billing.PACKAGE,"purchase_token":"fixture-token","purchase_state":2,"product_ids":[id],"is_acknowledged":true}
-	await billing._verify_purchase(data,0)
+	await billing._verify_purchase(data,generation)
 	check(verification_calls==0 and not access.has_early_access("bakery") and billing.offer(id).pending,"Play PENDING never verifies or grants despite client acknowledgement flag")
 	data.purchase_state=1
-	await billing._verify_purchase(data,0)
+	await billing._verify_purchase(data,generation)
 	check(verification_calls==1 and not access.has_early_access("bakery"),"Client PURCHASED/acknowledged fields alone cannot grant")
 	for invalid_mode in ["wrong_product","wrong_token","not_acknowledged"]:
 		verification_mode=invalid_mode
-		await billing._verify_purchase(data,0)
+		await billing._verify_purchase(data,generation)
 		check(not access.has_early_access("bakery"),invalid_mode+" backend response is rejected")
 	verification_mode="accept"
-	await billing._verify_purchase(data,0)
+	await billing._verify_purchase(data,generation)
 	check(access.has_early_access("bakery") and not access.has_early_access("gelato"),"Verified acknowledged purchase grants only corresponding area")
 	var count=verification_calls
-	await billing._verify_purchase(data,0)
+	await billing._verify_purchase(data,generation)
 	check(verification_calls==count and billing.purchase(id).is_empty(),"Duplicate live callback cannot fulfill or charge again")
 	check(access.export_state().is_empty(),"Real verified access is never serialized into preview save namespace")
+	var queries = client.restore_calls
 	billing.restore()
-	check(client.restore_calls==1,"Restore queries non-consumed Play inventory")
-	billing._on_owned_purchases({"response_code":0,"purchases":[]})
+	check(client.restore_calls==queries+1,"Restore queries non-consumed Play inventory")
+	await billing._on_owned_purchases({"response_code":0,"purchases":[]})
 	check(not access.has_early_access("bakery"),"Authoritative empty inventory revokes cached paid access")
 	var rental=live_offer.duplicate(true); rental.rental_details={"period":"P1D"}
 	billing._on_products({"response_code":0,"product_details":[{"product_id":id,"one_time_purchase_offer_details_list":[rental]}]})

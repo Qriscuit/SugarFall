@@ -1,0 +1,8 @@
+{
+  "version": 1,
+  "billing": {
+    "verification_url": "",
+    "firebase_web_api_key": "",
+    "firebase_project_id": ""
+  }
+}

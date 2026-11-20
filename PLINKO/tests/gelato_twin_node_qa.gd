@@ -109,7 +109,8 @@ func copy_and_padding():
 		var twin_padded = map.TWIN_CARD_RECT.grow(-24).encloses(map.TWIN_TITLE_RECT) and map.TWIN_CARD_RECT.grow(-24).encloses(map.TWIN_STATUS_RECT) and map.TWIN_CARD_RECT.grow(-24).encloses(map.TWIN_BUY_RECT)
 		for index in range(map._twin_effect_lines().size()):
 			var line: String = map._twin_effect_lines()[index]
-			twin_padded = twin_padded and numeric_stats.search(line)==null and map.TWIN_CARD_RECT.grow(-24).encloses(map.TWIN_EFFECT_RECTS[index]) and game.font.get_string_size(line,HORIZONTAL_ALIGNMENT_LEFT,-1,21).x<=map.TWIN_EFFECT_RECTS[index].size.x
+			var fit: int=map.card_font_size(line,map.TWIN_EFFECT_RECTS[index],21)
+			twin_padded = twin_padded and numeric_stats.search(line)==null and map.TWIN_CARD_RECT.grow(-24).encloses(map.TWIN_EFFECT_RECTS[index]) and fit>=18 and game.font.get_string_size(line,HORIZONTAL_ALIGNMENT_LEFT,-1,fit).x<=map.TWIN_EFFECT_RECTS[index].size.x
 		check(twin_padded,"%s Twin copy fits the padded panel with explicit reset, slower drops and stronger costly rebuilds" % area)
 		game.free()
 

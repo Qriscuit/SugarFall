@@ -1,0 +1,29 @@
+{
+  "change": "CHG-047",
+  "fix": "AF-011",
+  "date": "2026-11-04",
+  "passed": true,
+  "failed": 0,
+  "software_checks": 1750,
+  "captures": 156,
+  "current_source_inputs": 270,
+  "profile_io": 0,
+  "retained_native_art_checks": 4,
+  "visual_review_images": 8,
+  "phone_verified": false,
+  "scope": "Source, interaction/state and desktop rendering verification. Android and Drive delivery are recorded separately.",
+  "components": [
+    {
+      "path": "verification/upgrade-layout-20261104/validation.json",
+      "sha256": "5ad0e668692f40c7f267fe3854b4371e10eb08eb70ef1be3ed0488f628cd6cb3"
+    },
+    {
+      "path": "verification/upgrade-layout-20261104/native-retention.json",
+      "sha256": "1abb723f2a673a4f739f5f20f67dec5b0718825a4881d358fd4e4d6a7c9431c8"
+    },
+    {
+      "path": "verification/upgrade-layout-20261104/visual-review.json",
+      "sha256": "482de781ab4b1549af895a052b06a7b7a20cf42a1421c82f4a1a2c8084520f2a"
+    }
+  ]
+}

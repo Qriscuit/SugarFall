@@ -3,6 +3,14 @@ extends RefCounted
 ## never inferred during drawing or used to alter collision geometry.
 
 const CRYSTAL_ROOT = "res://data/art/crystal/"
+const GELATO_UI_ROOT = "res://data/art/gelato/ui/"
+const CRYSTAL_UI_ROOT = "res://data/art/crystal/ui/"
+
+static func valid_atlas_path(root: String, path: String) -> bool:
+	# UI atlases cannot borrow another area (or another art category). Existing
+	# Crystal food/environment atlases retain their native shared-source contract.
+	var allowed = root if root in [GELATO_UI_ROOT,CRYSTAL_UI_ROOT] else CRYSTAL_ROOT if root.begins_with(CRYSTAL_ROOT) else ""
+	return not allowed.is_empty() and path.begins_with(allowed) and ".." not in path and path.ends_with(".png")
 
 static func read_set(root: String, names: Array, shared_damage_frames: bool = false, atlas_entries: bool = false) -> Dictionary:
 	var result = {"textures":{},"regions":{},"complete":false}
@@ -10,9 +18,8 @@ static func read_set(root: String, names: Array, shared_damage_frames: bool = fa
 	if not FileAccess.file_exists(path): return result
 	var bounds = JSON.parse_string(FileAccess.get_file_as_string(path))
 	if not bounds is Dictionary: return result
-	# Atlas metadata is explicit and confined to Crystal's native source art.
-	# Existing area metadata keeps its original per-file lookup and crop behavior.
-	if atlas_entries and not root.begins_with(CRYSTAL_ROOT): return result
+	# Existing individual-file sets keep their original crop behavior.
+	if atlas_entries and root != GELATO_UI_ROOT and not root.begins_with(CRYSTAL_ROOT): return result
 	var texture_cache: Dictionary = {}
 	for name in names:
 		var source_name: String = str(name).get_slice("_damage_",0) if shared_damage_frames else str(name)
@@ -22,7 +29,7 @@ static func read_set(root: String, names: Array, shared_damage_frames: bool = fa
 			var entry = bounds.get(str(name))
 			if not entry is Dictionary: continue
 			texture_path = str(entry.get("texture",""))
-			if not texture_path.begins_with(CRYSTAL_ROOT) or ".." in texture_path or not texture_path.ends_with(".png"): continue
+			if not valid_atlas_path(root,texture_path): continue
 			uv = entry.get("uv")
 		if not valid_bounds(uv): continue
 		if not ResourceLoader.exists(texture_path): continue

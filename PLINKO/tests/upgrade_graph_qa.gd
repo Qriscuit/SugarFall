@@ -152,16 +152,18 @@ func authoritative_purchases():
 			for node in graph.routes()[route_index]:
 				var before=g.bank
 				var cost=g.upgrade_cost(node.x)
-				all_ok=g.buy_upgrade(node.x) and is_equal_approx(g.bank,before-cost) and all_ok
-				expected[node.x]=node.y
+				all_ok=g.buy_upgrade_node(node.x,node.y) and is_equal_approx(g.bank,before-cost) and all_ok
+				expected[node.x]+=1
 			check(all_ok and g.levels==expected,"Route %d completes independently with exact debits and untouched other routes in %s" % [route_index+1,area])
 			g.free()
 		g=fresh(area)
 		var all_ok=true
+		var expected=[0,0,0,0,0,0,0,0]
 		for node in graph.nodes():
 			var before=g.bank
 			var cost=g.upgrade_cost(node.x)
-			all_ok=g.buy_upgrade(node.x) and is_equal_approx(g.bank,before-cost) and g.levels[node.x]==node.y and all_ok
+			expected[node.x]+=1
+			all_ok=g.buy_upgrade_node(node.x,node.y) and is_equal_approx(g.bank,before-cost) and g.levels[node.x]==expected[node.x] and all_ok
 		check(all_ok and g.levels==graph.CAPS,"All tiers can be purchased, with exact debits, in "+area)
 		funds=g.bank
 		check(not g.buy_upgrade(1) and g.bank==funds,"A capped Power family cannot spend additional coins in "+area)

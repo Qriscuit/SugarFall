@@ -20,7 +20,7 @@ func run_damage_preview():
 	for resolution in RESOLUTIONS:
 		viewport.size = resolution
 		game.scale = Vector2.ONE*float(resolution.x)/720.0
-		for area in ["bakery","gelato"]:
+		for area in ["bakery","gelato","crystal"]:
 			for phase in ["hit","settling","reduced","large-wallet"]:
 				game.set_active_area(area)
 				game.current_level = 10
@@ -44,7 +44,7 @@ func run_damage_preview():
 				var sample_count = mini(4,game.pegs.size())
 				for index in range(sample_count):
 					var peg = game.pegs[index*2]
-					game.impact_feedback.show_damage(peg.p,18.2 if index==1 else (1.5 if index==2 else 4.0),index==1)
+					game.impact_feedback.show_coins(peg.p,18.0 if index==1 else (1.0 if index==2 else 4.0),index==1)
 					peg.flash = .12
 				if phase=="settling": game.impact_feedback.advance(.22)
 				var state = var_to_bytes(game.RunSnapshot.capture(game))
@@ -57,8 +57,8 @@ func run_damage_preview():
 				check(picture!=null and picture.get_size()==resolution,"Actual GPU rendered "+filename)
 				check(picture.save_png(directory.path_join(filename))==OK,"Saved "+filename)
 				check(state==var_to_bytes(game.RunSnapshot.capture(game)) and rng_state==game.rng.state,"Rendering leaves gameplay and RNG unchanged: "+filename)
-				for label in game.impact_feedback.damage_labels:
-					var layout = game.impact_feedback.damage_label_layout(label,game.number_font,game.reduced_motion)
+				for label in game.impact_feedback.coin_labels:
+					var layout = game.impact_feedback.coin_label_layout(label,game.number_font,game.reduced_motion)
 					check(Rect2(40,270,640,770).encloses(layout.bounds),"Hit number fits board in "+filename)
 				output_files.append(filename)
 			for phase in ["peak","settled"]:
@@ -77,6 +77,27 @@ func run_damage_preview():
 				check(picture!=null and picture.get_size()==resolution,"Actual GPU rendered "+filename)
 				check(picture.save_png(directory.path_join(filename))==OK,"Saved "+filename)
 				output_files.append(filename)
+			# A retained transactional note must have no global visual effect.
+			# Compare real frames across ordinary pages rather than inspecting source.
+			for page in ["home","shop","boards","guide","support","loadout","trials","result","play"]:
+				game.mode=page
+				game.note="REMOVED BOTTOM NOTIFICATION"
+				game.note_time=0
+				game.queue_redraw()
+				await process_frame
+				await RenderingServer.frame_post_draw
+				var clean = viewport.get_texture().get_image()
+				game.note_time=8
+				game.queue_redraw()
+				await process_frame
+				await RenderingServer.frame_post_draw
+				var retained_note = viewport.get_texture().get_image()
+				check(clean.get_data()==retained_note.get_data(),"Retained note changes no pixels in %s/%s/%d" % [area,page,resolution.x])
+				if page=="home":
+					var filename="%s-home-no-notification-%d.png" % [area,resolution.x]
+					check(retained_note.save_png(directory.path_join(filename))==OK,"Saved "+filename)
+					output_files.append(filename)
+			game.note=""; game.note_time=0
 	check(game.persistence_attempts==0,"All preview states performed zero player profile accesses")
 	var report = {"captures":output_files,"checks":checks,"failures":failures,"profile_io":game.persistence_attempts,"renderer":RenderingServer.get_video_adapter_name(),"note":"Staged gameplay at 720x1280 and450x800, not a physical-device playtest. Left Impact ball is charged; right is spent."}
 	var file = FileAccess.open(directory.path_join("damage-preview-summary.json"),FileAccess.WRITE)

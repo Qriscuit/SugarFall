@@ -8,19 +8,19 @@ const WALLET_RECT = Rect2(156,28,528,84)
 const TWIN_NODE = Vector2i(8,1)
 const MORE_JAM_NODE = Vector2i(8,2)
 const TWIN_PARENT = Vector2i(0,1)
-const TWIN_CARD_RECT = Rect2(36,768,648,310)
-const TWIN_BUY_RECT = Rect2(438,794,214,86)
-const TWIN_PAID_RECT = Rect2(438,892,214,86)
-const TWIN_FOCUS_AREA = Rect2(24,145,672,599)
+const TWIN_CARD_RECT = Rect2(36,854,648,224)
+const TWIN_BUY_RECT = Rect2(438,878,214,78)
+const TWIN_PAID_RECT = Rect2(438,968,214,78)
+const TWIN_FOCUS_AREA = Rect2(24,145,672,685)
 const CARD_RECT = Rect2(36,908,648,170)
 const BUY_RECT = Rect2(438,932,214,86)
 const CARD_TITLE_RECT = Rect2(148,932,268,40)
 const CARD_STATUS_RECT = Rect2(148,978,268,28)
 const CARD_EFFECT_RECT = Rect2(68,1026,584,28)
-const TWIN_TITLE_RECT = Rect2(148,794,268,40)
-const TWIN_STATUS_RECT = Rect2(148,840,268,64)
-const TWIN_MESSAGE_RECT = Rect2(68,934,348,38)
-const TWIN_EFFECT_RECTS = [Rect2(68,990,584,28),Rect2(68,1024,584,28)]
+const TWIN_TITLE_RECT = Rect2(68,878,348,36)
+const TWIN_STATUS_RECT = Rect2(68,990,348,28)
+const TWIN_MESSAGE_RECT = Rect2(68,1022,348,32)
+const TWIN_EFFECT_RECTS = [Rect2(68,916,348,32),Rect2(68,950,348,32)]
 const TREATS_RECT = Rect2(48,1090,220,96)
 const PLAY_RECT = Rect2(286,1090,386,96)
 const TILE_SIZE = Vector2(224,224)
@@ -38,6 +38,7 @@ const FEEDBACK_DURATION = .28
 const TAP_DURATION = .20
 const CAMERA_DURATION = .55
 const CARD_BOUNCE_DURATION = .28
+const SIGNATURE_PULSE_DURATION = 2.5
 const ORIGIN = Vector2(360,760)
 const NAMES = ["Feed","Power","Bounce","Ricochet","Split","Impact","Gold","Time"]
 const ART = ["hopper","cookie_armored","donut","ricochet","pomegranate","pumpkin","cup_gold","cookie_clock"]
@@ -84,6 +85,9 @@ var _camera_to_pan = Vector2.ZERO
 var _camera_from_zoom = INITIAL_ZOOM
 var _camera_to_zoom = INITIAL_ZOOM
 var _card_bounce_age = -1.0
+var _signature_pulse_age = 0.0
+var _signature_visible = false
+var _signature_animated = false
 
 func _init(game):
 	g = game
@@ -284,6 +288,12 @@ func state_for(i: int, n: int) -> String:
 	if not g.shop_node_unlocked(i,n): return "locked"
 	return "affordable" if g.can_afford(g.upgrade_cost(i)) else "unaffordable"
 
+func shows_selected_price(node: Vector2i, state: String = "") -> bool:
+	if selected_node()!=node or not node_visible(node.x,node.y): return false
+	if node==TWIN_NODE: return not special_owned()
+	if state.is_empty(): state=state_for(node.x,node.y)
+	return state in ["affordable","unaffordable"]
+
 func visual_area() -> Rect2:
 	# Safe-area layout keeps controls clear of notches. The map still fills the
 	# physical viewport beyond that inset, with no separate paper or tile edge.
@@ -331,6 +341,9 @@ func reset_view_state():
 	_states.clear()
 	_was_shop = false
 	_last_bank = -1.0
+	_signature_pulse_age = 0.0
+	_signature_visible = false
+	_signature_animated = false
 	_request_redraw()
 
 func update(delta: float) -> bool:
@@ -344,15 +357,21 @@ func update(delta: float) -> bool:
 			_states.clear()
 			_was_shop = false
 			changed = true
+		_signature_pulse_age = 0.0
+		_signature_visible = false
+		_signature_animated = false
 		return changed
 	changed = _sync_states() or changed
+	changed = _update_signature_pulse(delta) or changed
 	if _card_bounce_age>=0 and g.reduced_motion:
 		_card_bounce_age = -1.0
 		changed = true
 	if _camera_active and g.reduced_motion:
 		_finish_camera()
 		changed = true
-	if not is_finite(delta) or delta <= 0: return changed
+	if not is_finite(delta) or delta <= 0:
+		if changed: _request_redraw()
+		return changed
 	if _card_bounce_age>=0:
 		_card_bounce_age += minf(delta,CARD_BOUNCE_DURATION)
 		if _card_bounce_age>=CARD_BOUNCE_DURATION: _card_bounce_age = -1.0
@@ -375,6 +394,54 @@ func update(delta: float) -> bool:
 		if tap_feedback[node] >= TAP_DURATION: tap_feedback.erase(node)
 	if changed: _request_redraw()
 	return changed
+
+func signature_highlight_visible() -> bool:
+	if g.mode != "shop" or not twin_control_visible(): return false
+	var viewport = visual_area()
+	var top = maxf(viewport.position.y,128.0)
+	var bottom = minf(viewport.end.y,card_rect().position.y if has_selection() else TREATS_RECT.position.y)
+	var exposed = Rect2(viewport.position.x,top,viewport.size.x,maxf(0.0,bottom-top))
+	return exposed.intersects(node_rect(TWIN_NODE.x,TWIN_NODE.y,false))
+
+func _update_signature_pulse(delta: float) -> bool:
+	var visible = signature_highlight_visible()
+	var animated = visible and not g.reduced_motion and not g.audio_application_paused and not g.audio_focus_lost
+	var changed = visible != _signature_visible or animated != _signature_animated
+	_signature_visible = visible
+	_signature_animated = animated
+	if animated and is_finite(delta) and delta > 0:
+		_signature_pulse_age = fposmod(_signature_pulse_age+delta,SIGNATURE_PULSE_DURATION)
+		changed = true
+	return changed
+
+func signature_highlight() -> Dictionary:
+	var base = node_rect(TWIN_NODE.x,TWIN_NODE.y,false)
+	var cycle = fposmod(_signature_pulse_age,SIGNATURE_PULSE_DURATION)/SIGNATURE_PULSE_DURATION
+	var leg = cycle*2.0 if cycle <= .5 else (1.0-cycle)*2.0
+	var blend = .35 if g.reduced_motion else leg*leg*(3.0-2.0*leg)
+	var scale = lerpf(1.10,1.30,blend)
+	var half = base.size.x*scale*.5
+	# Preserve neighboring tiles at the compact overview as well as full detail.
+	for node in visible_nodes():
+		if node == TWIN_NODE: continue
+		var other = node_rect(node.x,node.y,false)
+		var distance = (base.get_center()-other.get_center()).abs()-other.size*.5
+		half = minf(half,maxf(base.size.x*.5,maxf(distance.x,distance.y)-2.0))
+	var rect = Rect2(base.get_center()-Vector2.ONE*half,Vector2.ONE*half*2.0)
+	return {"visible":signature_highlight_visible(),"rect":rect,"base":base,"blend":blend,
+		"opacity":lerpf(.55,.9,blend)*(.5 if special_owned() else 1.0)}
+
+func _draw_signature_highlight(canvas: CanvasItem):
+	var highlight = signature_highlight()
+	if not highlight.visible: return
+	# Only this backdrop changes size. The node, price, card and hit target stay put.
+	for layer in range(5):
+		var t = float(layer)/4.0
+		var size: Vector2 = highlight.rect.size.lerp(highlight.base.size+Vector2.ONE*2.0,t)
+		var rect = Rect2(highlight.base.get_center()-size*.5,size)
+		_box(canvas,rect,Color(Color("efc15a"),highlight.opacity*lerpf(.08,.26,t)),Color.TRANSPARENT,0,maxi(6,int(size.x*.18)))
+	var rim: Rect2 = highlight.rect.grow(-1.0)
+	_box(canvas,rim,Color.TRANSPARENT,Color(Color("c28b32"),highlight.opacity*.75),2,maxi(6,int(rim.size.x*.18)))
 
 func _cancel_camera():
 	_camera_active = false
@@ -517,7 +584,7 @@ func overlay_at(p: Vector2) -> bool:
 	if TREATS_RECT.has_point(p) or PLAY_RECT.has_point(p): return true
 	if has_selection() and card_rect().has_point(p): return true
 	if g.diagnostics_on and Rect2(24,1175,672,84).has_point(p): return true
-	return g.note_time > 0 and Rect2(24,1190,672,60).has_point(p)
+	return false
 
 func map_input_at(p: Vector2) -> bool:
 	return visual_area().has_point(p) and not overlay_at(p)
@@ -864,7 +931,7 @@ func _draw_more_jam_card():
 func _twin_effect_lines() -> Array[String]:
 	if g.area_id=="bakery": return g.ability_ui.effects()
 	if g.area_id=="crystal": return ["Two prisms can appear each run.","Tap a prism to double live balls."]
-	return ["Two slower launchers. Power starts over.","Power costs more and grows stronger."]
+	return ["Two slower launchers. Power resets.","Power costs more and grows stronger."]
 
 func _twin_gate_text() -> String:
 	return "" if special_owned() else g.ability_ui.gate_text()
@@ -872,12 +939,14 @@ func _twin_gate_text() -> String:
 func _draw_twin_card():
 	g.draw_set_transform(card_offset(),0,Vector2.ONE)
 	g.ui_panel(TWIN_CARD_RECT)
-	_draw_twin_icon(g,Rect2(68,796,64,64),Color.WHITE)
 	_card_label(g.ability_ui.title(),TWIN_TITLE_RECT,27,g.WHITE)
 	var offer=g.ability_access.offer(g.area_id,special_owned())
+	var lines = _twin_effect_lines()
+	for line in range(lines.size()):
+		_card_label(lines[line],TWIN_EFFECT_RECTS[line],21,g.MUTED)
 	if g.ability_ui.card_confirming():
-		_card_label("Test purchase",Rect2(148,840,268,28),21,g.MUTED)
-		_card_label("No charge",Rect2(148,874,268,28),21,g.MUTED)
+		_card_label("Test purchase",Rect2(68,990,164,28),21,g.MUTED)
+		_card_label("No charge",Rect2(240,990,176,28),21,g.MUTED)
 	else:
 		_card_label(_twin_gate_text(),TWIN_STATUS_RECT,21,g.MUTED)
 	if special_owned():
@@ -891,9 +960,6 @@ func _draw_twin_card():
 		_purchase_button(TWIN_PAID_RECT,paid_label,(offer.available or g.ability_ui.can_restore()) and not offer.pending)
 	if not g.ability_ui.message.is_empty() and not special_owned():
 		_card_label(g.ability_ui.message,TWIN_MESSAGE_RECT,19,g.MUTED)
-	var lines = _twin_effect_lines()
-	for line in range(lines.size()):
-		_card_label(lines[line],TWIN_EFFECT_RECTS[line],21,g.MUTED)
 	g.draw_set_transform(Vector2.ZERO,0,Vector2.ONE)
 
 func _effect_text(i: int, _n: int) -> String:
@@ -913,7 +979,9 @@ func _card_label(value: String, rect: Rect2, requested: int, color: Color, cente
 
 func _purchase_button(rect: Rect2, label: String, enabled: bool):
 	g.button(rect,"",enabled)
-	_card_label(label,rect.grow(-24),26,g.WHITE,true)
+	var text_rect=rect.grow_individual(-24,-18,-24,-18) if rect.size.y<86 else rect.grow(-24)
+	text_rect.position+=g.ui_art.text_offset("button_mint" if enabled else "button_cream")
+	_card_label(label,text_rect,26,g.WHITE,true)
 
 func _draw_twin_icon(canvas: CanvasItem, rect: Rect2, tint: Color):
 	if g.area_id=="bakery":
@@ -996,6 +1064,7 @@ func draw_map(canvas: CanvasItem):
 				canvas.draw_polyline(path,Color(ink,opacity),width,true)
 			else:
 				_dashed_trail(canvas,path,Color(ink,.8 if not emphasized else opacity),width)
+	_draw_signature_highlight(canvas)
 	for node in nodes:
 		if not node_in_view(node.x,node.y): continue
 		var state = state_for(node.x,node.y)
@@ -1019,6 +1088,13 @@ func draw_map(canvas: CanvasItem):
 				_box(canvas,rect,Color.TRANSPARENT,Color("3d8673"),ceili(1.5*TILE_SIZE.x/screen_rect.size.x),23)
 		elif node in parents:
 			_box(canvas,rect.grow(2) if detailed else rect,Color.TRANSPARENT,Color("3d8673"),2 if detailed else ceili(TILE_SIZE.x/screen_rect.size.x),30)
+		if shows_selected_price(node,state):
+			# The lower card supplies the selected upgrade's name and effect.
+			# Use its map tile for the required amount, including the signature's
+			# earned price; its card still explains gates and the paid alternative.
+			_label(canvas,"Free" if node==MORE_JAM_NODE else g.credits_text(node_cost(node)),Rect2(-94,-40,188,80),52,Color(Color("513c2c"),alpha))
+			canvas.draw_set_transform(Vector2.ZERO,0,Vector2.ONE)
+			continue
 		var portrait = PORTRAIT_RECT if detailed else Rect2(-80,-84,160,160)
 		if node==MORE_JAM_NODE: g.bakery_ability.draw_icon(canvas,portrait,Color(1,1,1,alpha))
 		elif node==TWIN_NODE: _draw_twin_icon(canvas,portrait,Color(1,1,1,alpha))

@@ -1,10 +1,10 @@
 extends RefCounted
 ## Guided first loop. Owns presentation and teaching state, never the economy.
-const VERSION = 1
+const VERSION = 2
 const SpeechBubble = preload("res://scripts/speech_bubble.gd")
 const HOST_PATH = "res://data/art/host/mabel_welcome.png"
-const SPEED = 60.0
-const STEPS = ["welcome", "play", "aim", "aim_drag", "playing", "earned", "time_pickup", "collect", "upgrades", "retry", "feed", "buy", "improved", "again"]
+const STEPS = ["play", "aim_drag", "playing", "earned", "time_pickup", "collect", "upgrades", "retry", "buy", "again"]
+const LEGACY_STEPS = {"welcome":"play", "aim":"aim_drag", "feed":"buy", "improved":"again"}
 const SKIP_RECT = Rect2(548,132,148,72)
 const BOARD_INPUT = Rect2(48,272,624,512)
 const COLLECT_RECT = Rect2(60,800,600,96)
@@ -16,7 +16,7 @@ const CREAM = Color("fffaf0")
 var g
 var active = false
 var completed = false
-var step_id = "welcome"
+var step_id = "play"
 var earned_seen = false
 var time_pickup_seen = false
 var upgraded_this_intro = false
@@ -25,7 +25,7 @@ var age = 0.0
 var host: Texture2D
 var host_region = Rect2()
 ## Authoring controls, never exposed to players. Size follows the complete message.
-var bubble_options = {"max_width":410.0,"min_width":264.0,"padding":23.0,"radius":30.0}
+var bubble_options = {"max_width":410.0,"min_width":264.0,"padding":23.0,"radius":30.0,"font_size":28,"title_size":27,"hint_size":22,"line_height":35.0}
 var _bubble_cache_key = ""
 var _bubble_cache: Dictionary = {}
 var _primary = -1
@@ -49,7 +49,7 @@ func load_assets():
 func reset():
 	active = false
 	completed = false
-	step_id = "welcome"
+	step_id = "play"
 	earned_seen = false
 	time_pickup_seen = false
 	upgraded_this_intro = false
@@ -68,7 +68,7 @@ func begin(persist: bool = true):
 	time_pickup_seen = false
 	upgraded_this_intro = false
 	g.home_menu.reset()
-	_set_step("welcome",persist)
+	_set_step("play",persist)
 
 func replay():
 	if g.area_id != "bakery" or g.trial_active or g.mode not in ["guide","home"]: return
@@ -82,15 +82,18 @@ func export_state() -> Dictionary:
 func import_state(value, existing_profile: bool):
 	reset()
 	# Profiles created before the guide keep their uninterrupted return experience.
-	if not value is Dictionary or value.get("version",0) != VERSION:
+	# JSON decodes version numbers as floats; numeric equality preserves those saves.
+	if not value is Dictionary or typeof(value.get("version",0)) not in [TYPE_INT,TYPE_FLOAT] or (value.get("version",0) != 1 and value.get("version",0) != VERSION):
 		completed = existing_profile
 		return
-	if typeof(value.get("completed")) != TYPE_BOOL or typeof(value.get("active")) != TYPE_BOOL or value.get("step","") not in STEPS:
+	var saved_step = str(value.get("step",""))
+	saved_step = LEGACY_STEPS.get(saved_step,saved_step)
+	if typeof(value.get("completed")) != TYPE_BOOL or typeof(value.get("active")) != TYPE_BOOL or saved_step not in STEPS:
 		completed = existing_profile
 		return
 	completed = value.completed
 	active = value.active and not completed and g.area_id == "bakery" and not g.trial_active
-	step_id = value.step
+	step_id = saved_step
 	earned_seen = value.get("earned_seen",false) == true
 	time_pickup_seen = typeof(value.get("time_pickup_seen",false)) == TYPE_BOOL and value.get("time_pickup_seen",false)
 	upgraded_this_intro = value.get("upgraded_this_intro",false) == true
@@ -98,20 +101,21 @@ func import_state(value, existing_profile: bool):
 	# The saved gameplay/result is authoritative if the last presentation save was interrupted.
 	if g.mode == "result": step_id = "collect"
 	elif g.mode in ["play","paused"]:
-		if step_id not in ["aim","aim_drag","playing","earned","time_pickup"]: step_id = "playing"
+		if step_id not in ["aim_drag","playing","earned","time_pickup"]: step_id = "playing"
 		if step_id == "time_pickup" and (time_pickup_seen or _live_time_pickup().is_empty() or g.clear_draining): step_id = "playing"
 	elif g.mode == "home":
-		if step_id in ["feed","buy","upgrades","collect","playing","earned","aim","aim_drag","retry","time_pickup"]:
+		if step_id in ["buy","upgrades","collect","playing","earned","aim_drag","retry","time_pickup"]:
 			step_id = "again" if g.levels[0] > 0 else ("upgrades" if g.bank >= g.upgrade_cost(0) else "retry")
-		elif step_id == "improved": step_id = "again"
-	revealed = 0.0
+	if g.mode == "shop" and step_id == "buy": _select_feed()
+	revealed = float(dialogue().length())
 
 func _persist():
 	if not g.testing: g.save_game()
 
 func _set_step(next: String, persist: bool = true):
-	step_id = next
-	revealed = float(dialogue().length()) if g.reduced_motion else 0.0
+	step_id = LEGACY_STEPS.get(next,next)
+	if step_id == "buy" and g.mode == "shop": _select_feed()
+	revealed = float(dialogue().length())
 	age = 0.0
 	cancel_gestures()
 	g.queue_redraw()
@@ -130,7 +134,7 @@ func on_run_started():
 		active = false
 		completed = true
 		cancel_gestures()
-	elif step_id in ["welcome","play"]: _set_step("aim",false)
+	elif step_id == "play": _set_step("aim_drag",false)
 	else: _set_step("playing",false)
 
 func on_result():
@@ -138,12 +142,12 @@ func on_result():
 
 func on_collected():
 	if not active: return
-	_set_step("improved" if g.levels[0] > 0 else ("upgrades" if g.bank >= g.upgrade_cost(0) else "retry"),false)
+	_set_step("again" if g.levels[0] > 0 else ("upgrades" if g.bank >= g.upgrade_cost(0) else "retry"),false)
 
 func on_upgrade_bought(i):
-	if active and i == 0 and step_id in ["feed","buy"]:
+	if active and i == 0 and step_id == "buy":
 		upgraded_this_intro = true
-		_set_step("improved",false)
+		_set_step("again",false)
 
 func _live_time_pickup() -> Dictionary:
 	for pickup in g.pickups:
@@ -175,9 +179,8 @@ func update(delta: float) -> bool:
 	if g.mode in ["paused","abandon_confirm"]: return false
 	if g.run_transition.active: return false
 	age += minf(delta,.1)
-	revealed = minf(float(dialogue().length()),revealed+delta*SPEED)
-	if g.reduced_motion: revealed = float(dialogue().length())
-	if g.mode == "home" and step_id in ["feed","buy"]:
+	revealed = float(dialogue().length())
+	if g.mode == "home" and step_id == "buy":
 		_set_step("again" if g.levels[0] > 0 else ("upgrades" if g.bank >= g.upgrade_cost(0) else "retry"))
 	if step_id == "time_pickup" and (_live_time_pickup().is_empty() or g.clear_draining):
 		_set_step("playing")
@@ -188,35 +191,37 @@ func update(delta: float) -> bool:
 		_set_step("earned")
 	if step_id == "upgrades" and g.mode == "shop":
 		g.upgrade_map.reset_view_state()
-		_set_step("feed")
-	if step_id == "feed" and g.mode == "shop" and g.upgrade_map.selected == 0 and g.upgrade_map.tier == 1: _set_step("buy")
+		_set_step("buy")
 	return true
 
 func blocks_simulation() -> bool:
-	return active and step_id in ["aim","aim_drag","earned","time_pickup"] and g.mode == "play"
+	return active and step_id in ["aim_drag","earned","time_pickup"] and g.mode == "play"
 
 func visible() -> bool:
 	return active and g.mode in ["home","play","result","shop"] and not g.run_transition.active
 
+func _select_feed():
+	g.upgrade_map.selected = 0
+	g.upgrade_map.tier = 1
+
+func uses_mouse_controls() -> bool:
+	return OS.has_feature("windows")
+
 func dialogue() -> String:
 	match step_id:
-		"welcome": return "Hi, I'm Mabel! Let's build a little bakery, one tray at a time."
-		"play": return "Our first tray is ready. Tap Play and I'll show you the recipe."
-		"aim": return "Donuts drop on their own. You steer the dispenser by dragging across the tray."
-		"aim_drag": return "Give it a try! Drag left or right across the tray to start baking."
-		"earned": return "That's money in the making! Cookie hits earn coins. Clear the tray before time runs out. You keep your earnings either way."
-		"time_pickup": return "A time circle! Hover over it for up to 2 extra seconds. On a touchscreen, touch or drag over it. I've paused the tray for you."
-		"collect": return "Every little batch helps. Collect your coins, then put them back into the bakery."
-		"upgrades": return "You've earned your first upgrade! Open Upgrades to improve the dispenser."
-		"retry": return "We need %s more coins for Feed 1. Try another tray — your earnings keep adding up!" % g.credits_needed_text(g.upgrade_cost(0)-g.bank)
-		"feed": return "This is Feed 1. Tap the dispenser recipe to see what it does."
-		"buy": return "More donuts, more chances to earn. Buy Feed 1 for %s coins." % g.credits_text(g.upgrade_cost(0))
-		"improved": return ("Now your dispenser drops faster!" if upgraded_this_intro else "Your dispenser is already upgraded!")+" Earn coins, improve your bakery, and take on the next tray."
-		"again": return "Your bakery is in your hands. Tap Play and try your faster dispenser!"
+		"play": return "Hit cookies to earn coins. Tap Play."
+		"aim_drag": return "Donuts drop automatically. Hold left click and move to aim at cookies." if uses_mouse_controls() else "Donuts drop automatically. Drag to aim at cookies."
+		"earned": return "Hits earn coins. Destroy every cookie to clear the tray before time runs out."
+		"time_pickup": return "Hold left click over the circle for up to 2 extra seconds." if uses_mouse_controls() else "Touch the circle for up to 2 extra seconds."
+		"collect": return "Collect your coins, even if the tray isn't clear."
+		"upgrades": return "Tap Upgrades to make the dispenser faster."
+		"retry": return "Earn %s more coins for Feed 1. Tap Play." % g.credits_needed_text(g.upgrade_cost(0)-g.bank)
+		"buy": return "Buy Feed 1 for %s coins. It drops donuts faster." % g.credits_text(g.upgrade_cost(0))
+		"again": return "Your dispenser drops faster. Tap Play."
 	return ""
 
 func _dialogue_step() -> bool:
-	return step_id in ["welcome","aim","earned","improved"]
+	return step_id == "earned"
 
 func _ready_text() -> bool:
 	return revealed >= dialogue().length()
@@ -224,38 +229,30 @@ func _ready_text() -> bool:
 func advance():
 	if not active: return
 	g.feedback("ui_tap")
-	if not _ready_text():
+	# A tap advances immediately, even if an older caller supplied partial text.
+	if step_id == "earned": _set_step("playing")
+	else:
 		revealed = float(dialogue().length())
 		g.queue_redraw()
-		return
-	match step_id:
-		"welcome": _set_step("play")
-		"aim": _set_step("aim_drag")
-		"earned": _set_step("playing")
-		"improved": _set_step("again")
 
 func bubble_layout() -> Dictionary:
 	var key = dialogue()+step_id+JSON.stringify(bubble_options)
 	if key != _bubble_cache_key:
 		_bubble_cache_key = key
-		var hint = _ready_hint()
-		var hint_size = int(bubble_options.get("hint_size",20))
-		if g.font.get_string_size("Tap anywhere to reveal",HORIZONTAL_ALIGNMENT_LEFT,-1,hint_size).x > g.font.get_string_size(hint,HORIZONTAL_ALIGNMENT_LEFT,-1,hint_size).x:
-			hint = "Tap anywhere to reveal"
-		_bubble_cache = SpeechBubble.measure(g.font,g.display_font,dialogue(),"Mabel",hint,bubble_options)
+		_bubble_cache = SpeechBubble.measure(g.font,g.display_font,dialogue(),"Mabel",_ready_hint(),bubble_options)
 	return _bubble_cache
 
 func _ready_hint() -> String:
 	if _dialogue_step(): return "Tap anywhere to continue  ›"
-	if step_id == "aim_drag": return "Drag across the tray"
-	if step_id == "time_pickup": return "Hover or touch the circle"
+	if step_id == "aim_drag": return "Hold left click and move" if uses_mouse_controls() else "Drag across the tray"
+	if step_id == "time_pickup": return "Hold left click over the circle" if uses_mouse_controls() else "Touch or drag over the circle"
 	return "Try the highlighted action"
 
 func portrait_rect() -> Rect2:
 	var top = 586.0
 	if step_id == "collect": top = 382.0
-	elif step_id in ["feed","buy","improved","again"] and g.mode == "shop": top = 242.0
-	elif step_id in ["aim","aim_drag","earned","time_pickup"]: top = 828.0
+	elif step_id in ["buy","again"] and g.mode == "shop": top = 242.0
+	elif step_id in ["aim_drag","earned","time_pickup"]: top = 828.0
 	var slot = Rect2(4,top,220,330)
 	if host_region.size.x <= 0 or host_region.size.y <= 0: return slot
 	var fit = minf(slot.size.x/host_region.size.x,slot.size.y/host_region.size.y)
@@ -280,7 +277,6 @@ func action_rect() -> Rect2:
 			return Rect2(center-Vector2.ONE*45*g.BOARD_SCALE,Vector2.ONE*90*g.BOARD_SCALE)
 		"collect": return COLLECT_RECT
 		"upgrades": return g.home_menu.UPGRADES_RECT
-		"feed": return g.upgrade_map.node_rect(0,1,false)
 		"buy": return g.upgrade_map.buy_rect()
 		"again": return g.upgrade_map.PLAY_RECT if g.mode == "shop" else g.home_menu.PLAY_RECT
 	return Rect2()
@@ -312,7 +308,8 @@ func handle_input(event) -> bool:
 		return false
 	if event is InputEventMouseButton: return step_id != "playing"
 	if event is InputEventMouseMotion:
-		if step_id == "time_pickup":
+		# Windows mouse presses and drags arrive as emulated touch events.
+		if step_id == "time_pickup" and not OS.has_feature("windows"):
 			_collect_time_pickup(g.to_local(event.position))
 			return true
 		return step_id != "playing"
@@ -369,22 +366,17 @@ func _activate(target: String, p: Vector2):
 	if target == "pause": g.handle_press(p); return
 	if target == "dialogue": advance(); return
 	if target != "action": return
-	if not _ready_text(): advance(); return
 	if step_id == "aim_drag": return
 	if step_id == "time_pickup":
 		_collect_time_pickup(p)
 		return
-	if step_id == "feed":
-		g.upgrade_map.select_at(p)
-		if g.upgrade_map.selected == 0: _set_step("buy")
-	else:
-		g.handle_press(p)
-		if step_id == "upgrades" and g.mode == "shop":
-			g.upgrade_map.reset_view_state()
-			_set_step("feed")
+	g.handle_press(p)
+	if step_id == "upgrades" and g.mode == "shop":
+		g.upgrade_map.reset_view_state()
+		_set_step("buy")
 
 func _focus() -> Vector3:
-	if step_id in ["aim","aim_drag"]: return Vector3(360,280,150) if step_id == "aim" else Vector3(360,520,230)
+	if step_id == "aim_drag": return Vector3(360,520,230)
 	if step_id == "earned": return Vector3(298,70,118)
 	if step_id == "time_pickup":
 		var center: Vector2 = g.board_to_screen(time_pickup_position())
@@ -418,17 +410,15 @@ func _draw_spotlight():
 		g.draw_style_box(style,rect.grow(5))
 
 func _draw_magnifier():
-	if step_id not in ["aim","earned"]: return
-	var center = Vector2(578,470) if step_id == "aim" else Vector2(560,285)
-	var from = Vector2(396,235) if step_id == "aim" else Vector2(340,95)
+	if step_id != "earned": return
+	var center = Vector2(560,285)
+	var from = Vector2(340,95)
 	g.draw_line(from,center,Color("f4d79e"),3,true)
 	g.draw_circle(center,88,CREAM)
 	g.draw_arc(center,88,0,TAU,60,Color("b8753d"),4,true)
-	if step_id == "aim": g.food_art.draw_centered(g,"hopper",center,Vector2(144,144))
-	else:
-		g.ui_art.draw(g,"coin",Rect2(center-Vector2(62,55),Vector2(72,72)))
-		g.fitted_number(g.credits_text(g.shift_coins),Rect2(center+Vector2(6,-44),Vector2(65,64)),40,g.GOLD,true)
-		g.fitted_text("earned",Rect2(center+Vector2(-62,30),Vector2(124,28)),22,INK,true)
+	g.ui_art.draw(g,"coin",Rect2(center-Vector2(62,55),Vector2(72,72)))
+	g.fitted_number(g.credits_text(g.shift_coins),Rect2(center+Vector2(6,-44),Vector2(65,64)),40,g.GOLD,true)
+	g.fitted_text("earned",Rect2(center+Vector2(-62,30),Vector2(124,28)),22,INK,true)
 
 func _wrapped_lines(value: String, max_width: float, size: int) -> Array[String]:
 	return SpeechBubble.wrap_text(g.font,value,max_width,size)
@@ -438,7 +428,7 @@ func _draw_bubble():
 	var portrait = portrait_rect()
 	if host != null and host_region.size.x > 0 and host_region.size.y > 0:
 		g.draw_texture_rect_region(host,portrait,host_region)
-	var prompt = "Tap anywhere to reveal" if not _ready_text() else _ready_hint()
+	var prompt = _ready_hint()
 	var progress = 1.0 if g.reduced_motion else 1.0-pow(1.0-clampf(age/.22,0,1),3)
 	SpeechBubble.draw(g,bubble_layout(),rect,bubble_anchor(),int(revealed),prompt,progress)
 

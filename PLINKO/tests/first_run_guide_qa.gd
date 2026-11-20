@@ -5,6 +5,12 @@ var passed = 0
 var failures: Array[String] = []
 var g
 
+class TouchGuide extends "res://scripts/first_run_guide.gd":
+	func uses_mouse_controls() -> bool: return false
+
+class MouseGuide extends "res://scripts/first_run_guide.gd":
+	func uses_mouse_controls() -> bool: return true
+
 class GuideGame extends "res://scripts/main.gd":
 	var save_attempts = 0
 	var read_attempts = 0
@@ -94,112 +100,114 @@ func eligibility_and_dialogue():
 	check(g.first_run_guide.completed and not g.first_run_guide.active,"Legacy profiles do not unexpectedly enter the introduction")
 	g.first_run_guide.import_state(null,false)
 	g.first_run_guide.maybe_begin()
-	check(g.first_run_guide.active and g.first_run_guide.step_id == "welcome","A new profile starts with Mabel's welcome")
-	var bubble: Vector2 = g.first_run_guide.bubble_rect().get_center()
-	touch(bubble,true)
-	check(g.first_run_guide.step_id == "welcome" and g.first_run_guide.revealed == 0,"Dialogue does not advance on touch-down")
-	touch(bubble,false)
-	check(g.first_run_guide.step_id == "welcome" and g.first_run_guide._ready_text(),"First tap reveals the entire current line")
-	tap(bubble)
-	check(g.first_run_guide.step_id == "play" and g.mode == "home","Second tap advances to the real Play action")
-	g.first_run_guide._set_step("welcome",false)
-	g.first_run_guide.update(.2)
-	check(g.first_run_guide.revealed > 0 and g.first_run_guide.revealed < g.first_run_guide.dialogue().length(),"Fast typewriter advances without automatically dismissing dialogue")
+	check(g.first_run_guide.active and g.first_run_guide.step_id == "play","A new profile starts directly at Play")
+	check(g.first_run_guide._ready_text(),"Short instructions appear in full without a reveal tap")
+	var layout = g.first_run_guide.bubble_layout()
+	check(layout.font_size == 28 and layout.title_size == 27 and layout.hint_size == 22,"Body, name and hint type each increase by two units")
+	check(g.first_run_guide.STEPS.size() == 10,"The guide has ten states instead of fourteen")
+	var point: Vector2 = g.home_menu.PLAY_RECT.get_center()
+	touch(point,true)
+	check(g.mode == "home","The first highlighted action still waits for touch release")
+	touch(point,false)
+	check(g.mode == "play" and g.first_run_guide.step_id == "aim_drag","The first Play tap opens the real steering lesson")
 	g.profile_load_blocked = true
 	g.first_run_guide.reset()
 	g.first_run_guide.maybe_begin()
 	check(not g.first_run_guide.active,"A profile recovery block cannot start an introduction")
 
+func platform_copy():
+	fresh()
+	var touch_guide = TouchGuide.new(g)
+	var mouse_guide = MouseGuide.new(g)
+	for id in g.first_run_guide.STEPS:
+		touch_guide._set_step(id,false)
+		mouse_guide._set_step(id,false)
+		check(not touch_guide.dialogue().contains("click") and not touch_guide._ready_hint().contains("click"),"Touch instruction %s does not ask for a mouse click" % id)
+		check(touch_guide.dialogue().split(" ",false).size() <= (14 if id=="earned" else 13) and mouse_guide.dialogue().split(" ",false).size() <= 14,"Instruction %s stays concise on touch and mouse" % id)
+	touch_guide._set_step("aim_drag",false)
+	mouse_guide._set_step("aim_drag",false)
+	check(touch_guide.dialogue().contains("Drag to aim at cookies") and mouse_guide.dialogue().contains("Hold left click"),"Steering copy names the actual input for each platform")
+	touch_guide._set_step("time_pickup",false)
+	mouse_guide._set_step("time_pickup",false)
+	check(touch_guide.dialogue().begins_with("Touch the circle") and mouse_guide.dialogue().begins_with("Hold left click"),"Pickup copy names touch and held mouse collection")
+
 func gesture_guards():
 	fresh()
-	g.first_run_guide.begin()
+	g.start_shift()
+	g.first_run_guide.active = true
+	g.first_run_guide._set_step("earned",false)
+	g.navigation_delay = 0
 	reveal()
 	var p: Vector2 = g.first_run_guide.bubble_rect().get_center()
 	touch(p,true)
 	touch(p,false,0,true)
-	check(g.first_run_guide.step_id == "welcome","Canceled touches do not advance dialogue")
+	check(g.first_run_guide.step_id == "earned","Canceled touches do not advance dialogue")
 	touch(p,true)
 	drag(p+Vector2(50,0))
 	touch(p+Vector2(50,0),false)
-	check(g.first_run_guide.step_id == "welcome","Dragging over the bubble does not become a tap")
+	check(g.first_run_guide.step_id == "earned","Dragging over the bubble does not become a tap")
 	touch(p,true,4)
 	touch(p+Vector2(20,0),true,8)
 	touch(p+Vector2(20,0),false,8)
 	touch(p,false,4)
-	check(g.first_run_guide.step_id == "welcome","A second finger cancels pending dialogue activation")
+	check(g.first_run_guide.step_id == "earned","A second finger cancels pending dialogue activation")
 	tap(Vector2(40,50))
-	check(g.first_run_guide.step_id == "play" and g.mode == "home","A background tap advances the instruction without activating the Home control beneath it")
+	check(g.first_run_guide.step_id == "playing" and g.mode == "play","A fresh background tap dismisses one earnings instruction")
 
 func tap_anywhere_dialogue():
 	fresh()
 	g.scale = Vector2(.625,.625)
 	g.position = Vector2(24,18)
-	var points = [Vector2(40,50),Vector2(680,1200),Vector2(48,700),g.home_menu.PLAY_RECT.get_center()]
-	for point in points:
-		g.first_run_guide.begin()
-		touch(point,true)
-		check(g.first_run_guide.step_id == "welcome" and g.first_run_guide.revealed == 0 and g.mode == "home","Anywhere touch-down waits for a stable release at %s" % point)
-		touch(point,false)
-		check(g.first_run_guide.step_id == "welcome" and g.first_run_guide._ready_text(),"First background tap reveals the line at transformed canvas point %s" % point)
-		tap(point)
-		check(g.first_run_guide.step_id == "play" and g.mode == "home" and g.run_id.is_empty() and g.run_serial == 0 and g.bank == 0,"Second background tap continues without dispatching underlying Home actions at %s" % point)
-	# The Play control under the previous dialogue tap requires its own fresh gesture.
-	action()
-	check(g.mode == "play" and g.first_run_guide.step_id == "aim","A later deliberate Play tap still launches the real lesson")
-
-	fresh()
-	begin_first_run()
-	var before = sim_state()
-	var background = Vector2(40,50)
-	tap(background)
-	check(g.first_run_guide.step_id == "aim" and g.first_run_guide._ready_text(),"A tap outside the bubble reveals the aiming explanation")
-	tap(background)
-	check(g.first_run_guide.step_id == "aim_drag" and sim_state() == before,"Continuing the aiming explanation anywhere retains the required drag and frozen run")
-	g.first_run_guide._set_step("earned",false)
-	tap(background)
-	check(g.first_run_guide.step_id == "earned" and g.first_run_guide._ready_text(),"First background tap reveals the earnings explanation")
-	tap(background)
-	check(g.first_run_guide.step_id == "playing" and sim_state() == before,"Second earnings tap returns to gameplay without advancing simulation or changing the award")
-
-	fresh()
-	g.mode = "shop"
-	g.levels[0] = 1
+	g.start_shift()
 	g.first_run_guide.active = true
-	g.first_run_guide._set_step("improved",false)
-	var play: Vector2 = g.upgrade_map.PLAY_RECT.get_center()
-	tap(play)
-	check(g.first_run_guide.step_id == "improved" and g.first_run_guide._ready_text() and g.mode == "shop","Tap over map Play first reveals the upgrade feedback")
-	tap(play)
-	check(g.first_run_guide.step_id == "again" and g.mode == "shop" and g.run_serial == 0,"Continuing upgrade feedback does not click through to the newly highlighted Play button")
+	var points = [Vector2(40,50),Vector2(680,1200),Vector2(48,700),Vector2(350,500)]
+	for point in points:
+		g.first_run_guide._set_step("earned",false)
+		g.first_run_guide.revealed = 0
+		g.navigation_delay = 0
+		var before = sim_state()
+		touch(point,true)
+		check(g.first_run_guide.step_id == "earned","Anywhere touch-down waits for stable release at %s" % point)
+		touch(point,false)
+		check(g.first_run_guide.step_id == "playing" and sim_state() == before,"One tap advances even partially revealed earnings without changing gameplay at %s" % point)
+	fresh()
+	g.first_run_guide.begin()
+	tap(Vector2(40,50))
+	check(g.mode == "home" and g.first_run_guide.step_id == "play" and g.run_serial == 0,"Background taps retain a real Play action rather than claiming the tray started")
+	action()
+	check(g.mode == "play" and g.first_run_guide.step_id == "aim_drag","One highlighted Play tap launches the real lesson")
 
 func background_gesture_guards():
 	fresh()
-	g.first_run_guide.begin()
+	g.start_shift()
+	g.first_run_guide.active = true
+	g.first_run_guide._set_step("earned",false)
+	g.navigation_delay = 0
 	reveal()
 	var p = Vector2(40,50)
 	touch(p,true)
 	drag(p+Vector2(30,0))
 	drag(p)
 	touch(p,false)
-	check(g.first_run_guide.step_id == "welcome","Dragging outside the bubble and returning to the start never becomes a dialogue tap")
+	check(g.first_run_guide.step_id == "earned","Dragging outside the bubble and returning to the start never becomes a dialogue tap")
 	touch(p,true)
 	touch(p,false,0,true)
-	check(g.first_run_guide.step_id == "welcome","Canceled background releases cannot continue dialogue")
+	check(g.first_run_guide.step_id == "earned","Canceled background releases cannot continue dialogue")
 	touch(p,true,4)
 	touch(p+Vector2(20,0),true,8)
 	touch(p+Vector2(20,0),false,8)
 	touch(p,false,4)
-	check(g.first_run_guide.step_id == "welcome","Multiple background touches cancel dialogue even when both release inside the canvas")
+	check(g.first_run_guide.step_id == "earned","Multiple background touches cancel dialogue even when both release inside the canvas")
 	touch(p,true)
 	g.navigation_delay = .25
 	touch(p,false)
-	check(g.first_run_guide.step_id == "welcome","A navigation guard that starts before release prevents background activation")
+	check(g.first_run_guide.step_id == "earned","A navigation guard that starts before release prevents background activation")
 	g.navigation_delay = 0
 	touch(p,true,0,true)
 	touch(p,false)
-	check(g.first_run_guide.step_id == "welcome","A canceled background press cannot become a valid release")
+	check(g.first_run_guide.step_id == "earned","A canceled background press cannot become a valid release")
 	tap(p)
-	check(g.first_run_guide.step_id == "play","A fresh stable background tap succeeds after canceled gestures")
+	check(g.first_run_guide.step_id == "playing","A fresh stable background tap dismisses earnings after canceled gestures")
 
 func action_lessons_require_actions():
 	fresh()
@@ -227,7 +235,7 @@ func action_lessons_require_actions():
 	check(g.first_run_guide.step_id == "buy" and g.mode == "shop" and g.bank == 100 and g.levels[0] == 0 and g.run_serial == 0,"Background taps in the Buy lesson neither purchase equipment nor start a run")
 	var price: int = g.upgrade_cost(0)
 	action()
-	check(g.first_run_guide.step_id == "improved" and g.levels[0] == 1 and g.bank == 100-price,"The highlighted Buy action still performs one real purchase")
+	check(g.first_run_guide.step_id == "again" and g.levels[0] == 1 and g.bank == 100-price,"The highlighted Buy action still performs one real purchase")
 
 	fresh()
 	g.start_shift()
@@ -246,7 +254,7 @@ func explicit_controls_keep_priority():
 	begin_first_run()
 	g.first_run_guide.revealed = 0
 	tap(g.first_run_guide.PAUSE_RECT.get_center())
-	check(g.mode == "paused" and g.first_run_guide.step_id == "aim" and g.first_run_guide.revealed == 0,"Pause retains priority over anywhere dialogue and leaves its text untouched")
+	check(g.mode == "paused" and g.first_run_guide.step_id == "aim_drag" and g.first_run_guide.revealed == 0,"Pause retains priority over anywhere dialogue and leaves its text untouched")
 	g.navigation_delay = 0
 	g.go_back()
 	g._process(.3)
@@ -258,13 +266,13 @@ func freeze_and_aim():
 	g.testing = false
 	g.monetization.active_seconds = 17
 	begin_first_run()
-	check(g.mode == "play" and not g.run_transition.active and g.first_run_guide.step_id == "aim","Actual Home Play settles at the frozen aim lesson")
+	check(g.mode == "play" and not g.run_transition.active and g.first_run_guide.step_id == "aim_drag","Actual Home Play settles at the frozen steering lesson")
 	var state = sim_state()
 	var saves: int = g.save_attempts
 	g.step(.5)
 	g._physics_process(.5)
 	g._process(.5)
-	check(sim_state() == state,"Aim explanation freezes timer, RNG, spawns, earnings, checkpoint and ad clocks")
+	check(sim_state() == state,"Steering lesson freezes timer, RNG, spawns, earnings, checkpoint and ad clocks")
 	check(g.save_attempts == saves,"Reading a lesson does not create timed checkpoints")
 	reveal()
 	g.first_run_guide.advance()
@@ -316,7 +324,7 @@ func complete_attempt():
 			reveal()
 			g.first_run_guide.advance()
 		elif g.first_run_guide.step_id == "time_pickup":
-			hover(g.board_to_screen(g.first_run_guide.time_pickup_position()))
+			tap(g.board_to_screen(g.first_run_guide.time_pickup_position()))
 		g.step(1.0/60.0)
 		g._process(1.0/60.0)
 
@@ -346,14 +354,13 @@ func real_loop():
 			continue
 		check(g.first_run_guide.step_id == "upgrades","Sufficient earnings lead to Upgrades")
 		action()
-		check(g.mode == "shop" and g.first_run_guide.step_id in ["feed","buy"],"The normal upgrade map opens with its first recipe highlighted")
-		if g.first_run_guide.step_id == "feed": action()
-		check(g.first_run_guide.step_id == "buy","Selecting Feed 1 exposes its real purchase action")
+		check(g.mode == "shop" and g.first_run_guide.step_id == "buy","The normal map opens with Feed 1 selected for purchase")
+		check(g.first_run_guide.step_id == "buy","Feed 1 is selected without a separate selection lesson")
 		before = g.bank
 		var price: int = g.upgrade_cost(0)
 		action()
 		check(g.levels[0] == 1 and is_equal_approx(g.bank,g.round_credits(before-price)),"Tutorial purchase spends the real Feed 1 price exactly once")
-		check(g.first_run_guide.step_id == "improved","A successful real purchase triggers the improved-dispenser lesson")
+		check(g.first_run_guide.step_id == "again","A successful purchase leads directly to Play again")
 		reveal()
 		g.first_run_guide.advance()
 		action()
@@ -383,7 +390,7 @@ func persistence_skip_and_replay():
 	g.first_run_guide.replay()
 	check(g.mode == "home" and g.first_run_guide.active and g.bank == 12.5 and g.levels[0] == 3,"Replay keeps existing coins and upgrades")
 	g.first_run_guide.on_collected()
-	check(g.first_run_guide.step_id == "improved","Replay recognizes an already-owned feeder without demanding another purchase")
+	check(g.first_run_guide.step_id == "again","Replay recognizes an already-owned feeder without demanding another purchase")
 	var unfinished = {"version":1,"active":true,"completed":false,"step":"buy","earned_seen":true}
 	g.mode = "result"
 	g.first_run_guide.import_state(unfinished,true)
@@ -398,13 +405,34 @@ func persistence_skip_and_replay():
 	g.first_run_guide.import_state({"version":1,"active":"yes","completed":false,"step":"buy"},true)
 	check(not g.first_run_guide.active,"Malformed guide metadata cannot capture returning-player input")
 
+func legacy_step_migration():
+	fresh()
+	g.first_run_guide.begin()
+	var saved = JSON.parse_string(JSON.stringify(g.first_run_guide.export_state()))
+	fresh()
+	g.first_run_guide.import_state(saved,true)
+	check(g.first_run_guide.active and not g.first_run_guide.completed and g.first_run_guide.step_id == "play","An active current guide survives JSON-number round-trip for a returning player")
+	for prior in ["welcome","aim","feed","improved"]:
+		fresh()
+		g.mode = "paused" if prior == "aim" else ("shop" if prior == "feed" else "home")
+		g.bank = 100
+		g.first_run_guide.import_state(JSON.parse_string(JSON.stringify({"version":1,"active":true,"completed":false,"step":prior,"earned_seen":true})),true)
+		var expected = {"welcome":"play","aim":"aim_drag","feed":"buy","improved":"again"}[prior]
+		check(g.first_run_guide.active and g.first_run_guide.step_id == expected and g.first_run_guide._ready_text(),"Legacy %s resumes at %s with readable text" % [prior,expected])
+		check(g.first_run_guide.export_state().version == 2,"Migrated state exports the current guide version")
+		if prior == "feed":
+			check(g.upgrade_map.selected == 0 and g.upgrade_map.tier == 1,"A saved Feed-selection lesson resumes with the actual purchase ready")
+	fresh()
+	g.first_run_guide.import_state({"version":1,"active":false,"completed":true,"step":"welcome"},true)
+	check(g.first_run_guide.completed and not g.first_run_guide.active,"A completed old guide remains completed")
+
 func lifecycle_and_reduced_motion():
 	fresh()
 	g.testing = false
 	begin_first_run()
 	var unchanged = sim_state()
 	g._notification(Node.NOTIFICATION_WM_WINDOW_FOCUS_OUT)
-	check(g.mode == "paused" and g.first_run_guide.step_id == "aim","Focus loss pauses the run while retaining the lesson")
+	check(g.mode == "paused" and g.first_run_guide.step_id == "aim_drag","Focus loss pauses the run while retaining the lesson")
 	g._process(2)
 	g._physics_process(2)
 	check(sim_state() == unchanged,"Backgrounding a lesson does not consume the run")
@@ -461,7 +489,7 @@ func stage_time_pickup():
 	g.step(.02)
 	g.navigation_delay = 0
 
-func time_pickup_freeze_and_hover():
+func time_pickup_freeze_and_input():
 	stage_time_pickup()
 	var guide = g.first_run_guide
 	check(guide.step_id == "time_pickup" and guide.blocks_simulation() and g.pickups.size() == 1,"The first real time-pickup spawn opens its mandatory collection lesson")
@@ -491,7 +519,10 @@ func time_pickup_freeze_and_hover():
 	g.position = Vector2(24,18)
 	guide.revealed = 0.0
 	hover(g.board_to_screen(center))
-	check(guide.step_id == "playing" and guide.time_pickup_seen and not guide.blocks_simulation(),"A no-button mouse hover collects the real pickup through board, scale and offset transforms")
+	if OS.has_feature("windows"):
+		check(guide.step_id == "time_pickup" and g.remaining == before,"Windows hover cannot collect the tutorial pickup")
+		tap(g.board_to_screen(center))
+	check(guide.step_id == "playing" and guide.time_pickup_seen and not guide.blocks_simulation(),"Pickup collection respects board, scale and offset transforms")
 	check(is_equal_approx(g.remaining,before+2.0) and is_equal_approx(g.time_bonus,bonus+2.0) and g.pickups[0].life == 0,"Collection grants exactly the normal two-second pickup effect")
 	check(g.saved_guide.get("time_pickup_seen",false) == true,"Successful pickup collection persists the completed lesson")
 	hover(g.board_to_screen(center)); tap(g.board_to_screen(center))
@@ -557,7 +588,7 @@ func time_pickup_persistence_and_reset():
 	g.navigation_delay = 0; g.go_back()
 	check(g.mode == "play" and g.first_run_guide.blocks_simulation(),"Resume returns to the live target's instruction before the timer can continue")
 	g._process(.3)
-	hover(g.board_to_screen(point))
+	tap(g.board_to_screen(point))
 	var completed: Dictionary = g.first_run_guide.export_state().duplicate(true)
 	check(completed.get("time_pickup_seen",false) == true and completed.step == "playing","Resumed collection records the lesson as complete")
 	var collected_snapshot: Dictionary = JSON.parse_string(JSON.stringify(g.RunSnapshot.capture(g)))
@@ -568,7 +599,7 @@ func time_pickup_persistence_and_reset():
 	g.first_run_guide.import_state(completed,true)
 	g.navigation_delay = 0; g.go_back()
 	g._process(.3)
-	hover(g.board_to_screen(point))
+	tap(g.board_to_screen(point))
 	check(is_equal_approx(g.remaining,collected_remaining) and is_equal_approx(g.time_bonus,collected_bonus) and g.first_run_guide.time_pickup_seen and g.first_run_guide.step_id == "playing","Restoring the spent pickup preserves its added time and cannot award a second collection")
 	g.pickups = [{"p":point,"life":4.0}]
 	check(not g.first_run_guide.on_time_pickup_spawned(),"A completed pickup lesson remains completed after metadata import")
@@ -585,7 +616,7 @@ func time_pickup_persistence_and_reset():
 	g.mode = "guide"; g.bank = 12.5; g.levels[0] = 2
 	g.first_run_guide.time_pickup_seen = true
 	g.first_run_guide.replay()
-	check(not g.first_run_guide.time_pickup_seen and g.first_run_guide.step_id == "welcome" and g.bank == 12.5 and g.levels[0] == 2,"Help replay teaches the pickup again while preserving progression")
+	check(not g.first_run_guide.time_pickup_seen and g.first_run_guide.step_id == "play" and g.bank == 12.5 and g.levels[0] == 2,"Help replay teaches the pickup again while preserving progression")
 	g.first_run_guide.time_pickup_seen = true
 	g.reset_profile_runtime()
 	check(not g.first_run_guide.time_pickup_seen,"Progress reset clears the pickup lesson alongside the other introduction state")
@@ -604,7 +635,7 @@ func purchase_save_transaction():
 	g.testing=false
 	var price=g.upgrade_cost(0)
 	check(g.buy_upgrade_node(0,1) and g.levels[0]==1 and g.bank==100-price,"Bakery tutorial purchase commits its real upgrade and wallet together")
-	check(g.save_attempts==1 and g.saved_guide.step=="improved" and g.saved_guide.upgraded_this_intro,"The purchase save already contains the advanced onboarding step")
+	check(g.save_attempts==1 and g.saved_guide.step=="again" and g.saved_guide.upgraded_this_intro,"The purchase save already contains the advanced onboarding step")
 	fresh()
 	g.mode="shop"; g.bank=100; g.note="Prior note"; g.note_time=2.5
 	g.first_run_guide.active=true; g.first_run_guide.completed=false
@@ -614,10 +645,11 @@ func purchase_save_transaction():
 	check(not g.buy_upgrade_node(0,1),"A failed tutorial purchase write reports failure")
 	check(g.levels[0]==0 and g.bank==100 and g.equipped.is_empty() and g.first_run_guide.export_state()==guide_before and g.note=="Prior note" and g.note_time==2.5,"Failed tutorial purchase restores wallet, build, onboarding and existing feedback")
 	g.fail_save=false
-	check(g.buy_upgrade_node(0,1) and g.levels[0]==1 and g.bank==100-price and g.saved_guide.step=="improved","A deliberate retry buys once and persists the recovered onboarding step")
+	check(g.buy_upgrade_node(0,1) and g.levels[0]==1 and g.bank==100-price and g.saved_guide.step=="again","A deliberate retry buys once and persists the recovered onboarding step")
 
 func _initialize():
 	eligibility_and_dialogue()
+	platform_copy()
 	gesture_guards()
 	tap_anywhere_dialogue()
 	background_gesture_guards()
@@ -627,9 +659,10 @@ func _initialize():
 	real_loop()
 	persistence_skip_and_replay()
 	purchase_save_transaction()
+	legacy_step_migration()
 	lifecycle_and_reduced_motion()
 	floating_bubble_layout()
-	time_pickup_freeze_and_hover()
+	time_pickup_freeze_and_input()
 	time_pickup_touch_and_cap()
 	time_pickup_persistence_and_reset()
 	if is_instance_valid(g):

@@ -1,0 +1,182 @@
+{
+  "passed": 43,
+  "failed": 0,
+  "checks": [
+    {
+      "check": "Current delivery references match preview0717/RC3",
+      "passed": true
+    },
+    {
+      "check": "All status remaining gates are external or physical acceptance",
+      "passed": true
+    },
+    {
+      "check": "External configuration strings use plain OPEN separator",
+      "passed": true
+    },
+    {
+      "check": "HTTP65 and server29+6 evidence is linked",
+      "passed": true
+    },
+    {
+      "check": "0.7.17-preview legacy APK aliases match exact nested artifact",
+      "passed": true
+    },
+    {
+      "check": "0.7.17-preview delivered while phone/live acceptance remains open",
+      "passed": true
+    },
+    {
+      "check": "0.7.17-preview retains existing signing identity",
+      "passed": true
+    },
+    {
+      "check": "0.7.17-preview apk exact file hash and byte count",
+      "passed": true
+    },
+    {
+      "check": "0.7.17-preview apk eight passing Drive readbacks bind same bytes/hash/identity",
+      "passed": true
+    },
+    {
+      "check": "0.7.17-preview remaining gates no longer claim artifact delivery is pending",
+      "passed": true
+    },
+    {
+      "check": "0.8.0-rc3 legacy APK aliases match exact nested artifact",
+      "passed": true
+    },
+    {
+      "check": "0.8.0-rc3 delivered while phone/live acceptance remains open",
+      "passed": true
+    },
+    {
+      "check": "0.8.0-rc3 retains existing signing identity",
+      "passed": true
+    },
+    {
+      "check": "0.8.0-rc3 apk exact file hash and byte count",
+      "passed": true
+    },
+    {
+      "check": "0.8.0-rc3 apk eight passing Drive readbacks bind same bytes/hash/identity",
+      "passed": true
+    },
+    {
+      "check": "0.8.0-rc3 aab exact file hash and byte count",
+      "passed": true
+    },
+    {
+      "check": "0.8.0-rc3 aab eight passing Drive readbacks bind same bytes/hash/identity",
+      "passed": true
+    },
+    {
+      "check": "0.8.0-rc3 remaining gates no longer claim artifact delivery is pending",
+      "passed": true
+    },
+    {
+      "check": "Preview uses release engine plus developer and stays below 100MiB",
+      "passed": true
+    },
+    {
+      "check": "Public artifacts retain package and feature",
+      "passed": true
+    },
+    {
+      "check": "NATIVE_MONETIZATION_STATUS.json has no broken separator sequence",
+      "passed": true
+    },
+    {
+      "check": "NATIVE_MONETIZATION_STATUS.md has no broken separator sequence",
+      "passed": true
+    },
+    {
+      "check": "ANDROID_SUGARFALL_v0.7.17.json has no broken separator sequence",
+      "passed": true
+    },
+    {
+      "check": "ANDROID_SUGARFALL_v0.7.17.md has no broken separator sequence",
+      "passed": true
+    },
+    {
+      "check": "ANDROID_SUGARFALL_v0.8.0-rc3.json has no broken separator sequence",
+      "passed": true
+    },
+    {
+      "check": "ANDROID_SUGARFALL_v0.8.0-rc3.md has no broken separator sequence",
+      "passed": true
+    },
+    {
+      "check": "README.md has current preview and RC3 references",
+      "passed": true
+    },
+    {
+      "check": "README.md no stale current integration claim",
+      "passed": true
+    },
+    {
+      "check": "PLINKO/README.md has current preview and RC3 references",
+      "passed": true
+    },
+    {
+      "check": "PLINKO/README.md no stale current integration claim",
+      "passed": true
+    },
+    {
+      "check": "PLINKO/BUILD_LINKS.txt has current preview and RC3 references",
+      "passed": true
+    },
+    {
+      "check": "PLINKO/BUILD_LINKS.txt no stale current integration claim",
+      "passed": true
+    },
+    {
+      "check": "AREA_STATUS.md has current preview and RC3 references",
+      "passed": true
+    },
+    {
+      "check": "AREA_STATUS.md no stale current integration claim",
+      "passed": true
+    },
+    {
+      "check": "PLINKO/docs/GOOGLE_PLAY_READINESS.md has current preview and RC3 references",
+      "passed": true
+    },
+    {
+      "check": "PLINKO/docs/GOOGLE_PLAY_READINESS.md no stale current integration claim",
+      "passed": true
+    },
+    {
+      "check": "PLINKO/docs/EXPORT_NOTES.md has current preview and RC3 references",
+      "passed": true
+    },
+    {
+      "check": "PLINKO/docs/EXPORT_NOTES.md no stale current integration claim",
+      "passed": true
+    },
+    {
+      "check": "Current native description has no sharing restriction claim",
+      "passed": true
+    },
+    {
+      "check": "Native workbook structure/styles/control/view preservation",
+      "passed": true
+    },
+    {
+      "check": "Same CHG-051 row saved as Ready to test with unchanged prior states",
+      "passed": true
+    },
+    {
+      "check": "Workbook readback hash matches final file",
+      "passed": true
+    },
+    {
+      "check": "Workbook formula error scan is empty",
+      "passed": true
+    }
+  ],
+  "workbook_sha256": "8a3e613ae4672e18aaf253d4807f16eb77570067df831cac5d3686c9e44eff5e",
+  "source_or_runtime_edits": false,
+  "physical_phone_acceptance": false,
+  "live_billing_or_ad_playback": false
+}

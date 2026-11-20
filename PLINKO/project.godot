@@ -11,19 +11,16 @@ config_version=5
 [application]
 
 config/name="Sugarfall"
-config/description="An original portrait peg-and-ball incremental prototype. Monetization is simulated only."
+config/description="A portrait peg-and-ball game with three areas, upgrades and optional Android ads and purchases."
 run/main_scene="res://startup.tscn"
-boot_splash/image="res://data/art/branding/studio_boot.png"
-boot_splash/show_image=true
-boot_splash/stretch_mode=1
-boot_splash/use_filter=true
-boot_splash/bg_color=Color(0.145, 0.121, 0.145, 1)
-boot_splash/minimum_display_time=0
 config/use_custom_user_dir=true
 config/custom_user_dir_name="Godot/app_userdata/Peg Foundry"
 config/quit_on_go_back=false
 config/features=PackedStringArray("4.6", "GL Compatibility")
+boot_splash/bg_color=Color(0.145, 0.121, 0.145, 1)
+boot_splash/image="res://data/art/branding/studio_boot.png"
 config/icon="res://data/art/branding/sugarfall_icon.png"
+config/windows_native_icon="res://data/art/branding/sugarfall_icon.ico"
 config/custom_user_dir_name.linuxbsd="godot/app_userdata/Peg Foundry"
 
 [display]
@@ -36,6 +33,10 @@ window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 window/handheld/orientation=1
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/admob/plugin.cfg", "res://addons/GodotGooglePlayBilling/plugin.cfg", "res://addons/sugarfall_native_export/plugin.cfg")
+
 [input_devices]
 
 pointing/emulate_touch_from_mouse=true
@@ -45,4 +46,4 @@ pointing/emulate_touch_from_mouse=true
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
 textures/vram_compression/import_etc2_astc=true
-environment/defaults/default_clear_color=Color(0.0862745,0.0705882,0.0823529,1)
+environment/defaults/default_clear_color=Color(0.0862745, 0.0705882, 0.0823529, 1)

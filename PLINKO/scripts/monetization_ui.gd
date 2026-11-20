@@ -1,7 +1,14 @@
 extends RefCounted
-## Local-only commerce screens. Provider outcomes are resolved by main, never by drawing.
+## Native purchase controls and separate local simulation screens.
 var g
+var purchase_message = ""
 
+const NATIVE_BUY = Rect2(80,570,560,88)
+const NATIVE_RESTORE = Rect2(80,686,560,88)
+const NATIVE_BACK = Rect2(80,866,560,88)
+const REMOVE_ADS_NAME = "Remove automatic ads"
+const REMOVE_ADS_DESCRIPTION = "Skip automatic ad breaks."
+const REWARDED_AD_DESCRIPTION = "Optional reward ads stay available."
 const REMOVE_ADS = Rect2(160,330,480,86)
 const TOOLKIT = Rect2(160,588,480,86)
 const RESTORE = Rect2(48,740,624,96)
@@ -23,7 +30,75 @@ const PURCHASE_CANCEL = Rect2(60,882,600,86)
 func _init(game):
 	g=game
 
+func bind_billing():
+	var billing = g.ability_ui.billing
+	if not billing.purchase_result.is_connected(_on_purchase_result):
+		billing.purchase_result.connect(_on_purchase_result)
+	if not billing.restore_finished.is_connected(_on_restore_finished):
+		billing.restore_finished.connect(_on_restore_finished)
+
+func open_purchases():
+	purchase_message=""
+	g.mode="purchases"
+
+func _on_purchase_result(product: String, outcome: String):
+	if g.mode!="purchases" or product!=g.ability_ui.billing.REMOVE_ADS_PRODUCT: return
+	match outcome:
+		"cancelled": purchase_message="Purchase cancelled."
+		"failed", "unavailable": purchase_message="Purchase could not start or finish."
+		"verification_failed": purchase_message="Purchase verification failed. Tap Restore purchases."
+		"revoked": purchase_message="Purchase is no longer active."
+		_: purchase_message=""
+	g.queue_redraw()
+
+func _on_restore_finished(success: bool, _message: String):
+	if g.mode!="purchases": return
+	var billing = g.ability_ui.billing
+	purchase_message="Purchases checked." if success and not billing.has_entitlement(billing.REMOVE_ADS_PRODUCT) else ""
+	g.queue_redraw()
+
+func press_purchases(p: Vector2):
+	var billing = g.ability_ui.billing
+	var product: String = billing.REMOVE_ADS_PRODUCT
+	if NATIVE_BACK.has_point(p):
+		g.mode="support"
+	elif NATIVE_RESTORE.has_point(p) and billing.can_restore() and not billing.restore_status().restoring:
+		purchase_message=""
+		billing.restore()
+	elif NATIVE_BUY.has_point(p) and billing.offer(product).available:
+		purchase_message=""
+		billing.purchase(product)
+
+func draw_purchases():
+	var billing = g.ability_ui.billing
+	var product: String = billing.REMOVE_ADS_PRODUCT
+	var owned: bool = billing.has_entitlement(product)
+	var offer: Dictionary = billing.offer(product)
+	var restoring: bool = billing.restore_status().restoring
+	var panel = Rect2(48,296,624,692)
+	if not g.ui_art.menu_frame(g,panel): g.ui_panel(panel)
+	g.heading_centered("Purchases",380,42)
+	g.heading_centered(REMOVE_ADS_NAME,457,33)
+	g.centered(REMOVE_ADS_DESCRIPTION,500,24,g.MUTED)
+	g.centered(REWARDED_AD_DESCRIPTION,537,23,g.MUTED)
+	var label = "Store unavailable"
+	if owned: label="Purchased"
+	elif offer.pending: label="Purchase in progress"
+	elif restoring: label="Checking purchases…"
+	elif billing.needs_restore(product): label="Restore to check purchase"
+	elif offer.available: label="Buy · "+offer.price_label
+	g.button(NATIVE_BUY,label,offer.available)
+	g.button(NATIVE_RESTORE,"Restore purchases" if billing.can_restore() else "Restore unavailable")
+	var detail: String = billing.error if restoring or billing.restore_status().phase=="failed" else purchase_message
+	if detail.is_empty(): detail=offer.error
+	if not detail.is_empty():
+		wrapped_text(detail,Rect2(80,786,560,70),22,g.MUTED)
+	g.button(NATIVE_BACK,"Back",true)
+
 func draw():
+	if g.mode=="purchases":
+		if g.native_purchases_available(): draw_purchases()
+		return
 	if not g.test_commerce_available(): return
 	match g.mode:
 		"monetization": draw_shop()
@@ -32,6 +107,9 @@ func draw():
 		"test_purchase": draw_purchase()
 
 func press(p: Vector2):
+	if g.mode=="purchases":
+		if g.native_purchases_available(): press_purchases(p)
+		return
 	if not g.test_commerce_available(): return
 	match g.mode:
 		"monetization":
@@ -73,11 +151,11 @@ func header(title: String):
 	g.fitted_text("Local simulation · no money charged",Rect2(48,133,624,36),23,g.TEAL)
 
 func product_name(product: String) -> String:
-	return "Baker's toolkit" if product=="baker_toolkit" else "Remove automatic ads"
+	return "Baker's toolkit" if product=="baker_toolkit" else REMOVE_ADS_NAME
 
 func draw_shop():
 	header("Test shop")
-	product_card("remove_ads",200,"donut","Skip automatic ad breaks.","Optional reward ads stay available.",REMOVE_ADS)
+	product_card("remove_ads",200,"donut",REMOVE_ADS_DESCRIPTION,REWARDED_AD_DESCRIPTION,REMOVE_ADS)
 	product_card("baker_toolkit",458,"cup_gold","+20% normal campaign credits.","A permanent benefit in this test.",TOOLKIT)
 	g.button(RESTORE,"Restore test purchases")
 	g.button(TOOLS,"Test controls")

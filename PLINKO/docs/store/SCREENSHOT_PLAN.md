@@ -1,5 +1,11 @@
 # Sugarfall Google Play screenshots
 
+5 November 2026 · A refreshed **seven-image** set and a **1024 × 500** Mabel feature graphic are delivered in `outputs/storefront-20261105`. Use `review.html` to inspect/download them. The first six views use the current working-tree interface; the seventh shows Crystal immediately after a real ×2 collection. [Delivery and capture details](STORE_ASSETS_20261105.md). These desktop-rendered captures still require comparison with the intended signed Android release. The earlier set and evidence below are retained as history.
+
+4 November 2026 · CHG-047 delivers v0.7.12-preview with Gelato control alignment and shared upgrade-selection/card changes. The earlier storefront captures remain dated review evidence; compare and refresh affected Android screenshots before release. Existing assets and review links are retained.
+
+4 November 2026 · CHG-046 delivers v0.7.11-preview with independent Gelato/Crystal interface art and slight area cream-wave variants. The CHG-045 storefront captures below remain historical public-RC2 review images. Compare them with current Android rendering and refresh affected images before release. The existing screenshot assets and storefront review link are retained.
+
 Prepared 4 November 2026 for the current `0.8.0-rc2` game. Six review captures are saved in `outputs/storefront-20261104/screenshots` at the repository root.
 
 Use the order below. The first three images show gameplay in all three areas before introducing upgrades. Keep the six images as full-screen game captures; captions are optional and are not baked into the delivered PNGs. The feature artwork belongs in the separate feature-graphic field.

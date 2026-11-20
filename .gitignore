@@ -9,6 +9,9 @@
 !/PLINKO/
 !/concept-art/
 !/outputs/
+!/server/
+/server/*
+!/server/commerce/
 /outputs/*
 !/outputs/launch-tracker-01a18eec/
 /outputs/launch-tracker-01a18eec/*
@@ -19,6 +22,9 @@
 **/.gradle/
 **/__pycache__/
 **/node_modules/
+**/firebase-debug.log*
+**/firestore-debug.log*
+**/ui-debug.log*
 **/.DS_Store
 **/Thumbs.db
 **/*.log

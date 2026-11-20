@@ -1,0 +1,9 @@
+functions/node_modules/
+.firebase/
+.cache/
+*.log
+functions/.env*
+!functions/.env.example
+functions/*.local
+service-account*.json
+*-adminsdk-*.json

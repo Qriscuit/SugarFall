@@ -1,0 +1,25 @@
+{
+  "change_id": "CHG-053",
+  "record_date": "2026-11-10",
+  "package_verified": true,
+  "icon_proof": "outputs/app-icon-20261110/icon-assets-validation.json",
+  "source_record": "EXPORT_NOTES.md",
+  "version": "0.7.19",
+  "platform": "Windows x64",
+  "delivery": "Local ZIP",
+  "artifacts": {
+    "exe": {
+      "local_path": "PLINKO/builds/Sugarfall-v0.7.19-Windows-Preview-2026-11-10/Sugarfall.exe",
+      "size_bytes": 201641496,
+      "sha256": "60bd61d4d5a15b9a4f25dfeaa52f1d6601b6ca382a712a72c1c2a27bf2418629"
+    },
+    "zip": {
+      "local_path": "PLINKO/builds/Sugarfall-v0.7.19-Windows-Preview-2026-11-10.zip",
+      "size_bytes": 131675689,
+      "sha256": "8b4bc35a832dd3f6d5fa6e04031144bbaef13162d7ab3f2e14ec8486768443d7"
+    }
+  },
+  "verification_evidence": [
+    "verification/windows-0719/validation.json"
+  ]
+}

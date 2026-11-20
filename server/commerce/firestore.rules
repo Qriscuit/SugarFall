@@ -1,0 +1,13 @@
+rules_version = '2';
+// Server-only data: commercePurchases/{sha256(token)} stores permanent purchase
+// verification/acknowledgement state and a short request lease. commerceRateLimits
+// stores bounded per-Firebase-UID request windows. No client SDK accesses either.
+// Admin SDK access uses IAM and bypasses these rules. Never add a client allow.
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function clientAccessAllowed() { return false; }
+    match /{document=**} {
+      allow read, write: if clientAccessAllowed();
+    }
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "change_id": "CHG-055",
+  "record_date": "2026-11-10",
+  "version_name": "0.8.0-rc7",
+  "version_code": 48,
+  "package": "com.sungati.sugarfall",
+  "status": "Signed candidate uses the user-reported required package. Console acceptance and physical Android acceptance are pending.",
+  "ad_profile": "Sugarfall owner AdMob app and production rewarded and interstitial units",
+  "production_ad_config": "PLINKO/data/production_ads.json",
+  "admob_readiness": "Requires review, limited serving and no store link",
+  "source_verified": true,
+  "package_verified": true,
+  "delivery": "Local signed APK and AAB",
+  "play_uploaded": false,
+  "phone_verified": false,
+  "real_ad_playback_verified": false,
+  "minimum_sdk": 24,
+  "target_sdk": 36,
+  "architectures": [
+    "arm64-v8a"
+  ],
+  "custom_features": [
+    "sugarfall_public"
+  ],
+  "artifact_checks_passed": 665,
+  "artifacts": {
+    "apk": {
+      "local_path": "PLINKO/builds/android-release/0.8.0-rc7-code48-attempt01/Sugarfall-v0.8.0-rc7-Android.apk",
+      "size_bytes": 102318910,
+      "sha256": "edb521c7bb8c6282ae0e5c4427c7771f2c174cef324a8a3021672a6b2a709b4a",
+      "signing_certificate_sha256": "e31ab7654afed05f9acd5fb6b59846d990198b8005d8fafd01e070c1dbc4dc29"
+    },
+    "aab": {
+      "local_path": "PLINKO/builds/android-release/0.8.0-rc7-code48-attempt01/Sugarfall-v0.8.0-rc7-Android.aab",
+      "size_bytes": 102137945,
+      "sha256": "251ac7a14e73b9793142dc85d5c555e7b80175b2da9e5f0017316690ad71077a",
+      "signing_certificate_sha256": "e31ab7654afed05f9acd5fb6b59846d990198b8005d8fafd01e070c1dbc4dc29"
+    }
+  },
+  "source_manifest": "PLINKO/builds/android-release/0.8.0-rc7-code48-attempt01/source-sha256.json",
+  "verification_evidence": [
+    "PLINKO/builds/android-release/0.8.0-rc7-code48-attempt01/verification/validation.json",
+    "verification/package-sungati-20261110/independent-package-validation.json",
+    "verification/package-sungati-20261110/independent-preview-validation.json",
+    "verification/android-preview-v0721/launcher-icons.json",
+    "verification/sungati-commerce-20261110/validation.json",
+    "verification/package-sungati-20261110/release-tools-tests.log",
+    "verification/package-sungati-20261110/artifact-verifier-tests.log"
+  ],
+  "source_record": "EXPORT_NOTES.md",
+  "icon_proof": "outputs/app-icon-20261110/icon-assets-validation.json",
+  "developer_tools_available": false,
+  "simulated_commerce_available": false,
+  "change_scope": "Use com.sungati.sugarfall in public export and purchase-verification contracts.",
+  "focused_verification": "Local package tests passed 67 native billing, 68 Firebase verifier, 30 backend and 29 build and artifact verifier checks. Independent manifest checks confirmed the package, provider authorities and existing certificate.",
+  "console_package_requirement": {
+    "value": "com.sungati.sugarfall",
+    "source": "User-reported Play Console package requirement on 10 November 2026",
+    "console_acceptance_verified": false
+  },
+  "console_upload_attempt_reported": true,
+  "historical_public_package": "com.qriscuit.sugarfall"
+}

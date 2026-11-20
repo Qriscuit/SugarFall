@@ -1,0 +1,34 @@
+{
+  "date": "2026-11-05",
+  "tool": "Built-in image_gen.imagegen",
+  "prompt": "concept-art/storefront-v3/prompt.txt",
+  "reference": {
+    "width": 1795,
+    "height": 876,
+    "bit_depth": 8,
+    "color_type": 2,
+    "bytes": 2803675,
+    "sha256": "db5d562c4330dfdacdd178340a539acc38949251fd0bad14031114e7c95c1f3a",
+    "file": "source/banner-reference.png"
+  },
+  "generated_source": {
+    "width": 1795,
+    "height": 876,
+    "bit_depth": 8,
+    "color_type": 2,
+    "bytes": 2272240,
+    "sha256": "bce9b1e71d1426aef74b89522ba4c1408c1d3dbda1bcaf6dadd7f5e109256d73",
+    "file": "source/banner-generated.png"
+  },
+  "export": {
+    "width": 1024,
+    "height": 500,
+    "bit_depth": 8,
+    "color_type": 2,
+    "bytes": 828221,
+    "sha256": "146af74e24da0ca6a3d629ca332deb209228316834b240ed93faf2e304db4b3d",
+    "file": "exports/sugarfall-feature-1024x500.png"
+  },
+  "processing": "Lanczos reduction to the requested exact pixel size; lossless 24-bit RGB PNG encoding. No creative changes after generation.",
+  "passed": true
+}

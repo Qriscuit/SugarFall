@@ -47,9 +47,9 @@ func check(ok: bool, label: String):
 func fresh():
 	g.set_active_area("bakery")
 	g.AreaCampaign.apply_local(g,g.AreaCampaign.default_record())
+	g.tools_allowed = true
 	g.mode = "developer_areas"
 	g.testing = true
-	g.tools_allowed = true
 	g.blocked_content = ""
 	g.fail_write = false
 	g.writes = 0
@@ -148,6 +148,10 @@ func entry_and_copy_checks():
 	g.handle_press(settings_rect.get_center())
 	check(g.mode!="developer_areas" and not g.settings_menu_layout().actions.has("developer") and not g.open_developer_areas(),"Public layout omits the developer target and rejects direct entry")
 	g.mode = "developer_areas"
+	check(g.mode!="developer_areas","Direct mode assignment cannot open a disabled developer page")
+	g.tools_allowed = true
+	g.mode = "developer_areas"
+	g.tools_allowed = false
 	g.drawn_buttons.clear()
 	ui.draw()
 	check(g.drawn_buttons.size()==1 and g.drawn_buttons[0].label=="Back","A stale developer screen exposes only Back when disabled")

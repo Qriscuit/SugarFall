@@ -105,7 +105,7 @@ func check_core():
 	ev.button_mask=0
 	t=g.remaining
 	g._input(ev)
-	check(g.remaining==t+2,"Mouse hover collects pickup without click")
+	check(g.remaining==t if OS.has_feature("windows") else g.remaining==t+2,"Windows hover cannot collect pickup without a click")
 	g.start_shift()
 	g.pickups=[{"p":Vector2(300,500),"life":4.0}]
 	var touch=InputEventScreenTouch.new()
@@ -560,13 +560,16 @@ func check_mobile():
 	motion.position=g.to_global(g.board_to_screen(Vector2(300,500)))
 	var time=g.remaining
 	g._input(motion)
-	check(is_equal_approx(g.remaining,time+2),"Mouse hover maps through safe-area and enlarged-board transforms")
+	check(is_equal_approx(g.remaining,time) if OS.has_feature("windows") else is_equal_approx(g.remaining,time+2),"Windows hover does not collect through transformed board")
+	drag.position=motion.position; g._input(drag)
+	if OS.has_feature("windows"): check(is_equal_approx(g.remaining,time+2),"Held drag collects through safe-area and enlarged-board transforms")
 	g.start_shift()
 	g.pickups=[{"p":Vector2(80,360),"life":4.0}]
 	motion.position=g.to_global(g.board_to_screen(Vector2(80,360))+Vector2(-42,0))
 	time=g.remaining
 	g._input(motion)
-	check(is_equal_approx(g.remaining,time+2),"Hover inside the enlarged pickup's outer edge collects it at its displayed position")
+	if OS.has_feature("windows"): drag.position=motion.position; g._input(drag)
+	check(is_equal_approx(g.remaining,time+2),"Drag inside the enlarged pickup edge collects it at its displayed position")
 	g.go_back()
 	check(g.mode=="paused","Back pauses active shift")
 	g._process(.26)
@@ -676,7 +679,8 @@ func check_short_shift_balance():
 		roster_ok=roster_ok and x.pegs.size()==[8,12,16,18,20,22,24,26,28,30,32,34][board-1]
 		for peg in x.pegs:
 			var spec=x.board_data[board-1]
-			var expected_hp=float(spec.base_hp)*(float(spec.armored_hp_multiplier) if peg.kind=="armored" else 1.0)
+			var base_hp=float(spec.base_hp)*(1.15 if board>=8 else 1.0)
+			var expected_hp=base_hp*(float(spec.armored_hp_multiplier) if peg.kind=="armored" else 1.0)
 			roster_ok=roster_ok and is_equal_approx(peg.max,expected_hp)
 	check(roster_ok,"Authored Bakery boards retain their peg counts and apply each tray's normal and armored durability")
 	x.current_level=1

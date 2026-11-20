@@ -22,7 +22,7 @@ func frozen_state(game) -> Dictionary:
 		"bank_pulse":game.bank_coin_feedback.age, "run_pulse":game.run_coin_feedback.age,
 		"guide_age":game.first_run_guide.age, "guide_revealed":game.first_run_guide.revealed,
 		"note_time":game.note_time, "particles":game.particles.duplicate(true),
-		"floats":game.floats.duplicate(true), "damage":game.impact_feedback.damage_labels.duplicate(true),
+		"floats":game.floats.duplicate(true), "damage":game.impact_feedback.coin_labels.duplicate(true),
 		"bucket_pulses":game.impact_feedback.bucket_times.duplicate(),
 	}
 

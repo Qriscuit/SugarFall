@@ -18,7 +18,7 @@ var _provider: RefCounted
 var pending: Dictionary = {}
 
 func _init(allow_preview: bool = true):
-	_preview = allow_preview and preload("res://scripts/monetization_service.gd").preview_tools_allowed()
+	_preview = allow_preview and not OS.has_feature("android") and preload("res://scripts/monetization_service.gd").preview_tools_allowed()
 
 func preview_enabled() -> bool:
 	return _preview

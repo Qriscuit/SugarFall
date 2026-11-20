@@ -1,0 +1,63 @@
+{
+  "change_id": "CHG-055",
+  "record_date": "2026-11-10",
+  "version_name": "0.7.21-preview",
+  "version_code": 48,
+  "package": "org.pegfoundry.prototype.preview",
+  "status": "Signed preview verified and replaced in Drive. Physical Android acceptance is pending.",
+  "ad_profile": "Google demo inventory",
+  "source_verified": true,
+  "package_verified": true,
+  "delivery_verified": true,
+  "phone_verified": false,
+  "real_ad_playback_verified": false,
+  "engine_template": "release",
+  "custom_features": [],
+  "minimum_sdk": 24,
+  "target_sdk": 36,
+  "architectures": [
+    "arm64-v8a"
+  ],
+  "artifact_checks_passed": 632,
+  "source_manifest": "verification/android-preview-v0721/source-sha256.json",
+  "verification_evidence": [
+    "verification/android-preview-v0721/audit-01/validation.json",
+    "verification/android-preview-v0721/drive-preview.json",
+    "verification/package-sungati-20261110/independent-package-validation.json",
+    "verification/package-sungati-20261110/independent-preview-validation.json",
+    "verification/android-preview-v0721/launcher-icons.json",
+    "verification/sungati-commerce-20261110/validation.json",
+    "verification/package-sungati-20261110/release-tools-tests.log",
+    "verification/package-sungati-20261110/artifact-verifier-tests.log"
+  ],
+  "artifacts": {
+    "apk": {
+      "local_path": "PLINKO/builds/Sugarfall-v0.7.21-Android-Preview-2026-11-10.apk",
+      "size_bytes": 102314811,
+      "sha256": "c3d462be38c80c42c9de51f92771bbdb403a7434b72a800f248237d28e3a74a3",
+      "signing_certificate_sha256": "926f0d0c634978f4d84727a272068bacd3bb157277a9a8b18810e7c60aef70bc",
+      "drive": {
+        "file_id": "1GF1zo3lt0VR5voajNPGjoP1FYuPe0FYz",
+        "folder_id": "1TXLZwTNVlHGTBy7y0CVMMk3zABEKu8X-",
+        "url": "https://drive.google.com/file/d/1GF1zo3lt0VR5voajNPGjoP1FYuPe0FYz/view?usp=drivesdk",
+        "metadata_verified": true,
+        "checks_passed": 8,
+        "verification_path": "verification/android-preview-v0721/drive-preview.json",
+        "remote_checksum_available": false,
+        "remote_checksum_verified": false
+      }
+    }
+  },
+  "source_record": "EXPORT_NOTES.md",
+  "icon_proof": "outputs/app-icon-20261110/icon-assets-validation.json",
+  "developer_tools_available": false,
+  "simulated_commerce_available": false,
+  "change_scope": "Include the updated public purchase-verification package contract in the established preview app.",
+  "focused_verification": "Local package tests passed 67 native billing, 68 Firebase verifier, 30 backend and 29 build and artifact verifier checks. Independent manifest checks confirmed the package, provider authorities and existing certificate.",
+  "console_package_requirement": {
+    "value": "com.sungati.sugarfall",
+    "source": "User-reported Play Console package requirement on 10 November 2026",
+    "console_acceptance_verified": false
+  },
+  "console_upload_attempt_reported": true
+}

@@ -13,6 +13,7 @@ const FoodArt = preload("res://scripts/food_art.gd")
 const EnvironmentArt = preload("res://scripts/environment_art.gd")
 const UIArt = preload("res://scripts/ui_art.gd")
 const ResultArt = preload("res://scripts/result_comparison_ui.gd")
+const MonetizationService = preload("res://scripts/monetization_service.gd")
 var status = "waiting"
 ## QA fixtures opt out before entering the tree; normal startup never sets this.
 var testing = false
@@ -50,8 +51,9 @@ func _ready():
 		status = "preview"
 		_render_heartbeat()
 		return
-	if "--self-test" in OS.get_cmdline_user_args() or "--capture" in OS.get_cmdline_user_args():
-		# Existing command-line regression never discovers a real player profile.
+	var developer_args = OS.get_cmdline_user_args() if MonetizationService.preview_tools_allowed() else PackedStringArray()
+	if "--self-test" in developer_args or "--capture" in developer_args:
+		# Keep editor-driven captures and regression checks independent of the intro.
 		$Stage.hide()
 		var scene = load(MAIN_SCENE) as PackedScene
 		if scene != null: add_child(scene.instantiate())
@@ -170,12 +172,12 @@ func _finish_hum_release():
 	if status == "handed_off": queue_free()
 
 static func warmup_paths() -> Array[String]:
-	var unique: Dictionary = {MAIN_SCENE:true,"res://data/art/transitions/cream_wave.png":true,"res://data/art/host/mabel_welcome.png":true}
+	var unique: Dictionary = {MAIN_SCENE:true,"res://data/art/host/mabel_welcome.png":true}
+	for path in preload("res://scripts/page_transition.gd").WAVE_PATHS.values(): unique[path] = true
 	for area in ["bakery","gelato"]:
 		for name in FoodArt.NAMES: unique[FoodArt.AREA_ROOTS[area]+name+".png"] = true
 		for name in EnvironmentArt.NAMES: unique[EnvironmentArt.AREA_ROOTS[area]+name+".png"] = true
-	for name in UIArt.NAMES: unique[UIArt.ROOT+name+".png"] = true
-	for name in UIArt.GELATO_OVERRIDES: unique[UIArt.GELATO_ROOT+name+".png"] = true
+	for path in UIArt.resource_paths(): unique[path] = true
 	for area in ["bakery","gelato","crystal"]: unique[UIArt.MENU_ROOT+area+"_frame.png"] = true
 	unique["res://data/art/bakery_ability/jam_donut.png"] = true
 	for path in preload("res://scripts/audio_catalog.gd").resource_paths(): unique[path] = true

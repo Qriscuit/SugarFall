@@ -66,6 +66,15 @@ func capture(game,output: String,name: String,resolution: Vector2i):
 	elif game.mode=="shop" and game.upgrade_map.twin_selected:
 		var m=game.upgrade_map
 		check(m.TWIN_CARD_RECT.encloses(m.TWIN_BUY_RECT) and m.TWIN_CARD_RECT.encloses(m.TWIN_PAID_RECT) and m.TWIN_PAID_RECT.position.y>m.TWIN_BUY_RECT.end.y,name+" two purchase slots stack inside the same card")
+		check(m.TWIN_CARD_RECT.size.y<=240 and m.TWIN_EFFECT_RECTS[0].position.y-m.TWIN_TITLE_RECT.end.y<=8 and m.TWIN_EFFECT_RECTS[1].position.y-m.TWIN_EFFECT_RECTS[0].end.y<=8,name+" compact left column places description directly below title")
+		var columns_clear=true
+		for rect in [m.TWIN_TITLE_RECT,m.TWIN_STATUS_RECT,m.TWIN_MESSAGE_RECT]+m.TWIN_EFFECT_RECTS:
+			columns_clear=columns_clear and m.TWIN_CARD_RECT.grow(-24).encloses(rect) and rect.end.x+16<=m.TWIN_BUY_RECT.position.x and not rect.intersects(m.TWIN_PAID_RECT)
+		check(columns_clear,name+" copy remains padded in the left column clear of stacked actions")
+		var action_fonts_readable=true
+		for item in game.drawn_labels:
+			if item.rect.size==Vector2(166,42): action_fonts_readable=action_fonts_readable and item.size>=24
+		check(action_fonts_readable,name+" compact purchase prices retain readable action type")
 		check(m.focus_area().end.y+24<=m.card_rect().position.y,name+" camera focus remains clear of the card")
 		if game.ability_ui.owned(): check("Owned" in labels and not labels.any(func(value): return value.begins_with("Buy ")),name+" owned card has no repeated purchase action")
 		elif game.ability_ui.card_confirming(): check("Confirm test" in labels and "Cancel" in labels and "No charge" in labels,name+" test confirmation stays in the purchase card")

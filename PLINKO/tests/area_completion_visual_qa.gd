@@ -30,8 +30,8 @@ func prepare(game, area: String, reduced: bool = false):
 	game.note=""; game.note_time=0; game.elapsed=2; game.diagnostics_on=false
 	game.upgrade_map.reset_view_state(); game.home_menu.reset(); game.level_map.reset()
 	game.impact_feedback.reset(); game.text_overflows.clear()
-	if not game.peg_damaged.is_connected(game.impact_feedback.show_damage):
-		game.peg_damaged.connect(game.impact_feedback.show_damage)
+	if not game.peg_coins_earned.is_connected(game.impact_feedback.show_coins):
+		game.peg_coins_earned.connect(game.impact_feedback.show_coins)
 
 func play(game):
 	game.start_shift(); game.run_transition.finish()
@@ -53,7 +53,7 @@ func effects(game):
 	game.spawn_ball(Vector2(490,560),"impact",Vector2(-70,250),false)
 	game.spawn_ball(Vector2(150,650),"ricochet",Vector2(230,-150),false)
 	game.update_coin_feedback(.07)
-	check(not game.impact_feedback.damage_labels.is_empty(),"Real damage signal reaches presentation in "+game.area_id)
+	check(not game.impact_feedback.coin_labels.is_empty(),"Real damage signal reaches presentation in "+game.area_id)
 	check(game.impact_feedback.bucket_times[2]>0,"Actual catch animates cup in "+game.area_id)
 
 func snap(viewport,game,output: String,name: String,resolution: Vector2i):
@@ -68,7 +68,7 @@ func snap(viewport,game,output: String,name: String,resolution: Vector2i):
 	check(picture.save_png(output.path_join(file))==OK,"Saved "+file)
 	check(game.AreaCampaign.capture_local(game)==before and game.rng.state==rng_before,"Render is side-effect free "+file)
 	files.append(file)
-	observations.append({"file":file,"area":game.area_id,"mode":game.mode,"reduced_motion":game.reduced_motion,"balls":game.balls.size(),"damage_labels":game.impact_feedback.damage_labels.size(),"particles":game.particles.size()})
+	observations.append({"file":file,"area":game.area_id,"mode":game.mode,"reduced_motion":game.reduced_motion,"balls":game.balls.size(),"coin_labels":game.impact_feedback.coin_labels.size(),"particles":game.particles.size()})
 
 func run():
 	var output=output_directory()

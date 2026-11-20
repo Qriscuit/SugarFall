@@ -1,0 +1,2 @@
+minimumReleaseAgeExclude:
+  - firebase-tools@15.35.0

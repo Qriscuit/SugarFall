@@ -1,0 +1,255 @@
+{
+  "passed": 48,
+  "failed": 0,
+  "scope": "4 native PNGs: byte-identical source, RGBA, alpha minimum0 and maximum>=250 (16 checks); 28 authored nonempty cell bounds; 2 complete14-role metadata sets; 2 fixed wave dimensions (48 checks). Wave maximum alpha254 is intentional; runtime white body supplies complete opacity. Import descriptors written. No pixel modification.",
+  "assets": [
+    {
+      "key": "gelato_controls",
+      "runtime": "PLINKO/data/art/gelato/ui/controls.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "bytes": 1498315,
+      "sha256": "4d68854699f8010ea62c84b3d80ea6d98b3422c013b4c1891a09c499c130929c",
+      "native_unchanged": true,
+      "alpha_range": [
+        0,
+        255
+      ],
+      "authored_pixel_bounds": {
+        "panel": [
+          26,
+          28,
+          297,
+          294
+        ],
+        "button_mint": [
+          323,
+          109,
+          618,
+          223
+        ],
+        "button_cream": [
+          637,
+          112,
+          933,
+          219
+        ],
+        "timer": [
+          974,
+          35,
+          1221,
+          299
+        ],
+        "coin": [
+          44,
+          361,
+          268,
+          589
+        ],
+        "node": [
+          338,
+          340,
+          603,
+          603
+        ],
+        "upgrade_tile_green": [
+          655,
+          346,
+          913,
+          596
+        ],
+        "upgrade_tile_red": [
+          969,
+          346,
+          1227,
+          596
+        ],
+        "upgrade_tile_cream": [
+          28,
+          660,
+          287,
+          909
+        ],
+        "upgrade_parchment": [
+          326,
+          645,
+          616,
+          923
+        ],
+        "level_badge_cream": [
+          651,
+          653,
+          918,
+          916
+        ],
+        "level_badge_mint": [
+          964,
+          653,
+          1231,
+          915
+        ],
+        "level_badge_muted": [
+          24,
+          968,
+          291,
+          1229
+        ],
+        "level_selector": [
+          317,
+          1024,
+          625,
+          1164
+        ]
+      },
+      "control_count": 14
+    },
+    {
+      "key": "crystal_controls",
+      "runtime": "PLINKO/data/art/crystal/ui/controls.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "bytes": 1379054,
+      "sha256": "10a263a8be7a512e35cd344e42ca6014a635f07d3831183503280287ad3895b2",
+      "native_unchanged": true,
+      "alpha_range": [
+        0,
+        255
+      ],
+      "authored_pixel_bounds": {
+        "panel": [
+          35,
+          26,
+          287,
+          294
+        ],
+        "button_mint": [
+          327,
+          92,
+          614,
+          220
+        ],
+        "button_cream": [
+          639,
+          93,
+          927,
+          220
+        ],
+        "timer": [
+          980,
+          22,
+          1215,
+          291
+        ],
+        "coin": [
+          44,
+          358,
+          268,
+          588
+        ],
+        "node": [
+          342,
+          333,
+          598,
+          600
+        ],
+        "upgrade_tile_green": [
+          660,
+          333,
+          910,
+          593
+        ],
+        "upgrade_tile_red": [
+          973,
+          333,
+          1224,
+          593
+        ],
+        "upgrade_tile_cream": [
+          33,
+          646,
+          283,
+          907
+        ],
+        "upgrade_parchment": [
+          328,
+          636,
+          611,
+          923
+        ],
+        "level_badge_cream": [
+          657,
+          643,
+          910,
+          919
+        ],
+        "level_badge_mint": [
+          971,
+          643,
+          1224,
+          919
+        ],
+        "level_badge_muted": [
+          30,
+          956,
+          283,
+          1233
+        ],
+        "level_selector": [
+          319,
+          1007,
+          622,
+          1182
+        ]
+      },
+      "control_count": 14
+    },
+    {
+      "key": "gelato_wave",
+      "runtime": "PLINKO/data/art/transitions/gelato_cream_wave.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "bytes": 1356350,
+      "sha256": "ffbf6794c5f0aecbcade0c6c69c8ef9154a665b797f320087171007a1435bfd8",
+      "native_unchanged": true,
+      "alpha_range": [
+        0,
+        254
+      ],
+      "runtime_region": [
+        0,
+        0,
+        1536,
+        768
+      ],
+      "opaque_body_join_y": 520
+    },
+    {
+      "key": "crystal_wave",
+      "runtime": "PLINKO/data/art/transitions/crystal_cream_wave.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "bytes": 1288204,
+      "sha256": "aceaf3d5e2dccf4e1dc4efd6c6cffec59a199ebb603a840ae1bd205869a7bebb",
+      "native_unchanged": true,
+      "alpha_range": [
+        0,
+        254
+      ],
+      "runtime_region": [
+        0,
+        0,
+        1536,
+        768
+      ],
+      "opaque_body_join_y": 520
+    }
+  ]
+}

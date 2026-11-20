@@ -162,6 +162,10 @@ func active_asset_roster():
 	check(paths.size() == unique.size() and paths.size() > 80,"Warmup deduplicates real shared resources instead of loading role aliases twice")
 	check(exists and not retired,"Every warmup target exists and excludes retired art versions")
 	check(Startup.MAIN_SCENE in paths and "res://data/art/transitions/cream_wave.png" in paths,"Warmup includes the actual main scene and shared reveal texture")
+	var ui_ready = true
+	for path in preload("res://scripts/ui_art.gd").resource_paths(): ui_ready = ui_ready and path in paths
+	for path in preload("res://scripts/page_transition.gd").WAVE_PATHS.values(): ui_ready = ui_ready and path in paths
+	check(ui_ready and "res://data/art/gelato/ui/controls.png" in paths and "res://data/art/crystal/ui/controls.png" in paths,"Warmup includes both complete themed UI atlases and every area's cream wave")
 	check("res://data/art/crystal/food/balls_atlas.png" in paths and "res://data/art/crystal/food/pegs_atlas.png" in paths and "res://data/art/crystal/environment/upgrade_courtyard.png" in paths,"Crystal warmup follows current atlas metadata and the authored courtyard")
 	var audio_warmed=true
 	for path in preload("res://scripts/audio_catalog.gd").resource_paths(): audio_warmed=audio_warmed and path in paths

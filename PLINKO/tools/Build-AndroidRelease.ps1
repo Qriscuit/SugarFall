@@ -18,7 +18,7 @@ if ($Preflight) {
 }
 if (-not (Test-Path -LiteralPath (Join-Path $cache 'setup.json'))) {
     Write-Host 'Preparing the persistent release dependency cache...'
-    & $pythonExe (Join-Path $PSScriptRoot 'android_release.py') setup --cache $cache
+    & $pythonExe (Join-Path $PSScriptRoot 'android_release.py') setup --cache $cache --require-production-ads
     if ($LASTEXITCODE -ne 0) { throw 'Release dependency setup failed; no signing credential was read.' }
 }
 if (-not $OutputDirectory) {

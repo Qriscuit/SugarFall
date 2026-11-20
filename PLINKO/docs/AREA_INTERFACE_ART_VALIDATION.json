@@ -1,0 +1,28 @@
+{
+  "change": "CHG-046",
+  "fix": "AF-010",
+  "date": "2026-11-04",
+  "passed": true,
+  "failed": 0,
+  "software_checks": 1654,
+  "native_metadata_checks": 48,
+  "captures": 116,
+  "current_source_inputs": 270,
+  "profile_io": 0,
+  "phone_verified": false,
+  "scope": "Art creation, independent resource integration and desktop/source verification. Android and Drive delivery are recorded separately.",
+  "components": [
+    {
+      "path": "verification/area-ui-20261104/validation.json",
+      "sha256": "2bbbd48d10b1a3345e6f70d876b582836d99de641bf3aeba159e5372f3d16902"
+    },
+    {
+      "path": "concept-art/area-interface-v1/native-validation.json",
+      "sha256": "1dada522e5a5076c16d98662a95aeba0c762678c26c99ba2b2f9667d43954651"
+    },
+    {
+      "path": "verification/area-interface-20261104/visual-review.json",
+      "sha256": "2e4a495bd2a061b32cca511b572d84ce5723c6d9b6237b0e7cb58974ce12f95c"
+    }
+  ]
+}

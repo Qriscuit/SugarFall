@@ -1,0 +1,16 @@
+{
+  "functions": [{
+    "source": "functions",
+    "codebase": "commerce",
+    "runtime": "nodejs22",
+    "ignore": ["node_modules", "test", ".env*", "*.log", ".git"]
+  }],
+  "firestore": {
+    "rules": "firestore.rules",
+    "indexes": "firestore.indexes.json"
+  },
+  "emulators": {
+    "firestore": {"port": 8087},
+    "ui": {"enabled": false}
+  }
+}

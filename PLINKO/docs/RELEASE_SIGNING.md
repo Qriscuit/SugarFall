@@ -1,12 +1,16 @@
 # Release signing and recovery
 
+CHG-055, 10 November 2026. The owner reported that Play Console requires `com.sungati.sugarfall`. RC7 is signed with the existing release key. The package requirement is user reported, and Console acceptance remains pending.
+
+
 The key was created on 3 November 2026 after the owner confirmed there was no existing Play app or release key. On 4 November the owner reported that the Play app had been created. The existing key was rechecked successfully; the exact Console page, package registration, account completion and Play App Signing enrollment have not been verified.
 
 | Field | Value |
 | --- | --- |
-| Android application ID | `com.qriscuit.sugarfall` |
+| Current Android application ID | `com.sungati.sugarfall` |
+| Historical RC1–RC6 application ID | `com.qriscuit.sugarfall` |
 | Initial candidate | `0.8.0-rc1`, version code `30` |
-| Current candidate | `0.8.0-rc2`, version code `37` |
+| Latest local candidate | [`0.8.0-rc8`, version code `49`](ANDROID_SUGARFALL_v0.8.0-rc8.md) |
 | Key alias | `sugarfall-release` |
 | Keystore | PKCS12, RSA 4096, SHA256withRSA |
 | Certificate SHA-256 | `e31ab7654afed05f9acd5fb6b59846d990198b8005d8fafd01e070c1dbc4dc29` |

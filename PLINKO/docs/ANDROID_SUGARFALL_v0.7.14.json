@@ -1,0 +1,196 @@
+{
+  "status": "Delivered to the existing preview Drive file; physical-phone acceptance open",
+  "build_date": "2026-11-05",
+  "version_name": "0.7.14-preview",
+  "version_code": 40,
+  "package": "org.pegfoundry.prototype.preview",
+  "signing_certificate_sha256": "926f0d0c634978f4d84727a272068bacd3bb157277a9a8b18810e7c60aef70bc",
+  "local_path": "builds/Sugarfall-v0.7.14-Android-Preview-2026-11-05.apk",
+  "file_name": "Sugarfall-v0.7.14-Android-Preview-2026-11-05.apk",
+  "size_bytes": 98872682,
+  "sha256": "80b8c6493c1400b02eb1099b0a1c61fba2528c4bb1289137f2321905251d6577",
+  "md5": "0aa68ff29a051c369c3e6201e7c347e9",
+  "payload_checks": 1500,
+  "android_checks": 16,
+  "runtime_script_count": 41,
+  "zip_entries": 534,
+  "retained_native_art": [
+    {
+      "path": "data/art/gelato/ui/controls.png",
+      "sha256": "4d68854699f8010ea62c84b3d80ea6d98b3422c013b4c1891a09c499c130929c",
+      "bytes": 1498315,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "packaged_import": {
+        "descriptor": "assets/data/art/gelato/ui/controls.png.import",
+        "targets": [
+          ".godot/imported/controls.png-cc1acae09febb98206691038adc44e84.ctex"
+        ],
+        "sha256": [
+          "d10561b8bc8b6aec7623883a08cce671be90c93e382087e57fbc4f3d3d8437d5"
+        ]
+      }
+    },
+    {
+      "path": "data/art/crystal/ui/controls.png",
+      "sha256": "10a263a8be7a512e35cd344e42ca6014a635f07d3831183503280287ad3895b2",
+      "bytes": 1379054,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "packaged_import": {
+        "descriptor": "assets/data/art/crystal/ui/controls.png.import",
+        "targets": [
+          ".godot/imported/controls.png-b287ca80322c40c0c579e0ae35e317f2.ctex"
+        ],
+        "sha256": [
+          "cee79676047706cba3e08e0f1f3581749c62fbbf06b3b4ac29b6d8c9fb4e09e6"
+        ]
+      }
+    },
+    {
+      "path": "data/art/transitions/gelato_cream_wave.png",
+      "sha256": "ffbf6794c5f0aecbcade0c6c69c8ef9154a665b797f320087171007a1435bfd8",
+      "bytes": 1356350,
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "packaged_import": {
+        "descriptor": "assets/data/art/transitions/gelato_cream_wave.png.import",
+        "targets": [
+          ".godot/imported/gelato_cream_wave.png-a2c835416a6e605bbf3b64f7b73a0831.ctex"
+        ],
+        "sha256": [
+          "76c53f199b64a891aa986a1e81eb7e86c5b9959d497fb7ebcde56b97b27dd0a8"
+        ]
+      }
+    },
+    {
+      "path": "data/art/transitions/crystal_cream_wave.png",
+      "sha256": "aceaf3d5e2dccf4e1dc4efd6c6cffec59a199ebb603a840ae1bd205869a7bebb",
+      "bytes": 1288204,
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "packaged_import": {
+        "descriptor": "assets/data/art/transitions/crystal_cream_wave.png.import",
+        "targets": [
+          ".godot/imported/crystal_cream_wave.png-2fbce862eea6722dfd6c846eeb835586.ctex"
+        ],
+        "sha256": [
+          "6425bbd0f207a8886d99a29f984eab71899289a3acb01a331d6d72ad9433da98"
+        ]
+      }
+    }
+  ],
+  "source_commit": "ba43c142688730be8ef9cba77defab2308c45083",
+  "source_freeze": "verification/android-preview-v0714/source-sha256.json",
+  "evidence": [
+    {
+      "path": "verification/coin-onboarding-20261105/validation.json",
+      "sha256": "0accff22e069398309c411230a741ffeb0884f7d183267749929fcd555e36cff"
+    },
+    {
+      "path": "verification/coin-onboarding-20261105/source-hashes.json",
+      "sha256": "f5710bdaf42605a680e1de5cfd1a85954ef11d185ed3d5b67238edcb340512a8"
+    }
+  ],
+  "preserved_artifacts": [
+    {
+      "path": "PLINKO/docs/ANDROID_SUGARFALL_v0.7.12.json",
+      "sha256": "20989d11c5d5da53ed60f718450b7fa26863f639c849d693b62ca08bcab95d5d"
+    },
+    {
+      "path": "PLINKO/builds/Sugarfall-v0.7.12-Android-Preview-2026-11-04.apk",
+      "sha256": "8047891e85e9098eee6a5309b235e7bd26165827172092c6e19545d451762951"
+    },
+    {
+      "path": "PLINKO/docs/ANDROID_SUGARFALL_v0.8.0-rc1.json",
+      "sha256": "490129b6c663db008b1864356fec0657808a76e532eff6a43da44f714f89bb65"
+    },
+    {
+      "path": "PLINKO/builds/Sugarfall-v0.8.0-rc1-Android-2026-11-03.apk",
+      "sha256": "f1e0ba502e2fbfc755479b44c6801660a53653d0bcdf3067b64e00ff103c122c"
+    },
+    {
+      "path": "PLINKO/builds/Sugarfall-v0.8.0-rc1-Android-2026-11-03.aab",
+      "sha256": "f37bc66695ae39402dc6330349f732f1713977e7da3df954237c8f09450ed48b"
+    },
+    {
+      "path": "PLINKO/docs/ANDROID_SUGARFALL_v0.8.0-rc2.json",
+      "sha256": "1d77e5ac3ec24fba490af239bb026917f5c851041f27d5e574f89e611c0ee73a"
+    },
+    {
+      "path": "PLINKO/builds/android-release/0.8.0-rc2-code37-attempt03/Sugarfall-v0.8.0-rc2-Android.apk",
+      "sha256": "afee2a0e1687a7051d9925bf636e06903b24f4250771ce2627fa643a31505a37"
+    },
+    {
+      "path": "PLINKO/builds/android-release/0.8.0-rc2-code37-attempt03/Sugarfall-v0.8.0-rc2-Android.aab",
+      "sha256": "29c32d25400ce42168ced55eac0909a15e2dc4433e3f94b48d7c388e425f6831"
+    }
+  ],
+  "verification": {
+    "payload": "verification/android-preview-v0714/package-inspection.json",
+    "android": "verification/android-preview-v0714/android-validation.json",
+    "export_warning_review": "verification/android-preview-v0714/export-warning-review.json",
+    "payload_checks": 1500,
+    "android_checks": 16,
+    "drive": "verification/android-upload-v0714/verification.json",
+    "drive_checks": 8
+  },
+  "drive": {
+    "file_id": "1GF1zo3lt0VR5voajNPGjoP1FYuPe0FYz",
+    "folder_id": "1TXLZwTNVlHGTBy7y0CVMMk3zABEKu8X-",
+    "url": "https://drive.google.com/file/d/1GF1zo3lt0VR5voajNPGjoP1FYuPe0FYz/view?usp=drivesdk",
+    "metadata_verified": true,
+    "remote_checksum_verified": false
+  },
+  "phone_verified": false,
+  "real_billing_verified": false,
+  "bytes": 98872682,
+  "app_name": "Sugarfall",
+  "godot": "4.6.3.stable.official.7d41c59c4",
+  "export_preset": "Android Preview",
+  "export_mode": "debug",
+  "minimum_sdk": 24,
+  "target_sdk": 36,
+  "architectures": [
+    "arm64-v8a"
+  ],
+  "requested_android_permissions": [],
+  "change_id": "CHG-048",
+  "audit_fix": "AF-012",
+  "changes": "Mabel uses shorter action instructions, with 10 guide states instead of 14. Body, name and hint text are two logical pixels larger. Dialogue is visible immediately; one tap continues the earnings message and highlighted actions work on the first tap. Peg rewards show a gold coin icon and the actual positive coin amount, including break rewards, across all three areas. Zero-coin contacts do not show an invented reward. The guide teaches hitting cookies for coins and auto-selects Feed 1 for the first purchase.",
+  "source_validation": "docs/COIN_ONBOARDING_VALIDATION.json",
+  "remaining": [
+    "Physical-phone tutorial readability, tap/drag comfort, gold coin feedback, performance and install-over save retention",
+    "Existing Bakery tray-10/More Jam retest and current natural-wallet progression",
+    "Real Play billing products, verified purchase and restore acceptance"
+  ],
+  "physical_listening_verified": false
+}

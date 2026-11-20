@@ -1,0 +1,17 @@
+{
+  "enabled": true,
+  "app_id": "ca-app-pub-3940256099942544~3347511713",
+  "use_test_ads": true,
+  "rewarded_unit_id": "ca-app-pub-3940256099942544/5224354917",
+  "interstitial_unit_id": "ca-app-pub-3940256099942544/1033173712",
+  "muted": false,
+  "max_ad_content_rating": "G",
+  "tag_for_child_directed_treatment": -1,
+  "tag_for_under_age_of_consent": -1,
+  "test_device_ids": [],
+  "consent": {
+    "tag_for_under_age_of_consent": false,
+    "test_device_hashed_ids": [],
+    "debug_geography": 0
+  }
+}

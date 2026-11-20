@@ -1,0 +1,223 @@
+{
+  "latest_ads_cutover": {
+    "change_id": "CHG-052",
+    "record_date": "2026-11-10",
+    "admob_app_record_verified": true,
+    "owner_ad_units_verified": [
+      "Result bonus (rewarded)",
+      "Campaign results (interstitial)"
+    ],
+    "admob_console_status": "Requires review, limited serving, no Play listing linked",
+    "production_ad_config": "PLINKO/data/production_ads.json",
+    "preview_ad_config": "PLINKO/data/preview_ads.json",
+    "release_records": {
+      "preview": "PLINKO/docs/ANDROID_SUGARFALL_v0.7.18.json",
+      "public": "PLINKO/docs/ANDROID_SUGARFALL_v0.8.0-rc4.json"
+    },
+    "provider_qa_checks": 72,
+    "native_ad_integration_checks": 40,
+    "exported_policy_checks": {
+      "preview": 85,
+      "public_debug": 103,
+      "public_release": 103
+    },
+    "python_release_tests": 28,
+    "exact_artifact_checks": {
+      "preview": 630,
+      "public": 663
+    },
+    "preview_drive_metadata_checks": 8,
+    "public_artifacts_signed": true,
+    "play_uploaded": false,
+    "real_ad_playback_verified": false,
+    "remaining": [
+      "Publish applicable AdMob consent messages and finish Play disclosures",
+      "Link published Play listing, verify app-ads.txt and complete AdMob readiness review",
+      "Verify consent and ad playback on a registered Android test device"
+    ]
+  },
+  "change_id": "CHG-051",
+  "record_date": "2026-11-05",
+  "status": "Exact native packages verified; Drive metadata read back; account configuration and phone acceptance OPEN",
+  "source_verified": true,
+  "package_verified": true,
+  "delivery_verified": true,
+  "phone_verified": false,
+  "attached_devices": 0,
+  "adb_owner_check": "Command succeeded; no attached device was reported",
+  "owner_account": "sungatientertainment@gmail.com",
+  "source_scope": [
+    "Official Google Play Billing 3.3.0 native plugin; Billing Library 9.1.0",
+    "Three permanent early-unlock products; no consumable currency grants",
+    "Authenticated server verifier client and deployable purchase-verification backend",
+    "Memory-only proof capped at 300 seconds; 240-second inventory refresh; token-bound terminal revocation",
+    "Read-only deferred paid-checkpoint recovery with inline Restore; normal offline campaigns remain playable",
+    "Poing AdMob 5.1.0 wrapper/native 4.6.3 with Google Next-Gen SDK 1.6.0; UMP and actual SDK reward callbacks",
+    "Durable native-ad result receipts, once-only bonus collection, campaign interstitial cadence and Settings privacy options"
+  ],
+  "products": [
+    {
+      "area": "bakery",
+      "product_id": "sugarfall_bakery_ability",
+      "purchase_option": "early-unlock",
+      "type": "permanent_non_consumable",
+      "design_price_usd": 2.99,
+      "checkout_price": "Google Play localized catalog price",
+      "active_on_play_verified": false
+    },
+    {
+      "area": "gelato",
+      "product_id": "sugarfall_gelato_ability",
+      "purchase_option": "early-unlock",
+      "type": "permanent_non_consumable",
+      "design_price_usd": 2.99,
+      "checkout_price": "Google Play localized catalog price",
+      "active_on_play_verified": false
+    },
+    {
+      "area": "crystal",
+      "product_id": "sugarfall_crystal_ability",
+      "purchase_option": "early-unlock",
+      "type": "permanent_non_consumable",
+      "design_price_usd": 2.99,
+      "checkout_price": "Google Play localized catalog price",
+      "active_on_play_verified": false
+    }
+  ],
+  "source_evidence": [
+    "PLINKO/docs/monetization/BILLING_VALIDATION.json",
+    "verification/native-commerce/billing-unit/validation.json",
+    "verification/native-commerce/restore-captures/restore-preview-summary.json",
+    "verification/admob-provider-20261105/validation.json",
+    "verification/native-ad-integration-20261105/validation.json",
+    "PLINKO/docs/monetization/ACCOUNT_SETUP.md",
+    "server/commerce/README.md",
+    "verification/firebase-verifier-peer-20261105/validation.json",
+    "server/commerce/VALIDATION.json",
+    "verification/android-preview-v0717/audit-02/validation.json",
+    "verification/native-commerce/drive-preview.json",
+    "PLINKO/builds/android-release/0.8.0-rc3-code43-attempt02/verification-final/validation.json",
+    "verification/native-commerce/public-input-recheck.json",
+    "verification/native-commerce/drive-public-apk.json",
+    "verification/native-commerce/drive-public-aab.json"
+  ],
+  "billing_focused_assertions": 418,
+  "billing_focused_failures": 0,
+  "billing_gpu_assertions": 49,
+  "billing_gpu_captures": 12,
+  "external_configuration": {
+    "firebase_project": "OPEN - owner reports none created",
+    "verification_deployment": "OPEN - no deployed service or verification URL",
+    "play_api_permissions": "OPEN - service authorization not verified",
+    "play_products_and_license_testers": "OPEN - exact product activation and tester configuration not verified",
+    "admob_app_and_live_units": "OPEN - owner reports no app record; shipped configuration uses Google demo IDs",
+    "production_audience_consent_data_safety": "OPEN - final declarations and owner choices not verified",
+    "internal_track_upload": "OPEN - no Console upload/release acceptance established"
+  },
+  "configuration_effect": "Billing checkout fails closed until the verifier is configured. Ads remain in demo/test mode; no live revenue or real purchase acceptance is claimed.",
+  "player_identity_policy": "Firebase anonymous auth protects API requests. Verified Play tokens are bearer proofs for permanent restoration, including reinstall under a fresh anonymous UID. Obfuscated account/profile IDs are empty; developer email is not player identity.",
+  "intended_artifacts": {
+    "preview": {
+      "version_name": "0.7.17-preview",
+      "version_code": 44,
+      "package": "org.pegfoundry.prototype.preview"
+    },
+    "public": {
+      "version_name": "0.8.0-rc3",
+      "version_code": 43,
+      "package": "com.qriscuit.sugarfall"
+    }
+  },
+  "delivered_artifacts": {
+    "preview": {
+      "release_record": "PLINKO/docs/ANDROID_SUGARFALL_v0.7.17.json",
+      "package_verified": true,
+      "delivery_verified": true,
+      "artifacts": {
+        "apk": {
+          "local_path": "PLINKO/builds/Sugarfall-v0.7.17-Android-Preview-2026-11-05.apk",
+          "size_bytes": 104448254,
+          "sha256": "2a2047e3fb90787c12f0fbbde7d7ae288519775d840459a0d62f401394280e97",
+          "signing_certificate_sha256": "926f0d0c634978f4d84727a272068bacd3bb157277a9a8b18810e7c60aef70bc",
+          "drive": {
+            "file_id": "1GF1zo3lt0VR5voajNPGjoP1FYuPe0FYz",
+            "url": "https://drive.google.com/file/d/1GF1zo3lt0VR5voajNPGjoP1FYuPe0FYz/view?usp=drivesdk",
+            "verification_path": "verification/native-commerce/drive-preview.json",
+            "metadata_verified": true,
+            "remote_checksum_verified": false,
+            "remote_checksum_available": false,
+            "folder_id": "1TXLZwTNVlHGTBy7y0CVMMk3zABEKu8X-",
+            "checks_passed": 8
+          }
+        }
+      }
+    },
+    "public": {
+      "release_record": "PLINKO/docs/ANDROID_SUGARFALL_v0.8.0-rc3.json",
+      "package_verified": true,
+      "delivery_verified": true,
+      "artifacts": {
+        "apk": {
+          "local_path": "PLINKO/builds/android-release/0.8.0-rc3-code43-attempt02/Sugarfall-v0.8.0-rc3-Android.apk",
+          "size_bytes": 104452350,
+          "sha256": "1361336a6a9c48a46f7f963a498339842ae58c805307268c0fe08c539eaca302",
+          "signing_certificate_sha256": "e31ab7654afed05f9acd5fb6b59846d990198b8005d8fafd01e070c1dbc4dc29",
+          "drive": {
+            "file_id": "1AU5B4wDwQT4RcKqrs_KG_u02B3X4NRDt",
+            "url": "https://drive.google.com/file/d/1AU5B4wDwQT4RcKqrs_KG_u02B3X4NRDt/view?usp=drivesdk",
+            "verification_path": "verification/native-commerce/drive-public-apk.json",
+            "metadata_verified": true,
+            "remote_checksum_verified": false,
+            "remote_checksum_available": false,
+            "folder_id": "1TXLZwTNVlHGTBy7y0CVMMk3zABEKu8X-",
+            "checks_passed": 8
+          }
+        },
+        "aab": {
+          "local_path": "PLINKO/builds/android-release/0.8.0-rc3-code43-attempt02/Sugarfall-v0.8.0-rc3-Android.aab",
+          "size_bytes": 104105905,
+          "sha256": "6d1abaa6b14a0f01a208d80b743b5e210ebad30c983b99c1d77593a024a29a10",
+          "signing_certificate_sha256": "e31ab7654afed05f9acd5fb6b59846d990198b8005d8fafd01e070c1dbc4dc29",
+          "drive": {
+            "file_id": "1ZFWvhGOnHPLn1qIYkcuRpBhcP3KG846D",
+            "url": "https://drive.google.com/file/d/1ZFWvhGOnHPLn1qIYkcuRpBhcP3KG846D/view?usp=drivesdk",
+            "verification_path": "verification/native-commerce/drive-public-aab.json",
+            "metadata_verified": true,
+            "remote_checksum_verified": false,
+            "remote_checksum_available": false,
+            "folder_id": "1TXLZwTNVlHGTBy7y0CVMMk3zABEKu8X-",
+            "checks_passed": 8
+          }
+        }
+      }
+    }
+  },
+  "current_delivered_records": [
+    "PLINKO/docs/ANDROID_SUGARFALL_v0.7.17.json",
+    "PLINKO/docs/ANDROID_SUGARFALL_v0.8.0-rc3.json"
+  ],
+  "remaining": [
+    "Account/provider configuration, deployed verifier, Play API permissions, active products and license testers",
+    "Owner AdMob app/live units, final audience/consent/SDK-data declarations and Internal testing upload",
+    "Physical Android SDK playback, purchase/cancel/pending/restore/reinstall/refund/expiry tests",
+    "All existing phone acceptance, legal progression, performance and Bakery tray-10 retest gates"
+  ],
+  "preserved_tracker_state": {
+    "sf_statuses": 65,
+    "area_requirement_states": 255,
+    "prior_changes": 50,
+    "prior_area_fix_records": 14,
+    "new_area_fix": false
+  },
+  "http_verifier_assertions": 65,
+  "server_unit_tests": 29,
+  "server_firestore_emulator_tests": 6,
+  "server_live_deployment_verified": false,
+  "historical_delivered_records": [
+    "PLINKO/docs/ANDROID_SUGARFALL_v0.7.16.json",
+    "PLINKO/docs/ANDROID_SUGARFALL_v0.8.0-rc2.json"
+  ],
+  "real_billing_verified": false,
+  "real_ad_playback_verified": false,
+  "play_uploaded": false
+}

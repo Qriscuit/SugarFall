@@ -15,8 +15,12 @@ import struct
 import subprocess
 import xml.etree.ElementTree as ET
 import zipfile
+from android_release import PREVIEW_ADS_PATH, PRODUCTION_ADS_PATH, PUBLIC_PACKAGE
+from native_android_audit import ADMOB_APP_METADATA, audit_native_apk, audit_production_ads, import_targets
 
 CERTIFICATE='e31ab7654afed05f9acd5fb6b59846d990198b8005d8fafd01e070c1dbc4dc29'
+NATIVE_REQUIRED_PERMISSIONS={'android.permission.INTERNET','android.permission.ACCESS_NETWORK_STATE','com.android.vending.BILLING'}
+NATIVE_OPTIONAL_PERMISSIONS={'com.google.android.gms.permission.AD_ID','android.permission.ACCESS_ADSERVICES_AD_ID','android.permission.ACCESS_ADSERVICES_ATTRIBUTION','android.permission.ACCESS_ADSERVICES_TOPICS','android.permission.READ_BASIC_PHONE_STATE','android.permission.WAKE_LOCK','android.permission.FOREGROUND_SERVICE'}
 FORBIDDEN=re.compile(r'(?i)(?:^|/)(?:tests|tools|verification|docs|related_materials|concept-art|qa|report|builds|private|\.qa_data|\.git|\.aws)(?:/|$)|\.(?:keystore|jks|pfx|p12|pem|key)$|(?:^|/)(?:\.env(?:\.[^/]*)?|credentials(?:\.[^/]*)?|signing[-.]credentials(?:\.[^/]*)?|signing\.properties)$')
 AUTHORING_METADATA=re.compile(r'(?i)(?:^|/)data/(?:art/(?:.*/)?(?:sources\.json|README\.txt|palette-refresh-sources\.json)|audio/.*\.provenance\.json)$')
 
@@ -114,6 +118,66 @@ def sparse_payload_errors(index,names,read_payload):
     return errors
 
 
+def launcher_icon_proof(project,apk,aab,resources):
+    """Bind every generated launcher bitmap to its logical APK resource variant.
+
+    AAPT2 optimize shortens APK paths independently of the AAB. Resource names
+    and density configurations remain the identity; ZIP filenames do not.
+    """
+    densities={'':'mipmap','mdpi':'mipmap-mdpi-v4','hdpi':'mipmap-hdpi-v4',
+               'xhdpi':'mipmap-xhdpi-v4','xxhdpi':'mipmap-xxhdpi-v4','xxxhdpi':'mipmap-xxxhdpi-v4'}
+    roles={'icon','icon_background','icon_foreground','icon_monochrome'}
+    expected={(role,density):'res/'+folder+'/'+role+'.webp'
+              for role in roles for density,folder in densities.items()}
+    errors=[];actual={};current=None
+    for line in resources.splitlines():
+        header=re.match(r'^\s+resource (0x[0-9a-fA-F]+) (\S+)\s*$',line)
+        if header:
+            current=(header[1],header[2].split(':')[-1])
+            continue
+        value=re.match(r'^\s+\(([^)]*)\) \(file\) (\S+)(?: type=\S+)?\s*$',line)
+        if current and current[1].startswith('mipmap/') and value and value[2].endswith(('.webp','.png')):
+            key=(current[1].split('/',1)[1],value[1])
+            if key in actual:errors.append({'duplicate_resource_variant':list(key)})
+            actual[key]={'resource_id':current[0],'apk_entry':value[2]}
+    if set(actual)!=set(expected):
+        errors.append({'missing_resource_variants':[list(key) for key in sorted(set(expected)-set(actual))],
+                       'unexpected_resource_variants':[list(key) for key in sorted(set(actual)-set(expected))]})
+    generated=project/'android/build/res'
+    source_names={'res/'+path.relative_to(generated).as_posix() for path in generated.rglob('*')
+                  if path.is_file() and path.relative_to(generated).parts[0].startswith('mipmap')
+                  and path.suffix in ('.webp','.png')}
+    if source_names!=set(expected.values()):
+        errors.append({'missing_generated_bitmaps':sorted(set(expected.values())-source_names),
+                       'unexpected_generated_bitmaps':sorted(source_names-set(expected.values()))})
+    bundle_icons={name for name in aab.namelist() if '/res/mipmap' in name and name.endswith(('.webp','.png'))}
+    expected_bundle={'base/'+name for name in expected.values()}
+    if bundle_icons!=expected_bundle:
+        errors.append({'missing_aab_bitmaps':sorted(expected_bundle-bundle_icons),
+                       'unexpected_aab_bitmaps':sorted(bundle_icons-expected_bundle)})
+    records=[];apk_names=set(apk.namelist())
+    for key,canonical in sorted(expected.items()):
+        if key not in actual:continue
+        record=dict(resource='mipmap/'+key[0],configuration=key[1],generated_entry=canonical,
+                    aab_entry='base/'+canonical,**actual[key])
+        path=record['apk_entry'];pure=PurePosixPath(path)
+        safe=path.startswith('res/') and path==pure.as_posix() and '..' not in pure.parts and '\\' not in path
+        source=project/'android/build'/canonical
+        if not safe or path not in apk_names or record['aab_entry'] not in bundle_icons or not source.is_file():
+            errors.append({'missing_or_unsafe_bitmap_payload':record})
+        else:
+            record.update(source_sha256=sha(source.read_bytes()),apk_sha256=sha(apk.read(path)),
+                          aab_sha256=sha(aab.read(record['aab_entry'])))
+            if len({record['source_sha256'],record['apk_sha256'],record['aab_sha256']})!=1:
+                errors.append({'bitmap_content_mismatch':record})
+        records.append(record)
+    # AAPT may deduplicate equal payloads, so logical variant count remains the
+    # exact inventory even when two variants share one physical ZIP entry.
+    return {'passed':not errors and len(records)==24,'expected_bitmaps':24,
+            'mapped_bitmaps':len(records),'records':records,'errors':errors,
+            'identity':'AAPT2 logical mipmap resource plus density; exact generated/APK/AAB SHA-256 parity'}
+
+
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--project',type=Path,default=Path(__file__).resolve().parents[1])
@@ -121,7 +185,7 @@ def main():
         parser.add_argument('--'+name,type=Path,required=True)
     parser.add_argument('--version-name',required=True)
     parser.add_argument('--version-code',type=int,required=True)
-    parser.add_argument('--package',default='com.qriscuit.sugarfall')
+    parser.add_argument('--package',default=PUBLIC_PACKAGE)
     parser.add_argument('--certificate',default=CERTIFICATE)
     parser.add_argument('--min-sdk',type=int,default=24)
     parser.add_argument('--target-sdk',type=int,default=36)
@@ -147,12 +211,15 @@ def main():
     check('Frozen input manifest uses safe project-relative paths',not invalid,invalid)
     if invalid:raise ValueError('Unsafe source manifest paths')
     expected_scripts={path.relative_to(project).as_posix() for path in (project/'scripts').glob('*.gd')}
+    expected_scripts.update(path.relative_to(project).as_posix() for path in (project/'addons').rglob('*.gd'))
+    expected_scripts={path for path in expected_scripts if not path.startswith('addons/admob/gdscript/sample/')}
     check('Frozen source manifest covers every runtime script',expected_scripts<=set(frozen),sorted(expected_scripts-set(frozen)))
     changed=[path for path,digest in frozen.items() if not (project/path).is_file() or sha((project/path).read_bytes())!=digest]
     check('Frozen export inputs match current source before audit',not changed,changed)
     java=args.java_home/'bin/java.exe';tools=args.build_tools
     badging=run('apk-badging',tools/'aapt.exe',['dump','badging',args.apk])
     apk_manifest=run('apk-manifest',tools/'aapt.exe',['dump','xmltree',args.apk,'AndroidManifest.xml'])
+    apk_resources=run('apk-resources',tools/'aapt2.exe',['dump','resources',args.apk])
     extracted_native=bool(re.search(r'android:extractNativeLibs[^\n]*=\(type 0x12\)0xffffffff',apk_manifest))
     signature=run('apk-signature',java,['-jar',tools/'lib/apksigner.jar','verify','--verbose','--print-certs',args.apk])
     alignment=run('apk-alignment',tools/'zipalign.exe',['-c','-P','16','-v','4',args.apk])
@@ -163,7 +230,9 @@ def main():
     check('APK minimum and target SDK',f"sdkVersion:'{args.min_sdk}'" in badging and f"targetSdkVersion:'{args.target_sdk}'" in badging)
     check('APK is nondebug', 'application-debuggable' not in badging)
     check('APK ARM64 only',re.findall(r'^native-code: (.+)$',badging,re.M)==["'arm64-v8a'"])
-    check('APK requests no permissions',not re.findall(r'^uses-permission[^:]*:',badging,re.M))
+    apk_permissions=set(re.findall(r"^uses-permission[^:]*: name='([^']+)'",badging,re.M))
+    allowed_permissions=NATIVE_REQUIRED_PERMISSIONS|NATIVE_OPTIONAL_PERMISSIONS|{args.package+'.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION'}
+    check('APK native commerce permissions match reviewed SDK allowlist',NATIVE_REQUIRED_PERMISSIONS<=apk_permissions and apk_permissions<=allowed_permissions,sorted(apk_permissions))
     signer=re.search(r'Signer #1 certificate SHA-256 digest: (\w+)',signature)
     check('APK expected single release certificate',signer and signer[1].lower()==args.certificate.lower() and 'Number of signers: 1' in signature,signer[1] if signer else None)
     check('APK v2 and v3 cryptographic signatures verify',all(f'Verified using v{version} scheme (APK Signature Scheme v{version}): true' in signature for version in [2,3]))
@@ -191,12 +260,16 @@ def main():
     check('AAB identity and version',xml.get('package')==args.package and xml.get(android+'versionCode')==str(args.version_code) and xml.get(android+'versionName')==args.version_name)
     check('AAB minimum and target SDK',sdk is not None and sdk.get(android+'minSdkVersion')==str(args.min_sdk) and sdk.get(android+'targetSdkVersion')==str(args.target_sdk))
     check('AAB is nondebug',app is not None and app.get(android+'debuggable','false')=='false')
-    check('AAB requests no permissions',not any(item.tag.startswith('uses-permission') for item in xml))
+    aab_permissions={item.get(android+'name') for item in xml if item.tag.startswith('uses-permission')}
+    check('AAB native commerce permissions agree with APK and reviewed SDK allowlist',aab_permissions==apk_permissions and NATIVE_REQUIRED_PERMISSIONS<=aab_permissions and aab_permissions<=allowed_permissions,sorted(aab_permissions))
     config=json.loads(config_text[config_text.index('{'):config_text.rindex('}')+1])
     native_delivery=config.get('optimizations',{}).get('uncompressNativeLibraries',{})
     check('AAB requests 16KiB alignment for delivered native libraries',native_delivery.get('enabled') is True and native_delivery.get('alignment')=='PAGE_ALIGNMENT_16K')
     imports=[];scripts=[];native=[]
     with zipfile.ZipFile(args.apk) as apk,zipfile.ZipFile(args.aab) as aab,zipfile.ZipFile(args.release_template) as official:
+        native_commerce = audit_native_apk(apk, apk_manifest, badging, args.package, expect_demo_ads=False)
+        for item in native_commerce['checks']:
+            check('Native commerce: '+item['name'],item['passed'],item.get('actual'))
         for label,archive in [('APK',apk),('AAB',aab)]:
             names=archive.namelist()
             check(label+' ZIP integrity and unique paths',archive.testzip() is None and len(names)==len(set(names)))
@@ -218,7 +291,8 @@ def main():
                 source=project/name.removeprefix('assets/')
                 if source.is_file():check('Packaged raw source: '+name,apk.read(name)==source.read_bytes())
             if name.startswith('assets/') and name.endswith('.import'):
-                targets=re.findall(r'^path(?:\.[^=]+)?="res://([^\"]+)"',apk.read(name).decode().rstrip('\x00'),re.M)
+                source_descriptor=project/name.removeprefix('assets/')
+                targets=import_targets(apk.read(name).decode().rstrip('\x00'),source_descriptor.read_text(encoding='utf-8') if source_descriptor.is_file() else None)
                 valid=bool(targets) and all('assets/'+target in entries and (project/target).is_file() and apk.read('assets/'+target)==(project/target).read_bytes() for target in targets)
                 check('Imported resource current-byte parity: '+name,valid,targets)
                 imports.append({'descriptor':name,'targets':targets})
@@ -226,6 +300,7 @@ def main():
                 targets=re.findall(r'^path="res://([^\"]+)"',apk.read(name).decode(),re.M)
                 check('Resource remap resolves: '+name,bool(targets) and all('assets/'+target in entries for target in targets))
         required=[p.relative_to(project).as_posix() for p in (project/'data').glob('*.json')]+['data/licenses/GODOT_LICENSE.txt','data/licenses/GODOT_COPYRIGHT.txt','data/fonts/Fraunces-OFL.txt','data/fonts/Nunito-OFL.txt','data/art/branding/studio_boot.png']
+        required=[relative for relative in required if relative != PREVIEW_ADS_PATH]
         for relative in required:check('Required current data/license/boot payload: '+relative,'assets/'+relative in entries and apk.read('assets/'+relative)==(project/relative).read_bytes())
         for scene in ['main','startup']:check('Required production scene: '+scene,'assets/'+scene+'.tscn.remap' in entries)
         binary=apk.read('assets/project.binary');settings=config_values(binary)
@@ -253,6 +328,13 @@ def main():
         baseline={'assets/dexopt/baseline.prof','assets/dexopt/baseline.profm'}
         apk_assets={name for name in entries if name.startswith('assets/') and not name.endswith('/')}-baseline
         check('AAB game asset names unique and identical to APK',len(asset_names)==len(asset_map) and set(asset_map)==apk_assets,{'APK':len(apk_assets),'AAB':len(asset_map)})
+        apk_app_ids=native_commerce['native_metadata'].get(ADMOB_APP_METADATA, [])
+        aab_app_ids=[node.get(android+'value') for node in app.findall('meta-data')
+                     if node.get(android+'name')==ADMOB_APP_METADATA] if app is not None else []
+        for label,archive,assets,app_ids in [('APK',apk,{name:name for name in apk_assets},apk_app_ids),
+                                              ('AAB',aab,asset_map,aab_app_ids)]:
+            for item in audit_production_ads(archive,assets,app_ids,frozen.get(PRODUCTION_ADS_PATH)):
+                check(label+' AdMob: '+item['name'],item['passed'],item.get('actual'))
         sparse_name='assets/assets.sparsepck'
         apk_index=sparse_pack_entries(apk.read(sparse_name))
         aab_index=sparse_pack_entries(aab.read(asset_map[sparse_name]))
@@ -277,8 +359,8 @@ def main():
         all_bundle_libs={name for name in bundle_names if '/lib/' in name and name.endswith('.so')}
         bundle_libs={name.removeprefix('base/'):name for name in all_bundle_libs if name.startswith('base/lib/')}
         check('AAB native release libraries match APK exactly',len(all_bundle_libs)==len(bundle_libs) and set(bundle_libs)==libraries and all(aab.read(bundle_libs[name])==apk.read(name) for name in libraries&set(bundle_libs)))
-        icons={name for name in entries if name.startswith('res/mipmap') and name.endswith(('.webp','.png'))}
-        check('All24 Sugarfall launcher bitmaps agree across artifacts',len(icons)==24 and all('base/'+name in bundle_names and aab.read('base/'+name)==apk.read(name) for name in icons))
+        launcher_icons=launcher_icon_proof(project,apk,aab,apk_resources)
+        check('All24 generated Sugarfall launcher bitmaps map to identical APK/AAB content',launcher_icons['passed'],launcher_icons)
         for module in sorted({name.split('/',1)[0] for name in asset_names}-{'base'}):
             text=bundle('aab-manifest-'+module,['dump','manifest','--bundle='+str(args.aab.resolve()),'--module='+module])
             asset_manifest=xml_manifest(text);dist='{http://schemas.android.com/apk/distribution}'
@@ -297,8 +379,9 @@ def main():
     check('Export input hashes remain unchanged after verification',not changed,changed)
     for label,path in [('apk',args.apk),('aab',args.aab)]:check(label.upper()+' remains unchanged during verification',sha(path.read_bytes())==original[label]['sha256'])
     report={'passed':all(item['passed'] for item in checks),'checks_passed':sum(item['passed'] for item in checks),'checks_total':len(checks),'checks':checks,'artifacts':original,'expected_identity':{'package':args.package,'version_code':args.version_code,'version_name':args.version_name,'certificate_sha256':args.certificate},'source_manifest_sha256':sha(args.source_manifest.read_bytes()),'frozen_source_inputs':frozen,'scripts':scripts,'imports':imports,'native_libraries':native,'sparse_pack_parity':sparse_proof,'commands':commands,
-        'scope':'Static signed artifacts and export-input parity. Compiled-script inventory/remaps are checked, not decompiled back to source. No Play upload, phone/emulator execution or real purchase verification.',
-        'phone_verified':False,'play_uploaded':False,'real_billing_verified':False}
+        'native_commerce':native_commerce,'launcher_icons':launcher_icons,
+        'scope':'Static signed artifacts, native commerce DEX/manifest/configuration and export-input parity. Compiled-script inventory/remaps are checked, not decompiled back to source. No Play upload, phone/emulator execution, live ad playback or real purchase verification.',
+        'phone_verified':False,'play_uploaded':False,'real_billing_verified':False,'real_ad_playback_verified':False}
     (out/'validation.json').write_text(json.dumps(report,indent=2)+'\n',encoding='utf-8')
     print(json.dumps({key:report[key] for key in ['passed','checks_passed','checks_total']}))
     for item in checks:

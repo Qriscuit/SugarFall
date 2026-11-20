@@ -1,0 +1,108 @@
+{
+  "passed": true,
+  "date": "2026-11-05",
+  "runtime_tested": "Node.js 22.23.4, official Windows x64 executable checked against nodejs.org SHASUMS256.txt",
+  "unit_tests": 29,
+  "firestore_emulator_tests": 6,
+  "failed": 0,
+  "rules_denied_operations": 45,
+  "rules_test_contexts": [
+    "unauthenticated",
+    "anonymous authenticated",
+    "other authenticated"
+  ],
+  "real_firestore_transaction_tests": 3,
+  "emulator_project": "demo-sugarfall-commerce",
+  "emulator_edition": "Standard, local only",
+  "syntax_checks_passed": true,
+  "production_entrypoint_imported": true,
+  "production_google_api_adapter": "Fixed-origin Android Publisher v2 GET and product acknowledgement using GoogleAuth ADC; no fake adapter selected by the export",
+  "firebase_plugin_tools_available": false,
+  "live_project_selected": false,
+  "live_database_edition_verified": false,
+  "credentials_or_iam_verified": false,
+  "deployed": false,
+  "live_google_purchase_tested": false,
+  "billing_plan_changed": false,
+  "ownership": "Purchase token as bearer credential. Anonymous Firebase UID is request/rate-limit identity only. Fresh UID restore always revalidates Google. No repeated currency or per-UID reward.",
+  "client_policy": "Refresh at 240s, max300s in-memory grace, no cold-start durable entitlement cache, active run remains pinned; authoritative revocation removes access at safe game boundary.",
+  "refund_policy": "Fresh GET on every restore/foreground/periodic verification. No exposed RTDN/PubSub/admin endpoint or background plaintext-token store.",
+  "earlier_attempts": [
+    {
+      "step": "local rules emulator",
+      "result": "First attempt found missing direct Firebase client test dependency; corrected and six tests passed on Node22."
+    }
+  ],
+  "remaining": [
+    "Connect/select actual Firebase project and inspect database edition/id/location",
+    "Confirm billing and runtime service-account IAM plus Play Console permissions",
+    "Enable same-project anonymous Auth and configure actual endpoint/client keys",
+    "Activate exact products/early-unlock options and test live license purchase, reinstall restore, pending, refund and outage paths"
+  ],
+  "files": [
+    {
+      "path": "server/commerce/firebase.json",
+      "sha256": "ce02c532cb008287c45e0fb6d4e6827c6a5352b016bb6752226070399e407590"
+    },
+    {
+      "path": "server/commerce/firestore.rules",
+      "sha256": "ee34e5d88308f34bd3dee69d7be42f5e4448d5c0089d811b86800cf846b28731"
+    },
+    {
+      "path": "server/commerce/firestore.indexes.json",
+      "sha256": "2e64057c4770344944f97740e1b4e6cbc3fae8cc7899008219092e2b86b6d158"
+    },
+    {
+      "path": "server/commerce/README.md",
+      "sha256": "e3d649640bb7813f8c278d40dda92245d55bf99fffc24ca1d03bd42238b6c665"
+    },
+    {
+      "path": "server/commerce/functions/package.json",
+      "sha256": "682d1f2450cdb280e1ebb93d7597893a5cc288240668b91e0ff0cd6481d6e8fa"
+    },
+    {
+      "path": "server/commerce/functions/pnpm-lock.yaml",
+      "sha256": "9bea1e8b6b3034944b3ffec64d7e7c47dd91fca2629070842e30f1621c422331"
+    },
+    {
+      "path": "server/commerce/functions/pnpm-workspace.yaml",
+      "sha256": "c60a9e9eceae57428785ed7ea0eb6612bee23fd5c99b791259d8fa7dd6e8399b"
+    },
+    {
+      "path": "server/commerce/functions/.env.example",
+      "sha256": "26518456359082a89c2caff3381322b0128b07b1a4fb50d870cb4bce7ac12eba"
+    },
+    {
+      "path": "server/commerce/functions/src/errors.js",
+      "sha256": "5c1b2beb6de6dca4fa5eba39b85d06e65fa48828a27a7c6747fa4733a3a2e1c4"
+    },
+    {
+      "path": "server/commerce/functions/src/firestore-store.js",
+      "sha256": "c22ca0cb47d2bc240f6fbb98596f1b54e50fc3a894ed75e86caa7305b4f58d4c"
+    },
+    {
+      "path": "server/commerce/functions/src/google-play.js",
+      "sha256": "5118d7bfc2f032bee39969d8ed4a7328b4c52e6d0135d7bb05bb8a64d5e74847"
+    },
+    {
+      "path": "server/commerce/functions/src/http.js",
+      "sha256": "1ad7c435607af11212792565805006e5af3345dbc2f7c50f49df3965b06a95b5"
+    },
+    {
+      "path": "server/commerce/functions/src/index.js",
+      "sha256": "fa62b1d267c41f5f281a4d6621b9e1903f8196fd4b914382031eef928933c3ec"
+    },
+    {
+      "path": "server/commerce/functions/src/service.js",
+      "sha256": "7f310248bdeab1b9695d275d1fa815e676cbb60f798c5268595a1290da80bdbf"
+    },
+    {
+      "path": "server/commerce/functions/test/commerce.test.js",
+      "sha256": "e50b23e0012b1fbb8bddf44295ce15f7960e3e6c17c8a8f17542237e5887a45c"
+    },
+    {
+      "path": "server/commerce/functions/test/firestore-rules.emulator.js",
+      "sha256": "2067c6d3a278bc5d87e76cd6225917fc9d8311b44d2a74f6dd455d89e9024c12"
+    }
+  ]
+}

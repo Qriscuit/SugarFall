@@ -35,7 +35,16 @@ func _store_result(product: String, outcome: String):
 		if restore_activation():
 			message="Unlocked"; stage="details"
 			if not was_owned and owned(): _purchase_feedback()
+		else:
+			message="Could not save purchase. Tap Restore."
+			stage="details"
 	elif outcome=="pending": message="Purchase pending"
+	elif outcome=="verification_failed":
+		message="Verification failed. Tap Restore."
+		stage="details"
+	elif outcome=="revoked":
+		message="Purchase is no longer available."
+		stage="details"
 	elif outcome in ["failed","cancelled","unavailable"]:
 		message="Purchase cancelled" if outcome=="cancelled" else "Store unavailable"
 		stage="details"
@@ -79,7 +88,8 @@ func purchase_pending() -> bool:
 
 func can_restore() -> bool:
 	if owned(): return false
-	return g.ability_early_access(g.area_id) or g.ability_access.export_state().get("preview_receipts",{}).get(g.area_id,false)
+	var retry = billing.has_method("needs_restore") and billing.needs_restore(g.ability_access.CATALOG[g.area_id].product_id)
+	return retry or g.ability_early_access(g.area_id) or g.ability_access.export_state().get("preview_receipts",{}).get(g.area_id,false)
 
 func cancel_card_purchase():
 	g.ability_access.cancel_pending_preview()
@@ -179,7 +189,12 @@ func press_action(requested_action: String):
 			if not offer.available:
 				message="Store unavailable"; g.feedback("ui_error"); return
 			var request=g.ability_access.request_purchase(g.area_id,owned())
-			if request.is_empty(): message="Use Restore purchases"; return
+			if request.is_empty():
+				if message.is_empty(): message="Use Restore purchases"
+				return
+			# Native checkout may emit its terminal error synchronously before this
+			# call returns. Keep that outcome instead of replacing it with Pending.
+			if request.get("response_code",0)!=0: return
 			stage="confirm" if offer.preview else "pending"
 			message=""
 			g.feedback("ui_tap")
@@ -203,8 +218,7 @@ func press_action(requested_action: String):
 						restored=restored and g.ability_early_access(area)
 				message=("Purchases restored" if restored else "Could not restore. Try again.") if any_receipt else "No purchases to restore"
 			else:
-				var store=billing.offer(g.ability_access.CATALOG[g.area_id].product_id)
-				if not str(store.get("error","")).is_empty(): message="Store unavailable"
+				if not billing.can_restore(): message="Store unavailable"
 				else: g.ability_access.restore(); message="Restore requested"
 			g.feedback("ui_error" if message.begins_with("Could not") or message=="Store unavailable" else "ui_confirm")
 	g.navigation_delay=.25

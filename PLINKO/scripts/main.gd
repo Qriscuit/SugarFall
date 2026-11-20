@@ -1,16 +1,18 @@
 extends Node2D
-## Original prototype with a local monetization simulator. No external SDK or network.
+## Campaign gameplay, native commerce and isolated developer simulation tools.
 const RunSnapshot = preload("res://scripts/run_snapshot.gd")
 const AreaCampaign = preload("res://scripts/area_campaign.gd")
 const UpgradeGraph = preload("res://scripts/upgrade_graph.gd")
 const GelatoUpgradeGraph = preload("res://scripts/gelato_upgrade_graph.gd")
 const CrystalUpgradeGraph = preload("res://scripts/crystal_upgrade_graph.gd")
 const MonetizationService = preload("res://scripts/monetization_service.gd")
+const AdMobConfig = preload("res://scripts/admob_config.gd")
 const CoinDisplay = preload("res://scripts/coin_display.gd")
 const CombatBalance = preload("res://scripts/combat_balance.gd")
 const FlowRules = preload("res://scripts/flow_rules.gd")
 var run_rules_revision = FlowRules.CURRENT_REVISION
 signal peg_damaged(position: Vector2, actual_damage: float, impact_first_hit: bool)
+signal peg_coins_earned(position: Vector2, earned_coins: float, impact_first_hit: bool)
 signal audio_feedback_requested(event_name: String, event_area: String)
 const WIDTH = 720.0
 const HEIGHT = 1280.0
@@ -110,9 +112,12 @@ var total_shifts = 0
 var mode = "home":
 	set(value):
 		if value == mode: return
-		if value in ["monetization","monetization_tools","test_ad","test_purchase","bonus_confirm"] and monetization != null and not test_commerce_available(): return
+		if value=="developer_areas" and not developer_tools_available(): return
+		if value in ["monetization","monetization_tools","test_ad","test_purchase"] and monetization != null and not test_commerce_available(): return
+		if value=="bonus_confirm" and not reward_ad_available(): return
+		if mode=="native_ad" and native_ad_service!=null and native_ad_service.has_pending(): return
 		if mode=="shop" and value!="shop" and ability_ui!=null: ability_ui.cancel_card_purchase()
-		if page_transition != null: page_transition.begin(mode,value)
+		if page_transition != null and mode!="native_ad" and value!="native_ad": page_transition.begin(mode,value)
 		if pause_transition != null: pause_transition.begin(mode,value)
 		var previous = mode
 		mode = value
@@ -159,6 +164,11 @@ var testing = false
 ## Boot-only holds are intentionally absent from every save/checkpoint field.
 var startup_blocked = false
 var profile_initialization_complete = true
+var purchase_verifier: Node
+var _deferred_paid_run: Dictionary = {}
+var _loaded_native_ads_state: Dictionary = {}
+var _purchase_restore_retry_scheduled = false
+var purchase_restore_message = ""
 var screenshot_timer = -1.0
 var game_audio
 var audio_application_paused = false
@@ -199,12 +209,14 @@ var result_history = preload("res://scripts/run_history.gd").new()
 var monetization = MonetizationService.new()
 var monetization_ui
 var reward_earned = false
+var native_ad_service: Node
+var native_ad_message = ""
 var commerce_message = "Local simulation. No money is charged."
 var commerce_profile = ""
 var commerce_return_mode = "result"
 
 func _init():
-	peg_damaged.connect(impact_feedback.show_damage)
+	peg_coins_earned.connect(impact_feedback.show_coins)
 	upgrade_map=preload("res://scripts/upgrade_map.gd").new(self)
 	home_menu=preload("res://scripts/home_menu.gd").new(self)
 	level_map=preload("res://scripts/level_map.gd").new(self)
@@ -243,18 +255,23 @@ func _ready():
 	rng.randomize()
 	food_art.load_assets()
 	set_active_area("bakery")
-	testing = "--self-test" in OS.get_cmdline_user_args()
+	var developer_args = OS.get_cmdline_user_args() if developer_tools_available() else PackedStringArray()
+	testing = "--self-test" in developer_args
+	var native_config = load_monetization_config()
 	if not testing:
+		setup_native_purchases(native_config)
 		load_game()
 	profile_initialization_complete = true
-	ability_ui.setup_store()
+	if not testing:
+		var ad_config = AdMobConfig.read(OS.has_feature(AdMobConfig.PUBLIC_FEATURE))
+		setup_native_ads(ad_config, _loaded_native_ads_state)
 	for kind in ["normal","prism","clock","armored"]:
 		for suffix in ["","_flash"]: peg_textures[kind+suffix]=load("res://data/art/"+kind+suffix+".svg")
 	texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS
 	setup_audio()
 	if testing:
 		self_test()
-	elif "--capture" in OS.get_cmdline_user_args():
+	elif "--capture" in developer_args:
 		levels = [2,2,2,3,3,2,2,2]
 		start_shift()
 		screenshot_timer = 8.0
@@ -262,6 +279,115 @@ func _ready():
 		first_run_guide.maybe_begin()
 	page_transition.enabled = not testing
 	queue_redraw()
+
+func load_monetization_config() -> Dictionary:
+	var path = "res://data/monetization_config.json"
+	if not FileAccess.file_exists(path): return {}
+	var parsed = JSON.parse_string(FileAccess.get_file_as_string(path))
+	return parsed if parsed is Dictionary else {}
+
+func setup_native_purchases(config: Dictionary):
+	var verifier_path = "res://scripts/firebase_purchase_verifier.gd"
+	if purchase_verifier==null and ResourceLoader.exists(verifier_path):
+		purchase_verifier=load(verifier_path).new()
+		add_child(purchase_verifier)
+	if purchase_verifier!=null:
+		var billing_config = config.get("billing",{})
+		purchase_verifier.configure(billing_config if billing_config is Dictionary else {})
+		if purchase_verifier.is_configured(): ability_ui.billing.configure_backend(purchase_verifier.verify_purchase)
+		else: ability_ui.billing.configure_backend(Callable())
+	if not ability_ui.billing.restore_finished.is_connected(_on_purchase_restore_finished):
+		ability_ui.billing.restore_finished.connect(_on_purchase_restore_finished)
+	monetization_ui.bind_billing()
+	ability_ui.setup_store()
+
+func has_deferred_paid_run() -> bool:
+	return not _deferred_paid_run.is_empty()
+
+func _saved_run_uses_store_ability(snapshot) -> bool:
+	if ability_unlock_source!="store" or not snapshot is Dictionary or snapshot.get("trial_active",false)==true: return false
+	if area_id=="gelato": return snapshot.get("twin_launchers",false)==true
+	if area_id=="crystal": return snapshot.get("crystal_second_prism",false)==true
+	var bakery = snapshot.get("bakery_run",{})
+	return bakery is Dictionary and bakery.get("enabled",false)==true
+
+func _purchase_inventory_is_authoritative() -> bool:
+	var status: Dictionary = ability_ui.billing.restore_status()
+	var product: String = ability_access.CATALOG[area_id].product_id
+	var absent = ability_ui.billing.has_method("has_authoritative_absence") and ability_ui.billing.has_authoritative_absence(product)
+	var revoked = ability_ui.billing.has_method("has_authoritative_revocation") and ability_ui.billing.has_authoritative_revocation(product)
+	if revoked and status.get("configured",false)==true and status.get("restoring",false)!=true: return true
+	return status.get("configured",false)==true and status.get("success",false)==true and status.get("has_verified_inventory",false)==true and status.get("restoring",false)!=true and (ability_early_access(area_id) or absent)
+
+func _defer_paid_checkpoint(snapshot: Dictionary, rules: int, onboarding, source_path: String):
+	_deferred_paid_run={"snapshot":snapshot.duplicate(true),"rules":rules,"area_id":area_id,
+		"campaign":AreaCampaign.capture_local(self),"onboarding":onboarding.duplicate(true) if onboarding is Dictionary else onboarding,
+		"save_file":SAVE_FILE,"source_path":source_path}
+	# Keep the original file intact until purchase verification can finish.
+	profile_load_blocked=true
+	mode="home";shift_claimed=true;run_id=""
+	purchase_restore_message="Tap Restore run to retry. Your run is kept."
+
+func retry_purchase_restore():
+	if not has_deferred_paid_run(): return
+	if not ability_ui.billing.backend_configured():
+		purchase_restore_message="Purchases unavailable. Your saved run is kept."
+		queue_redraw()
+		return
+	purchase_restore_message="Restoring purchases. Your saved run is kept."
+	ability_ui.billing.restore()
+	queue_redraw()
+
+func _on_purchase_restore_finished(_success: bool, _message: String):
+	if not has_deferred_paid_run() or _deferred_paid_run.save_file!=SAVE_FILE: return
+	if not _purchase_inventory_is_authoritative():
+		purchase_restore_message="Restore unavailable. Tap Restore run to retry."
+		queue_redraw()
+		return
+	_resume_deferred_paid_checkpoint()
+
+func _resume_deferred_paid_checkpoint():
+	if not has_deferred_paid_run() or _deferred_paid_run.save_file!=SAVE_FILE: return
+	if startup_blocked or page_transition.is_blocking() or pause_transition.is_blocking():
+		if is_inside_tree() and not _purchase_restore_retry_scheduled:
+			_purchase_restore_retry_scheduled=true
+			get_tree().create_timer(.1).timeout.connect(_retry_deferred_paid_checkpoint,CONNECT_ONE_SHOT)
+		return
+	if not _purchase_inventory_is_authoritative(): return
+	var deferred = _deferred_paid_run.duplicate(true)
+	_deferred_paid_run.clear()
+	profile_load_blocked=false
+	AreaCampaign.apply_local(self,deferred.campaign)
+	area_records[deferred.area_id]=deferred.campaign.duplicate(true)
+	run_rules_revision=int(deferred.rules)
+	if ability_early_access(deferred.area_id):
+		if restore_active_run(deferred.snapshot):
+			purchase_restore_message=""
+			first_run_guide.import_state(deferred.onboarding,true)
+		else:
+			_deferred_paid_run=deferred
+			profile_load_blocked=true
+			mode="home";shift_claimed=true;run_id=""
+			purchase_restore_message="Saved run could not resume. Your run is kept."
+			queue_redraw()
+			return
+	elif ability_ui.billing.has_authoritative_absence(ability_access.CATALOG[deferred.area_id].product_id):
+		reject_snapshot("The saved run's purchase is not in the verified store inventory.")
+		shift_claimed=true;run_id=""
+		purchase_restore_message="Purchase not found. Campaign progress is kept."
+	else:
+		_deferred_paid_run=deferred
+		profile_load_blocked=true
+		mode="home";shift_claimed=true;run_id=""
+		purchase_restore_message="Restore unavailable. Tap Restore run to retry."
+		queue_redraw()
+		return
+	if not testing: save_game()
+	queue_redraw()
+
+func _retry_deferred_paid_checkpoint():
+	_purchase_restore_retry_scheduled=false
+	_resume_deferred_paid_checkpoint()
 
 func load_presentation():
 	font = preload("res://data/fonts/Nunito-Semibold.tres")
@@ -334,6 +460,7 @@ func update_safe_area():
 
 func go_back():
 	if startup_blocked: return
+	if mode=="native_ad": return
 	if page_transition.is_blocking() or pause_transition.is_blocking(): return
 	if navigation_delay>0 and not run_transition.active: return
 	if mode=="boards" and level_map.close_overlay():
@@ -364,7 +491,7 @@ func _go_back_impl():
 	elif mode=="reset_confirm": cancel_progress_reset()
 	elif mode in ["test_ad","test_purchase"]: finish_test_request("cancelled")
 	elif mode=="monetization_tools": mode="monetization"
-	elif mode=="monetization": mode="support"
+	elif mode in ["monetization","purchases"]: mode="support"
 	elif mode=="abandon_confirm": mode="paused"
 	elif mode=="play":
 		run_transition.finish()
@@ -388,6 +515,7 @@ func _notification(what):
 	if game_audio != null:
 		game_audio.set_suspended(audio_application_paused or audio_focus_lost)
 		if what==NOTIFICATION_WM_CLOSE_REQUEST: game_audio.stop_all()
+	if native_ad_service!=null: native_ad_service.set_suspended(audio_application_paused or audio_focus_lost)
 	# A nested focus/close event while startup restores a profile must never
 	# persist the temporary default campaign over that profile.
 	if not profile_initialization_complete: return
@@ -459,7 +587,7 @@ func _process(delta):
 	var pause_changed = pause_transition.update(delta)
 	var page_frozen = page_was_active or page_transition.is_blocking() or pause_was_active or pause_transition.is_blocking()
 	var presentation_frozen = page_frozen or run_transition.active or mode in ["paused","abandon_confirm"]
-	if not presentation_frozen and mode not in ["result","bonus_confirm","test_ad"]: elapsed += delta
+	if not presentation_frozen and mode not in ["result","bonus_confirm","test_ad","native_ad"]: elapsed += delta
 	var coin_feedback_changed = false if presentation_frozen else update_coin_feedback(delta)
 	var guide_was_blocking = first_run_guide.blocks_simulation()
 	var guide_changed = false if presentation_frozen else first_run_guide.update(delta)
@@ -474,7 +602,6 @@ func _process(delta):
 			save_game()
 	result_input_delay=maxf(0,result_input_delay-delta)
 	navigation_delay=maxf(0,navigation_delay-delta)
-	var note_was_visible=note_time>0
 	if not presentation_frozen: note_time = maxf(0, note_time - delta)
 
 	if screenshot_timer > 0:
@@ -484,7 +611,7 @@ func _process(delta):
 			var img = get_viewport().get_texture().get_image()
 			img.save_png("res://builds/gameplay.png")
 			get_tree().quit()
-	if mode=="play" or mode!=last_redraw_mode or note_was_visible or diagnostics_on or map_changed or journey_changed or entrance_changed or guide_changed or coin_feedback_changed or page_changed or pause_changed:
+	if mode=="play" or mode!=last_redraw_mode or diagnostics_on or map_changed or journey_changed or entrance_changed or guide_changed or coin_feedback_changed or page_changed or pause_changed:
 		queue_redraw()
 	last_redraw_mode=mode
 
@@ -496,7 +623,10 @@ func _physics_process(delta):
 		if diagnostics_on: diagnostic_step_us=lerpf(diagnostic_step_us,float(Time.get_ticks_usec()-started),.1)
 
 func start_shift(from_home: bool = false):
+	if mode=="native_ad": return
+	if has_deferred_paid_run(): retry_purchase_restore(); return
 	if startup_blocked or page_transition.is_blocking() or pause_transition.is_blocking() or (from_home and run_transition.active): return
+	purchase_restore_message=""
 	run_ability_pinned=false
 	if not trial_active: ability_ui.restore_activation()
 	run_ability_active=ability_ui.owned()
@@ -505,6 +635,7 @@ func start_shift(from_home: bool = false):
 	run_transition.finish()
 	impact_feedback.reset()
 	reward_earned=false
+	native_ad_message=""
 	run_serial+=1
 	run_area_id=area_id
 	run_id="%s:%d:%d" % [area_id,run_serial,Time.get_ticks_usec()]
@@ -618,7 +749,9 @@ func step(dt):
 	# Clear time and automatic-ad cadence stop at the last broken cookie.
 	# The drain is presentation plus remaining food physics, never extra play time.
 	if not clear_draining:
-		if not trial_active: monetization.advance(dt)
+		if not trial_active:
+			if test_commerce_available(): monetization.advance(dt)
+			if native_ad_service!=null and not audio_application_paused and not audio_focus_lost: native_ad_service.advance_campaign_play(dt)
 		run_elapsed += dt
 		var previous_second = ceili(remaining)
 		remaining -= dt
@@ -870,7 +1003,6 @@ func damage_peg(peg, damage, impact_first_hit: bool = false) -> Dictionary:
 		reward=FlowRules.break_reward(reward,wave,trial_active,run_rules_revision)
 		shift_coins = round_credits(shift_coins + reward)
 		event.coins+=reward
-		add_float(peg.p, "+%d" % reward, TEAL)
 		for i in range(5):
 			var particle={"p":peg.p, "v":Vector2(rng.randf_range(-95,95), rng.randf_range(-130,40)), "life":.55, "c":TEAL if peg.kind != "prism" else PINK}
 			if not reduced_motion: particles.append(particle)
@@ -878,6 +1010,9 @@ func damage_peg(peg, damage, impact_first_hit: bool = false) -> Dictionary:
 		if destroyed == pegs.size(): begin_clear_drain()
 	else:
 		tone(260 + rng.randf_range(0,80), .025)
+	# Combine this hit's earned damage budget and break bonus in one coin label.
+	# The tray-clear award is separate and is not attributed to the peg.
+	if event.coins > 0: peg_coins_earned.emit(peg.p,event.coins,impact_first_hit)
 	return event
 
 func pulse():
@@ -903,7 +1038,9 @@ func finish_shift(allow_automatic_ad = true):
 	total_shifts += 1
 	result_history.record_run(run_area_id,result_run_record())
 	var completed_attempt=level_won or remaining<=0
-	if completed_attempt: monetization.complete_attempt(run_id)
+	if completed_attempt:
+		if test_commerce_available(): monetization.complete_attempt(run_id)
+		if native_ad_service!=null: native_ad_service.complete_attempt(run_id)
 	first_run_guide.on_result()
 	# Persist pending result, so closing before collecting cannot lose a finished run.
 	var saved=true if testing else save_game()
@@ -914,6 +1051,9 @@ func finish_shift(allow_automatic_ad = true):
 func collect_reward(_legacy_bonus = false):
 	if mode != "result" or shift_claimed:
 		return
+	if native_ad_service!=null and native_ad_service.has_unsaved_reward(run_area_id,run_id):
+		native_ad_message="Bonus earned. Saving progress…"
+		queue_redraw();return
 	if run_area_id!=area_id:
 		reject_snapshot("Result belongs to another area.")
 		return
@@ -953,7 +1093,7 @@ func collect_reward(_legacy_bonus = false):
 
 func result_payout() -> float:
 	var toolkit=round_credits(shift_coins*.2) if test_commerce_available() and not trial_active and monetization.entitlements.baker_toolkit else 0.0
-	return round_credits(shift_coins+toolkit+(round_credits(shift_coins*.5) if test_commerce_available() and reward_earned and not trial_active else 0.0))
+	return round_credits(shift_coins+toolkit+(round_credits(shift_coins*.5) if result_reward_earned() and not trial_active else 0.0))
 
 func collection_payout() -> float:
 	var payout = result_payout()
@@ -965,8 +1105,85 @@ func displayed_result_payout() -> int:
 	return CoinDisplay.gain(bank,collection_payout())
 
 func displayed_reward_bonus() -> int:
-	if not test_commerce_available() or trial_active or reward_earned: return 0
+	if not reward_ad_available() or trial_active or result_reward_earned(): return 0
 	return CoinDisplay.gain(round_credits(bank+collection_payout()),round_credits(shift_coins*.5))
+
+func setup_native_ads(config: Dictionary, restored_state: Dictionary = {}, provider: Node = null):
+	if native_ad_service!=null: return
+	native_ad_service=preload("res://scripts/native_ad_service.gd").new(
+		provider, _persist_native_ads, _native_ad_context_valid, automatic_ads_allowed)
+	native_ad_service.import_state(restored_state)
+	native_ad_service.reward_committed.connect(_native_ad_reward_committed)
+	native_ad_service.request_finished.connect(_native_ad_finished)
+	native_ad_service.availability_changed.connect(_native_ad_availability_changed)
+	add_child(native_ad_service)
+	native_ad_service.initialize(config)
+	native_ad_service.set_suspended(audio_application_paused or audio_focus_lost)
+
+func automatic_ads_allowed() -> bool:
+	var billing = ability_ui.billing
+	# A configured store may still be restoring an owner's purchase. Resume
+	# automatic breaks only after Play has verified absence or revocation.
+	return not billing.backend_configured() or billing.has_authoritative_absence(billing.REMOVE_ADS_PRODUCT)
+
+func native_ads_available() -> bool:
+	return native_ad_service!=null and native_ad_service.enabled()
+
+func reward_ad_available() -> bool:
+	return native_ads_available() or test_commerce_available()
+
+func result_reward_earned() -> bool:
+	return (native_ad_service!=null and native_ad_service.has_reward(run_area_id,run_id)) or (test_commerce_available() and reward_earned)
+
+func reward_ad_label() -> String:
+	if result_reward_earned(): return "Bonus added"
+	if native_ads_available(): return "Watch ad +%d" % displayed_reward_bonus()
+	return "Test bonus +%d" % displayed_reward_bonus()
+
+func reward_ad_detail() -> String:
+	if not native_ads_available() or result_reward_earned(): return ""
+	if not native_ad_message.is_empty(): return native_ad_message
+	if not native_ad_service.message.is_empty(): return native_ad_service.message
+	return "" if native_ad_service.is_ready("rewarded") else native_ad_service.unavailable_message()
+
+func _persist_native_ads() -> bool:
+	queue_redraw()
+	return true if testing else save_game()
+
+func _native_ad_availability_changed():
+	if native_ad_service!=null and native_ad_service.is_ready("rewarded"): native_ad_message=""
+	queue_redraw()
+
+func _native_ad_context_valid(binding: Dictionary) -> bool:
+	return binding.get("profile")==SAVE_FILE and binding.get("area_id")==run_area_id and binding.get("run_id")==run_id and area_id==run_area_id and not trial_active and not shift_claimed and mode in ["result","bonus_confirm","native_ad"]
+
+func _native_ad_reward_committed(id_area: String, id_run: String):
+	if id_area==run_area_id and id_run==run_id and not trial_active and not shift_claimed:
+		reward_earned=true
+		native_ad_message=""
+		queue_redraw()
+
+func _native_ad_finished(_request_id: String, outcome: Dictionary):
+	if not _native_ad_context_valid(outcome): return
+	mode="result"
+	result_input_delay=.25;navigation_delay=.25
+	native_ad_message=native_ad_service.message
+	if not testing: save_game()
+	queue_redraw()
+
+func begin_native_ad(kind: String) -> bool:
+	if not native_ads_available() or mode not in ["result","bonus_confirm"] or trial_active or shift_claimed or first_run_guide.active or run_transition.active or page_transition.is_blocking() or pause_transition.is_blocking(): return false
+	if kind=="rewarded" and result_reward_earned(): return false
+	native_ad_message=""
+	# Readiness and request acceptance are separate checks. Never open a fake ad.
+	if not native_ad_service.is_ready(kind):
+		native_ad_message=native_ad_service.unavailable_message(kind)
+		mode="result";queue_redraw();return false
+	mode="native_ad"
+	if not native_ad_service.request(kind,run_area_id,run_id,SAVE_FILE):
+		mode="result";native_ad_message=native_ad_service.message;queue_redraw();return false
+	queue_redraw()
+	return true
 
 func persist_monetization() -> bool:
 	if not test_commerce_available(): return false
@@ -975,12 +1192,15 @@ func persist_monetization() -> bool:
 
 func begin_automatic_ad():
 	# Called only at a newly completed, saved campaign result, never on resume or Play.
-	if not test_commerce_available() or mode!="result" or trial_active or shift_claimed: return
-	begin_test_ad("interstitial")
+	if mode!="result" or trial_active or shift_claimed or first_run_guide.active: return
+	if native_ads_available():
+		if native_ad_service.automatic_eligible(): begin_native_ad("interstitial")
+	elif test_commerce_available(): begin_test_ad("interstitial")
 
 func begin_rewarded_ad():
-	if not test_commerce_available() or mode not in ["result","bonus_confirm"] or trial_active or shift_claimed or reward_earned: return
-	begin_test_ad("rewarded")
+	if not reward_ad_available() or mode not in ["result","bonus_confirm"] or trial_active or shift_claimed or result_reward_earned(): return
+	if native_ads_available(): begin_native_ad("rewarded")
+	else: begin_test_ad("rewarded")
 
 func begin_test_ad(kind: String):
 	if not test_commerce_available(): return
@@ -1238,6 +1458,7 @@ func _purchase_upgrade_node(i: int, n: int, voucher: bool) -> bool:
 	return true
 
 func begin_trial(board):
+	if has_deferred_paid_run(): retry_purchase_restore(); return false
 	if trial_active or highest_unlocked<4 or board not in [4,8,12] or mode not in ["trials","home"]: return false
 	trial_snapshot=campaign_profile()
 	trial_active=true
@@ -1320,12 +1541,13 @@ func area_navigation_allowed() -> bool:
 	return mode in ["home","boards"] and (shift_claimed or run_id.is_empty()) and not trial_active and not run_transition.active and monetization.pending.is_empty() and not area_transaction_pending and not profile_load_blocked
 
 func developer_tools_available() -> bool:
-	# Available in the editor/debug builds or an explicitly tagged developer export.
 	return MonetizationService.preview_tools_allowed()
 
 func test_commerce_available() -> bool:
-	# Real ads/billing are not connected in the public release candidate.
-	return monetization != null and monetization.simulation_enabled()
+	return monetization != null and monetization.simulation_enabled() and not native_ads_available()
+
+func native_purchases_available() -> bool:
+	return OS.has_feature("android") and OS.has_feature(AdMobConfig.PUBLIC_FEATURE)
 
 func developer_money_enabled() -> bool:
 	return developer_tools_available() and not trial_active and developer_free_purchases.get(area_id,false)==true
@@ -1444,7 +1666,15 @@ func run_comparison() -> Dictionary:
 	return result_history.comparison(run_area_id,result_run_record())
 
 func profile_envelope(records: Dictionary, active_id: String, ledger: Array) -> Dictionary:
-	return {"version":PROFILE_VERSION,"balance_revision":4,"active_area_id":active_id,"areas":records,"area_entries":ledger,"total_shifts":trial_snapshot.get("total_shifts",total_shifts) if trial_active else total_shifts,"sound":sound_on,"reduced_motion":reduced_motion,"run_serial":run_serial,"last_claimed_run_id":last_claimed_run_id,"monetization_test":monetization.export_state(),"area_ability_preview":ability_access.export_state(),"onboarding":first_run_guide.export_state(),"run_history":result_history.export_state()}
+	var data = {"version":PROFILE_VERSION,"balance_revision":4,"active_area_id":active_id,"areas":records,"area_entries":ledger,"total_shifts":trial_snapshot.get("total_shifts",total_shifts) if trial_active else total_shifts,"sound":sound_on,"reduced_motion":reduced_motion,"run_serial":run_serial,"last_claimed_run_id":last_claimed_run_id,"monetization_test":monetization.export_state(),"area_ability_preview":ability_access.export_state(),"onboarding":first_run_guide.export_state(),"run_history":result_history.export_state(),"native_ads":native_ad_service.export_state() if native_ad_service!=null else _loaded_native_ads_state.duplicate(true)}
+	if has_deferred_paid_run():
+		data.areas=records.duplicate(true)
+		data.areas[_deferred_paid_run.area_id]=_deferred_paid_run.campaign.duplicate(true)
+		data.active_area_id=_deferred_paid_run.area_id
+		data.active_run=_deferred_paid_run.snapshot.duplicate(true)
+		data.active_run_rules=_deferred_paid_run.rules
+		data.onboarding=_deferred_paid_run.onboarding.duplicate(true) if _deferred_paid_run.onboarding is Dictionary else _deferred_paid_run.onboarding
+	return data
 
 func save_game():
 	if profile_load_blocked: return false
@@ -1455,7 +1685,7 @@ func save_game():
 	if not AreaCampaign.decode_profile(data).ok:
 		note="Progress could not be saved. Existing save kept."; note_time=5
 		return false
-	if mode in ["result","bonus_confirm","test_ad"] and not shift_claimed:
+	if mode in ["result","bonus_confirm","test_ad","native_ad"] and not shift_claimed:
 		data["pending_result"]=pending_result_data()
 	elif mode in ["play","paused","abandon_confirm"] and not shift_claimed:
 		if not clear_draining and board_is_clear(): begin_clear_drain()
@@ -1512,7 +1742,7 @@ func reset_progress() -> bool:
 		"run_serial":0,"last_claimed_run_id":"","monetization_test":clean_store.export_state(),"area_ability_preview":ability_access.export_state(),
 		"run_history":{"version":1,"areas":{}},
 		"onboarding":{"version":first_run_guide.VERSION,"completed":false,"active":true,
-			"step":"welcome","earned_seen":false,"time_pickup_seen":false,"upgraded_this_intro":false}
+			"step":"play","earned_seen":false,"time_pickup_seen":false,"upgraded_this_intro":false}
 	}
 	# The existing explicit confirmation may replace any blocked profile.
 	# Ordinary write paths retain their read-only guard until that confirmation.
@@ -1531,6 +1761,7 @@ func reset_progress() -> bool:
 	return true
 
 func reset_profile_runtime():
+	_deferred_paid_run.clear(); purchase_restore_message=""
 	run_transition.finish()
 	developer_free_purchases.clear()
 	developer_area_ui.cancel_gestures()
@@ -1670,6 +1901,8 @@ func load_game():
 	audio_restoring = was_restoring
 
 func _load_game_impl():
+	_deferred_paid_run.clear(); purchase_restore_message=""
+	_loaded_native_ads_state={}
 	run_transition.finish()
 	first_run_guide.reset()
 	result_history.reset()
@@ -1706,6 +1939,8 @@ func _load_game_impl():
 		note="Save version is unsupported. Existing progress kept read-only."; note_time=8
 		return
 	var version=safe_number(data.version)
+	_loaded_native_ads_state=data.get("native_ads",{}).duplicate(true) if data.get("native_ads",{}) is Dictionary else {}
+	if native_ad_service!=null: native_ad_service.import_state(_loaded_native_ads_state)
 	var run_history_data=data.get("run_history",{})
 	if version>=3:
 		var decoded=AreaCampaign.decode_profile(data)
@@ -1836,7 +2071,9 @@ func _load_game_impl():
 			reject_snapshot("Run rules are unsupported. Workshop progress kept.")
 			return
 		run_rules_revision=int(saved_rules)
-		restore_active_run(data.active_run)
+		if _saved_run_uses_store_ability(data.active_run) and not ability_early_access(area_id) and not _purchase_inventory_is_authoritative():
+			_defer_paid_checkpoint(data.active_run,int(saved_rules),data.get("onboarding",null),source_path)
+		else: restore_active_run(data.active_run)
 	if mode=="result" and not trial_active:
 		result_history.record_run(run_area_id,result_run_record())
 	first_run_guide.import_state(data.get("onboarding",null),true)
@@ -1846,6 +2083,7 @@ func _load_game_impl():
 
 func _input(event):
 	if startup_blocked: return
+	if mode=="native_ad": return
 	if page_transition.is_blocking() or pause_transition.is_blocking(): return
 	if mode=="ability_offer" and ability_ui.handle_input(event): return
 	if mode=="developer_areas" and developer_area_ui.handle_input(event): return
@@ -1874,6 +2112,8 @@ func _input(event):
 		# Mouse is converted to touch by project settings.
 		return
 	elif event is InputEventMouseMotion:
+		# On Windows held mouse movement is already delivered as a screen drag.
+		if OS.has_feature("windows"): return
 		pos = to_local(event.position)
 		motion = event.button_mask == MOUSE_BUTTON_MASK_LEFT
 		if mode == "play": collect_pickups(screen_to_board(pos))
@@ -1895,6 +2135,7 @@ func inside(p, rect):
 	return rect.has_point(p)
 
 func handle_press(p):
+	if mode=="native_ad": return
 	if startup_blocked or navigation_delay>0 or run_transition.active or page_transition.is_blocking() or pause_transition.is_blocking(): return
 	var previous=mode
 	_handle_press_impl(p)
@@ -1906,7 +2147,7 @@ func handle_press(p):
 
 func _handle_press_impl(p):
 	if mode in ["shop","loadout","trials"] and result_input_delay>0: return
-	if mode in ["monetization","monetization_tools","test_ad","test_purchase"]:
+	if mode in ["purchases","monetization","monetization_tools","test_ad","test_purchase"]:
 		if result_input_delay<=0: monetization_ui.press(p)
 		queue_redraw()
 		return
@@ -1941,7 +2182,7 @@ func _handle_press_impl(p):
 		"result":
 			if result_input_delay>0: return
 			if inside(p,preload("res://scripts/result_comparison_ui.gd").COLLECT_RECT): collect_reward(false)
-			elif inside(p,preload("res://scripts/result_comparison_ui.gd").BONUS_RECT) and test_commerce_available() and not trial_active and not reward_earned:
+			elif inside(p,preload("res://scripts/result_comparison_ui.gd").BONUS_RECT) and reward_ad_available() and not trial_active and not result_reward_earned():
 				mode="bonus_confirm"
 				result_input_delay=.25
 		"bonus_confirm":
@@ -1981,10 +2222,14 @@ func _handle_press_impl(p):
 				impact_feedback.reset()
 				if not testing: save_game()
 			elif inside(p,actions.reset): request_progress_reset()
+			elif actions.has("ad_privacy") and inside(p,actions.ad_privacy):
+				if native_ad_service!=null: native_ad_service.show_privacy_options()
 			elif actions.has("developer") and inside(p,actions.developer): open_developer_areas()
 			elif actions.has("performance") and inside(p,actions.performance):
 				diagnostics_on=not diagnostics_on
 				feedback("ui_confirm")
+			elif actions.has("purchases") and inside(p,actions.purchases):
+				monetization_ui.open_purchases()
 			elif actions.has("commerce") and inside(p,actions.commerce):
 				mode="monetization"
 				commerce_message="Local simulation. No money is charged."
@@ -2085,6 +2330,7 @@ func box(rect, color, radius = 18.0, border = Color.TRANSPARENT, painter: Canvas
 
 func button(rect, label, primary = false, subtitle = "", painter: CanvasItem = null):
 	var canvas = painter if painter != null else self
+	var text_offset = ui_art.text_offset("button_mint" if primary else "button_cream")
 	if rect.size.x/rect.size.y < 1.5 and label in ["","<","II","⌖","−","+"]:
 		# Round icon controls use their own saucer, keeping wide endcaps uncompressed.
 		if not ui_art.draw(canvas,"node",rect): box(rect,area_surface("panel"),24,Color.TRANSPARENT,canvas)
@@ -2093,11 +2339,11 @@ func button(rect, label, primary = false, subtitle = "", painter: CanvasItem = n
 	if symbols.has(label):
 		symbol(symbols[label],rect.get_center()-Vector2(0,2),38,WHITE,canvas)
 		return
-	var text_rect = rect.grow(-22)
+	var text_rect = Rect2(rect.position+text_offset,rect.size).grow(-22)
 	if subtitle != "":
 		text_rect.size.y = rect.size.y*.45
-		text_rect.position.y = rect.position.y+10
-		fitted_text(subtitle,Rect2(rect.position+Vector2(22,rect.size.y*.52),Vector2(rect.size.x-44,rect.size.y*.3)),18,MUTED,true,canvas)
+		text_rect.position.y = rect.position.y+10+text_offset.y
+		fitted_text(subtitle,Rect2(rect.position+text_offset+Vector2(22,rect.size.y*.52),Vector2(rect.size.x-44,rect.size.y*.3)),18,MUTED,true,canvas)
 	if primary and subtitle=="" and not label.contains("Collect") and not label.contains("coins"):
 		var size = 30
 		while size>20 and display_font.get_string_size(label,HORIZONTAL_ALIGNMENT_LEFT,-1,size).x>text_rect.size.x: size -= 1
@@ -2126,7 +2372,7 @@ func _draw():
 func draw_frame():
 	var bounds = get_global_transform_with_canvas().affine_inverse()*get_viewport_rect()
 	draw_rect(bounds,area_surface("background"))
-	if mode not in ["play","paused","abandon_confirm","boards","shop","result","bonus_confirm"]:
+	if mode not in ["play","paused","abandon_confirm","boards","shop","result","bonus_confirm","native_ad"]:
 		environment_art.draw_cover(self,"home_counter" if mode=="home" else "upgrade_counter",bounds)
 	match mode:
 		"home": draw_home()
@@ -2135,7 +2381,7 @@ func draw_frame():
 			if run_transition.active: run_transition.draw()
 			else: draw_game()
 		"shop": draw_shop()
-		"result": draw_result()
+		"result","native_ad": draw_result()
 		"bonus_confirm":
 			draw_result()
 			draw_bonus_confirm()
@@ -2148,10 +2394,7 @@ func draw_frame():
 		"loadout": draw_loadout()
 		"boards": draw_boards()
 		"trials": draw_trials()
-		"monetization","monetization_tools","test_ad","test_purchase": monetization_ui.draw()
-	if note_time > 0:
-		box(Rect2(24,1190,672,60),area_surface("secondary"),14)
-		centered(note,1228,21,TEAL)
+		"purchases","monetization","monetization_tools","test_ad","test_purchase": monetization_ui.draw()
 
 func draw_home():
 	home_menu.draw()
@@ -2223,7 +2466,7 @@ func draw_game():
 		draw_circle(p.p,2.6,Color(Color("bd8753"),minf(1,p.life*2)))
 	for f in floats:
 		text_at(f.text,f.p,20,Color(f.c,minf(1,f.life*2)))
-	impact_feedback.draw_damage(self,number_font,reduced_motion)
+	impact_feedback.draw_coin_gains(self,number_font,reduced_motion)
 	draw_dispenser()
 	if area_id=="bakery": bakery_ability.draw_charge(self,Vector2(aim_x,235))
 	draw_set_transform(Vector2.ZERO)
@@ -2359,11 +2602,11 @@ func draw_result():
 func draw_bonus_confirm():
 	draw_rect(get_global_transform_with_canvas().affine_inverse()*get_viewport_rect(),Color(area_surface("overlay"),.50))
 	ui_panel(Rect2(36,370,648,510))
-	heading_centered("Test reward",450,40,GOLD)
+	heading_centered("Reward bonus" if native_ads_available() else "Test reward",450,40,GOLD)
 	var bonus = displayed_reward_bonus()
 	centered("Add %d extra credits once?" % bonus if bonus>0 else "Add a reward bonus once?",518,27,WHITE)
-	centered("Complete a simulated ad to earn the bonus.",560,23,MUTED)
-	button(Rect2(60,620,600,96),"Start test ad",true)
+	centered("Finish the ad to earn the bonus." if native_ads_available() else "Complete a simulated ad to earn the bonus.",560,23,MUTED)
+	button(Rect2(60,620,600,96),"Watch ad" if native_ads_available() else "Start test ad",true)
 	button(Rect2(60,740,600,96),"Cancel",false)
 
 func draw_guide():
@@ -2371,7 +2614,7 @@ func draw_guide():
 	heading_centered("How to play",128,42)
 	var sections=[
 		["donut","Aim the drops","Drag to move the dispenser.","Food falls automatically."],
-		["cookie_normal","Crumble cookies","Bronze, Silver, Gold, then Diamond.","Stronger cookies at trays 4, 7 and 10."],
+		["cookie_normal","Hit cookies for coins","Every hit can add coins to your total.","Clear the tray before time runs out."],
 		["cup_cream","Grow your cups","Each catch makes that cup worth more.","Split pieces earn a smaller share."],
 		["cookie_clock","Extra time","Clock cookies and pickups add time.",""],
 		["pomegranate","Mix in specials","Equipped specials drop by chance.","Free unlocks on trays 2, 5 and 8."]]
@@ -2379,12 +2622,12 @@ func draw_guide():
 		sections[4]=["donut","Jam Burst","Every %s normal doughnut splashes nearby pegs." % ("fourth" if bakery_ability.cadence()==4 else "fifth"),"Earn from tray 8, or unlock early."]
 	if area_id=="gelato":
 		sections[0]=["donut","Aim the curved drop","Drag to aim along the dotted curve.","Each launcher shows its own falling path."]
-		sections[1]=["cookie_normal","Crumble wafers","Bronze, Silver, Gold, then Diamond.","Stronger wafers at trays 4, 7 and 10."]
+		sections[1]=["cookie_normal","Hit wafers for coins","Every hit can add coins to your total.","Clear the tray before time runs out."]
 		sections[3][2]="Clock wafers and pickups add time."
 		sections[4]=["hopper","Dual Shot · 3,000 coins","Below Feed 1. Requires tray 8 and Power 6.","Resets Power; rebuilding costs more."]
 	elif area_id=="crystal":
 		sections[0]=["donut","Line up the shot","Drag to turn the spout.","Candy flies straight and ricochets."]
-		sections[1]=["cookie_normal","Crack sugar crystals","Bronze, Silver, Gold, then Diamond.","Stronger crystals at trays 4, 7 and 10."]
+		sections[1]=["cookie_normal","Hit crystals for coins","Every hit can add coins to your total.","Clear the tray before time runs out."]
 		sections[3]=["multiply_pickup","Catch the Prism","Tap within four seconds to double","the balls already on the board."]
 		sections[4]=["multiply_pickup","Second Prism","Unlock another chance each run.","Earn from tray 8, or unlock early."]
 	for i in range(5):
@@ -2399,8 +2642,10 @@ func draw_guide():
 
 func settings_menu_layout() -> Dictionary:
 	var order: Array[String] = ["sound","motion"]
+	if native_ad_service!=null and native_ad_service.status().get("privacy_options_required",false): order.append("ad_privacy")
 	if developer_tools_available(): order.append_array(["developer","performance"])
 	if test_commerce_available(): order.append("commerce")
+	if native_purchases_available(): order.append("purchases")
 	order.append_array(["reset","back"])
 	var actions = {}
 	var y = 112.0
@@ -2417,8 +2662,9 @@ func draw_support():
 	var layout = settings_menu_layout()
 	var labels = {"sound":"Sound  ·  "+("On" if sound_on else "Off"),
 		"motion":"Reduced motion  ·  "+("On" if reduced_motion else "Off"),
+		"ad_privacy":"Ad privacy choices",
 		"developer":"Developer settings","performance":"Performance display  ·  "+("On" if diagnostics_on else "Off"),
-		"commerce":"Ads & purchases · test","reset":"Reset progress","back":"Back"}
+		"commerce":"Ads & purchases · test","purchases":"Purchases","reset":"Reset progress","back":"Back"}
 	if not ui_art.menu_frame(self,layout.panel): ui_panel(layout.panel)
 	heading_centered("Settings",layout.title_y,42)
 	for key in layout.order: button(layout.actions[key],labels[key],key=="back")

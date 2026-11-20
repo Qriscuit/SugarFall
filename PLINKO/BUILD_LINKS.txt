@@ -1,64 +1,139 @@
-PUBLIC INTERNAL-TEST CANDIDATE - 4 NOVEMBER 2026
+LATEST LOCAL PLAY CANDIDATE - 19 NOVEMBER 2026
 
-SUGARFALL v0.8.0-rc2, version code 37, package com.qriscuit.sugarfall
-AAB for Play Console Internal testing (90,575,945 bytes):
-https://drive.google.com/file/d/1ZFWvhGOnHPLn1qIYkcuRpBhcP3KG846D/view?usp=drivesdk
-SHA-256: 29c32d25400ce42168ced55eac0909a15e2dc4433e3f94b48d7c388e425f6831
+0.8.0-rc8, code 49, package com.sungati.sugarfall
+Signed AAB: builds/android-release/0.8.0-rc8-code49-attempt02/Sugarfall-v0.8.0-rc8-Android.aab
+SHA-256 50f26807cf640630d61d135e79761c80e7165bb055f54a910819d824bfc1ffd4
+Signed APK: builds/android-release/0.8.0-rc8-code49-attempt02/Sugarfall-v0.8.0-rc8-Android.apk
+SHA-256 9547f95db9b1f74ee840a6d18e2b95372c4a25657067808589a46777f49d9d85
+667 local artifact checks pass. Live checkout and Play-installed acceptance require verifier and product setup.
+Record: docs/ANDROID_SUGARFALL_v0.8.0-rc8.md
 
-Signed APK for direct installation (91,340,723 bytes):
-https://drive.google.com/file/d/1AU5B4wDwQT4RcKqrs_KG_u02B3X4NRDt/view?usp=drivesdk
-SHA-256: afee2a0e1687a7051d9925bf636e06903b24f4250771ce2627fa643a31505a37
+PRIOR PLAY CANDIDATE AND CURRENT PREVIEW - CHG-055 - 10 NOVEMBER 2026
 
-These are separate release files in the existing private folder; the preview
-file below is unchanged. Public installs use a separate app/data sandbox and
-do not import preview progress automatically. Real billing is not connected.
-Public signing certificate PEM (1,798 bytes):
-https://drive.google.com/file/d/1F5oMiwFqKW_bKoJwew-4HyH_ryLSF7PM/view?usp=drivesdk
-Local signing certificate SHA-256 (not an artifact hash):
-e31ab7654afed05f9acd5fb6b59846d990198b8005d8fafd01e070c1dbc4dc29
+PLAY CANDIDATE 0.8.0-rc7, code 48, required package com.sungati.sugarfall
+Signed AAB: builds/android-release/0.8.0-rc7-code48-attempt01/Sugarfall-v0.8.0-rc7-Android.aab
+SHA-256 251ac7a14e73b9793142dc85d5c555e7b80175b2da9e5f0017316690ad71077a
+Signed APK: builds/android-release/0.8.0-rc7-code48-attempt01/Sugarfall-v0.8.0-rc7-Android.apk
+SHA-256 edb521c7bb8c6282ae0e5c4427c7771f2c174cef324a8a3021672a6b2a709b4a
+Native debug symbols for version code 48 (27,431,170 bytes, Windows verified):
+builds/Sugarfall-48-native-symbols.zip
+SHA-256 346841b6cb4322f9bdd39375b23f05102fba5f521b5ab01bf9d669f665875595
+665 artifact checks pass. Console acceptance and phone acceptance are pending.
+Record: docs/ANDROID_SUGARFALL_v0.8.0-rc7.md
 
-344 exact-artifact checks pass: 41 compiled scripts, 10 game-data JSON files and 418 indexed project payloads are verified. APK/AAB payloads agree, with sparse-directory order checked semantically. 186 policy checks pass (85 preview and 101 actual nondebug); 11 verifier tests and five build-helper tests are separate. Drive readbacks verify separate APK, AAB and public-certificate files in the existing owner-only folder; the v0.7.10 preview is unchanged. No remote checksum was returned.
-Manifest: docs/ANDROID_SUGARFALL_v0.8.0-rc2.json.
-Build/setup: docs/ANDROID_RELEASE_BUILD.md.
-Owner reports the Play app exists; enrollment, package registration, upload,
-review, phone acceptance and off-device signing backup are not verified.
-
-CURRENT PRIVATE PREVIEWS - SUGARFALL - 3 November 2026
-
-ANDROID v0.7.10 - UPDATED 3 NOVEMBER 2026
-APK (93,043,106 bytes):
+ANDROID PREVIEW 0.7.21-preview, code 48, package org.pegfoundry.prototype.preview
 https://drive.google.com/file/d/1GF1zo3lt0VR5voajNPGjoP1FYuPe0FYz/view?usp=drivesdk
-Sugarfall 0.7.10-preview, version code 36. ARM64, Android 7 or newer.
-Same preview package/certificate as v0.7.9; install over the existing preview
-to retain its data. Physical installation/save retention remains unverified.
+APK (102,314,811 bytes), SHA-256 c3d462be38c80c42c9de51f92771bbdb403a7434b72a800f248237d28e3a74a3
+632 artifact checks and 8 Drive metadata checks pass.
+Record: docs/ANDROID_SUGARFALL_v0.7.21.md
 
-Signature upgrade cards show stacked coin and early-access purchase actions.
-The Home ability purchase offer is removed. Earned gates, prices, ability
-effects and ownership rules remain. Preview purchases explicitly charge no
-money; real Play billing is not connected.
+PREVIOUS ANDROID BUILDS - CHG-054 - 10 NOVEMBER 2026
+Earlier public package com.qriscuit.sugarfall. The preview URL serves 0.7.21-preview.
 
-The approved single-pulse intro/hum, More Jam, three areas, action sounds and
-developer settings remain. The Bakery tray-10 phone retest is still open.
+ANDROID PREVIEW 0.7.20-preview, code 47, package org.pegfoundry.prototype.preview
+https://drive.google.com/file/d/1GF1zo3lt0VR5voajNPGjoP1FYuPe0FYz/view?usp=drivesdk
+APK (102,314,811 bytes), SHA-256 bd54cad87918fe1af11ccea970e7e3294bb4f6be193a20bfadb684a9e356e755
+632 artifact checks and 8 Drive metadata checks pass.
+Record: docs/ANDROID_SUGARFALL_v0.7.20.md
 
-1048 payload checks and 16 Android metadata/signature/alignment checks pass. The APK is 93,043,106 bytes; SHA-256 8673036be460e691f5c2bf6108c171f9a1e904cb9c729e10fde522ca6ef0105c.
-All 8 Drive readback checks pass; the existing private file ID, folder, owner permissions and URL are retained. No remote checksum comparison is claimed.
-Manifest: docs/ANDROID_SUGARFALL_v0.7.10.json.
-Source/UI evidence is separately scoped in DIRECT_ABILITY_PURCHASE_VALIDATION.json.
-Phone touch/readability, listening, current normal-wallet progression and
-real billing remain open. Earlier public v0.8.0-rc1 remains archived.
+PLAY CANDIDATE 0.8.0-rc6, code 47, package com.qriscuit.sugarfall
+Signed AAB: builds/android-release/0.8.0-rc6-code47-attempt01/Sugarfall-v0.8.0-rc6-Android.aab
+SHA-256 a2a2372c0dead445b512d2aadcfae445e915d64ecb6c2c139ea58a0452549055
+Signed APK: builds/android-release/0.8.0-rc6-code47-attempt01/Sugarfall-v0.8.0-rc6-Android.apk
+SHA-256 d1ce9be77713f63dc64d4e978254d5c587afbeaf55e5a0d37067795336c62f8f
+665 artifact checks pass. Internal testing upload and phone acceptance are pending.
+Record: docs/ANDROID_SUGARFALL_v0.8.0-rc6.md
 
-WINDOWS v0.6.1 - PREVIOUS BUILD, 24 OCTOBER 2026
+PREVIOUS BUILDS - CHG-053 - 10 NOVEMBER 2026
+The shared preview URL serves 0.7.20-preview.
+
+ANDROID PREVIEW 0.7.19-preview, code 46, package org.pegfoundry.prototype.preview
+https://drive.google.com/file/d/1GF1zo3lt0VR5voajNPGjoP1FYuPe0FYz/view?usp=drivesdk
+APK (102,314,811 bytes), SHA-256: d160e4c3d61be77d5eb79ac7388d74e7cce2b128680145ef75c750fa55ea9a75
+632 artifact checks and 8 Drive metadata checks pass.
+Record: docs/ANDROID_SUGARFALL_v0.7.19.md
+
+PLAY CANDIDATE 0.8.0-rc5, code 46, package com.qriscuit.sugarfall
+Signed AAB: builds/android-release/0.8.0-rc5-code46-attempt01/Sugarfall-v0.8.0-rc5-Android.aab
+SHA-256: 8856db086719cd3a1ae4e7fc0be006838dc89201da0aa7d83c03eb1ebd5a130b
+Signed APK: builds/android-release/0.8.0-rc5-code46-attempt01/Sugarfall-v0.8.0-rc5-Android.apk
+SHA-256: f0f94d8435be311f39638806db8a5fbf39b76b501bb9d83b4a044c736e6926f3
+665 artifact checks pass. Internal testing upload and phone acceptance are pending.
+Record: docs/ANDROID_SUGARFALL_v0.8.0-rc5.md
+
+WINDOWS 0.7.19, local x64 portable ZIP
+builds/Sugarfall-v0.7.19-Windows-Preview-2026-11-10.zip
+SHA-256: 8b4bc35a832dd3f6d5fa6e04031144bbaef13162d7ab3f2e14ec8486768443d7
+Record: docs/WINDOWS_SUGARFALL_v0.7.19.md
+
+PREVIOUS ANDROID BUILDS - CHG-052 - 10 NOVEMBER 2026
+The shared preview URL now serves 0.7.19-preview.
+
+PLAY CANDIDATE 0.8.0-rc4, code 45, package com.qriscuit.sugarfall
+Signed AAB for Play Internal testing:
+builds/android-release/0.8.0-rc4-code45-attempt01/Sugarfall-v0.8.0-rc4-Android.aab
+SHA-256: 9624a1e98688d091747dd0a3bfdcd0ac676414b6422c8496664c707d416dd19c
+Signed APK:
+builds/android-release/0.8.0-rc4-code45-attempt01/Sugarfall-v0.8.0-rc4-Android.apk
+SHA-256: af2293de2e64f137286ff14f0c5e01ae5293c79e30b78cc3f52743e37914a566
+663 exact artifact checks pass with Sugarfall's production AdMob app and units.
+Play submission, consent messages, AdMob review and phone playback are open.
+Record: docs/ANDROID_SUGARFALL_v0.8.0-rc4.md
+
+ANDROID PREVIEW 0.7.18-preview, code 45, package org.pegfoundry.prototype.preview
+APK (104,452,583 bytes), ARM64, Android 7 or newer:
+https://drive.google.com/file/d/1GF1zo3lt0VR5voajNPGjoP1FYuPe0FYz/view?usp=drivesdk
+SHA-256: b03b957183a734cc826e8e3a0d7b8c0cb592664ddf90bc60d90d3a1a0e936587
+630 exact artifact checks and 8 Drive readbacks pass. The same preview signing
+identity, file ID, folder and sharing permissions are retained. Google demo
+inventory remains on the shared preview. Physical playback is unverified.
+Record: docs/ANDROID_SUGARFALL_v0.7.18.md
+
+PREVIOUS ANDROID BUILDS - CHG-051 - 5 NOVEMBER 2026
+
+PUBLIC SUGARFALL 0.8.0-rc3, code 43, package com.qriscuit.sugarfall
+AAB for Play Console Internal testing (104,105,905 bytes):
+https://drive.google.com/file/d/1ZFWvhGOnHPLn1qIYkcuRpBhcP3KG846D/view?usp=drivesdk
+SHA-256: 6d1abaa6b14a0f01a208d80b743b5e210ebad30c983b99c1d77593a024a29a10
+Signed APK for direct installation (104,452,350 bytes):
+https://drive.google.com/file/d/1AU5B4wDwQT4RcKqrs_KG_u02B3X4NRDt/view?usp=drivesdk
+SHA-256: 1361336a6a9c48a46f7f963a498339842ae58c805307268c0fe08c539eaca302
+Public signing certificate SHA-256 (not an artifact hash):
+e31ab7654afed05f9acd5fb6b59846d990198b8005d8fafd01e070c1dbc4dc29
+Certificate PEM:
+https://drive.google.com/file/d/1F5oMiwFqKW_bKoJwew-4HyH_ryLSF7PM/view?usp=drivesdk
+652 exact signed APK/AAB artifact checks pass.
+Manifest: docs/ANDROID_SUGARFALL_v0.8.0-rc3.json
+
+Historical preview record: docs/ANDROID_SUGARFALL_v0.7.17.json
+The shared preview URL now serves 0.7.18-preview.
+
+Each of the three existing Drive files passes 8 independent metadata readbacks.
+Existing file IDs, testing folder and sharing permissions are unchanged.
+No remote checksum comparison is claimed.
+Folder: https://drive.google.com/drive/folders/1TXLZwTNVlHGTBy7y0CVMMk3zABEKu8X-
+Public and preview packages install separately and do not automatically share saves.
+
+CHG-051 added native permanent ability purchases, AdMob/UMP, durable ad receipts
+and paid-run recovery. Its builds used Google's demo ads. Billing remains
+unavailable until the Firebase/Play verifier is configured.
+Status/setup: docs/NATIVE_MONETIZATION_STATUS.md
+
+WINDOWS v0.7.13 - LOCAL BUILD, 5 NOVEMBER 2026
+Portable Windows x64 ZIP: builds/Sugarfall-v0.7.13-Windows-Preview-2026-11-05.zip
+ZIP SHA-256: d23bf1918f8bcf7c8729fe9ebe78da8810f034cb08d0a77ac9c6665757512888
+Extract the ZIP and open Sugarfall.exe. Hold left-click and move to steer.
+Drive replacement is blocked by the connector's 100 MiB file limit; the previous Drive file remains unchanged. Live mouse acceptance is unverified.
+Release record: docs/WINDOWS_SUGARFALL_v0.7.13.md
+
+PREVIOUS WINDOWS v0.6.1 - 24 OCTOBER 2026
 ZIP (69,711,965 bytes):
 https://drive.google.com/file/d/12IpNfaeZENgYIkkHhiYUUSvZYzL_pl0A/view?usp=drivesdk
-Extract the ZIP, then open Sugarfall.exe. Portable Windows x64 release.
-This Windows download was not rebuilt for the latest source changes.
 Manifest: docs/WINDOWS_SUGARFALL_v0.6.1.json
-
 The Android Drive file was replaced in place in the existing private Peg
 Foundry folder. Its file ID, link, parent folder and private permissions were
-read back and verified after upload. Windows was left unchanged.
+read back and verified after upload. The Windows Drive file remains at v0.6.1.
 Folder: https://drive.google.com/drive/folders/1TXLZwTNVlHGTBy7y0CVMMk3zABEKu8X-
 
-Existing owned upgrades, coins, vouchers, area progress and permanent purchases
-are retained. Ads and purchases remain a local simulator. Older local builds
-and their historical manifests remain available.
+The Android native service is separate from desktop debug simulation fixtures.
+Earlier local builds and their historical manifests remain available.

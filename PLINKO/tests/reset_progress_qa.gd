@@ -34,6 +34,7 @@ func _initialize():
 	confirmation_and_guards()
 	confirmation_gestures()
 	reset_success_and_reload()
+	guide_state_disk_round_trip()
 	reset_write_failure()
 	migration_selection()
 	migration_legacy_and_custom()
@@ -170,15 +171,40 @@ func reset_success_and_reload():
 	check(not g.monetization.entitlements.remove_ads and not g.monetization.entitlements.baker_toolkit and not g.monetization.store_owned.remove_ads and not g.monetization.store_owned.baker_toolkit,"Reset clears all simulated purchase benefits and fake store ownership")
 	check(g.monetization.attempts == 0 and g.monetization.active_seconds == 0 and g.monetization.pending.is_empty() and g.monetization.serial >= old_serial,"Reset clears ad cadence and pending requests while retaining the request serial")
 	check(g.monetization.resolve(old_request.id,"completed").is_empty(),"A pre-reset ad callback cannot grant a post-reset reward")
-	check(g.first_run_guide.active and not g.first_run_guide.completed and g.first_run_guide.step_id == "welcome","Reset immediately shows Mabel's opening welcome")
+	check(g.first_run_guide.active and not g.first_run_guide.completed and g.first_run_guide.step_id == "play","Reset immediately shows Mabel's opening welcome")
 	var data = read_json(Main.SAVE_PATH)
-	check(not data.has("active_run") and not data.has("pending_result") and data.onboarding.active and data.onboarding.step == "welcome" and not data.has("onboarding_restart_pending"),"Fresh canonical save persists the introduction without old run/result or profile-only metadata")
+	check(not data.has("active_run") and not data.has("pending_result") and data.onboarding.active and data.onboarding.step == "play" and not data.has("onboarding_restart_pending"),"Fresh canonical save persists the introduction without old run/result or profile-only metadata")
 	var writes: int = g.writes
 	check(not g.reset_progress() and g.writes == writes,"A repeated confirmation cannot reset again after leaving the confirmation screen")
 	var x = restart()
-	check(x.mode == "home" and x.bank == 0 and x.current_level == 1 and x.area_records.size() == 1 and x.first_run_guide.active and x.first_run_guide.step_id == "welcome","Restart loads the same fresh campaign and opening welcome")
+	check(x.mode == "home" and x.bank == 0 and x.current_level == 1 and x.area_records.size() == 1 and x.first_run_guide.active and x.first_run_guide.step_id == "play","Restart loads the same fresh campaign and opening welcome")
 	check(not x.sound_on and x.reduced_motion and not x.monetization.entitlements.baker_toolkit and x.monetization.serial >= old_serial,"Reset preferences, cleared benefits and callback guard survive restart")
 	x.free(); g.free()
+
+func guide_state_disk_round_trip():
+	clear_storage()
+	var g = fixture()
+	g.bank = 12.5
+	g.first_run_guide.begin(false)
+	check(g.save_game(),"An ordinary active-guide save writes the actual canonical disk file")
+	g.free()
+	g = restart()
+	check(g.first_run_guide.active and not g.first_run_guide.completed and g.first_run_guide.step_id == "play" and g.bank == 12.5,"The current guide remains active after actual JSON disk reload without changing coins")
+	var data = read_json(Main.SAVE_PATH)
+	g.free()
+	data.onboarding.version = 1.0
+	data.onboarding.step = "welcome"
+	write_json(Main.SAVE_PATH,data)
+	g = restart()
+	check(g.first_run_guide.active and not g.first_run_guide.completed and g.first_run_guide.step_id == "play" and g.bank == 12.5,"A version-one active guide migrates from actual JSON disk storage")
+	g.free()
+	data.onboarding.active = false
+	data.onboarding.completed = true
+	data.onboarding.step = "improved"
+	write_json(Main.SAVE_PATH,data)
+	g = restart()
+	check(g.first_run_guide.completed and not g.first_run_guide.active and g.bank == 12.5,"A completed version-one disk save stays completed with its wallet intact")
+	g.free()
 
 func touch(g, p: Vector2, pressed: bool, index: int = 0, canceled: bool = false):
 	var event = InputEventScreenTouch.new()

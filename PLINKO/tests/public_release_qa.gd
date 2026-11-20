@@ -4,6 +4,7 @@ const Service = preload("res://scripts/monetization_service.gd")
 const ResultUI = preload("res://scripts/result_comparison_ui.gd")
 const AbilityAccess = preload("res://scripts/area_ability_access.gd")
 const SAVE = "user://public_release_qa.json"
+const PLAYER_SAVE = "user://sugarfall_save.json"
 var passed = 0
 var failures: Array[String] = []
 
@@ -92,9 +93,16 @@ func routes_and_payouts():
 		check(g.mode == "home" and g.shift_claimed and g.bank == 1265.75,area+" ordinary base payout still collects exactly once")
 		if not Service.preview_tools_allowed():
 			g.mode = "support"; g.navigation_delay = 0; g.labels.clear(); g.draw_support()
-			check(not g.developer_tools_available() and not g.open_developer_areas() and not g.set_developer_money(true),area+" actual public build rejects developer areas and free purchases")
+			check(not g.developer_tools_available() and not g.open_developer_areas() and not g.set_developer_money(true),area+" exported player rejects developer areas and free purchases")
 			var actions = g.settings_menu_layout().actions
-			check(not actions.has("performance") and not actions.has("developer") and not g.diagnostics_on and not g.labels.any(func(label): return label.begins_with("Performance display") or label == "Developer settings"),area+" actual public Settings exposes no diagnostic or developer input targets")
+			check(not actions.has("performance") and not actions.has("developer") and not g.diagnostics_on and not g.labels.any(func(label): return label.begins_with("Performance display") or label == "Developer settings"),area+" exported Settings exposes no diagnostic or developer input targets")
+			g.mode = "developer_areas"
+			check(g.mode == "support",area+" exported player rejects direct developer mode assignment")
+			var target = "gelato" if area == "bakery" else "bakery"
+			check(not g.developer_switch_area(target) and g.area_id == area,area+" exported player rejects a direct area skip")
+			g.developer_free_purchases[area] = true
+			var bank_before: float = g.bank
+			check(not g.developer_money_enabled() and not g.spend_coins(bank_before+1) and g.bank == bank_before,area+" exported player ignores a stale developer money flag")
 		g.free()
 
 func saved_preview_migration():
@@ -165,12 +173,62 @@ func signature_purchase_policy():
 			check(g.ability_ui.owned(),area+" legitimate earned activation remains valid without a store")
 			g.free()
 
+func player_ignores_developer_launch_flags():
+	# This script runs only inside the disposable export harness. Seed a normal
+	# profile so both startup scenes can prove they take the normal resume path.
+	var directory = OS.get_user_data_dir().replace("\\","/")
+	var test_appdata = OS.get_environment("APPDATA").replace("\\","/").trim_suffix("/")
+	var isolated = not test_appdata.is_empty() and directory.get_base_dir().nocasecmp_to(test_appdata) == 0 and directory.get_file().begins_with("sugarfall-public-qa-")
+	var empty_profile = isolated and not FileAccess.file_exists(PLAYER_SAVE)
+	check(empty_profile,"Exported flag probe has an empty isolated profile")
+	if not empty_profile: return
+	var seed = fixture()
+	seed.SAVE_FILE = PLAYER_SAVE
+	var seeded = seed.save_game()
+	seed.free()
+	check(seeded,"Developer command-line probe seeds a normal isolated profile")
+	if not seeded: return
+	var original = FileAccess.get_file_as_bytes(PLAYER_SAVE)
+	var startup = preload("res://startup.tscn").instantiate()
+	add_child(startup)
+	check(startup.audio_preference_read and startup.get_node("Stage").visible,"Exported startup keeps normal loading when passed a developer argument")
+	startup.free()
+	var game = preload("res://main.tscn").instantiate()
+	add_child(game)
+	check(not game.testing and game.screenshot_timer < 0 and game.mode == "home","Exported game ignores developer arguments instead of running self-test or capture")
+	check(game.profile_initialization_complete and game.bank == 1234.5 and game.levels == [2,2,1,1,1,1,2,2] and FileAccess.get_file_as_bytes(PLAYER_SAVE) == original,"Exported game restores the seeded profile without writing developer state")
+	game.free()
+	DirAccess.remove_absolute(ProjectSettings.globalize_path(PLAYER_SAVE))
+
 func _ready():
-	var release_expected = "--expect-release" in OS.get_cmdline_user_args()
-	check(not OS.is_debug_build() and OS.has_feature("sugarfall_public") if release_expected else OS.is_debug_build(),"Harness runs with its declared native build profile")
+	var args = OS.get_cmdline_user_args()
+	var release_expected = "--expect-release" in args
+	var debug_public_expected = "--expect-public-debug" in args
+	var legacy_player_expected = "--expect-legacy-player" in args
+	var editor_expected = not (release_expected or debug_public_expected or legacy_player_expected)
+	var profile_correct = (
+		OS.is_debug_build() == (not release_expected)
+		and OS.has_feature("sugarfall_public") == (release_expected or debug_public_expected)
+		and OS.has_feature("editor") == editor_expected
+		and OS.has_feature("developer") == legacy_player_expected
+	)
+	check(profile_correct,"Harness runs with its declared native build profile")
+	check(Service.preview_tools_allowed() == editor_expected,"Developer capability is available only in the editor")
+	if editor_expected:
+		var game = fixture()
+		game.mode = "support"
+		check(game.settings_menu_layout().actions.has("developer") and game.open_developer_areas(),"The editor retains working Developer settings")
+		game.free()
+	if not OS.has_feature("editor"):
+		check(not ResourceLoader.exists("res://addons/admob/gdscript/sample/Main.tscn"),"Export excludes upstream sample scenes")
+		var native_adapter_script=load("res://scripts/admob_native_adapter.gd")
+		check(native_adapter_script!=null and native_adapter_script.can_instantiate(),"Real native adapter and SDK wrapper APIs parse without sample resources")
 	service_gate()
 	routes_and_payouts()
 	saved_preview_migration()
 	signature_purchase_policy()
+	if legacy_player_expected:
+		check(("--self-test" in args) != ("--capture" in args),"Legacy-player probe received one developer argument")
+		player_ignores_developer_launch_flags()
 	print("PUBLIC_RELEASE_QA_RESULT passed=%d failed=%d debug=%s public=%s" % [passed,failures.size(),OS.is_debug_build(),OS.has_feature("sugarfall_public")])
 	get_tree().quit(0 if failures.is_empty() else 1)

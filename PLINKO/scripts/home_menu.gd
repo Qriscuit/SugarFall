@@ -117,7 +117,7 @@ func draw_controls(departure: float = 0.0):
 	_draw_menu_button()
 	_draw_wallet()
 	g.draw_set_transform(Vector2(0,330.0*departure))
-	_draw_action_button(PLAY_RECT,"Play","play",true)
+	_draw_action_button(PLAY_RECT,"Restore run" if g.has_deferred_paid_run() else "Play","play",true)
 	_draw_action_button(UPGRADES_RECT,"Upgrades","upgrade")
 	g.draw_set_transform(Vector2.ZERO)
 
@@ -128,22 +128,24 @@ func _draw_action_button(rect: Rect2, label: String, icon: String, primary: bool
 	var size = 30 if primary else 28
 	var icon_size = 38.0
 	var gap = 16.0
+	var text_offset: Vector2 = g.ui_art.text_offset("button_mint" if primary else "button_cream")
 	var width: float = text_font.get_string_size(label,HORIZONTAL_ALIGNMENT_LEFT,-1,size).x
 	while size>18 and width+icon_size+gap>rect.size.x-56.0:
 		size-=1
 		width=text_font.get_string_size(label,HORIZONTAL_ALIGNMENT_LEFT,-1,size).x
 	var left = rect.get_center().x-(width+icon_size+gap)*.5
-	g.symbol(icon,Vector2(left+icon_size*.5,rect.get_center().y),icon_size,g.TEAL)
-	var baseline = Vector2(left+icon_size+gap,rect.get_center().y+(text_font.get_ascent(size)-text_font.get_descent(size))*.5)
+	g.symbol(icon,Vector2(left+icon_size*.5,rect.get_center().y)+text_offset,icon_size,g.TEAL)
+	var baseline = Vector2(left+icon_size+gap,rect.get_center().y+(text_font.get_ascent(size)-text_font.get_descent(size))*.5)+text_offset
 	if primary: g.heading(label,baseline,size)
 	else: g.text_at(label,baseline,size)
 
 func _draw_level_selector():
 	if not g.ui_art.skin(g,"level_selector",LEVEL_RECT): g.ui_panel(LEVEL_RECT)
+	var text_offset: Vector2 = g.ui_art.text_offset("level_selector")
 	var points = PackedVector2Array()
 	for step in range(25):
 		var t = step / 24.0
-		points.append(Vector2(91 + sin(t*TAU)*15.0,100-t*40.0))
+		points.append(Vector2(91 + sin(t*TAU)*15.0,100-t*40.0)+text_offset)
 	g.draw_polyline(points,COPPER,3.0,true)
 	g.draw_circle(points[0],7.0,g.TEAL)
 	g.draw_circle(points[24],7.0,g.GOLD)
@@ -153,10 +155,10 @@ func _draw_level_selector():
 	var baseline = LEVEL_RECT.get_center().y + (g.display_font.get_ascent(size)-g.display_font.get_descent(size))*.5
 	var tier_label: String = g.food_art.tier_label(g.peg_strength_tier())
 	if not tier_label.is_empty(): baseline -= 12.0
-	g.heading(label,Vector2(135,baseline),size)
+	g.heading(label,Vector2(135,baseline)+text_offset,size)
 	if not tier_label.is_empty():
-		g.fitted_text("%s · normal pegs: %d HP" % [tier_label,ceili(g.normal_peg_hp(-1,false,g.FlowRules.CURRENT_REVISION))],Rect2(135,86,365,24),20,g.MUTED)
-	g.draw_polyline(PackedVector2Array([Vector2(540,67),Vector2(553,82),Vector2(540,97)]),COPPER,4.5,true)
+		g.fitted_text("%s · normal pegs: %d HP" % [tier_label,ceili(g.normal_peg_hp(-1,false,g.FlowRules.CURRENT_REVISION))],Rect2(Vector2(135,86)+text_offset,Vector2(365,24)),20,g.MUTED)
+	g.draw_polyline(PackedVector2Array([Vector2(540,67)+text_offset,Vector2(553,82)+text_offset,Vector2(540,97)+text_offset]),COPPER,4.5,true)
 
 func _draw_menu_button():
 	g.button(MENU_RECT,"")
@@ -209,6 +211,10 @@ func _draw_preview():
 	var hp: float = g.normal_peg_hp(-1,false,g.FlowRules.CURRENT_REVISION)
 	for peg in preview_layout():
 		g.food_art.draw_cookie(g,peg.kind,hp,hp,peg.p,Vector2.ONE*49.0*peg.scale,tier)
+	if not g.purchase_restore_message.is_empty():
+		g.ui_panel(Rect2(64,816,592,112))
+		g.fitted_text("Saved run needs purchase verification" if g.has_deferred_paid_run() else "Purchase restore",Rect2(82,834,556,32),23,g.WHITE,true)
+		g.fitted_text(g.purchase_restore_message,Rect2(82,876,556,30),21,g.MUTED,true)
 
 func _draw_menu():
 	g.draw_rect(g.get_global_transform_with_canvas().affine_inverse()*g.get_viewport_rect(),Color(g.area_surface("overlay"),.22))

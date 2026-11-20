@@ -1,14 +1,16 @@
 # Shared menu and gameplay transitions
 
-3 November 2026 · Functional menu copy and compact control groups refine the shared pause/settings presentation. Earlier menu/result verification is retained below. Physical-phone acceptance remains open. The verified v0.7.5 preview delivery is recorded below.
+4 November 2026 · CHG-046 adds slight area cream-wave variants. Earlier functional menu copy and compact control groups refine the shared pause/settings presentation. Earlier menu/result verification is retained below. Physical-phone acceptance remains open. The verified v0.7.5 preview delivery is recorded below.
 
-The menu polish uses one upward-moving white-cream wave across Bakery, Gelato Garden and Crystal Candyworks. The shared motif connects the three dessert areas while keeping their individual background art intact after each change. No area-specific repaint is required.
+CHG-046 uses separate mostly white cream crests for Gelato Garden and Crystal Candyworks, with restrained area accents. Bakery deliberately retains the original neutral wave. All variants share the existing cover/reveal behavior. [Area interface art](AREA_INTERFACE_ART.md) records the new native resources and checks. Earlier single-wave evidence remains historical.
 
 ## Artwork and source
 
-The runtime asset is [`res://data/art/transitions/cream_wave.png`](../data/art/transitions/cream_wave.png): the native 1536×1024 RGBA output from the built-in ImageGen tool. [The provenance record](../../concept-art/cream-wave-v1/sources.json) contains the exact prompt, source path, generation method and project path. Its pixels are copied without editing. The decorative upper cream crest and the runtime's opaque white coverage are separate: the generated alpha alone is not the guarantee that the old page is hidden.
+Bakery's retained runtime asset is [`res://data/art/transitions/cream_wave.png`](../data/art/transitions/cream_wave.png): the native 1536×1024 RGBA output from the built-in ImageGen tool. [The provenance record](../../concept-art/cream-wave-v1/sources.json) contains the exact prompt, source path, generation method and project path. Its pixels are copied without editing. The decorative upper cream crest and the runtime's opaque white coverage are separate: the generated alpha alone is not the guarantee that the old page is hidden.
 
-Use white cream with soft pearl-gray folds, broad curling shapes and no text, icons or area-color wash. The final UI labels, button states, prices and gameplay remain live. The asset is cached with the presentation resources rather than decoded during every navigation action.
+Use mostly white cream with soft folds and broad curls. Gelato and Crystal add restrained accents in their native variants; keep the body white and avoid text, icons or a broad saturated color wash. The final UI labels, button states, prices and gameplay remain live. The asset is cached with the presentation resources rather than decoded during every navigation action.
+
+Gelato uses [`gelato_cream_wave.png`](../data/art/transitions/gelato_cream_wave.png); Crystal uses [`crystal_cream_wave.png`](../data/art/transitions/crystal_cream_wave.png). Both are native 1536×1024 RGBA variants with the same runtime crest crop and opaque-body join. [Their provenance](../../concept-art/area-interface-v1/sources.json) records exact prompts and source paths.
 
 ## Page changes and transactions
 

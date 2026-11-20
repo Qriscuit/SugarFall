@@ -1,0 +1,127 @@
+{
+  "passed": true,
+  "failed": 0,
+  "date": "2026-11-05",
+  "change_id": "CHG-048",
+  "audit_fix": "AF-012",
+  "scope": "Shorter/larger immediate first-run guidance and authoritative gold peg coin earnings",
+  "functional_checks": 1127,
+  "functional_suites": [
+    {
+      "suite": "coin-feedback",
+      "passed": 80,
+      "failed": 0,
+      "log": "verification/coin-onboarding-20261105/regression/coin-feedback.log"
+    },
+    {
+      "suite": "self-test",
+      "passed": 20,
+      "failed": 0,
+      "log": "verification/coin-onboarding-20261105/regression/self-test.log"
+    },
+    {
+      "suite": "resume",
+      "passed": 122,
+      "failed": 0,
+      "log": "verification/coin-onboarding-20261105/regression/resume.log"
+    },
+    {
+      "suite": "navigation",
+      "passed": 89,
+      "failed": 0,
+      "log": "verification/coin-onboarding-20261105/regression/navigation.log"
+    },
+    {
+      "suite": "final-ball-drain",
+      "passed": 66,
+      "failed": 0,
+      "log": "verification/coin-onboarding-20261105/regression/final-ball-drain.log"
+    },
+    {
+      "suite": "first-run-guide",
+      "passed": 192,
+      "failed": 0,
+      "log": "verification/coin-onboarding-20261105/save-final/first-run-guide.log"
+    },
+    {
+      "suite": "reset-progress",
+      "passed": 67,
+      "failed": 0,
+      "log": "verification/coin-onboarding-20261105/save-final/reset-progress.log"
+    },
+    {
+      "passed": 74,
+      "failed": 0,
+      "suite": "damage-feedback"
+    },
+    {
+      "passed": 364,
+      "failed": 0,
+      "suite": "combat-balance"
+    },
+    {
+      "passed": 53,
+      "failed": 0,
+      "suite": "whole-coins"
+    }
+  ],
+  "gpu_checks": 193,
+  "captures": 72,
+  "guide_renderer": {
+    "captures": 36,
+    "failures": 0,
+    "platform_copy": [
+      "touch",
+      "mouse"
+    ],
+    "resolutions": [
+      "450x800",
+      "720x1280"
+    ],
+    "evidence": "verification/coin-onboarding-20261105/guide-gpu/preview-summary.json"
+  },
+  "feedback_renderer": {
+    "renderer": "Intel(R) Iris(R) Xe Graphics",
+    "failed": 0,
+    "passed": 193,
+    "resolutions": [
+      "720x1280",
+      "450x800"
+    ],
+    "areas": [
+      "bakery",
+      "gelato",
+      "crystal"
+    ],
+    "profile_io": 0,
+    "captures": 36,
+    "summary": "feedback-captures/damage-preview-summary.json"
+  },
+  "final_source_files": 454,
+  "normal_profile_accesses": 0,
+  "phone_verified": false,
+  "visual_review": {
+    "reviewed": [
+      "guide-gpu/play-450x800.png",
+      "guide-gpu/buy-450x800.png",
+      "guide-gpu/touch-aim_drag-450x800.png",
+      "feedback-captures/bakery-hit-450.png",
+      "feedback-captures/gelato-hit-450.png",
+      "feedback-captures/crystal-hit-450.png",
+      "guide-gpu/touch-earned-450x800.png"
+    ],
+    "result": "Short direct text fits; highlighted actions remain clear; coin icon and positive amounts are gold with a dark outline."
+  },
+  "historical_failed_attempts": [
+    "regression/reset-progress.log",
+    "feedback-focused/isolation.log"
+  ],
+  "superseding_evidence": "save-final covers corrected JSON-numeric tutorial migration and actual canonical disk reloads.",
+  "diagnostics": "Only the anchored exact offline root-certificate-store diagnostic is exempted. Raw logs are retained. GPU fixtures additionally emit the existing SubViewport positioning warning.",
+  "source_parity_note": "Final save tests match main/guide/tests; feedback tests and renderer match main/feedback sources. The last guide import-only fix does not change rendered text, layout, drawing or input.",
+  "remaining": [
+    "Physical-phone readability, tap/drag comfort, performance and install-over save retention",
+    "Existing Bakery tray-10 and natural-wallet progression",
+    "Real Play billing"
+  ]
+}

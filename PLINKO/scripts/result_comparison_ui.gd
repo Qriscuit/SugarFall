@@ -98,21 +98,29 @@ static func _draw_chain(g, center: Vector2):
 		g.draw_arc(center+offset,13,-.25,TAU-.25,32,copper,5,true)
 
 static func _draw_bonus(g):
-	if not g.test_commerce_available(): return
-	var bonus: int = g.displayed_reward_bonus()
-	var label = "Bonus added" if g.reward_earned else ("Test bonus +%d" % bonus if bonus > 0 else "Test bonus")
+	if not g.reward_ad_available(): return
+	var label: String = g.reward_ad_label()
+	var detail: String = g.reward_ad_detail()
+	var has_detail = not detail.is_empty()
 	var width: float = g.font.get_string_size(label,HORIZONTAL_ALIGNMENT_LEFT,-1,24).x
 	var center = BONUS_RECT.get_center()
 	var content_width = width+46.0
-	var capsule_size = Vector2(clampf(content_width+64.0,360.0,BONUS_RECT.size.x-24.0),80)
+	var side_padding = 32.0
+	var detail_width: float = g.font.get_string_size(detail,HORIZONTAL_ALIGNMENT_LEFT,-1,19).x+side_padding*2 if has_detail else 0.0
+	var capsule_size = Vector2(clampf(maxf(content_width+64.0,detail_width),360.0,BONUS_RECT.size.x-24.0),96 if has_detail else 80)
 	var capsule = Rect2(center-capsule_size*.5,capsule_size)
 	if not g.ui_art.skin(g,"button_cream",capsule,Color("ffd479")):
 		g.box(capsule,Color("eabb5f"),28)
 	var left = center.x-content_width*.5
-	var icon = Vector2(left+18,center.y)
-	g.draw_arc(icon,18,0,TAU,32,g.WHITE,2,true)
-	g.symbol("check" if g.reward_earned else "play",icon,25,g.WHITE)
-	g.fitted_text(label,Rect2(left+46,center.y-20,width+6,40),24,g.WHITE)
+	var line_y: float = center.y-9 if has_detail else center.y
+	var icon = Vector2(left+18,line_y)
+	g.draw_arc(icon,12.0 if has_detail else 18.0,0,TAU,32,g.WHITE,2,true)
+	g.symbol("check" if g.result_reward_earned() else "play",icon,19.0 if has_detail else 25.0,g.WHITE)
+	g.fitted_text(label,Rect2(left+46,line_y-20,width+6,40),24,g.WHITE)
+	if has_detail:
+		# Reserve the painted bottom rim and fit status text to the visible capsule.
+		var detail_rect = Rect2(capsule.position.x+side_padding,center.y+4,capsule.size.x-side_padding*2,24)
+		g.fitted_text(detail,detail_rect,19,QUIET_INK,true)
 
 static func draw_backdrop(g):
 	var bounds: Rect2 = g.get_global_transform_with_canvas().affine_inverse()*g.get_viewport_rect()

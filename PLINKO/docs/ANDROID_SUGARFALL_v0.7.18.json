@@ -1,0 +1,48 @@
+{
+  "change_id": "CHG-052",
+  "record_date": "2026-11-10",
+  "version_name": "0.7.18-preview",
+  "version_code": 45,
+  "package": "org.pegfoundry.prototype.preview",
+  "status": "Signed preview verified and replaced in Drive. Phone verification remains open.",
+  "ad_profile": "Google demo inventory",
+  "source_verified": true,
+  "package_verified": true,
+  "delivery_verified": true,
+  "phone_verified": false,
+  "real_ad_playback_verified": false,
+  "engine_template": "release",
+  "custom_features": [
+    "developer"
+  ],
+  "minimum_sdk": 24,
+  "target_sdk": 36,
+  "architectures": [
+    "arm64-v8a"
+  ],
+  "artifact_checks_passed": 630,
+  "source_manifest": "verification/android-preview-v0718/source-sha256.json",
+  "verification_evidence": [
+    "verification/android-preview-v0718/audit-01/validation.json",
+    "verification/android-preview-v0718/drive-preview.json"
+  ],
+  "artifacts": {
+    "apk": {
+      "local_path": "PLINKO/builds/Sugarfall-v0.7.18-Android-Preview-2026-11-10.apk",
+      "size_bytes": 104452583,
+      "sha256": "b03b957183a734cc826e8e3a0d7b8c0cb592664ddf90bc60d90d3a1a0e936587",
+      "signing_certificate_sha256": "926f0d0c634978f4d84727a272068bacd3bb157277a9a8b18810e7c60aef70bc",
+      "drive": {
+        "file_id": "1GF1zo3lt0VR5voajNPGjoP1FYuPe0FYz",
+        "folder_id": "1TXLZwTNVlHGTBy7y0CVMMk3zABEKu8X-",
+        "url": "https://drive.google.com/file/d/1GF1zo3lt0VR5voajNPGjoP1FYuPe0FYz/view?usp=drivesdk",
+        "verification_path": "verification/android-preview-v0718/drive-preview.json",
+        "metadata_verified": true,
+        "remote_checksum_available": false,
+        "remote_checksum_verified": false,
+        "checks_passed": 8
+      }
+    }
+  },
+  "source_record": "NATIVE_MONETIZATION_STATUS.md"
+}

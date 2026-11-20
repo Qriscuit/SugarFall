@@ -1,0 +1,720 @@
+{
+  "godot": "4.6.3.stable.official.7d41c59c4",
+  "app_name": "Sugarfall",
+  "package": "org.pegfoundry.prototype.preview",
+  "export_preset": "Android Preview",
+  "export_mode": "debug",
+  "minimum_sdk": 24,
+  "target_sdk": 36,
+  "architectures": [
+    "arm64-v8a"
+  ],
+  "requested_android_permissions": [],
+  "signing_certificate_sha256": "926f0d0c634978f4d84727a272068bacd3bb157277a9a8b18810e7c60aef70bc",
+  "monetization": "Local test service; no real ad or purchase accounts connected",
+  "feedback_audio": {
+    "version": 1,
+    "origin": "Original deterministic procedural PCM composition. No external samples, recordings, melodies or third-party sound assets.",
+    "generator": "tools/generate_feedback_audio.py",
+    "generator_sha256": "7b45c962f333c14400ab12929837d9a183160d2f27a33bdf9c878b0c01751aa0",
+    "asset_count": 33,
+    "pcm_bytes": 441600,
+    "assets": [
+      {
+        "path": "data/audio/feedback/ability_purchase.wav",
+        "sha256": "5481c4daef27315746a33f8414cfd1fedffcd60e94cce73ecf64051a1d3dea2e",
+        "bytes": 31244,
+        "duration": 0.65,
+        "frames": 15600,
+        "rate": 24000,
+        "channels": 1,
+        "bits": 16,
+        "peak": 0.2800073244422742,
+        "rms": 0.07274415533798449
+      },
+      {
+        "path": "data/audio/feedback/bakery_cup_catch.wav",
+        "sha256": "92389f6aa4f3991c009b37a8bb51723ede3b0508a39576368f2117d1e5617e41",
+        "bytes": 11084,
+        "duration": 0.23,
+        "frames": 5520,
+        "rate": 24000,
+        "channels": 1,
+        "bits": 16,
+        "peak": 0.2800073244422742,
+        "rms": 0.06366440222335323
+      },
+      {
+        "path": "data/audio/feedback/bakery_launch.wav",
+        "sha256": "2df0f360fcf12ec0a3df72d8c2e270fa63bfd188e8bb68182fae3e98154cfb07",
+        "bytes": 4844,
+        "duration": 0.1,
+        "frames": 2400,
+        "rate": 24000,
+        "channels": 1,
+        "bits": 16,
+        "peak": 0.2800073244422742,
+        "rms": 0.06605113728369129
+      },
+      {
+        "path": "data/audio/feedback/bakery_peg_break.wav",
+        "sha256": "fcec8dcb58993c1822b094c8bdc4bd112a70d4366e1ce6507cc1cc54e4bf4b90",
+        "bytes": 11084,
+        "duration": 0.23,
+        "frames": 5520,
+        "rate": 24000,
+        "channels": 1,
+        "bits": 16,
+        "peak": 0.2800073244422742,
+        "rms": 0.06571329259367817
+      },
+      {
+        "path": "data/audio/feedback/bakery_peg_hit.wav",
+        "sha256": "f13a0d09bbd384a298c24ae78b712132353c1ccce5197d44e2a469782622f818",
+        "bytes": 5804,
+        "duration": 0.12,
+        "frames": 2880,
+        "rate": 24000,
+        "channels": 1,
+        "bits": 16,
+        "peak": 0.2800073244422742,
+        "rms": 0.06774481460181982
+      },
+      {
+        "path": "data/audio/feedback/collect.wav",
+        "sha256": "a5452575f58a9a8e0adb1a86e48c3a3ba16842364c498cc34723fe1b083e4389",
+        "bytes": 19244,
+        "duration": 0.4,
+        "frames": 9600,
+        "rate": 24000,
+        "channels": 1,
+        "bits": 16,
+        "peak": 0.2800073244422742,
+        "rms": 0.07323484953856615
+      },
+      {
+        "path": "data/audio/feedback/countdown.wav",
+        "sha256": "4894b683102e0eb5a652f448623f17e312eeb825d37cd262552143c3be6b77ff",
+        "bytes": 6284,
+        "duration": 0.13,
+        "frames": 3120,
+        "rate": 24000,
+        "channels": 1,
+        "bits": 16,
+        "peak": 0.2800073244422742,
+        "rms": 0.0637939721523938
+      },
+      {
+        "path": "data/audio/feedback/crystal_cup_catch.wav",
+        "sha256": "305415d5435535a7e898157a88a9eba3f48a3b4c4c73d40486e6da428355d11e",
+        "bytes": 11084,
+        "duration": 0.23,
+        "frames": 5520,
+        "rate": 24000,
+        "channels": 1,
+        "bits": 16,
+        "peak": 0.2800073244422742,
+        "rms": 0.06818051024810305
+      },
+      {
+        "path": "data/audio/feedback/crystal_launch.wav",
+        "sha256": "4cbed1cf86c53b6a6e6a6c43a9393c31c09d12469be91f2deac05733db772fc7",
+        "bytes": 4844,
+        "duration": 0.1,
+        "frames": 2400,
+        "rate": 24000,
+        "channels": 1,
+        "bits": 16,
+        "peak": 0.2800073244422742,
+        "rms": 0.06491953368706659
+      },
+      {
+        "path": "data/audio/feedback/crystal_peg_break.wav",
+        "sha256": "e187f7bf0f874e6d9d11e6655bec064aa2cd9c867d178cfc00cb1e43f80aaf0a",
+        "bytes": 11084,
+        "duration": 0.23,
+        "frames": 5520,
+        "rate": 24000,
+        "channels": 1,
+        "bits": 16,
+        "peak": 0.2800073244422742,
+        "rms": 0.0669591422551197
+      },
+      {
+        "path": "data/audio/feedback/crystal_peg_hit.wav",
+        "sha256": "49c94993b6d938d2c3740ef8a950deab084cf8395f18cd62261e99b345e8cf8a",
+        "bytes": 5804,
+        "duration": 0.12,
+        "frames": 2880,
+        "rate": 24000,
+        "channels": 1,
+        "bits": 16,
+        "peak": 0.2800073244422742,
+        "rms": 0.06392951918815469
+      },
+      {
+        "path": "data/audio/feedback/gelato_cup_catch.wav",
+        "sha256": "bb293fc8fb15828b3b0a898fa8f8f3aa46187efeff5eac21c68df0dad9125047",
+        "bytes": 11084,
+        "duration": 0.23,
+        "frames": 5520,
+        "rate": 24000,
+        "channels": 1,
+        "bits": 16,
+        "peak": 0.2800073244422742,
+        "rms": 0.056538929225819434
+      },
+      {
+        "path": "data/audio/feedback/gelato_launch.wav",
+        "sha256": "464b1795e0c5ca578b8292e631fe3fe866d27eba8430c92c67ba9d2cebf47aac",
+        "bytes": 4844,
+        "duration": 0.1,
+        "frames": 2400,
+        "rate": 24000,
+        "channels": 1,
+        "bits": 16,
+        "peak": 0.2800073244422742,
+        "rms": 0.060438722279717264
+      },
+      {
+        "path": "data/audio/feedback/gelato_peg_break.wav",
+        "sha256": "0fd83cb03d735b6e1910c49140bd868d4abd051db2a236d6171af996cafab36a",
+        "bytes": 11084,
+        "duration": 0.23,
+        "frames": 5520,
+        "rate": 24000,
+        "channels": 1,
+        "bits": 16,
+        "peak": 0.2800073244422742,
+        "rms": 0.05827652755777454
+      },
+      {
+        "path": "data/audio/feedback/gelato_peg_hit.wav",
+        "sha256": "9ce5d153cba0e7a41b13f149996b33328272a93374ea5d2db617941b9bb86c7e",
+        "bytes": 5804,
+        "duration": 0.12,
+        "frames": 2880,
+        "rate": 24000,
+        "channels": 1,
+        "bits": 16,
+        "peak": 0.2800073244422742,
+        "rms": 0.05623433164364562
+      },
+      {
+        "path": "data/audio/feedback/jam_splash.wav",
+        "sha256": "aa168ca603fd4f8bb903cd5b971c456762376b34875197c602d1e15f643be373",
+        "bytes": 12044,
+        "duration": 0.25,
+        "frames": 6000,
+        "rate": 24000,
+        "channels": 1,
+        "bits": 16,
+        "peak": 0.2800073244422742,
+        "rms": 0.05799739795902099
+      },
+      {
+        "path": "data/audio/feedback/pause.wav",
+        "sha256": "2d63a4159e78c1747d4d97338a5aca621fe0b0b1955e80c947233935924f9904",
+        "bytes": 10604,
+        "duration": 0.22,
+        "frames": 5280,
+        "rate": 24000,
+        "channels": 1,
+        "bits": 16,
+        "peak": 0.2800073244422742,
+        "rms": 0.07103902840049577
+      },
+      {
+        "path": "data/audio/feedback/pickup_appear.wav",
+        "sha256": "32b3a9624e093164d3afa62d833d87745e40acf484db33c17c421e702e630f06",
+        "bytes": 5324,
+        "duration": 0.11,
+        "frames": 2640,
+        "rate": 24000,
+        "channels": 1,
+        "bits": 16,
+        "peak": 0.2800073244422742,
+        "rms": 0.06705914455935673
+      },
+      {
+        "path": "data/audio/feedback/prism.wav",
+        "sha256": "8374f5868cc618cd029b8578139ee9e3317501923ff2963c4e094402a9c099bd",
+        "bytes": 25004,
+        "duration": 0.52,
+        "frames": 12480,
+        "rate": 24000,
+        "channels": 1,
+        "bits": 16,
+        "peak": 0.2800073244422742,
+        "rms": 0.0642147357932739
+      },
+      {
+        "path": "data/audio/feedback/resume.wav",
+        "sha256": "771aae3c7b04b1ab4a7b8645235c1b51b8795e64cdee88bf8757f84e8e842fb5",
+        "bytes": 11564,
+        "duration": 0.24,
+        "frames": 5760,
+        "rate": 24000,
+        "channels": 1,
+        "bits": 16,
+        "peak": 0.2800073244422742,
+        "rms": 0.07105867757105079
+      },
+      {
+        "path": "data/audio/feedback/run_start.wav",
+        "sha256": "d1625eea49fb66a30506c6f88262b848594f76401be2e4fe3543b715a2790468",
+        "bytes": 18764,
+        "duration": 0.39,
+        "frames": 9360,
+        "rate": 24000,
+        "channels": 1,
+        "bits": 16,
+        "peak": 0.2800073244422742,
+        "rms": 0.076659598438691
+      },
+      {
+        "path": "data/audio/feedback/special_impact.wav",
+        "sha256": "ff14354a5114aa1df1e1068da18418f62256342e9b55303a8a42b29adb85a840",
+        "bytes": 9644,
+        "duration": 0.2,
+        "frames": 4800,
+        "rate": 24000,
+        "channels": 1,
+        "bits": 16,
+        "peak": 0.2800073244422742,
+        "rms": 0.06322086206429137
+      },
+      {
+        "path": "data/audio/feedback/special_ricochet.wav",
+        "sha256": "2e42da533e820a63c45378bcc0530fe82aa21f220e3f65ac1231fcdeb408cb62",
+        "bytes": 9164,
+        "duration": 0.19,
+        "frames": 4560,
+        "rate": 24000,
+        "channels": 1,
+        "bits": 16,
+        "peak": 0.2800073244422742,
+        "rms": 0.060493939592829775
+      },
+      {
+        "path": "data/audio/feedback/special_split.wav",
+        "sha256": "ec53acd2f37d7c9c6271d89f342a2aab944a6d7a173f79d73b9d26b6438fcec7",
+        "bytes": 12044,
+        "duration": 0.25,
+        "frames": 6000,
+        "rate": 24000,
+        "channels": 1,
+        "bits": 16,
+        "peak": 0.2800073244422742,
+        "rms": 0.0759165895869221
+      },
+      {
+        "path": "data/audio/feedback/time_pickup.wav",
+        "sha256": "4768bfb1c3e741186540aa1ea56da508dbc972a7363a08042f9c2d6bbbcff194",
+        "bytes": 19244,
+        "duration": 0.4,
+        "frames": 9600,
+        "rate": 24000,
+        "channels": 1,
+        "bits": 16,
+        "peak": 0.2800073244422742,
+        "rms": 0.0642816114733945
+      },
+      {
+        "path": "data/audio/feedback/tray_loss.wav",
+        "sha256": "e1ba046c41587498a9fc982529ebe515803215712a1df461fde99479695725b1",
+        "bytes": 29804,
+        "duration": 0.62,
+        "frames": 14880,
+        "rate": 24000,
+        "channels": 1,
+        "bits": 16,
+        "peak": 0.2800073244422742,
+        "rms": 0.06121236669242328
+      },
+      {
+        "path": "data/audio/feedback/tray_win.wav",
+        "sha256": "5f306c5dafdc4bb2f96868737ae078bdbe7712195c0c4642dbd286cc92a3fcfa",
+        "bytes": 39404,
+        "duration": 0.82,
+        "frames": 19680,
+        "rate": 24000,
+        "channels": 1,
+        "bits": 16,
+        "peak": 0.2800073244422742,
+        "rms": 0.07292690701548146
+      },
+      {
+        "path": "data/audio/feedback/twin_transform.wav",
+        "sha256": "cf31330810f4d2e21c37797f324f2a7e640439ba3b0f362e3a49a4f4e1d215f3",
+        "bytes": 29804,
+        "duration": 0.62,
+        "frames": 14880,
+        "rate": 24000,
+        "channels": 1,
+        "bits": 16,
+        "peak": 0.2800073244422742,
+        "rms": 0.0601002737146905
+      },
+      {
+        "path": "data/audio/feedback/ui_back.wav",
+        "sha256": "0436f86ff10be82be62b03d217e390cf3ddc1aa09641d0783a59f21b6ff8b106",
+        "bytes": 8684,
+        "duration": 0.18,
+        "frames": 4320,
+        "rate": 24000,
+        "channels": 1,
+        "bits": 16,
+        "peak": 0.2800073244422742,
+        "rms": 0.06548504399597677
+      },
+      {
+        "path": "data/audio/feedback/ui_confirm.wav",
+        "sha256": "19a4ee54381b8202a2dfb83544d1d514a925c02ccc71cbe92949f9ea9eb0aaa9",
+        "bytes": 13004,
+        "duration": 0.27,
+        "frames": 6480,
+        "rate": 24000,
+        "channels": 1,
+        "bits": 16,
+        "peak": 0.2800073244422742,
+        "rms": 0.07336219441555673
+      },
+      {
+        "path": "data/audio/feedback/ui_error.wav",
+        "sha256": "b83c045324065bc89b4407a8c80fe7c370117e024a728986a0aa729b321d1015",
+        "bytes": 11084,
+        "duration": 0.23,
+        "frames": 5520,
+        "rate": 24000,
+        "channels": 1,
+        "bits": 16,
+        "peak": 0.2800073244422742,
+        "rms": 0.06651724148297405
+      },
+      {
+        "path": "data/audio/feedback/ui_tap.wav",
+        "sha256": "0a754bc8edb2482e114d6ee7267d8ecc73613ff84ae50aeeb044abc2329927a5",
+        "bytes": 4844,
+        "duration": 0.1,
+        "frames": 2400,
+        "rate": 24000,
+        "channels": 1,
+        "bits": 16,
+        "peak": 0.2800073244422742,
+        "rms": 0.06215331817895977
+      },
+      {
+        "path": "data/audio/feedback/upgrade.wav",
+        "sha256": "674b1dda2d5ee1efd4a739d8eb30cc76916f8559998636da2ae894af42a63b34",
+        "bytes": 17804,
+        "duration": 0.37,
+        "frames": 8880,
+        "rate": 24000,
+        "channels": 1,
+        "bits": 16,
+        "peak": 0.2800073244422742,
+        "rms": 0.07624591844731592
+      }
+    ],
+    "normalization": "Each clip peak 0.28; controller adds conservative gains. Four-millisecond onset, tapered tail, no loops.",
+    "human_listening_verified": false
+  },
+  "studio_timing": {
+    "cycle_seconds": 1.3,
+    "rise_start_seconds": 0.06,
+    "peak_seconds": 0.28,
+    "release_end_seconds": 0.63,
+    "quiet_tail_seconds": 0.67,
+    "active_intervals_per_cycle": 1,
+    "minimum_foreground_seconds": 2.6,
+    "maximum_scale": 1.055,
+    "anchor": "bottom center"
+  },
+  "studio_hum": {
+    "asset": "data/audio/studio_warm_hum.wav",
+    "method": "Original deterministic additive synthesis; no sampled or third-party game audio.",
+    "generator": "tools/generate_studio_hum.py",
+    "sample_rate": 44100,
+    "channels": 2,
+    "sample_width_bits": 16,
+    "frames": 57330,
+    "duration_seconds": 1.3,
+    "peak_dbfs": -6.020599913279624,
+    "rms_dbfs": -20.31305408413363,
+    "timing": {
+      "rise_start": 0.06,
+      "peak": 0.28,
+      "release_end": 0.63,
+      "swells_per_cycle": 1
+    },
+    "quiet_tail_seconds": 0.67,
+    "clipped_samples": 0,
+    "sha256": "e6340a151a0b5a994eeb76e86d346cb5184bfc5f7635c26c09defef376c73440"
+  },
+  "change": "CHG-046",
+  "fix": "AF-010",
+  "build_date": "2026-11-04",
+  "file_name": "Sugarfall-v0.7.11-Android-Preview-2026-11-04.apk",
+  "local_path": "builds/Sugarfall-v0.7.11-Android-Preview-2026-11-04.apk",
+  "size_bytes": 98872682,
+  "sha256": "8d7428cc816ecda81c0a765698f4ccb73750689f1e4f4ca816ad219442715383",
+  "md5": "53e7c9c3c2edae68184844023dd71e8e",
+  "version_name": "0.7.11-preview",
+  "version_code": 38,
+  "status": "Delivered area-specific interface and cream-wave preview; local APK and Drive metadata checks pass. Physical-phone acceptance remains open.",
+  "changes": [
+    "Gelato and Crystal each use a complete independent fourteen-role UI atlas, removing the Bakery texture merge/fallback.",
+    "Gelato uses lavender/mint ceramic; Crystal uses pale aqua sugar glass with peach/copper accents. Existing area menu frames remain integrated.",
+    "Each area selects its own subtle cream-wave painting. Timing, white opaque coverage, route choices and Reduced Motion remain established. Bakery retains its original controls and neutral wave.",
+    "New panel source slices keep HUD, result and upgrade-card text within quiet faces. Crystal selector crest padding preserves live text and hit rectangles.",
+    "Gameplay JSON data, save formats, earned gates, purchase behavior, audio and the approved single-pulse startup are preserved."
+  ],
+  "update_compatibility": "Same preview package and development signing certificate as v0.7.10. Version code 36 increases to 38 after public code 37; public artifacts remain unchanged. Ten gameplay JSONs remain byte-identical. Install-over save retention requires phone verification.",
+  "source_commit": "8ff760bb6195561690919303cf35ee8ad5a80c10",
+  "build_only_change": "Android Preview version/path bump to 0.7.11-preview, code 38",
+  "source_sha256": {
+    "res://scripts/area_ability_access.gd": "c09d982b508adea00e365153382398a6e3b651c520c5bcac34888244005452b3",
+    "res://scripts/area_ability_ui.gd": "310eebb288e95725ae0b65594d97a1185512d5173307923deb3e644a1301972e",
+    "res://scripts/area_art.gd": "3c3756e2de80db4b80377e01df2a554230090b1ffe0ee3f58a8666fb9252ffd6",
+    "res://scripts/area_campaign.gd": "18665c9c53a26b09b6d1693595ac225160bca2629029387bdab5b386c860991c",
+    "res://scripts/area_play_billing.gd": "528183cb6ff145b56ca5483b752ffe24ecee4691f407bb6e005b8f08c5cdbc99",
+    "res://scripts/audio_catalog.gd": "db3f396833060fb8eb039c913699736c9037967264637a2ac1ff2b9a66405caf",
+    "res://scripts/bakery_ability.gd": "212ce336e92050095a9c0c88911d2a2d6f047b30e3258ec3fb916a3a35fc5c7b",
+    "res://scripts/coin_display.gd": "29fcfa88220832e516a1d1d1e6210893ec083360848bda21caea574c7a26fc23",
+    "res://scripts/coin_feedback.gd": "77355e8533d1f8840b539a53155c3beacd3140a4a6fc0b2b0795ae5460cb1cfb",
+    "res://scripts/combat_balance.gd": "9ad489b7b8f3960a401adc30829d94776845f58060a58f878460479d5b2568e7",
+    "res://scripts/countdown_feedback.gd": "44ded78cf9ef83874485fc632a0e53b5ff6af2f6aa10bd30ad511d542e2f0883",
+    "res://scripts/crystal_launcher.gd": "af0b77e2a0b08ecd4760d27a82f55b41fb26ff57103d57c57da292733ec20a58",
+    "res://scripts/crystal_upgrade_graph.gd": "d8715e6941f1df477e90e2c017392861ae9b4c3924afebf7009d26f994596671",
+    "res://scripts/developer_area_ui.gd": "9720214c2fdd09fdc510003b0e25a7e9a79218f25da53a9bd5b5632dd5d96c93",
+    "res://scripts/environment_art.gd": "38745078b12953911de5c8aab75b6648dc0d53d44f018f020b53b1b1bb8770b2",
+    "res://scripts/first_run_guide.gd": "ca6795dfc258334d369b16591f5ec0704692141dce3bb0720256a588c68b5399",
+    "res://scripts/flow_rules.gd": "98cc6d3ec935d021c11a47c4ccb4f4c819bca108af10afb17d5e442ca7812688",
+    "res://scripts/food_art.gd": "d8ac12a56e6b6c35c97cac94229a218ac909f1887bf0e5ac6f0aaa3a9cc6bb7e",
+    "res://scripts/game_audio.gd": "661f0f82a3b488541603e88d2e8204d5914f57ef63f1f68fb2a385e88d6dc952",
+    "res://scripts/gelato_launcher.gd": "d735ac2812dbc6889bb3fad67649626e3a53352ffb6017831acc9bc83870ca19",
+    "res://scripts/gelato_upgrade_graph.gd": "e9815d6ea340596e03b6a2646aec8a48d9a9dcf8dee183c9088e121f622586fd",
+    "res://scripts/home_menu.gd": "b25508fd6388b8c73ec9884322816d6dc17c887655d101d85dbc83380d0f998a",
+    "res://scripts/impact_feedback.gd": "f3e41246e7492a7daa7eab26d9f851d0c903c38f89997a59404eba0594932ca8",
+    "res://scripts/level_map.gd": "32fea91d9db63b288532de5c4a3a258fa36270aa051020ef6ef15bb5bf476250",
+    "res://scripts/main.gd": "bf744034870f5deb876eb79040d25ac013344e26c67c112902c21a7b900a7089",
+    "res://scripts/monetization_service.gd": "7a1763b27f796ab29c1187e418ffe6ac0491c4333e196b33a80fdb9b989ad5d8",
+    "res://scripts/monetization_ui.gd": "6156dc1b45a8a87db8efd6595ae90f3eba9137802d77bb4384acbf7c7ef2e9c6",
+    "res://scripts/page_transition.gd": "23b449f8ab8ac1832c1a6101fdd5c2af20b9b6ef20c41910ba10e3b8337a85d7",
+    "res://scripts/pause_transition.gd": "c58f991597e24d2617805c648ca20a97a9c72916f57e6ba6513a875142d5b0c2",
+    "res://scripts/progress_reset_ui.gd": "75608c0fa638b08ba4cdf15029fee9574437d23da1615c2f7e68fbb20d4175be",
+    "res://scripts/result_comparison_ui.gd": "4ebaed65dbe076b6b2e5bf535393e8529ca3c39bfa623d68ac5abf52f43e2752",
+    "res://scripts/run_history.gd": "f2da83d6d0c8179f58e61ccc7745d7ecb0980c27593a8a71aae89448fd939b30",
+    "res://scripts/run_snapshot.gd": "7b36ca5fa358a686fc0e195e752a00c31f707b2e8d11fd8cd798edc58f84918c",
+    "res://scripts/run_transition.gd": "6b80a5f6344ed34f26cdffbc3c5780f8cf607995a74ae05ae8a70d056984a043",
+    "res://scripts/speech_bubble.gd": "a7fa2f48b72ff1c02a2617148a1c421c3bc55fe0e8dccc286441e43e2767969c",
+    "res://scripts/startup.gd": "323219d7b4247d37e3ade0a4f2b83539b11ac7e0a5ff1b474267c28876ffc169",
+    "res://scripts/tone_bank.gd": "0eabc16e9ebf89d77e915ebc64ad44b030dd76003a4e02466d66267f9c5907c0",
+    "res://scripts/ui_art.gd": "d44de0304d6511ae41ae19123bfa0a9e3a09ed13ea6f76ef199e0a148d16b77b",
+    "res://scripts/upgrade_arc_art.gd": "4cefc77bef1b62f39b502f9ac8b1edadfd29f8fad05ccb280f10ef1a28a35ab1",
+    "res://scripts/upgrade_graph.gd": "3845bed72ffeefb5d747434e8b7dda326993762654b55d796e68d4e437777729",
+    "res://scripts/upgrade_map.gd": "e0cd7c5952c75782a75334691cdb7347c3362dfd6720f058f73190d5baf920ca"
+  },
+  "source_json_sha256": {
+    "res://data/art/branding/sources.json": "9ec1e1e6654ff58e88c2a21cf50d8e1ddbd1bba3b1d4f849da1543fbef6f033b",
+    "res://data/art/crystal/environment/regions.json": "3fe2cf77ca7a606c31a54ed89317a119bfbc6493983c060209a6ca81c7994581",
+    "res://data/art/crystal/food/regions.json": "b4233d00b77f959d7b1e1029b5a383876fcd1323825f4fb13423a75d93e3d14a",
+    "res://data/art/crystal/sources.json": "38e23862818931a54c5c3958e4abdf26809aa226d207b55892227586586eb57c",
+    "res://data/art/crystal/ui/regions.json": "a5a1db25e0aba44b51a1e07f64fd9095aff14846f0f44ab88874ff3add27816d",
+    "res://data/art/environment/palette-refresh-sources.json": "e55176205c99bac498465ab9f37bffddb90294bf90c2d5150945337745d844d6",
+    "res://data/art/environment/regions.json": "a192e38a74fe9ce83b3f19ce3c9794fb703a94f8e3b920d6e24f2ab120588671",
+    "res://data/art/environment/sources.json": "b2e9e1bce5a322f7484904b53107d498ee9fc6619f05f4d45ac33c3e043611ff",
+    "res://data/art/food/palette-refresh-sources.json": "3e5b07b28ae19680c549c53918682616f3b8b0cddc24dd16a05e8ef6b417491f",
+    "res://data/art/food/regions.json": "e7e38946dca95ab8d11a07df445067b8e3d7f756bf1beccda0b63cf6c417edf9",
+    "res://data/art/food/sources.json": "c5160904c639ffe182099e55786359a786cf76680ee49a97b1087e25a55123ca",
+    "res://data/art/gelato/environment/palette-refresh-sources.json": "af01f7317d487ac6ae8009b00c067dd20b077fd5881d6a1eb6831d92627a6563",
+    "res://data/art/gelato/environment/regions.json": "a088409178687492fc24e19cc7a0c90445a29d4dd93c8c903fd582924b99ddef",
+    "res://data/art/gelato/environment/sources.json": "08aaede8627c66c3259f73dd5c1690800c9ec486c85d4f5eefb79fd3bcab8ac7",
+    "res://data/art/gelato/food/palette-refresh-sources.json": "6c8fe75901f57a69af5b5391bd4ca883d952f509990b1b5686bf5a26d3f515d6",
+    "res://data/art/gelato/food/regions.json": "33f3fffc2367758caf208e73984c799935d13828febd5bbde13e8a7156fb315a",
+    "res://data/art/gelato/food/sources.json": "a6a6fae9e16a785939e2718b3cad806790354a358c187ccfae81f4c1c54abc7c",
+    "res://data/art/gelato/ui/regions.json": "c48d33c638942fa34d4f757662bc98c3e5b2d49f452a0f384bcc4cf5de30b481",
+    "res://data/art/gelato/ui/sources.json": "964b568afe61f097f44c84af55612d5e521bd3d95189a6e0ced6ff698da6e231",
+    "res://data/art/ui/regions.json": "d37585077c0984a7ca30cf7d0185f1db42b1e400328b4743fda2510368b6434d",
+    "res://data/art/ui/sources.json": "3677647e19c70b535e3542be66c31deb7736ea886e624eb5b11e272e716f6d69",
+    "res://data/audio/studio_warm_hum.provenance.json": "8b8aacd4ab163468da3c84fec79f9a0f61429f26c4ca18a8a0eef2161ed98d57",
+    "res://data/board_design.json": "7f924784be57d5cc15f96199467f8a884feb0bd8d5df19ed07f7eebe55aa2a14",
+    "res://data/crystal_board_design.json": "b9ce87470fd3e393ab4789c5b8d682a84bfe6911fce411af1cc516de7cba4e6e",
+    "res://data/crystal_economy.json": "fa590359c4687c76ee14ce2149d6fba42a2a302100fe439f69ee301bfca90791",
+    "res://data/crystal_upgrade_layout.json": "e87e5f38d6c49d921b53d87f94a17b8df3d189a825c0f9e48d923c9f9f16aa31",
+    "res://data/economy.json": "9910256c6a6832d11248012bd60cafeef3e9017bb731bbf23dcf2503c0b27a8a",
+    "res://data/gelato_board_design.json": "0f64d5ebd62f786b1c157a75d599f47d00543e749e4240afe38d0131cfb05add",
+    "res://data/gelato_economy.json": "e98aa6365989a68cb618d15a5325bc1d8713767d04a693d2760b94fcf2efe352",
+    "res://data/gelato_upgrade_layout.json": "9948870ef138871c4966cea60820c341766af962018a773fe28da5c28bade666",
+    "res://data/upgrade_arc_art.json": "3abc28874c39d56d26fc1bff26e079319f646a3511459f2df61f2108539df85f",
+    "res://data/upgrade_layout.json": "6397704584fd20178fde7a15f4341dcac3576e8bc9eecf4919e26091bb32058e"
+  },
+  "source_freeze": "verification/android-preview-v0711/source-sha256.json",
+  "source_freeze_sha256": "86c40088fc6c6ae3a42015cdea9bc01cbf346ce62e79bae772f60aa69a645045",
+  "source_validation": "AREA_INTERFACE_ART_VALIDATION.json",
+  "source_evidence_scope": {
+    "software_checks": 1654,
+    "native_metadata_checks": 48,
+    "captures": 116,
+    "current_source_inputs": 270,
+    "profile_io": 0,
+    "visual_review_images": 14,
+    "source": "verification/area-ui-20261104/validation.json",
+    "native": "concept-art/area-interface-v1/native-validation.json",
+    "visual_review": "verification/area-interface-20261104/visual-review.json"
+  },
+  "art_provenance": "concept-art/area-interface-v1/sources.json",
+  "native_art": [
+    {
+      "path": "data/art/gelato/ui/controls.png",
+      "sha256": "4d68854699f8010ea62c84b3d80ea6d98b3422c013b4c1891a09c499c130929c",
+      "bytes": 1498315,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "packaged_import": {
+        "descriptor": "assets/data/art/gelato/ui/controls.png.import",
+        "targets": [
+          ".godot/imported/controls.png-cc1acae09febb98206691038adc44e84.ctex"
+        ],
+        "sha256": [
+          "d10561b8bc8b6aec7623883a08cce671be90c93e382087e57fbc4f3d3d8437d5"
+        ]
+      }
+    },
+    {
+      "path": "data/art/crystal/ui/controls.png",
+      "sha256": "10a263a8be7a512e35cd344e42ca6014a635f07d3831183503280287ad3895b2",
+      "bytes": 1379054,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "packaged_import": {
+        "descriptor": "assets/data/art/crystal/ui/controls.png.import",
+        "targets": [
+          ".godot/imported/controls.png-b287ca80322c40c0c579e0ae35e317f2.ctex"
+        ],
+        "sha256": [
+          "cee79676047706cba3e08e0f1f3581749c62fbbf06b3b4ac29b6d8c9fb4e09e6"
+        ]
+      }
+    },
+    {
+      "path": "data/art/transitions/gelato_cream_wave.png",
+      "sha256": "ffbf6794c5f0aecbcade0c6c69c8ef9154a665b797f320087171007a1435bfd8",
+      "bytes": 1356350,
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "packaged_import": {
+        "descriptor": "assets/data/art/transitions/gelato_cream_wave.png.import",
+        "targets": [
+          ".godot/imported/gelato_cream_wave.png-a2c835416a6e605bbf3b64f7b73a0831.ctex"
+        ],
+        "sha256": [
+          "76c53f199b64a891aa986a1e81eb7e86c5b9959d497fb7ebcde56b97b27dd0a8"
+        ]
+      }
+    },
+    {
+      "path": "data/art/transitions/crystal_cream_wave.png",
+      "sha256": "aceaf3d5e2dccf4e1dc4efd6c6cffec59a199ebb603a840ae1bd205869a7bebb",
+      "bytes": 1288204,
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "packaged_import": {
+        "descriptor": "assets/data/art/transitions/crystal_cream_wave.png.import",
+        "targets": [
+          ".godot/imported/crystal_cream_wave.png-2fbce862eea6722dfd6c846eeb835586.ctex"
+        ],
+        "sha256": [
+          "6425bbd0f207a8886d99a29f984eab71899289a3acb01a331d6d72ad9433da98"
+        ]
+      }
+    }
+  ],
+  "verification": {
+    "payload": "verification/android-preview-v0711/package-inspection.json",
+    "payload_checks": 1314,
+    "android": "verification/android-preview-v0711/android-validation.json",
+    "android_checks": 16,
+    "export_warning_review": "verification/android-preview-v0711/export-warning-review.json",
+    "drive": "verification/android-upload-v0711/verification.json",
+    "drive_checks": 8
+  },
+  "drive": {
+    "file_id": "1GF1zo3lt0VR5voajNPGjoP1FYuPe0FYz",
+    "folder_id": "1TXLZwTNVlHGTBy7y0CVMMk3zABEKu8X-",
+    "url": "https://drive.google.com/file/d/1GF1zo3lt0VR5voajNPGjoP1FYuPe0FYz/view?usp=drivesdk",
+    "metadata_verified": true,
+    "remote_checksum_verified": false
+  },
+  "preserved_artifacts": [
+    {
+      "path": "PLINKO/docs/ANDROID_SUGARFALL_v0.7.10.json",
+      "sha256": "f6bd80b5661039884ed1fe500be708df32b8443cf978dd4c5f6a2151a65f80e2"
+    },
+    {
+      "path": "PLINKO/builds/Sugarfall-v0.7.10-Android-Preview-2026-11-03.apk",
+      "sha256": "8673036be460e691f5c2bf6108c171f9a1e904cb9c729e10fde522ca6ef0105c"
+    },
+    {
+      "path": "PLINKO/docs/ANDROID_SUGARFALL_v0.8.0-rc1.json",
+      "sha256": "490129b6c663db008b1864356fec0657808a76e532eff6a43da44f714f89bb65"
+    },
+    {
+      "path": "PLINKO/builds/Sugarfall-v0.8.0-rc1-Android-2026-11-03.apk",
+      "sha256": "f1e0ba502e2fbfc755479b44c6801660a53653d0bcdf3067b64e00ff103c122c"
+    },
+    {
+      "path": "PLINKO/builds/Sugarfall-v0.8.0-rc1-Android-2026-11-03.aab",
+      "sha256": "f37bc66695ae39402dc6330349f732f1713977e7da3df954237c8f09450ed48b"
+    },
+    {
+      "path": "PLINKO/docs/ANDROID_SUGARFALL_v0.8.0-rc2.json",
+      "sha256": "1d77e5ac3ec24fba490af239bb026917f5c851041f27d5e574f89e611c0ee73a"
+    },
+    {
+      "path": "PLINKO/builds/android-release/0.8.0-rc2-code37-attempt03/Sugarfall-v0.8.0-rc2-Android.apk",
+      "sha256": "afee2a0e1687a7051d9925bf636e06903b24f4250771ce2627fa643a31505a37"
+    },
+    {
+      "path": "PLINKO/builds/android-release/0.8.0-rc2-code37-attempt03/Sugarfall-v0.8.0-rc2-Android.aab",
+      "sha256": "29c32d25400ce42168ced55eac0909a15e2dc4433e3f94b48d7c388e425f6831"
+    }
+  ],
+  "phone_verified": false,
+  "physical_listening_verified": false,
+  "real_billing_verified": false,
+  "remaining": [
+    "Physical-phone art readability, touch comfort, transition feel/performance and install-over save retention",
+    "Existing Bakery tray10/More Jam retest and current natural-wallet progression",
+    "Real Play billing products, verified purchase and restore acceptance"
+  ]
+}

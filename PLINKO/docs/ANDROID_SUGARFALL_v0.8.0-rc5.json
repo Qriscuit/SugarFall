@@ -1,0 +1,47 @@
+{
+  "change_id": "CHG-053",
+  "record_date": "2026-11-10",
+  "version_name": "0.8.0-rc5",
+  "version_code": 46,
+  "package": "com.qriscuit.sugarfall",
+  "status": "Signed Play candidate verified locally. Internal testing upload and phone acceptance are pending.",
+  "ad_profile": "Sugarfall owner AdMob app and production rewarded and interstitial units",
+  "production_ad_config": "PLINKO/data/production_ads.json",
+  "admob_readiness": "Requires review, limited serving and no store link",
+  "source_verified": true,
+  "package_verified": true,
+  "delivery": "Local signed APK and AAB",
+  "play_uploaded": false,
+  "phone_verified": false,
+  "real_ad_playback_verified": false,
+  "minimum_sdk": 24,
+  "target_sdk": 36,
+  "architectures": [
+    "arm64-v8a"
+  ],
+  "custom_features": [
+    "sugarfall_public"
+  ],
+  "artifact_checks_passed": 665,
+  "artifacts": {
+    "apk": {
+      "local_path": "PLINKO/builds/android-release/0.8.0-rc5-code46-attempt01/Sugarfall-v0.8.0-rc5-Android.apk",
+      "size_bytes": 102318910,
+      "sha256": "f0f94d8435be311f39638806db8a5fbf39b76b501bb9d83b4a044c736e6926f3",
+      "signing_certificate_sha256": "e31ab7654afed05f9acd5fb6b59846d990198b8005d8fafd01e070c1dbc4dc29"
+    },
+    "aab": {
+      "local_path": "PLINKO/builds/android-release/0.8.0-rc5-code46-attempt01/Sugarfall-v0.8.0-rc5-Android.aab",
+      "size_bytes": 102137660,
+      "sha256": "8856db086719cd3a1ae4e7fc0be006838dc89201da0aa7d83c03eb1ebd5a130b",
+      "signing_certificate_sha256": "e31ab7654afed05f9acd5fb6b59846d990198b8005d8fafd01e070c1dbc4dc29"
+    }
+  },
+  "source_manifest": "PLINKO/builds/android-release/0.8.0-rc5-code46-attempt01/source-sha256.json",
+  "verification_evidence": [
+    "PLINKO/builds/android-release/0.8.0-rc5-code46-attempt01/verification/validation.json",
+    "outputs/app-icon-20261110/icon-assets-validation.json"
+  ],
+  "source_record": "EXPORT_NOTES.md",
+  "icon_proof": "outputs/app-icon-20261110/icon-assets-validation.json"
+}

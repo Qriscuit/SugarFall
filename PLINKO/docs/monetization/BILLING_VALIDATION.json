@@ -1,0 +1,98 @@
+{
+  "scope": "Native billing lifecycle, bounded proof lifetime, token-bound revocation, paid checkpoint restore barrier and profile namespace integration",
+  "functional_assertions": 418,
+  "functional_failures": 0,
+  "gpu_assertions": 49,
+  "gpu_failures": 0,
+  "gpu_captures": 12,
+  "checks": [
+    {
+      "log": "native-billing.log",
+      "passed": 65,
+      "failed": 0,
+      "suite": "native-billing"
+    },
+    {
+      "log": "area-access.log",
+      "passed": 74,
+      "failed": 0,
+      "suite": "area-access"
+    },
+    {
+      "log": "area-integration-current.log",
+      "passed": 205,
+      "failed": 0,
+      "suite": "area-integration"
+    },
+    {
+      "log": "purchase-restore.log",
+      "passed": 74,
+      "failed": 0,
+      "suite": "purchase-restore"
+    }
+  ],
+  "gpu": {
+    "summary": "../restore-captures/restore-preview-summary.json",
+    "reviewed": [
+      "bakery-restore-unavailable-450.png",
+      "gelato-restore-retry-450.png"
+    ],
+    "log": "purchase-restore-gpu.log",
+    "profile_io": 0,
+    "areas": [
+      "bakery",
+      "gelato",
+      "crystal"
+    ],
+    "resolutions": [
+      "450x800",
+      "720x1280"
+    ]
+  },
+  "source_hashes": [
+    {
+      "sha256": "40ec29896f5427bde3ea0ed4d441a2f89110ab42acd5b2471a1eae0d23bb1c8e",
+      "path": "scripts/area_play_billing.gd"
+    },
+    {
+      "sha256": "b13bb67da879f17c2bd8e0ca16f77a055c5c92d8224cb78fff747c698998c862",
+      "path": "scripts/area_ability_ui.gd"
+    },
+    {
+      "sha256": "077f6082229b60e646189350b62edd62e4d9f583eac055c9228c2da031d50914",
+      "path": "scripts/main.gd"
+    },
+    {
+      "sha256": "37e41299fc3359a734034f975b217e959d369fefcd1c0a4ec59673478be3b9c9",
+      "path": "scripts/home_menu.gd"
+    },
+    {
+      "sha256": "8f4d0ce58c795f3f4a6e254e14996bf0286b8db130ac56de9f81e68c85db9586",
+      "path": "tests/area_ability_access_qa.gd"
+    },
+    {
+      "sha256": "9b2608a5f8ad55645183b9ab2011f2b7d2ba48e26da4c263dbb09de9d885b9e3",
+      "path": "tests/area_ability_integration_qa.gd"
+    },
+    {
+      "sha256": "928d57f0f3b6c2e5692d11d41c5ffb3b98163c51031da34b59e92c4be7d039a5",
+      "path": "tests/native_billing_qa.gd"
+    },
+    {
+      "sha256": "33d7d17f1c94b2fc00e7a21d112965d9b92b1301c26d82075f95d8ec40b1f5b6",
+      "path": "tests/purchase_restore_qa.gd"
+    },
+    {
+      "sha256": "1ddefbe5928a05b45c2719363e28e2cfb55d737249e3a568b65f62a16d566581",
+      "path": "tests/purchase_restore_preview.gd"
+    }
+  ],
+  "live_money_processed": false,
+  "real_play_acceptance": "open",
+  "external_configuration": "Firebase project/verification URL/Google Play API permissions and AdMob app IDs are not supplied; actual paid checkout remains unavailable until configured",
+  "offline_policy": "No unsigned persistent entitlement cache; online verified initial restore required for paid access. Deferred paid checkpoint file is retained read-only.",
+  "proof_ttl_seconds_max": 300,
+  "refresh_timer_seconds": 240,
+  "known_host_diagnostic": "Exact offline root certificate store error retained in raw logs and excluded only by anchored full-line check",
+  "authoritative_revocation": "Exact request-bound terminal backend denial removes only the affected verified token; transient failures preserve existing proof until its monotonic deadline."
+}

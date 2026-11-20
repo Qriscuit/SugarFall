@@ -1,10 +1,60 @@
 # Export and rebuild notes
 
+## Latest local Play candidate - 19 November 2026
+
+Signed **0.8.0-rc8/code 49** packages the Remove automatic ads purchase and restore flow for `com.sungati.sugarfall`. It uses the existing upload key and passed 667 local artifact checks. Live checkout needs a configured verifier and active product, followed by Play-installed device acceptance. [Local build record](ANDROID_SUGARFALL_v0.8.0-rc8.md).
+
+## Prior Play candidate and current Android preview - CHG-055, 10 November 2026
+
+The owner reported that Play Console requires `com.sungati.sugarfall`. Signed **0.8.0-rc7/code 48** uses that public package and passed 665 artifact checks. Preview **0.7.21-preview/code 48** passed 632 checks and eight Drive readbacks. [Play candidate](ANDROID_SUGARFALL_v0.8.0-rc7.md) · [Preview](ANDROID_SUGARFALL_v0.7.21.md).
+
+
+## Previous Android builds - CHG-054, 10 November 2026
+
+Developer settings and simulated commerce are available in the Godot editor. Exported builds ignore developer startup flags. The Watch Ad title and status fit inside the results button. The preview passed 632 artifact checks and 8 Drive checks. The signed Play pair passed 665 artifact checks. [Preview](ANDROID_SUGARFALL_v0.7.20.md) · [Play candidate](ANDROID_SUGARFALL_v0.8.0-rc6.md).
+
+
+## Previous builds - CHG-053, 10 November 2026
+
+The supplied Mabel portrait is the app icon for preview **0.7.19-preview/code 46**, Play candidate **0.8.0-rc5/code 46** and Windows **0.7.19**. The preview passed 632 artifact checks and 8 Drive metadata checks. The signed Play pair passed 665 artifact checks. [Preview](ANDROID_SUGARFALL_v0.7.19.md) · [Play candidate](ANDROID_SUGARFALL_v0.8.0-rc5.md) · [Windows](WINDOWS_SUGARFALL_v0.7.19.md).
+
+
+## Previous Android builds - CHG-052, 10 November 2026
+
+Preview **0.7.18-preview/code 45** passed 630 exact artifact checks and eight metadata readbacks after replacing the existing Drive APK. It uses the existing preview package and signing key with Google demo ads. [Preview record](ANDROID_SUGARFALL_v0.7.18.md).
+
+Public **0.8.0-rc4/code 45** passed 663 exact checks. The signed APK and AAB use Sugarfall’s existing release certificate, target API 36, and embed Sugarfall’s production AdMob app and units. The signed artifacts are local. [Public build record](ANDROID_SUGARFALL_v0.8.0-rc4.md).
+
+## Native SDK integration - CHG-051, 5 November 2026
+
+Preview **0.7.17-preview/code 44** retains package `org.pegfoundry.prototype.preview` and its existing preview signing identity. It uses the official Godot 4.6.3 release engine with the `developer` feature, then standalone signing with the existing preview key. This fits the native SDK-equipped APK under the connector's 100 MiB delivery cap while retaining preview tools. The exact signed APK is 104,448,254 bytes, SHA-256 `2a2047e3fb90787c12f0fbbde7d7ae288519775d840459a0d62f401394280e97`, and passes 624 artifact checks. The first audit caught authoring-metadata exclusions; the retained second audit passes after correcting only the preview export filter.
+
+Public **0.8.0-rc3/code 43** retains `com.qriscuit.sugarfall`, `sugarfall_public` and the existing public signing identity. Its signed APK and AAB pass 652 static artifact/native commerce/payload checks. [The exact record](ANDROID_SUGARFALL_v0.8.0-rc3.json) binds their hashes, native SDK libraries, manifest, optimized launcher resources and frozen source. [The input recheck](../../verification/native-commerce/public-input-recheck.json) proves the later preview-preset change leaves public export blocks and runtime inputs unchanged.
+
+All three exact files replace their existing Drive IDs and pass eight independent metadata readbacks each. Folder and sharing permissions are retained; no remote checksum comparison is claimed. [Current download links](../BUILD_LINKS.txt) - [Preview record](ANDROID_SUGARFALL_v0.7.17.json) - [Source/account status](NATIVE_MONETIZATION_STATUS.md).
+
+Billing 3.3.0/Billing Library 9.1.0 and Poing AdMob 5.1.0/native 4.6.3/Google Next-Gen 1.6.0 are packaged. Current billing config is empty and no verifier is deployed, so checkout fails closed. Ads use Google's demo IDs. Account setup, final SDK disclosures, Play upload and all physical-device purchase/restore/ad-playback/retained-save/performance checks remain OPEN. Earlier sections below are dated history.
+
+## Previous Android preview v0.7.16
+
+CHG-050 delivers v0.7.16-preview/code42 with Mabel explicitly teaching that every cookie must be destroyed to clear the tray before time runs out. This changes one runtime dialogue string and retains ten states and enlarged text. 192 focused guide assertions and four touch/mouse captures pass. The exact APK passes 1498 payload and 16 Android checks; all eight Drive metadata readbacks pass. Package/signing identity and the existing Drive file/folder/URL/permissions are retained. 98,872,682 bytes; SHA-256 `7a9a7309af270377f67ac44478a44ee7d27a099cf21efc7dc6918a4e2a41c363`. Physical-phone acceptance and real monetization remain open. [Release and download](ANDROID_SUGARFALL_v0.7.16.md).
+
+
+## Previous Android preview v0.7.15
+
+CHG-049 delivers v0.7.15-preview/code41 with the signature-node backdrop pulse, gold plus-only peg earnings and removed global bottom notifications/input blockers. 1500 payload and 16 Android metadata/signature/alignment checks pass; all eight Drive metadata readbacks pass. Existing package, signing identity, Drive file/folder/URL/permissions are retained. 98,872,682 bytes; SHA-256 `58768ef3a5e3ef7d78ac952bce94632cb80f2b7bb8b0b7534c88037252821067`. Physical-phone acceptance, retained-save installation, Bakery tray-10, natural-wallet progression and real billing remain open. [Release and download](ANDROID_SUGARFALL_v0.7.15.md).
+
+
+## Previous Android preview v0.7.14
+
+CHG-048 delivers v0.7.14-preview/code40 with the shorter guide, text enlarged by two logical pixels, immediate dialogue and gold peg coin earnings. The exact APK passes 1500 payload checks and 16 Android metadata/signature/alignment checks; all eight Drive metadata readbacks pass after replacement of the existing file. Package and signing identity are retained. 98,872,682 bytes; SHA-256 `80b8c6493c1400b02eb1099b0a1c61fba2528c4bb1289137f2321905251d6577`. Phone acceptance, retained-save installation, Bakery tray-10, natural-wallet progression and real billing remain open. [Release and download](ANDROID_SUGARFALL_v0.7.14.md).
+
+
 ## Current public candidate v0.8.0-rc2
 
 CHG-044 prepares the reusable signed-release environment and delivers separate public **v0.8.0-rc2/code 37** APK and AAB files for Internal testing preparation. The existing preview download is unchanged. The owner reports creating the Play app; Console enrollment, upload, production readiness and off-device key backup are unverified. 344 exact-artifact checks pass: 41 compiled scripts, 10 game-data JSON files and 418 indexed project payloads are verified. APK/AAB payloads agree, with sparse-directory order checked semantically. 186 policy checks pass (85 preview and 101 actual nondebug); 11 verifier tests and five build-helper tests are separate. Drive readbacks verify separate APK, AAB and public-certificate files in the existing owner-only folder; the v0.7.10 preview is unchanged. No remote checksum was returned. The AAB is for Play Internal testing; the APK installs directly under `com.qriscuit.sugarfall`, separately from the preview with no automatic save import. Real billing, phone install/update/listening checks and the Bakery tray-10 finding remain open. [Candidate record](ANDROID_SUGARFALL_v0.8.0-rc2.md) · [Rebuild commands](ANDROID_RELEASE_BUILD.md).
 
-## Current Android preview v0.7.10
+## Previous Android preview v0.7.10
 
 CHG-043 delivers v0.7.10-preview/code 36 with direct stacked coin and early-access purchase actions on signature upgrade cards. Home no longer promotes an ability purchase. 1048 payload checks and 16 Android metadata/signature/alignment checks pass. The APK is 93,043,106 bytes; SHA-256 `8673036be460e691f5c2bf6108c171f9a1e904cb9c729e10fde522ca6ef0105c`. All 8 Drive readback checks pass; the existing private file ID, folder, owner permissions and URL are retained. No remote checksum comparison is claimed. Phone touch/readability, the Bakery tray-10 retest, current legal progression and real billing remain open. The current public candidate is the separate v0.8.0-rc2 build above. 844 source/desktop assertions pass with zero failures: 192 integration, 431 GPU, 35 Crystal UI, 105 Gelato shop and 81 Twin-node checks. The renderer covers 38 captures at 450x800 and 450x1000; 259 relevant source/art/data/fixture hashes match. Direct actions, gates, inline confirmation, provider-fixture pending/restore/rollback and Home cleanup are exercised. No real Play transaction or phone acceptance is claimed. [Manifest](ANDROID_SUGARFALL_v0.7.10.json).
 

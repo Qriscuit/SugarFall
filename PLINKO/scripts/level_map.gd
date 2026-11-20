@@ -172,7 +172,7 @@ func overlay_at(p: Vector2) -> bool:
 	if area_menu_open or entry_open: return visual_area().has_point(p)
 	if BACK_RECT.has_point(p) or TITLE_RECT.has_point(p) or PLAY_RECT.has_point(p): return true
 	if g.diagnostics_on and Rect2(24,1175,672,84).has_point(p): return true
-	return g.note_time > 0 and Rect2(24,1190,672,60).has_point(p)
+	return false
 
 func map_input_at(p: Vector2) -> bool:
 	return visual_area().has_point(p) and not overlay_at(p)

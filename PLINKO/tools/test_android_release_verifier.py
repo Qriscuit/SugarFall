@@ -1,7 +1,11 @@
 """Focused guards for sparse-PCK semantic comparison in release verification."""
 import hashlib
+import io
+import json
 import struct
 import unittest
+import zipfile
+from native_android_audit import ADMOB_APP_METADATA, audit_production_ads, manifest_metadata
 from verify_android_release import AUTHORING_METADATA, FORBIDDEN, sparse_pack_entries, sparse_payload_errors
 
 
@@ -83,6 +87,47 @@ class SparsePackVerificationTests(unittest.TestCase):
         for path in ['assets/data/numbers.json','assets/data/licenses/GODOT_LICENSE.txt',
                      'assets/data/art/bakery_ability/jam_donut.png','assets/data/audio/studio_warm_hum.wav']:
             self.assertFalse(AUTHORING_METADATA.search(path))
+
+
+class ProductionAdsVerificationTests(unittest.TestCase):
+    app_id = 'ca-app-pub-1111111111111111~2222222222'
+    config = {
+        'enabled': True, 'use_test_ads': False, 'app_id': app_id,
+        'rewarded_unit_id': 'ca-app-pub-1111111111111111/3333333333',
+        'interstitial_unit_id': 'ca-app-pub-1111111111111111/4444444444',
+    }
+
+    def audit(self, module='', *, manifest_ids=None, frozen_hash=None, preview=False, config=None):
+        data = json.dumps(self.config if config is None else config).encode()
+        production_path = 'assets/data/production_ads.json'
+        preview_path = 'assets/data/preview_ads.json'
+        assets = {production_path: module + production_path}
+        with zipfile.ZipFile(io.BytesIO(), 'w') as archive:
+            archive.writestr(assets[production_path], data)
+            if preview:
+                assets[preview_path] = module + preview_path
+                archive.writestr(assets[preview_path], '{}')
+            return audit_production_ads(archive, assets,
+                                        [self.app_id] if manifest_ids is None else manifest_ids,
+                                        frozen_hash or hashlib.sha256(data).hexdigest())
+
+    def test_apk_and_aab_asset_pack(self):
+        for module in ['', 'assetPackInstallTime/']:
+            with self.subTest(module=module):
+                self.assertTrue(all(item['passed'] for item in self.audit(module)))
+
+    def test_manifest_mismatch_preview_payload_and_drift_fail(self):
+        for kwargs in [{'manifest_ids': []}, {'manifest_ids': [self.app_id, self.app_id]},
+                       {'manifest_ids': ['other']}, {'preview': True}, {'frozen_hash': 'changed'},
+                       {'config': {**self.config, 'use_test_ads': True}}]:
+            with self.subTest(kwargs=kwargs):
+                self.assertFalse(all(item['passed'] for item in self.audit(**kwargs)))
+
+    def test_application_metadata_excludes_nested_values_and_retains_duplicates(self):
+        metadata = f'      E: meta-data\n        A: android:name="{ADMOB_APP_METADATA}"\n        A: android:value="{self.app_id}"\n'
+        nested = '\n'.join('  '+line for line in metadata.splitlines())+'\n'
+        manifest = '  E: manifest\n    E: application\n      E: activity\n'+nested+metadata+metadata
+        self.assertEqual(manifest_metadata(manifest), {ADMOB_APP_METADATA: [self.app_id, self.app_id]})
 
 
 if __name__=='__main__':unittest.main(verbosity=2)

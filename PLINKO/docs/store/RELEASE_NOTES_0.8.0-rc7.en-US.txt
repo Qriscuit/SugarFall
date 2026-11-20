@@ -1,0 +1,5 @@
+<en-US>
+Drop doughnuts in Bakery, aim scoops in Gelato Garden, and ricochet candy in Crystal Candyworks. Break pegs before time runs out and spend the coins you earn on upgrades.
+
+Mabel appears on the app icon. The Watch Ad label and status now fit inside the button on the results screen.
+</en-US>

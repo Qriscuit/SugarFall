@@ -1,5 +1,61 @@
-// Resolve only the standard release shell and its official plugin dependencies.
+import groovy.json.JsonOutput
+import java.security.MessageDigest
+import org.gradle.api.attributes.Category
+import org.gradle.api.attributes.LibraryElements
+import org.gradle.api.attributes.Usage
+import org.gradle.api.attributes.java.TargetJvmEnvironment
+
+// This verifier graph deliberately does not extend Android/app configurations.
+// Native ad dependencies and other cached JARs must never join bundletool's JVM.
 gradle.projectsEvaluated {
+    def verifier = rootProject.configurations.create('sugarfallBundletoolRuntime') {
+        canBeResolved = true
+        canBeConsumed = false
+        visible = false
+        attributes {
+            attribute(Usage.USAGE_ATTRIBUTE, rootProject.objects.named(Usage, Usage.JAVA_RUNTIME))
+            attribute(Category.CATEGORY_ATTRIBUTE, rootProject.objects.named(Category, Category.LIBRARY))
+            attribute(LibraryElements.LIBRARY_ELEMENTS_ATTRIBUTE, rootProject.objects.named(LibraryElements, LibraryElements.JAR))
+            attribute(TargetJvmEnvironment.TARGET_JVM_ENVIRONMENT_ATTRIBUTE,
+                rootProject.objects.named(TargetJvmEnvironment, TargetJvmEnvironment.STANDARD_JVM))
+        }
+    }
+    rootProject.dependencies.add(verifier.name, 'com.android.tools.build:bundletool:1.16.0') {
+        version { strictly '1.16.0' }
+    }
+    rootProject.tasks.register('resolveSugarfallBundletoolClasspath') {
+        doLast {
+            def destination = rootProject.findProperty('sugarfall_bundletool_manifest')
+            if (destination == null || !new File(destination.toString()).isAbsolute()) {
+                throw new GradleException('Pass an absolute -Psugarfall_bundletool_manifest path')
+            }
+            def artifacts = verifier.resolvedConfiguration.resolvedArtifacts.collect { artifact ->
+                if (artifact.extension != 'jar') throw new GradleException('Expected bundletool runtime JAR: ' + artifact)
+                def digest = MessageDigest.getInstance('SHA-256')
+                artifact.file.withInputStream { stream ->
+                    byte[] bytes = new byte[65536]
+                    int count
+                    while ((count = stream.read(bytes)) != -1) digest.update(bytes, 0, count)
+                }
+                def component = artifact.moduleVersion.id
+                [group: component.group, name: component.name, version: component.version,
+                 classifier: artifact.classifier, extension: artifact.extension,
+                 file: artifact.file.canonicalPath, sha256: digest.digest().encodeHex().toString()]
+            }.sort { left, right ->
+                "${left.group}:${left.name}:${left.version}:${left.classifier ?: ''}" <=>
+                    "${right.group}:${right.name}:${right.version}:${right.classifier ?: ''}"
+            }
+            def report = [schema_version: 1, root: 'com.android.tools.build:bundletool:1.16.0',
+                configuration: verifier.name, gradle_version: gradle.gradleVersion, artifacts: artifacts]
+            def output = new File(destination.toString())
+            output.parentFile.mkdirs()
+            def pending = new File(output.parentFile, output.name + '.tmp')
+            pending.setText(JsonOutput.prettyPrint(JsonOutput.toJson(report)) + '\n', 'UTF-8')
+            java.nio.file.Files.move(pending.toPath(), output.toPath(),
+                java.nio.file.StandardCopyOption.REPLACE_EXISTING)
+            println("SUGARFALL_BUNDLETOOL_RESOLVED ${artifacts.size()} jars: ${output}")
+        }
+    }
     rootProject.tasks.register('warmSugarfallReleaseDependencies') {
         doLast {
             ['standardReleaseRuntimeClasspath', 'standardReleaseCompileClasspath'].each { name ->

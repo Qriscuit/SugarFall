@@ -23,12 +23,65 @@ PROJECT = Path(__file__).resolve().parent.parent
 ROOT = PROJECT.parent
 SOURCE_SHA = 'c260fe8ab52ee0627d4d27a07117f7a7f04ce2a73cef7356a032fac0e1998009'
 CERT_SHA = 'e31ab7654afed05f9acd5fb6b59846d990198b8005d8fafd01e070c1dbc4dc29'
+PUBLIC_PACKAGE = 'com.sungati.sugarfall'
 SECRET_PREFIXES = ('GODOT_ANDROID_KEYSTORE_RELEASE_', 'ORG_GRADLE_PROJECT_release_keystore_')
+PRODUCTION_ADS_PATH = 'data/production_ads.json'
+PREVIEW_ADS_PATH = 'data/preview_ads.json'
+DEMO_AD_PUBLISHER = '3940256099942544'
 
 
 def require(ok, message):
     if not ok:
         raise RuntimeError(message)
+
+
+def validate_production_ads(payload):
+    def unique_object(pairs):
+        result = dict(pairs)
+        if len(result) != len(pairs):
+            raise ValueError('AdMob configuration contains duplicate JSON keys')
+        return result
+
+    def reject_constant(value):
+        raise ValueError(f'Invalid JSON value in AdMob configuration: {value}')
+
+    ads = json.loads(payload, object_pairs_hook=unique_object, parse_constant=reject_constant)
+    if not isinstance(ads, dict) or ads.get('enabled') is not True or ads.get('use_test_ads') is not False:
+        raise ValueError('Production ads require enabled=true and use_test_ads=false')
+    if f'ca-app-pub-{DEMO_AD_PUBLISHER}' in json.dumps(ads):
+        raise ValueError('Google demo inventory is reserved for preview builds')
+    publishers = set()
+    for field, separator in [('app_id', '~'), ('rewarded_unit_id', '/'), ('interstitial_unit_id', '/')]:
+        value = ads.get(field)
+        match = re.fullmatch(r'ca-app-pub-([0-9]{16})' + separator + r'[0-9]{10}', value) if isinstance(value, str) else None
+        if match is None:
+            raise ValueError(f'Enter a valid owner AdMob {field}')
+        publishers.add(match[1])
+    if len(publishers) != 1:
+        raise ValueError('AdMob app and units must share an owner publisher ID')
+    if ads['rewarded_unit_id'] == ads['interstitial_unit_id']:
+        raise ValueError('Rewarded and interstitial ads require separate ad units')
+    consent = ads.get('consent', {})
+    if not isinstance(consent, dict):
+        raise ValueError('AdMob consent configuration must be an object')
+    if 'test_device_ids' in ads or {'test_device_hashed_ids', 'debug_geography'} & consent.keys():
+        raise ValueError('Production ads cannot include test-device or consent-debug settings')
+    if type(ads.get('muted', False)) is not bool or type(consent.get('tag_for_under_age_of_consent', False)) is not bool:
+        raise ValueError('AdMob muted and consent age settings must be booleans')
+    if ads.get('max_ad_content_rating', 'PG') not in ('G', 'PG', 'T', 'MA'):
+        raise ValueError('AdMob maximum content rating must be G, PG, T, or MA')
+    for field in ['tag_for_child_directed_treatment', 'tag_for_under_age_of_consent']:
+        value = ads.get(field, -1)
+        if type(value) not in (int, float) or value not in (-1, 0, 1):
+            raise ValueError(f'AdMob {field} must be -1, 0, or 1')
+    return ads
+
+
+def preflight_production_ads(project):
+    try:
+        validate_production_ads((project / PRODUCTION_ADS_PATH).read_bytes())
+    except (OSError, ValueError) as error:
+        raise RuntimeError(f'Configure {PRODUCTION_ADS_PATH} before building a public release. {error}') from error
 
 
 def sha(path):
@@ -91,12 +144,13 @@ def preset_identity():
         head, opt = cfg[f'preset.{index}'], cfg[f'preset.{index}.options']
         require(head['name'] == f'"Android Release Candidate {kind}"', 'Public preset name changed')
         require(head['custom_features'] == '"sugarfall_public"', 'Missing public feature')
-        require(opt['package/unique_name'] == '"com.qriscuit.sugarfall"', 'Public package identity changed')
+        require(opt['package/unique_name'] == f'"{PUBLIC_PACKAGE}"', 'Public package identity changed. Expected ' + PUBLIC_PACKAGE)
         require(opt['package/signed'] == 'false', 'Godot must export unsigned; signing happens afterward')
         require(all(opt.get(k, '""') == '""' for k in ['keystore/release', 'keystore/release_user', 'keystore/release_password']), 'Signing values must not be stored in presets')
         require(opt['architectures/arm64-v8a'] == 'true' and all(opt[k] == 'false' for k in ['architectures/armeabi-v7a', 'architectures/x86', 'architectures/x86_64']), 'Expected ARM64-only public export')
-        require(not any(k.startswith('permissions/') and v == 'true' for k, v in opt.items()), 'Unexpected public Android permission')
-        require(opt['gradle_build/use_gradle_build'] == ('true' if kind == 'AAB' else 'false'), 'Public build mode changed')
+        requested={k for k,v in opt.items() if k.startswith('permissions/') and v=='true'}
+        require(requested=={'permissions/internet','permissions/access_network_state'}, 'Native providers require only explicit Internet/network permissions; library manifest permissions are independently audited')
+        require(opt['gradle_build/use_gradle_build'] == 'true', 'Native providers require Gradle for APK and AAB')
         if kind == 'AAB':
             require(opt['gradle_build/min_sdk'] == '"24"' and opt['gradle_build/target_sdk'] == '"36"', 'Public SDK24/36 changed')
         identities.append(dict(version_name=json.loads(opt['version/name']), version_code=int(opt['version/code'])))
@@ -105,7 +159,9 @@ def preset_identity():
     return identities[0]
 
 
-def preflight(config, output):
+def preflight(config, output, *, toolchain_only=False):
+    if not toolchain_only:
+        preflight_production_ads(PROJECT)
     output.mkdir(parents=True, exist_ok=True)
     templates, sdk = Path(config['templates']), Path(config['android_sdk'])
     required = [Path(config['godot']), templates/'android_release.apk', templates/'android_source.zip',
@@ -177,23 +233,65 @@ def prepare_cache(config, seed=None):
 
 
 def make_classpath(config):
-    cache = Path(config['cache'])
-    jars = sorted((cache/'gradle-user-home/caches/modules-2/files-2.1').rglob('*.jar'))
-    require(any(p.name == 'bundletool-1.16.0.jar' for p in jars), 'Run Setup-AndroidRelease.ps1 to resolve the pinned bundletool dependency')
+    cache = Path(config['cache']).resolve()
+    manifest = cache/'bundletool-dependencies.json'
+    require(manifest.is_file(), 'Run Setup-AndroidRelease.ps1 to resolve the isolated bundletool graph')
+    selection = json.loads(manifest.read_text(encoding='utf-8-sig'))
+    require(isinstance(selection, dict) and selection.get('schema_version') == 1
+            and selection.get('root') == 'com.android.tools.build:bundletool:1.16.0'
+            and selection.get('configuration') == 'sugarfallBundletoolRuntime',
+            'Invalid or unpinned bundletool dependency manifest; rerun setup')
+    artifacts = selection.get('artifacts')
+    require(isinstance(artifacts, list) and 0 < len(artifacts) <= 256,
+            'Bundletool dependency manifest must contain the resolved runtime JARs')
+    modules = (cache/'gradle-user-home/caches/modules-2/files-2.1').resolve()
+    versions, seen, selected = {}, set(), []
+    for artifact in artifacts:
+        require(isinstance(artifact, dict), 'Invalid bundletool artifact record')
+        for field in ['group', 'name', 'version']:
+            require(isinstance(artifact.get(field), str) and re.fullmatch(r'[A-Za-z0-9_.+-]+', artifact[field]),
+                    'Invalid bundletool module coordinate')
+        require(artifact.get('extension') == 'jar' and isinstance(artifact.get('file'), str)
+                and Path(artifact['file']).is_absolute(), 'Bundletool artifact must be an absolute cached JAR path')
+        classifier = artifact.get('classifier')
+        require(classifier is None or isinstance(classifier, str) and re.fullmatch(r'[A-Za-z0-9_.+-]+', classifier),
+                'Invalid bundletool artifact classifier')
+        jar = Path(artifact['file']).resolve()
+        require(jar.is_relative_to(modules) and jar.suffix == '.jar', 'Bundletool JAR is outside the dependency cache')
+        relative = jar.relative_to(modules)
+        require(len(relative.parts) == 5 and relative.parts[:3] ==
+                (artifact['group'], artifact['name'], artifact['version']),
+                'Bundletool JAR path does not match its resolved module coordinate')
+        module = artifact['group'] + ':' + artifact['name']
+        require(module not in versions or versions[module] == artifact['version'],
+                f'Multiple resolved versions of bundletool module: {module}')
+        versions[module] = artifact['version']
+        identity = (module, classifier)
+        require(identity not in seen, 'Duplicate bundletool artifact in the resolved graph')
+        seen.add(identity)
+        source = Path('\\\\?\\' + str(jar)) if os.name == 'nt' else jar
+        digest = artifact.get('sha256', '')
+        require(isinstance(digest, str) and re.fullmatch(r'[a-f0-9]{64}', digest)
+                and source.is_file() and sha(source) == digest,
+                f'Resolved bundletool dependency changed or is missing: {module}')
+        selected.append((artifact, jar, source, digest))
+    require(versions.get('com.android.tools.build:bundletool') == '1.16.0',
+            'Resolved graph does not contain the pinned bundletool 1.16.0')
     # Some Maven paths exceed Windows MAX_PATH even in the relocated cache.
     # Give Java and the strict verifier short immutable content-addressed copies.
     libraries = cache/'bundletool-libs'
+    require(libraries.resolve().is_relative_to(cache), 'Bundletool short-copy directory leaves the selected cache')
     libraries.mkdir(exist_ok=True)
     entries, provenance = [], []
-    for jar in jars:
-        source = Path('\\\\?\\' + str(jar.resolve())) if os.name == 'nt' else jar
-        digest = sha(source)
+    for artifact, jar, source, digest in selected:
         target = libraries/(digest + '.jar')
         if not target.exists():
             shutil.copyfile(source, target)
         require(sha(target) == digest, f'Cached verifier dependency differs: {jar.name}')
         entries.append(target.resolve().as_posix())
-        provenance.append(dict(source=jar.as_posix(), sha256=digest, cached_path=target.as_posix()))
+        provenance.append(dict(source=jar.as_posix(), sha256=digest, cached_path=target.as_posix(),
+                               group=artifact['group'], name=artifact['name'], version=artifact['version'],
+                               classifier=artifact.get('classifier'), selected_manifest_sha256=sha(manifest)))
     path = cache/'bundletool-classpath.txt'
     pending = path.with_suffix('.tmp')
     pending.write_text('\n'.join(dict.fromkeys(entries)) + '\n', encoding='utf-8')
@@ -202,18 +300,40 @@ def make_classpath(config):
     return path
 
 
+def resolve_bundletool(config, offline=False):
+    """Refresh only the verifier graph; never export, sign or mutate the template."""
+    cache = Path(config['cache']).resolve()
+    build = cache/'template-project/android/build'
+    require((build/'gradlew.bat').is_file(), 'Prepare the official release template cache with setup first')
+    command = [str(build/'gradlew.bat'), '--no-daemon', '--console=plain', '--max-workers=2',
+               '-Pperform_signing=false', f'-Pexport_package_name={PUBLIC_PACKAGE}',
+               '--init-script', str(PROJECT/'tools/resolve-release-dependencies.gradle'),
+               '-Psugarfall_bundletool_manifest=' + str(cache/'bundletool-dependencies.json'),
+               'resolveSugarfallBundletoolClasspath']
+    if offline:
+        command.append('--offline')
+    log = run(command, cache/'bundletool-resolution.log', config, build)
+    require('BUILD SUCCESSFUL' in log and 'SUGARFALL_BUNDLETOOL_RESOLVED ' in log
+            and 'BUILD FAILED' not in log, 'Isolated bundletool resolution did not complete')
+    return make_classpath(config)
+
+
 def setup(config, args):
     cache = Path(config['cache'])
-    preflight(config, cache/'preflight')
+    if args.require_production_ads:
+        preflight_production_ads(PROJECT)
+    preflight(config, cache/'preflight', toolchain_only=True)
     build = prepare_cache(config, args.seed_gradle_cache)
     command = [str(build/'gradlew.bat'), '--no-daemon', '--console=plain', '--max-workers=2',
-               '-Pperform_signing=false', '-Pexport_package_name=com.qriscuit.sugarfall',
+               '-Pperform_signing=false', f'-Pexport_package_name={PUBLIC_PACKAGE}',
                '--init-script', str(PROJECT/'tools/resolve-release-dependencies.gradle'),
-               'warmSugarfallReleaseDependencies', 'compileStandardReleaseJavaWithJavac']
+               '-Psugarfall_bundletool_manifest=' + str(cache.resolve()/'bundletool-dependencies.json'),
+               'resolveSugarfallBundletoolClasspath', 'warmSugarfallReleaseDependencies', 'compileStandardReleaseJavaWithJavac']
     if args.offline:
         command.append('--offline')
     log = run(command, cache/'setup-gradle.log', config, build)
-    require('BUILD SUCCESSFUL' in log and 'BUILD FAILED' not in log, 'Gradle setup did not complete')
+    require('BUILD SUCCESSFUL' in log and 'SUGARFALL_BUNDLETOOL_RESOLVED ' in log
+            and 'BUILD FAILED' not in log, 'Gradle setup did not complete')
     classpath = make_classpath(config)
     write_json(cache/'toolchain.json', {**config, 'bundletool_classpath_file': str(classpath)})
     write_json(cache/'setup.json', dict(status='passed', offline=args.offline, signing_credentials_read=False,
@@ -224,7 +344,7 @@ def setup(config, args):
 def source_manifest():
     # Freeze all runtime/import inputs, not QA, docs, caches or generated Android build files.
     paths = [PROJECT/'project.godot', PROJECT/'export_presets.cfg']
-    for folder in ['scripts', 'scenes', 'data']:
+    for folder in ['scripts', 'scenes', 'data', 'addons']:
         paths.extend(p for p in (PROJECT/folder).rglob('*') if p.is_file())
     paths.extend(p for p in PROJECT.glob('*.tscn'))
     return {p.relative_to(PROJECT).as_posix(): sha(p) for p in sorted(set(paths))}
@@ -244,6 +364,7 @@ def export_diagnostics(log, config):
 
 
 def export(config, args):
+    preflight_production_ads(PROJECT)
     require((Path(config['cache'])/'setup.json').is_file(), 'Run Setup-AndroidRelease.ps1 first')
     identity = preset_identity()
     stamp = dt.datetime.now().strftime('%Y%m%d-%H%M%S')
@@ -265,8 +386,8 @@ def export(config, args):
     write_json(Path(config['cache'])/'latest-build-plan.json', plan)
     diagnostics = {}
     for kind in ['apk', 'aab']:
-        command = [config['godot'], '--headless', '--path', str(PROJECT)]
-        if kind == 'aab':
+        command = [config['godot'], '--headless', '--path', str(PROJECT), '--log-file', str(output/f'godot-export-{kind}.log')]
+        if kind in ('apk','aab'):
             android_version = PROJECT/'android/.build_version'
             if not (PROJECT/'android/build/gradlew.bat').exists():
                 command.append('--install-android-build-template')
@@ -291,6 +412,7 @@ def main():
     for option in ['cache', 'godot', 'java-home', 'android-sdk', 'seed-gradle-cache', 'output']:
         parser.add_argument('--'+option)
     parser.add_argument('--offline', action='store_true')
+    parser.add_argument('--require-production-ads', action='store_true', help='Check live AdMob configuration before dependency setup')
     args = parser.parse_args()
     config = configuration(args)
     if args.action == 'setup':

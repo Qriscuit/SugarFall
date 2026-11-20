@@ -20,13 +20,18 @@ class Fixture extends "res://scripts/main.gd":
 		return not fail_write
 
 class StoreFixture extends RefCounted:
+	signal purchase_result(product: String, outcome: String)
 	var purchases=0
 	var pending=false
 	var entitled=false
+	var response_code=0
 	func offer(_product: String) -> Dictionary:
 		return {"available":true,"pending":pending,"price_label":"€3.49","error":""}
 	func has_entitlement(_product: String) -> bool: return entitled
 	func purchase(product: String) -> Dictionary:
+		if response_code!=0:
+			purchase_result.emit(product,"cancelled" if response_code==1 else "unavailable")
+			return {"response_code":response_code}
 		purchases+=1;pending=true
 		return {"id":"live-fixture-1","product_id":product,"outcome":"requested"}
 	func restore(): pass
@@ -267,10 +272,15 @@ func live_pending_and_completion():
 		check(g.mode=="shop" and g.ability_ui.stage=="pending" and store.purchases==1 and not g.ability_ui.owned(),area+" live paid button queues one provider request without a local test grant")
 		tap(g,g.upgrade_map.paid_rect());tap(g,g.upgrade_map.buy_rect())
 		check(store.purchases==1 and g.bank==wallet and not g.ability_ui.owned(),area+" pending live payment blocks duplicates and competing coin spend")
+		g.ability_ui._store_result(product,"verification_failed")
+		check(g.ability_ui.message=="Verification failed. Tap Restore." and g.ability_ui.stage=="details" and not g.ability_ui.owned(),area+" failed verification reports a Restore action without granting access")
+		g.ability_ui._store_result(product,"revoked")
+		check(g.ability_ui.message=="Purchase is no longer available." and not g.ability_ui.owned(),area+" authoritative revocation shows a terminal purchase outcome without granting")
 		store.pending=false;store.entitled=true;g.fail_write=true
 		var before=Campaign.capture_local(g)
 		g.ability_ui._store_result(product,"completed")
 		check(Campaign.capture_local(g)==before and g.ability_ui.can_restore(),area+" failed live activation save preserves a restorable receipt without partial campaign state")
+		check(g.ability_ui.message=="Could not save purchase. Tap Restore.",area+" verified-but-unsaved purchase reports a retry instead of claiming completion")
 		g.fail_write=false;g.ability_ui._store_result(product,"completed")
 		check(g.mode=="shop" and g.ability_ui.owned() and g.ability_unlock_source=="store" and g.bank==wallet,area+" verified live callback activates atomically without spending coins or navigating")
 		if area=="gelato":
@@ -281,7 +291,21 @@ func live_pending_and_completion():
 		check(Campaign.capture_local(g)==before and g.writes==writes and store.purchases==1,area+" duplicate verified completion cannot charge or reset progress twice")
 		g.free()
 
+func immediate_checkout_errors():
+	for code in [1,2]:
+		var g=fixture("bakery")
+		g.ability_access=Access.new(false)
+		var store=StoreFixture.new();store.response_code=code
+		g.ability_access.bind_provider(store);g.ability_ui.billing=store
+		store.purchase_result.connect(g.ability_ui._store_result)
+		select_card(g)
+		tap(g,g.upgrade_map.paid_rect())
+		var expected="Purchase cancelled" if code==1 else "Store unavailable"
+		check(g.ability_ui.stage=="details" and g.ability_ui.message==expected and not store.pending and not g.ability_ui.owned(),"Immediate native checkout code%d retains its terminal outcome instead of showing Pending" % code)
+		store.purchase_result.disconnect(g.ability_ui._store_result)
+		g.free()
+
 func _initialize():
-	gestures();earned_and_paid();area_reset_and_public();restore_feedback();entitlement_loss_checkpoint();card_edges();live_pending_and_completion()
+	gestures();earned_and_paid();area_reset_and_public();restore_feedback();entitlement_loss_checkpoint();card_edges();live_pending_and_completion();immediate_checkout_errors()
 	print("AREA_ABILITY_INTEGRATION_QA_RESULT passed=%d failed=%d"%[passed,failures.size()])
 	quit(0 if failures.is_empty() else 1)

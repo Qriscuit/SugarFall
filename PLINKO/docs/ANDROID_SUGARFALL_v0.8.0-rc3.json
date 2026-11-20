@@ -1,0 +1,116 @@
+{
+  "version_name": "0.8.0-rc3",
+  "version_code": 43,
+  "package": "com.qriscuit.sugarfall",
+  "change_id": "CHG-051",
+  "record_date": "2026-11-05",
+  "status": "Exact native artifacts verified and Drive metadata read back; account/device acceptance OPEN",
+  "source_verified": true,
+  "package_verified": true,
+  "delivery_verified": true,
+  "phone_verified": false,
+  "real_billing_verified": false,
+  "real_ad_playback_verified": false,
+  "artifacts": {
+    "apk": {
+      "local_path": "PLINKO/builds/android-release/0.8.0-rc3-code43-attempt02/Sugarfall-v0.8.0-rc3-Android.apk",
+      "size_bytes": 104452350,
+      "sha256": "1361336a6a9c48a46f7f963a498339842ae58c805307268c0fe08c539eaca302",
+      "signing_certificate_sha256": "e31ab7654afed05f9acd5fb6b59846d990198b8005d8fafd01e070c1dbc4dc29",
+      "drive": {
+        "file_id": "1AU5B4wDwQT4RcKqrs_KG_u02B3X4NRDt",
+        "url": "https://drive.google.com/file/d/1AU5B4wDwQT4RcKqrs_KG_u02B3X4NRDt/view?usp=drivesdk",
+        "verification_path": "verification/native-commerce/drive-public-apk.json",
+        "metadata_verified": true,
+        "remote_checksum_verified": false,
+        "remote_checksum_available": false,
+        "folder_id": "1TXLZwTNVlHGTBy7y0CVMMk3zABEKu8X-",
+        "checks_passed": 8
+      }
+    },
+    "aab": {
+      "local_path": "PLINKO/builds/android-release/0.8.0-rc3-code43-attempt02/Sugarfall-v0.8.0-rc3-Android.aab",
+      "size_bytes": 104105905,
+      "sha256": "6d1abaa6b14a0f01a208d80b743b5e210ebad30c983b99c1d77593a024a29a10",
+      "signing_certificate_sha256": "e31ab7654afed05f9acd5fb6b59846d990198b8005d8fafd01e070c1dbc4dc29",
+      "drive": {
+        "file_id": "1ZFWvhGOnHPLn1qIYkcuRpBhcP3KG846D",
+        "url": "https://drive.google.com/file/d/1ZFWvhGOnHPLn1qIYkcuRpBhcP3KG846D/view?usp=drivesdk",
+        "verification_path": "verification/native-commerce/drive-public-aab.json",
+        "metadata_verified": true,
+        "remote_checksum_verified": false,
+        "remote_checksum_available": false,
+        "folder_id": "1TXLZwTNVlHGTBy7y0CVMMk3zABEKu8X-",
+        "checks_passed": 8
+      }
+    }
+  },
+  "drive": {
+    "file_id": "1AU5B4wDwQT4RcKqrs_KG_u02B3X4NRDt",
+    "url": "https://drive.google.com/file/d/1AU5B4wDwQT4RcKqrs_KG_u02B3X4NRDt/view?usp=drivesdk",
+    "verification_path": "verification/native-commerce/drive-public-apk.json",
+    "metadata_verified": true,
+    "remote_checksum_verified": false,
+    "remote_checksum_available": false,
+    "folder_id": "1TXLZwTNVlHGTBy7y0CVMMk3zABEKu8X-",
+    "checks_passed": 8
+  },
+  "source_record": "NATIVE_MONETIZATION_STATUS.json",
+  "remaining": [
+    "Account/provider configuration, deployed verifier, Play API permissions, active products and license testers",
+    "Owner AdMob app/live units, final audience/consent/SDK-data declarations and Internal testing upload",
+    "Physical Android SDK playback, purchase/cancel/pending/restore/reinstall/refund/expiry tests",
+    "All existing phone acceptance, legal progression, performance and Bakery tray-10 retest gates"
+  ],
+  "signing_certificate_sha256": "e31ab7654afed05f9acd5fb6b59846d990198b8005d8fafd01e070c1dbc4dc29",
+  "engine_template": "release",
+  "export_mode": "release",
+  "custom_features": [
+    "sugarfall_public"
+  ],
+  "source_manifest": "PLINKO/builds/android-release/0.8.0-rc3-code43-attempt02/source-sha256.json",
+  "source_recheck": "verification/native-commerce/public-input-recheck.json",
+  "minimum_sdk": 24,
+  "target_sdk": 36,
+  "architectures": [
+    "arm64-v8a"
+  ],
+  "verification_evidence": [
+    "PLINKO/builds/android-release/0.8.0-rc3-code43-attempt02/verification-final/validation.json",
+    "verification/native-commerce/public-input-recheck.json"
+  ],
+  "build_date": "2026-11-05",
+  "app_name": "Sugarfall",
+  "godot": "4.6.3.stable.official.7d41c59c4",
+  "verification": {
+    "exact_artifact_reports": [
+      "PLINKO/builds/android-release/0.8.0-rc3-code43-attempt02/verification-final/validation.json",
+      "verification/native-commerce/public-input-recheck.json"
+    ],
+    "artifact_checks_passed": 652,
+    "drive_checks_passed": 16,
+    "scope": "Static signed artifact/native provider/payload checks and independent Drive metadata readback; no device execution or live payment/ad playback"
+  },
+  "local_path": "builds/android-release/0.8.0-rc3-code43-attempt02/Sugarfall-v0.8.0-rc3-Android.apk",
+  "file_name": "Sugarfall-v0.8.0-rc3-Android.apk",
+  "size_bytes": 104452350,
+  "bytes": 104452350,
+  "sha256": "1361336a6a9c48a46f7f963a498339842ae58c805307268c0fe08c539eaca302",
+  "bundle": {
+    "local_path": "builds/android-release/0.8.0-rc3-code43-attempt02/Sugarfall-v0.8.0-rc3-Android.aab",
+    "size_bytes": 104105905,
+    "sha256": "6d1abaa6b14a0f01a208d80b743b5e210ebad30c983b99c1d77593a024a29a10",
+    "signing_certificate_sha256": "e31ab7654afed05f9acd5fb6b59846d990198b8005d8fafd01e070c1dbc4dc29",
+    "drive": {
+      "file_id": "1ZFWvhGOnHPLn1qIYkcuRpBhcP3KG846D",
+      "url": "https://drive.google.com/file/d/1ZFWvhGOnHPLn1qIYkcuRpBhcP3KG846D/view?usp=drivesdk",
+      "verification_path": "verification/native-commerce/drive-public-aab.json",
+      "metadata_verified": true,
+      "remote_checksum_verified": false,
+      "remote_checksum_available": false,
+      "folder_id": "1TXLZwTNVlHGTBy7y0CVMMk3zABEKu8X-",
+      "checks_passed": 8
+    },
+    "file_name": "Sugarfall-v0.8.0-rc3-Android.aab"
+  }
+}

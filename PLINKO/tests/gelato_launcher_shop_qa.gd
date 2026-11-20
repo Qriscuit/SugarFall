@@ -221,7 +221,7 @@ func presentation_checks():
 	g.tuning.power_rebuild_cost_multiplier = 2.5
 	g.tuning.power_rebuild_gain_multiplier = 1.5
 	var lines: Array = m._twin_effect_lines()
-	check(lines==["Two slower launchers. Power starts over.","Power costs more and grows stronger."],"Twin tradeoff explains slower drops, reset Power, higher prices and stronger rebuilds without numeric stats")
+	check(lines==["Two slower launchers. Power resets.","Power costs more and grows stronger."],"Twin tradeoff explains slower drops, reset Power, higher prices and stronger rebuilds without numeric stats")
 	g.twin_launchers = false
 	g.tuning.twin_unlock_level = 8
 	g.tuning.twin_unlock_power = 6
